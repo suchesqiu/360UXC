@@ -6,8 +6,5 @@
     windows: http://windows.github.com/ 
              https://code.google.com/p/tortoisegit/wiki/Download?tm=2
 
-可编辑地址
-    https://github.com/suchesqiu/360UXC.git
-
-只读地址
-    git://github.com/suchesqiu/360UXC.git
+javascript 编码规范以 Dojo 为准
+    http://dojotoolkit.org/reference-guide/1.9/developer/styleguide.html
