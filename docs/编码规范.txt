@@ -1,0 +1,3 @@
+
+javascript 编码规范以 Dojo 为准
+    http://dojotoolkit.org/reference-guide/1.9/developer/styleguide.html
