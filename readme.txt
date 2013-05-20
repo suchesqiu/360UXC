@@ -11,9 +11,3 @@
 
 只读地址
     git://github.com/suchesqiu/360UXC.git
-
-压缩包地址
-    https://github.com/suchesqiu/360UXC/archive/master.zip
-
-
-
