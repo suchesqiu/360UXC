@@ -1,9 +1,10 @@
 
 
-组件库按开发组织分为三种, 一种为 UXC 开发的jquery组件, 另外一种为非UXC开发的jquery组件, 最后一种为qwrap组件
+组件库按开发组织分为四类, 一类为 UXC 开发的jquery组件, 一类为非UXC开发的jquery组件, 一类为qwrap组件, 一类为非jquery/qwrap/uxc 开发的组件(比如开源的编辑器)
     UXC 开发的jquery件放在 uxcComps 目录下
     非UXC 开发的jquery组件放在 jqComps 目录下
     qwrap 开发的组件放在 qwrapComps 目录下
+    非 jquery/qwrap/uxc  开发的组件放在 comps 目录下
 
     由于短时间内不可能一下子开发完所有需要用到的组件, 所以短期目录为先填充 jqComps 目录
     然后再逐步添加 uxcComps
