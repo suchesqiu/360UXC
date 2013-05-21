@@ -34,7 +34,7 @@
         * @param    _nginxStyle bool        指定是否需要使用 nginx 路径输出脚本资源
         *
         * @example
-                UXC.import( 'Test/Test1.js' );
+                UXC.import( 'Test' );
                 UXC.import( 'Test/Test1.js' );
                 UXC.import( '/js/Test/Test1.js' );
                 UXC.import( 'Test1.js, Test2.js ', '/js/??', true );
