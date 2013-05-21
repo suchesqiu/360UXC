@@ -19,7 +19,8 @@ UXC-FE常用组件收集
     图片轮播 （现用我自己写的jq插件）
     Css:hover伪选择扩展 （原生）
     Scrollbar （Jq scrollbar）
-    图片翻滚 （jcarousellite）          +第三方
+
+    图片翻滚 （jcarousellite）      +第三方
 
 
 (吴燕)工作中用到的jquery组件
