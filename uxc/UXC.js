@@ -63,7 +63,7 @@
                         _val = _val.replace( /(\\)\1|(\/)\2/g, '$1' ); 
 
                         if( !_nginxStyle ){
-                            _paths.push( '<script src="'+_val+'"></script>' );
+                            _paths.push( '<script src="'+_val+'"><\/script>' );
                         }else{
                             _paths.push( _val );
                         }
@@ -73,7 +73,7 @@
 
                     if( _nginxStyle ){
                         _basePath += _paths.join();
-                        document.write( '<script src="'+_basePath+'"></script>' );
+                        document.write( '<script src="'+_basePath+'"><\/script>' );
                     }else{
                         document.write( _paths.join('') );
                     }
