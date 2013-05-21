@@ -1,6 +1,10 @@
 (function( $ ){
     /**
-     * 
+     * UXC jq 组件库 资源调用控制类
+     *
+     * 调用组件资源请使用  UXC.import( 组件名[,组件名] );
+     *
+     * @author qiushaowei   2013-05-21
      */
     function UXC(){
         var _p = this;
@@ -13,18 +17,13 @@
          * 是否显示调试信息
          */
         _p.debug;
-
+        /**
+         * 自动识别组件库所在路径
+         */
         _p._getPath();
     }
 
     UXC.prototype = {
-        /**
-         * 获取组件库所在路径
-         */
-        _getPath: function(){
-                      var _sc = $('script').last(), _path = _sc.attr('src').replace( /UXC\.js[^\w]*/i, '' );
-                      if( _path ) this.PATH = _path + 'comps/';
-                  }
        /**
         * 导入UXC组件
         * @param    _names      string      模块名
@@ -40,7 +39,7 @@
                 UXC.import( '/js/Test/Test1.js' );
                 UXC.import( 'Test1.js, Test2.js ', '/js/??', true );
         */
-       , import: function( _names, _basePath, _nginxStyle ){
+        import: function( _names, _basePath, _nginxStyle ){
                     if( ! _names ) return;
                     var _p = this;
 
@@ -81,6 +80,14 @@
 
                     _p.log( _paths );
                 }
+        /**
+         * 获取组件库所在路径
+         */
+        , _getPath: function(){
+                      var _sc = $('script').last(), _path = _sc.attr('src').replace( /UXC\.js[^\w]*/i, '' );
+                      if( _path ) this.PATH = _path + 'comps/';
+                  }
+
        /**
         * 输出调试信息, 可通过 UXC.debug 指定是否显示调试信息
         */
