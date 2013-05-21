@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>suches template</title>
+</head>    
+<body>
+
+<style>
+    *{ margin: 0; padding: 0; }
+    body{ width: 980px; margin: 20px auto; }
+    .jCarouselLite{ 
+        visibility: visible;
+        overflow: hidden;
+        position: relative;
+        z-index: 2;
+        left: 0px;
+        width: 510px;
+        position: relative; 
+        height: 146px;
+    }
+
+    .jCarouselLite li{
+overflow: hidden;
+float: left;
+width: 170px;
+height: 146px;
+    }
+</style>
+
+        <div class="carousel main">
+            <a href="#" class="prev"> &lt;&lt; </a>
+            <div class="jCarouselLite">
+                <ul>
+                    <li><img src="http://www.gmarwaha.com/jquery/jcarousellite/image/1.jpg" alt="" width="150" height="118"></li>
+                    <li><img src="http://www.gmarwaha.com/jquery/jcarousellite/image/2.jpg" alt="" width="150" height="118"></li>
+                    <li><img src="http://www.gmarwaha.com/jquery/jcarousellite/image/3.jpg" alt="" width="150" height="118"></li>
+                    <li><img src="http://www.gmarwaha.com/jquery/jcarousellite/image/4.jpg" alt="" width="150" height="118"></li>
+                    <li><img src="http://www.gmarwaha.com/jquery/jcarousellite/image/5.jpg" alt="" width="150" height="118"></li>
+                    <li><img src="http://www.gmarwaha.com/jquery/jcarousellite/image/6.jpg" alt="" width="150" height="118"></li>
+                    <li><img src="http://www.gmarwaha.com/jquery/jcarousellite/image/7.jpg" alt="" width="150" height="118"></li>
+                    <li><img src="http://www.gmarwaha.com/jquery/jcarousellite/image/8.jpg" alt="" width="150" height="118"></li>
+                    <li><img src="http://www.gmarwaha.com/jquery/jcarousellite/image/9.jpg" alt="" width="150" height="118"></li>
+                    <li><img src="http://www.gmarwaha.com/jquery/jcarousellite/image/10.jpg" alt="" width="150" height="118"></li>
+                    <li><img src="http://www.gmarwaha.com/jquery/jcarousellite/image/11.jpg" alt="" width="150" height="118"></li>
+                </ul>
+            </div>
+            <a href="#" class="next"> &gt;&gt; </a>
+            <div class="clear"></div>   
+        </div>    
+
+<script src="../../jquery.js"></script>
+<script src="../jCarouselLite.js"></script>
+<script>
+$("div.jCarouselLite").jCarouselLite({
+    btnNext: "a.next",
+    btnPrev: "a.prev"
+});
+</script>
+    
+</body>
+</html>
+

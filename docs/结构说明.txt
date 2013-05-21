@@ -1,9 +1,9 @@
 
 
 组件库按开发组织分为四类, 一类为 UXC 开发的jquery组件, 一类为非UXC开发的jquery组件, 一类为qwrap组件, 一类为非jquery/qwrap/uxc 开发的组件(比如开源的编辑器)
-    UXC 开发的jquery件放在 uxcComps 目录下
-    非UXC 开发的jquery组件放在 jqComps 目录下
-    qwrap 开发的组件放在 qwrapComps 目录下
+    UXC 开发的jquery件放在 uxc 目录下
+    非UXC 开发的jquery组件放在 jq 目录下
+    qwrap 开发的组件放在 qwrap 目录下
     非 jquery/qwrap/uxc  开发的组件放在 comps 目录下
 
     由于短时间内不可能一下子开发完所有需要用到的组件, 所以短期目录为先填充 jqComps 目录
@@ -14,9 +14,9 @@
     第一层结构为 库所在目录, 第二层结构为组件所在目录
 
     以 UXC 下的 日历组件示范结构:
-        /uxcComps/                          #第一层结构
-        /uxcComps/Carlender/                #第二层结构
-        /uxcComps/Carlender/Carlender.js    #组件类名
+        /uxc/                          #第一层结构
+        /uxc/Carlender/                #第二层结构
+        /uxc/Carlender/Carlender.js    #组件类名
 
 
 每个组件都有自己的文件夹, 文件夹名称跟组件名称保持一致, 而且大小写匹配
