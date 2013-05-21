@@ -1,0 +1,113 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta http-equiv="X-UA-Compatible" content="IE=7">
+<title>百度有啊——要购物 先百度</title>
+<meta name="description" content="百度旗下全新大型购物网站，为人们提供更便捷、可靠的一站式网上购物体验，先收货后付款让您购物省事更安心。">
+<meta name="keywords" content="百度有啊，有啊，youa，C2C，网上购物，网上商城，在线购物，购物网站，网络购物，安全购物，网购，网上交易，在线交易，电子商务，网上买，网上卖，一口价，打折，网上开店，免费开店，网店，店铺">
+<link href="newhp.css" rel="stylesheet" type="text/css" media="screen">
+
+</head>
+<body>
+ 
+<div id="doc">
+ 
+	<div id="hd">
+		
+	    <!-- {start:global master header -->
+    <noscript>
+    <p class="nojs">您的浏览器已经禁用了脚本，这会影响您正常使用本站的功能。</p>
+    </noscript>
+ 
+    <div class="gm-master2 cls">
+ 
+	  <!-- toolbar -->
+	  <div class="gm-master-tool" id="topbar"></div>
+	  <!-- //toolbar -->
+ 
+      <div class="gm-master-logo" style="width:204px;height:75px;position:relative;">
+		<div style="position:absolute;width:328px;height:103px;left:-124px;top:-15px;"><object type="application/x-shockwave-flash" data="http://co.youa.baidu.com/picture/r/mall/logo/qixi09.swf" width="328" height="103" ><param name="movie" value="http://co.youa.baidu.com/picture/r/mall/logo/qixi09.swf" wmode="transparent"></param><param name="menu" value="false"><param name="wmode" value="transparent">
+		<a href="http://co.youa.baidu.com/content/promo/qixi09/index.html" target="_blank"><img src="http://co.youa.baidu.com/picture/r/mall/logo/qixi09.png" alt="七夕相逢 - 百度有啊" width="328" height="103"></a></object></div>
+	  </div>
+ 
+      <div class="gm-master-search">
+        <form method="get" action="http://youa.baidu.com/search/s">
+          <fieldset>
+            <legend>百度一下</legend>
+            <input type="hidden" value="1" name="search_domain">
+            <input type="hidden" value="0" name="category">
+			<div class="gm-master-inp">
+				<input id="searchTextbox" class="focus" size="24" name="keyword" accesskey="s" autosave="baidu" results="8" autocomplete="off">
+				<div id="suggest-wrap"><div class="panel panel-t0 panel-suggest" id="suggest-container" style="display: block; position: absolute;"><div class="panel-content"><div class="bd"></div></div> <!--[if lte IE 6]><iframe frameborder="0" class="panel-iframe" src="about:blank" tabindex="-1"></iframe><![endif]--></div></div>
+			</div>
+			<button id="gm_act_sbtn" type="submit">百度一下</button>
+          </fieldset>
+        </form>
+      </div>
+ 
+      <div class="gm-master-plus"><a href="http://co.youa.baidu.com/content/misc/shopcat/" target="_blank">搜店铺</a>&nbsp;&nbsp;<a href="http://youa.baidu.com/adsearch/item" target="_blank">高级</a>&nbsp;&nbsp;<a href="http://co.youa.baidu.com/content/help/A3/2/2008-09-01/143723181295.html" target="_blank">帮助</a></div>
+ 
+    </div>
+    <!-- }end:global master header -->
+	    <!-- {start:global master navigation -->
+
+	<script type="text/javascript" src="http://st.youa.baidu.com/resource/script/mall/global/userv3.js"></script>
+ 
+	</div>
+ 
+</div>
+ 
+<script type="text/javascript">__stat = new Image().src = 'http://img.mall.baidu.com/st/stat.jpg?pl=mall&ss=index&fp=index&rf=' + encodeURIComponent(document.referrer)+'&rn='+Math.random();;</script>
+<script type="text/javascript" src="http://co.youa.baidu.com/picture/p/js/core-mini.js?v=001.js"></script>
+<script type="text/javascript" src="../autocomplete.js"></script>
+<script type="text/javascript" src="http://co.youa.baidu.com/picture/p/js/recharge.js?v=002.js"></script>
+ 
+<script type="text/javascript">//<![CDATA[
+var sgCallbackName = 'suggestCallback';
+var sgURL = 'http://youa.baidu.com/suggest/se/s?cmd=suggest&type=kwd&max_count=10&callback='+sgCallbackName+'&charset=utf-8&category={0}&keyword={1}';
+var sgCache = new AutocompleteCache();
+
+window[sgCallbackName] = function (o) {
+	var data = o.r, sg = autocomplete;
+	sgCache.write(sg.requestURL, data);
+	sg.showDataSource(data);
+}
+
+var autocomplete = new Autocomplete({
+	instanceName  : 'autocomplete',
+	listenTextbox : G('searchTextbox'),
+	container     : G('suggest-container'),
+	userInputValue: G('searchTextbox').value,
+	onselect : function() {
+		var queryForm = Dom.parentNode($('searchTextbox'),'form');
+		if(queryForm) queryForm.submit();
+	},
+	oninput : function() {		
+		var sg    = autocomplete, dataSource = null;
+		var form  = Dom.parentNode($('searchTextbox'),'form');
+		var value = window.encodeURIComponent((sg.getTextboxValue()+'').trim());
+		var catEl = form['category'];
+		var cat   = catEl ? catEl.value : 0;
+		var url   = sgURL.format(cat, value);
+
+		if (!value.trim().length) return sg.hide();
+		
+		sg.requestURL = url;
+		if (!!sgCache.read(url)) {
+			dataSource = sgCache.read(url);
+			sg.showDataSource(dataSource);
+			focusItem();
+		} else {
+			getScript(url, focusItem);
+		}
+		function focusItem(){
+			autocomplete.setFocus(0);
+		}
+	}
+});
+//]]></script>
+<script src="http://tk.baidu.com/tk-rcv/sv/cj.php?pe=VTVSZwA/CzAKfQQuVTBWO188&pn=1790&sn=21&rn=624&dn=0"></script>
+</body>
+</html>
+

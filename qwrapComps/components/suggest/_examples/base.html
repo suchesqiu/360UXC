@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	<title>Suggest demo</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="../../../apps/qwrap.js"></script>
+	<script type="text/javascript" src="../../panel/panel.js"></script>
+	<script type="text/javascript" src="../suggest.js"></script>
+	<link href="style.css" rel="stylesheet" type="text/css" media="screen">
+	<meta http-equiv="X-UA-Compatible" content="IE=7" >
+</head>
+<style>
+	.gm-master2 .gm-master-search{margin:10px}
+	.panel-suggest {zoom:1;width:600px;margin:-1px 0 0 0;_overflow-y:hidden;border:1px solid #5ba515;-moz-box-shadow:0 1px 2px rgba(0,0,0,0.2);}
+	.panel-suggest .item {position:relative;width:300px;border-right:1px solid #5BA515;cursor:pointer;_cursor:hand;text-align:left;background:#fff;padding:3px 0;}
+	.panel-suggest .item b {background:url(std.ico.gif) center right no-repeat;padding-right:10px}
+	.panel-suggest .selected {background:#Efffc5;border:1px solid #8cd838;border-width: 1px 0;-moz-box-shadow:0 0 1px rgba(0,0,0,0.2);margin:-1px 0;z-index:10;-moz-text-shadow:0 1px 2px rgba(0,0,0,0.3);background:#e0f0bb -moz-linear-gradient(center top, rgba(255,255,255,0.5) 0%, rgba(255,255,255,0.5) 49%, rgba(255,255,255,0.0) 51%, rgba(255,255,255,0));}
+	.panel-suggest .item .key {color:#525252;padding:3px;padding-left:10px;font-size:14px;}
+	.panel-suggest .item .key span{margin-left:-350px;padding-left:360px;}
+	.panel-suggest .selected .key {color:#000;padding:3px;padding-left:10px;font-size:14px;}
+	.panel-suggest .item .val {color:#999;padding-right:7px;font-size:12px;float:right}
+	.multikey{background:#Efffc5;border:1px solid #57ba00;-moz-box-shadow:0 0 1px rgba(0,0,0,0.2);z-index:10;-moz-text-shadow:0 1px 2px rgba(0,0,0,0.3);background:#def98f -moz-linear-gradient(center top, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 49%, rgba(255,255,255,0.2) 51%, rgba(255,255,255,0));font-size:14px;height:24px;display:inline-block;margin:3px 0 0 3px;padding:0 5px;float:left;color:#686;-moz-border-radius:2px;line-height:24px;}
+	.gm-master-inp{-moz-border-radius-topleft: 2px;-moz-border-radius-bottomleft: 2px;}
+	
+	.info{display:none;position:absolute;left:300px;width:280px;padding-left:10px;}
+	.info li{clear:both;padding-top:10px}
+	.selected .info{display:inline}
+
+</style>
+<body>
+<div id="s-con" class="gm-master2">
+	<div class="gm-master-search">
+		<form action="http://youa.baidu.com/search/s" method="get" id="ubw">
+			<fieldset>
+				<legend>视频搜索</legend>
+				<input type="hidden" name="search_domain" value="1">
+				<input type="hidden" name="category" value="0">
+				<div class="gm-master-inp" id="sug-rel3">
+					<input autocomplete="off" results="8" autosave="baidu" accesskey="s" name="keyword" size="24" class="focus" id="searchTextbox3" value="视频搜索Suggest测试">
+				</div>
+				<button type="submit" id="gm_act_sbtn3">-搜索-</button>
+			</fieldset>
+		</form>
+	</div>
+</div>
+</body>
+<script type="text/javascript">
+//<![CDATA[
+	W('#searchTextbox3').on('focus', function(e){
+		if (e.target.value == "视频搜索Suggest测试") {
+			e.target.value = "";
+		}
+	}).on('blur', function(e){
+		if (e.target.value == "") {
+			e.target.value = "视频搜索Suggest测试";
+		}
+	});
+		
+	var sug3 = new QW.Suggest({
+		textbox: '#searchTextbox3',
+		dataUrl: "http://sug.sii.sdo.com:6333/su?r="+Math.random(),
+		uiItemNumber: 10,
+		uiReferEl: '#sug-rel3',
+		uiRender:function(oData){
+			//console.log(oData);
+
+			var el = W('<div class="item"><span class="key">'+oData.display+'</span></div>');
+			var info;
+			if(info = oData.info){
+				var ul = W('<ul class="info"></ul>');
+				for(var i = 0; i < info.length; i++){
+					if(info[i]){
+						var cover = info[i].cover_url;
+						if(!/^http\:\/\//.test(cover))
+							cover = "http://"+cover;
+						ul.appendChild('<li><a href="'+info[i].playurl+'" onmousedown="QW.EventH.stopPropagation(null, this);QW.EventH.preventDefault(null, this);" unselectable="on" target="_blank"><img src="'+cover+'" style="float:left;width:80px;height:60px"><span>'+info[i].title+'</span></a></li>');
+					}
+				}
+				el.appendChild(ul);
+			}
+
+			W(el).on('mouseover', function(){
+				//W(this).addClass('selected');
+				var panelLayer = W(this).parentNode('div').parentNode('div');
+				
+				panelLayer.query('ul').hide();
+
+				var info = W(this).query('ul');
+
+				info.css('display', 'inline');
+				
+				var y0 = panelLayer.getXY()[1];
+				var y1 = W(this).getXY()[1];
+				var h0 = panelLayer.getSize().height;
+				var h1 = info.getSize().height;
+
+				var adject = Math.floor(y0 + h0 - y1 - h1) - 10;
+
+				if(adject < 0) {
+					info.css("top", adject+"px");
+				}
+
+				console.log([y0, y1, h0, h1, adject]);
+			});
+
+			return el;
+		},
+		//uiTemplate: '<div style="width:300px;border-right:1px solid #5BA515;"><span class="key" style="margin-left:-350px;padding-left:360px;">{display}</span></div>',
+		callback: 'cb',
+		keyword: 'wd'
+	});
+//]]>
+
+</script>
+
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Switch demo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script type="text/javascript" src="../../../apps/qwrap.js"></script>
+	<script type="text/javascript" src="../../../components/switch/switch_all.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+Dom.ready(function () {
+	var scroll = new Switch.Slide(g('container1'), {
+		effect : 'scroll',
+		step:-1,
+		animInterval : 500
+	});
+	scroll.render();
+
+	var fade = new Switch.Slide(g('container2'), {
+		effect : 'fade',
+		animInterval : 500
+	});
+	fade.render();
+
+	var tabview = new Switch.TabView(g('container3'), {		
+		events : ['mouseover'],
+		delayTime : 500,
+		immediateEvents : ['click']
+	});
+
+	tabview.render();
+
+	W('#clear').click(function () {
+		tabview.reset();
+		fade.reset();
+		scroll.reset();
+	});
+});
+</script>
+<style type="text/css">
+ul { margin:0; padding:0; }
+.switch-scroll, .switch-fade, .switch-tabs { width:200px; }
+.switch-nav li { background-color:#f4f4f4; }
+.switch-nav li.selected { background-color:#ccc; }
+.switch-content { height:50px; overflow:hidden; position:relative; }
+.switch-content li { height: 50px; line-height:50px; width:200px; display:none; }
+.switch-content li.selected { display:block; }
+
+.switch-scroll .switch-content li{ display:block; }
+.switch-fade .switch-content li { position:absolute; top:0; left:0; display:block; filter:alpha(opacity=0); opacity:0; }
+.switch-fade .switch-content li.selected { }
+</style>
+<h3>Slide-Scroll</h3>
+<div id="container1" class="switch-scroll">
+	<ul class="switch-nav">
+		<li class="selected">标题1</li>
+		<li>标题2</li>
+		<li>标题3</li>
+	</ul>
+	<ul class="switch-content">
+		<li class="selected" style="background-color:#F00">内容1</li>
+		<li style="background-color:#0F0">内容2</li>
+		<li style="background-color:#00F">内容3</li>
+	</ul>
+</div>
+<br><br>
+<h3>Slide-Fade</h3>
+<div id="container2" class="switch-fade">
+	<ul class="switch-nav">
+		<li class="selected">标题1</li>
+		<li>标题2</li>
+		<li>标题3</li>
+	</ul>
+	<ul class="switch-content">
+		<li class="selected" style="background-color:#F00">内容1</li>
+		<li style="background-color:#0F0">内容2</li>
+		<li style="background-color:#00F">内容3</li>
+	</ul>
+</div>
+<br><br>
+<h3>TabView</h3>
+<div id="container3" class="switch-tabs">
+	<ul class="switch-nav">
+		<li>标题1</li>
+		<li>标题2</li>
+		<li>标题3</li>
+	</ul>
+	<ul class="switch-content">
+		<li style="background-color:#F00">内容1</li>
+		<li style="background-color:#0F0">内容2</li>
+		<li style="background-color:#00F">内容3</li>
+	</ul>
+</div>
+<button id="clear">clear</button>
+</body>
+</html>

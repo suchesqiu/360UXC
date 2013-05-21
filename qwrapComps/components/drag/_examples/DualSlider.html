@@ -1,0 +1,145 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Jerry Qu's HTML document</title>
+    <meta http-equiv="ImageToolbar" content="no" />
+    <style type="text/css">
+		dt {margin:20px 0;font-size:14px;font-weight:bold;}
+		.price_graph {background:url("images/bar_bg.gif") repeat-x; display:block; font-size:0; height:16px; line-height:0; margin:4px 0 0 4px; position:relative}
+		.price_graph .arr1 {background:url("images/bg_bar.gif") repeat-x scroll 0 3px transparent; display:block; height:16px; left:0; position:absolute; top:0}
+		.price_graph .arr2 {background:url("images/bg_bar.gif") repeat-x scroll 0 3px transparent; display:block; height:16px; position:absolute; right:0; top:0}
+		.price_graph .arr {background:url("images/bg_bar_arr.png") no-repeat scroll 0 0 transparent; cursor:pointer; display:block; height:16px; position:absolute; text-indent:-9000px; width:10px}
+		.price_graph .arr1 .arr {right:-7px; top:0}
+		.price_graph .arr2 .arr {left:-7px; top:0}
+    </style>
+    </head>
+	<body>
+		<div id="container" style="margin:50px auto;width:760px;">
+			<dl>
+				<dt>示例一：</dt>
+				<dd>
+					<div id="sample1" class="price_graph" style="width: 212px;">
+						<span style="width:0px;" class="arr1"><span class="arr"></span></span>
+						<span style="width:0px;" class="arr2"><span class="arr"></span></span>
+					</div>
+					<div class="price_input">
+						<input type="text" autocomplete="off" style="width:58px;" class="sr_input" id="i1"> ~ 
+						<input type="text" autocomplete="off" style="width:59px;" class="sr_input" id="i2">
+					</div>
+				</dd>
+				<dt>示例二：</dt>
+				<dd>
+					<div id="sample2" class="price_graph" style="width: 312px;">
+						<span style="width:0px;" class="arr1"><span class="arr"></span></span>
+						<span style="width:0px;" class="arr2"><span class="arr"></span></span>
+					</div>
+					<div>
+						<input type="button" class="sample2" value="s2.setValues(0, 0)" /> <br />
+						<input type="button" class="sample2" value="s2.setValues(2000, 6000)" /> <br />
+						<input type="button" class="sample2" value="s2.setValues(5000, 5000)" /> <br />
+						<input type="button" class="sample2" value="s2.setValues(0, 10000)" /> <br />
+						<input type="button" class="sample2" value="s2.setValues(10000, 10000)" /> <br />
+						<input type="button" class="sample2" value="alert(s2.getValues())" />
+					</div>
+				</dd>
+				<dt>示例三：</dt>
+				<dd>
+					<div id="sample3" class="price_graph" style="width: 312px;">
+						<span style="width:0px;" class="arr1"><span class="arr"></span></span>
+						<span style="width:0px;" class="arr2"><span class="arr"></span></span>
+					</div>
+					<div class="price_input">
+						<input type="text" autocomplete="off" style="width:58px;" class="sr_input" id="i3"> ~ 
+						<input type="text" autocomplete="off" style="width:59px;" class="sr_input" id="i4">
+					</div>
+				</dd>
+			</dl>
+		</div>
+		<script type="text/javascript" src="../../../apps/qwrap.js"></script>
+		<script type="text/javascript" src="../../anim/anim.js"></script>
+		<script type="text/javascript" src="../drag_all.js"></script>
+		<script type="text/javascript">
+			var s2; //for test, s2 is global.
+
+			//Sample1
+			(function() {
+				var values = [0, 500],
+					defaults = [50, 250];
+
+				var s1 = new DualSlider({
+						container : '#sample1', 
+						width : 200,
+						startValue : values[0],
+						endValue : values[1]
+					});
+				
+				s1.on('drag', function() {
+					var i1 = W('#i1'), i2 = W('#i2');
+
+					i1.val(s1.minValue);
+					i2.val(s1.maxValue);
+				});
+
+				['#i1', '#i2'].forEach(function(el, i) {
+					el = W(el);
+					el.on('blur', function() {
+						var i1 = W('#i1'), i2 = W('#i2');
+						var min = i1.val(), max = i2.val();
+						s1.setValues(min, max);
+
+						if(min != s1.minValue) {
+							i1.val(s1.minValue); //值有修正
+						}
+						if(max != s1.maxValue) {
+							i2.val(s1.maxValue);
+						}
+					});
+					el.val(defaults[i]);
+				});
+
+				s1.setValues.apply(s1, defaults);
+			})();
+
+			//Sample2
+			(function() {
+				var values = [0, 10000];
+		
+				s2 = new DualSlider({
+						container : '#sample2', 
+						width : 300,
+						startValue : values[0],
+						endValue : values[1]
+					});
+
+				W('.sample2').click(function(e) {
+					e.preventDefault();
+					eval(this.value);
+				});
+			})();
+
+			//Sample2
+			(function() {
+				var values = [1, 100];
+		
+				var s3 = new DualSlider({
+						container : '#sample3', 
+						width : 300,
+						startValue : values[0],
+						endValue : values[1]
+					});
+
+				s3.on('dragend', function() {
+					var i1 = W('#i3'), i2 = W('#i4');
+
+					i1.val(s3.minValue);
+					i2.val(s3.maxValue);
+				});
+
+				setInterval(function() {
+					s3.setValues((Math.random() * 50) | 0, ((Math.random() * 50) | 0) + 50);
+				}, 400);
+			})();
+		</script>
+	</body>
+</html>

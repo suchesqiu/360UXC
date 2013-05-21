@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Jerry Qu's HTML document</title>
+    <meta http-equiv="Pragma" content="no-cache" />  
+    <meta http-equiv="Cache-Control" content="no-cache" />     
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="ImageToolbar" content="no" />
+	<link href="../../apps/assets/base.css" rel="stylesheet" type="text/css" media="screen"/>
+
+	<link href="../assets/popup.css" rel="stylesheet" type="text/css" media="screen">
+    <style type="text/css">
+		/*main*/
+		#main{width:640px;margin:10px auto;text-align:left}
+		#main a {font-size:14px;text-decoration:none;}
+		#main a:hover {text-decoration:underline;}
+		#main body{margin-bottom:3em;margin-top:1em;}
+		#main pre{text-align:left;padding-left:1em;font-family:Courier New;border:1px solid #317336;border-left:10px solid #317336;font-size:12px}
+		#main h1{font-size:2em;font-weight:bold;margin-bottom:1em}
+		#main h2{font-weight:bold;font-size:1.2em;margin-bottom:.5em;margin-top:1em;}
+
+		/*misc*/
+		#status1 {color:red;}
+    </style>
+    </head>
+	<body>
+	<div id="main">
+	<h1>Popup</h1>
+	<p>基于Panel二次开发的Confirm、Success、Failure三种提示。</p>
+
+	<h2>一、Confirm示例：</h2>
+	<p>
+		<a href="#" id="test1">点这里</a>&nbsp;&nbsp;<span id="status1" ></span><br />
+	</p>
+	<pre>
+Popup.confirm(this, '真的要删除么？', function() { 
+	alert('你点了确定！');
+}, function() {
+	alert('你点了取消！')
+});</pre>
+	<h2>二、Success示例：</h2>
+
+	<p>
+		<a href="#" id="test2">点这里</a><br />
+	</p>
+	<pre>
+Popup.succ(this, '操作成功！');</pre>
+	<h2>三、Failure示例：</h2>
+	<p>
+		<a href="#" id="test3">点这里</a><br />
+
+	</p>
+	<pre>
+Popup.fail(this, '操作成功！');</pre>
+	</div>
+		<script type="text/javascript" src="../../../qwrap.js"></script>
+		<script type="text/javascript" src="../../animation/anim.js"></script>
+		<script type="text/javascript" src="../../panel_new/panel.js"></script>
+		<script type="text/javascript" src="../../panel/panel.js"></script>
+
+		<script type="text/javascript" src="../popup.js"></script>
+		<script type="text/javascript">
+			W('#test1').click(function(e) {
+				e.preventDefault();
+				Popup.confirm(this, '真的要删除么？', function() { 
+					W('#status1').html('你点了确定！');
+				}, function() {
+					W('#status1').html('你点了取消！')
+				});
+			});
+			W('#test2').click(function(e) {
+				e.preventDefault();
+				Popup.succ(this, '操作成功^__^');
+			});
+			W('#test3').click(function(e) {
+				e.preventDefault();
+				Popup.fail(this, '操作失败╯﹏╰');
+			});
+		</script>
+	</body>
+</html>

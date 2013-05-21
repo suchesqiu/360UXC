@@ -1,0 +1,1920 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<meta http-equiv="X-UA-Compatible" content="IE=7">
+<title>百度有啊——要购物 先百度</title>
+<meta name="description" content="百度旗下全新大型购物网站，为人们提供更便捷、可靠的一站式网上购物体验，先收货后付款让您购物省事更安心。">
+<meta name="keywords" content="百度有啊，有啊，youa，C2C，网上购物，网上商城，在线购物，购物网站，网络购物，安全购物，网购，网上交易，在线交易，电子商务，网上买，网上卖，一口价，打折，网上开店，免费开店，网店，店铺">
+<link href="newhp.css" rel="stylesheet" type="text/css" media="screen">
+
+</head>
+<body>
+ 
+<div id="doc">
+ 
+	<div id="hd">
+		
+	    <!-- {start:global master header -->
+    <noscript>
+    <p class="nojs">您的浏览器已经禁用了脚本，这会影响您正常使用本站的功能。</p>
+    </noscript>
+ 
+    <div class="gm-master2 cls">
+ 
+	  <!-- toolbar -->
+	  <div class="gm-master-tool" id="topbar"></div>
+	  <!-- //toolbar -->
+ 
+      <div class="gm-master-logo" style="width:204px;height:75px;position:relative;">
+		<div style="position:absolute;width:328px;height:103px;left:-124px;top:-15px;"><object type="application/x-shockwave-flash" data="http://co.youa.baidu.com/picture/r/mall/logo/qixi09.swf" width="328" height="103" ><param name="movie" value="http://co.youa.baidu.com/picture/r/mall/logo/qixi09.swf" wmode="transparent"></param><param name="menu" value="false"><param name="wmode" value="transparent">
+		<a href="http://co.youa.baidu.com/content/promo/qixi09/index.html" target="_blank"><img src="http://co.youa.baidu.com/picture/r/mall/logo/qixi09.png" alt="七夕相逢 - 百度有啊" width="328" height="103"></a></object></div>
+	  </div>
+ 
+      <div class="gm-master-search">
+        <form method="get" action="http://youa.baidu.com/search/s">
+          <fieldset>
+            <legend>百度一下</legend>
+            <input type="hidden" value="1" name="search_domain">
+            <input type="hidden" value="0" name="category">
+			<div class="gm-master-inp">
+				<input id="searchTextbox" class="focus" size="24" name="keyword" accesskey="s" autosave="baidu" results="8" autocomplete="off">
+				<div id="suggest-wrap"><div class="panel panel-t0 panel-suggest" id="suggest-container" style="display: block; position: absolute;"><div class="panel-content"><div class="bd"></div></div> <!--[if lte IE 6]><iframe frameborder="0" class="panel-iframe" src="about:blank" tabindex="-1"></iframe><![endif]--></div></div>
+			</div>
+			<button id="gm_act_sbtn" type="submit">百度一下</button>
+          </fieldset>
+        </form>
+      </div>
+ 
+      <div class="gm-master-plus"><a href="http://co.youa.baidu.com/content/misc/shopcat/" target="_blank">搜店铺</a>&nbsp;&nbsp;<a href="http://youa.baidu.com/adsearch/item" target="_blank">高级</a>&nbsp;&nbsp;<a href="http://co.youa.baidu.com/content/help/A3/2/2008-09-01/143723181295.html" target="_blank">帮助</a></div>
+ 
+    </div>
+    <!-- }end:global master header -->
+	    <!-- {start:global master navigation -->
+    <div class="gm-nav cls">
+		<img src="http://co.youa.baidu.com/picture/r/mall/090803/com/newp.gif" width="17" height="20" style="position:absolute;top:-8px;left:295px;">
+		<span class="xl"></span>
+		<span class="xr"></span>
+		<ul>
+			<li class="first selected"><a href="http://www.youa.com/">首页</a></li>
+			<li><a href="http://co.youa.baidu.com/content/ysj/">女人</a></li>
+			<li><a href="http://co.youa.baidu.com/content/beauty/">美容</a></li>
+			<li><a href="http://co.youa.baidu.com/content/xfdz/">手机数码</a></li>
+			<li><a href="http://co.youa.baidu.com/content/jj/">居家</a></li>
+		</ul>
+ 
+		<!--[if IE]>
+		<span id="makehp" style="display:none;behavior:url(#default#homePage) url(#default#userData)"><a onclick="sethp();return false;" href="http://youa.baidu.com">把有啊设为主页</a></span>
+		<script type="text/javascript">//<![CDATA[
+		(function(){
+		var b='makehp',mk=document.getElementById('makehp'),youa='http://youa.baidu.com/',d;
+		void function s() {
+		try{ d=mk.isHomePage(youa); } 
+		catch(x){ d=0; }
+		}();
+		if(!d)mk.style.display="inline";
+		window.sethp=function(){
+		try{ mk.setHomePage(youa);s(); } 
+		catch(x){}
+		};
+		})();
+		//]]></script>
+		<![endif]-->
+	
+	</div>
+    <!-- }end:global master navigation -->
+ 
+ 
+	<script type="text/javascript" src="http://st.youa.baidu.com/resource/script/mall/global/userv3.js"></script>
+ 
+	</div>
+ 
+	<div id="bd">
+		
+ 
+		<!-- cols-1 -->
+		<div class="cols-1 cls">
+ 
+			<div class="left">
+				
+				<!-- 公告栏 -->
+								<div id="hp-notice" class="mod">
+					<span class="x1"><span class="x1a"></span></span>
+					<div class="mod-content">
+						<div class="hd">
+							<span class="act"><a href="http://hi.baidu.com/2008zhaoshang/blog/category/%CD%A8%D6%AA" target="_blank">更多&gt;&gt;</a></span>						
+							<h3>公告栏</h3>
+						</div>
+						<div class="bd">
+							<p class="img"><a href="http://co.youa.baidu.com/content/help/" target="_blank" width="51" height="50"><img alt="公告" src="http://co.youa.baidu.com/picture/r/mall/ya_nt.gif"></a></p>
+							<ul>
+ 
+<li><a class="highlight"  href="http://hi.baidu.com/2008zhaoshang/blog/item/22b6a6b5b2a5ddc736d3ca83.html" target="_blank">有啊助手升级至1.4版</a></li>
+<li><a href="http://hi.baidu.com/2008zhaoshang/blog/item/991454013a9cfa0f1c958348.html" target="_blank">国货手机商品下架公告</a></li>
+<li><a href="http://hi.baidu.com/2008zhaoshang/blog/item/0c781dfe9351c7385d60086f.html" target="_blank">编辑器优化公告</a></li>
+ 
+ 
+ 
+ 
+                                                             
+ 
+ 
+																			
+							</ul>
+						</div>
+					</div>
+					<span class="x2"><span class="x2a"></span></span>
+				</div>
+ 
+				<!-- //公告栏 -->
+ 
+				<!-- 2元购 -->
+								<div id="hp-go" class="mod">
+					<span class="x1"><span class="x1a"></span></span>
+					<div class="mod-content">
+						<div class="hd">
+							<span class="act"><a target="_blank" href="http://co.youa.baidu.com/content/2yuan/index.html">更多>></a></span>						
+							<h3>2元起特卖场</h3>
+						</div>
+						<div class="bd">
+							<ul class="cls">
+								
+								<li><a target="_blank" href="http://co.youa.baidu.com/content/2yuan/index.html"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-21/3a6782c0dce8102e9659d6511962d1a2.jpg" width="50" height="50">TF专用<br>读卡器甩卖</a></li>
+ 
+                                                                         <li><a target="_blank" href="http://youa.baidu.com/item/46f4a0035f2982c76ea5a7b6?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-24/d9637734a7767561cd88d476925888d3.jpg" width="50" height="50">茶爽清莹祛痘面膜贴</a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/8ffb93b8dde4771e601faccc?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-24/f8c7d1204f2fba460bf7f441b33fc521.jpg" width="50" height="50">特价笔记本电脑小灯</a></li>
+							</ul>
+						</div>
+						<div class="hd lucky-hd">
+							<span class="act"><a target="_blank" href="http://co.youa.baidu.com/content/promo/xy24xshd/index.html">更多>></a></span>						
+							<h3>24小时折扣区</h3>
+						</div>
+						<div class="bd below">
+							<ul class="cls">
+								<li><a target="_blank" href="http://co.youa.baidu.com/content/promo/xy24xshd/index.html?c=58"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-24/ff47479394097c12531c63107df852a2.jpg" width="50" height="50">通用型键盘膜1.9元</a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/933f23aad6ccb2d3cf1d66ca?n=1&at=89"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-24/469ac2f65b7a1cd0debe8ef503e2adab.jpg" width="50" height="50">笔记本清洁<br>3件套3元</a></li>
+                                                                         <li><a target="_blank" href="http://youa.baidu.com/item/5b4cb0365305a11cba496f23?n=1&at=90"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-24/9b0a18cc9ebac8013daf161195638537.jpg" width="50" height="50">4G迷你移动硬盘35元</a></li>
+ <li><a target="_blank" href="http://youa.baidu.com/item/da61a80841dd86f99c3fcdc1?n=1&at=91"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-13/ec963d7d612f0e919cc052b00fb0e7a3.jpg" width="50" height="50">韩国MP5<br>售160元</a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/62328fd1c3eea33f2239454a?n=1&at=92"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-17/e4ca258bb04a660b76b9b0c45c25223c.jpg" width="50" height="50">超高评价<br>飘逸杯15元</a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/551924aff2fa373bd9170a16?n=1&at=93"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-13/de7f1a8588bf06b9b751c57d13af5f13.jpg" width="50" height="50">原装进口后挂耳机16元</a></li>
+							</ul>
+						</div>
+					</div>
+					<span class="x2"><span class="x2a"></span></span>
+				</div>
+ 
+				<!-- //2元购 -->
+ 
+ 
+ 
+ 
+			</div>
+ 
+			<div class="middle">
+ 
+				<!-- 幻灯1 -->
+								<div id="mantle" class="mod">
+					<span class="x1"><span class="x1a"></span></span>
+					<div class="mod-content">
+						<div class="bd">
+ 
+							<div id="yslider" class="cls">
+								<div class="yslider-stage">
+ 
+<p class="selected"><a target="_blank" href="http://youa.baidu.com/shop/c86e2dcf9158acd477bcddfb/tab/bed18c1fa01492e1ffeb69a6"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-24/4def2c002019e1a6be54b3d1c663efb3.jpg" alt="09礼品明星" width="405" height="220"></a></p>
+ 
+<p><a target="_blank" href="http://youa.baidu.com/shop/9adcf5363ed11ce05d27d435/tab/8fd15e401f5920396422449f"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-24/9cccd930e0aec75e9d022290f761a36e.jpg" alt="自选包快递" width="405" height="220"></a></p>
+ 
+<p><a target="_blank" href="http://youa.baidu.com/shop/8731a211d5a45c2378b99587/tab/fdfc29340cd8cdea36ce114a"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-24/ce9f227797498a906261b56b1feaf728.jpg" alt="折扣情侣包" width="405" height="220"></a></p>
+ 
+<p><a target="_blank" href="http://co.youa.baidu.com/content/promo/dpm/index.html"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-19/424825f3fcb4bfcfb0be61f2120e0595.jpg" alt="智慧触屏" width="405" height="220"></a></p>
+ 
+<p><a target="_blank" href="http://youa.baidu.com/shop/fa0fb33ba8fa0d475ae4e5e2/tab/cde3eceb841493099acbfde9"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-20/09c24a2105722b42383dba9cbd41a883.jpg" alt="甜蜜久久" width="405" height="220"></a></p>
+ 
+ 
+<p><a target="_blank" href="http://youa.baidu.com/shop/86f4d12fdf4910cbbdea2ffe"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-20/2ab97ad42eb7f913a4940ecbdb6c1085.jpg" alt="音乐大礼包" width="405" height="220"></a></p>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+							</div>
+								<div class="yslider-stick">
+ 
+									<ul>
+ 
+<li class="first selected"><a target="_blank" href="http://youa.baidu.com/shop/c86e2dcf9158acd477bcddfb/tab/bed18c1fa01492e1ffeb69a6">09礼品明星</a></li>
+ 
+<li><a target="_blank" href="http://youa.baidu.com/shop/fa0fb33ba8fa0d475ae4e5e2/tab/cde3eceb841493099acbfde9">自选包快递</a></li>
+ 
+<li><a target="_blank" href="http://youa.baidu.com/shop/8731a211d5a45c2378b99587/tab/fdfc29340cd8cdea36ce114a">折扣情侣包</a></li>
+ 
+<li><a target="_blank" href="http://co.youa.baidu.com/content/promo/dpm/index.html">智慧触屏</a></li>
+ 
+<li><a target="_blank" href="http://youa.baidu.com/shop/9adcf5363ed11ce05d27d435/tab/8fd15e401f5920396422449f">七夕更爱你</a></li>
+ 
+<li><a target="_blank" href="http://youa.baidu.com/shop/86f4d12fdf4910cbbdea2ffe">音乐大礼包</a></li>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+									</ul>
+								</div>
+							</div>
+ 
+						</div>
+					</div>
+					<span class="x2"><span class="x2a"></span></span>
+				</div>
+				<!-- //幻灯1 -->
+ 
+				<!-- 消费保障 -->
+								<div id="safebuy" class="cls">
+					<h3><a target="_blank" href="http://co.youa.baidu.com/content/promo/xiaobao/index.html?from=mokuai1#3"><span class="highlight">全程保障放心购</span><br>消费权益保障</a></h3>
+					<ul>
+						<li><a target="_blank" href="http://co.youa.baidu.com/content/promo/xiaobao/index.html?from=mokuai1#1" class="xb-icon-small-1">诚信保障</a></li>
+						<li><a target="_blank" href="http://co.youa.baidu.com/content/promo/xiaobao/index.html?from=mokuai1#2" class="xb-icon-small-2">七天退换货</a></li>
+						<li><a target="_blank" href="http://co.youa.baidu.com/content/promo/xiaobao/index.html?from=mokuai1#4" class="xb-icon-small-4">专柜正品</a></li>
+						<li><a target="_blank" href="http://co.youa.baidu.com/content/promo/xiaobao/index.html?from=mokuai1#5" class="xb-icon-small-5">海外正品</a></li>
+						<li><a target="_blank" href="http://co.youa.baidu.com/content/promo/xiaobao/index.html?from=mokuai1#3" class="xb-icon-small-3">全新保障</a></li>
+					</ul>
+				</div>
+ 
+				<!-- //消费保障 -->
+ 
+				<!-- 促销活动 -->
+								<div id="pasale">
+					<ul class="bbp-nav cls">
+						<li class="first selected"><a href="http://co.youa.baidu.com/content/show6/index.html" target="_blank">很多图很多秀</a></li>
+						<li class=""><a href="http://co.youa.baidu.com/content/promo/sxq/index.html" target="_blank">&nbsp;&nbsp;晒稀奇&nbsp;&nbsp;</a></li>
+						<li class=""><a href="http://co.youa.baidu.com/content/promo/100shops1/index.html" target="_blank">百大店铺</a></li>
+						<li class="last"><a href="http://co.youa.baidu.com/content/promo/cxwall/index.html" target="_blank">促销墙</a></li>
+					</ul>
+					<div class="bbp-content">
+						<div class="selected">
+							<ul class="cls">
+								<li class="first"><a target="_blank" href="http://youa.baidu.com/item/85fa9c3f8e0e5e020344ced3?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-20/163c620c9a7feff901a6f59af01fea6c.jpg" width="70" height="70">永远爱你<br>情侣对戒</a></li>
+ 
+<li><a target="_blank" href="http://youa.baidu.com/item/965d207a709bc3cd3758d303?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-20/8fd30912ebf44130d29e673c70b88dcb.jpg" width="70" height="70">上苍见证爱<br>免费送天灯</a></li>
+ 
+<li class="last"><a target="_blank" href="http://youa.baidu.com/item/83e90f1f59cee39c82495e69?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-10/02fddff5108fe7995ba26ef0d45a6740.jpg" width="70" height="70">全球限量版<br>威戈电脑包</a></li>
+ 
+<li><a target="_blank" href="http://youa.baidu.com/item/bed18c1fdfa227e3ffeb6915?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-05/9dafc7127b97e2995199d2d72e99ad83.jpg" width="70" height="70">hotwind<br>T台坡跟鞋</a></li>
+									
+<li><a target="_blank" href="http://youa.baidu.com/shop/1373e53b0921d82381cb4ddd/tab/10d86f0a49b3eeeb0c06f3ab?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-10/5263d3d2e6c239a762096cc50ac8b316.jpg" width="70" height="70">esprit折扣会<br>低至39元</a></li>
+ 
+<li><a target="_blank" href="http://youa.baidu.com/item/7628584153b1413e9adce825?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-07/ee7834e4e178fbd192a6fa40d62aec6d.jpg" width="70" height="70">施华洛世奇<br>水晶耳环</a></li>
+ 
+ 
+							</ul>
+							<p><a target="_blank" href="http://co.youa.baidu.com/content/promo/zjmsbd/index.html">[美食]搜罗南北美食，尽在精品美食天地 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="https://www.baifubao.com/content/promo/register/index.html">[活动]注册百付宝，豪礼赢回家！</a></p>
+						</div>
+						<div class="unselected">
+							<ul class="cls">
+								<li class="first"><a target="_blank" href="http://youa.baidu.com/item/2dabc5d8fce4b003de183108"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-13/e750b708859173c1ff92dbc08432d709.jpg" width="70" height="70">只属于你<br>唯一单身戒</a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/22b17b39d09883ee9a29bd7f?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-13/b23889fa1522f5dd257f1a48d1dd74f0.jpg" width="70" height="70">每天吃热饭<br>USB便当盒</a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/e2800c7ea3359037bed16d80?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-13/ff7551683f22aad3632c570e32c94218.jpg" width="70" height="70">纸器时代<br>立体明信片</a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/d71c601fc23fac0c8731a90b?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-13/0e9e863464d7ede889aaff358d9523c5.jpg" width="70" height="70">浓情化不开<br>巧克力U盘</a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/5c2378b9f73d8edd0b2a9617?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-13/ecd4234aaad67f1a684096f29b86b59d.jpg" width="70" height="70">月亮消灭你<br>神秘灯</a></li>
+								<li class="last"><a target="_blank" href="http://youa.baidu.com/item/7b390119720a592b400cbc13?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-13/61fa97e4419165edf5201e441b236bc4.jpg" width="70" height="70">果趣无限<br>诱人便签纸</a></li>
+							</ul>
+							<p><a target="_blank" href="http://co.youa.baidu.com/content/promo/zjmsbd/index.html">[美食]搜罗南北美食，尽在精品美食天地 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="https://www.baifubao.com/content/promo/register/index.html">[活动]注册百付宝，豪礼赢回家！</a></p>
+						</div>
+						<div class="unselected">
+							<ul class="cls">
+								<li class="first"><a target="_blank" href="http://co.youa.baidu.com/content/promo/100shops1/index.html"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-12/8324eccea3e7d9e81d07efca41ebf9a9.jpg" width="70" height="70">夜雅床品<br>旗舰店
+</a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/shop/a37572e0692589ebb5eb06e6?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-12/6cc4a4506e237029146eb3e0ed5454b8.jpg" width="70" height="70">优质低价<br>星静名店
+</a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/shop/5614bf1e2093eceeb752da57?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-12/c2bec3c939bf637f092692e9ada5563f.jpg" width="70" height="70">可爱大气<br>情侣飘飘熊
+ 
+</a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/shop/36ce5564ab0b8eef38221df9?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-12/079222a99fdfdaca754db25e555f5f67.jpg" width="70" height="70">时尚精致<br>cuitiniao
+</a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/shop/4020f903293125af641008d3?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-12/e4e3e10e2b174eca364106a2eca33c31.jpg" width="70" height="70">震撼低价<br>CAICJY</a></li>
+								<li class="last"><a target="_blank" href="http://youa.baidu.com/shop/92ff22b1bc1a011974ecb2d8?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-20/65886dfa80a428b0d2c364160cc8e31d.jpg" width="70" height="70">芮蔻旗舰店<br>感恩特惠</a></li>
+							</ul>
+							<p><a target="_blank" href="http://co.youa.baidu.com/content/promo/zjmsbd/index.html">[美食]搜罗南北美食，尽在精品美食天地 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="https://www.baifubao.com/content/promo/register/index.html">[活动]注册百付宝，豪礼赢回家！
+</a></p>
+						</div>
+						<div class="unselected">
+							<ul class="cls">
+								<li class="first"><a target="_blank" href="http://youa.baidu.com/shop/a31f18e0fe2c965d207ad6f0"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-24/f50c1d9d9f09dac8fc8228fec174b8b1.jpg" width="70" height="70">SOCOOL<br>女包的小店</a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/shop/fa0fb33ba8fa0d475ae4e5e2/tab/cde3eceb841493099acbfde9?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-13/fe2a83683017e5cf69c8471b9b6f51c0.jpg" width="70" height="70">精美礼品包<br>加送祝福卡
+</a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/shop/75fb2a35811b3d7d5e1e75df?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-13/70d823e2ef8c1f1562b08b14f27ad3c1.jpg" width="70" height="70">雅洛芙<br>悠悠芳草集</a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/shop/f836c4e95ae1a17572e00584/tab/9f0ccfe49d952b3468691792?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-24/d2620d2085143268179d07ee094b029f.jpg" width="70" height="70">douyouo<br>迪士尼专卖
+</a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/shop/3710a13d182a76285841efe1?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-13/a1d6583692d9a3caca176ab37af58e86.jpg" width="70" height="70">女子家园<br>加1元2件</a></li>
+								<li class="last"><a target="_blank" href="http://youa.baidu.com/shop/6edbb892b0ab058c83e952ba/tab/b0a892ffe6f479390119b3be?n=1?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-24/159cdfb8e11b1f89783d8df14dffc0f4.jpg" width="70" height="70">热风旗舰店<br>品质保证</a></li>
+							</ul>
+							<p><a target="_blank" href="http://co.youa.baidu.com/content/promo/zjmsbd/index.html">[美食]搜罗南北美食，尽在精品美食天地 </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="https://www.baifubao.com/content/promo/register/index.html">[活动]注册百付宝，豪礼赢回家！
+</a></p>
+						</div>
+					</div>
+				</div>
+ 
+				<!-- //促销活动 -->
+ 
+			</div>
+ 
+			<div class="right">
+				
+				<!-- 新手买家 -->
+								<div id="yschool">
+					<p class="pbutton"><a href="http://co.youa.baidu.com/content/misc/new_buyer/" target="_blank"><img src="http://co.youa.baidu.com/picture/r/mall/hp0906/images/ico_newbuyer.gif" alt="我是新手"></a><a href="http://youa.baidu.com/pub" target="_blank"><img src="http://co.youa.baidu.com/picture/r/mall/hp0906/images/ico_freestore.gif" alt="免费开店"></a></p>
+					<ul class="plink cls">
+						<li class="s1" id="news">
+							<ul style="overflow:hidden">
+								<li><a href="http://youa.baidu.com/shop/72e01b38fb26b4ebc5db0136" target="_blank">“一分钱”轻松体验有啊网购流程</a></li>
+								<li><a href="http://co.youa.baidu.com/content/payhelp/b12/zhaoshang/" target="_blank">开通网银，百付宝为您一路护航</a></li>
+								<li><a href="http://co.youa.baidu.com/picture/r/mall/guide/index.html" target="_blank">新手买家？帮助教程带您走通有啊</a></li>
+								<li><a href="http://youa.baidu.com/static/help/quality_form_build.html" target="_blank">尽情挥洒你的创意，共建百度有啊</a></li>
+								<li><a href="http://co.youa.baidu.com/content/help/A10/2008-09-06/153433185574.html" target="_blank">认准标识，精选实力卖家任您选择</a></li>
+								<li><a href="http://co.youa.baidu.com/content/help/A3/2/2008-09-01/143723181295.html#10" target="_blank">收藏</a> + <a href="http://co.youa.baidu.com/content/help/A3/2009-01-08/112820209991.html" target="_blank">购物车</a>，逛街搜店更便捷</a></li>
+							</ul>
+						</li>
+						<li class="s2"><span><a href="http://co.youa.baidu.com/content/misc/new_buyer/" target="_blank" style="color:#666;">先验货再付款，交易更安全</a></span></li>
+						<li class="s3"><span><a href="http://co.youa.baidu.com/content/promo/xiaobao/index.html?from=mokuai1#3" target="_blank" style="color:#666;">信用诚实可靠，品质有保障</a></span></li>
+						<li class="s4"><span><a href="http://co.youa.baidu.com/content/help/A10/2008-09-06/153433185574.html" target="_blank" style="color:#666;">精选诚信商户，卖家可信赖</a></span></li>
+						<li class="s5"><span><a href="http://co.youa.baidu.com/content/contact/index.html" target="_blank" style="color:#666;">强大客服支持，购物更放心</a></span></li>
+					</ul>
+					<ul class="psc cls">
+						<li class="s1"><a href="http://co.youa.baidu.com/content/payhelp/security/" title="交易安全" target="_blank"><span class="hide-screen">交易安全</span></a></li>
+						<li class="s2"><a href="https://passport.baidu.com/?reg&tpl=cc&tpl%5Freg=cc&u=http%3A%2F%2Fyoua.baidu.com%2F" title="免费注册" target="_blank"><span class="hide-screen">免费注册</span></a></li>
+						<li class="s3"><a href="http://youa.baidu.com/shop/72e01b38fb26b4ebc5db0136" title="1分钱体验" target="_blank"><span class="hide-screen">1分钱体验</span></a></li>
+					</ul>
+				</div>
+				<!-- //新手买家 -->
+ 
+ 
+				<!-- 快速充值 -->
+								<div id="instantcard">
+					<div class="hd mobile-selected">
+						<ul class="cls">
+							<li><a href="http://co.youa.baidu.com/content/ymt/recharge/mobile/index.html" title="手机充值">手机充值</a></li>
+							<li><a href="http://co.youa.baidu.com/content/ymt/recharge/game/index.html" title="网游充值">网游充值</a></li>
+						</ul>
+					</div>
+					<div class="bd">
+						<!-- 手机 -->
+						<div class="cls">
+							<ul id="recharge-mobile">
+								<li>运营商：<select></select></li>
+								<li>地　区：<select></select></li>
+								<li>面　值：<select deftext="50元"></select></li>
+								<li class="price unselected">折扣价：<strong></strong>元</li>
+								<li class="submit unselected"><button type="button">立即领卡</button></li>
+							</ul>
+						</div>
+						<!-- //手机 -->
+ 
+						<!-- 游戏 -->
+						<div class="cls unselected">
+							<ul id="recharge-game">
+								<li>游　戏：<select><option value="">请选择游戏</option></select></li>
+								<li>面　值：<select><option value="">请选择面值</option></select></li>
+								<li class="price unselected">折扣价：<strong></strong>元</li>
+								<li class="submit unselected"><button type="button">立即领卡</button></li>
+							</ul>
+							<ul class="dcard">
+								<li><a k="梦幻西游点卡" v="10元" href="javascript:void(0)">梦幻西游10元卡</a></li>
+								<li><a k="天龙八部点卡" v="15元" href="javascript:void(0)">天龙八部15元卡</a></li>
+								<li><a k="征途点卡" v="20元" href="javascript:void(0)">征途20元卡</a></li>
+							</ul>
+						</div>
+						<!-- //游戏 -->
+					</div>
+					<div class="ft"></div>
+				</div>
+				<!-- //快速充值 -->
+ 
+ 
+				<!-- 资源位1 -->
+								<div class="rsp-1">
+					<a target="_blank" href="http://youa.baidu.com/shop/6edbb892b1eb048c83e952fa/tab/04eda60a9851a5ab0235209c"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-20/12ad3debdc264ee38b070b117d044af8.jpg" width="190" height="90"></a>
+				</div>
+ 
+				<!-- //资源位1 -->
+ 
+ 
+			</div>
+ 
+		</div>
+		<!-- //cols-1 -->
+ 
+ 
+ 
+ 
+		<!-- cols-2 -->
+		<div class="cols-2 cls">
+			<div class="main">
+				
+				<!-- 新品速递 -->
+								<div id="newitem" class="mod cls">
+					<span class="x1"><span class="x1a"></span></span>
+					<div class="mod-content cls">
+						<div class="hd cls">
+							<h3><span class="hide-screen">新品速递</span></h3>
+						</div>
+						<div class="bd" id="new-item" style="height:41px">
+							<ul class="cls">
+								<li><a target="_blank" href="http://youa.baidu.com/item/cde3eceb7d93840a9acbfd63?n=1">1.09秋冬款透气夹克有啊特价首发<span class="highlight">￥99.00</span></a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/c8d12dbcd903d5e6fdfc15ea?n=1">2.美特斯邦威全棉条纹长袖衫<span class="highlight">￥58.00</span></a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/256c421445b6a2dab89251d0?n=1">3.Juicy款人字拖全网最低价<span class="highlight">￥48.00</span></a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/88ebb5ebaf97b1e2dffb03b5?n=1">4.今夏主打韩国街头时尚休闲牛仔中裤<span class="highlight">￥65.00</span></a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/55c56ea5b4a705648ffba09c?n=1">5.生命第一颗钻石戒指(疯狂特价)<span class="highlight">￥99.00</span></a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/ffeb43db2cbb302a256c55f9?n=1">6.流行SEXY GIRl皮革荷叶吊带裙<span class="highlight">￥59.00</span></a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/7b39011997f07c28400cbce5?n=1">7.日韩优雅蝴蝶结绚丽发箍特价<span class="highlight">￥19.00</span></a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/d12f854cb78e09eb955e2ebc?n=1">8.4分钻石PD950项链吊坠<span class="highlight">￥298.00</span></a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/c9fa3e42c64f758ac2f27883?n=1">9.神奇西班牙BYA睫毛增长胶囊<span class="highlight">￥3.50</span></a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/9829e8cc155fcc63f4fa8eab?n=1">10.施华洛水晶流苏米奇项链<span class="highlight">￥38.00</span></a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/29fa94d079497be02f1d9890?n=1">11.韩风名媛菱格优雅通勤女包<span class="highlight">￥49.00</span></a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/901ffa0f23c2c7e20d47fa00?n=1">12.我的心意信封包玩尽奇趣梦幻<span class="highlight">￥19.00</span></a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/f536a31f59ba3c25965dd7a7?n=1">13.一天见效苦瓜萃取的祛痘无痕膏<span class="highlight">￥3.30</span></a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/04230be1ff6fd75783ea9a88?n=1">14.热卖御藤席(1.5M/三件套)<span class="highlight">￥48.00</span></a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/2ff7a77fec424737c4e918f7?n=1">15.台电8G内存4.3英寸超大屏M55VE<span class="highlight">￥465.00</span></a></li>
+								<li><a target="_blank" href="http://youa.baidu.com/item/86f4d12fc8f91dc9bdea2f4c?n=1">16.诺基亚500万像素触控侧滑机皇N97<span class="highlight">￥4650.00</span></a></li>
+							</ul>
+							<span class="scroll"><span class="scroll-up" title="上翻"></span><span class="scroll-down" title="下翻"></span></span>
+						</div>
+						<div class="ft"></div>
+					</div>
+					<span class="x2"><span class="x2a"></span></span>
+				</div>
+				<!-- //新品速递 -->
+ 
+				<div class="left">
+ 
+					<!-- 手机数码 -->
+										<div id="m_digi" class="mod2">
+						<span class="x1"><span class="x1a"></span></span>
+						<div class="mod-content">
+							<div class="hd cls">
+								<span class="act"><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&show_tab=1&display_mode=2">热门手机</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=140ab5755c26f19e8e0d72fb&show_tab=1&display_mode=2">必备配件</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=02f955a4140ab2755c2670fb&show_tab=1&display_mode=2">电脑硬件</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=397d5d1e02f950a4140a76fb&show_tab=1&display_mode=2">随身视听</a></a></span>						
+								<h3><a target="_blank" href="http://co.youa.baidu.com/content/xfdz/">手机数码</a></h3>
+							</div>
+							<div class="bd">
+								
+								<div class="fp-insider1 cls">
+									<div class="l">
+										<div class="img"><a target="_blank" href="http://co.youa.baidu.com/content/promo/3gs/index.html"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-13/ac44e441ae433f3b5515c96dffd0498c.jpg" width="180" height="160" alt="热门3G手机抢购"></a></div>
+										<ul>
+										<li><a target="_blank" href="http://youa.baidu.com/shop/88fc04edf20bcd36a5ab21fa"><span class="highlight">冲皇冠倒计时 特价活动开始</span></a></li>
+										<li><a target="_blank" href="http://youa.baidu.com/shop/d592933f31b98de20ad167e8">有奖打假，奖励10,000元</a></li>
+										<li><a target="_blank" href="http://youa.baidu.com/shop/d71c601f16a6780e8731a98c">购机即可获得6连拍大礼包</a></li>
+										</ul>
+									</div>
+									<div class="r">
+										<ul>
+											<li><a target="_blank" href="http://youa.baidu.com/item/c628866e5b95380db33bf876?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-03/b3e2fdbeeb2918516f45305610f567ed.jpg" width="70" height="70">N78畅销热卖<br><span class="highlight">特价: <strong>1480</strong>元</span></a></li>
+											<li><a target="_blank" href="http://youa.baidu.com/item/93b8e4d1219e841dcad1af7e?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-21/fb5698ebe867a29a12f3f7a6dd76633b.jpg" width="70" height="70">摩托A3100<br>特价:1950元</a></li>
+											<li><a target="_blank" href="http://youa.baidu.com/item/d592933fdb9097e10ad167c5?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-21/75c561acc96f25c9a859c0eb007f937f.jpg" width="70" height="70">限量耳机包邮<br><span class="highlight">特价: <strong>15</strong>元</span></a></li>
+			                                                                         <li><a target="_blank" href="http://youa.baidu.com/item/51323710de0198337628ecc4?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-21/b91010a1879684b820aa33458838f4ab.jpg" width="70" height="70">限量蓝牙包邮<br>特价: 27元</a></li>
+										</ul>
+									</div>
+								</div>
+ 
+							</div>
+							<div class="ft"></div>
+						</div>
+						<span class="x2"><span class="x2a"></span></span>
+					</div>
+					<!-- //手机数码 -->
+					
+ 
+					<!-- 居家 -->
+										<div id="m_house" class="mod2">
+						<span class="x1"><span class="x1a"></span></span>
+						<div class="mod-content">
+							<div class="hd cls">
+								<span class="act"><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&keyword=%D2%CB%BC%D2&category=31394522437f2b33137341fb">宜家代购</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=32330d73e53b3107d82342fb">驱蚊消暑</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=ffeb63db0ebbce2b256c55fb&show_tab=1&keyword=%B4%B4%D2%E2&display_mode=2">创意家饰</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=256c66141d9f6edbb89251fb&show_tab=1&display_mode=2">挚爱毛绒</a></a></span>						
+								<h3><a target="_blank" href="http://co.youa.baidu.com/content/jj/">居家</a></h3>
+							</div>
+							<div class="bd">
+								
+								<div class="fp-insider1 cls">
+									<div class="l">
+										<div class="img"><a target="_blank" href="http://youa.baidu.com/shop/9adcf5363ed11ce05d27d435/tab/8fd15e401f5920396422449f"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-20/e0dd69bf0c89caae5faad26a58848cae.gif
+" width="180" height="130" alt="任选5件包快递"></a></div>
+										<ul>
+										<li><a target="_blank" href="http://youa.baidu.com/item/723f9adc447b4c1e18e0d5b4?n=1">[驱蚊]韩国进口超环保防蚊手带</a></li>
+										<li><a target="_blank" href="http://youa.baidu.com/item/048c83e9a0dc0b5ee19d5f3e?n=1">[乐扣]包快递运动杯最后100个</a></li>
+										<li><a target="_blank" href="http://youa.baidu.com/item/dffb823140d43921f9030f8a?n=1">[餐勺]心形情侣勺套装仅5元</a></li>
+										<li><a target="_blank" href="http://youa.baidu.com/item/ba4990e160e33cd90ebb6bf0?n=1">[超大]1米趴趴熊39元包快递</a></li>
+										</ul>
+									</div>
+ 
+									<div class="r">
+										<ul>
+											<li><a target="_blank" href="http://youa.baidu.com/item/fb59842498960d25b7268339?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-21/c3c1c30b5cb18b33248d9871e27f4b22.jpg" width="70" height="70">防水万次火柴<br><span class="highlight">限量：<strong>1.08</strong>元</span></a></li>
+											<li><a target="_blank" href="http://youa.baidu.com/item/a13d8230180f7542396ceed1?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-21/64d93368be6ac621bba0bc6575dd02b0.jpg" width="70" height="70">韩国纳米牙刷<br><span class="highlight">4支装：<strong>2.5</strong>元</span></a></li>
+											<li><a target="_blank" href="http://youa.baidu.com/item/3e420d3939f8c2f1d5927b8d?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-21/bbfa467a2236b12a4b43771fb43c4f69.jpg" width="70" height="70">尖叫发泄壶<br><span class="highlight">减压：<strong>19.5</strong>元</span></a></li>
+											<li><a target="_blank" href="http://youa.baidu.com/item/cf1de280edd26d4db0366255?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-21/516ab818fb53eec9dce54eabc4e86746.jpg" width="70" height="70">1米酷玛抱枕<br><span class="highlight">热卖：<strong>19</strong>元</span></a></li>
+										</ul>
+									</div>
+								</div>
+ 
+							</div>
+							<div class="ft"></div>
+						</div>
+						<span class="x2"><span class="x2a"></span></span>
+					</div>
+					<!-- //居家 -->
+ 
+				</div>
+				<div class="right">
+ 
+					<!-- 美容 -->
+										<div id="m_beauty" class="mod2">
+						<span class="x1"><span class="x1a"></span></span>
+						<div class="mod-content">
+							<div class="hd cls">
+								<span class="act"><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=d7f8fe278df62cabc5d834fb
+">无瑕底妆</a>  |  <a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=b992b1ea048c83e90f1f5dfb">美肌清洁</a>  |  <a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=04d686d06e0ce22ccef848fb
+">男士保养</a>  |  <a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6fdb9e9296ea048c83e952fb&show_tab=1&display_mode=2
+">魅惑香氛</a></a></span>						
+								<h3><a target="_blank" href="http://co.youa.baidu.com/content/beauty/"><span class="hide-screen">美容</span></a></h3>
+							</div>
+							<div class="bd">
+								
+								<div class="fp-insider2 cls">
+									<div class="l">
+										<div class="img"><a target="_blank" href="http://youa.baidu.com/item/9829e8ccc5f81c62f4fa8e17?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-20/4d9b613a8bb19ca154fa1a8ebe6e3cc7.jpg" width="180" height="240" alt="日本乐敦肌研白润化妆水"></a></div>
+									</div>
+									<div class="r">
+										<div class="img"><a target="_blank" href="http://youa.baidu.com/item/23e110d8aec909e1ecebf03d?n=1"><img alt=契尔氏金盏花水40ml-买就送俄罗斯护手霜 src="http://co.youa.baidu.com/picture/r/image/2009-08-19/638a4ccb868db86f29c9760e4175af54.jpg" width="155" height="120"></a></div>
+										<ul>
+											<li><a target="_blank" href="http://youa.baidu.com/item/72e01b38dfcba8ebc5db01db?n=1"><img alt=韩国skinfood莱姆神彩隔离霜 src="http://co.youa.baidu.com/picture/r/image/2009-08-19/c8ad6ec6764717ce1294ca7b189deb29.jpg" width="70" height="70">莱姆隔离霜<br>推荐：69.0元</a></li>
+											<li class="last"><a target="_blank" href="http://youa.baidu.com/item/02f950a44b9614775c267064?n=1"><img alt=国货芳草集明星产品-用了就爱上 src="http://co.youa.baidu.com/picture/r/image/2009-08-19/481707e254fb7277b9ef070b9c028126.jpg" width="70" height="70">甘草排毒面膜<br>热销：39.0元</a></li>
+										</ul>
+									</div>
+								</div>
+ 
+							</div>
+							<div class="ft"></div>
+						</div>
+						<span class="x2"><span class="x2a"></span></span>
+					</div>
+					<!-- //美容 -->
+ 
+ 
+					<!-- 女人 -->
+									<div id="m_lady" class="mod2">
+						<span class="x1"><span class="x1a"></span></span>
+						<div class="mod-content">
+							<div class="hd cls">
+								<span class="act"> <a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%C8%C8%C2%F4">8月热卖</a>  |  <a target="_blank" href="http://youa.baidu.com/shop/4020f9032eed26af6410080f">T恤仅8元</a>  |  <a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=e19dac4962328fd15e405bfb&display_mode=2&show_tab=1&prop_lst=1,5&cluster=1">爆款凉鞋</a>  |  <a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5b4caa36bed18c1fba496ffb&keyword=+%C8%C8%C2%F4">疯卖包包</a></a></span>						
+								<h3><a target="_blank" href="http://co.youa.baidu.com/content/ysj/">女人</a></h3>
+							</div>
+							<div class="bd">
+								
+								<div class="fp-insider2 cls">
+									<div class="l">
+										<div class="img"><a target="_blank" href="http://youa.baidu.com/shop/1373e53b0921d82381cb4ddd/tab/10d86f0a49b3eeeb0c06f3ab?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-11/ecf962597287c485f59384808f06e863.jpg" width="180" height="240" alt="8月打折季"></a></div>
+									</div>
+									<div class="r">
+										<div class="img"><a target="_blank" href="http://youa.baidu.com/shop/6edbb892b0ab058c83e952ba/tab/b0a892ffe6f479390119b3be"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-19/4034509539cb57d40ee294b040ad599f.jpg" width="155" height="120" alt="热风新品上市3折起"></a></div>
+										<ul>
+											<li><a target="_blank" href="http://youa.baidu.com/shop/f836c4e95ae1a17572e00584/tab/9f0ccfe49d952b3468691792"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-21/0f3bd13cb0f489e6d77c67b12f7a46de.jpg" width="70" height="70">七夕买就送<br>迪士尼手链</a></li>
+											<li class="last"><a target="_blank" href="http://youa.baidu.com/item/84240e560aca272498298214?n=1"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-14/90f864130607a6f8bf26a3b27cef9aff.jpg" width="70" height="70">进口两件套<br>低至 45元</a></li>
+										</ul>
+									</div>
+								</div>
+ 
+							</div>
+							<div class="ft"></div>
+						</div>
+						<span class="x2"><span class="x2a"></span></span>
+					</div>
+					<!-- //女人 -->
+ 
+				</div>
+ 
+			</div>
+			<div class="side">
+ 
+				<!-- 资源位2 -->
+								<div class="rsp-2">
+					<a target="_blank" href="http://youa.baidu.com/shop/5614bf1e2093eceeb752da57/tab/e619fa7ad4462e2349e03cbd"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-20/5e108e01654fb941c2e57427fa06b01c.jpg" width="190" height="130"></a>
+				</div>
+ 
+				<!-- //资源位2 -->
+ 
+				<!-- 人气排行 -->
+								<div id="popular" class="mod hslice entry-content">
+					<span class="x1"><span class="x1a"></span></span>
+					<div class="mod-content">
+						<div class="hd">
+							<span class="act"></span>						
+							<h3 class="entry-title">人气排行</h3>
+						</div>
+						<div class="bd">
+							<ul class="cls">
+								<li class="first selected"><span class="num">1</span><a href="http://youa.baidu.com/item/c628866ebc959b0db33bf877?n=1" target="_blank"><img src="http://img.mall.baidu.com/cccccc/sabpic/item/0cec7d25c4534d32127341f1.jpg" width="60" height="60">新款显瘦雪纺衫T恤</a></li><li><span class="num">2</span><a href="http://youa.baidu.com/item/10cbbdea207d60d32dbc28dd?n=1" target="_blank">顶级POLO短袖T恤</a></li><li><span class="num">3</span><a href="http://youa.baidu.com/item/cd36a5ab609773f6d12f225e?n=1" target="_blank">卡通交通标志铅笔</a></li><li><span class="num">4</span><a href="http://youa.baidu.com/item/866e901f1396163938e3fb67?n=1" target="_blank">玫瑰水凝保湿霜</a></li><li><span class="num">5</span><a href="http://youa.baidu.com/item/35d85c239a85ecd446df97c4?n=1" target="_blank">时尚修身韩版牛仔裤</a></li><li><span class="num">6</span><a href="http://youa.baidu.com/item/5c26f19e92919dcec9fa7c64?n=1" target="_blank">扎染民族风情连衣裙</a></li><li><span class="num">7</span><a href="http://youa.baidu.com/item/6a668ffb101cb1d3d71cad5d?n=1" target="_blank">气质翻领修身短袖</a></li><li><span class="num">8</span><a href="http://youa.baidu.com/item/9acbc6286333371dfa0ff99b?n=1" target="_blank">热卖单肩斜跨女包</a></li><li><span class="num">9</span><a href="http://youa.baidu.com/item/c4e9349eddc481e21b38044f?n=1" target="_blank">安踏09款男板鞋</a></li><li><span class="num">10</span><a href="http://youa.baidu.com/item/1d9f6edb13e0ede8048c538e?n=1" target="_blank">VPL-PX41投影机灯泡</a></li>
+							</ul>
+						</div>
+						<div class="ft"></div>
+					</div>
+					<span class="x2"><span class="x2a"></span></span>
+				</div>
+<script type="text/javascript"> 
+var popularImgs = ["http://img.mall.baidu.com/cccccc/sabpic/item/0cec7d25c4534d32127341f1.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/a80242e8317505f5a77f1f97.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/733d260810da49f83e427f39.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/0d846beccf320a0ef90ebf41.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/9b478718eed3fd0c8731a99c.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/1837de2391d0f20f70cc7d62.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/fa6d2aca18619560f4fa8e47.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/b5277c18a468527c5a4c631c.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/b793fe11c164f43defeedbae.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/07ff9ecbbc4e4263f5fa8ec4.jpg"];
+</script>
+				<!-- //人气排行 -->
+ 
+				<!-- 资源位3 -->
+								<div class="rsp-3">
+					<a target="_blank" href="http://youa.baidu.com/shop/a31f18e0fe2c965d207ad6f0"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-21/c7375dda2f264be32ea46ceb7dc921ee.jpg" width="190" height="130"></a>
+				</div>
+ 
+				<!-- //资源位3 -->
+ 
+			</div>
+		</div>
+		<!-- //cols-2 -->
+ 
+ 
+		<!-- cols-2 -->
+		<div class="cols-2 cols-cat cls">
+			<div class="main">
+				
+				<!-- 类目 -->
+								<div id="category">
+					<div class="hd cls">
+						<span class="act"><a target="_blank" href="http://co.youa.baidu.com/content/misc/buy/">查看所有商品类目&gt;&gt;</a></span>
+						<ul>
+							<li class="selected"><a target="_blank" href="http://co.youa.baidu.com/content/misc/buy/">商品分类</a></li>
+							<li><a target="_blank" href="http://co.youa.baidu.com/content/misc/shopcat/">店铺分类</a></li>
+						</ul>
+					</div>
+					<div class="bd">
+						
+						<!-- hot query -->
+						<div class="cat-hot cls">
+							<h3>热门</h3>
+							<p><a target="_blank" href="http://co.youa.baidu.com/content/promo/watch/index.html" class="highlight">手表</a><a target="_blank" href="http://co.youa.baidu.com/content/ysj/ladytop/index.html">混搭</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=e19dac4962328fd15e405bfb&display_mode=2&show_tab=1&keyword=%B4%EF%DC%BD%C4%DD&sort_mode=4
+" >达芙妮</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=75fb2a357d38397d5e1e75fb&show_tab=1&keyword=t%D0%F4&xbo=1&display_mode=2">T恤</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=1e1f695fe19d8049623259fb&display_mode=2&show_tab=1&prop_lst=2,6&keyword=%D7%EA%BD%E4&sort_mode=3
+">钻戒</a><a target="_blank" href="http://co.youa.baidu.com/content/promo/mrbps/index.html
+"class="highlight">美白</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=ba92b0eb048c83e90f1f5dfa
+">芳草集</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6fdb9e9296ea048c83e952fb&show_tab=1&prop_lst=3,1
+">香水</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=b992b1ea048c83e90f1f5dfb
+">洁面</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=dcd8ab146401db18e61930fb
+">唇彩</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&display_mode=2&show_tab=1&prop_ex=1,81
+" >索爱</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=75fb2a357d38397d5e1e75fb&show_tab=1&keyword=%CA%FD%C2%EB%CF%E0%BB%FA&tn=baidutop10&display_mode=2
+">相机</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&display_mode=2&show_tab=1&prop_ex=1,60
+" class="highlight">诺基亚</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b036a5d18c1fba4990e16efb&show_tab=1&display_mode=2">存储</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=&prop_lst=&keyword=ipod&price_low=300&price_high=&location=
+">ipod</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=ba498ee1ffeb43db0ebb6bfb&show_tab=1&keyword=%C9%B3%CC%B2&display_mode=2
+"class="highlight">沙滩</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=ba498ee1ffeb43db0ebb6bfb&show_tab=1&keyword=%C6%A1%BE%C6%B1%AD&display_mode=2
+">啤酒杯</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=256c66141d9f6edbb89251fb&show_tab=1&keyword=%C6%DF%CF%A6&display_mode=2
+">七夕</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=5c4ca336bed18c1fba496ffb
+">GPS</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0d7e434cb036bed18c1f6cfb&show_tab=1&display_mode=2
+" class="highlight">充值卡</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0ad1d91de2800c7e5b4c63fb&show_tab=1&keyword=%B5%E3%BF%A8&display_mode=2
+">点卡</a><a target="_blank" href="http://youa.baidu.com/item/594046f41f47b66255c5a4be
+">普洱茶</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0&keyword=%B5%C1%C4%B9%B1%CA%BC%C75
+" class="highlight">盗墓笔记5</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=68226a7f2b331373e53b40fb&show_tab=1&keyword=%C5%A3%C8%E2%B8%C9&etn=og&display_mode=2
+">牛肉干</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=1a73ca3a3107d82381cb4dfa
+">羽毛球</a></p>
+						</div>
+						<!-- //hot query -->
+ 
+						<div class="cat-items">
+ 
+							<!-- item -->
+							<div class="item cls">
+								<h3 class="t1"><span>虚拟</span></h3>
+								<ul class="first-ul cls">
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=e280147e5b4cb036bed16dfb&show_tab=1&display_mode=2
+">手机充值卡</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0d7e434cb036bed18c1f6cfb&show_tab=1&display_mode=2
+">移动</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=594ca836bed18c1fba496ffb&show_tab=1&display_mode=2
+">联通</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=bad1941fba4990e1ffeb69fb&show_tab=1&display_mode=2
+">电信</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0d7e434cb036bed18c1f6cfb&display_mode=2&show_tab=1&prop_lst=1,6
+" class="highlight">移动100</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0d7e434cb036bed18c1f6cfb&show_tab=1&prop_lst=1,5&display_mode=2
+">移动50</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=bad1941fba4990e1ffeb69fb&show_tab=1&keyword=CDMA&display_mode=2
+"  class="highlight">CDMA</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b336a6d18c1fba4990e16efb&show_tab=1&display_mode=2
+">小灵通</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0ad1d91de2800c7e5b4c63fb&show_tab=1&keyword=%B5%E3%BF%A8&display_mode=2
+">网游点卡</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0ad1d91de2800c7e5b4c63fb&show_tab=1&keyword=%D3%CE%CF%B7%B1%D2&display_mode=2
+">游戏币</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0ad1d91de2800c7e5b4c63fb&show_tab=1&keyword=%D7%B0%B1%B8&display_mode=2
+">装备</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0ad1d91de2800c7e5b4c63fb&show_tab=1&keyword=%B4%FA%C1%B7&display_mode=2
+">代练</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=2b6c54141d9f6edbb89251fb
+" >魔兽</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=82d13bbc9f0ccfe4fdfc15fb&show_tab=1&display_mode=2
+" class="highlight">DNF</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=675ff79d824962328fd158fb&show_tab=1&display_mode=2
+" >梦幻西游</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0ad1d91de2800c7e5b4c63fb&show_tab=1&keyword=QQ&display_mode=2
+" class="highlight" >QQ</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=1507ce2381cb12d6a1d04ffb
+">天龙八部</a>
+ 
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=286c55141d9f6edbb89251fb&show_tab=1&display_mode=2
+">网络电话</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=bbd19b1fba4990e1ffeb69fb
+">IP卡</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=e3801b7e5b4cb036bed16dfb
+">软件序列号</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=8a1fad4990e1ffeb43db68fb
+" >skype</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=0e7e4c4cb036bed18c1f6cfb
+">长途卡</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=f6eb54db0ebbce2b256c55fb
+">影音娱乐</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=49db19bbce2b256c421454fb
+" class="highlight">杀毒</a>
+											</dd>
+										</dl>
+									</li>
+ 
+								</ul>
+							</div>
+							<!-- //item -->
+ 
+							<!-- item -->
+							<div class="item cls">
+								<h3 class="t2"><span>美容健康</span></h3>
+								<ul class="first-ul cls">
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6edb9f9296ea048c83e952fb&show_tab=1&display_mode=2
+">护肤</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=f73b1607d82381cb12d64cfb&show_tab=1&display_mode=2
+">美体</a>
+											<dd>   
+ 
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0a1f575fe19d8249623259fb&show_tab=1&display_mode=2
+" >面膜</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b992b1ea048c83e90f1f5dfb&show_tab=1&display_mode=2
+" >洁面</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=85d17940303d2239642244fb
+" >鼻膜</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=3b333473e53b3107d82342fb
+" class="highlight">防晒霜</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=078ca4e90f1f705fe19d5ffb
+">精华</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=6b32a8d15e40303d223945fb
+">喷雾</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=765fc69d824962328fd158fb
+">眼霜</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=00d686d06e0ce62ccef848fb
+" class="highlight">丰胸</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=94cb35d6a1d06e0ce22c49fb
+">护齿</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=d4f8fe278df62dabc5d834fb
+">美容工具</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=fb2ce9f8d9278df62dab35fb&show_tab=1&display_mode=2
+">彩妆</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b6d0490ce22ccef8d9274bfb&show_tab=1&display_mode=2
+" >美发</a></dt>
+											<dd> 
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=dcd8ab146401db18e61930fb
+" >唇彩</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=ff19dd7a9300252349e03cfb
+" class="highlight">腮红</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=94f60aabc5d88f14640136fb
+">睫毛膏</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=c718c119fa7a9b002c233dfb
+">眼线</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=5b01affc04edb50acd3626fb
+">指甲油</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=8a4945328fd15e40303d5afb
+">隔离</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=d7f8fe278df62cabc5d834fb
+">粉底</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=760cc52ccef8d9278df64afb
+" class="highlight">卸妆</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=35236ee03ee827fcb57d39fb
+">眉笔</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=c227aaf62dabc5d88c1437fb
+">美发工具</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6fdb9e9296ea048c83e952fb&show_tab=1&display_mode=2
+">香水</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=1d9f48dbb89296ea048c53fb&show_tab=1&display_mode=2
+">精油</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=e99da44962328fd15e405bfb&show_tab=1&display_mode=2
+">熏香工具</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6fdb9e9296ea048c83e952fb&show_tab=1&prop_lst=3,2&display_mode=2
+" class="highlight">男香</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=775fc79d824962328fd158fb&show_tab=1&display_mode=2
+">纯露</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=86e9291f705fe19d82495efb&show_tab=1&display_mode=2
+">精油</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6fdb9e9296ea048c83e952fb&display_mode=2&show_tab=1&prop_lst=2,8
+">试管</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6fdb9e9296ea048c83e952fb&display_mode=2&show_tab=1&prop_lst=2,10
+">礼盒</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6fdb9e9296ea048c83e952fb&show_tab=1&prop_lst=1,14&display_mode=2
+" >兰蔻</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6fdb9e9296ea048c83e952fb&show_tab=1&prop_lst=1,2&display_mode=2
+" class="highlight">安娜苏</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6fdb9e9296ea048c83e952fb&display_mode=2&show_tab=1&prop_lst=1,56
+">Boss</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6fdb9e9296ea048c83e952fb&display_mode=2&show_tab=1&prop_lst=1,29
+">大卫杜夫</a>
+											</dd>
+										</dl>
+									</li>
+ 
+								</ul>
+								<ul class="cls">
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0f1f5c5fe19d8249623259fb&show_tab=1&display_mode=2
+">个人护理</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=2a394822437f2b33137341fb
+">保健</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=6632a3d15e40303d223945fb
+">按摩器材</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=6d226f7f2b331373e53b40fb
+">电吹风</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=715fcd9d824962328fd158fb
+">剃须刀</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=e39dae4962328fd15e405bfb
+" class="highlight">足浴</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=d723adcb12d6a1d06e0c4efb
+">美体美发</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=96ea2d8c83e90f1f705f5cfb&show_tab=1&display_mode=2
+">零食</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=81e9261f705fe19d82495efb
+" >茶叶</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=6532a6d15e40303d223945fb
+">糖果</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=1c73cc3b3107d82381cb4dfb
+" >饮料</a>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=87d17740303d2239642244fb
+" >蜜饯</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=96ea2d8c83e90f1f705f5cfb&show_tab=1&keyword=%C6%D5%B6%FD&display_mode=2
+" class="highlight">普洱</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=745fc89d824962328fd158fb&show_tab=1&display_mode=2
+">巧克力</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=0c1f595fe19d8249623259fb
+">咖啡</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=4e7f02331373e53b310743fb
+">海味</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b892beeb048c83e90f1f5dfa&show_tab=1&display_mode=2
+">保健品</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b892beeb048c83e90f1f5dfa&display_mode=2&show_tab=1&prop_lst=1,30
+">营养品</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b892beea048c83e90f1f5dfb&show_tab=1&keyword=%B0%B2%C0%FB&display_mode=2
+" class="highlight">安利</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b892beea048c83e90f1f5dfb&show_tab=1&keyword=%BD%BA%D4%AD%B5%B0%B0%D7&display_mode=2
+">胶原蛋白</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b892beea048c83e90f1f5dfb&show_tab=1&keyword=%D3%E3%D3%CD&display_mode=2
+">鱼油</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b892beea048c83e90f1f5dfb&show_tab=1&keyword=%B7%E4%C3%DB&display_mode=2
+">蜂蜜</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b892beea048c83e90f1f5dfb&show_tab=1&keyword=%B8%C6%C6%AC&display_mode=2
+">钙片</a>
+											</dd>
+										</dl>
+									</li>
+ 
+								</ul>
+ 
+ 
+							</div>
+							<!-- //item -->
+ 
+							<!-- item -->
+							<div class="item cls">
+								<h3 class="t3"><span>服饰</span></h3>
+								<ul class="first-ul cls">
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://co.youa.baidu.com/content/ysj/ladytop/index.html
+">流行女装</a>、<a target="_blank" href="http://co.youa.baidu.com/content/ysj/ladytop/index.html
+">淑女馆</a>、<a target="_blank" href="http://co.youa.baidu.com/content/ysj/ladytop/index.html
+">瑞丽格调</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&keyword=T%D0%F4&category=70ccc5fa3e420d39378b79fb
+" >T恤</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%D1%A9%B7%C4%C8%B9
+">雪纺裙</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%B3%C4%C9%C0
+">衬衫</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%C1%AC%D2%C2%C8%B9
+" class="highlight">连衣裙</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%D6%D0%C8%B9
+">中裙</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%BA%AB%B0%E6
+">韩版</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%D1%A9%B7%C4%C9%C0
+" class="highlight">雪纺衫</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%C5%A3%D7%D0%BF%E3
+">牛仔裤</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%D0%A1%B5%F5%B4%F8
+">小吊带</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%C8%C8%BF%E3
+">热裤</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%C4%A8%D0%D8%C8%B9
+">抹胸裙</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+ 
+ 
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%C6%B7%C5%C6%C5%AE%D7%B0
+">品牌女装</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%C6%B7%C5%C6
+">精品女装</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%BB%A8%B6%E4
+">夏装</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%C8%D5%BA%AB
+">日韩</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%CC%A8%CD%E5
+" >台湾</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%C5%B7%C3%C0
+" >欧美</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%BB%EC%B4%EE
+" >街头混搭</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%CC%F5%CE%C6%B7%E7
+" >条纹风</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%C5%A3%D7%D0
+" >牛仔系列</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%D4%CB%B6%AF%B7%E7
+" class="highlight">运动风格</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&keyword=%C8%B9%D7%B0&category=70ccc5fa3e420d39378b79fb
+">甜美系列</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=70ccc5fa3e420d39378b79fb&keyword=%C3%F1%D7%E5
+">民族风</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=75fb2a357d38397d5e1e75fb&show_tab=1&keyword=%CA%CE%C6%B7&display_mode=2
+">流行配饰</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=158c9ae90f1f705fe19d5ffb
+">珠宝</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0c7e424cb036bed18c1f6cfb&keyword=%D7%EA%CA%AF
+">钻饰</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&keyword=%D1%DB%BE%B5&category=0b8c9ae90f1f725fe19d5ffb
+">太阳镜</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&keyword=%F4%E4%B4%E4&category=0c7e424cb036bed18c1f6cfb
+" >翡翠</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0c7e424cb036bed18c1f6cfb&keyword=%D7%EA%CA%AF
+" class="highlight">钻石</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0c7e424cb036bed18c1f6cfb&keyword=K%BD%F0
+">K金饰</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0c7e424cb036bed18c1f6cfb&keyword=%B4%BF%D2%F8
+">925银</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&keyword=%D7%EA%BD%E4&category=0c7e424cb036bed18c1f6cfb
+">钻戒</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0c7e424cb036bed18c1f6cfb&keyword=%CB%AE%BE%A7
+" >水晶</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5a4ca936bed18c1fba496ffb&show_tab=1&display_mode=2
+">项链</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b236a7d18c1fba4990e16efb&show_tab=1&display_mode=2
+">耳饰</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=bdd1951fba4990e1ffeb69fb&show_tab=1&display_mode=2
+" class="highlight">手镯/脚链</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=881fa34990e1ffeb43db68fb&show_tab=1&display_mode=2
+">戒指</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0c7e424cb036bed18c1f6cfb&keyword=%BA%AB%B0%E6
+">韩版</a>
+											</dd>
+										</dl>
+									</li>
+ 
+								</ul>
+								<ul class="cls">
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5b4caa37bed18c1fba496ffa
+">女士箱包</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5b4caa36bed18c1fba496ffb&display_mode=2&show_tab=1&prop_lst=1,5
+">机车包</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5b4caa36bed18c1fba496ffb&display_mode=2&show_tab=1&prop_lst=1,4&cluster=1
+">通勤包</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5b4caa36bed18c1fba496ffb&cluster=1&display_mode=2&show_tab=1&prop_lst=1,6&sort_mode=4
+">钱包</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5b4caa37bed18c1fba496ffa&display_mode=2&show_tab=1&prop_lst=1,12
+">胸包</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5b4caa37bed18c1fba496ffa&display_mode=2&show_tab=1&prop_lst=1,11
+">环保手袋</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5b4caa36bed18c1fba496ffb&cluster=1&display_mode=2&show_tab=1&prop_lst=1,14&sort_mode=0
+">休闲包</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5b4caa36bed18c1fba496ffb&display_mode=2&show_tab=1&prop_lst=1,3&cluster=1
+">手包</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5b4caa36bed18c1fba496ffb&sort_mode=4&display_mode=2&show_tab=1&prop_lst=1,10&cluster=1
+">旅行包</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5b4caa37bed18c1fba496ffa&display_mode=2&show_tab=1&prop_lst=1,1&cluster=1
+">时装包</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5b4caa36bed18c1fba496ffb&display_mode=2&show_tab=1&prop_lst=1,2
+">运动包</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5b4caa36bed18c1fba496ffb&display_mode=2&show_tab=1&prop_lst=1,17
+">多功能包</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=e19dac4962328fd15e405bfb&cluster=1&display_mode=2&show_tab=1&sort_mode=4
+">时尚女鞋</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=e19dac4962328fd15e405bfb&sort_mode=4&cluster=1&display_mode=2&show_tab=1&prop_lst=1,5">凉鞋</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=e19dac4962328fd15e405bfb&cluster=1&display_mode=2&show_tab=1&prop_ex=2,13&sort_mode=4
+">达芙妮</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=e19dac4962328fd15e405bfb&prop_lst=&keyword=&price_low=&price_high=&location=&prop_ex=2%2C33
+" class="highlight">天美意</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=4&search_domain=1&category=e19dac4962328fd15e405bfb&prop_lst=&keyword=&price_low=&price_high=&cluster=on&is_used=&location=%C8%AB%B2%BF&prop_ex=2%2C3
+">百丽</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=e19dac4962328fd15e405bfb&sort_mode=4&cluster=1&display_mode=2&show_tab=1&prop_lst=1,11
+">高跟鞋</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&keyword=&category=e19dac4962328fd15e405bfb&prop_lst=1%2C2%2C33%2C1
+">短靴</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=e19dac4962328fd15e405bfb&sort_mode=4&display_mode=2&show_tab=1&prop_lst=1,3&cluster=1
+">帆布鞋</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=e19dac4962328fd15e405bfb&sort_mode=4&display_mode=2&show_tab=1&prop_ex=11,1&cluster=1
+" >平底鞋</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&keyword=&category=e19dac4962328fd15e405bfb&prop_lst=1%2C1
+">单鞋</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=e19dac4962328fd15e405bfb&sort_mode=4&cluster=1&display_mode=2&show_tab=1&prop_lst=1,5
+" class="highlight">凉鞋</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=e19dac4962328fd15e405bfb&sort_mode=4&cluster=1&display_mode=2&show_tab=1&prop_lst=1,10
+">休闲运动鞋</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0d39388bc2f2d592933f7afb&show_tab=1&display_mode=2
+">男式内衣</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0d39388bc2f2d592933f7afb&show_tab=1&display_mode=2
+">女式内衣</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&keyword=%BC%D2%BE%D3%B7%FE&category=504cbf36bed18c1fba496ffb
+">睡衣</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&keyword=%CE%C4%D0%D8&category=0d39388bc2f2d592933f7afb
+" >女士内衣</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0d39388bc2f2d592933f7afb&show_tab=1&keyword=%CE%C4%D0%D8&display_mode=2
+" class="highlight">文胸</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0d39388bc2f2d592933f7afb&show_tab=1&keyword=%BC%D2%BE%D3%B7%FE&display_mode=2
+">家居服</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0d39388bc2f2d592933f7afb&show_tab=1&keyword=%CB%AF%D2%C2&display_mode=2
+">睡衣</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=eb80037e5b4cb036bed16dfb
+">胸贴</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0d39388bc2f2d592933f7afb&show_tab=1&keyword=%CE%DE%BA%DB%CE%C4%D0%D8&display_mode=2
+" >无痕文胸</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0d39388bc2f2d592933f7afb&show_tab=1&keyword=%C4%DA%BF%E3&display_mode=2
+">内裤</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0d39388bc2f2d592933f7afb&show_tab=1&keyword=%C4%A8%D0%D8&display_mode=2
+">抹胸</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0d39388bc2f2d592933f7afb&show_tab=1&keyword=%D2%FE%D0%CE&display_mode=2
+" class="highlight">隐形内衣</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0d39388bc2f2d592933f7afb&show_tab=1&keyword=%C5%AE%CD%E0&display_mode=2
+">女袜</a>
+											</dd>
+										</dl>
+									</li>
+ 
+								</ul>
+								
+								<ul class="cls">
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=8e0d7bccc9fa3e420d397efb&show_tab=1&keyword=%B3%B1%C1%F7&display_mode=2
+">青春潮装</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=8e0d7bccc9fa3e420d397efb&show_tab=1&keyword=%D0%CD%C4%D0&display_mode=2
+">时尚型男</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=8e0d7bccc9fa3e420d397efb&show_tab=1&keyword=%C6%B7%C5%C6%C4%D0%D7%B0&display_mode=2
+">品牌男装</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=8e0d7bccc9fa3e420d397efb&show_tab=1&keyword=t%D0%F4&display_mode=2
+" class="highlight">T恤</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=8e0d7bccc9fa3e420d397efb&show_tab=1&keyword=polo%C9%C0&display_mode=2
+">polo衫</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=8e0d7bccc9fa3e420d397efb&show_tab=1&keyword=%D0%DD%CF%D0%BF%E3&display_mode=2
+">休闲裤</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=8e0d7bccc9fa3e420d397efb&show_tab=1&keyword=%B3%C4%C9%C0&display_mode=2
+">衬衫</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=8e0d7bccc9fa3e420d397efb&show_tab=1&keyword=%B1%B3%D0%C4&display_mode=2
+">背心</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&keyword=%C4%D0%D0%AC&category=8c1fa74990e1ffeb43db68fb
+">男鞋</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=8c1fa74990e1ffeb43db68fb&keyword=%C4%D0%B0%FC
+ 
+">男士箱包</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=fceb5edb0ebbce2b256c55fb
+">男士配饰</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&keyword=%C6%A4%D0%AC&category=8c1fa74990e1ffeb43db68fb
+" >皮鞋</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=92e1e2eb43db0ebbce2b6afb
+">电脑包</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=bb498de1ffeb43db0ebb6bfb&display_mode=2&show_tab=1&prop_lst=1,6
+" class="highlight">凉鞋</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=40db13bbce2b246c421454fb&display_mode=2&show_tab=1&cluster=1
+">皮带</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=92e1e2eb43db0ebbce2b6afb&display_mode=2&show_tab=1&prop_lst=5,1
+">钱包</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://co.youa.baidu.com/content/promo/watch/index.html">品牌手表</a>、<a target="_blank" href="http://co.youa.baidu.com/content/promo/watch/index.html">流行手表</a>、<a target="_blank" href="http://co.youa.baidu.com/content/promo/watch/index.html">情侣对表</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=4&search_domain=1&category=bed1901fba4990e1ffeb69fb&prop_lst=1%2C10%2C&keyword=&price_low=&price_high=&cluster=on&is_used=&location=%C8%AB%B2%BF&prop_ex=9%2C1
+" class="highlight">卡西欧</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=bed1901fba4990e1ffeb69fb&display_mode=2&show_tab=1&prop_ex=9,1&prop_lst=1,13&sort_mode=0
+">西铁城</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=bed1901fba4990e1ffeb69fb&display_mode=2&show_tab=1&prop_ex=9,1&prop_lst=1,56
+">天梭</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=bed1901fba4990e1ffeb69fb&prop_lst=1%2C52%2C&keyword=&price_low=&price_high=&is_used=&location=%C8%AB%B2%BF&prop_ex=9%2C1
+">斯沃琪</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=bed1901eba4990e1ffeb69fa&prop_lst=1%2C18%2C&keyword=&price_low=&price_high=&is_used=&location=%C8%AB%B2%BF&prop_ex=9%2C1
+">迪斯尼</a>
+											</dd>
+										</dl>
+									</li>
+ 
+								</ul>
+							</div>
+							<!-- //item -->
+											<!-- item -->
+							<div class="item cls">
+								<h3 class="t4"><span>手机 数码</span></h3>
+								
+								<ul class="first-ul cls">
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&show_tab=1&display_mode=2">手机</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&display_mode=2&show_tab=1&prop_ex=1,38" class="highlight">多普达</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&display_mode=2&show_tab=1&prop_ex=1,81
+">索爱</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&display_mode=2&show_tab=1&prop_ex=1,58
+">MOTO</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&display_mode=2&show_tab=1&prop_ex=1,11
+">LG</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&display_mode=2&show_tab=1&prop_ex=1,74
+">夏普</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&display_mode=2&show_tab=1&prop_ex=1,6
+">HTC</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&display_mode=2&show_tab=1&tag=%D6%C7%C4%DC%CA%D6%BB%FA
+">智能</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&display_mode=2&show_tab=1&prop_ex=8,6
+">500万像素</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&display_mode=2&show_tab=1&prop_ex=3,4
+" class="highlight">3G</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&display_mode=2&show_tab=1&price_high=1000
+">特价</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&display_mode=2&show_tab=1&tag=%D2%F4%C0%D6%CA%D6%BB%FA
+">音乐手机</a></dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&display_mode=2&show_tab=1&prop_ex=1,60
+">诺基亚</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&display_mode=2&show_tab=1&prop_ex=1,65
+">三星</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&display_mode=2&show_tab=1&prop_ex=1,61
+">iphone</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6232bfd15e40303d223945fb&display_mode=2&show_tab=1&prop_ex=1,46
+">黑莓</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/std/c2f2d592823a23aa8de264fe" class="highlight">5800XM</a><a target="_blank" href="http://youa.baidu.com/std/de39d917559623e110d8f7fe">N81</a><a target="_blank" href="http://youa.baidu.com/std/450eb0a857fb22b17b39b0ff">N78</a><a target="_blank" href="http://youa.baidu.com/std/83763236b56f21147e1b9dff
+">E71</a><a target="_blank" href="http://youa.baidu.com/std/d592933f31af8de20ad167fe
+">N85</a><a target="_blank" href="http://youa.baidu.com/std/22b17b39c91d74ec9a29bdff
+">N96</a><a target="_blank" href="http://youa.baidu.com/std/83eabd89bfe4fb59842486ff
+">N95</a><a target="_blank" href="http://youa.baidu.com/std/378bc2f2c597933f23aa65fe
+">N79</a>
+<a target="_blank" href="http://youa.baidu.com/std/23e110d8ea0ecde3ecebf0ff
+">iPhone 3G版</a><a target="_blank" href="http://youa.baidu.com/std/6ea5d2c2bc658ffb93b8a3f8
+" class="highlight">三星i8510</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=50a4120ab2755c26f19e73fb&display_mode=2&show_tab=1&prop_lst=1,47
+">国货功能型手机</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=50a4120ab2755c26f19e73fb&display_mode=2&show_tab=1&prop_lst=1,40
+" class="highlight">金鹏</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=50a4120ab2755c26f19e73fb&display_mode=2&show_tab=1&prop_lst=1,39
+">盛泰</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=50a4120ab2755c26f19e73fb&display_mode=2&show_tab=1&prop_lst=1,42
+">高新奇</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=50a4120ab2755c26f19e73fb&display_mode=2&show_tab=1&prop_lst=1,43
+">中天</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=50a4120ab2755c26f19e73fb&display_mode=2&show_tab=1&prop_lst=1,47,33,12
+" >埃立特</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=50a4120ab2755c26f19e73fb&prop_lst=&keyword=&price_low=&price_high=&is_used=&location=%C8%AB%B2%BF&prop_ex=11%2C2048
+">双卡双待</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=50a4120ab2755c26f19e73fb&prop_lst=&keyword=&price_low=&price_high=&is_used=&location=%C8%AB%B2%BF&prop_ex=11%2C256
+">大屏</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=50a4120ab2755c26f19e73fb&prop_lst=&keyword=&price_low=&price_high=&is_used=&location=%C8%AB%B2%BF&prop_ex=11%2C1
+">WIFI</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=50a4120ab2755c26f19e73fb&prop_lst=&keyword=&price_low=&price_high=&is_used=&location=%C8%AB%B2%BF&prop_ex=11%2C64
+" class="highlight">电视手机</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=50a4120ab2755c26f19e73fb&prop_lst=&keyword=&price_low=&price_high=&is_used=&location=%C8%AB%B2%BF&prop_ex=11%2C16
+">视频</a>
+											</dd>
+										</dl>
+									</li>
+ 
+								</ul>
+								
+								
+								<ul class="cls">
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=140ab5755c26f19e8e0d72fb&show_tab=1&display_mode=2
+">手机配件</a>、<a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=140ab5755c26f19e8e0d72fb&prop_lst=&keyword=%CA%FD%C2%EB&price_low=&price_high=&is_used=0&location=
+">数码配件</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=f29e890d70ccc9fa3e427ffb&show_tab=1&display_mode=2
+">本本配件</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=b3755b26f19e8e0d70cc7dfb
+"  class="highlight">电池</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=b4cb15d6a1d06e0ce22c49fb&prop_lst=&keyword=&price_low=&price_high=&is_used=0&location=&prop_ex=
+">蓝牙</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=140ab5755c26f19e8e0d72fb&show_tab=1&keyword=%C9%A2%C8%C8&display_mode=2
+">散热</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=140ab5755c26f19e8e0d72fb&show_tab=1&keyword=%B1%A3%BB%A4&display_mode=2
+">保护</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&keyword=%C6%BB%B9%FB&category=75cccefa3e420d39378b79fb
+">苹果</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=df1de5800c7e5b4cb03662fb
+">专用包</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=7540373d22396422437f47fb
+">硅胶套</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=24d6a6d06e0ce22ccef848fb
+"  class="highlight">读卡器</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=4a22447f2b331373e53b40fb
+">摄像头</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=6c7f2c331373e53b310743fb
+">数据线</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=a5d15940303d2239642244fb
+">新奇</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=8e1fa14990e1ffeb43db68fb
+">闪存</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=bfd1971fba4990e1ffeb69fb
+">U盘</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=94e1e4eb43db0ebbce2b6afb
+">移动硬盘</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=8e1fa14990e1ffeb43db68fb&display_mode=2&show_tab=1&prop_lst=2,10
+">TF</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=8e1fa14990e1ffeb43db68fb&display_mode=2&show_tab=1&prop_lst=2,17
+">SD</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b036a5d18c1fba4990e16efb&show_tab=1&keyword=%BD%F0%CA%BF%B6%D9&display_mode=2
+" class="highlight">金士顿</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b036a5d18c1fba4990e16efb&show_tab=1&keyword=SANDISK&display_mode=2
+">SANDISK</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b036a5d18c1fba4990e16efb&show_tab=1&keyword=%CA%A4%B4%B4&display_mode=2
+">胜创</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b036a5d18c1fba4990e16efb&show_tab=1&keyword=%B4%B4%BC%FB&display_mode=2
+">创见</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=45db15bbce2b256c421454fb
+">记忆棒</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=bfd1971fba4990e1ffeb69fb&display_mode=2&show_tab=1&prop_lst=2,11
+">2G</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=bfd1971fba4990e1ffeb69fb&display_mode=2&show_tab=1&prop_lst=2,9
+">4G</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=bfd1971fba4990e1ffeb69fb&display_mode=2&show_tab=1&prop_lst=2,5
+">8G</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=bfd1971fba4990e1ffeb69fb&display_mode=2&show_tab=1&prop_lst=2,3
+">16G</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=94e1e4eb43db0ebbce2b6afb&display_mode=2&show_tab=1&prop_lst=2,18
+">160G</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=94e1e4eb43db0ebbce2b6afb&display_mode=2&show_tab=1&prop_lst=2,16
+" class="highlight">250G</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=387d5c1e02f950a4140a76fb&prop_lst=&keyword=&price_low=&price_high=&is_used=0&location=&prop_ex=
+">单反相机</a>、<a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=5c1e00f950a4140ab27571fb&prop_lst=&keyword=&price_low=&price_high=&is_used=0&location=&prop_ex=
+">数码相机</a>、<a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=01f952a4140ab2755c2670fb&prop_lst=&keyword=&price_low=&price_high=&is_used=0&location=&prop_ex=
+">摄像机</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=7d383b7d5e1e02f950a477fb&prop_lst=&keyword=%BC%D1%C4%DC&price_low=&price_high=&is_used=0&location=
+">佳能</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=7d383b7d5e1e02f950a477fb&prop_lst=&keyword=%CB%F7%C4%E1&price_low=&price_high=&is_used=0&location=
+">索尼</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=7d383b7d5e1e02f950a477fb&prop_lst=&keyword=%C4%E1%BF%B5&price_low=&price_high=&is_used=0&location=
+"  class="highlight">尼康</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=7d383b7d5e1e02f950a477fb&prop_lst=&keyword=%C8%FD%D0%C7&price_low=&price_high=&is_used=0&location=
+">三星</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=7d383b7d5e1e02f950a477fb&prop_lst=&keyword=%CB%C9%CF%C2&price_low=&price_high=&is_used=0&location=
+">松下</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5c1e00f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=1,11
+">奥林巴斯</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=54a4160ab2755c26f19e73fb
+"  class="highlight">镜头</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=5b26f39e8e0d70ccc9fa7cfb
+">三脚架</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=f99e8c0d70ccc9fa3e427ffb
+">滤镜</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=110ab0755c26f19e8e0d72fb
+">闪光灯</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=c2fa3c420d39378bc2f278fb
+">相册制作</a>
+											</dd>
+										</dl>
+									</li>
+ 
+								</ul>
+								
+								<ul class="cls">
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=02f955a4140ab2755c2670fb&prop_lst=&keyword=&price_low=&price_high=&is_used=0&location=
+">DIY硬件</a>、<a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=b1755926f19e8e0d70cc7dfb&prop_lst=&keyword=&price_low=&price_high=&is_used=0&location=&prop_ex=
+">液晶</a>、<a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=51a4110ab2755c26f19e73fb&prop_lst=&keyword=&price_low=&price_high=&is_used=0&location=&prop_ex=
+">整机</a>、<a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=f49e8b0d70ccc9fa3e427ffb&prop_lst=&keyword=&price_low=&price_high=&is_used=0&location=&prop_ex=
+">CPU</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&is_used=0&display_mode=2&show_tab=1&category=37420839378bc2f2d5927bfb
+">主板</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&is_used=0&display_mode=2&show_tab=1&category=77ccccfa3e420d39378b79fb
+" class="highlight">内存</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&is_used=0&display_mode=2&show_tab=1&category=cef2d092933f23aa8de264fb
+">声卡</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&is_used=0&display_mode=2&show_tab=1&category=0739328bc2f2d592933f7afb
+">显卡</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&is_used=0&display_mode=2&show_tab=1&category=b1755926f19e8e0d70cc7dfb
+">显示器</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&is_used=0&display_mode=2&show_tab=1&category=9d3f26aa8de20ad1cf1d66fb
+">网卡</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&is_used=0&display_mode=2&show_tab=1&category=a636bbd18c1fba4990e16efb
+">散热</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&is_used=0&display_mode=2&show_tab=1&category=2caa88e20ad1cf1de28061fb
+">鼠标</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&is_used=0&display_mode=2&show_tab=1&category=9de20fd1cf1de2800c7e60fb
+">键盘</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&is_used=0&display_mode=2&show_tab=1&category=dd1de7800c7e5b4cb03662fb
+">机箱</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&is_used=0&display_mode=2&show_tab=1&category=187e5e4cb036bed18c1f6cfb
+"  class="highlight">刻录</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&is_used=0&display_mode=2&show_tab=1&category=160ab7755c26f19e8e0d72fb
+">兼容机</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=02f955a4140ab2755c2670fb&prop_lst=&keyword=%CD%F8%C2%E7&price_low=&price_high=&is_used=0&location=
+">网络设备</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=02f955a4140ab2755c2670fb&show_tab=1&keyword=%CE%DE%CF%DF&display_mode=2
+">无线上网</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=d02b206c42141d9f6edb56fb
+" class="highlight">路由器</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=6214189f6edbb89296ea50fb
+">交换机</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=5fdb0bbbce2b256c421454fb
+">宽带</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=3a6c47141d9f6edbb89251fb
+">服务器</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=a34995e1ffeb43db0ebb6bfb
+">电视盒</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=9d3f26aa8de20ad1cf1d66fb&display_mode=2&show_tab=1&prop_lst=2,2
+" >无线网卡</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=4cdbbd9296ea048c83e952fb&display_mode=2&show_tab=1&prop_lst=1,6
+" class="highlight">3G无线</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=4cdbbd9296ea048c83e952fb&show_tab=1&display_mode=2
+">上网卡</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=d02b206c42141d9f6edb56fb&show_tab=1&prop_lst=3,1&display_mode=2
+">无线路由</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5e1e06f950a4140ab27571fb&show_tab=1&display_mode=2
+">笔记本</a>、<a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=5e1e06f950a4140ab27571fb&prop_lst=&keyword=&price_low=&price_high=&is_used=1&location=&prop_ex=
+">二手</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5e1e06f950a4140ab27571fb&show_tab=1&prop_lst=1,1&display_mode=2
+">IBM</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5e1e06f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=1,3
+">惠普</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5e1e06f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=1,2
+">DELL</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5e1e06f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=1,7
+">联想</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5e1e06f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=1,5
+">华硕</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5e1e06f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=1,6
+">索尼</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5e1e06f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=1,13
+">富士通</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5e1e06f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=1,10
+">三星</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5e1e06f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=1,4
+" class="highlight">苹果</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5e1e06f950a4140ab27571fb&show_tab=1&keyword=%C9%CF%CD%F8%B1%BE&display_mode=2
+" class="highlight">上网本</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5e1e06f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=3,1
+">宽屏</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5e1e06f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=3,2
+">16:9</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5e1e06f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=4,1
+">14寸</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=5e1e06f950a4140ab27571fb&prop_lst=&keyword=&price_low=&price_high=1999&location=&prop_ex=
+">1999封顶</a>
+											</dd>
+										</dl>
+									</li>
+ 
+								</ul>
+								
+								<ul class="cls">
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=397d5d1e02f950a4140a76fb
+">随身视听</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5f1e01f950a4140ab27571fb&keyword=MP4
+">MP4</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5f1e01f950a4140ab27571fb&keyword=MP5
+">MP5</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5f1e01f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=1,1
+">iPOD</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5f1e01f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=1,1
+" >苹果</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5f1e01f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=1,2
+">索尼</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5f1e01f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=1,8
+" class="highlight">魅族</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5f1e01f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=1,5
+">纽曼</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5f1e01f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=1,6
+">爱国者</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5f1e01f950a4140ab27571fb&display_mode=2&show_tab=1&prop_lst=1,4
+">昂达</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=f19e840d70ccc9fa3e427ffb&prop_lst=&keyword=&price_low=&price_high=&is_used=0&location=
+">动感电玩</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&is_used=0&display_mode=2&show_tab=1&category=3a420739378bc2f2d5927bfb
+">游戏</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&is_used=0&display_mode=2&show_tab=1&category=72ccc3fa3e420d39378b79fb
+">配件</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=f19e840d70ccc9fa3e427ffb&show_tab=1&keyword=%B9%A5%C2%D4&display_mode=2
+">攻略</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=8f0d7accc9fa3e420d397efb&prop_lst=&keyword=PSP&price_low=&price_high=&is_used=0&location=&prop_ex=
+">PSP</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=f19e840d70ccc9fa3e427ffb&is_used=0&show_tab=1&keyword=xbox&display_mode=2
+">XBOX</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=f19e840d70ccc9fa3e427ffb&prop_lst=&keyword=PSP3000&price_low=&price_high=&is_used=0&location=
+" class="highlight">PSP3000</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=f19e840d70ccc9fa3e427ffb&prop_lst=&keyword=WII&price_low=&price_high=&is_used=0&location=
+">Wii</a><a target="_blank" href="http://youa.baidu.com/search/s?display_mode=2&req_num=40&sort_mode=0&search_domain=1&category=f19e840d70ccc9fa3e427ffb&prop_lst=&keyword=NDSL&price_low=&price_high=&is_used=0&location=
+">NDSL</a>
+											</dd>
+										</dl>
+									</li>
+ 
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=7bccc8fa3e420d39378b79fb
+">家庭影院</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=33420c39378bc2f2d5927bfb
+">HIFI音响</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=066c43141d9f6edbb89251fb
+">耳机</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=0039368bc2f2d492933f7afb
+" class="highlight">音箱</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=3a8bc3f2d592913f23aa65fb
+">功放</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=c5fa3f420d39378bc2f278fb
+">迷你音响</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=7bccc8fa3e420d39378b79fb&display_mode=2&show_tab=1&prop_lst=2,1
+">5.1声道</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=66141c9f6edbb89296ea50fb
+">麦克风</a>
+											</dd>
+										</dl>
+									</li>
+ 
+								</ul>
+								
+							</div>
+							<!-- //item -->
+ 
+							<!-- item -->
+							<div class="item cls">
+								<h3 class="t3"><span>居家</span></h3>
+								<ul class="first-ul cls">
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&keyword=&category=ba498ee1ffeb43db0ebb6bfb
+">日用品</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=7f5fff9d824962328fd158fb
+">收纳</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=9dea1a8c83e90f1f705f5cfb
+">卫浴</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=67dba69296ea048c83e952fb
+">厨房用品</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=40db10bbce2b256c421454fb
+" >餐具</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=c1239fcb12d6a5d06e0c4efb
+" class="highlight">驱蚊</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=cb2b3b6c42141d9f6edb56fb
+">茶具</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=236c5c141d9f6edbb89251fb
+">咖啡器具</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=b29288ea048c83e90f1f5dfb
+">个人护理</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=0abbd02b256c42141d9f57fb
+">杯具</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=4514039f6edbb89296ea50fb
+">酒具</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=d9239fcb12d6bdd06e0c4efb&keyword=%BF%D5%B5%F7%C9%C8
+" class="highlight">空调扇</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=1f9f70dbb89290ea048c53fb
+">豆浆机</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=34397a22437f2b33137341fb
+">烘焙烧烤</a>
+											</dd>
+										</dl>
+									</li>
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=ffeb63db0ebbce2b256c55fb&keyword=%BC%D2%CA%CE
+">时尚家饰</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=43db2fbbce2b256c421454fb&keyword=%BC%D2%BE%DF
+">家具</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=fdeb5ddb0ebbce2b256c55fb
+">小家电</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=31394522437f2b33137341fb
+">宜家</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=42db2ebbce2b256c421454fb
+">装饰画</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=e0d8ac146401de18e61930fb
+">钟表</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=9fea248c83e90f1f705f5cfb
+">十字绣</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=4301fe18e619fa7a930032fb
+"  class="highlight">墙贴</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=f618c619fa7a93002c233dfb
+">小夜灯</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=ce23a0cb12d6a5d06e0c4efb
+" >置物架</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=fd3b1007d82381cb12d64cfb
+">沙发</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=9fd17f40303d2239642244fb
+">充气</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=4f40113d22396422437f47fb
+"  class="highlight">笔记本电脑桌</a>
+											</dd>
+										</dl>
+									</li>
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=43db2fbbce2b256c421454fb&show_tab=1&keyword=%D7%B0%D0%DE&display_mode=2
+">装修</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=266c63141d9f6edbb89251fb
+">灯饰</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=9eea258c83e90f1f705f5cfb
+">五金工具</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=c223a0cb12d6a1d06e0c4efb
+">安防</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=68db999296ea048c83e952fb
+" >厨房</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=189f4fdbb89296ea048c53fb
+">卫浴</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=0473c43b3107d82381cb4dfb
+">茶几</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=aff60cabc5d88c14640136fb
+">节能灯</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=567f0a331373e53b310743fb
+" class="highlight">家具定制</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=a9144501de18e619fa7a33fb
+" class="highlight">防盗报警</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=0d8ca2e90f1f705fe19d5ffb
+">水龙头</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=cc2b046c42141d9f6edb56fb&keyword=%C0%AD%CA%D6
+">拉手锁具</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5140113d22396622437f47fb&show_tab=1&keyword=%C9%B3%CC%B2&display_mode=2
+">沙滩椅</a>
+											</dd>
+										</dl>
+									</li>
+								</ul>
+								<ul class="cls">
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=517f0f331373e53b310743fb
+">毛绒</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=93ea208c83e90f1f705f5cfb&display_mode=2&show_tab=1&keyword=%CD%E6%BE%DF&start_pos=0
+">玩具</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=5040143d22396422437f47fb
+">魔术</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=84e92b1f705fe19d82495efb&show_tab=1&keyword=%C4%A3%D0%CD&display_mode=2
+">模型</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=38333773e53b3107d82342fb
+" >Kitty</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=0773c13b3107d82381cb4dfb
+">迪士尼</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=517f0f331373e53b310743fb&display_mode=2&show_tab=1&prop_lst=1,35,5,2
+" class="highlight">大抱熊</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=517f0f331373e53b310743fb&keyword=NICI
+">NICI</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=6e32abd15e40303d223945fb&show_tab=1&prop_lst=2,18
+">暴力熊</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=517f0f331373e53b310743fb&display_mode=2&show_tab=1&prop_lst=2,49" >喜羊羊</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=884946328fd15f40303d5afb&show_tab=1&display_mode=2
+" class="highlight">变形金刚</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=93ea208c83e90f1f705f5cfb
+">遥控</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=6e32abd15e40303d223945fb
+">动漫</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=256c66141d9f6edbb89251fb&show_tab=1&keyword=%B6%A8%D6%C6&display_mode=2
+">定制</a>
+											</dd>
+										</dl>
+									</li>
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=90e1e0eb43db0ebbce2b6afb
+">床上用品</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=66dba79296ea048c83e952fb&display_mode=2&show_tab=1&prop_lst=1,1
+">夏被</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=0dbbd12b256c42141d9f57fb
+">靠垫</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=1a9f71dbb89296ea048c53fb
+">保健枕</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=9dd14140303d2239642244fb&display_mode=2&show_tab=1&prop_lst=1,1
+">四件套</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=ca2b3a6c42141d9f6edb56fb
+">窗帘</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=4414029f6edbb89296ea50fb&display_mode=2&show_tab=1&prop_lst=1,1
+">夏用毯</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=92497d328fd15e40303d5afb
+"  class="highlight">蚊帐</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=733290d15e40303d223945fb
+">凉席</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0dbbd12b256c42141d9f57fb&keyword=%B1%A7%D5%ED
+" class="highlight">抱枕</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=8fe9101f705fe19d82495efb
+">儿童</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=4d402f3d22396422437f47fb
+">婚庆</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=021f6f5fe19d8249623259fb
+">定制</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=206c5d141d9f6edbb89251fb
+">布艺</a>
+											</dd>
+										</dl>
+									</li>
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=ce2b066c42141d9f6edb56fb
+">母婴用品</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=8be92c1f705fe19d82495efb
+">童装</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=038ca0e90f1f705fe19d5ffb
+">益智</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=81d17d40303d2239642244fb
+">孕妇装</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=8ad17d40303d2b39642244fb
+" class="highlight">婴儿车</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=018ca0e90f1f725fe19d5ffb
+">游泳池</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=0a1f535fe19d8649623259fb
+">洗浴用品</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=40143e9f6edbb89296ea50fb
+">奶瓶</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=7a5fc29d824962328fd158fb
+">童鞋</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=246c61141d9f6edbb89251fb
+">营养品</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=6532acd15e40363d223945fb
+" class="highlight">积木</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=8e4941328fd15e40303d5afb
+">童车</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=6f32acd15e40303d223945fb
+">书包</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=89cb31d6a1d07f0ce22c49fb
+">爬服</a>
+											</dd>
+										</dl>
+									</li>
+								</ul>
+								<ul class="cls">
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=4214389f6edbb89296ea50fb
+">宠物</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=85e92a1f705fe19d82495efb
+">狗粮</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=83d17b40303d2239642244fb
+">迷你植物</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=2d394122437f2b33137341fb
+">园艺</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=775fc49d824963328fd158fb
+">猫粮</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=e89da74962328fd15e405bfb
+" class="highlight">小宠</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=018ca6e90f1f705fe19d5ffb
+">宠物玩具</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=92ea218c83e90f1f705f5cfb
+">宠物服饰</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=3e3d07396422437f2b3346fb
+">花种</a>
+											</dd>
+										</dl>
+									</li>
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0ebbec2b256c42141d9f57fb
+ 
+">办公用品</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&keyword=%BA%AB%B9%FA&category=0ebbec2b256c42141d9f57fb&category=0ebbec2b256c42141d9f57fb
+">韩国文具</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=276c60141d9f6edbb89251fb
+">办公家具</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=cf2b076c42141d9f6edb56fb
+">纸张</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=41143f9f6edbb89296ea50fb
+">计算器</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=6bdb9a9296ea048c83e952fb
+">写画板</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=91ea268c83e90f1f705f5cfb
+" class="highlight">文具</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=8be92d1f705fe09d82495efb
+">笔筒</a>
+											</dd>
+										</dl>
+									</li>
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=ffeb63db0ebbce2b256c55fb&keyword=%CA%D5%B2%D8
+">收藏品</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=aff60dabc5d88d14640136fb
+">紫砂壶</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=3c333373e53b3107d82342fb
+">玉器</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=bfd04e0ce22ccef8d9274bfb
+">古玩</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=557f0b331373e53b310743fb
+" class="highlight">邮币卡</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=2b07f82381cb12d6a1d04ffb">连环画</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=9dcb32d6a1d06e0ce22c49fb
+">文房四宝</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=c023a1cb12d6a2d06e0c4efb
+">奇石</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=fc3b1107d82381cb12d64cfb
+">票证</a>
+											</dd>
+										</dl>
+									</li>
+								</ul>
+							</div>
+							<!-- //item -->
+ 
+ 
+							<!-- item -->
+							<div class="item cls">
+								<h3 class="t1"><span>图书</span></h3>
+								<ul class="first-ul cls">
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=c2f2c492933f23aa8de264fb
+">书籍</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0d330273e53b3107d82342fb&keyword=">杂志</a>、<a target="_blank" href="http://youa.baidu.com/search/s?display_mode=0&req_num=40&sort_mode=0&search_domain=1&category=366c53141d9f6edbb89251fb&prop_lst=&keyword=&price_low=&price_high=&location=">报纸</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=b5d19d1fba4990e1ffeb69fb">教材</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&keyword=%BD%A1%BF%B5&category=99e91e1f705fe19d82495efb
+" class="highlight">健康</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=78dba99296ea048c83e952fb&keyword=
+">小说</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&keyword=%C2%FE%BB%AD&category=c12b346c42141e9f6edb56fb
+">漫画</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=1d8c92e90f1f705fe19d5ffb
+">旅游</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=0fd1de1de2800c7e5b4c63fb
+">工具书</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=afd14f40303d2239642244fb
+">育儿</a>
+											</dd>
+										</dl>
+									</li>
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&keyword=%D2%F4%C0%D6&category=d592813f23aa8de20ad167fb
+">音乐</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=8ee218d1cf1de2800c7e60fb
+">影视</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=923f31aa8de20ad1cf1d66fb&keyword=
+">明星</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=871fa84990e1ffeb43db68fb&keyword=
+">乐器</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=e4801e7e5b4cb036bed16dfb
+">卡通动画</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b14982e1ffeb42db0ebb6bfb&show_tab=1&prop_lst=1,15
+">吉他</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=0ed1dd1de2800c7e5b4c63fb&keyword=
+">电影</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=8ee218d1cf1de2800c7e60fb&keyword=
+" class="highlight">音乐</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b936acd18c1fba4990e16efb&keyword=
+">百科</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b4d19e1fba4990e1ffeb69fb&keyword=
+">戏剧</a>
+											</dd>
+										</dl>
+									</li>
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=df929b3f23aa8de20ad167fb
+">电脑软件</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b2755426f19e8e0d70cc7dfb&show_tab=1&display_mode=2
+">网络服务</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=df929b3f23aa8de20ad167fb&display_mode=2&show_tab=1&prop_lst=2,5
+">系统软件</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=df929b3f23aa8de20ad167fb&display_mode=2&show_tab=1&prop_lst=2,1
+" class="highlight">行业软件</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=df929b3f23aa8de20ad167fb&display_mode=2&show_tab=1&prop_lst=2,13
+">图像软件</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=df929b3f23aa8de20ad167fb&display_mode=2&show_tab=1&prop_lst=2,4
+">杀毒</a>
+											</dd>
+										</dl>
+									</li>
+								</ul>
+							</div>
+							<!-- //item -->
+ 
+ 
+							<!-- item -->
+							<div class="item cls">
+								<h3 class="t1"><span>户外</span></h3>
+								<ul class="first-ul cls">
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=82494d328fd15e40303d5afb&show_tab=1&display_mode=2
+">运动</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=c718c919fa7a93002c233dfb
+">健身</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=e17abc002c2349e03ee83ffb
+">棋牌</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=6332a0d15e40303d223945fb
+" class="highlight">运动鞋</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5d401f3d22396422437f47fb&show_tab=1&prop_lst=2,1,1,2&display_mode=2
+">短裤</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=62226c7f2b331373e53b40fb
+">足球</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=27394b22437f2b33137341fb
+">游泳</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=5d401f3d22396422437f47fb&display_mode=2&show_tab=1&prop_lst=1,1">T恤</a>
+											</dd>
+										</dl>
+									</li>
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=83e9241e705fe19d82495efa&show_tab=1&display_mode=2
+">户外</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=83e9241e705fe19d82495efa&display_mode=2&show_tab=1&prop_lst=3,1
+">登山</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=80494f328fd15e40303d5afb
+">打火机</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=8bd17340303d2239642244fb
+">刀具</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=83e9241f705fe19d82495efb&display_mode=2&show_tab=1&prop_lst=1,1
+">登山鞋</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=83e9241f705fe19d82495efb&display_mode=2&show_tab=1&prop_lst=1,25
+"  class="highlight">背包</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=e09daf4962328fd15e405bfb
+">ZIPPO</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=6132a2d15e40303d223945fb
+">瑞士军刀</a>
+											</dd>
+										</dl>
+									</li>
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&keyword=&category=933f30aa8de20ad1cf1d66fb
+">汽车</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=8fe219d1cf1de2800c7e60fb
+">养护</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=de2b366c42141d9f6edb56fb
+">改装</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=861fa94990e1ffeb43db68fb
+">摩托</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=b7d19f1fba4990e1ffeb69fb
+">自行车</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=5c4ca336bed18c1fba496ffb
+" class="highlight">GPS</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=22aa9ee20ad1cf1de28061fb
+">车载视听</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=b14983e1ffeb43db0ebb6bfb
+">汽车电子</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=09d1dc1de2800c7e5b4c63fb&show_tab=1&prop_lst=1,5
+">坐垫</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=09d1dc1de2800c7e5b4c63fb
+">内饰</a>
+											</dd>
+										</dl>
+									</li>
+								</ul>
+							</div>
+							<!-- //item -->
+ 
+							<!-- item -->
+							<div class="item item-last cls">
+								<h3 class="t1"><span>其他</span></h3>
+								<ul class="first-ul cls">
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=0bd1da1de2800c7e5b4c63fb
+">鲜花速递</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=9ae1eaeb43db0ebbce2b6afb
+">旅游度假</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=b34985e1ffeb43db0ebb6bfb
+">优惠券</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b34985e1ffeb43db0ebb6bfb&show_tab=1&prop_lst=1,4
+" class="highlight">演出票务</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=087e4e4cb036bed18c1f6cfb
+">蛋糕</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=9ae1eaeb43db0ebbce2b6afb&show_tab=1&prop_lst=1,1
+">机票</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=b636abd18c1fba4990e16efb
+">婚庆鲜花</a>
+											</dd>
+										</dl>
+									</li>
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=cc1df6800c7e5b4cb03662fb&keyword=
+">网店装修</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=b04984e1ffeb43db0ebb6bfb&keyword=
+">国际快递</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=097e4f4cb036bed18c1f6cfb&keyword=
+">图片存储</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&keyword=ems&category=b04984e1ffeb43db0ebb6bfb
+" class="highlight">3折EMS</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&show_tab=1&category=b736aad18c1fba4990e16efb
+">纸箱</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&keyword=%BD%BA%B4%F8&category=23aa99e20ad1cf1de28061fb
+">胶带</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=cc1df6800c7e5b4cb03662fb&keyword=%C4%A3%B0%E5
+">装修模板</a>
+											</dd>
+										</dl>
+									</li>
+									<li>
+										<dl>
+											<dt><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=378bd2f2d592933f23aa65fb
+">成人用品</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=378bd2f2d592933f23aa65fb&show_tab=1&keyword=%B1%DC%D4%D0&display_mode=2
+">避孕用品</a>、<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&category=378bd2f2d592933f23aa65fb&show_tab=1&keyword=%C7%E9%C8%A4%C4%DA%D2%C2&display_mode=2
+">情趣内衣</a></dt>
+											<dd>
+												<a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=c3f2c592933f23aa8de264fb
+">女式情趣内衣</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=0cd1df1de2800c7e5b4c63fb
+">男士情趣内衣</a><a target="_blank" href="http://youa.baidu.com/search/s?search_domain=1&display_mode=2&show_tab=1&category=88e21ad1cf1de2800c7e60fb
+" class="highlight">避孕套</a>
+											</dd>
+										</dl>
+									</li>
+								</ul>
+							</div>
+							<!-- //item -->
+ 
+						</div>
+ 
+					</div>
+				</div>
+				<!-- //类目 -->
+ 
+			</div>
+			<div class="side">
+					
+					<!-- 有啊推荐 -->
+									<div id="recommend" class="mod hslice entry-content">
+					<span class="x1"><span class="x1a"></span></span>
+					<div class="mod-content">
+						<div class="hd">
+							<span class="act"></span>						
+							<h3 class="entry-title">有啊推荐</h3>
+						</div>
+						<div class="bd">
+							<ul class="cls">
+								<li class="first selected"><span class="num">1</span><a href="http://youa.baidu.com/item/e619fa7ad9b6d32149e03c42?n=1" target="_blank"><img src="http://img.mall.baidu.com/cccccc/sabpic/item/9e96cb31182fb09ca2751a54.jpg" width="60" height="60">咖啡色火烈鸟眉笔</a></li><li><span class="num">2</span><a href="http://youa.baidu.com/item/41a4402006ce281b24af092b?n=1" target="_blank">诺基亚N95蓝牙耳机</a></li><li><span class="num">3</span><a href="http://youa.baidu.com/item/c3098eef9e4bebf5a77f1f97?n=1" target="_blank">DIY墙纸壁纸</a></li><li><span class="num">4</span><a href="http://youa.baidu.com/item/b2755c26ce13470f70cc7d6b?n=1" target="_blank">韩国超流行发圈</a></li><li><span class="num">5</span><a href="http://youa.baidu.com/item/1d9f6edbfa8f72e8048c53db?n=1" target="_blank">免烫牛津纺全棉短袖...</a></li><li><span class="num">6</span><a href="http://youa.baidu.com/item/46df0b2a5fa238355d6b932c?n=1" target="_blank">彩色去死皮刀</a></li><li><span class="num">7</span><a href="http://youa.baidu.com/item/d79323e125a1200bcde3f181?n=1" target="_blank">交换空间/开关贴</a></li><li><span class="num">8</span><a href="http://youa.baidu.com/item/2dabc5d8ced36602de183131?n=1" target="_blank">糖果色 个性手镯</a></li><li><span class="num">9</span><a href="http://youa.baidu.com/item/4020f903218c2dac64100863?n=1" target="_blank">翡翠手链-平平安安</a></li><li><span class="num">10</span><a href="http://youa.baidu.com/item/84240e5681d2bc2598298203?n=1" target="_blank">大号吸盘蜘蛛侠公仔</a></li>
+							</ul>
+						</div>
+						<div class="ft"></div>
+					</div>
+					<span class="x2"><span class="x2a"></span></span>
+				</div>
+<script type="text/javascript"> 
+var recommendImgs = ["http://img.mall.baidu.com/cccccc/sabpic/item/9e96cb31182fb09ca2751a54.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/a91244fc24c319f4a003ba46.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/2d411e453565d41c8d3fd837.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/b229f08cde6ab890933f7a48.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/5f6ef5dfe3011dbbecd79457.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/39e502007fb002c913d64c87.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/a37ae609b045ee2b54fdb95e.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/c54c6ee80e7961f5a77f1f51.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/95fa50e6cfeea2feb57d3912.jpg","http://img.mall.baidu.com/cccccc/sabpic/item/edba6dc6c70e3aaa92ffb668.jpg"];
+</script>
+					<!-- //有啊推荐 -->
+ 
+ 
+					<!-- 资源位4 -->
+										<div class="rsp-4">
+						<a target="_blank" href="http://co.youa.baidu.com/content/promo/gamelover/index.html"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-20/1c2a8b81f1765b7e7cb2c26ad4003cde.jpg" width="190" height="200"></a>
+					</div>
+ 
+					<!-- //资源位4 -->
+ 
+ 
+					<!-- 资源位5 -->
+										<div class="rsp-5">
+						<a target="_blank" href="http://co.youa.baidu.com/content/promo/txwd/index.html"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-21/98e9ca224b9bd6bb9f7acf712bb32428.jpg" width="190" height="200"></a>
+					</div>
+ 
+					<!-- //资源位5 -->
+ 
+ 
+					<!-- 资源位6 -->
+										<div class="rsp-6">
+						<a target="_blank" href="http://youa.baidu.com/shop/32365d6bc6c57c1b29fa9c2a"><img src="http://co.youa.baidu.com/picture/r/image/2009-08-17/3293b4ade59e68d060c94f9cb379d2f1.jpg" width="190" height="200"></a>
+					</div>
+ 
+					<!-- //资源位6 -->
+ 
+ 
+			</div>
+		</div>
+		<!-- //cols-2 -->
+ 
+ 
+		<!-- cols-2 -->
+		<div class="cols-2 cols-bottom cls">
+			<div class="main">
+ 
+				<!-- 社区精华 -->
+								<div id="forumtop" class="mod">
+					<span class="x1"><span class="x1a"></span></span>
+					<div class="mod-content">
+						<div class="hd">
+							<span class="act"><a target="_blank" href="http://bbs.youa.baidu.com/">更多精彩内容&gt;&gt;</a></span>						
+							<h3>社区精华</h3>
+						</div>
+						<div class="bd">
+							<p class="tag"><a target="_blank" href="http://bbs.youa.baidu.com/post/0/board/378bc2f2c592933f23aa65fb">搭配</a>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://bbs.youa.baidu.com/post/0/board/04eda60a9836a5ab023520fb">秀|败 
+</a>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://bbs.youa.baidu.com/post/0/board/933f23aa9ee20ad1cf1d66fb">八卦</a>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://bbs.youa.baidu.com/post/0/board/c2f2d592823f23aa8de264fb">配饰</a>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://bbs.youa.baidu.com/post/0/board/0ad1cf1df4800c7e5b4c63fb">新奇数码</a>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://bbs.youa.baidu.com/post/0/board/cf1de2801b7e5b4cb03662fb" class="highlight">电脑DIY</a>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://bbs.youa.baidu.com/post/0/board/e2800c7e434cb036bed16dfb">3C配件/存储</a>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://bbs.youa.baidu.com/post/0/board/0c7e5b4ca936bed18c1f6cfb">娱乐视听</a>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://bbs.youa.baidu.com/post/0/board/ce2b256c61141d9f6edb56fb">宠物</a>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://bbs.youa.baidu.com/post/0/board/b2755c26f99e8e0d70cc7dfb">活动专区</a>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://bbs.youa.baidu.com/post/0/category/8df62dab86d88c14640136fb" class="highlight">谈天说地</a>&nbsp;&nbsp;&nbsp;&nbsp;<a target="_blank" href="http://bbs.youa.baidu.com/post/0/board/8e0d70ccc2fa3e420d397efb">店长学院</a></p>
+							<div class="flist cls">
+								<div class="l">
+									<p class="img"><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/a5ab0235deb0d12f854c2dbf"><img src="http://co.youa.baidu.com/picture/r/image/2009-06-29/2b25376c405771ef11d559fba9c31be3.jpg" width="90" height="90"></a></p>
+									<ul>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/0c0693091088c628866effb8"> 街头时尚潮人搭配</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/0ad1cf1df4890c7e5b4c63f2">09夏季女装搭配</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/955ec8d172ee9f0ccfe42aa9" class="highlight">美女火爆内衣秀</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/bed18c1fa65b90e1ffeb69e9">选鞋的十大秘密</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/450eb0a857bc22b17b39b0b8">09童装搭配秘诀</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/82307628c412396c723fe9a8">麦当娜母子恋</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/0ebbce2b072542141d9f57b2" class="highlight">女人最危险用品</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/ecd746dfee6e8376323690bf">
+手绘鞋子全攻略！</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/5c26f19e872170ccc9fa7cd7">牛人DIY绿色电脑</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/41a440208544551924af09bc" class="highlight">朴智星绯闻女友</a></li>
+									</ul>
+								</div>
+ 
+								<div class="r">
+									<p class="img"><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/2f1dc85672a6bd894ce084b7"><img src="http://co.youa.baidu.com/picture/r/image/2009-06-29/e78991adb4cb5ce9184cf05eb0052d44.jpg" width="90" height="90"></a></p>
+									<ul>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/7d38397d5c5f02f950a477ba">最牛手机10大用处</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/854c10cbe1fb955ec8d129ea">鉴别翻新机方法</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/b86a5132af1ea13d8230edf5" class="highlight">买笔记本见招拆招</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/048c83e9255c705fe19d5fb8">09彩妆最新趋势</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/0f1f705fcd9d8249623259fb">让瑜伽发挥到极致</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/6a668ffb4bf8e4d1d71cadbb">宫廷秘方丰胸法!</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/41a440208528551924af09d0
+" class="highlight">10分钟瘦2斤方法</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/e22ccef899618df62dab35bd">10大保湿谎言!</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/86f4d12fdf1f10cbbdea2fa8">男士肤色配衣秘诀</a></li>
+										<li><a target="_blank" href="http://bbs.youa.baidu.com/post/0/thread/6d27b726616de8cc21118cbf" class="highlight">教你鉴定假耐克</a></li>
+									</ul>
+								</div>
+							</div>
+ 
+						</div>
+						<div class="ft"></div>
+					</div>
+					<span class="x2"><span class="x2a"></span></span>
+				</div>
+				<!-- //社区精华 -->
+			
+			</div>
+			<div class="side">
+ 
+				<!-- 交易安全 -->
+								<div id="trade-safe" class="mod">
+					<span class="x1"><span class="x1a"></span></span>
+					<div class="mod-content">
+						<div class="hd">
+							<span class="act"><a target="_blank" href="http://co.youa.baidu.com/content/help/">更多&gt;&gt;</a></span>						
+							<h3>交易安全</h3>
+						</div>
+						<div class="bd">
+							<p class="tips"><a target="_blank" href="http://youa.baidu.com/content/payhelp/security/">安全必修课</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a target="_blank" href="http://co.youa.baidu.com/content/help/">帮助中心</a></p>
+							<ul>
+							<li><a target="_blank" href="http://hi.baidu.com/2008zhaoshang/blog/item/80c95034f04603bfd1a2d33f.html">百付宝安全中心全面升级</a></li>
+							<li><a target="_blank" href="http://co.youa.baidu.com/content/payhelp/security/card/2008-12-08/205949206140.html#A">常见的网络骗术有哪些</a></li>
+							<li><a target="_blank" href="http://co.youa.baidu.com/content/payhelp/security/trick/2008-12-08/204300206133.html#B">教您保障帐号安全的小常识</a></li>
+							<li><a target="_blank" href="http://hi.baidu.com/2008zhaoshang/blog/item/8582b6fb8af0c56c034f56d7.html">如何防止“三角诈骗”</a></li>
+							<li><a target="_blank" href=" http://co.youa.baidu.com/content/payhelp/security/trick/2008-12-08/204300206133.html#1">买兜深入解析网购陷阱</a></li>
+							</ul>
+						</div>
+						<div class="ft"></div>
+					</div>
+					<span class="x2"><span class="x2a"></span></span>
+				</div>
+				<!-- //交易安全 -->
+ 
+			</div>
+		</div>
+		<!-- //cols-2 -->
+ 
+ 
+	</div>
+ 
+	<div id="ft">		<a href="http://co.youa.baidu.com/content/help/quality_form.html" target="_blank">与有啊对话</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="http://co.youa.baidu.com/content/about/index.html" target="_blank">关于有啊</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="http://co.youa.baidu.com/content/help/" target="_blank">帮助中心</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="http://zhaoshang.baidu.com/" target="_blank">商户服务</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="http://co.youa.baidu.com/content/corp/index.html" target="_blank">合作网站</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="http://hr.baidu.com" target="_blank">诚征英才</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="http://co.youa.baidu.com/content/contact/index.html" target="_blank">联系我们</a>
+		<p class="icp">百度旗下购物网站</p><p class="cp">&copy;2009&nbsp;Baidu&nbsp;&nbsp;&nbsp;<a href="http://www.baidu.com/duty/">使用百度前必读</a>&nbsp;&nbsp;&nbsp;<a href="http://co.youa.baidu.com/content/policy/index.html" target="_blank">有啊协议</a>&nbsp;&nbsp;&nbsp;<a href=http://www.miibeian.gov.cn target=_blank>京ICP证030173号</a> <img src="http://co.youa.baidu.com/picture/r/mall/com/08/gs.gif">
+</div>
+ 
+</div>
+ 
+<script type="text/javascript">__stat = new Image().src = 'http://img.mall.baidu.com/st/stat.jpg?pl=mall&ss=index&fp=index&rf=' + encodeURIComponent(document.referrer)+'&rn='+Math.random();;</script>
+<script type="text/javascript" src="http://co.youa.baidu.com/picture/p/js/core-mini.js?v=001.js"></script>
+<script type="text/javascript" src="../autocomplete.js"></script>
+<script type="text/javascript" src="http://co.youa.baidu.com/picture/p/js/recharge.js?v=002.js"></script>
+ 
+<script type="text/javascript">//<![CDATA[
+var sgCallbackName = 'suggestCallback';
+var sgURL = 'http://youa.baidu.com/suggest/se/s?cmd=suggest&type=kwd&max_count=10&callback='+sgCallbackName+'&charset=utf-8&category={0}&keyword={1}';
+var sgCache = new AutocompleteCache();
+
+window[sgCallbackName] = function (o) {
+	var data = o.r, sg = autocomplete;
+	sgCache.write(sg.requestURL, data);
+	sg.showDataSource(data);
+}
+
+var autocomplete = new Autocomplete({
+	instanceName  : 'autocomplete',
+	listenTextbox : G('searchTextbox'),
+	container     : G('suggest-container'),
+	userInputValue: G('searchTextbox').value,
+	onselect : function() {
+		var queryForm = Dom.parentNode($('searchTextbox'),'form');
+		if(queryForm) queryForm.submit();
+	},
+	oninput : function() {		
+		var sg    = autocomplete, dataSource = null;
+		var form  = Dom.parentNode($('searchTextbox'),'form');
+		var value = window.encodeURIComponent((sg.getTextboxValue()+'').trim());
+		var catEl = form['category'];
+		var cat   = catEl ? catEl.value : 0;
+		var url   = sgURL.format(cat, value);
+
+		if (!value.trim().length) return sg.hide();
+		
+		sg.requestURL = url;
+		if (!!sgCache.read(url)) {
+			dataSource = sgCache.read(url);
+			sg.showDataSource(dataSource);
+		} else {
+			getScript(url);
+		}
+		autocomplete.setFocus(0);
+	}
+});
+//]]></script>
+<script src="http://tk.baidu.com/tk-rcv/sv/cj.php?pe=VTVSZwA/CzAKfQQuVTBWO188&pn=1790&sn=21&rn=624&dn=0"></script>
+</body>
+</html>
+
