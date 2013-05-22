@@ -1,11 +1,14 @@
 (function($){
     /**
      * 表单验证类
-     * 提供两个静态方法供外部调用, 分别为 
-     * Valid.check      return  bool     验证一个表单项, 如文本框/选择框     
-     * Valid.checkAll   return  bool     验证整个表单
+     * @constructor
+     * @public
+     * @exports         UXC.Valid
      *
-     * @export         UXC.Valid
+     * @desc提供两个静态方法供外部调用
+     *      分别为 
+     *          Valid.check      return  bool     验证一个表单项, 如文本框/选择框     
+     *          Valid.checkAll   return  bool     验证整个表单
      *
      * @author          qiushaowei   2013-05-22
      */
@@ -14,9 +17,11 @@
     }
     /**
      * 验证一个表单项, 如 文本框, 下拉框, 复选框, 单选框, 文本域, 隐藏域
+     * @method
+     * @public
      *
-     * @param      _fmItem         {dom|jq form ele}     需要验证规则正确与否的表单项
-     * @return     {boolean}       返回是否符合规则
+     * @param      {dom|jq form ele}    _fmItem -   需要验证规则正确与否的表单项
+     * @returns    {boolean}
      *
      * @example 
      *          UXC.Valid.check( $('input.needValid') );
@@ -27,9 +32,11 @@
     };
      /**
      * 验证整个表单是否符合规则
+     * @method
+     * @public
      *
-     * @param      _fm             {dom form/jq form}    需要验证规则正确与否的表单项
-     * @return     {boolean}       返回是否符合规则
+     * @param      {dom form/jq form}   _fm -       需要验证规则正确与否的表单项
+     * @returns    {boolean}
      */
     Valid.checkAll = function( _fm ){
 

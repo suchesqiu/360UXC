@@ -1,14 +1,17 @@
 (function( $ ){
     /**
      * UXC jq 组件库 资源调用控制类
+     * @constructor
+     * @private
+     * @exports window.UXC
      *
-     * 调用组件资源请使用  UXC.import( 组件名[,组件名] );
+     * @example 
+     *      UXC.import( 组件名[,组件名] );
      *
      * @author qiushaowei   2013-05-21
      */
     function UXC(){
         var _p = this;
-
         /**
          * UXC组件库所在路径
          */
@@ -26,12 +29,14 @@
     UXC.prototype = {
        /**
         * 导入UXC组件
-        * @param    _names      string      模块名
-        *                                   或者模块下面的某个js文件(test/test1.js, 路径前面不带"/"将视为test模块下的test1.js)
-        *                                   或者一个绝对路径的js文件, 路径前面带 "/"
+        * @method
+        * @public
+        * @param    {string}    _names -            模块名
+        *                                           或者模块下面的某个js文件(test/test1.js, 路径前面不带"/"将视为test模块下的test1.js)
+        *                                           或者一个绝对路径的js文件, 路径前面带 "/"
         *
-        * @param    _basePath   string      指定要导入资源所在的主目录, 这个主要应用于 nginx 路径输出
-        * @param    _nginxStyle bool        指定是否需要使用 nginx 路径输出脚本资源
+        * @param    {string}    _basePath -         指定要导入资源所在的主目录, 这个主要应用于 nginx 路径输出
+        * @param    {bool}      _nginxStyle -       指定是否需要使用 nginx 路径输出脚本资源
         *
         * @example
                 UXC.import( 'Test' );
@@ -82,6 +87,8 @@
                 }
         /**
          * 获取组件库所在路径
+         * @method
+         * @private
          */
         , _getPath: function(){
                       var _sc = $('script').last(), _path = _sc.attr('src').replace( /UXC\.js[^\w]*/i, '' );
@@ -90,6 +97,8 @@
 
        /**
         * 输出调试信息, 可通过 UXC.debug 指定是否显示调试信息
+        * @method
+        * @public
         */
        , log: function(){
             if( !this.debug ) return;
