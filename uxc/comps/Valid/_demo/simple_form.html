@@ -3,14 +3,27 @@
 <head>
 <meta charset=utf-8 />
 <title>360 UXC-FE</title>
+<style type='text/css'>
+*{ margin: 0; padding: 0; }
+body{ width: 980px; margin: 20px auto; }
+</style>
 </head>    
 <body>
+
+    <form action='' method='get'>
+        <div>
+            <button type="submit">Save</button>
+            <button type="button" class="js-clear-error">清空错误信息</button>
+        </div>
+        <dl>
+            <dd>
+        </dl>
+    </form>
 
 <script src="../../../jquery.js"></script>
 <script src="../../../UXC.js"></script>
 <script> UXC.debug = true; UXC.import( 'Valid' ); </script>
 <script>
-    alert( UXC.Valid );
 </script>
     
 </body>
