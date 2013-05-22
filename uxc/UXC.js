@@ -4,35 +4,37 @@
      * @class
      * @alias window.UXC
      * @global
+     * @requires    jQuery
      *
-     * @classdesc   这是一个单例模式, 外部访问使用 UXC 或 window.UXC
+     * @classdesc   这是一个单例模式, 全局访问使用 UXC 或 window.UXC
      *
      * @example 
      *      UXC.import( 组件名[,组件名] );
      *
-     * @author qiushaowei   2013-05-21
+     * @author  qiushaowei   <suches@btbtd.org>
+     * @date    2013-05-22
      */
     function UXC(){
-        var _p = this;
         /**
          * UXC组件库所在路径
+         * @type {string}
          */
-        _p.PATH = '/js/uxc/comps/';
+        this.PATH = '/js/uxc/comps/';
         /**
          * 是否显示调试信息
+         * @type {bool}
          */
-        _p.debug;
+        this.debug;
         /**
          * 自动识别组件库所在路径
          */
-        _p._getPath();
+        this._getPath();
     }
 
     UXC.prototype = {
        /**
         * 导入UXC组件
         * @method
-        * @memberof UXC
         * @param    {string}    _names -            模块名
         *                                           或者模块下面的某个js文件(test/test1.js, 路径前面不带"/"将视为test模块下的test1.js)
         *                                           或者一个绝对路径的js文件, 路径前面带 "/"
@@ -91,8 +93,8 @@
         /**
          * 获取组件库所在路径
          * @method
-         * @memberof UXC
-         * @returns     {string} - 组件库所在路径(带comps)
+         * @private
+         * @return     {string}    组件库所在路径(带comps)
          */
         _getPath: function(){
                       var _sc = $('script').last(), _path = _sc.attr('src').replace( /UXC\.js[^\w]*/i, '' );
@@ -102,7 +104,6 @@
        /**
         * 输出调试信息, 可通过 UXC.debug 指定是否显示调试信息
         * @method
-        * @memberof UXC
         */
        log: function(){
             if( !this.debug ) return;

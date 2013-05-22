@@ -30,7 +30,7 @@
     UXC
     </h2>
     
-        <div class="class-description">这是一个单例模式, 外部访问使用 UXC 或 window.UXC</div>
+        <div class="class-description">这是一个单例模式, 全局访问使用 UXC 或 window.UXC</div>
     
 </header>  
 
@@ -75,7 +75,7 @@
     <dt class="tag-author">Author:</dt>
     <dd class="tag-author">
         <ul>
-            <li>qiushaowei   2013-05-21</li>
+            <li><a href="mailto:suches@btbtd.org">qiushaowei</a></li>
         </ul>
     </dd>
     
@@ -89,7 +89,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UXC.js.html">UXC.js</a>, <a href="UXC.js.html#line15">line 15</a>
+        <a href="UXC.js.html">UXC.js</a>, <a href="UXC.js.html#line17">line 17</a>
     </li></ul></dd>
     
     
@@ -128,6 +128,11 @@
     
     
     
+        <h3 class="subsection-title">Requires</h3>
+        
+        <ul>
+            <li>module:jQuery</li>
+        </ul>
     
     
     
@@ -135,30 +140,34 @@
     
     
     
-    
-        <h3 class="subsection-title">Methods</h3>
+        <h3 class="subsection-title">Members</h3>
         
         <dl>
             
 <dt>
-    <h4 class="name" id="_getPath"><span class="type-signature">&lt;static> </span>_getPath<span class="signature">()</span><span class="type-signature"> &rarr; {string}</span></h4>
+    <h4 class="name" id="debug"><span class="type-signature"></span>debug<span class="type-signature"> :bool</span></h4>
     
     
 </dt>
 <dd>
     
-    
     <div class="description">
-        获取组件库所在路径
+        是否显示调试信息
     </div>
     
+    
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">bool</span>
 
+
+            </li>
+        </ul>
     
-    
-    
-    
-    
-    
+
     
 <dl class="details">
     
@@ -182,7 +191,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UXC.js.html">UXC.js</a>, <a href="UXC.js.html#line97">line 97</a>
+        <a href="UXC.js.html">UXC.js</a>, <a href="UXC.js.html#line27">line 27</a>
     </li></ul></dd>
     
     
@@ -195,44 +204,82 @@
 
     
     
-
-    
-
-    
-    
-    
-    
-    
-    <h5>Returns:</h5>
-    
-            
-<div class="param-desc">
-    - 组件库所在路径(带comps)
-</div>
-
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">string</span>
-
-
-	</dd>
-</dl>
-
-        
-    
-    
 </dd>
 
         
             
 <dt>
-    <h4 class="name" id="import"><span class="type-signature">&lt;static> </span>import<span class="signature">(_names, _basePath, _nginxStyle)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="PATH"><span class="type-signature"></span>PATH<span class="type-signature"> :string</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    <div class="description">
+        UXC组件库所在路径
+    </div>
+    
+    
+    
+        <h5>Type:</h5>
+        <ul>
+            <li>
+                
+<span class="param-type">string</span>
+
+
+            </li>
+        </ul>
+    
+
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="UXC.js.html">UXC.js</a>, <a href="UXC.js.html#line22">line 22</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl>
+            
+<dt>
+    <h4 class="name" id="import"><span class="type-signature"></span>import<span class="signature">(_names, _basePath, _nginxStyle)</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -369,7 +416,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UXC.js.html">UXC.js</a>, <a href="UXC.js.html#line49">line 49</a>
+        <a href="UXC.js.html">UXC.js</a>, <a href="UXC.js.html#line51">line 51</a>
     </li></ul></dd>
     
     
@@ -405,7 +452,7 @@
         
             
 <dt>
-    <h4 class="name" id="log"><span class="type-signature">&lt;static> </span>log<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="log"><span class="type-signature"></span>log<span class="signature">()</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -446,7 +493,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="UXC.js.html">UXC.js</a>, <a href="UXC.js.html#line107">line 107</a>
+        <a href="UXC.js.html">UXC.js</a>, <a href="UXC.js.html#line108">line 108</a>
     </li></ul></dd>
     
     
@@ -487,13 +534,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="UXC.html">UXC</a></li><li><a href="Valid.html">Valid</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="UXC.html">UXC</a></li><li><a href="Valid.html">Valid</a></li></ul><h3>Global</h3><ul><li><a href="global.html#UXCValid">UXCValid</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Wed May 22 2013 13:50:27 GMT+0800 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Wed May 22 2013 18:02:44 GMT+0800 (CST)
 </footer>
 
 <script> prettyPrint(); </script>
