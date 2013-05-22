@@ -1,3 +1,6 @@
+/**
+ * @method
+ */
 (function( $ ){
     /**
      * UXC jq 组件库 资源调用控制类
