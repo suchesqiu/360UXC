@@ -1,5 +1,5 @@
 (function($){
-    if( window.UXC ) UXC.Valid = Valid;
+    if( window.UXC ) UXC.Valid = Valid; else window.UXC = { log:function(){} };
     window.Valid = Valid;
     /**
      * 表单验证类
@@ -14,8 +14,8 @@
      * @author  qiushaowei   <suches@btbtd.org>
      * @date    2013-05-22
      */
-    function Valid(){
-        if( Valid._instance ) throw new Error("UXC.Valid can't be multi-instance!");
+    function Valid( _fmItem ){
+        this.items = $(_fmItem);
     }
     /**
      * 获取 Valid 的唯一实例 
@@ -38,7 +38,7 @@
      * @return    {boolean}
      */
     Valid.check = function( _fmItem ){
-        return Valid._getInstance.parse( _fmItem );
+        return new Valid( _fmItem ).parse();
     };
      /**
      * 验证整个表单是否符合规则
@@ -55,24 +55,52 @@
      */
     Valid.prototype = {
         parse: 
-            function( _fmItem ){
-                _fmItem = $(_fmItem );
-                var _p = this, _type = _p.parseType( _fmItem ), _r = true;
+            function(  ){
+                var _p = this, _r = true;
 
-                if( _fmItem.is('[reqmsg]') ){
+                _p.items.each( function( _ix, _e ){
 
-                }
+                    var _item = $(_e), _type = _p.getType( _item );
+                    UXC.log( _type );
 
-                if( _p.hasOwnProperty( _type ) ){
-                    _r = _p[ _type ]( _fmItem );
-                }
+                    if( _item.is('[reqmsg]') ){
+
+                    }
+
+
+                    if( _p.parseType.hasOwnProperty( _type ) ) {
+                        _r = _p.parseType[ _type ].call( _p, _item );
+                    }
+                });
 
                 return _r;
             }
-        , parseType: 
-            function( _fmItem ){
-                return (_fmItem.attr('datatype') || 'text') + 'Type';
+        
+        , getType: 
+            function( _item ){
+                return ( _item.attr('datatype') || 'text').toLowerCase();
             }
+
+        , parseType: {
+            "text": 
+                function(){
+                    //alert('text');
+                    UXC.log( 'parseType.text' );
+                }
+            , "url": 
+                    function(){
+
+                    }
+            , "email": 
+                function(){
+
+                }
+            , "zipcode": 
+                function(){
+
+                }
+        }
+
         , triggerError: 
             function(){
 

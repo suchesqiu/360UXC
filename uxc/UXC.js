@@ -97,8 +97,10 @@
          * @return     {string}    组件库所在路径(带comps)
          */
         _getPath: function(){
-                      var _sc = $('script').last(), _path = _sc.attr('src').replace( /UXC\.js[^\w]*/i, '' );
-                      if( _path ) this.PATH = _path + 'comps/';
+                        var _sc = $('script').last(), _path = _sc.attr('src');
+                        if( /\//.test( _path ) ){ _path = _path.split('/'); _path.pop(); _path = _path.join('/') + '/'; }
+                        else if( /\\/.test( path ) ){ _path = _path.split('\\'); _path.pop(); _path = _path.join('\\') + '/'; }
+                        this.PATH = _path + 'comps/';
                   },
 
        /**

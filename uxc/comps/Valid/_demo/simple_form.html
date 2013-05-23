@@ -6,6 +6,18 @@
 <style type='text/css'>
 *{ margin: 0; padding: 0; }
 body{ width: 980px; margin: 20px auto; }
+.cclear{zoom:1;}
+.cclear:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
+
+input[type=text]{ width: 200px; }
+
+dl.fm-items{ margin: 20px 0 20px; }
+dl.fm-items > dd { zoom: 1;    padding: 5px 0 5px; }
+dl.fm-items > dd:after {content:".";display:block;visibility:hidden;height:0;clear:both;}
+
+div.f-l{ float: left; }
+div.label{ width: 120px; text-align: right; padding-right: 20px }
+
 </style>
 </head>    
 <body>
@@ -15,18 +27,41 @@ body{ width: 980px; margin: 20px auto; }
             <button type="submit">Save</button>
             <button type="button" class="js-clear-error">清空错误信息</button>
         </div>
-        <dl>
+        <dl class="fm-items">
             <dd>
-            <div class="f-l1"></div>
-            <div class="f-l2"></div>
+            <div class="f-l label">
+                <label>公司名称:</label>
+            </div>
+            <div class="f-l">
+                <input type="TEXT" name="company_name" minlength="2" maxlength="120" reqmsg="公司名称">
+            </div>
             </dd>
+
+            <dd>
+            <div class="f-l label">
+                <label>公司网址:</label>
+            </div>
+            <div class="f-l">
+                <input type="TEXT" name="company_url" datatype="url" reqmsg="公司网址">
+            </div>
+            </dd>
+
+            <dd>
+            <div class="f-l label">
+                <label>公司邮编:</label>
+            </div>
+            <div class="f-l">
+                <input type="TEXT" name="company_url" datatype="url" reqmsg="公司网址">
+            </div>
+            </dd>
+
         </dl>
     </form>
 
-<script src="../../../jquery.js"></script>
-<script src="../../../UXC.js"></script>
+<script src="../../../lib.js"></script>
 <script> UXC.debug = true; UXC.import( 'Valid' ); </script>
 <script>
+    UXC.log( UXC.Valid.check( 'input[name=company_name]' ) );
 </script>
     
 </body>
