@@ -15,7 +15,7 @@ input.error, select.error, textarea.error{
     border: 1px solid #da9797;
     box-shadow: 0 none;
 }
-input[type=text]{ width: 200px; }
+input[type=text], input[type=password]{ width: 200px; }
 
 dl.fm-items{ margin: 20px 0 20px; }
 dl.fm-items > dd { zoom: 1;    padding: 5px 0 5px; }
@@ -99,6 +99,28 @@ div.label{ width: 320px; text-align: right; padding-right: 20px }
 
             <dd>
             <div class="f-l label">
+                <label>(datatype text, subdatatype reconfirm)用户密码:</label>
+            </div>
+            <div class="f-l">
+                <input type="PASSWORD" name="company_pwd" 
+                    datatype="text" subdatatype="reconfirm" datatarget="input[name=company_repwd]" reconfirmmsg="用户密码和确认密码不一致"
+                    minlength="6" maxlength="15" reqmsg="用户密码" errmsg="请填写正确的用户密码">
+            </div>
+            </dd>
+
+            <dd>
+            <div class="f-l label">
+                <label>(datatype text, subdatatype reconfirm)确认密码:</label>
+            </div>
+            <div class="f-l">
+                <input type="PASSWORD" name="company_repwd" 
+                    datatype="text" subdatatype="reconfirm" datatarget="input[name=company_pwd]" reconfirmmsg="确认密码和用户密码不一致"
+                    minlength="6" maxlength="15" reqmsg="确认密码" errmsg="请填写正确的确认密码">
+            </div>
+            </dd>
+
+            <dd>
+            <div class="f-l label">
                 <label>(reqmsg)公司行业:</label>
             </div>
             <div class="f-l">
@@ -118,7 +140,7 @@ div.label{ width: 320px; text-align: right; padding-right: 20px }
 <script>
     //UXC.log( UXC.Valid.check( 'input[name=company_name]' ) );
 
-    $('form').delegate( 'input[type=TEXT]', 'blur', function($evt){
+    $('form').delegate( 'input[type=TEXT], input[type=PASSWORD]', 'blur', function($evt){
         UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
     });
 

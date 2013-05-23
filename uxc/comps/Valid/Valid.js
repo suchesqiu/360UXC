@@ -69,11 +69,11 @@
 
                 _p.items.each( function( _ix, _e ){
 
-                    var _item = $(_e), _type = _p.getDatatype( _item );
+                    var _item = $(_e), _dt = _p.getDatatype( _item ), _subdt = _p.getSubdatatype( _item );
 
                     if( _item.is('[disabled]') ) return;
 
-                    UXC.log( _type );
+                    UXC.log( _dt, _subdt );
 
                     if( _item.is('[reqmsg]') ){
                         if( ! _p['reqmsgValid']( _item ) ) {
@@ -87,8 +87,15 @@
                         return;
                     }
 
-                    if( _type in _p ){
-                        if( !_p[ _type ]( _item ) ){
+                    if( _dt in _p ){
+                        if( !_p[ _dt ]( _item ) ){
+                            _r = false;
+                            return;
+                        }
+                    }
+                    
+                    if( _subdt && _subdt in _p ){
+                        if( !_p[ _subdt ]( _item ) ){
                             _r = false;
                             return;
                         }
@@ -104,9 +111,14 @@
             function( _item ){
                 return ( _item.attr('datatype') || 'text').toLowerCase().replace(/\-.*/, '') + 'Valid';
             }
+       
+        , getSubdatatype: 
+            function( _item ){
+                return ( _item.attr('subdatatype') || 'text').toLowerCase().replace(/\-.*/, '') + 'Subvalid';
+            }
 
         , error: 
-            function( _item, _msgAttr ){
+            function( _item, _msgAttr, _fullMsg ){
                 var _msg = this.getMsg.apply( this, [].slice.call( arguments ) );
 
                 _item.addClass( 'error' );
@@ -129,14 +141,17 @@
             }
 
         , getMsg: 
-            function( _item, _msgAttr ){
+            function( _item, _msgAttr, _fullMsg ){
                 var _msg = _item.is('[errmsg]') ? ' ' + _item.attr('errmsg') : _item.is('[reqmsg]') ? _item.attr('reqmsg') : '';
                 _msgAttr && (_msg = _item.attr( _msgAttr ) || _msg );
+                _fullMsg && _msg && ( _msg = ' ' + _msg );
 
                 if( _msg && !/^[\s]/.test( _msg ) ){
                     switch( _item.prop('type').toLowerCase() ){
-                        case 'text': _msg = '请填写' + _msg; break;
                         case 'select': _msg = '请选择' + _msg; break;
+
+                        case 'password':
+                        case 'text': _msg = '请填写' + _msg; break;
                     }
                 }
 
@@ -148,6 +163,23 @@
         , toString:
             function(){
                 return 'UXC.Valid';
+            }
+
+        , reconfirmSubvalid:
+            function( _item ){
+                var _r = true, _target, _p = this;
+
+                UXC.log( 'reconfirmSubvalid' );
+
+                if( _item.is( '[datatarget]' ) && (_target = $(_item.attr('datatarget')) ).length ){
+                    _target.each( function(){ if( _item.val() != $(this).val() ) return _r = false; } );
+                }
+
+                !_r && this.error( _item, 'reconfirmmsg', true );
+                !_r && _target.length && _target.each( function(){ _p.error( $(this), 'reconfirmmsg', true ); } );
+                _r && _target.length && _target.each( function(){ _p.valid( $(this) ); } );
+
+                return _r;
             }
 
         , lengthValid: 
@@ -211,7 +243,6 @@
             function( _item ){
                 var _r = true;
                 UXC.log( 'parseType.text', this.toString() );
-
                 return _r;
             }
         
