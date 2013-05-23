@@ -8,7 +8,6 @@
      * @alias UXC.Valid
      * @classdesc 
      *      全局访问请使用 UXC.Valid 或 Valid<br />
-     *      Valid 有且仅有一个实例, 为单例模式<br />
      * @requires jQuery
      * @version dev 0.1
      * @author  qiushaowei   <suches@btbtd.org>
