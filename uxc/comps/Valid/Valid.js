@@ -48,7 +48,16 @@
      * @returns    {boolean}
      */
     Valid.checkAll = function( _fm ){
+        _fm = $( _fm );
+        var _r = true;
 
+        $( _fm[0].elements ).each( function(){
+            !Valid.check( this ) && ( _r = false );
+        });
+        
+        UXC.log( 'Valid.checkAll: ' + _r );
+
+        return _r;
     };
     /**
      * @private
@@ -60,7 +69,9 @@
 
                 _p.items.each( function( _ix, _e ){
 
-                    var _item = $(_e), _type = _p.getType( _item );
+                    var _item = $(_e), _type = _p.getDatatype( _item );
+
+                    if( _item.is('[disabled]') ) return;
 
                     UXC.log( _type );
 
@@ -71,27 +82,37 @@
                          }
                     }
 
-                    _p.hasOwnProperty( _type ) && ( 
-                        !_p[ _type ]( _item ) && ( _r = false )
-                    );
+                    if( !_p.lengthValid( _item ) ){
+                        _r = false;
+                        return;
+                    }
+
+                    if( _type in _p ){
+                        if( !_p[ _type ]( _item ) ){
+                            _r = false;
+                            return;
+                        }
+                    }
+
+                    _p.valid( _item );
                 });
 
                 return _r;
             }
         
-        , getType: 
+        , getDatatype: 
             function( _item ){
                 return ( _item.attr('datatype') || 'text').toLowerCase() + 'Valid';
             }
 
-        , triggerError: 
+        , error: 
             function( _item, _msgAttr ){
                 var _msg = this.getMsg.apply( this, [].slice.call( arguments ) );
 
                 _item.addClass( 'error' );
-                _item.find('+ em').hide();
+                _item.find('~ em').hide();
 
-                var _errEm = _item.find('+ em.error');
+                var _errEm = _item.find('~ em.error');
                 if( !_errEm.length ){
                     ( _errEm = $('<em class="error"></em>') ).insertAfter( _item );
                 }
@@ -99,10 +120,17 @@
 
                 return false;
             }
+        
+        , valid:
+            function( _item ){
+                _item.removeClass('error');
+                _item.find('~ em').show();
+                _item.find('~ em.error').hide();
+            }
 
         , getMsg: 
             function( _item, _msgAttr ){
-                var _msg = _item.attr('errMsg') || _item.attr('regmsg') || '';
+                var _msg = _item.is('[errmsg]') ? ' ' + _item.attr('errmsg') : _item.is('[reqmsg]') ? _item.attr('reqmsg') : '';
                 _msgAttr && (_msg = _item.attr( _msgAttr ) || _msg );
 
                 if( _msg && !/^[\s]/.test( _msg ) ){
@@ -114,34 +142,79 @@
 
                 UXC.log( '_msg: ' + _msg );
 
-                return _msg;
+                return _msg.trim();
             }
 
         , toString:
             function(){
                 return 'UXC.Valid';
             }
+
+        , lengthValid: 
+            function( _item ){
+                var _r = true, _dt = this.getDatatype( _item ), _min, _max, _val = _item.val().trim();
+
+                if( _item.is( '[minlength]' ) ){
+                    UXC.log( 'minlength' );
+                    _min = parseInt( _item.attr( 'minlength' ), 10 ) || 0;
+                }
+                
+                if( _item.is( '[maxlength]' ) ){
+                    UXC.log( 'maxlength' );
+                    _max = parseInt( _item.attr( 'maxlength' ), 10 ) || 0;
+                }
+                /**
+                 * //TODO 根据特殊的 datatype 实现不同的计算方法
+                 */
+                switch( _dt ){
+                    default:
+                        {
+                            _min && ( _val.length < _min ) && ( _r = false );
+                            _max && ( _val.length > _max ) && ( _r = false );
+                            break;
+                        }
+                }
+
+                !_r && this.error( _item );
+
+                return _r;
+            }
         
         , reqmsgValid: 
             function( _item ){
-                var _r = false, _type = _item.prop('type').toLowerCase();
-
+                var _r = true;
                 _r = !!( _item.val().trim() );
+                !_r && this.error( _item, 'reqmsg' );
+                return _r;
+            }
 
-                !_r && this.triggerError( _item, 'reqmsg' );
+        , regValid: 
+            function( _item ){
+                var _r = true, _pattern, _dt, _parts; 
+                if( _item.is( '[reg-pattern]' ) ) _pattern = _item.attr( 'reg-pattern' );
+                if( !_pattern ) _pattern = _item.attr('datatype').trim().replace(/^reg(?:\-|)/i, '');
+
+                _pattern.replace( /^\/([\s\S]*?)\/([\w]{0,3})$/, function( $0, $1, $2 ){
+                    UXC.log( $1, $2 );
+                    _r = new RegExp( $1, $2 || '' ).test( _item.val() );
+                });
+
+                !_r && this.error( _item );
 
                 return _r;
             }
 
         , textValid: 
             function(){
-                //alert('text');
                 UXC.log( 'parseType.text', this.toString() );
             }
         
         , urlValid: 
-            function(){
-
+            function( _item ){
+                var _r = true, _re =  /^((http|ftp|https):\/\/|)[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])$/;
+                _r = _re.test( _item.val() );
+                !_r && this.error( _item );
+                return _r;
             }
 
         , emailValid: 
@@ -150,10 +223,22 @@
             }
 
         , zipcodeValid: 
-            function(){
-
+            function( _item ){
+                var _r = true, _re = /^[0-9]{6}$/;
+                _r = _re.test( _item.val() );
+                !_r && this.error( _item );
+                return _r;
             }
 
+        , domainValid:
+            function( _item ){
+                var _r = true, _re = /^(?:(?:f|ht)tp\:\/\/|)((?:(?:(?:\w[\.\-\+]?)*)\w)*)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})(?:\/|)$/;
+
+                _r = _re.test( _item.val() );
+                !_r && this.error( _item );
+
+                return _r;
+            }
 
     };
 
