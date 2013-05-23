@@ -102,7 +102,7 @@
         
         , getDatatype: 
             function( _item ){
-                return ( _item.attr('datatype') || 'text').toLowerCase() + 'Valid';
+                return ( _item.attr('datatype') || 'text').toLowerCase().replace(/\-.*/, '') + 'Valid';
             }
 
         , error: 
@@ -175,6 +175,8 @@
                         }
                 }
 
+                UXC.log( 'lengthValid: ', _min, _max, _r );
+
                 !_r && this.error( _item );
 
                 return _r;
@@ -185,6 +187,7 @@
                 var _r = true;
                 _r = !!( _item.val().trim() );
                 !_r && this.error( _item, 'reqmsg' );
+                UXC.log( 'regmsgValid: ' + _r );
                 return _r;
             }
 
@@ -205,8 +208,11 @@
             }
 
         , textValid: 
-            function(){
+            function( _item ){
+                var _r = true;
                 UXC.log( 'parseType.text', this.toString() );
+
+                return _r;
             }
         
         , urlValid: 
@@ -218,8 +224,11 @@
             }
 
         , emailValid: 
-            function(){
-
+            function( _item ){
+                var _r = true, _re = /^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
+                _r = _re.test( _item.val() );
+                !_r && this.error( _item );
+                return _r;
             }
 
         , zipcodeValid: 
@@ -233,13 +242,10 @@
         , domainValid:
             function( _item ){
                 var _r = true, _re = /^(?:(?:f|ht)tp\:\/\/|)((?:(?:(?:\w[\.\-\+]?)*)\w)*)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})(?:\/|)$/;
-
                 _r = _re.test( _item.val() );
                 !_r && this.error( _item );
-
                 return _r;
             }
-
     };
 
 }(jQuery))

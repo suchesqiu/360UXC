@@ -45,16 +45,6 @@ div.label{ width: 320px; text-align: right; padding-right: 20px }
 
             <dd>
             <div class="f-l label">
-                <label>(datatype reg)公司地址:</label>
-            </div>
-            <div class="f-l">
-                <input type="TEXT" name="company_addr" datatype="reg" reg-pattern="/^[\s\S]{2,120}$/i" reqmsg="公司地址" errmsg="请填写正确的公司地址">
-            </div>
-            </dd>
-
-
-            <dd>
-            <div class="f-l label">
                 <label>(datatype domain)公司域名:</label>
             </div>
             <div class="f-l">
@@ -73,10 +63,37 @@ div.label{ width: 320px; text-align: right; padding-right: 20px }
 
             <dd>
             <div class="f-l label">
+                <label>(datatype email)公司邮箱:</label>
+            </div>
+            <div class="f-l">
+                <input type="TEXT" name="company_email" datatype="email" reqmsg="公司邮箱" errmsg="请填写正确的公司邮箱">
+            </div>
+            </dd>
+
+            <dd>
+            <div class="f-l label">
                 <label>(datatype zipcode)公司邮编:</label>
             </div>
             <div class="f-l">
                 <input type="TEXT" name="company_zipcode" datatype="zipcode" reqmsg="公司邮编" errmsg="请填写正确的公司邮编">
+            </div>
+            </dd>
+
+            <dd>
+            <div class="f-l label">
+                <label>(datatype reg)公司地址:</label>
+            </div>
+            <div class="f-l">
+                <input type="TEXT" name="company_addr" datatype="reg" reg-pattern="/^[\s\S]{2,120}$/i" reqmsg="公司地址" errmsg="请填写正确的公司地址">
+            </div>
+            </dd>
+
+            <dd>
+            <div class="f-l label">
+                <label>(datatype reg-)公司地址2:</label>
+            </div>
+            <div class="f-l">
+                <input type="TEXT" name="company_addr" datatype="reg-/^[\s\S]{2,120}$/i" reqmsg="公司地址" errmsg="请填写正确的公司地址">
             </div>
             </dd>
 
@@ -92,7 +109,6 @@ div.label{ width: 320px; text-align: right; padding-right: 20px }
                 </select>
             </div>
             </dd>
-
 
         </dl>
     </form>
