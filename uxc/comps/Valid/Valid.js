@@ -10,7 +10,7 @@
      *      全局访问请使用 UXC.Valid 或 Valid<br />
      * @requires jQuery
      * @version dev 0.1
-     * @author  qiushaowei   <suches@btbtd.org>
+     * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
      * @date    2013-05-22
      */
     function Valid( _fmItem ){
@@ -86,14 +86,14 @@
                         return;
                     }
 
-                    if( _dt in _p ){
+                    if( _dt in _p && _item.val() ){
                         if( !_p[ _dt ]( _item ) ){
                             _r = false;
                             return;
                         }
                     }
                     
-                    if( _subdt && _subdt in _p ){
+                    if( _subdt && _subdt in _p && _item.val() ){
                         if( !_p[ _subdt ]( _item ) ){
                             _r = false;
                             return;
@@ -118,16 +118,20 @@
 
         , error: 
             function( _item, _msgAttr, _fullMsg ){
-                var _msg = this.getMsg.apply( this, [].slice.call( arguments ) );
+                var _msg = this.getMsg.apply( this, [].slice.call( arguments ) ), _errEm;
 
                 _item.addClass( 'error' );
                 _item.find('~ em').hide();
 
-                var _errEm = _item.find('~ em.error');
+                if( _item.is( '[emEl]' ) ){
+                    ( _errEm = $(_item.attr( 'emEl' ) ) ) && _errEm.length && _errEm.addClass('error');
+                }
+                !( _errEm && _errEm.length ) && ( _errEm = _item.find('~ em.error') );
                 if( !_errEm.length ){
                     ( _errEm = $('<em class="error"></em>') ).insertAfter( _item );
                 }
-                _errEm.html( _msg ).show();
+                UXC.log( 'error: ' + _msg );
+                setTimeout( function(){ _errEm.html( _msg ).show() }, 200 );
 
                 return false;
             }
@@ -147,8 +151,10 @@
 
                 if( _msg && !/^[\s]/.test( _msg ) ){
                     switch( _item.prop('type').toLowerCase() ){
+                        case 'file':
                         case 'select': _msg = '请选择' + _msg; break;
 
+                        case 'textarea':
                         case 'password':
                         case 'text': _msg = '请填写' + _msg; break;
                     }
@@ -159,9 +165,30 @@
                 return _msg.trim();
             }
 
-        , toString:
-            function(){
-                return 'UXC.Valid';
+        , toString: function(){ return 'UXC.Valid'; }
+
+        , phonezoneValid: 
+            function( _item ){
+                var _r = true, _re =  /^[0-9]{3,4}$/;
+                _r = _re.test( _item.val() );
+                !_r && this.error( _item );
+                return _r;
+            }
+
+        , phonecodeValid: 
+            function( _item ){
+                var _r = true, _re =  /^[0-9]{7,8}$/;
+                _r = _re.test( _item.val() );
+                !_r && this.error( _item );
+                return _r;
+            }
+        
+        , phoneextValid: 
+            function( _item ){
+                var _r = true, _re =  /^[0-9]{1,6}$/;
+                _r = _re.test( _item.val() );
+                !_r && this.error( _item );
+                return _r;
             }
 
         , reconfirmSubvalid:

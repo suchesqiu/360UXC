@@ -1,161 +1,176 @@
 <!doctype html>
 <html>
-<head>
-<meta charset=utf-8 />
-<title>360 UXC-FE</title>
-<style type='text/css'>
-*{ margin: 0; padding: 0; }
-body{ width: 980px; margin: 20px auto; }
-.cclear{zoom:1;}
-.cclear:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
+    <head>
+        <meta charset=utf-8 />
+        <title>360 UXC-FE</title>
+        <style type='text/css'>
+            *{ margin: 0; padding: 0; }
+            body{ width: 980px; margin: 20px auto; }
+            .cclear{zoom:1;}
+            .cclear:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
 
-.error{ color: red; }
-input.error, select.error, textarea.error{ 
-    background-color: #fce1e1;
-    border: 1px solid #da9797;
-    box-shadow: 0 none;
-}
-input[type=text], input[type=password]{ width: 200px; }
+            .error{ color: red; }
+            input.error, select.error, textarea.error{ 
+                background-color: #fce1e1;
+                border: 1px solid #da9797;
+                box-shadow: 0 none;
+            }
+            input[type=text], input[type=password]{ width: 200px; }
 
-dl.fm-items{ margin: 20px 0 20px; }
-dl.fm-items > dd { zoom: 1;    padding: 5px 0 5px; }
-dl.fm-items > dd:after {content:".";display:block;visibility:hidden;height:0;clear:both;}
+            dl.fm-items{ margin: 20px 0 20px; }
+            dl.fm-items > dd { zoom: 1;    padding: 5px 0 5px; }
+            dl.fm-items > dd:after {content:".";display:block;visibility:hidden;height:0;clear:both;}
 
-div.f-l{ float: left; }
-div.label{ width: 320px; text-align: right; padding-right: 20px }
+            div.f-l{ float: left; }
+            div.label{ width: 320px; text-align: right; padding-right: 20px }
 
-</style>
-</head>    
-<body>
+        </style>
+    </head>    
+    <body>
 
-    <form action='' method='get' class="js-valid">
-        <div>
-            <button type="submit">Save</button>
-            <button type="button" class="js-clear-error">清空错误信息</button>
-        </div>
-        <dl class="fm-items">
-            <dd>
-            <div class="f-l label">
-                <label>(reqmsg)公司名称:</label>
+        <form action='' method='get' class="js-valid">
+            <div>
+                <button type="submit">Save</button>
+                <button type="button" class="js-clear-error">清空错误信息</button>
             </div>
-            <div class="f-l">
-                <input type="TEXT" name="company_name" minlength="2" maxlength="120" reqmsg="公司名称" errmsg="请检查格式,长度2-120" /> <em>公司名称描述</em>
-            </div>
-            </dd>
+            <dl class="fm-items">
+                <dd>
+                <div class="f-l label">
+                    <label>(reqmsg)公司名称:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_name" minlength="2" maxlength="120" reqmsg="公司名称" errmsg="请检查格式,长度2-120" /> <em>公司名称描述</em>
+                </div>
+                </dd>
 
-            <dd>
-            <div class="f-l label">
-                <label>(datatype domain)公司域名:</label>
-            </div>
-            <div class="f-l">
-                <input type="TEXT" name="company_domain" datatype="domain" reqmsg="公司域名" errmsg="请填写正确的公司域名">
-            </div>
-            </dd>
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype domain)公司域名:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_domain" datatype="domain" reqmsg="公司域名" errmsg="请填写正确的公司域名">
+                </div>
+                </dd>
 
-            <dd>
-            <div class="f-l label">
-                <label>(datatype url)公司网址:</label>
-            </div>
-            <div class="f-l">
-                <input type="TEXT" name="company_url" datatype="url" reqmsg="公司网址" errmsg="请填写正确的公司网址">
-            </div>
-            </dd>
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype url)公司网址:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_url" datatype="url" errmsg="请填写正确的公司网址">
+                </div>
+                </dd>
 
-            <dd>
-            <div class="f-l label">
-                <label>(datatype email)公司邮箱:</label>
-            </div>
-            <div class="f-l">
-                <input type="TEXT" name="company_email" datatype="email" reqmsg="公司邮箱" errmsg="请填写正确的公司邮箱">
-            </div>
-            </dd>
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype email)公司邮箱:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_email" datatype="email" reqmsg="公司邮箱" errmsg="请填写正确的公司邮箱">
+                </div>
+                </dd>
 
-            <dd>
-            <div class="f-l label">
-                <label>(datatype zipcode)公司邮编:</label>
-            </div>
-            <div class="f-l">
-                <input type="TEXT" name="company_zipcode" datatype="zipcode" reqmsg="公司邮编" errmsg="请填写正确的公司邮编">
-            </div>
-            </dd>
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype zipcode)公司邮编:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_zipcode" datatype="zipcode" reqmsg="公司邮编" errmsg="请填写正确的公司邮编">
+                </div>
+                </dd>
 
-            <dd>
-            <div class="f-l label">
-                <label>(datatype reg)公司地址:</label>
-            </div>
-            <div class="f-l">
-                <input type="TEXT" name="company_addr" datatype="reg" reg-pattern="/^[\s\S]{2,120}$/i" reqmsg="公司地址" errmsg="请填写正确的公司地址">
-            </div>
-            </dd>
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype reg)公司地址:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_addr" datatype="reg" reg-pattern="/^[\s\S]{2,120}$/i" errmsg="请填写正确的公司地址">
+                </div>
+                </dd>
 
-            <dd>
-            <div class="f-l label">
-                <label>(datatype reg-)公司地址2:</label>
-            </div>
-            <div class="f-l">
-                <input type="TEXT" name="company_addr" datatype="reg-/^[\s\S]{2,120}$/i" reqmsg="公司地址" errmsg="请填写正确的公司地址">
-            </div>
-            </dd>
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype reg-)公司地址2:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_addr" datatype="reg-/^[\s\S]{2,120}$/i" errmsg="请填写正确的公司地址">
+                </div>
+                </dd>
 
-            <dd>
-            <div class="f-l label">
-                <label>(datatype text, subdatatype reconfirm)用户密码:</label>
-            </div>
-            <div class="f-l">
-                <input type="PASSWORD" name="company_pwd" 
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype text, subdatatype reconfirm)用户密码:</label>
+                </div>
+                <div class="f-l">
+                    <input type="PASSWORD" name="company_pwd" 
                     datatype="text" subdatatype="reconfirm" datatarget="input[name=company_repwd]" reconfirmmsg="用户密码和确认密码不一致"
                     minlength="6" maxlength="15" reqmsg="用户密码" errmsg="请填写正确的用户密码">
-            </div>
-            </dd>
+                </div>
+                </dd>
 
-            <dd>
-            <div class="f-l label">
-                <label>(datatype text, subdatatype reconfirm)确认密码:</label>
-            </div>
-            <div class="f-l">
-                <input type="PASSWORD" name="company_repwd" 
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype text, subdatatype reconfirm)确认密码:</label>
+                </div>
+                <div class="f-l">
+                    <input type="PASSWORD" name="company_repwd" 
                     datatype="text" subdatatype="reconfirm" datatarget="input[name=company_pwd]" reconfirmmsg="确认密码和用户密码不一致"
                     minlength="6" maxlength="15" reqmsg="确认密码" errmsg="请填写正确的确认密码">
-            </div>
-            </dd>
+                </div>
+                </dd>
 
-            <dd>
-            <div class="f-l label">
-                <label>(reqmsg)公司行业:</label>
-            </div>
-            <div class="f-l">
-                <select name="company_type" reqmsg="公司行业" >
-                    <option value="">请选择</option>
-                    <option value="1">互联网</option>
-                    <option value="2">教育</option>
-                </select>
-            </div>
-            </dd>
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype phonezone, phonecode, phoneext)电话号码:</label>
+                </div>
+                <div class="f-l">
+                    <input type='TEXT' name='company_phonezone' style="width:40px;" value='' size="4" 
+                        datatype="phonezone" emEl="#phone-err-em" errmsg="请填写正确的电话区号" />
+                    - <input type='TEXT' name='company_phonecode' style="width:80px;" value='' size="8" 
+                        datatype="phonecode" reqmsg="电话号码" errmsg="请检查电话号码格式" emEl="#phone-err-em"  />
+                    - <input type='TEXT' name='company_phoneext' style="width:40px;" value='' size="4" 
+                        datatype="phoneext" emEl="#phone-err-em" errmsg="请填写正确的分机号" />
+                    <em id="phone-err-em"></em>
+                </div>
+                </dd>
 
-        </dl>
-    </form>
+                <dd>
+                <div class="f-l label">
+                    <label>(reqmsg)公司行业:</label>
+                </div>
+                <div class="f-l">
+                    <select name="company_type" reqmsg="公司行业" >
+                        <option value="">请选择</option>
+                        <option value="1">互联网</option>
+                        <option value="2">教育</option>
+                    </select>
+                </div>
+                </dd>
 
-<script src="../../../lib.js"></script>
-<script> UXC.debug = true; UXC.import( 'Valid' ); </script>
-<script>
-    //UXC.log( UXC.Valid.check( 'input[name=company_name]' ) );
+            </dl>
+        </form>
 
-    $('form').delegate( 'input[type=TEXT], input[type=PASSWORD]', 'blur', function($evt){
-        UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
-    });
+        <script src="../../../lib.js"></script>
+        <script> UXC.debug = true; UXC.import( 'Valid' ); </script>
+        <script>
+            //UXC.log( UXC.Valid.check( 'input[name=company_name]' ) );
 
-    $('form').delegate( 'select', 'change', function($evt){
-        UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
-    });
+            $('form').delegate( 'input[type=TEXT], input[type=PASSWORD]', 'blur', function($evt){
+                UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
+            });
 
-    $('form.js-valid').on('submit', function( $evt ){
-        $evt.preventDefault();
+            $('form').delegate( 'select', 'change', function($evt){
+                UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
+            });
 
-        UXC.log( UXC.Valid.checkAll( 'form.js-valid' ) );
+            $('form.js-valid').on('submit', function( $evt ){
+                $evt.preventDefault();
 
-    });
-</script>
-    
-</body>
+                UXC.log( UXC.Valid.checkAll( 'form.js-valid' ) );
+
+            });
+        </script>
+
+    </body>
 </html>
 
