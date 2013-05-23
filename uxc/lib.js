@@ -8,7 +8,7 @@ function script_path_f(){
     else if( /\\/.test( path ) ){ _path = _path.split('\\'); _path.pop(); _path = _path.join('\\') + '/'; }
     return _path;
 }
-var _path = script_path_f();
-
-document.write( '<script src="'+_path+'jquery.js" ><\/script>' );
-document.write( '<script src="'+_path+'UXC.js" ><\/script>' );
+(function(){
+    var _path = script_path_f();
+    document.write( '<script src="'+_path+'jquery.js" ><\/script>', '<script src="'+_path+'UXC.js" ><\/script>' );
+}());

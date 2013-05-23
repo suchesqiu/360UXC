@@ -61,16 +61,19 @@
                 _p.items.each( function( _ix, _e ){
 
                     var _item = $(_e), _type = _p.getType( _item );
+
                     UXC.log( _type );
 
                     if( _item.is('[reqmsg]') ){
-
+                        if( ! _p['reqmsgValid']( _item ) ) {
+                            _r = false;
+                            return;
+                         }
                     }
 
-
-                    if( _p.parseType.hasOwnProperty( _type ) ) {
-                        _r = _p.parseType[ _type ].call( _p, _item );
-                    }
+                    _p.hasOwnProperty( _type ) && ( 
+                        !_p[ _type ]( _item ) && ( _r = false )
+                    );
                 });
 
                 return _r;
@@ -78,33 +81,79 @@
         
         , getType: 
             function( _item ){
-                return ( _item.attr('datatype') || 'text').toLowerCase();
+                return ( _item.attr('datatype') || 'text').toLowerCase() + 'Valid';
             }
 
-        , parseType: {
-            "text": 
-                function(){
-                    //alert('text');
-                    UXC.log( 'parseType.text' );
-                }
-            , "url": 
-                    function(){
-
-                    }
-            , "email": 
-                function(){
-
-                }
-            , "zipcode": 
-                function(){
-
-                }
-        }
-
         , triggerError: 
+            function( _item, _msgAttr ){
+                var _msg = this.getMsg.apply( this, [].slice.call( arguments ) );
+
+                _item.addClass( 'error' );
+                _item.find('+ em').hide();
+
+                var _errEm = _item.find('+ em.error');
+                if( !_errEm.length ){
+                    ( _errEm = $('<em class="error"></em>') ).insertAfter( _item );
+                }
+                _errEm.html( _msg ).show();
+
+                return false;
+            }
+
+        , getMsg: 
+            function( _item, _msgAttr ){
+                var _msg = _item.attr('errMsg') || _item.attr('regmsg') || '';
+                _msgAttr && (_msg = _item.attr( _msgAttr ) || _msg );
+
+                if( _msg && !/^[\s]/.test( _msg ) ){
+                    switch( _item.prop('type').toLowerCase() ){
+                        case 'text': _msg = '请填写' + _msg; break;
+                        case 'select': _msg = '请选择' + _msg; break;
+                    }
+                }
+
+                UXC.log( '_msg: ' + _msg );
+
+                return _msg;
+            }
+
+        , toString:
+            function(){
+                return 'UXC.Valid';
+            }
+        
+        , reqmsgValid: 
+            function( _item ){
+                var _r = false, _type = _item.prop('type').toLowerCase();
+
+                _r = !!( _item.val().trim() );
+
+                !_r && this.triggerError( _item, 'reqmsg' );
+
+                return _r;
+            }
+
+        , textValid: 
+            function(){
+                //alert('text');
+                UXC.log( 'parseType.text', this.toString() );
+            }
+        
+        , urlValid: 
             function(){
 
             }
+
+        , emailValid: 
+            function(){
+
+            }
+
+        , zipcodeValid: 
+            function(){
+
+            }
+
 
     };
 

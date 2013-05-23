@@ -9,6 +9,12 @@ body{ width: 980px; margin: 20px auto; }
 .cclear{zoom:1;}
 .cclear:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
 
+.error{ color: red; }
+input.error, select.error, textarea.error{ 
+    background-color: #fce1e1;
+    border: 1px solid #da9797;
+    box-shadow: 0 none;
+}
 input[type=text]{ width: 200px; }
 
 dl.fm-items{ margin: 20px 0 20px; }
@@ -22,7 +28,7 @@ div.label{ width: 120px; text-align: right; padding-right: 20px }
 </head>    
 <body>
 
-    <form action='' method='get'>
+    <form action='' method='get' class="js-valid">
         <div>
             <button type="submit">Save</button>
             <button type="button" class="js-clear-error">清空错误信息</button>
@@ -33,7 +39,7 @@ div.label{ width: 120px; text-align: right; padding-right: 20px }
                 <label>公司名称:</label>
             </div>
             <div class="f-l">
-                <input type="TEXT" name="company_name" minlength="2" maxlength="120" reqmsg="公司名称">
+                <input type="TEXT" name="company_name" minlength="2" maxlength="120" reqmsg="公司名称"><em>公司名称描述</em>
             </div>
             </dd>
 
@@ -51,9 +57,23 @@ div.label{ width: 120px; text-align: right; padding-right: 20px }
                 <label>公司邮编:</label>
             </div>
             <div class="f-l">
-                <input type="TEXT" name="company_url" datatype="url" reqmsg="公司网址">
+                <input type="TEXT" name="company_zipcode" datatype="zipcode" reqmsg="公司邮编">
             </div>
             </dd>
+
+            <dd>
+            <div class="f-l label">
+                <label>公司行业:</label>
+            </div>
+            <div class="f-l">
+                <select name="company_type" reqmsg="公司行业" >
+                    <option value="">请选择</option>
+                    <option value="1">互联网</option>
+                    <option value="2">教育</option>
+                </select>
+            </div>
+            </dd>
+
 
         </dl>
     </form>
@@ -62,6 +82,21 @@ div.label{ width: 120px; text-align: right; padding-right: 20px }
 <script> UXC.debug = true; UXC.import( 'Valid' ); </script>
 <script>
     UXC.log( UXC.Valid.check( 'input[name=company_name]' ) );
+
+    $('form').delegate( 'input[type=TEXT]', 'blur', function($evt){
+        UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
+    });
+
+    $('form').delegate( 'select', 'change', function($evt){
+        UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
+    });
+
+    $('form.js-valid').on('submit', function( $evt ){
+        $evt.preventDefault();
+
+        UXC.log( UXC.Valid.checkAll( 'form.js-valid' ) );
+
+    });
 </script>
     
 </body>
