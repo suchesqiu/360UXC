@@ -36,7 +36,7 @@
                     UXC.Valid.clearError( 'form.js-valid' );
                 });
 
-                $('form').delegate( 'input[type=TEXT], input[type=PASSWORD]', 'blur', function($evt){
+                $('form').delegate( 'input[type=TEXT], input[type=PASSWORD], textarea', 'blur', function($evt){
                     UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
                 });
 
@@ -46,9 +46,11 @@
 
                 $('form.js-valid').on('submit', function( $evt ){
                     window.console && console.clear && console.clear();
-                    $evt.preventDefault();
 
-                    UXC.log( UXC.Valid.checkAll( 'form.js-valid' ) );
+                    if( !UXC.Valid.checkAll( 'form.js-valid' ) ){
+                        $evt.preventDefault();
+                        return false;
+                    }
                 });
             });
         </script>
@@ -284,7 +286,7 @@
                     <label>(reqmsg)公司行业:</label>
                 </div>
                 <div class="f-l">
-                    <select name="company_type1" reqmsg="公司行业" multiple >
+                    <select name="company_type1" reqmsg="公司行业" multiple rows="3" >
                         <option value="">请选择</option>
                         <option value="1">互联网</option>
                         <option value="2">教育</option>
@@ -298,6 +300,15 @@
                 </div>
                 <div class="f-l">
                     <input type='file' name='company_file' value='' reqmsg="文件" />
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype text)简介:</label>
+                </div>
+                <div class="f-l">
+                    <textarea name="company_desc" datatype="text" reqmsg="简介" errmsg="简介长度2-500" minlength="2" maxlength="500" ></textarea>
                 </div>
                 </dd>
 

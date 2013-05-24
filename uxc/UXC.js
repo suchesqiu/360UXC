@@ -112,7 +112,7 @@
        log: 
            function(){
                 if( !this.debug ) return;
-                console.log( [].slice.apply( arguments ).join(', ') );
+                console.log( [].slice.apply( arguments ).join(' ') );
             }
     };
 
@@ -120,7 +120,7 @@
      * 如果 console 不可用, 则生成一个模拟的 console 对象
      */
     if( !window.console ) window.console = { log:function(){
-        window.status = [].slice.apply( arguments ).join(', ');
+        window.status = [].slice.apply( arguments ).join(' ');
     }};
 
     window.UXC = new UXC();

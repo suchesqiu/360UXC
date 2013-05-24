@@ -161,7 +161,6 @@
                     ( _errEm = $('<em class="error"></em>') ).insertAfter( _item );
                 }
                 UXC.log( 'error: ' + _msg );
-                //setTimeout( function(){ _errEm.html( _msg ).show() }, 200 );
                 _errEm.html( _msg ).show() 
 
                 return false;
@@ -321,7 +320,7 @@
 
         , lengthValid: 
             function( _item ){
-                var _r = true, _dt = this.getDatatype( _item ), _min, _max, _val = _item.val().trim();
+                var _r = true, _dt = this.getDatatype( _item ), _min, _max, _val = _item.val();
 
                 if( _item.is( '[minlength]' ) ){
                     UXC.log( 'minlength' );
@@ -353,8 +352,13 @@
         
         , reqmsgValid: 
             function( _item ){
-                var _r = true;
-                _r = !!( (_item.val()||'').trim() );
+                var _r;
+                if( _item.val() && _item.val().constructor == Array ){
+                    _r = !!( ( _item.val().join('') + '' ).trim() );
+                }else{
+                    _r = !!( ( _item.val() ||'').trim() );
+                }
+
                 !_r && this.error( _item, 'reqmsg' );
                 UXC.log( 'regmsgValid: ' + _r );
                 return _r;
