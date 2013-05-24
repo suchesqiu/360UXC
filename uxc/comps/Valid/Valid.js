@@ -16,17 +16,7 @@
     function Valid( _fmItem ){
         this.items = $(_fmItem);
     }
-    /**
-     * 获取 Valid 的唯一实例 
-     * @private
-     * @return  {Valid}
-     */
-    Valid._getInstance = 
-        function(){
-            if( !Valid._instance ) Valid._instance = new Valid();
-            return Valid._instance;
-        };
-    /**
+     /**
      * 验证一个表单项, 如 文本框, 下拉框, 复选框, 单选框, 文本域, 隐藏域
      * @method
      * @memberof Valid
@@ -93,7 +83,7 @@
      */
     Valid.prototype = {
         parse: 
-            function(  ){
+            function(){
                 var _p = this, _r = true;
 
                 _p.items.each( function( _ix, _e ){
@@ -135,16 +125,6 @@
 
                 return _r;
             }
-        
-        , getDatatype: 
-            function( _item ){
-                return ( _item.attr('datatype') || 'text').toLowerCase().replace(/\-.*/, '') + 'Valid';
-            }
-       
-        , getSubdatatype: 
-            function( _item ){
-                return ( _item.attr('subdatatype') || 'text').toLowerCase().replace(/\-.*/, '') + 'Subvalid';
-            }
 
         , error: 
             function( _item, _msgAttr, _fullMsg ){
@@ -171,6 +151,18 @@
                 _item.removeClass('error');
                 _item.find('~ em').show();
                 _item.find('~ em.error').hide();
+            }
+
+        , toString: function(){ return 'UXC.Valid'; }
+        
+        , getDatatype: 
+            function( _item ){
+                return ( _item.attr('datatype') || 'text').toLowerCase().replace(/\-.*/, '') + 'Valid';
+            }
+       
+        , getSubdatatype: 
+            function( _item ){
+                return ( _item.attr('subdatatype') || 'text').toLowerCase().replace(/\-.*/, '') + 'Subvalid';
             }
 
         , getMsg: 
@@ -202,8 +194,6 @@
             function( _s ){
                 return _s.replace(/[^\x00-\xff]/g,"11").length;
             }
-
-        , toString: function(){ return 'UXC.Valid'; }
 
         , alternativeSubvalid:
             function( _item ){
@@ -240,6 +230,35 @@
 
                 return _r;
             }
+
+        , nValid: 
+            function( _item ){
+                var _r = true, _valStr = _item.val(), _val = +_valStr,_min = 0, _max = Math.pow( 10, 10 ), _n, _f, _tmp;
+
+                if( !isNaN( _val ) && _val >= 0 ){
+                    _item.attr('datatype').replace( /^n\-(.*)$/, function( $0, $1 ){
+                        _tmp = $1.split('.');
+                        _n = _tmp[0];
+                        _f = _tmp[1];
+                    });
+                    if( _item.is('[minvalue]') ) _min = +_item.attr('minvalue') || _min;
+                    if( _item.is('[maxvalue]') ) _max = +_item.attr('maxvalue') || _max;
+
+                    if( _val >= _min && _val <= _max ){
+                        typeof _n != 'undefined' && typeof _f != 'undefined' && ( _r = new RegExp( '^(?:[\\d]{0,'+_n+'}|)(?:\\.[\\d]{0,'+_f+'}|)$' ).test( _valStr ) );
+                        typeof _n != 'undefined' && typeof _f == 'undefined' && ( _r = new RegExp( '^[\\d]{0,'+_n+'}$' ).test( _valStr ) );
+                        typeof _n == 'undefined' && typeof _f != 'undefined' && ( _r = new RegExp( '^\\.[\\d]{0,'+_f+'}$' ).test( _valStr ) );
+                        typeof _f == 'undefined' && /\./.test( _valStr ) && ( _r = false );
+                    } else _r = false;
+
+                    UXC.log( 'nValid', _val, typeof _n, typeof _f, typeof _min, typeof _max, _min, _max );
+                }else _r = false;
+
+                !_r && this.error( _item );
+
+                return _r;
+            }
+
 
         , bankcardValid:
             function( _item ){
