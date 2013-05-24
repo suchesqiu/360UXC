@@ -125,6 +125,15 @@
 
                 return _r;
             }
+        
+        , valid:
+            function( _item ){
+                _item.removeClass('error');
+                _item.find('~ em').show();
+                _item.find('~ em.error').hide();
+            }
+
+        , toString: function(){ return 'UXC.Valid'; }
 
         , error: 
             function( _item, _msgAttr, _fullMsg ){
@@ -145,15 +154,6 @@
 
                 return false;
             }
-        
-        , valid:
-            function( _item ){
-                _item.removeClass('error');
-                _item.find('~ em').show();
-                _item.find('~ em.error').hide();
-            }
-
-        , toString: function(){ return 'UXC.Valid'; }
         
         , getDatatype: 
             function( _item ){
