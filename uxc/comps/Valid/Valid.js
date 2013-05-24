@@ -196,6 +196,11 @@
                 return _msg.trim();
             }
 
+        , bytelen: 
+            function( _s ){
+                return _s.replace(/[^\x00-\xff]/g,"11").length;
+            }
+
         , toString: function(){ return 'UXC.Valid'; }
 
         , alternativeSubvalid:
@@ -234,42 +239,79 @@
                 return _r;
             }
 
+        , bankcardValid:
+            function( _item ){
+                var _r = /^[1-9][\d]{3}(?: |)(?:[\d]{4}(?: |))(?:[\d]{4}(?: |))(?:[\d]{4})(?:(?: |)[\d]{3}|)$/.test( _item.val() );
+                !_r && this.error( _item );
+                return _r;
+            }
+
+        , cnnameValid:
+            function( _item ){
+                var _r = this.bytelen( _item.val() ) < 32 && /^[\u4e00-\u9fa5a-zA-Z.\u3002\u2022]{2,32}$/.test( _item.val() );
+                !_r && this.error( _item );
+                return _r;
+            }
+
+        , usernameValid:
+            function( _item ){
+                var _r = /^[a-zA-Z0-9][\w-]{2,29}$/.test( _item.val() );
+                !_r && this.error( _item );
+                return _r;
+            }
+
+        , idnumberValid:
+            function( _item ){
+                var _r = /^[0-9]{15}(?:[0-9]{2}(?:[0-9xX]|)|)$/.test( _item.val() );
+                !_r && this.error( _item );
+                return _r;
+            }
+
         , mobilecodeValid: 
             function( _item ){
-                var _r = true, _re =  /^(13|15|18|14)\d{9}$/;
-                _r = _re.test( _item.val() );
+                var _r =  /^(13|15|18|14)\d{9}$/.test( _item.val() );
                 !_r && this.error( _item );
                 return _r;
             }
 
         , mobilezonecodeValid: 
             function( _item ){
-                var _r = true, _re = /^(?:\+[0-9]{1,6}(?: |)|)(?:0|)(?:13|15|18|14)\d{9}$/;
-                _r = _re.test( _item.val() );
+                var _r = /^(?:\+[0-9]{1,6} |)(?:0|)(?:13|15|18|14)\d{9}$/.test( _item.val() );
+                !_r && this.error( _item );
+                return _r;
+            }
+
+        , phoneValid:
+            function( _item ){
+                var _r = /^(?:0(?:10|2\d|[3-9]\d\d)(?: |\-|)|)[1-9]\d{6,7}$/.test( _item.val() );
+                !_r && this.error( _item );
+                return _r;
+            }
+
+        , phoneallValid:
+            function( _item ){
+                var _r = /^(?:\+[\d]{1,6}(?: |\-)|)(?:0[\d]{2,3}(?:\-| |)|)[1-9][\d]{6,7}(?:(?: |)\#[\d]{1,6}|)$/.test( _item.val() );
                 !_r && this.error( _item );
                 return _r;
             }
 
         , phonezoneValid: 
             function( _item ){
-                var _r = true, _re =  /^[0-9]{3,4}$/;
-                _r = _re.test( _item.val() );
+                var _r = /^[0-9]{3,4}$/.test( _item.val() );
                 !_r && this.error( _item );
                 return _r;
             }
 
         , phonecodeValid: 
             function( _item ){
-                var _r = true, _re =  /^[0-9]{7,8}$/;
-                _r = _re.test( _item.val() );
+                var _r =  /^[0-9]{7,8}$/.test( _item.val() );
                 !_r && this.error( _item );
                 return _r;
             }
         
         , phoneextValid: 
             function( _item ){
-                var _r = true, _re =  /^[0-9]{1,6}$/;
-                _r = _re.test( _item.val() );
+                var _r =  /^[0-9]{1,6}$/.test( _item.val() );
                 !_r && this.error( _item );
                 return _r;
             }
@@ -321,7 +363,7 @@
                 if( _item.is( '[reg-pattern]' ) ) _pattern = _item.attr( 'reg-pattern' );
                 if( !_pattern ) _pattern = _item.attr('datatype').trim().replace(/^reg(?:\-|)/i, '');
 
-                _pattern.replace( /^\/([\s\S]*?)\/([\w]{0,3})$/, function( $0, $1, $2 ){
+                _pattern.replace( /^\/([\s\S]*)\/([\w]{0,3})$/, function( $0, $1, $2 ){
                     UXC.log( $1, $2 );
                     _r = new RegExp( $1, $2 || '' ).test( _item.val() );
                 });
@@ -337,7 +379,6 @@
                 UXC.log( 'vcodeValid: ' + _len );
                 _r = new RegExp( '^[0-9a-zA-Z]{'+_len+'}$' ).test( _item.val() );
                 !_r && this.error( _item );
-
                 return _r;
             }
 
@@ -350,32 +391,28 @@
         
         , urlValid: 
             function( _item ){
-                var _r = true, _re =  /^((http|ftp|https):\/\/|)[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])$/;
-                _r = _re.test( _item.val() );
+                var _r = /^((http|ftp|https):\/\/|)[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])$/.test( _item.val() );
                 !_r && this.error( _item );
                 return _r;
             }
 
         , emailValid: 
             function( _item ){
-                var _r = true, _re = /^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i;
-                _r = _re.test( _item.val() );
+                var _r = /^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test( _item.val() );
                 !_r && this.error( _item );
                 return _r;
             }
 
         , zipcodeValid: 
             function( _item ){
-                var _r = true, _re = /^[0-9]{6}$/;
-                _r = _re.test( _item.val() );
+                var _r = /^[0-9]{6}$/.test( _item.val() );
                 !_r && this.error( _item );
                 return _r;
             }
 
         , domainValid:
             function( _item ){
-                var _r = true, _re = /^(?:(?:f|ht)tp\:\/\/|)((?:(?:(?:\w[\.\-\+]?)*)\w)*)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})(?:\/|)$/;
-                _r = _re.test( _item.val() );
+                var _r = /^(?:(?:f|ht)tp\:\/\/|)((?:(?:(?:\w[\.\-\+]?)*)\w)*)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})(?:\/|)$/.test( _item.val() );
                 !_r && this.error( _item );
                 return _r;
             }

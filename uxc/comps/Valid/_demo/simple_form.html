@@ -72,55 +72,55 @@
 
                 <dd>
                 <div class="f-l label">
-                    <label>(datatype domain)公司域名:</label>
+                    <label>(datatype domain)域名:</label>
                 </div>
                 <div class="f-l">
-                    <input type="TEXT" name="company_domain" datatype="domain" reqmsg="公司域名" errmsg="请填写正确的公司域名">
+                    <input type="TEXT" name="company_domain" datatype="domain" reqmsg="域名" errmsg="请填写正确的域名">
                 </div>
                 </dd>
 
                 <dd>
                 <div class="f-l label">
-                    <label>(datatype url)公司网址:</label>
+                    <label>(datatype url)网址:</label>
                 </div>
                 <div class="f-l">
-                    <input type="TEXT" name="company_url" datatype="url" errmsg="请填写正确的公司网址">
+                    <input type="TEXT" name="company_url" datatype="url" errmsg="请填写正确的网址">
                 </div>
                 </dd>
 
                 <dd>
                 <div class="f-l label">
-                    <label>(datatype email)公司邮箱:</label>
+                    <label>(datatype email)邮箱:</label>
                 </div>
                 <div class="f-l">
-                    <input type="TEXT" name="company_email" datatype="email" reqmsg="公司邮箱" errmsg="请填写正确的公司邮箱">
+                    <input type="TEXT" name="company_email" datatype="email" reqmsg="邮箱" errmsg="请填写正确的邮箱">
                 </div>
                 </dd>
 
                 <dd>
                 <div class="f-l label">
-                    <label>(datatype zipcode)公司邮编:</label>
+                    <label>(datatype zipcode)邮编:</label>
                 </div>
                 <div class="f-l">
-                    <input type="TEXT" name="company_zipcode" datatype="zipcode" errmsg="请填写正确的公司邮编">
+                    <input type="TEXT" name="company_zipcode" datatype="zipcode" errmsg="请填写正确的邮编">
                 </div>
                 </dd>
 
                 <dd>
                 <div class="f-l label">
-                    <label>(datatype reg)公司地址:</label>
+                    <label>(datatype reg)地址:</label>
                 </div>
                 <div class="f-l">
-                    <input type="TEXT" name="company_addr" datatype="reg" reg-pattern="/^[\s\S]{2,120}$/i" errmsg="请填写正确的公司地址">
+                    <input type="TEXT" name="company_addr" datatype="reg" reg-pattern="/^[\s\S]{2,120}$/i" errmsg="请填写正确的地址">
                 </div>
                 </dd>
 
                 <dd>
                 <div class="f-l label">
-                    <label>(datatype reg-)公司地址2:</label>
+                    <label>(datatype reg-)地址2:</label>
                 </div>
                 <div class="f-l">
-                    <input type="TEXT" name="company_addr" datatype="reg-/^[\s\S]{2,120}$/i" errmsg="请填写正确的公司地址">
+                    <input type="TEXT" name="company_addr" datatype="reg-/^[\s\S]{2,120}$/i" errmsg="请填写正确的地址">
                 </div>
                 </dd>
 
@@ -175,6 +175,28 @@
 
                 <dd>
                 <div class="f-l label">
+                    <label>(datatype phone, 允许带区号)电话号码:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_mobilezone" 
+                        datatype="phone" 
+                        errmsg="请填写正确的电话号码">
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype phoneall, 允许带国家代码/区号/分机号)电话号码:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_mobilezone" 
+                        datatype="phoneall" 
+                        errmsg="请填写正确的电话号码">
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
                     <label>(datatype mobilezonecode, 允许带国家代码+xxx)手机号码:</label>
                 </div>
                 <div class="f-l">
@@ -200,7 +222,47 @@
                 </div>
                 <div class="f-l">
                     <input type="TEXT" name="company_vcode" style="width: 40px;"
-                        datatype="vcode-5" reqmsg="验证码" errmsg="请填写正确的验证码">
+                        datatype="vcode-5" errmsg="请填写正确的验证码">
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype cnname)中文姓名:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_cnname" 
+                        datatype="cnname" reqmsg="姓名" errmsg="请填写正确的姓名">
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype username, [\w-]{2,30})用户名:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_username" 
+                        datatype="username" reqmsg="用户名" errmsg="请填写正确的用户名">
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype idnumber)身份证号码:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_idnumber" 
+                        datatype="idnumber" errmsg="请填写正确的身份证号码">
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype bankcard)银行卡号:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_bankcard" 
+                        datatype="bankcard" errmsg="请填写正确的银行卡号">
                 </div>
                 </dd>
 
