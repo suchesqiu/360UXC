@@ -30,8 +30,7 @@
     Valid
     </h2>
     
-        <div class="class-description">全局访问请使用 UXC.Valid 或 Valid<br />
-     Valid 有且仅有一个实例, 为单例模式<br /></div>
+        <div class="class-description">全局访问请使用 UXC.Valid 或 Valid<br /></div>
     
 </header>  
 
@@ -50,7 +49,7 @@
     
     
     <div class="description">
-        表单验证类
+        表单验证
     </div>
     
 
@@ -79,7 +78,7 @@
     <dt class="tag-author">Author:</dt>
     <dd class="tag-author">
         <ul>
-            <li><a href="mailto:suches@btbtd.org">qiushaowei</a></li>
+            <li>qiushaowei   &lt;suches@btbtd.org> | <a href="http://uxc.360.cn">360 UXC-FE Team</a></li>
         </ul>
     </dd>
     
@@ -93,7 +92,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Valid.js.html">comps/Valid/Valid.js</a>, <a href="Valid.js.html#line20">line 20</a>
+        <a href="Valid.js.html">comps/Valid/Valid.js</a>, <a href="Valid.js.html#line4">line 4</a>
     </li></ul></dd>
     
     
@@ -145,7 +144,7 @@
         <dl>
             
 <dt>
-    <h4 class="name" id="check"><span class="type-signature">&lt;static> </span>check<span class="signature">(_fmItem)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="check"><span class="type-signature">&lt;static> </span>check<span class="signature">(_item)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
     
     
 </dt>
@@ -187,7 +186,7 @@
 	
         <tr>
             
-                <td class="name"><code>_fmItem</code></td>
+                <td class="name"><code>_item</code></td>
             
             
             <td class="type">
@@ -234,7 +233,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Valid.js.html">comps/Valid/Valid.js</a>, <a href="Valid.js.html#line46">line 46</a>
+        <a href="Valid.js.html">comps/Valid/Valid.js</a>, <a href="Valid.js.html#line33">line 33</a>
     </li></ul></dd>
     
     
@@ -279,7 +278,12 @@
         
     <pre class="prettyprint"><code> 
          UXC.Valid.check( $('input.needValid') );
-         UXC.Valid.check( document.getElementById('inpuNeedValid') );</code></pre>
+         UXC.Valid.check( document.getElementById('inputNeedValid') );
+
+         if( !UXC.Valid.check( $('form') ) ){
+             _evt.preventDefault();
+             return false;
+         }</code></pre>
 
     
 </dd>
@@ -287,7 +291,7 @@
         
             
 <dt>
-    <h4 class="name" id="checkAll"><span class="type-signature">&lt;static> </span>checkAll<span class="signature">(_fm)</span><span class="type-signature"> &rarr; {boolean}</span></h4>
+    <h4 class="name" id="checkAll"><span class="type-signature">&lt;static> </span>checkAll<span class="signature">()</span><span class="type-signature"></span></h4>
     
     
 </dt>
@@ -295,7 +299,83 @@
     
     
     <div class="description">
-        验证整个表单是否符合规则
+        这个方法是 <a href="Valid.html#check">Valid.check</a> 的别名
+    </div>
+    
+
+    
+    
+    
+    
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Valid.js.html">comps/Valid/Valid.js</a>, <a href="Valid.js.html#line51">line 51</a>
+    </li></ul></dd>
+    
+    
+    
+    
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="Valid.html#check">Valid.check</a></li>
+        </ul>
+    </dd>
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="clearError"><span class="type-signature">&lt;static> </span>clearError<span class="signature">(_selector)</span><span class="type-signature"></span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        清除Valid生成的错误样式
     </div>
     
 
@@ -329,13 +409,28 @@
 	
         <tr>
             
-                <td class="name"><code>_fm</code></td>
+                <td class="name"><code>_selector</code></td>
             
             
             <td class="type">
             
                 
-<span class="param-type">elements</span>
+<span class="param-type">form</span>
+|
+
+<span class="param-type">input</span>
+|
+
+<span class="param-type">textarea</span>
+|
+
+<span class="param-type">select</span>
+|
+
+<span class="param-type">file</span>
+|
+
+<span class="param-type">password</span>
 
 
             
@@ -345,7 +440,7 @@
             
             
             
-            <td class="description last">需要验证规则正确与否的表单项</td>
+            <td class="description last">需要清除错误的选择器</td>
         </tr>
 	
 	
@@ -376,7 +471,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Valid.js.html">comps/Valid/Valid.js</a>, <a href="Valid.js.html#line57">line 57</a>
+        <a href="Valid.js.html">comps/Valid/Valid.js</a>, <a href="Valid.js.html#line61">line 61</a>
     </li></ul></dd>
     
     
@@ -397,25 +492,13 @@
     
     
     
-    <h5>Returns:</h5>
     
-            
-
-
-<dl>
-	<dt>
-		Type
-	</dt>
-	<dd>
-		
-<span class="param-type">boolean</span>
-
-
-	</dd>
-</dl>
-
+    
+        <h5>Example</h5>
         
-    
+    <pre class="prettyprint"><code>         UXC.Valid.clearError( 'form' );
+         UXC.Valid.clearError( 'input.some' );</code></pre>
+
     
 </dd>
 
@@ -435,13 +518,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="UXC.html">UXC</a></li><li><a href="Valid.html">Valid</a></li></ul>
+    <h2><a href="index.html">Index</a></h2><h3>Classes</h3><ul><li><a href="UXC.html">UXC</a></li><li><a href="Valid.html">Valid</a></li></ul><h3>Global</h3><ul><li><a href="global.html#script_path_f">script_path_f</a></li></ul>
 </nav>
 
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Wed May 22 2013 23:26:59 GMT+0800 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Sat May 25 2013 00:45:30 GMT+0800 (CST)
 </footer>
 
 <script> prettyPrint(); </script>

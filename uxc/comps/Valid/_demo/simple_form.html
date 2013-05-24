@@ -33,6 +33,7 @@
                 //UXC.log( UXC.Valid.check( 'input[name=company_name]' ) );
 
                 $(document).delegate( 'button.js-clear-error', 'click', function( $evt ){
+                    window.console && console.clear && console.clear();
                     UXC.Valid.clearError( 'form.js-valid' );
                 });
 
@@ -47,7 +48,7 @@
                 $('form.js-valid').on('submit', function( $evt ){
                     window.console && console.clear && console.clear();
 
-                    if( !UXC.Valid.checkAll( 'form.js-valid' ) ){
+                    if( !UXC.Valid.check( 'form.js-valid' ) ){
                         $evt.preventDefault();
                         return false;
                     }

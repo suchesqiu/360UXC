@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Index</title>
+    <title>JSDoc: Source: lib.js</title>
     
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,30 +17,32 @@
 
 <div id="main">
     
-    <h1 class="page-title">Index</h1>
+    <h1 class="page-title">Source: lib.js</h1>
     
     
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
+ * 取当前脚本标签的 src路径 
+ * @author  scuehs@btbtd.org 2013-05-23
+ * @return  {string} 脚本所在目录的完整路径
+ */
+function script_path_f(){
+    var _sc = document.getElementsByTagName('script'), _sc = _sc[ _sc.length - 1 ], _path = _sc.getAttribute('src');
+    if( /\//.test( _path ) ){ _path = _path.split('/'); _path.pop(); _path = _path.join('/') + '/'; }
+    else if( /\\/.test( path ) ){ _path = _path.split('\\'); _path.pop(); _path = _path.join('\\') + '/'; }
+    return _path;
+}
+(function(){
+    var _path = script_path_f();
+    document.write( '&lt;script src="'+_path+'jquery.js" >&lt;\/script>', '&lt;script src="'+_path+'UXC.js" >&lt;\/script>' );
+}());
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -11,7 +11,7 @@
      * @example 
      *      UXC.import( 组件名[,组件名] );
      *
-     * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
+     * @author  qiushaowei   <suches@btbtd.org> | {@link http://uxc.360.cn|360 UXC-FE Team}
      * @date    2013-05-22
      */
     function UXC(){
