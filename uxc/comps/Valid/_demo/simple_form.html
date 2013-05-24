@@ -25,6 +25,33 @@
             div.label{ width: 320px; text-align: right; padding-right: 20px }
 
         </style>
+
+        <script src="../../../lib.js"></script>
+        <script> UXC.debug = true; UXC.import( 'Valid' ); </script>
+        <script>
+            $(document).ready( function($evt){
+                //UXC.log( UXC.Valid.check( 'input[name=company_name]' ) );
+
+                $(document).delegate( 'button.js-clear-error', 'click', function( $evt ){
+                    UXC.Valid.clearError( 'form.js-valid' );
+                });
+
+                $('form').delegate( 'input[type=TEXT], input[type=PASSWORD]', 'blur', function($evt){
+                    UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
+                });
+
+                $('form').delegate( 'select', 'change', function($evt){
+                    UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
+                });
+
+                $('form.js-valid').on('submit', function( $evt ){
+                    window.console && console.clear && console.clear();
+                    $evt.preventDefault();
+
+                    UXC.log( UXC.Valid.checkAll( 'form.js-valid' ) );
+                });
+            });
+        </script>
     </head>    
     <body>
 
@@ -193,32 +220,6 @@
             </dl>
         </form>
 
-        <script src="../../../lib.js"></script>
-        <script> UXC.debug = true; UXC.import( 'Valid' ); </script>
-        <script>
-            //UXC.log( UXC.Valid.check( 'input[name=company_name]' ) );
-
-            $(document).delegate( 'button.js-clear-error', 'click', function( $evt ){
-                UXC.Valid.clearError( 'form.js-valid' );
-            });
-
-            $('form').delegate( 'input[type=TEXT], input[type=PASSWORD]', 'blur', function($evt){
-                UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
-            });
-
-            $('form').delegate( 'select', 'change', function($evt){
-                UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
-            });
-
-            $('form.js-valid').on('submit', function( $evt ){
-                window.console && console.clear && console.clear();
-
-                $evt.preventDefault();
-
-                UXC.log( UXC.Valid.checkAll( 'form.js-valid' ) );
-
-            });
-        </script>
 
     </body>
 </html>
