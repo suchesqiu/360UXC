@@ -40,7 +40,7 @@
                     UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
                 });
 
-                $('form').delegate( 'select', 'change', function($evt){
+                $('form').delegate( 'select, input[type=file]', 'change', function($evt){
                     UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
                 });
 
@@ -276,6 +276,28 @@
                         <option value="1">互联网</option>
                         <option value="2">教育</option>
                     </select>
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(reqmsg)公司行业:</label>
+                </div>
+                <div class="f-l">
+                    <select name="company_type1" reqmsg="公司行业" multiple >
+                        <option value="">请选择</option>
+                        <option value="1">互联网</option>
+                        <option value="2">教育</option>
+                    </select>
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(reqmsg)上传文件:</label>
+                </div>
+                <div class="f-l">
+                    <input type='file' name='company_file' value='' reqmsg="文件" />
                 </div>
                 </dd>
 

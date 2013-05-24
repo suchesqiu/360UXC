@@ -182,7 +182,10 @@
 
                 if( _msg && !/^[\s]/.test( _msg ) ){
                     switch( _item.prop('type').toLowerCase() ){
-                        case 'file':
+                        case 'file': _msg = '请上传' + _msg; break;
+
+                        case 'select-multiple':
+                        case 'select-one':
                         case 'select': _msg = '请选择' + _msg; break;
 
                         case 'textarea':
@@ -191,7 +194,7 @@
                     }
                 }
 
-                UXC.log( '_msg: ' + _msg );
+                UXC.log( '_msg: ' + _msg, _item.prop('type').toLowerCase() );
 
                 return _msg.trim();
             }
@@ -351,7 +354,7 @@
         , reqmsgValid: 
             function( _item ){
                 var _r = true;
-                _r = !!( _item.val().trim() );
+                _r = !!( (_item.val()||'').trim() );
                 !_r && this.error( _item, 'reqmsg' );
                 UXC.log( 'regmsgValid: ' + _r );
                 return _r;
