@@ -133,11 +133,9 @@
                 _item.find('~ em.error').hide();
             }
 
-        , toString: function(){ return 'UXC.Valid'; }
-
         , error: 
             function( _item, _msgAttr, _fullMsg ){
-                var _msg = this.getMsg.apply( this, [].slice.call( arguments ) ), _errEm;
+                var _msg = Valid.prototype.getMsg.apply( null, [].slice.call( arguments ) ), _errEm;
 
                 _item.addClass( 'error' );
                 _item.find('~ em:not(.error)').hide();
@@ -154,6 +152,8 @@
 
                 return false;
             }
+
+        , toString: function(){ return 'UXC.Valid'; }
         
         , getDatatype: 
             function( _item ){
