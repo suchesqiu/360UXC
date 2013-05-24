@@ -75,7 +75,7 @@
                     <label>(datatype zipcode)公司邮编:</label>
                 </div>
                 <div class="f-l">
-                    <input type="TEXT" name="company_zipcode" datatype="zipcode" reqmsg="公司邮编" errmsg="请填写正确的公司邮编">
+                    <input type="TEXT" name="company_zipcode" datatype="zipcode" errmsg="请填写正确的公司邮编">
                 </div>
                 </dd>
 
@@ -127,10 +127,32 @@
                     <input type='TEXT' name='company_phonezone' style="width:40px;" value='' size="4" 
                         datatype="phonezone" emEl="#phone-err-em" errmsg="请填写正确的电话区号" />
                     - <input type='TEXT' name='company_phonecode' style="width:80px;" value='' size="8" 
-                        datatype="phonecode" reqmsg="电话号码" errmsg="请检查电话号码格式" emEl="#phone-err-em"  />
+                        datatype="phonecode" subdatatype="alternative" datatarget="input[name=company_mobile]" alternativemsg="电话号码和手机号码至少填写一个"
+                        errmsg="请检查电话号码格式" emEl="#phone-err-em" />
                     - <input type='TEXT' name='company_phoneext' style="width:40px;" value='' size="4" 
                         datatype="phoneext" emEl="#phone-err-em" errmsg="请填写正确的分机号" />
                     <em id="phone-err-em"></em>
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype mobilecode)手机号码:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_mobile" 
+                        datatype="mobilecode" subdatatype="alternative" datatarget="input[name=company_phonecode]" alternativemsg=" "
+                        errmsg="请填写正确的手机号码">
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype mobilezonecode, 允许带国家代码+xxx)手机号码:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_mobile2" 
+                        datatype="mobilezonecode" errmsg="请填写正确的手机号码">
                 </div>
                 </dd>
 
@@ -155,6 +177,10 @@
         <script>
             //UXC.log( UXC.Valid.check( 'input[name=company_name]' ) );
 
+            $(document).delegate( 'button.js-clear-error', 'click', function( $evt ){
+                UXC.Valid.clearError( 'form.js-valid' );
+            });
+
             $('form').delegate( 'input[type=TEXT], input[type=PASSWORD]', 'blur', function($evt){
                 UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
             });
@@ -164,6 +190,8 @@
             });
 
             $('form.js-valid').on('submit', function( $evt ){
+                window.console && console.clear && console.clear();
+
                 $evt.preventDefault();
 
                 UXC.log( UXC.Valid.checkAll( 'form.js-valid' ) );

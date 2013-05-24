@@ -36,9 +36,7 @@
      *          UXC.Valid.check( document.getElementById('inpuNeedValid') );
      * @return    {boolean}
      */
-    Valid.check = function( _fmItem ){
-        return new Valid( _fmItem ).parse();
-    };
+    Valid.check = function( _fmItem ){ return new Valid( _fmItem ).parse(); }
      /**
      * 验证整个表单是否符合规则
      * @method
@@ -58,6 +56,30 @@
 
         return _r;
     };
+    /**
+     * 清除Valid生成的错误样式
+     * @method
+     * @memberof Valid
+     * @param   {form|input|textarea|select|file|password}  _selector -     需要清除错误的选择器
+     */
+    Valid.clearError = function( _selector ){
+        $( _selector ).each( function(){
+            var _item = $(this);
+            UXC.log( 'clearError: ' + _item.prop('nodeName') );
+            switch( _item.prop('nodeName').toLowerCase() ){
+                case 'form': 
+                    {
+                        $( _item[0].elements ).each( function(){
+                            if( $(this).is('[disabled]') ) return;
+                           Valid.prototype.valid( $(this) );
+                        });
+
+                        break;
+                    }
+                default: Valid.prototype.valid( $(this) ); break;
+            }
+        });
+    }
     /**
      * @private
      */
@@ -93,7 +115,7 @@
                         }
                     }
                     
-                    if( _subdt && _subdt in _p && _item.val() ){
+                    if( _subdt && _subdt in _p && ( _item.val() || _subdt == 'alternativeSubvalid' ) ){
                         if( !_p[ _subdt ]( _item ) ){
                             _r = false;
                             return;
@@ -121,7 +143,7 @@
                 var _msg = this.getMsg.apply( this, [].slice.call( arguments ) ), _errEm;
 
                 _item.addClass( 'error' );
-                _item.find('~ em').hide();
+                _item.find('~ em:not(.error)').hide();
 
                 if( _item.is( '[emEl]' ) ){
                     ( _errEm = $(_item.attr( 'emEl' ) ) ) && _errEm.length && _errEm.addClass('error');
@@ -131,7 +153,8 @@
                     ( _errEm = $('<em class="error"></em>') ).insertAfter( _item );
                 }
                 UXC.log( 'error: ' + _msg );
-                setTimeout( function(){ _errEm.html( _msg ).show() }, 200 );
+                //setTimeout( function(){ _errEm.html( _msg ).show() }, 200 );
+                _errEm.html( _msg ).show() 
 
                 return false;
             }
@@ -167,6 +190,58 @@
 
         , toString: function(){ return 'UXC.Valid'; }
 
+        , alternativeSubvalid:
+            function( _item ){
+                var _r = true, _target, _p = this;
+
+                UXC.log( 'alternativeSubvalid' );
+
+                if( _item.is( '[datatarget]' ) && (_target = $(_item.attr('datatarget')) ).length && !_item.val() ){
+                    var _hasVal = false;
+                    _target.each( function(){ if( $(this).val() ){ _hasVal = true; return false; } } );
+                    _r = _hasVal;
+                }
+
+                !_r && this.error( _item, 'alternativemsg', true );
+                !_r && _target.length && _target.each( function(){ _p.error( $(this), 'alternativemsg', true ); } );
+                _r && _target.length && _target.each( function(){ _p.valid( $(this) ); } );
+
+                return _r;
+            }
+
+        , reconfirmSubvalid:
+            function( _item ){
+                var _r = true, _target, _p = this;
+
+                UXC.log( 'reconfirmSubvalid' );
+
+                if( _item.is( '[datatarget]' ) && (_target = $(_item.attr('datatarget')) ).length ){
+                    _target.each( function(){ if( _item.val() != $(this).val() ) return _r = false; } );
+                }
+
+                !_r && this.error( _item, 'reconfirmmsg', true );
+                !_r && _target.length && _target.each( function(){ _p.error( $(this), 'reconfirmmsg', true ); } );
+                _r && _target.length && _target.each( function(){ _p.valid( $(this) ); } );
+
+                return _r;
+            }
+
+        , mobilecodeValid: 
+            function( _item ){
+                var _r = true, _re =  /^(13|15|18|14)\d{9}$/;
+                _r = _re.test( _item.val() );
+                !_r && this.error( _item );
+                return _r;
+            }
+
+        , mobilezonecodeValid: 
+            function( _item ){
+                var _r = true, _re = /^(?:\+[0-9]{1,6}(?: |)|)(?:0|)(?:13|15|18|14)\d{9}$/;
+                _r = _re.test( _item.val() );
+                !_r && this.error( _item );
+                return _r;
+            }
+
         , phonezoneValid: 
             function( _item ){
                 var _r = true, _re =  /^[0-9]{3,4}$/;
@@ -188,23 +263,6 @@
                 var _r = true, _re =  /^[0-9]{1,6}$/;
                 _r = _re.test( _item.val() );
                 !_r && this.error( _item );
-                return _r;
-            }
-
-        , reconfirmSubvalid:
-            function( _item ){
-                var _r = true, _target, _p = this;
-
-                UXC.log( 'reconfirmSubvalid' );
-
-                if( _item.is( '[datatarget]' ) && (_target = $(_item.attr('datatarget')) ).length ){
-                    _target.each( function(){ if( _item.val() != $(this).val() ) return _r = false; } );
-                }
-
-                !_r && this.error( _item, 'reconfirmmsg', true );
-                !_r && _target.length && _target.each( function(){ _p.error( $(this), 'reconfirmmsg', true ); } );
-                _r && _target.length && _target.each( function(){ _p.valid( $(this) ); } );
-
                 return _r;
             }
 
