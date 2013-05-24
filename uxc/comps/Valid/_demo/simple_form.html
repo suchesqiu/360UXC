@@ -151,8 +151,29 @@
                     <label>(datatype mobilezonecode, 允许带国家代码+xxx)手机号码:</label>
                 </div>
                 <div class="f-l">
-                    <input type="TEXT" name="company_mobile2" 
-                        datatype="mobilezonecode" errmsg="请填写正确的手机号码">
+                    <input type="TEXT" name="company_mobilezone" 
+                        datatype="mobilezonecode" 
+                        errmsg="请填写正确的手机号码">
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype vcode, 默认4个字符[0-9a-zA-Z])验证码:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_vcode" style="width: 40px;"
+                        datatype="vcode" reqmsg="验证码" errmsg="请填写正确的验证码">
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype vcode-数量, 本次vcode-5)验证码:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_vcode" style="width: 40px;"
+                        datatype="vcode-5" reqmsg="验证码" errmsg="请填写正确的验证码">
                 </div>
                 </dd>
 

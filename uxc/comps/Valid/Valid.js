@@ -43,6 +43,11 @@
      * @memberof Valid
      * @param      {elements}   _fm -       需要验证规则正确与否的表单项
      * @returns    {boolean}
+     * @example
+     *          if( !UXC.Valid.checkAll( theForm ) ){
+     *              _evt.preventDefault();
+     *              return false;
+     *          }
      */
     Valid.checkAll = function( _fm ){
         _fm = $( _fm );
@@ -61,6 +66,9 @@
      * @method
      * @memberof Valid
      * @param   {form|input|textarea|select|file|password}  _selector -     需要清除错误的选择器
+     * @example
+     *          UXC.Valid.clearError( 'form' );
+     *          UXC.Valid.clearError( 'input.some' );
      */
     Valid.clearError = function( _selector ){
         $( _selector ).each( function(){
@@ -309,7 +317,7 @@
 
         , regValid: 
             function( _item ){
-                var _r = true, _pattern, _dt, _parts; 
+                var _r = true, _pattern;
                 if( _item.is( '[reg-pattern]' ) ) _pattern = _item.attr( 'reg-pattern' );
                 if( !_pattern ) _pattern = _item.attr('datatype').trim().replace(/^reg(?:\-|)/i, '');
 
@@ -318,6 +326,16 @@
                     _r = new RegExp( $1, $2 || '' ).test( _item.val() );
                 });
 
+                !_r && this.error( _item );
+
+                return _r;
+            }
+
+        , vcodeValid:
+            function( _item ){
+                var _r, _len = parseInt( _item.attr('datatype').trim().replace( /^vcode(?:\-|)/i, '' ), 10 ) || 4; 
+                UXC.log( 'vcodeValid: ' + _len );
+                _r = new RegExp( '^[0-9a-zA-Z]{'+_len+'}$' ).test( _item.val() );
                 !_r && this.error( _item );
 
                 return _r;
