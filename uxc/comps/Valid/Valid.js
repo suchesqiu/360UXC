@@ -19,7 +19,7 @@
      * 验证一个表单项, 如 文本框, 下拉框, 复选框, 单选框, 文本域, 隐藏域
      * @method
      * @memberof Valid
-     * @param      {elements}    _item -   需要验证规则正确与否的表单项
+     * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
      * @example 
      *          UXC.Valid.check( $('input.needValid') );
      *          UXC.Valid.check( document.getElementById('inputNeedValid') );
@@ -46,6 +46,7 @@
      * 这个方法是 {@link Valid.check} 的别名
      * @method
      * @memberof Valid
+     * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
      * @see Valid.check
      */
     Valid.checkAll = Valid.check;
@@ -77,64 +78,79 @@
                 }
             });
         };
-        $(document).delegate( 'input[type=TEXT], input[type=PASSWORD], textarea', 'blur', function($evt){
-            UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
-        });
-
-        $(document).delegate( 'select, input[type=file]', 'change', function($evt){
-            UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
-        });
     /**
+     * 响应表单子对象的 blur事件, 触发事件时, 检测并显示错误或正确的视觉效果
+     * @private
+     */
+    $(document).delegate( 'input[type=TEXT], input[type=PASSWORD], textarea', 'blur', function($evt){
+        UXC.Valid.check( this )
+    });
+    /**
+     * 响应表单子对象的 change 事件, 触发事件时, 检测并显示错误或正确的视觉效果
+     * @private
+     */
+    $(document).delegate( 'select, input[type=file]', 'change', function($evt){
+        UXC.Valid.check( this )
+    });
+    /**
+     * 私有逻辑处理对象, 验证所需的所有规则和方法都存放于此对象
      * @private
      */
     var _logic =
         {
+            /**
+             * 分析_item是否附合规则要求
+             * @param   {selector}  _item 
+             */
             parse: 
-                function( _fmItem ){
+                function( _item ){
 
-                    var _r = true, _fmItem = $(_fmItem);
+                    var _r = true, _item = $(_item);
 
-                    _fmItem.each( function(){
+                    _item.each( function(){
 
                         if( !_logic.isValidItem(this) ) return;
-                        var _item = $(this), _dt = _logic.getDatatype( _item ), _subdt = _logic.getSubdatatype( _item );
+                        var _sitem = $(this), _dt = _logic.getDatatype( _sitem ), _subdt = _logic.getSubdatatype( _sitem );
 
-                        if( _item.is('[disabled]') ) return;
+                        if( _sitem.is('[disabled]') ) return;
 
                         UXC.log( _dt, _subdt );
 
-                        if( _item.is('[reqmsg]') ){
-                            if( ! _logic.datatype['reqmsg']( _item ) ) {
+                        if( _sitem.is('[reqmsg]') ){
+                            if( ! _logic.datatype['reqmsg']( _sitem ) ) {
                                 _r = false;
                                 return;
                              }
                         }
 
-                        if( !_logic.datatype['length']( _item ) ){
+                        if( !_logic.datatype['length']( _sitem ) ){
                             _r = false;
                             return;
                         }
 
-                        if( _dt in _logic.datatype && _item.val() ){
-                            if( !_logic.datatype[ _dt ]( _item ) ){
+                        if( _dt in _logic.datatype && _sitem.val() ){
+                            if( !_logic.datatype[ _dt ]( _sitem ) ){
                                 _r = false;
                                 return;
                             }
                         }
                         
-                        if( _subdt && _subdt in _logic.subdatatype && ( _item.val() || _subdt == 'alternative' ) ){
-                            if( !_logic.subdatatype[ _subdt ]( _item ) ){
+                        if( _subdt && _subdt in _logic.subdatatype && ( _sitem.val() || _subdt == 'alternative' ) ){
+                            if( !_logic.subdatatype[ _subdt ]( _sitem ) ){
                                 _r = false;
                                 return;
                             }
                         }
 
-                        _logic.valid( _item );
+                        _logic.valid( _sitem );
                     });
 
                     return _r;
                 }
-
+            /**
+             * 检测 _item 是否为 Valid 的检测对象
+             * @param   {selector}  _item
+             */
             , isValidItem: 
                 function( _item ){
                     _item = $(_item);
@@ -150,7 +166,10 @@
 
                     return _r;
                 }
-            
+            /**
+             * 显示正确的视觉效果
+             * @param   {selector}  _item
+             */
             , valid:
                 function( _item ){
                     if( !_logic.isValidItem( _item ) ) return;
@@ -158,7 +177,10 @@
                     _item.find('~ em').show();
                     _item.find('~ em.error').hide();
                 }
-
+            /**
+             * 显示错误的视觉效果
+             * @param   {selector}  _item
+             */
             , error: 
                 function( _item, _msgAttr, _fullMsg ){
                     if( !_logic.isValidItem( _item ) ) return;
@@ -180,26 +202,39 @@
 
                     return false;
                 }
-
+            /**
+             * 获取 _selector 对象
+             * 这个方法的存在是为了向后兼容qwrap, qwrap DOM参数都为ID
+             * @param   {selector}  _item
+             */
             , getElement: 
-                function( _selector ){
-                    /**
-                     * 这个是向后兼容qwrap, qwrap DOM参数都为ID
-                     */
-                    if( /^[\w-]+$/.test( _selector ) ) _selector = '#' + _selector;
-                    return $(_selector );
+                function( _item ){
+                    if( /^[\w-]+$/.test( _item ) ) _item = '#' + _item;
+                    return $(_item );
                 }
-            
+            /**
+             * 获取 _item 的检测类型, 所有可用的检测类型位于 _logic.datatype 对象
+             * @param   {selector}  _item
+             */
             , getDatatype: 
                 function( _item ){
                     return ( _item.attr('datatype') || 'text').toLowerCase().replace(/\-.*/, '');
                 }
-           
+           /**
+             * 获取 _item 的检测子类型, 所有可用的检测子类型位于 _logic.subdatatype 对象
+             * @param   {selector}  _item
+             */
             , getSubdatatype: 
                 function( _item ){
                     return ( _item.attr('subdatatype') || 'text').toLowerCase().replace(/\-.*/, '');
                 }
-
+            /**
+             * 获取对应的错误信息, 默认的错误信息有 reqmsg, errmsg, <br />
+             * 注意: 错误信息第一个字符如果为空格的话, 将完全使用用户定义的错误信息, 将不会动态添加 请上传/选择/填写
+             * @param   {selector}  _item
+             * @param   {string}    _msgAttr    - 显示指定需要读取的错误信息属性名, 默认为 reqmsg, errmsg, 通过该属性可以指定别的属性名
+             * @param   {bool}      _fullMsg    - 显示指定错误信息为属性的值, 而不是自动添加的 请上传/选择/填写
+             */
             , getMsg: 
                 function( _item, _msgAttr, _fullMsg ){
                     var _msg = _item.is('[errmsg]') ? ' ' + _item.attr('errmsg') : _item.is('[reqmsg]') ? _item.attr('reqmsg') : '';
@@ -224,19 +259,59 @@
 
                     return _msg.trim();
                 }
-
+            /**
+             * 计算字符串的字节长度, 非 ASCII 0-255的字符视为两个字节
+             * @param   {string}    _s
+             */
             , bytelen: 
                 function( _s ){
                     return _s.replace(/[^\x00-\xff]/g,"11").length;
                 }
-
+            /**
+             * 获取日期字符串的 timestamp, 字符串格式为 YYYY[^\d]*?MM[^\d]*?DD
+             * @param   {string}    _date_str
+             */
             , getTimestamp:
                 function( _date_str ){
                     _date_str = _date_str.replace( /[^\d]/g, '' );
                     return new Date( _date_str.slice(0,4), parseInt( _date_str.slice( 4, 6 ), 10 ) - 1, _date_str.slice( 6, 8) ).getTime();
                 }
-
+            /**
+             * 此对象存储可供检测的子类型
+             */
             , subdatatype: {
+                /**
+                 * 此类型检测 2|N个对象必须至少有一个是有输入内容的, 
+                 * 常用于 手机/电话 二填一
+                 * @param   {selector}  _item
+                 * @example
+                        <dd>
+                        <div class="f-l label">
+                            <label>(datatype phonezone, phonecode, phoneext)电话号码:</label>
+                        </div>
+                        <div class="f-l">
+                            <input type='TEXT' name='company_phonezone' style="width:40px;" value='' size="4" 
+                                datatype="phonezone" emEl="#phone-err-em" errmsg="请填写正确的电话区号" />
+                            - <input type='TEXT' name='company_phonecode' style="width:80px;" value='' size="8" 
+                                datatype="phonecode" subdatatype="alternative" datatarget="input[name=company_mobile]" alternativemsg="电话号码和手机号码至少填写一个"
+                                errmsg="请检查电话号码格式" emEl="#phone-err-em" />
+                            - <input type='TEXT' name='company_phoneext' style="width:40px;" value='' size="4" 
+                                datatype="phoneext" emEl="#phone-err-em" errmsg="请填写正确的分机号" />
+                            <em id="phone-err-em"></em>
+                        </div>
+                        </dd>
+
+                        <dd>
+                        <div class="f-l label">
+                            <label>(datatype mobilecode)手机号码:</label>
+                        </div>
+                        <div class="f-l">
+                            <input type="TEXT" name="company_mobile" 
+                                datatype="mobilecode" subdatatype="alternative" datatarget="input[name=company_phonecode]" alternativemsg=" "
+                                errmsg="请填写正确的手机号码">
+                        </div>
+                        </dd>
+                 */
                 alternative:
                     function( _item ){
                         var _r = true, _target;
@@ -255,7 +330,33 @@
 
                         return _r;
                     }
+                /**
+                 * 此类型检测 2|N 个对象填写的值必须一致
+                 * 常用于注意时密码验证/重置密码
+                 * @param   {selector}  _item
+                 * @example
+                        <dd>
+                        <div class="f-l label">
+                            <label>(datatype text, subdatatype reconfirm)用户密码:</label>
+                        </div>
+                        <div class="f-l">
+                            <input type="PASSWORD" name="company_pwd" 
+                            datatype="text" subdatatype="reconfirm" datatarget="input[name=company_repwd]" reconfirmmsg="用户密码和确认密码不一致"
+                            minlength="6" maxlength="15" reqmsg="用户密码" errmsg="请填写正确的用户密码">
+                        </div>
+                        </dd>
 
+                        <dd>
+                        <div class="f-l label">
+                            <label>(datatype text, subdatatype reconfirm)确认密码:</label>
+                        </div>
+                        <div class="f-l">
+                            <input type="PASSWORD" name="company_repwd" 
+                            datatype="text" subdatatype="reconfirm" datatarget="input[name=company_pwd]" reconfirmmsg="确认密码和用户密码不一致"
+                            minlength="6" maxlength="15" reqmsg="确认密码" errmsg="请填写正确的确认密码">
+                        </div>
+                        </dd>
+                 */
                 , reconfirm:
                     function( _item ){
                         var _r = true, _target;
@@ -274,8 +375,17 @@
                     }
 
             }//subdatatype
-
+            /**
+             * 此对象存储可供检测的类型
+             */
             , datatype:{
+                /**
+                 * 检测是否为正确的数字
+                 * @param   {selector}  _item
+                 * @attr    {require}               datatype    - n | n-整数位数.小数位数
+                 * @attr    {integer|optional}      minvalue    - 数值的下限
+                 * @attr    {integer|optional}      maxvalue    - 数值的上限
+                 */
                 n: 
                     function( _item ){
                         var _r = true, _valStr = _item.val(), _val = +_valStr,_min = 0, _max = Math.pow( 10, 10 ), _n, _f, _tmp;
@@ -303,7 +413,14 @@
 
                         return _r;
                     }
-
+                /**
+                 * 检测是否为合法的日期,
+                 * 日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD
+                 * @param   {selector}  _item
+                 * @attr    {require}               datatype    - d
+                 * @attr    {date string|optional}  minvalue    - 日期的下限
+                 * @attr    {date string|optional}  maxvalue    - 日期的上限
+                 */
                 , d: 
                     function( _item ){
                         var _val = _item.val().trim(), _r, _re = /^[\d]{4}([\/.-]|)[01][\d]\1[0-3][\d]$/;
@@ -327,7 +444,16 @@
 
                         return _r;
                     }
-
+                /**
+                 * 检测两个输入框的日期
+                 * 日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD
+                 * @param   {selector}  _item
+                 * @attr    {require}               datatype    - datarange
+                 * @attr    {selector|optional}     fromDateEl  - 起始日期选择器
+                 * @attr    {selector|optional}     toDateEl    - 结束日期选择器
+                 * @attr    {date string|optional}  minvalue    - 日期的下限
+                 * @attr    {date string|optional}  maxvalue    - 日期的上限
+                 */
                 , daterange:
                     function( _item ){
                         var _r = _logic.datatype.d( _item ), _mind, _maxd;
@@ -365,14 +491,20 @@
 
                         return _r;
                     }
-
+                /**
+                 * 检测时间格式, 格式为 mm:dd:ss
+                 * @param   {selector}  _item
+                 */
                 , time: 
                     function( _item ){
                         var _r = /^(([0-1]\d)|(2[0-3])):[0-5]\d:[0-5]\d$/.test( _item.val() );
                         !_r && _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检测时间格式, 格式为 mm:dd:ss
+                 * @param   {selector}  _item
+                 */
                 , minute: 
                     function( _item ){
                         var _r = /^(([0-1]\d)|(2[0-3])):[0-5]\d$/.test( _item.val() );

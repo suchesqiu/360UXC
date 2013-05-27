@@ -46,7 +46,7 @@
      * 验证一个表单项, 如 文本框, 下拉框, 复选框, 单选框, 文本域, 隐藏域
      * @method
      * @memberof Valid
-     * @param      {elements}    _item -   需要验证规则正确与否的表单项
+     * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
      * @example 
      *          UXC.Valid.check( $('input.needValid') );
      *          UXC.Valid.check( document.getElementById('inputNeedValid') );
@@ -73,6 +73,7 @@
      * 这个方法是 {@link Valid.check} 的别名
      * @method
      * @memberof Valid
+     * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
      * @see Valid.check
      */
     Valid.checkAll = Valid.check;
@@ -104,6 +105,13 @@
                 }
             });
         };
+        $(document).delegate( 'input[type=TEXT], input[type=PASSWORD], textarea', 'blur', function($evt){
+            UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
+        });
+
+        $(document).delegate( 'select, input[type=file]', 'change', function($evt){
+            UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
+        });
     /**
      * @private
      */
@@ -111,11 +119,13 @@
         {
             parse: 
                 function( _fmItem ){
+
                     var _r = true, _fmItem = $(_fmItem);
 
-                    _fmItem.each( function( _ix, _e ){
+                    _fmItem.each( function(){
 
-                        var _item = $(_e), _dt = _logic.getDatatype( _item ), _subdt = _logic.getSubdatatype( _item );
+                        if( !_logic.isValidItem(this) ) return;
+                        var _item = $(this), _dt = _logic.getDatatype( _item ), _subdt = _logic.getSubdatatype( _item );
 
                         if( _item.is('[disabled]') ) return;
 
@@ -152,9 +162,26 @@
 
                     return _r;
                 }
+
+            , isValidItem: 
+                function( _item ){
+                    _item = $(_item);
+                    var _r, _tmp;
+
+                    _item.each( function(){
+                        _tmp = $(this);
+                        if( _tmp.is( '[datatype]' ) || _tmp.is( '[subdatatype]' ) 
+                            || _tmp.is( '[minlength]' ) || _tmp.is( '[maxlength]' )  
+                            || _tmp.is( '[reqmsg]' ) ) 
+                            _r = true;
+                    });
+
+                    return _r;
+                }
             
             , valid:
                 function( _item ){
+                    if( !_logic.isValidItem( _item ) ) return;
                     _item.removeClass('error');
                     _item.find('~ em').show();
                     _item.find('~ em.error').hide();
@@ -162,13 +189,15 @@
 
             , error: 
                 function( _item, _msgAttr, _fullMsg ){
+                    if( !_logic.isValidItem( _item ) ) return;
+
                     var _msg = _logic.getMsg.apply( null, [].slice.call( arguments ) ), _errEm;
 
                     _item.addClass( 'error' );
                     _item.find('~ em:not(.error)').hide();
 
                     if( _item.is( '[emEl]' ) ){
-                        ( _errEm = $(_item.attr( 'emEl' ) ) ) && _errEm.length && _errEm.addClass('error');
+                        ( _errEm = _logic.getElement( _item.attr( 'emEl' ) ) ) && _errEm.length && _errEm.addClass('error');
                     }
                     !( _errEm && _errEm.length ) && ( _errEm = _item.find('~ em.error') );
                     if( !_errEm.length ){
@@ -178,6 +207,15 @@
                     _errEm.html( _msg ).show() 
 
                     return false;
+                }
+
+            , getElement: 
+                function( _selector ){
+                    /**
+                     * 这个是向后兼容qwrap, qwrap DOM参数都为ID
+                     */
+                    if( /^[\w-]+$/.test( _selector ) ) _selector = '#' + _selector;
+                    return $(_selector );
                 }
             
             , getDatatype: 
@@ -218,6 +256,12 @@
             , bytelen: 
                 function( _s ){
                     return _s.replace(/[^\x00-\xff]/g,"11").length;
+                }
+
+            , getTimestamp:
+                function( _date_str ){
+                    _date_str = _date_str.replace( /[^\d]/g, '' );
+                    return new Date( _date_str.slice(0,4), parseInt( _date_str.slice( 4, 6 ), 10 ) - 1, _date_str.slice( 6, 8) ).getTime();
                 }
 
             , subdatatype: {
@@ -274,9 +318,9 @@
                             if( _item.is('[maxvalue]') ) _max = +_item.attr('maxvalue') || _max;
 
                             if( _val >= _min && _val &lt;= _max ){
-                                typeof _n != 'undefined' && typeof _f != 'undefined' && ( _r = new RegExp( '^(?:[\\d]{0,'+_n+'}|)(?:\\.[\\d]{0,'+_f+'}|)$' ).test( _valStr ) );
-                                typeof _n != 'undefined' && typeof _f == 'undefined' && ( _r = new RegExp( '^[\\d]{0,'+_n+'}$' ).test( _valStr ) );
-                                typeof _n == 'undefined' && typeof _f != 'undefined' && ( _r = new RegExp( '^\\.[\\d]{0,'+_f+'}$' ).test( _valStr ) );
+                                typeof _n != 'undefined' && typeof _f != 'undefined' && ( _r = new RegExp( '^(?:[\\d]{0,'+_n+'}|)(?:\\.[\\d]{1,'+_f+'}|)$' ).test( _valStr ) );
+                                typeof _n != 'undefined' && typeof _f == 'undefined' && ( _r = new RegExp( '^[\\d]{1,'+_n+'}$' ).test( _valStr ) );
+                                typeof _n == 'undefined' && typeof _f != 'undefined' && ( _r = new RegExp( '^\\.[\\d]{1,'+_f+'}$' ).test( _valStr ) );
                                 typeof _f == 'undefined' && /\./.test( _valStr ) && ( _r = false );
                             } else _r = false;
 
@@ -285,6 +329,82 @@
 
                         !_r && _logic.error( _item );
 
+                        return _r;
+                    }
+
+                , d: 
+                    function( _item ){
+                        var _val = _item.val().trim(), _r, _re = /^[\d]{4}([\/.-]|)[01][\d]\1[0-3][\d]$/;
+                        if( !_val ) return true;
+                            
+                        if( _r = _re.test( _val ) ){
+                            var _utime = _logic.getTimestamp( _item.val() ), _minTime, _maxTime;
+
+                            if( _item.is('[minvalue]') && ( _r = _re.test( _item.attr('minvalue') ) ) ){
+                                _minTime = _logic.getTimestamp( _item.attr('minvalue') );
+                                _utime &lt; _minTime && ( _r = false );
+                            }
+
+                            if( _r && _item.is('[maxvalue]') && ( _r = _re.test( _item.attr('maxvalue') ) ) ){
+                                _maxTime = _logic.getTimestamp( _item.attr('maxvalue') );
+                                _utime > _maxTime && ( _r = false );
+                            }
+                        }
+
+                        !_r && _logic.error( _item );
+
+                        return _r;
+                    }
+
+                , daterange:
+                    function( _item ){
+                        var _r = _logic.datatype.d( _item ), _mind, _maxd;
+
+                        if( _r ){
+                        
+                            if( _r ){
+                                var _fromDateEl, _toDateEl;
+                                if( _item.is( '[fromDateEl]' ) ) _fromDateEl = _logic.getElement( _item.attr('fromDateEl') );
+                                if( _item.is( '[toDateEl]' ) ) _toDateEl = _logic.getElement( _item.attr('toDateEl') );
+                                if( _fromDateEl && _fromDateEl.length || _toDateEl && _toDateEl.length ){
+
+                                    _fromDateEl && _fromDateEl.length && !( _toDateEl && _toDateEl.length ) && ( _toDateEl = _item );
+                                    !(_fromDateEl && _fromDateEl.length) && _toDateEl && _toDateEl.length && ( _fromDateEl = _item );
+
+                                    UXC.log( 'daterange', _fromDateEl.length, _toDateEl.length );
+
+                                    if( _toDateEl[0] != _fromDateEl[0] ){
+
+
+                                        _r && ( _r = _logic.datatype.d( _toDateEl ) );
+                                        _r && ( _r = _logic.datatype.d( _fromDateEl ) );
+
+                                        _r && _logic.getTimestamp( _fromDateEl.val() ) > _logic.getTimestamp( _toDateEl.val() ) && ( _r = false );
+
+                                        _r && _logic.valid( _fromDateEl );
+                                        _r && _logic.valid( _toDateEl );
+
+                                    }
+                                }
+                            }
+                        }
+
+                        !_r && _logic.error( _item );
+
+                        return _r;
+                    }
+
+                , time: 
+                    function( _item ){
+                        var _r = /^(([0-1]\d)|(2[0-3])):[0-5]\d:[0-5]\d$/.test( _item.val() );
+                        !_r && _logic.error( _item );
+                        return _r;
+                    }
+
+                , minute: 
+                    function( _item ){
+                        var _r = /^(([0-1]\d)|(2[0-3])):[0-5]\d$/.test( _item.val() );
+                        !_r && _logic.error( _item );
                         return _r;
                     }
 
@@ -368,7 +488,7 @@
 
                 , 'length': 
                     function( _item ){
-                        var _r = true, _dt = _logic.getDatatype( _item ), _min, _max, _val = _item.val();
+                        var _r = true, _dt = _logic.getDatatype( _item ), _min, _max, _val = _item.val(), _len;
 
                         if( _item.is( '[minlength]' ) ){
                             UXC.log( 'minlength' );
@@ -380,16 +500,24 @@
                             _max = parseInt( _item.attr( 'maxlength' ), 10 ) || 0;
                         }
                         /**
-                         * //TODO 根据特殊的 datatype 实现不同的计算方法
+                         * 根据特殊的 datatype 实现不同的计算方法
                          */
                         switch( _dt ){
+                            case 'richtext':
+                            case 'bytetext':
+                                {
+                                    _len = _logic.bytelen( _val );
+                                    break;
+                                }
                             default:
                                 {
-                                    _min && ( _val.length &lt; _min ) && ( _r = false );
-                                    _max && ( _val.length > _max ) && ( _r = false );
+                                    _len = _val.length;
                                     break;
                                 }
                         }
+
+                        _min && ( _len &lt; _min ) && ( _r = false );
+                        _max && ( _len > _max ) && ( _r = false );
 
                         UXC.log( 'lengthValid: ', _min, _max, _r );
 
@@ -437,13 +565,10 @@
                         return _r;
                     }
 
-                , text: 
-                    function( _item ){
-                        var _r = true;
-                        UXC.log( 'parseType.text', Valid.toString() );
-                        return _r;
-                    }
-                
+                , text: function(_item){ return true; }
+                , bytetext: function(_item){ return true; }
+                , richtext: function(_item){ return true; }
+               
                 , url: 
                     function( _item ){
                         var _r = /^((http|ftp|https):\/\/|)[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])$/.test( _item.val() );
@@ -491,7 +616,7 @@
 <br clear="both">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Sat May 25 2013 00:45:30 GMT+0800 (CST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.2.0-dev</a> on Mon May 27 2013 15:34:46 GMT+0800 (CST)
 </footer>
 
 <script> prettyPrint(); </script>
