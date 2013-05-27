@@ -84,11 +84,13 @@
         {
             parse: 
                 function( _fmItem ){
+
                     var _r = true, _fmItem = $(_fmItem);
 
-                    _fmItem.each( function( _ix, _e ){
+                    _fmItem.each( function(){
 
-                        var _item = $(_e), _dt = _logic.getDatatype( _item ), _subdt = _logic.getSubdatatype( _item );
+                        if( !_logic.isValidItem(this) ) return;
+                        var _item = $(this), _dt = _logic.getDatatype( _item ), _subdt = _logic.getSubdatatype( _item );
 
                         if( _item.is('[disabled]') ) return;
 
@@ -125,9 +127,26 @@
 
                     return _r;
                 }
+
+            , isValidItem: 
+                function( _item ){
+                    _item = $(_item);
+                    var _r, _tmp;
+
+                    _item.each( function(){
+                        _tmp = $(this);
+                        if( _tmp.is( '[datatype]' ) || _tmp.is( '[subdatatype]' ) 
+                            || _tmp.is( '[minlength]' ) || _tmp.is( '[maxlength]' )  
+                            || _tmp.is( '[reqmsg]' ) ) 
+                            _r = true;
+                    });
+
+                    return _r;
+                }
             
             , valid:
                 function( _item ){
+                    if( !_logic.isValidItem( _item ) ) return;
                     _item.removeClass('error');
                     _item.find('~ em').show();
                     _item.find('~ em.error').hide();
@@ -135,13 +154,15 @@
 
             , error: 
                 function( _item, _msgAttr, _fullMsg ){
+                    if( !_logic.isValidItem( _item ) ) return;
+
                     var _msg = _logic.getMsg.apply( null, [].slice.call( arguments ) ), _errEm;
 
                     _item.addClass( 'error' );
                     _item.find('~ em:not(.error)').hide();
 
                     if( _item.is( '[emEl]' ) ){
-                        ( _errEm = $(_item.attr( 'emEl' ) ) ) && _errEm.length && _errEm.addClass('error');
+                        ( _errEm = _logic.getElement( _item.attr( 'emEl' ) ) ) && _errEm.length && _errEm.addClass('error');
                     }
                     !( _errEm && _errEm.length ) && ( _errEm = _item.find('~ em.error') );
                     if( !_errEm.length ){
@@ -151,6 +172,15 @@
                     _errEm.html( _msg ).show() 
 
                     return false;
+                }
+
+            , getElement: 
+                function( _selector ){
+                    /**
+                     * 这个是向后兼容qwrap, qwrap DOM参数都为ID
+                     */
+                    if( /^[\w-]+$/.test( _selector ) ) _selector = '#' + _selector;
+                    return $(_selector );
                 }
             
             , getDatatype: 
@@ -191,6 +221,12 @@
             , bytelen: 
                 function( _s ){
                     return _s.replace(/[^\x00-\xff]/g,"11").length;
+                }
+
+            , getTimestamp:
+                function( _date_str ){
+                    _date_str = _date_str.replace( /[^\d]/g, '' );
+                    return new Date( _date_str.slice(0,4), parseInt( _date_str.slice( 4, 6 ), 10 ) - 1, _date_str.slice( 6, 8) ).getTime();
                 }
 
             , subdatatype: {
@@ -247,9 +283,9 @@
                             if( _item.is('[maxvalue]') ) _max = +_item.attr('maxvalue') || _max;
 
                             if( _val >= _min && _val <= _max ){
-                                typeof _n != 'undefined' && typeof _f != 'undefined' && ( _r = new RegExp( '^(?:[\\d]{0,'+_n+'}|)(?:\\.[\\d]{0,'+_f+'}|)$' ).test( _valStr ) );
-                                typeof _n != 'undefined' && typeof _f == 'undefined' && ( _r = new RegExp( '^[\\d]{0,'+_n+'}$' ).test( _valStr ) );
-                                typeof _n == 'undefined' && typeof _f != 'undefined' && ( _r = new RegExp( '^\\.[\\d]{0,'+_f+'}$' ).test( _valStr ) );
+                                typeof _n != 'undefined' && typeof _f != 'undefined' && ( _r = new RegExp( '^(?:[\\d]{0,'+_n+'}|)(?:\\.[\\d]{1,'+_f+'}|)$' ).test( _valStr ) );
+                                typeof _n != 'undefined' && typeof _f == 'undefined' && ( _r = new RegExp( '^[\\d]{1,'+_n+'}$' ).test( _valStr ) );
+                                typeof _n == 'undefined' && typeof _f != 'undefined' && ( _r = new RegExp( '^\\.[\\d]{1,'+_f+'}$' ).test( _valStr ) );
                                 typeof _f == 'undefined' && /\./.test( _valStr ) && ( _r = false );
                             } else _r = false;
 
@@ -261,6 +297,59 @@
                         return _r;
                     }
 
+                , d: 
+                    function( _item ){
+                        var _val = _item.val().trim(), _r, _re = /^[\d]{4}([\/.-]|)[01][\d]\1[0-3][\d]$/;
+                            
+                        if( _r = _re.test( _val ) ){
+                            var _utime = _logic.getTimestamp( _item.val() ), _minTime, _maxTime;
+
+                            if( _item.is('[minvalue]') && ( _r = _re.test( _item.attr('minvalue') ) ) ){
+                                _minTime = _logic.getTimestamp( _item.attr('minvalue') );
+                                _utime < _minTime && ( _r = false );
+                            }
+
+                            if( _r && _item.is('[maxvalue]') && ( _r = _re.test( _item.attr('maxvalue') ) ) ){
+                                _maxTime = _logic.getTimestamp( _item.attr('maxvalue') );
+                                _utime > _maxTime && ( _r = false );
+                            }
+                        }
+
+                        !_r && _logic.error( _item );
+
+                        return _r;
+                    }
+
+                , daterange:
+                    function( _item ){
+                        var _r = _logic.datatype.d( _item ), _mind, _maxd;
+
+                        if( _r ){
+                        
+                            if( _r ){
+                                var _fromDateEl, _toDateEl;
+                                if( _item.is( '[fromDateEl]' ) ) _fromDateEl = _logic.getElement( _item.attr('fromDateEl') );
+                                if( _item.is( '[toDateEl]' ) ) _toDateEl = _logic.getElement( _item.attr('toDateEl') );
+                                if( _fromDateEl && _fromDateEl.length || _toDateEl && _toDateEl.length ){
+
+                                    _fromDateEl.length && !_toDateEl.length && ( _toDateEl = _item );
+                                    !_fromDateEl.length && _toDateEl.length && ( _fromDateEl = _item );
+
+                                    if( _toDateEl[0] != _fromDateEl[0] ){
+
+                                        _r && ( _r = _logic.datatype.d( _toDateEl ) );
+                                        _r && ( _r = _logic.datatype.d( _fromDateEl ) );
+
+                                        _r && _logic.getTimestamp( _fromDateEl.val() ) > _logic.getTimestamp( _toDateEl.val() ) && ( _r = false );
+                                    }
+                                }
+                            }
+                        }
+
+                        !_r && _logic.error( _item );
+
+                        return _r;
+                    }
 
                 , bankcard:
                     function( _item ){

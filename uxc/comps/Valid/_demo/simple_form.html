@@ -47,6 +47,7 @@
 
                 $('form.js-valid').on('submit', function( $evt ){
                     window.console && console.clear && console.clear();
+                        $evt.preventDefault();
 
                     if( !UXC.Valid.check( 'form.js-valid' ) ){
                         $evt.preventDefault();
@@ -141,7 +142,7 @@
                     <label>(datatype n, 1 - 100)整数:</label>
                 </div>
                 <div class="f-l">
-                    <input type="TEXT" name="company_n1" errmsg="请填写正确的正整数" datatype="n" minvalue="1", maxvalue="100" >
+                    <input type="TEXT" name="company_n1" errmsg="请填写正确的数字, 范围1-100" datatype="n" minvalue="1", maxvalue="100" >
                 </div>
                 </dd>
 
@@ -150,8 +151,27 @@
                     <label>(datatype n, 7位.2位)正数:</label>
                 </div>
                 <div class="f-l">
-                    <input type="TEXT" name="company_n2" errmsg="请填写正确的正数" datatype="n-7.2" >
+                    <input type="TEXT" name="company_n2" errmsg="请填写正确的数字" datatype="n-7.2" >
                 </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype d, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD, YYYYMMDD )日期:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_d" errmsg="请填写正确的日期" datatype="d" >
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype daterange, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD, YYYYMMDD )日期范围:</label>
+                </div>
+                <div class="f-l">
+                    <input type="TEXT" name="company_daterange" errmsg="请填写正确的日期范围2013-05-01 - 2013-05-31" datatype="daterange" minvalue="2013-05-01" maxvalue="2013-05-31" >
+                </div>
+                </dd>
 
                 <dd>
                 <div class="f-l label">
