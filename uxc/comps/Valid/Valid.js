@@ -366,6 +366,21 @@
                         return _r;
                     }
 
+                , time: 
+                    function( _item ){
+                        var _r = /^(([0-1]\d)|(2[0-3])):[0-5]\d:[0-5]\d$/.test( _item.val() );
+                        !_r && _logic.error( _item );
+                        return _r;
+                    }
+
+                , minute: 
+                    function( _item ){
+                        var _r = /^(([0-1]\d)|(2[0-3])):[0-5]\d$/.test( _item.val() );
+                        !_r && _logic.error( _item );
+                        return _r;
+                    }
+
+
                 , bankcard:
                     function( _item ){
                         var _r = /^[1-9][\d]{3}(?: |)(?:[\d]{4}(?: |))(?:[\d]{4}(?: |))(?:[\d]{4})(?:(?: |)[\d]{3}|)$/.test( _item.val() );
@@ -460,6 +475,7 @@
                          * 根据特殊的 datatype 实现不同的计算方法
                          */
                         switch( _dt ){
+                            case 'richtext':
                             case 'bytetext':
                                 {
                                     _len = _logic.bytelen( _val );
@@ -521,20 +537,10 @@
                         return _r;
                     }
 
-                , text: 
-                    function( _item ){
-                        var _r = true;
-                        UXC.log( 'parseType.text', Valid.toString() );
-                        return _r;
-                    }
-
-                , bytetext:
-                    function( _item ){
-                        var _r = true;
-
-                        return _r;
-                    }
-                
+                , text: function(_item){ return true; }
+                , bytetext: function(_item){ return true; }
+                , richtext: function(_item){ return true; }
+               
                 , url: 
                     function( _item ){
                         var _r = /^((http|ftp|https):\/\/|)[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])$/.test( _item.val() );

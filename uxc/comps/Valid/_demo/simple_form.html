@@ -30,8 +30,6 @@
         <script> UXC.debug = true; UXC.import( 'Valid' ); </script>
         <script>
             $(document).ready( function($evt){
-                //UXC.log( UXC.Valid.check( 'input[name=company_name]' ) );
-
                 $(document).delegate( 'button.js-clear-error', 'click', function( $evt ){
                     window.console && console.clear && console.clear();
                     UXC.Valid.clearError( 'form.js-valid' );
