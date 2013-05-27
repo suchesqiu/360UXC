@@ -37,14 +37,6 @@
                     UXC.Valid.clearError( 'form.js-valid' );
                 });
 
-                $('form').delegate( 'input[type=TEXT], input[type=PASSWORD], textarea', 'blur', function($evt){
-                    UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
-                });
-
-                $('form').delegate( 'select, input[type=file]', 'change', function($evt){
-                    UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
-                });
-
                 $('form.js-valid').on('submit', function( $evt ){
                     window.console && console.clear && console.clear();
                         $evt.preventDefault();
@@ -160,7 +152,7 @@
                     <label>(datatype d, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD, YYYYMMDD )日期:</label>
                 </div>
                 <div class="f-l">
-                    <input type="TEXT" name="company_d" errmsg="请填写正确的日期" datatype="d" >
+                    <input type="TEXT" name="company_d" errmsg="请填写正确的日期范围2013-05-01 - 2013-05-31" datatype="daterange" minvalue="2013-05-01" maxvalue="2013-05-31" >
                 </div>
                 </dd>
 
@@ -169,7 +161,9 @@
                     <label>(datatype daterange, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD, YYYYMMDD )日期范围:</label>
                 </div>
                 <div class="f-l">
-                    <input type="TEXT" name="company_daterange" errmsg="请填写正确的日期范围2013-05-01 - 2013-05-31" datatype="daterange" minvalue="2013-05-01" maxvalue="2013-05-31" >
+                    <input type="TEXT" name="company_daterange" errmsg="请填写正确的日期范围,并且起始日期不能大于结束日期" id="start_date" datatype="daterange" toDateEl="end_date" emEl="date-err-em" >
+                    - <input type="TEXT" name="company_daterange" errmsg="请填写正确的日期范围,并且起始日期不能大于结束日期" id="end_date" datatype="daterange" fromDateEl="start_date" emEl="date-err-em" >
+                    <br /><em id="date-err-em"></em>
                 </div>
                 </dd>
 

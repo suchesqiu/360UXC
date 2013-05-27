@@ -77,6 +77,13 @@
                 }
             });
         };
+        $(document).delegate( 'input[type=TEXT], input[type=PASSWORD], textarea', 'blur', function($evt){
+            UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
+        });
+
+        $(document).delegate( 'select, input[type=file]', 'change', function($evt){
+            UXC.log( $(this).attr('name'), UXC.Valid.check( this ) );
+        });
     /**
      * @private
      */
@@ -300,6 +307,7 @@
                 , d: 
                     function( _item ){
                         var _val = _item.val().trim(), _r, _re = /^[\d]{4}([\/.-]|)[01][\d]\1[0-3][\d]$/;
+                        if( !_val ) return true;
                             
                         if( _r = _re.test( _val ) ){
                             var _utime = _logic.getTimestamp( _item.val() ), _minTime, _maxTime;
@@ -332,15 +340,22 @@
                                 if( _item.is( '[toDateEl]' ) ) _toDateEl = _logic.getElement( _item.attr('toDateEl') );
                                 if( _fromDateEl && _fromDateEl.length || _toDateEl && _toDateEl.length ){
 
-                                    _fromDateEl.length && !_toDateEl.length && ( _toDateEl = _item );
-                                    !_fromDateEl.length && _toDateEl.length && ( _fromDateEl = _item );
+                                    _fromDateEl && _fromDateEl.length && !( _toDateEl && _toDateEl.length ) && ( _toDateEl = _item );
+                                    !(_fromDateEl && _fromDateEl.length) && _toDateEl && _toDateEl.length && ( _fromDateEl = _item );
+
+                                    UXC.log( 'daterange', _fromDateEl.length, _toDateEl.length );
 
                                     if( _toDateEl[0] != _fromDateEl[0] ){
+
 
                                         _r && ( _r = _logic.datatype.d( _toDateEl ) );
                                         _r && ( _r = _logic.datatype.d( _fromDateEl ) );
 
                                         _r && _logic.getTimestamp( _fromDateEl.val() ) > _logic.getTimestamp( _toDateEl.val() ) && ( _r = false );
+
+                                        _r && _logic.valid( _fromDateEl );
+                                        _r && _logic.valid( _toDateEl );
+
                                     }
                                 }
                             }
@@ -430,7 +445,7 @@
 
                 , 'length': 
                     function( _item ){
-                        var _r = true, _dt = _logic.getDatatype( _item ), _min, _max, _val = _item.val();
+                        var _r = true, _dt = _logic.getDatatype( _item ), _min, _max, _val = _item.val(), _len;
 
                         if( _item.is( '[minlength]' ) ){
                             UXC.log( 'minlength' );
@@ -442,16 +457,23 @@
                             _max = parseInt( _item.attr( 'maxlength' ), 10 ) || 0;
                         }
                         /**
-                         * //TODO 根据特殊的 datatype 实现不同的计算方法
+                         * 根据特殊的 datatype 实现不同的计算方法
                          */
                         switch( _dt ){
+                            case 'bytetext':
+                                {
+                                    _len = _logic.bytelen( _val );
+                                    break;
+                                }
                             default:
                                 {
-                                    _min && ( _val.length < _min ) && ( _r = false );
-                                    _max && ( _val.length > _max ) && ( _r = false );
+                                    _len = _val.length;
                                     break;
                                 }
                         }
+
+                        _min && ( _len < _min ) && ( _r = false );
+                        _max && ( _len > _max ) && ( _r = false );
 
                         UXC.log( 'lengthValid: ', _min, _max, _r );
 
@@ -503,6 +525,13 @@
                     function( _item ){
                         var _r = true;
                         UXC.log( 'parseType.text', Valid.toString() );
+                        return _r;
+                    }
+
+                , bytetext:
+                    function( _item ){
+                        var _r = true;
+
                         return _r;
                     }
                 
