@@ -108,10 +108,10 @@
          * @return {Object} 返回生成的命名空间
          */
         namespace : function ( str , context ) {
-            var arr = str.split( '.' ), context = context || window;
+            var arr = str.split( '.' ), base = context || window;
             for ( var i = 0 , len = arr.length ; i < len ; i++ ) {
-                context[ arr[i] ] = context[ arr[i] ] || {};
-                context = context[ arr[i] ];
+                base[ arr[i] ] = base[ arr[i] ] || {};
+                base = base[ arr[i] ];
             }
             return context;
         }
