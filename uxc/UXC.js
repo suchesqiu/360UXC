@@ -1,6 +1,6 @@
 (function( $ ){
     /**
-     * UXC jq 组件库 资源调用控制类
+     * UXC jquery 组件库 资源调用控制类
      *
      * 调用组件资源请使用  UXC.import( 组件名[,组件名] );
      *
