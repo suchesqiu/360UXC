@@ -1,12 +1,13 @@
 (function( $ ){
     /**
-     * UXC jq 组件库 资源调用控制类
-     * @class
-     * @alias window.UXC
+     * UXC jq 组件库 资源调用控制类<br />
+     * 这是一个单例模式, 全局访问使用 UXC 或 window.UXC
+     * @class UXC
+     * @constructor
      * @global
      * @requires    jQuery
      *
-     * @classdesc   这是一个单例模式, 全局访问使用 UXC 或 window.UXC
+     * @classdesc   
      *
      * @example 
      *      UXC.import( 组件名[,组件名] );
@@ -34,7 +35,7 @@
     UXC.prototype = {
        /**
         * 导入UXC组件
-        * @method
+        * @method   import
         * @param    {string}    _names -            模块名
         *                                           或者模块下面的某个js文件(test/test1.js, 路径前面不带"/"将视为test模块下的test1.js)
         *                                           或者一个绝对路径的js文件, 路径前面带 "/"
@@ -107,7 +108,8 @@
 
        /**
         * 输出调试信息, 可通过 UXC.debug 指定是否显示调试信息
-        * @method
+        * @param    {[string[,string]]}  任意参数任意长度的字符串内容
+        * @method log
         */
        log: 
            function(){

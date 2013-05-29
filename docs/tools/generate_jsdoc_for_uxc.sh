@@ -1,1 +1,1 @@
-jsdoc ../../uxc  -r  -d ../uxc_docs
+jsdoc ../../uxc  -r  -d ./out
