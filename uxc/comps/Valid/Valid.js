@@ -820,7 +820,21 @@
 
                         return _r;
                     }
-
+                /**
+                 * 检查验证码<br />
+                 * 格式: 为 0-9a-zA-Z, 长度 默认为4
+                 * @param   {selector}  _item
+                 * @attr    {string}    datatype    vcode|vcode-[\d]+
+                 * @example
+                        <div class="f-l">
+                            <input type="TEXT" name="company_vcode" style="width: 40px;"
+                                datatype="vcode" reqmsg="验证码" errmsg="请填写正确的验证码">
+                        </div>
+                        <div class="f-l">
+                            <input type="TEXT" name="company_vcode" style="width: 40px;"
+                                datatype="vcode-5" errmsg="请填写正确的验证码">
+                        </div>
+                 */
                 , vcode:
                     function( _item ){
                         var _r, _len = parseInt( _item.attr('datatype').trim().replace( /^vcode(?:\-|)/i, '' ), 10 ) || 4; 
@@ -829,14 +843,34 @@
                         !_r && _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检查文本长度
+                 * @see _logic.datatype.length
+                 */
                 , text: function(_item){ return true; }
+                /**
+                 * 检查文本的字节长度
+                 * @see _logic.datatype.length
+                 */
                 , bytetext: function(_item){ return true; }
+                /**
+                 * 检查富文本的字节
+                 * @see _logic.datatype.length
+                 */
                 , richtext: function(_item){ return true; }
-               
+                /**
+                 * 
+                 */
                 , url: 
                     function( _item ){
                         var _r = /^((http|ftp|https):\/\/|)[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:\/~+#-]*[\w@?^=%&amp;\/~+#-])$/.test( _item.val() );
+                        !_r && _logic.error( _item );
+                        return _r;
+                    }
+
+                , domain:
+                    function( _item ){
+                        var _r = /^(?:(?:f|ht)tp\:\/\/|)((?:(?:(?:\w[\.\-\+]?)*)\w)*)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})(?:\/|)$/.test( _item.val() );
                         !_r && _logic.error( _item );
                         return _r;
                     }
@@ -851,13 +885,6 @@
                 , zipcode: 
                     function( _item ){
                         var _r = /^[0-9]{6}$/.test( _item.val() );
-                        !_r && _logic.error( _item );
-                        return _r;
-                    }
-
-                , domain:
-                    function( _item ){
-                        var _r = /^(?:(?:f|ht)tp\:\/\/|)((?:(?:(?:\w[\.\-\+]?)*)\w)*)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})(?:\/|)$/.test( _item.val() );
                         !_r && _logic.error( _item );
                         return _r;
                     }
