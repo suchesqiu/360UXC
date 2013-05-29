@@ -49,7 +49,9 @@
 
                 var _isCustomPath = /\//.test( _val ) || !!_basePath;
 
-                if ( !/\.js$/i.test( _val ) & !_basePath )  _val = [ _val, '/', _val, '.js' ].join( '' );
+                if ( !/\.js$/i.test( _val ) && !_basePath ) {
+                    _val = [ _val, '/', _val, '.js' ].join( '' );
+                }
 
                 if ( _isCustomPath ) {
                     if ( _basePath && !_nginxStyle ) _val = _basePath + _val;
