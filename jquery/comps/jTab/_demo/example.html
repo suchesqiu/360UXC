@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tab Example</title>
+    <link href="http://p0.qhimg.com/s/t01c8cb01f2deaf6a6d.css" rel="stylesheet"/>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../../uxc/UXC.js"></script>
+    <script src="../../jTab/jTab.js"></script>
+</head>
+<body>
+<style>
+    .tab {
+        margin: 100px;
+        border: 1px solid #eee;
+        width: 300px;
+        overflow: hidden;
+        height: 180px;
+        font-size: 12px;
+    }
+
+    .triggers {
+        background: #eee;
+        line-height: 20px;
+        height: 20px;
+        overflow: hidden;
+    }
+
+    .triggers a {
+        float: left;
+        color: #666;
+        text-decoration: none;
+        width: 25%;
+        text-align: center;
+        height: 20px;
+    }
+
+    .triggers a.on {
+        background: #fff;
+    }
+
+    .contents,
+    .content {
+        background: #fff;
+        height: 140px;
+        padding: 10px;
+    }
+</style>
+<div class="tab">
+    <div class="triggers" id="triggers1">
+        <a href="#" data-index="0">0</a>
+        <a href="#" data-index="1">1</a>
+        <a href="#" data-index="2">2</a>
+        <a href="#" data-index="3">3</a>
+    </div>
+    <div class="contents" id="contents1">
+        <div class="content">0</div>
+        <div class="content">1</div>
+        <div class="content">2</div>
+        <div class="content">3</div>
+    </div>
+</div>
+<script>
+    (function ($) {
+        var triggers = $('#triggers1').find('a');
+        var contents = $('#contents1').find('div');
+        var toggle = new UXC.Widget.toggle(triggers.length, {
+            loop: true
+        });
+        //通过自定义的切换焦点前的事件来取消当前焦点dom
+        toggle.on('beforeToggle', function (e, data) {
+            if (data.current !== null) {
+                triggers[data.current].className = '';
+                contents[data.current].style.display = 'none';
+            }
+        });
+        //通过自定义的切换焦点后的事件来切换新焦点dom
+        toggle.on('afterToggle', function (e, data) {
+            //自定义事件可以有复杂的动画逻辑
+            triggers[data.current].className = 'on';
+            contents[data.current].style.display = 'block';
+        });
+        triggers.on('mouseenter', function () {
+            toggle.toggle($(this).data('index'));
+            return false;
+        });
+        //初始化显示
+        toggle.toggle(0);
+    })(jQuery);
+</script>
+</body>
+</html>
