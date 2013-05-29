@@ -2,5 +2,5 @@
 javascript 编码规范以 Dojo 为准
     http://dojotoolkit.org/reference-guide/1.9/developer/styleguide.html
 
-javascript 注释规范以 JsDoc3 为准 
-    https://github.com/jsdoc3/jsdoc
+javascript 注释规范以 YUIDoc 为准 
+    http://yui.github.io/yuidoc/syntax/index.html
