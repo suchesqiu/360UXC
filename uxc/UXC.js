@@ -2,37 +2,30 @@
     /**
      * UXC jq 组件库 资源调用控制类<br />
      * 这是一个单例模式, 全局访问使用 UXC 或 window.UXC
+     * @namespace window
      * @class UXC
-     * @constructor
-     * @global
+     * @static
      * @requires    jQuery
-     *
-     * @classdesc   
-     *
      * @example 
      *      UXC.import( 组件名[,组件名] );
      *
      * @author  qiushaowei   <suches@btbtd.org> | {@link http://uxc.360.cn|360 UXC-FE Team}
      * @date    2013-05-22
      */
-    function UXC(){
+    window.UXC = 
+    {
         /**
          * UXC组件库所在路径
+         * @property    PATH
          * @type {string}
          */
-        this.PATH = '/js/uxc/comps/';
+        PATH: '/js/uxc/comps/'
         /**
          * 是否显示调试信息
+         * @property    debug
          * @type {bool}
          */
-        this.debug;
-        /**
-         * 自动识别组件库所在路径
-         */
-        this._getPath();
-    }
-
-    UXC.prototype = {
+        , debug: false
        /**
         * 导入UXC组件
         * @method   import
@@ -49,7 +42,7 @@
                 UXC.import( '/js/Test/Test1.js' );
                 UXC.import( 'Test1.js, Test2.js ', '/js/??', true );
         */
-        import: 
+        , import: 
             function( _names, _basePath, _nginxStyle ){
                 if( ! _names ) return;
                 var _p = this;
@@ -117,13 +110,15 @@
                 console.log( [].slice.apply( arguments ).join(' ') );
             }
     };
-
     /**
      * 如果 console 不可用, 则生成一个模拟的 console 对象
      */
     if( !window.console ) window.console = { log:function(){
         window.status = [].slice.apply( arguments ).join(' ');
     }};
+    /**
+     * 自动识别组件库所在路径
+     */
+    UXC._getPath();
 
-    window.UXC = new UXC();
 }(jQuery))

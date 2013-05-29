@@ -1,8 +1,8 @@
 YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
-        "UXC",
-        "Valid"
+        "UXC.Valid",
+        "window.UXC"
     ],
     "modules": [],
     "allModules": []

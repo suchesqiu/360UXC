@@ -41,9 +41,9 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
-                <li><a href="../classes/UXC.html">UXC</a></li>
+                <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
             
-                <li><a href="../classes/Valid.html">Valid</a></li>
+                <li><a href="../classes/window.UXC.html">window.UXC</a></li>
             
             </ul>
 
@@ -90,67 +90,56 @@
     <pre class="code prettyprint linenums">
 (function($){
     !window.UXC &amp;&amp; (window.UXC = { log:function(){} });
-    window.Valid = UXC.Valid = Valid;
     /**
-     * 表单验证
+     * 表单验证&lt;br /&gt;
+     * 全局访问请使用 UXC.Valid 或 Valid&lt;br /&gt;
+     * @namespace UXC
      * @class Valid
-     * @constructor
-     * @global
+     * @static
      * @alias UXC.Valid 
      * @alias window.Valid
-     * @classdesc 
-     *      全局访问请使用 UXC.Valid 或 Valid&lt;br /&gt;
      * @requires jQuery
      * @version dev 0.1
      * @author  qiushaowei   &lt;suches@btbtd.org&gt; | {@link http://uxc.360.cn|360 UXC-FE Team}
      * @date    2013-05-22
      */
-    function Valid(){}
-    /**
-     * 验证一个表单项, 如 文本框, 下拉框, 复选框, 单选框, 文本域, 隐藏域
-     * @method check
-     * @static 
-     * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
-     * @example 
-     *          UXC.Valid.check( $(&#x27;input.needValid&#x27;) );
-     *          UXC.Valid.check( document.getElementById(&#x27;inputNeedValid&#x27;) );
-     *
-     *          if( !UXC.Valid.check( $(&#x27;form&#x27;) ) ){
-     *              _evt.preventDefault();
-     *              return false;
-     *          }
-     * @return    {boolean}
-     */
-    Valid.check =  
-        function( _item ){ 
-            var _r = true, _item = $(_item), _type = _item.length ? _item.prop(&#x27;nodeName&#x27;).toLowerCase() : &#x27;&#x27;;
-            if( _item.length ){
-                if( _type == &#x27;form&#x27; ){
-                    $( _item[0].elements ).each( function(){
-                        !_logic.parse( $(this) ) &amp;&amp; ( _r = false );
-                    });
-                } else _r = _logic.parse( _item );
+    var Valid = UXC.Valid = window.Valid =
+    {
+        /**
+         * 验证一个表单项, 如 文本框, 下拉框, 复选框, 单选框, 文本域, 隐藏域
+         * @method check
+         * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
+         * @example 
+         *          UXC.Valid.check( $(&#x27;input.needValid&#x27;) );
+         *          UXC.Valid.check( document.getElementById(&#x27;inputNeedValid&#x27;) );
+         *
+         *          if( !UXC.Valid.check( $(&#x27;form&#x27;) ) ){
+         *              _evt.preventDefault();
+         *              return false;
+         *          }
+         * @return    {boolean}
+         */
+        check:  
+            function( _item ){ 
+                var _r = true, _item = $(_item), _type = _item.length ? _item.prop(&#x27;nodeName&#x27;).toLowerCase() : &#x27;&#x27;;
+                if( _item.length ){
+                    if( _type == &#x27;form&#x27; ){
+                        $( _item[0].elements ).each( function(){
+                            !_logic.parse( $(this) ) &amp;&amp; ( _r = false );
+                        });
+                    } else _r = _logic.parse( _item );
+                }
+                return _r;
             }
-            return _r;
-        };
-    /**
-     * 这个方法是 {@link Valid.check} 的别名
-     * @method checkAll
-     * @static
-     * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
-     * @see Valid.check
-     */
-    Valid.checkAll = Valid.check;
-     /**
-     * 清除Valid生成的错误样式
-     * @method clearError
-     * @static
-     * @param   {form|input|textarea|select|file|password}  _selector -     需要清除错误的选择器
-     * @example
-     *          UXC.Valid.clearError( &#x27;form&#x27; );
-     *          UXC.Valid.clearError( &#x27;input.some&#x27; );
-     */
-    Valid.clearError = 
+         /**
+         * 清除Valid生成的错误样式
+         * @method clearError
+         * @param   {form|input|textarea|select|file|password}  _selector -     需要清除错误的选择器
+         * @example
+         *          UXC.Valid.clearError( &#x27;form&#x27; );
+         *          UXC.Valid.clearError( &#x27;input.some&#x27; );
+         */
+        , clearError:
         function( _selector ){
             $( _selector ).each( function(){
                 var _item = $(this);
@@ -168,7 +157,18 @@
                     default: _logic.valid( $(this) ); break;
                 }
             });
-        };
+        }
+
+    };
+    /**
+     * 这个方法是 {@link Valid.check} 的别名
+     * @method checkAll
+     * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
+     * @see Valid.check
+     */
+    Valid.checkAll = Valid;
+
+    function Valid(){}
     /**
      * 响应表单子对象的 blur事件, 触发事件时, 检测并显示错误或正确的视觉效果
      * @private

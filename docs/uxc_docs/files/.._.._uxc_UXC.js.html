@@ -41,9 +41,9 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
-                <li><a href="../classes/UXC.html">UXC</a></li>
+                <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
             
-                <li><a href="../classes/Valid.html">Valid</a></li>
+                <li><a href="../classes/window.UXC.html">window.UXC</a></li>
             
             </ul>
 
@@ -92,37 +92,30 @@
     /**
      * UXC jq 组件库 资源调用控制类&lt;br /&gt;
      * 这是一个单例模式, 全局访问使用 UXC 或 window.UXC
+     * @namespace window
      * @class UXC
-     * @constructor
-     * @global
+     * @static
      * @requires    jQuery
-     *
-     * @classdesc   
-     *
      * @example 
      *      UXC.import( 组件名[,组件名] );
      *
      * @author  qiushaowei   &lt;suches@btbtd.org&gt; | {@link http://uxc.360.cn|360 UXC-FE Team}
      * @date    2013-05-22
      */
-    function UXC(){
+    window.UXC = 
+    {
         /**
          * UXC组件库所在路径
+         * @property    PATH
          * @type {string}
          */
-        this.PATH = &#x27;/js/uxc/comps/&#x27;;
+        PATH: &#x27;/js/uxc/comps/&#x27;
         /**
          * 是否显示调试信息
+         * @property    debug
          * @type {bool}
          */
-        this.debug;
-        /**
-         * 自动识别组件库所在路径
-         */
-        this._getPath();
-    }
-
-    UXC.prototype = {
+        , debug: false
        /**
         * 导入UXC组件
         * @method   import
@@ -139,7 +132,7 @@
                 UXC.import( &#x27;/js/Test/Test1.js&#x27; );
                 UXC.import( &#x27;Test1.js, Test2.js &#x27;, &#x27;/js/??&#x27;, true );
         */
-        import: 
+        , import: 
             function( _names, _basePath, _nginxStyle ){
                 if( ! _names ) return;
                 var _p = this;
@@ -207,15 +200,17 @@
                 console.log( [].slice.apply( arguments ).join(&#x27; &#x27;) );
             }
     };
-
     /**
      * 如果 console 不可用, 则生成一个模拟的 console 对象
      */
     if( !window.console ) window.console = { log:function(){
         window.status = [].slice.apply( arguments ).join(&#x27; &#x27;);
     }};
+    /**
+     * 自动识别组件库所在路径
+     */
+    UXC._getPath();
 
-    window.UXC = new UXC();
 }(jQuery))
 
     </pre>

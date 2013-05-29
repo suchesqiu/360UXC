@@ -5,19 +5,23 @@
             "name": "../../uxc/comps/Valid/Valid.js",
             "modules": {},
             "classes": {
-                "Valid": 1
+                "UXC.Valid": 1
             },
             "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "UXC": 1
+            }
         },
         "../../uxc/UXC.js": {
             "name": "../../uxc/UXC.js",
             "modules": {},
             "classes": {
-                "UXC": 1
+                "window.UXC": 1
             },
             "fors": {},
-            "namespaces": {}
+            "namespaces": {
+                "window": 1
+            }
         },
         "../../uxc/lib.js": {
             "name": "../../uxc/lib.js",
@@ -29,21 +33,20 @@
     },
     "modules": {},
     "classes": {
-        "Valid": {
-            "name": "Valid",
-            "shortname": "Valid",
+        "UXC.Valid": {
+            "name": "UXC.Valid",
+            "shortname": "UXC.Valid",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "namespace": "UXC",
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 4,
-            "description": "表单验证",
-            "is_constructor": 1,
-            "global": "",
+            "line": 3,
+            "description": "表单验证<br />\n全局访问请使用 UXC.Valid 或 Valid<br />",
+            "static": 1,
             "alias": "window.Valid",
-            "classdesc": "全局访问请使用 UXC.Valid 或 Valid<br />",
             "requires": [
                 "jQuery"
             ],
@@ -51,23 +54,22 @@
             "author": "qiushaowei   <suches@btbtd.org> | {@link http://uxc.360.cn|360 UXC-FE Team}",
             "date": "2013-05-22"
         },
-        "UXC": {
-            "name": "UXC",
-            "shortname": "UXC",
+        "window.UXC": {
+            "name": "window.UXC",
+            "shortname": "window.UXC",
             "classitems": [],
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
+            "namespace": "window",
             "file": "../../uxc/UXC.js",
             "line": 2,
             "description": "UXC jq 组件库 资源调用控制类<br />\n这是一个单例模式, 全局访问使用 UXC 或 window.UXC",
-            "is_constructor": 1,
-            "global": "",
+            "static": 1,
             "requires": [
                 "jQuery"
             ],
-            "classdesc": "",
             "example": [
                 " \n     UXC.import( 组件名[,组件名] );"
             ],
@@ -78,11 +80,10 @@
     "classitems": [
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 19,
+            "line": 18,
             "description": "验证一个表单项, 如 文本框, 下拉框, 复选框, 单选框, 文本域, 隐藏域",
             "itemtype": "method",
             "name": "check",
-            "static": 1,
             "params": [
                 {
                     "name": "_item",
@@ -97,34 +98,15 @@
                 "description": "",
                 "type": "Boolean"
             },
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 46,
-            "description": "这个方法是 {@link Valid.check} 的别名",
-            "itemtype": "method",
-            "name": "checkAll",
-            "static": 1,
-            "params": [
-                {
-                    "name": "_item",
-                    "description": "-   需要验证规则正确与否的表单/表单项",
-                    "type": "Elements"
-                }
-            ],
-            "see": [
-                "Valid.check"
-            ],
-            "class": "Valid"
-        },
-        {
-            "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 54,
+            "line": 44,
             "description": "清除Valid生成的错误样式",
             "itemtype": "method",
             "name": "clearError",
-            "static": 1,
             "params": [
                 {
                     "name": "_selector",
@@ -135,7 +117,27 @@
             "example": [
                 "\n         UXC.Valid.clearError( 'form' );\n         UXC.Valid.clearError( 'input.some' );"
             ],
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Valid/Valid.js",
+            "line": 73,
+            "description": "这个方法是 {@link Valid.check} 的别名",
+            "itemtype": "method",
+            "name": "checkAll",
+            "params": [
+                {
+                    "name": "_item",
+                    "description": "-   需要验证规则正确与否的表单/表单项",
+                    "type": "Elements"
+                }
+            ],
+            "see": [
+                "Valid.check"
+            ],
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -143,7 +145,8 @@
             "description": "响应表单子对象的 blur事件, 触发事件时, 检测并显示错误或正确的视觉效果",
             "access": "private",
             "tagname": "",
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -151,7 +154,8 @@
             "description": "响应表单子对象的 change 事件, 触发事件时, 检测并显示错误或正确的视觉效果",
             "access": "private",
             "tagname": "",
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -159,7 +163,8 @@
             "description": "私有逻辑处理对象, 验证所需的所有规则和方法都存放于此对象",
             "access": "private",
             "tagname": "",
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -172,7 +177,8 @@
                     "type": "Selector"
                 }
             ],
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -185,7 +191,8 @@
                     "type": "Selector"
                 }
             ],
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -198,7 +205,8 @@
                     "type": "Selector"
                 }
             ],
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -211,7 +219,8 @@
                     "type": "Selector"
                 }
             ],
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -224,7 +233,8 @@
                     "type": "Selector"
                 }
             ],
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -237,7 +247,8 @@
                     "type": "Selector"
                 }
             ],
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -250,7 +261,8 @@
                     "type": "Selector"
                 }
             ],
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -273,7 +285,8 @@
                     "type": "Bool"
                 }
             ],
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -286,7 +299,8 @@
                     "type": "String"
                 }
             ],
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -299,13 +313,15 @@
                     "type": "String"
                 }
             ],
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
             "line": 280,
             "description": "此对象存储可供检测的子类型",
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -321,7 +337,8 @@
             "example": [
                 "\n                       <dd>\n                       <div class=\"f-l label\">\n                           <label>(datatype phonezone, phonecode, phoneext)电话号码:</label>\n                       </div>\n                       <div class=\"f-l\">\n                           <input type='TEXT' name='company_phonezone' style=\"width:40px;\" value='' size=\"4\" \n                               datatype=\"phonezone\" emEl=\"#phone-err-em\" errmsg=\"请填写正确的电话区号\" />\n                           - <input type='TEXT' name='company_phonecode' style=\"width:80px;\" value='' size=\"8\" \n                               datatype=\"phonecode\" subdatatype=\"alternative\" datatarget=\"input[name=company_mobile]\" alternativemsg=\"电话号码和手机号码至少填写一个\"\n                               errmsg=\"请检查电话号码格式\" emEl=\"#phone-err-em\" />\n                           - <input type='TEXT' name='company_phoneext' style=\"width:40px;\" value='' size=\"4\" \n                               datatype=\"phoneext\" emEl=\"#phone-err-em\" errmsg=\"请填写正确的分机号\" />\n                           <em id=\"phone-err-em\"></em>\n                       </div>\n                       </dd>\n\n                       <dd>\n                       <div class=\"f-l label\">\n                           <label>(datatype mobilecode)手机号码:</label>\n                       </div>\n                       <div class=\"f-l\">\n                           <input type=\"TEXT\" name=\"company_mobile\" \n                               datatype=\"mobilecode\" subdatatype=\"alternative\" datatarget=\"input[name=company_phonecode]\" alternativemsg=\" \"\n                               errmsg=\"请填写正确的手机号码\">\n                       </div>\n                       </dd>"
             ],
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -337,13 +354,15 @@
             "example": [
                 "\n                       <dd>\n                       <div class=\"f-l label\">\n                           <label>(datatype text, subdatatype reconfirm)用户密码:</label>\n                       </div>\n                       <div class=\"f-l\">\n                           <input type=\"PASSWORD\" name=\"company_pwd\" \n                           datatype=\"text\" subdatatype=\"reconfirm\" datatarget=\"input[name=company_repwd]\" reconfirmmsg=\"用户密码和确认密码不一致\"\n                           minlength=\"6\" maxlength=\"15\" reqmsg=\"用户密码\" errmsg=\"请填写正确的用户密码\">\n                       </div>\n                       </dd>\n\n                       <dd>\n                       <div class=\"f-l label\">\n                           <label>(datatype text, subdatatype reconfirm)确认密码:</label>\n                       </div>\n                       <div class=\"f-l\">\n                           <input type=\"PASSWORD\" name=\"company_repwd\" \n                           datatype=\"text\" subdatatype=\"reconfirm\" datatarget=\"input[name=company_pwd]\" reconfirmmsg=\"确认密码和用户密码不一致\"\n                           minlength=\"6\" maxlength=\"15\" reqmsg=\"确认密码\" errmsg=\"请填写正确的确认密码\">\n                       </div>\n                       </dd>"
             ],
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
             "line": 379,
             "description": "此对象存储可供检测的类型",
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -357,7 +376,8 @@
                 }
             ],
             "attr": "{integer|optional}      maxvalue    - 数值的上限",
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -371,7 +391,8 @@
                 }
             ],
             "attr": "{date string|optional}  maxvalue    - 日期的上限",
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -385,7 +406,8 @@
                 }
             ],
             "attr": "{date string|optional}  maxvalue    - 日期的上限",
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -398,7 +420,8 @@
                     "type": "Selector"
                 }
             ],
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -411,37 +434,39 @@
                     "type": "Selector"
                 }
             ],
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
             "line": 607,
             "description": "根据特殊的 datatype 实现不同的计算方法",
-            "class": "Valid"
+            "class": "UXC.Valid",
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 19,
+            "line": 17,
             "description": "UXC组件库所在路径",
+            "itemtype": "property",
+            "name": "PATH",
             "type": "{string}",
-            "class": "UXC"
+            "class": "window.UXC",
+            "namespace": "window"
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 24,
+            "line": 23,
             "description": "是否显示调试信息",
+            "itemtype": "property",
+            "name": "debug",
             "type": "{bool}",
-            "class": "UXC"
+            "class": "window.UXC",
+            "namespace": "window"
         },
         {
             "file": "../../uxc/UXC.js",
             "line": 29,
-            "description": "自动识别组件库所在路径",
-            "class": "UXC"
-        },
-        {
-            "file": "../../uxc/UXC.js",
-            "line": 36,
             "description": "导入UXC组件",
             "itemtype": "method",
             "name": "import",
@@ -465,19 +490,21 @@
             "example": [
                 "\n               UXC.import( 'Test' );\n               UXC.import( 'Test/Test1.js' );\n               UXC.import( '/js/Test/Test1.js' );\n               UXC.import( 'Test1.js, Test2.js ', '/js/??', true );"
             ],
-            "class": "UXC"
+            "class": "window.UXC",
+            "namespace": "window"
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 71,
+            "line": 64,
             "description": "去除多余的 正叙扛或反叙扛",
             "access": "private",
             "tagname": "",
-            "class": "UXC"
+            "class": "window.UXC",
+            "namespace": "window"
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 95,
+            "line": 88,
             "description": "获取组件库所在路径",
             "itemtype": "method",
             "name": "",
@@ -487,11 +514,12 @@
                 "description": "组件库所在路径(带comps)",
                 "type": "String"
             },
-            "class": "UXC"
+            "class": "window.UXC",
+            "namespace": "window"
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 109,
+            "line": 102,
             "description": "输出调试信息, 可通过 UXC.debug 指定是否显示调试信息",
             "params": [
                 {
@@ -502,13 +530,22 @@
             ],
             "itemtype": "method",
             "name": "log",
-            "class": "UXC"
+            "class": "window.UXC",
+            "namespace": "window"
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 121,
+            "line": 113,
             "description": "如果 console 不可用, 则生成一个模拟的 console 对象",
-            "class": "UXC"
+            "class": "window.UXC",
+            "namespace": "window"
+        },
+        {
+            "file": "../../uxc/UXC.js",
+            "line": 119,
+            "description": "自动识别组件库所在路径",
+            "class": "window.UXC",
+            "namespace": "window"
         },
         {
             "file": "../../uxc/lib.js",
@@ -519,29 +556,26 @@
                 "description": "脚本所在目录的完整路径",
                 "type": "String"
             },
-            "class": ""
+            "class": "",
+            "namespace": "window"
         }
     ],
     "warnings": [
         {
             "message": "unknown tag: alias",
-            "line": " ../../uxc/comps/Valid/Valid.js:4"
+            "line": " ../../uxc/comps/Valid/Valid.js:3"
         },
         {
             "message": "unknown tag: alias",
-            "line": " ../../uxc/comps/Valid/Valid.js:4"
-        },
-        {
-            "message": "unknown tag: classdesc",
-            "line": " ../../uxc/comps/Valid/Valid.js:4"
+            "line": " ../../uxc/comps/Valid/Valid.js:3"
         },
         {
             "message": "unknown tag: version",
-            "line": " ../../uxc/comps/Valid/Valid.js:4"
+            "line": " ../../uxc/comps/Valid/Valid.js:3"
         },
         {
             "message": "unknown tag: date",
-            "line": " ../../uxc/comps/Valid/Valid.js:4"
+            "line": " ../../uxc/comps/Valid/Valid.js:3"
         },
         {
             "message": "unknown tag: attr",
@@ -586,10 +620,6 @@
         {
             "message": "unknown tag: attr",
             "line": " ../../uxc/comps/Valid/Valid.js:448"
-        },
-        {
-            "message": "unknown tag: classdesc",
-            "line": " ../../uxc/UXC.js:2"
         },
         {
             "message": "unknown tag: date",
@@ -688,24 +718,16 @@
             "line": " ../../uxc/comps/Valid/Valid.js:607"
         },
         {
-            "message": "Missing item type\nUXC组件库所在路径",
-            "line": " ../../uxc/UXC.js:19"
-        },
-        {
-            "message": "Missing item type\n是否显示调试信息",
-            "line": " ../../uxc/UXC.js:24"
-        },
-        {
-            "message": "Missing item type\n自动识别组件库所在路径",
-            "line": " ../../uxc/UXC.js:29"
-        },
-        {
             "message": "Missing item type\n去除多余的 正叙扛或反叙扛",
-            "line": " ../../uxc/UXC.js:71"
+            "line": " ../../uxc/UXC.js:64"
         },
         {
             "message": "Missing item type\n如果 console 不可用, 则生成一个模拟的 console 对象",
-            "line": " ../../uxc/UXC.js:121"
+            "line": " ../../uxc/UXC.js:113"
+        },
+        {
+            "message": "Missing item type\n自动识别组件库所在路径",
+            "line": " ../../uxc/UXC.js:119"
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",

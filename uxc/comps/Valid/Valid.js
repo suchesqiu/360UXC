@@ -1,66 +1,55 @@
 (function($){
     !window.UXC && (window.UXC = { log:function(){} });
-    window.Valid = UXC.Valid = Valid;
     /**
-     * 表单验证
+     * 表单验证<br />
+     * 全局访问请使用 UXC.Valid 或 Valid<br />
+     * @namespace UXC
      * @class Valid
-     * @constructor
-     * @global
+     * @static
      * @alias UXC.Valid 
      * @alias window.Valid
-     * @classdesc 
-     *      全局访问请使用 UXC.Valid 或 Valid<br />
      * @requires jQuery
      * @version dev 0.1
      * @author  qiushaowei   <suches@btbtd.org> | {@link http://uxc.360.cn|360 UXC-FE Team}
      * @date    2013-05-22
      */
-    function Valid(){}
-    /**
-     * 验证一个表单项, 如 文本框, 下拉框, 复选框, 单选框, 文本域, 隐藏域
-     * @method check
-     * @static 
-     * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
-     * @example 
-     *          UXC.Valid.check( $('input.needValid') );
-     *          UXC.Valid.check( document.getElementById('inputNeedValid') );
-     *
-     *          if( !UXC.Valid.check( $('form') ) ){
-     *              _evt.preventDefault();
-     *              return false;
-     *          }
-     * @return    {boolean}
-     */
-    Valid.check =  
-        function( _item ){ 
-            var _r = true, _item = $(_item), _type = _item.length ? _item.prop('nodeName').toLowerCase() : '';
-            if( _item.length ){
-                if( _type == 'form' ){
-                    $( _item[0].elements ).each( function(){
-                        !_logic.parse( $(this) ) && ( _r = false );
-                    });
-                } else _r = _logic.parse( _item );
+    var Valid = UXC.Valid = window.Valid =
+    {
+        /**
+         * 验证一个表单项, 如 文本框, 下拉框, 复选框, 单选框, 文本域, 隐藏域
+         * @method check
+         * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
+         * @example 
+         *          UXC.Valid.check( $('input.needValid') );
+         *          UXC.Valid.check( document.getElementById('inputNeedValid') );
+         *
+         *          if( !UXC.Valid.check( $('form') ) ){
+         *              _evt.preventDefault();
+         *              return false;
+         *          }
+         * @return    {boolean}
+         */
+        check:  
+            function( _item ){ 
+                var _r = true, _item = $(_item), _type = _item.length ? _item.prop('nodeName').toLowerCase() : '';
+                if( _item.length ){
+                    if( _type == 'form' ){
+                        $( _item[0].elements ).each( function(){
+                            !_logic.parse( $(this) ) && ( _r = false );
+                        });
+                    } else _r = _logic.parse( _item );
+                }
+                return _r;
             }
-            return _r;
-        };
-    /**
-     * 这个方法是 {@link Valid.check} 的别名
-     * @method checkAll
-     * @static
-     * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
-     * @see Valid.check
-     */
-    Valid.checkAll = Valid.check;
-     /**
-     * 清除Valid生成的错误样式
-     * @method clearError
-     * @static
-     * @param   {form|input|textarea|select|file|password}  _selector -     需要清除错误的选择器
-     * @example
-     *          UXC.Valid.clearError( 'form' );
-     *          UXC.Valid.clearError( 'input.some' );
-     */
-    Valid.clearError = 
+         /**
+         * 清除Valid生成的错误样式
+         * @method clearError
+         * @param   {form|input|textarea|select|file|password}  _selector -     需要清除错误的选择器
+         * @example
+         *          UXC.Valid.clearError( 'form' );
+         *          UXC.Valid.clearError( 'input.some' );
+         */
+        , clearError:
         function( _selector ){
             $( _selector ).each( function(){
                 var _item = $(this);
@@ -78,7 +67,18 @@
                     default: _logic.valid( $(this) ); break;
                 }
             });
-        };
+        }
+
+    };
+    /**
+     * 这个方法是 {@link Valid.check} 的别名
+     * @method checkAll
+     * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
+     * @see Valid.check
+     */
+    Valid.checkAll = Valid;
+
+    function Valid(){}
     /**
      * 响应表单子对象的 blur事件, 触发事件时, 检测并显示错误或正确的视觉效果
      * @private
