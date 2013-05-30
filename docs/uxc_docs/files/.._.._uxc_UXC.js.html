@@ -129,19 +129,19 @@
         * @example
                 UXC.import( &#x27;SomeClass&#x27; );                              //导入类 SomeClass
                 UXC.import( &#x27;SomeClass, AnotherClass&#x27; );                //导入类 SomeClass, AnotherClass
-                ///
+                //
                 ///  导入类 SomeClass, SomeClass目录下的file1.js, 
                 ///  AnotherClass, AnotherClass 下的file2.js
-                ///
+                //
                 UXC.import( &#x27;SomeClass, SomeClass/file1.js, AnotherClass/file2.js&#x27; );   
                 UXC.import( &#x27;/js/Test/Test1.js&#x27; );                      //导入文件  /js/Test/Test1.js, 如果起始处为 &quot;/&quot;, 将视为文件的绝对路径
-                ///
+                //
                 /// nginx style 的文件加载方式, 如 /js/??file1.js,file2.js,file3.js
-                ///
+                //
                 UXC.import( &#x27;Test1.js, Test2.js &#x27;, &#x27;/js/??&#x27;, true );
-                ///
+                //
                 /// 导入 URL 资源
-                ///
+                //
                 UXC.import( &#x27;http://test.com/file1.js&#x27;, &#x27;https://another.com/file2.js&#x27; );
         */
         , import: 

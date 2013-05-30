@@ -323,8 +323,8 @@
                         }
 
                         !_r && _logic.error( _item, 'alternativemsg', true );
-                        !_r && _target.length && _target.each( function(){ _logic.error( $(this), 'alternativemsg', true ); } );
-                        _r && _target.length && _target.each( function(){ _logic.valid( $(this) ); } );
+                        !_r && _target && _target.length && _target.each( function(){ _logic.error( $(this), 'alternativemsg', true ); } );
+                        _r && _target && _target.length && _target.each( function(){ _logic.valid( $(this) ); } );
 
                         return _r;
                     }

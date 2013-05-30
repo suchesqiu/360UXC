@@ -333,19 +333,19 @@
             <div class="example-content">
                 <pre class="code prettyprint"><code>           UXC.import( 'SomeClass' );                              //导入类 SomeClass
            UXC.import( 'SomeClass, AnotherClass' );                //导入类 SomeClass, AnotherClass
-           ///
+           //
            ///  导入类 SomeClass, SomeClass目录下的file1.js, 
            ///  AnotherClass, AnotherClass 下的file2.js
-           ///
+           //
            UXC.import( 'SomeClass, SomeClass/file1.js, AnotherClass/file2.js' );   
            UXC.import( '/js/Test/Test1.js' );                      //导入文件  /js/Test/Test1.js, 如果起始处为 "/", 将视为文件的绝对路径
-           ///
+           //
            /// nginx style 的文件加载方式, 如 /js/??file1.js,file2.js,file3.js
-           ///
+           //
            UXC.import( 'Test1.js, Test2.js ', '/js/??', true );
-           ///
+           //
            /// 导入 URL 资源
-           ///
+           //
            UXC.import( 'http://test.com/file1.js', 'https://another.com/file2.js' );
 </code></pre>
             </div>
