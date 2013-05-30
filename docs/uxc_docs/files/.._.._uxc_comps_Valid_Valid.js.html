@@ -167,14 +167,14 @@
     Valid.checkAll = Valid;
 
     /**
-     * 响应表单子对象的 blur事件, 触发事件时, 检测并显示错误或正确的视觉效果
+     * 响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果
      * @private
      */
     $(document).delegate( &#x27;input[type=TEXT], input[type=PASSWORD], textarea&#x27;, &#x27;blur&#x27;, function($evt){
         UXC.Valid.check( this )
     });
     /**
-     * 响应表单子对象的 change 事件, 触发事件时, 检测并显示错误或正确的视觉效果
+     * 响应表单子对象的 change 事件, 触发事件时, 检查并显示错误或正确的视觉效果
      * @private
      */
     $(document).delegate( &#x27;select, input[type=file]&#x27;, &#x27;change&#x27;, function($evt){
@@ -236,7 +236,7 @@
                     return _r;
                 }
             /**
-             * 检测 _item 是否为 Valid 的检测对象
+             * 检查 _item 是否为 Valid 的检查对象
              * @param   {selector}  _item
              */
             , isValidItem: 
@@ -301,7 +301,7 @@
                     return $(_item );
                 }
             /**
-             * 获取 _item 的检测类型, 所有可用的检测类型位于 _logic.datatype 对象
+             * 获取 _item 的检查类型, 所有可用的检查类型位于 _logic.datatype 对象
              * @param   {selector}  _item
              */
             , getDatatype: 
@@ -309,7 +309,7 @@
                     return ( _item.attr(&#x27;datatype&#x27;) || &#x27;text&#x27;).toLowerCase().replace(/\-.*/, &#x27;&#x27;);
                 }
            /**
-             * 获取 _item 的检测子类型, 所有可用的检测子类型位于 _logic.subdatatype 对象
+             * 获取 _item 的检查子类型, 所有可用的检查子类型位于 _logic.subdatatype 对象
              * @param   {selector}  _item
              */
             , getSubdatatype: 
@@ -365,11 +365,11 @@
                     return new Date( _date_str.slice(0,4), parseInt( _date_str.slice( 4, 6 ), 10 ) - 1, _date_str.slice( 6, 8) ).getTime();
                 }
             /**
-             * 此对象存储可供检测的子类型
+             * 此对象存储可供检查的子类型
              */
             , subdatatype: {
                 /**
-                 * 此类型检测 2|N个对象必须至少有一个是有输入内容的, 
+                 * 此类型检查 2|N个对象必须至少有一个是有输入内容的, 
                  * 常用于 手机/电话 二填一
                  * @param   {selector}  _item
                  * @example
@@ -419,7 +419,7 @@
                         return _r;
                     }
                 /**
-                 * 此类型检测 2|N 个对象填写的值必须一致
+                 * 此类型检查 2|N 个对象填写的值必须一致
                  * 常用于注意时密码验证/重置密码
                  * @param   {selector}  _item
                  * @example
@@ -464,15 +464,28 @@
 
             }//subdatatype
             /**
-             * 此对象存储可供检测的类型
+             * 此对象存储可供检查的类型
              */
             , datatype:{
                 /**
-                 * 检测是否为正确的数字
+                 * 检查是否为正确的数字&lt;br /&gt;
+                 * 默认范围 0 - Math.pow(10, 10)
                  * @param   {selector}  _item
                  * @attr    {require}               datatype    - n | n-整数位数.小数位数
                  * @attr    {integer|optional}      minvalue    - 数值的下限
                  * @attr    {integer|optional}      maxvalue    - 数值的上限
+                 *
+                 * @example
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_n&quot; errmsg=&quot;请填写正确的正整数&quot; datatype=&quot;n&quot; &gt;
+                        &lt;/div&gt;
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_n1&quot; errmsg=&quot;请填写正确的数字, 范围1-100&quot; datatype=&quot;n&quot; minvalue=&quot;1&quot;, maxvalue=&quot;100&quot; &gt;
+                        &lt;/div&gt;
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_n2&quot; errmsg=&quot;请填写正确的数字&quot; datatype=&quot;n-7.2&quot; &gt;
+                        &lt;/div&gt;
+                 *
                  */
                 n: 
                     function( _item ){
@@ -502,12 +515,16 @@
                         return _r;
                     }
                 /**
-                 * 检测是否为合法的日期,
+                 * 检查是否为合法的日期,
                  * 日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD
                  * @param   {selector}  _item
                  * @attr    {require}               datatype    - d
                  * @attr    {date string|optional}  minvalue    - 日期的下限
                  * @attr    {date string|optional}  maxvalue    - 日期的上限
+                 * @example
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_d&quot; errmsg=&quot;请填写正确的日期范围2013-05-01 - 2013-05-31&quot; datatype=&quot;daterange&quot; minvalue=&quot;2013-05-01&quot; maxvalue=&quot;2013-05-31&quot; &gt;
+                        &lt;/div&gt;
                  */
                 , d: 
                     function( _item ){
@@ -533,7 +550,7 @@
                         return _r;
                     }
                 /**
-                 * 检测两个输入框的日期
+                 * 检查两个输入框的日期
                  * 日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD
                  * @param   {selector}  _item
                  * @attr    {require}               datatype    - datarange
@@ -541,6 +558,14 @@
                  * @attr    {selector|optional}     toDateEl    - 结束日期选择器
                  * @attr    {date string|optional}  minvalue    - 日期的下限
                  * @attr    {date string|optional}  maxvalue    - 日期的上限
+                 * @example
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_daterange&quot; errmsg=&quot;请填写正确的日期范围,并且起始日期不能大于结束日期&quot; id=&quot;start_date&quot; 
+                                datatype=&quot;daterange&quot; toDateEl=&quot;end_date&quot; emEl=&quot;date-err-em&quot; &gt;
+                            - &lt;input type=&quot;TEXT&quot; name=&quot;company_daterange&quot; errmsg=&quot;请填写正确的日期范围,并且起始日期不能大于结束日期&quot; id=&quot;end_date&quot; 
+                                datatype=&quot;daterange&quot; fromDateEl=&quot;start_date&quot; emEl=&quot;date-err-em&quot; &gt;
+                            &lt;br /&gt;&lt;em id=&quot;date-err-em&quot;&gt;&lt;/em&gt;
+                        &lt;/div&gt;
                  */
                 , daterange:
                     function( _item ){
@@ -580,8 +605,12 @@
                         return _r;
                     }
                 /**
-                 * 检测时间格式, 格式为 mm:dd:ss
+                 * 检查时间格式, 格式为 mm:dd:ss
                  * @param   {selector}  _item
+                 * @example
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_time&quot; errmsg=&quot;正确的时间, 格式为 hh:nn:ss&quot; datatype=&quot;time&quot; &gt;
+                        &lt;/div&gt;
                  */
                 , time: 
                     function( _item ){
@@ -590,8 +619,12 @@
                         return _r;
                     }
                 /**
-                 * 检测时间格式, 格式为 mm:dd:ss
+                 * 检查时间格式, 格式为 mm:dd:ss
                  * @param   {selector}  _item
+                 * @example
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_time&quot; errmsg=&quot;正确的时间, 格式为 hh:nn&quot; datatype=&quot;minute&quot; &gt;
+                        &lt;/div&gt;
                  */
                 , minute: 
                     function( _item ){
@@ -599,85 +632,197 @@
                         !_r &amp;&amp; _logic.error( _item );
                         return _r;
                     }
-
-
+                /**
+                 * 检查银行卡号码&lt;br /&gt;
+                 * 格式为 d{19} | d{16} | 1111 1111 1111 1111 111 | 1111 1111 1111 1111111
+                 * @param   {selector}  _item
+                 * @example
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_idnumber&quot; 
+                                datatype=&quot;idnumber&quot; errmsg=&quot;请填写正确的身份证号码&quot;&gt;
+                        &lt;/div&gt;
+                 */
                 , bankcard:
                     function( _item ){
                         var _r = /^[1-9][\d]{3}(?: |)(?:[\d]{4}(?: |))(?:[\d]{4}(?: |))(?:[\d]{4})(?:(?: |)[\d]{3}|)$/.test( _item.val() );
                         !_r &amp;&amp; _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检查中文姓名&lt;br /&gt;
+                 * 格式: 汉字和大小写字母
+                 * 规则: 长度 2-32个字节, 非 ASCII 算2个字节
+                 * @param   {selector}  _item
+                 * @example
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_cnname&quot; 
+                                datatype=&quot;cnname&quot; reqmsg=&quot;姓名&quot; errmsg=&quot;请填写正确的姓名&quot;&gt;
+                        &lt;/div&gt;
+                 */
                 , cnname:
                     function( _item ){
                         var _r = _logic.bytelen( _item.val() ) &lt; 32 &amp;&amp; /^[\u4e00-\u9fa5a-zA-Z.\u3002\u2022]{2,32}$/.test( _item.val() );
                         !_r &amp;&amp; _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检查注册用户名&lt;br /&gt;
+                 * 格式: a-zA-Z0-9_-
+                 * 规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 29
+                 * @param   {selector}  _item
+                 * @example
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_username&quot; 
+                                datatype=&quot;username&quot; reqmsg=&quot;用户名&quot; errmsg=&quot;请填写正确的用户名&quot;&gt;
+                        &lt;/div&gt;
+                 */
                 , username:
                     function( _item ){
                         var _r = /^[a-zA-Z0-9][\w-]{2,29}$/.test( _item.val() );
                         !_r &amp;&amp; _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检查身份证号码&lt;br /&gt;
+                 * 目前只使用最简单的位数判断~ 有待完善
+                 * @param   {selector}  _item
+                 * @example
+                    &lt;div class=&quot;f-l&quot;&gt;
+                        &lt;input type=&quot;TEXT&quot; name=&quot;company_idnumber&quot; 
+                            datatype=&quot;idnumber&quot; errmsg=&quot;请填写正确的身份证号码&quot;&gt;
+                    &lt;/div&gt;
+                 */
                 , idnumber:
                     function( _item ){
                         var _r = /^[0-9]{15}(?:[0-9]{2}(?:[0-9xX]|)|)$/.test( _item.val() );
                         !_r &amp;&amp; _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检查手机号码&lt;br /&gt;
+                 * @param   {selector}  _item
+                 * @example
+                    &lt;div class=&quot;f-l&quot;&gt;
+                        &lt;input type=&quot;TEXT&quot; name=&quot;company_mobile&quot; 
+                            datatype=&quot;mobilecode&quot; subdatatype=&quot;alternative&quot; datatarget=&quot;input[name=company_phonecode]&quot; alternativemsg=&quot; &quot;
+                            errmsg=&quot;请填写正确的手机号码&quot;&gt;
+                    &lt;/div&gt;
+                 */
                 , mobilecode: 
                     function( _item ){
-                        var _r =  /^(13|15|18|14)\d{9}$/.test( _item.val() );
+                        var _r =  /^(?:13|14|15|16|18|19)\d{9}$/.test( _item.val() );
                         !_r &amp;&amp; _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检查手机号码加强方法
+                 * 格式: [+国家代码] [零]11位数字
+                 * @param   {selector}  _item
+                 * @example
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_mobilezone&quot; 
+                                datatype=&quot;mobilezonecode&quot; 
+                                errmsg=&quot;请填写正确的手机号码&quot;&gt;
+                        &lt;/div&gt;
+                 */
                 , mobilezonecode: 
                     function( _item ){
-                        var _r = /^(?:\+[0-9]{1,6} |)(?:0|)(?:13|15|18|14)\d{9}$/.test( _item.val() );
+                        var _r = /^(?:\+[0-9]{1,6} |)(?:0|)(?:13|14|15|16|18|19)\d{9}$/.test( _item.val() );
                         !_r &amp;&amp; _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检查电话号码
+                 * 格式: [区号]7/8位电话号码
+                 * @param   {selector}  _item
+                 * @example
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_phone&quot; 
+                                datatype=&quot;phone&quot; 
+                                errmsg=&quot;请填写正确的电话号码&quot;&gt;
+                        &lt;/div&gt;
+                 */
                 , phone:
                     function( _item ){
                         var _r = /^(?:0(?:10|2\d|[3-9]\d\d)(?: |\-|)|)[1-9]\d{6,7}$/.test( _item.val() );
                         !_r &amp;&amp; _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检查电话号码
+                 * 格式: [+国家代码][ ][电话区号][ ]7/8位电话号码[#分机号]
+                 * @param   {selector}  _item
+                 * @example
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_mobilezone&quot; 
+                                datatype=&quot;phoneall&quot; 
+                                errmsg=&quot;请填写正确的电话号码&quot;&gt;
+                        &lt;/div&gt;
+                 */
                 , phoneall:
                     function( _item ){
                         var _r = /^(?:\+[\d]{1,6}(?: |\-)|)(?:0[\d]{2,3}(?:\-| |)|)[1-9][\d]{6,7}(?:(?: |)\#[\d]{1,6}|)$/.test( _item.val() );
                         !_r &amp;&amp; _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检查电话区号
+                 * @param   {selector}  _item
+                 * @example
+                        &lt;div&gt;
+                            &lt;input type=&#x27;TEXT&#x27; name=&#x27;company_phonezone&#x27; style=&quot;width:40px;&quot; value=&#x27;&#x27; size=&quot;4&quot; 
+                                datatype=&quot;phonezone&quot; emEl=&quot;#phone-err-em&quot; errmsg=&quot;请填写正确的电话区号&quot; /&gt;
+                        &lt;/div&gt;
+                 */
                 , phonezone: 
                     function( _item ){
                         var _r = /^[0-9]{3,4}$/.test( _item.val() );
                         !_r &amp;&amp; _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检查电话号码
+                 * 格式: 7/8位数字
+                 * @param   {selector}  _item
+                 * @example
+                        &lt;div&gt;
+                            &lt;input type=&#x27;TEXT&#x27; name=&#x27;company_phonecode&#x27; style=&quot;width:80px;&quot; value=&#x27;&#x27; size=&quot;8&quot; 
+                                datatype=&quot;phonecode&quot; errmsg=&quot;请检查电话号码格式&quot; emEl=&quot;#phone-err-em&quot; /&gt;
+                        &lt;/div&gt;
+                 */
                 , phonecode: 
                     function( _item ){
                         var _r =  /^[0-9]{7,8}$/.test( _item.val() );
                         !_r &amp;&amp; _logic.error( _item );
                         return _r;
                     }
-                
+                /**
+                 * 检查电话分机号码
+                 * @param   {selector}  _item
+                 * @example
+                        &lt;div&gt;
+                            &lt;input type=&#x27;TEXT&#x27; name=&#x27;company_phoneext&#x27; style=&quot;width:40px;&quot; value=&#x27;&#x27; size=&quot;4&quot; 
+                                datatype=&quot;phoneext&quot; emEl=&quot;#phone-err-em&quot; errmsg=&quot;请填写正确的分机号&quot; /&gt;
+                        &lt;/div&gt;
+                 */
                 , phoneext: 
                     function( _item ){
                         var _r =  /^[0-9]{1,6}$/.test( _item.val() );
                         !_r &amp;&amp; _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检查内容的长度
+                 * @param   {selector}  _item
+                 * @attr    {string}    datatype        数字类型 text|bytetext|richtext
+                 *
+                 * @attr    {integer}   minlength       内容最小长度
+                 * @attr    {integer}   maxlength       内容最大长度
+                 * @example
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_name&quot; minlength=&quot;2&quot; maxlength=&quot;120&quot; reqmsg=&quot;公司名称&quot; errmsg=&quot;请检查格式,长度2-120&quot; /&gt; &lt;em&gt;公司名称描述&lt;/em&gt;
+                        &lt;/div&gt;
+                 */
                 , &#x27;length&#x27;: 
                     function( _item ){
                         var _r = true, _dt = _logic.getDatatype( _item ), _min, _max, _val = _item.val(), _len;
@@ -717,7 +862,15 @@
 
                         return _r;
                     }
-                
+                /**
+                 * 检查内容是否为空,
+                 * 如果声明了该属性, 那么 value 须不为空
+                 * @param   {selector}  _item
+                 * @example
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_name&quot; reqmsg=&quot;公司名称&quot; /&gt; &lt;em&gt;公司名称描述&lt;/em&gt;
+                        &lt;/div&gt;
+                 */
                 , reqmsg: 
                     function( _item ){
                         var _r;
@@ -731,7 +884,17 @@
                         UXC.log( &#x27;regmsgValid: &#x27; + _r );
                         return _r;
                     }
-
+                /**
+                 * 自定义正则校验
+                 * @param   {selector}  _item
+                 *
+                 * @attr    {string}    datatype        reg|reg-/规则/选项
+                 * @attr    {string}    reg-pattern     正则规则 /规则/选项
+                 *
+                 * @example
+                            &lt;div&gt;&lt;input type=&quot;TEXT&quot; name=&quot;company_addr&quot; datatype=&quot;reg&quot; reg-pattern=&quot;/^[\s\S]{2,120}$/i&quot; errmsg=&quot;请填写正确的地址&quot;&gt;&lt;/div&gt;
+                            &lt;div&gt;&lt;input type=&quot;TEXT&quot; name=&quot;company_addr&quot; datatype=&quot;reg-/^[\s\S]{2,120}$/i&quot; errmsg=&quot;请填写正确的地址&quot;&gt;&lt;/div&gt;
+                 */
                 , reg: 
                     function( _item ){
                         var _r = true, _pattern;
@@ -747,7 +910,21 @@
 
                         return _r;
                     }
-
+                /**
+                 * 检查验证码&lt;br /&gt;
+                 * 格式: 为 0-9a-zA-Z, 长度 默认为4
+                 * @param   {selector}  _item
+                 * @attr    {string}    datatype    vcode|vcode-[\d]+
+                 * @example
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_vcode&quot; style=&quot;width: 40px;&quot;
+                                datatype=&quot;vcode&quot; reqmsg=&quot;验证码&quot; errmsg=&quot;请填写正确的验证码&quot;&gt;
+                        &lt;/div&gt;
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_vcode&quot; style=&quot;width: 40px;&quot;
+                                datatype=&quot;vcode-5&quot; errmsg=&quot;请填写正确的验证码&quot;&gt;
+                        &lt;/div&gt;
+                 */
                 , vcode:
                     function( _item ){
                         var _r, _len = parseInt( _item.attr(&#x27;datatype&#x27;).trim().replace( /^vcode(?:\-|)/i, &#x27;&#x27; ), 10 ) || 4; 
@@ -756,35 +933,76 @@
                         !_r &amp;&amp; _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检查文本长度
+                 * @see _logic.datatype.length
+                 * @attr    {string}    datatype    text
+                 */
                 , text: function(_item){ return true; }
+                /**
+                 * 检查文本的字节长度
+                 * @see _logic.datatype.length
+                 * @attr    {string}    datatype    bytetext
+                 */
                 , bytetext: function(_item){ return true; }
+                /**
+                 * 检查富文本的字节
+                 * @see _logic.datatype.length
+                 * @attr    {string}    datatype    richtext
+                 */
                 , richtext: function(_item){ return true; }
-               
+                /**
+                 * 检查URL
+                 * @param   {selector}  _item
+                 * @example
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_url&quot; datatype=&quot;url&quot; errmsg=&quot;请填写正确的网址&quot;&gt;
+                        &lt;/div&gt;
+                 */
                 , url: 
                     function( _item ){
                         var _r = /^((http|ftp|https):\/\/|)[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;amp;:\/~+#-]*[\w@?^=%&amp;amp;\/~+#-])$/.test( _item.val() );
                         !_r &amp;&amp; _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检查域名
+                 * @param   {selector}  _item
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_domain&quot; datatype=&quot;domain&quot; reqmsg=&quot;域名&quot; errmsg=&quot;请填写正确的域名&quot;&gt;
+                        &lt;/div&gt;
+                 */
+                , domain:
+                    function( _item ){
+                        var _r = /^(?:(?:f|ht)tp\:\/\/|)((?:(?:(?:\w[\.\-\+]?)*)\w)*)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})(?:\/|)$/.test( _item.val() );
+                        !_r &amp;&amp; _logic.error( _item );
+                        return _r;
+                    }
+                /**
+                 * 检查电子邮件
+                 * @param   {selector}  _item
+                 * @example
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_email&quot; datatype=&quot;email&quot; reqmsg=&quot;邮箱&quot; errmsg=&quot;请填写正确的邮箱&quot;&gt;
+                        &lt;/div&gt;
+                 */
                 , email: 
                     function( _item ){
                         var _r = /^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test( _item.val() );
                         !_r &amp;&amp; _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检查邮政编码
+                 * @param   {selector}  _item
+                 * @example
+                        &lt;div class=&quot;f-l&quot;&gt;
+                            &lt;input type=&quot;TEXT&quot; name=&quot;company_zipcode&quot; datatype=&quot;zipcode&quot; errmsg=&quot;请填写正确的邮编&quot;&gt;
+                        &lt;/div&gt;
+                 */
                 , zipcode: 
                     function( _item ){
                         var _r = /^[0-9]{6}$/.test( _item.val() );
-                        !_r &amp;&amp; _logic.error( _item );
-                        return _r;
-                    }
-
-                , domain:
-                    function( _item ){
-                        var _r = /^(?:(?:f|ht)tp\:\/\/|)((?:(?:(?:\w[\.\-\+]?)*)\w)*)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})(?:\/|)$/.test( _item.val() );
                         !_r &amp;&amp; _logic.error( _item );
                         return _r;
                     }

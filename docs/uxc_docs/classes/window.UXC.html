@@ -331,10 +331,22 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code>           UXC.import( 'Test' );
-           UXC.import( 'Test/Test1.js' );
-           UXC.import( '/js/Test/Test1.js' );
+                <pre class="code prettyprint"><code>           UXC.import( 'SomeClass' );                              //导入类 SomeClass
+           UXC.import( 'SomeClass, AnotherClass' );                //导入类 SomeClass, AnotherClass
+           ///
+           ///  导入类 SomeClass, SomeClass目录下的file1.js, 
+           ///  AnotherClass, AnotherClass 下的file2.js
+           ///
+           UXC.import( 'SomeClass, SomeClass/file1.js, AnotherClass/file2.js' );   
+           UXC.import( '/js/Test/Test1.js' );                      //导入文件  /js/Test/Test1.js, 如果起始处为 "/", 将视为文件的绝对路径
+           ///
+           /// nginx style 的文件加载方式, 如 /js/??file1.js,file2.js,file3.js
+           ///
            UXC.import( 'Test1.js, Test2.js ', '/js/??', true );
+           ///
+           /// 导入 URL 资源
+           ///
+           UXC.import( 'http://test.com/file1.js', 'https://another.com/file2.js' );
 </code></pre>
             </div>
         </div>
@@ -380,7 +392,7 @@
             
         
         
-        <a href="../files/.._.._uxc_UXC.js.html#l88"><code>..&#x2F;..&#x2F;uxc&#x2F;UXC.js:88</code></a>
+        <a href="../files/.._.._uxc_UXC.js.html#l101"><code>..&#x2F;..&#x2F;uxc&#x2F;UXC.js:101</code></a>
         
         </p>
 
@@ -457,7 +469,7 @@
             
         
         
-        <a href="../files/.._.._uxc_UXC.js.html#l102"><code>..&#x2F;..&#x2F;uxc&#x2F;UXC.js:102</code></a>
+        <a href="../files/.._.._uxc_UXC.js.html#l115"><code>..&#x2F;..&#x2F;uxc&#x2F;UXC.js:115</code></a>
         
         </p>
 

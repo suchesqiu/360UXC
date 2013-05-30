@@ -846,20 +846,28 @@
                 /**
                  * 检查文本长度
                  * @see _logic.datatype.length
+                 * @attr    {string}    datatype    text
                  */
                 , text: function(_item){ return true; }
                 /**
                  * 检查文本的字节长度
                  * @see _logic.datatype.length
+                 * @attr    {string}    datatype    bytetext
                  */
                 , bytetext: function(_item){ return true; }
                 /**
                  * 检查富文本的字节
                  * @see _logic.datatype.length
+                 * @attr    {string}    datatype    richtext
                  */
                 , richtext: function(_item){ return true; }
                 /**
-                 * 
+                 * 检查URL
+                 * @param   {selector}  _item
+                 * @example
+                        <div class="f-l">
+                            <input type="TEXT" name="company_url" datatype="url" errmsg="请填写正确的网址">
+                        </div>
                  */
                 , url: 
                     function( _item ){
@@ -867,21 +875,41 @@
                         !_r && _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检查域名
+                 * @param   {selector}  _item
+                        <div class="f-l">
+                            <input type="TEXT" name="company_domain" datatype="domain" reqmsg="域名" errmsg="请填写正确的域名">
+                        </div>
+                 */
                 , domain:
                     function( _item ){
                         var _r = /^(?:(?:f|ht)tp\:\/\/|)((?:(?:(?:\w[\.\-\+]?)*)\w)*)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})(?:\/|)$/.test( _item.val() );
                         !_r && _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检查电子邮件
+                 * @param   {selector}  _item
+                 * @example
+                        <div class="f-l">
+                            <input type="TEXT" name="company_email" datatype="email" reqmsg="邮箱" errmsg="请填写正确的邮箱">
+                        </div>
+                 */
                 , email: 
                     function( _item ){
                         var _r = /^[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test( _item.val() );
                         !_r && _logic.error( _item );
                         return _r;
                     }
-
+                /**
+                 * 检查邮政编码
+                 * @param   {selector}  _item
+                 * @example
+                        <div class="f-l">
+                            <input type="TEXT" name="company_zipcode" datatype="zipcode" errmsg="请填写正确的邮编">
+                        </div>
+                 */
                 , zipcode: 
                     function( _item ){
                         var _r = /^[0-9]{6}$/.test( _item.val() );

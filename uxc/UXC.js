@@ -37,26 +37,39 @@
         * @param    {bool}      _nginxStyle -       指定是否需要使用 nginx 路径输出脚本资源
         *
         * @example
-                UXC.import( 'Test' );
-                UXC.import( 'Test/Test1.js' );
-                UXC.import( '/js/Test/Test1.js' );
+                UXC.import( 'SomeClass' );                              //导入类 SomeClass
+                UXC.import( 'SomeClass, AnotherClass' );                //导入类 SomeClass, AnotherClass
+                ///
+                ///  导入类 SomeClass, SomeClass目录下的file1.js, 
+                ///  AnotherClass, AnotherClass 下的file2.js
+                ///
+                UXC.import( 'SomeClass, SomeClass/file1.js, AnotherClass/file2.js' );   
+                UXC.import( '/js/Test/Test1.js' );                      //导入文件  /js/Test/Test1.js, 如果起始处为 "/", 将视为文件的绝对路径
+                ///
+                /// nginx style 的文件加载方式, 如 /js/??file1.js,file2.js,file3.js
+                ///
                 UXC.import( 'Test1.js, Test2.js ', '/js/??', true );
+                ///
+                /// 导入 URL 资源
+                ///
+                UXC.import( 'http://test.com/file1.js', 'https://another.com/file2.js' );
         */
         , import: 
             function( _names, _basePath, _nginxStyle ){
                 if( ! _names ) return;
-                var _p = this;
+                var _p = this, _urlRe = /\:\/\//;
 
                 var _paths = [];
 
                 $.each( _names.split(/[\s]*?,[\s]*/), function( _ix, _val ){
 
-                    var _isCustomPath = /\//.test( _val ) || !!_basePath;
+                    var _isCustomPath = _urlRe.test(_val) || /\//.test( _val ) || !!_basePath;
 
                     if( !/\.js$/i.test( _val ) & !_basePath )  _val =  [ _val, '/', _val, '.js' ].join('');
 
                     if( _isCustomPath ){
-                        if( _basePath && !_nginxStyle ) _val = _basePath + _val;
+                        if( _urlRe.test( _val ) ){} 
+                        else if( _basePath && !_nginxStyle ) _val = _basePath + _val;
                         else if( !/[\/\\]/.test( _val.slice( 0, 1 ) ) && !_nginxStyle ) _val = _p.PATH + _val;
                     }else{
                         _val = _p.PATH + _val;
@@ -65,7 +78,7 @@
                      * 去除多余的 正叙扛或反叙扛
                      * @private
                      */
-                    _val = _val.replace( /(\\)\1|(\/)\2/g, '$1' ); 
+                    !_urlRe.test( _val ) && ( _val = _val.replace( /(\\)\1|(\/)\2/g, '$1' ) ); 
 
                     if( !_nginxStyle ){
                         _paths.push( '<script src="'+_val+'"><\/script>' );
