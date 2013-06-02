@@ -17,10 +17,17 @@ div.UXCCalendar{
     text-align: center;
 }
 
+div.UXCCalendar img{
+    padding: 0px!important;
+    margin: 0px!important;
+    border:0px!important;
+}
 
 div.UXCCalendar a{
     text-decoration:none!important;
     color: #000!important;
+    outline: none;
+    blr:expression(this.onFocus=this.blur());
 }
 
 div.UXCCalendar td.weekend a {
@@ -61,7 +68,7 @@ div.UXCCalendar img.UImg{
 }
 
 div.UXCCalendar select{
-    width: 86px;
+    width: 85px;
 }
 
 div.UXCCalendar table a{
