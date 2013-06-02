@@ -5,6 +5,7 @@
      * @namespace UXC
      * @class Panel
      * @static
+     * @private
      * @uses jQuery
      * @version dev 0.1
      * @author  qiushaowei   <suches@btbtd.org> | {@link http://uxc.360.cn|360 UXC-FE Team}

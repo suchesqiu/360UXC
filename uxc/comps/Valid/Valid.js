@@ -32,9 +32,9 @@
                 var _r = true, _item = $(_item), _type = _item.length ? _item.prop('nodeName').toLowerCase() : '';
                 if( _item.length ){
                     if( _type == 'form' ){
-                        $( _item[0].elements ).each( function(){
-                            !_logic.parse( $(this) ) && ( _r = false );
-                        });
+                        for( var i = 0, j = _item[0].length; i < j; i++ ){
+                            !_logic.parse( $(_item[0][i]) ) && ( _r = false );
+                        }
                     } else _r = _logic.parse( _item );
                 }
                 return _r;
@@ -55,11 +55,11 @@
                 switch( _item.prop('nodeName').toLowerCase() ){
                     case 'form': 
                         {
-                            $( _item[0].elements ).each( function(){
-                                if( $(this).is('[disabled]') ) return;
-                                _logic.valid( $(this) );
-                            });
-
+                            for( var i = 0, j = _item[0].length; i < j; i++ ){
+                                var tmp = $(_item[0][i]);
+                                if( tmp.is('[disabled]') ) return;
+                                _logic.valid( tmp );
+                            }
                             break;
                         }
                     default: _logic.valid( $(this) ); break;
@@ -80,7 +80,7 @@
      * 响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果
      * @private
      */
-    $(document).delegate( 'input[type=TEXT], input[type=PASSWORD], textarea', 'blur', function($evt){
+    $(document).delegate( 'input[type=text], input[type=password], textarea', 'blur', function($evt){
         UXC.Valid.check( this )
     });
     /**
@@ -255,7 +255,7 @@
 
                     UXC.log( '_msg: ' + _msg, _item.prop('type').toLowerCase() );
 
-                    return _msg.trim();
+                    return $.trim(_msg);
                 }
             /**
              * 计算字符串的字节长度, 非 ASCII 0-255的字符视为两个字节
@@ -783,11 +783,12 @@
                  */
                 , reqmsg: 
                     function( _item ){
+
                         var _r;
                         if( _item.val() && _item.val().constructor == Array ){
                             _r = !!( ( _item.val().join('') + '' ).trim() );
                         }else{
-                            _r = !!( ( _item.val() ||'').trim() );
+                            _r = !!$.trim( _item.val() ||'') ;
                         }
 
                         !_r && _logic.error( _item, 'reqmsg' );
@@ -809,7 +810,7 @@
                     function( _item ){
                         var _r = true, _pattern;
                         if( _item.is( '[reg-pattern]' ) ) _pattern = _item.attr( 'reg-pattern' );
-                        if( !_pattern ) _pattern = _item.attr('datatype').trim().replace(/^reg(?:\-|)/i, '');
+                        if( !_pattern ) _pattern = $.trim(_item.attr('datatype')).replace(/^reg(?:\-|)/i, '');
 
                         _pattern.replace( /^\/([\s\S]*)\/([\w]{0,3})$/, function( $0, $1, $2 ){
                             UXC.log( $1, $2 );

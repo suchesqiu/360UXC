@@ -1,1 +1,114 @@
- 
+
+input.UXCCalendar_btn{
+    border:none!important;
+    background: transparent url('images/Calendar.gif') no-repeat left top!important;
+    width: 21px!important;
+    height: 18px!important;
+    cursor: pointer;
+}
+
+div.UXCCalendar{
+    padding: 0px!important;
+    margin: 0px!important;
+    background: #F2F2F2!important;
+    width: 222px!important;
+    border:2px solid #a1a1a1;
+    z-index: 999;
+    text-align: center;
+}
+
+
+div.UXCCalendar a{
+    text-decoration:none!important;
+    color: #000!important;
+}
+
+div.UXCCalendar td.weekend a {
+    color: #82B341!important;
+}
+
+div.UXCCalendar td.cur{
+    background:#999!important;
+}
+
+div.UXCCalendar td.cur a{
+    color:#fff!important;
+}
+
+div.UXCCalendar td.other a{
+    color: #999!important;
+}
+
+div.UXCCalendar td a:hover {
+    background:#ddd!important;
+    color:#fff!important;
+}
+
+div.UXCCalendar table a, div.UXCCalendar th{
+    padding: 5px 4px!important;
+}
+
+div.UXCCalendar .UHeader{
+    margin: 4px auto 0px;
+}
+
+div.UXCCalendar img.UImg{
+    background: transparent url('images/UpAndDown.gif') no-repeat left top!important;
+    width: 13px!important;
+    height: 18px!important;
+    margin-top: -1px;
+    cursor: pointer;
+}
+
+div.UXCCalendar select{
+    width: 86px;
+}
+
+div.UXCCalendar table a{
+    display:block!important;
+    
+}
+
+div.UXCCalendar table{ 
+    width:208px!important;
+    font-family: sans-serif!important;
+    font-size: 12px!important;
+    border-collapse: collapse;
+    margin: 0px auto!important;
+}
+
+div.UXCCalendar th, div.UXCCalendar td{
+    text-align: center!important;
+    vertical-align: middle!important;
+}
+
+div.UXCCalendar thead{
+    font-size:12px!important;
+}
+
+div.UXCCalendar tbody{
+}
+
+div.UXCCalendar .UTableBorder{
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+div.UXCCalendar .UTableBorder td{
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc; 
+    padding:0!important;
+}
+
+div.UXCCalendar td{
+    font-weight: normal!important;
+}
+
+div.UXCCalendar .UFooter{
+    margin: 4px auto 3px;
+}
+
+div.UXCCalendar .UFooter button{
+    cursor: pointer;
+}
+
