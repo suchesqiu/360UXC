@@ -70,7 +70,7 @@
                 "jQuery"
             ],
             "example": [
-                " \n     UXC.import( 组件名[,组件名] );"
+                " \n     UXC.use( 组件名[,组件名] );"
             ],
             "author": "qiushaowei   <suches@btbtd.org> | {@link http://uxc.360.cn|360 UXC-FE Team}",
             "date": "2013-05-22"
@@ -682,7 +682,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 797,
+            "line": 798,
             "description": "自定义正则校验",
             "params": [
                 {
@@ -700,7 +700,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 823,
+            "line": 824,
             "description": "检查验证码<br />\n格式: 为 0-9a-zA-Z, 长度 默认为4",
             "params": [
                 {
@@ -718,7 +718,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 846,
+            "line": 847,
             "description": "检查文本长度",
             "see": [
                 "_logic.datatype.length"
@@ -729,7 +729,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 852,
+            "line": 853,
             "description": "检查文本的字节长度",
             "see": [
                 "_logic.datatype.length"
@@ -740,7 +740,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 858,
+            "line": 859,
             "description": "检查富文本的字节",
             "see": [
                 "_logic.datatype.length"
@@ -751,7 +751,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 864,
+            "line": 865,
             "description": "检查URL",
             "params": [
                 {
@@ -768,7 +768,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 878,
+            "line": 879,
             "description": "检查域名",
             "params": [
                 {
@@ -782,7 +782,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 891,
+            "line": 892,
             "description": "检查电子邮件",
             "params": [
                 {
@@ -799,7 +799,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 905,
+            "line": 906,
             "description": "检查邮政编码",
             "params": [
                 {
@@ -839,7 +839,7 @@
             "line": 29,
             "description": "导入UXC组件",
             "itemtype": "method",
-            "name": "import",
+            "name": "use",
             "params": [
                 {
                     "name": "_names",
@@ -858,7 +858,7 @@
                 }
             ],
             "example": [
-                "\n               UXC.import( 'SomeClass' );                              //导入类 SomeClass\n               UXC.import( 'SomeClass, AnotherClass' );                //导入类 SomeClass, AnotherClass\n               //\n               ///  导入类 SomeClass, SomeClass目录下的file1.js, \n               ///  AnotherClass, AnotherClass 下的file2.js\n               //\n               UXC.import( 'SomeClass, SomeClass/file1.js, AnotherClass/file2.js' );   \n               UXC.import( '/js/Test/Test1.js' );                      //导入文件  /js/Test/Test1.js, 如果起始处为 \"/\", 将视为文件的绝对路径\n               //\n               /// nginx style 的文件加载方式, 如 /js/??file1.js,file2.js,file3.js\n               //\n               UXC.import( 'Test1.js, Test2.js ', '/js/??', true );\n               //\n               /// 导入 URL 资源\n               //\n               UXC.import( 'http://test.com/file1.js', 'https://another.com/file2.js' );"
+                "\n               UXC.use( 'SomeClass' );                              //导入类 SomeClass\n               UXC.use( 'SomeClass, AnotherClass' );                //导入类 SomeClass, AnotherClass\n               //\n               ///  导入类 SomeClass, SomeClass目录下的file1.js, \n               ///  AnotherClass, AnotherClass 下的file2.js\n               //\n               UXC.use( 'SomeClass, SomeClass/file1.js, AnotherClass/file2.js' );   \n               UXC.use( '/js/Test/Test1.js' );                      //导入文件  /js/Test/Test1.js, 如果起始处为 \"/\", 将视为文件的绝对路径\n               //\n               /// nginx style 的文件加载方式, 如 /js/??file1.js,file2.js,file3.js\n               //\n               UXC.use( 'Test1.js, Test2.js ', '/js/??', true );\n               //\n               /// 导入 URL 资源\n               //\n               UXC.use( 'http://test.com/file1.js', 'https://another.com/file2.js' );"
             ],
             "class": "window.UXC",
             "namespace": "window"
@@ -997,27 +997,27 @@
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:797"
+            "line": " ../../uxc/comps/Valid/Valid.js:798"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:797"
+            "line": " ../../uxc/comps/Valid/Valid.js:798"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:823"
+            "line": " ../../uxc/comps/Valid/Valid.js:824"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:846"
+            "line": " ../../uxc/comps/Valid/Valid.js:847"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:852"
+            "line": " ../../uxc/comps/Valid/Valid.js:853"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:858"
+            "line": " ../../uxc/comps/Valid/Valid.js:859"
         },
         {
             "message": "unknown tag: date",
@@ -1169,39 +1169,39 @@
         },
         {
             "message": "Missing item type\n自定义正则校验",
-            "line": " ../../uxc/comps/Valid/Valid.js:797"
+            "line": " ../../uxc/comps/Valid/Valid.js:798"
         },
         {
             "message": "Missing item type\n检查验证码<br />\n格式: 为 0-9a-zA-Z, 长度 默认为4",
-            "line": " ../../uxc/comps/Valid/Valid.js:823"
+            "line": " ../../uxc/comps/Valid/Valid.js:824"
         },
         {
             "message": "Missing item type\n检查文本长度",
-            "line": " ../../uxc/comps/Valid/Valid.js:846"
+            "line": " ../../uxc/comps/Valid/Valid.js:847"
         },
         {
             "message": "Missing item type\n检查文本的字节长度",
-            "line": " ../../uxc/comps/Valid/Valid.js:852"
+            "line": " ../../uxc/comps/Valid/Valid.js:853"
         },
         {
             "message": "Missing item type\n检查富文本的字节",
-            "line": " ../../uxc/comps/Valid/Valid.js:858"
+            "line": " ../../uxc/comps/Valid/Valid.js:859"
         },
         {
             "message": "Missing item type\n检查URL",
-            "line": " ../../uxc/comps/Valid/Valid.js:864"
+            "line": " ../../uxc/comps/Valid/Valid.js:865"
         },
         {
             "message": "Missing item type\n检查域名",
-            "line": " ../../uxc/comps/Valid/Valid.js:878"
+            "line": " ../../uxc/comps/Valid/Valid.js:879"
         },
         {
             "message": "Missing item type\n检查电子邮件",
-            "line": " ../../uxc/comps/Valid/Valid.js:891"
+            "line": " ../../uxc/comps/Valid/Valid.js:892"
         },
         {
             "message": "Missing item type\n检查邮政编码",
-            "line": " ../../uxc/comps/Valid/Valid.js:905"
+            "line": " ../../uxc/comps/Valid/Valid.js:906"
         },
         {
             "message": "Missing item type\n去除多余的 正叙扛或反叙扛",

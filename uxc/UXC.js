@@ -7,7 +7,7 @@
      * @static
      * @requires    jQuery
      * @example 
-     *      UXC.import( 组件名[,组件名] );
+     *      UXC.use( 组件名[,组件名] );
      *
      * @author  qiushaowei   <suches@btbtd.org> | {@link http://uxc.360.cn|360 UXC-FE Team}
      * @date    2013-05-22
@@ -28,7 +28,7 @@
         , debug: false
        /**
         * 导入UXC组件
-        * @method   import
+        * @method   use
         * @param    {string}    _names -            模块名
         *                                           或者模块下面的某个js文件(test/test1.js, 路径前面不带"/"将视为test模块下的test1.js)
         *                                           或者一个绝对路径的js文件, 路径前面带 "/"
@@ -37,24 +37,24 @@
         * @param    {bool}      _nginxStyle -       指定是否需要使用 nginx 路径输出脚本资源
         *
         * @example
-                UXC.import( 'SomeClass' );                              //导入类 SomeClass
-                UXC.import( 'SomeClass, AnotherClass' );                //导入类 SomeClass, AnotherClass
+                UXC.use( 'SomeClass' );                              //导入类 SomeClass
+                UXC.use( 'SomeClass, AnotherClass' );                //导入类 SomeClass, AnotherClass
                 //
                 ///  导入类 SomeClass, SomeClass目录下的file1.js, 
                 ///  AnotherClass, AnotherClass 下的file2.js
                 //
-                UXC.import( 'SomeClass, SomeClass/file1.js, AnotherClass/file2.js' );   
-                UXC.import( '/js/Test/Test1.js' );                      //导入文件  /js/Test/Test1.js, 如果起始处为 "/", 将视为文件的绝对路径
+                UXC.use( 'SomeClass, SomeClass/file1.js, AnotherClass/file2.js' );   
+                UXC.use( '/js/Test/Test1.js' );                      //导入文件  /js/Test/Test1.js, 如果起始处为 "/", 将视为文件的绝对路径
                 //
                 /// nginx style 的文件加载方式, 如 /js/??file1.js,file2.js,file3.js
                 //
-                UXC.import( 'Test1.js, Test2.js ', '/js/??', true );
+                UXC.use( 'Test1.js, Test2.js ', '/js/??', true );
                 //
                 /// 导入 URL 资源
                 //
-                UXC.import( 'http://test.com/file1.js', 'https://another.com/file2.js' );
+                UXC.use( 'http://test.com/file1.js', 'https://another.com/file2.js' );
         */
-        , import: 
+        , use: 
             function( _names, _basePath, _nginxStyle ){
                 if( ! _names ) return;
                 var _p = this, _urlRe = /\:\/\//;
