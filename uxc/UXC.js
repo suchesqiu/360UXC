@@ -1,6 +1,6 @@
 (function( $ ){
     /**
-     * UXC jq 组件库 资源调用控制类<br />
+     * UXC jquery 组件库 资源调用控制类<br />
      * 这是一个单例模式, 全局访问使用 UXC 或 window.UXC
      * @namespace window
      * @class UXC
