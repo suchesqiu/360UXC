@@ -94,6 +94,9 @@
         * @current    {Number}    type        焦点值
         **/
         toggle: function(current) {
+            if(current === this.current){
+                return ;
+            }
             var _me = this;
 
             _me.fire('beforeToggle', {
