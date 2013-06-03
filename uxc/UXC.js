@@ -8,7 +8,10 @@
      */
     function UXC() {
         var _p = this;
-
+        /**
+         * 增加一个uxc属性用以判断对象是否uxc
+         */
+        _p.uxc = '0.1';
         /**
          * UXC组件库所在路径
          */
@@ -26,12 +29,12 @@
     UXC.prototype = {
         /**
          * 导入UXC组件
-         * @param    _names      string      模块名
+         * @param   {String}    _names         模块名
          *                                   或者模块下面的某个js文件(test/test1.js, 路径前面不带"/"将视为test模块下的test1.js)
          *                                   或者一个绝对路径的js文件, 路径前面带 "/"
          *
-         * @param    _basePath   string      指定要导入资源所在的主目录, 这个主要应用于 nginx 路径输出
-         * @param    _nginxStyle bool        指定是否需要使用 nginx 路径输出脚本资源
+         * @param   {String}    _basePath         指定要导入资源所在的主目录, 这个主要应用于 nginx 路径输出
+         * @param   {Bool}    _nginxStyle         指定是否需要使用 nginx 路径输出脚本资源
          *
          * @example
          UXC.import( 'Test/Test1.js' );
@@ -40,7 +43,9 @@
          UXC.import( 'Test1.js, Test2.js ', '/js/??', true );
          */
         import : function ( _names , _basePath , _nginxStyle ) {
-            if ( !_names ) return;
+            if ( !_names ) {
+                return;
+            }
             var _p = this;
 
             var _paths = [];
@@ -84,10 +89,13 @@
         } ,
         /**
          * 获取组件库所在路径
+         * @return {String}
          */
         _getPath : function () {
             var _sc = $( 'script' ).last(), _path = _sc.attr( 'src' ).replace( /UXC\.js[^\w]*/i , '' );
-            if ( _path ) this.PATH = _path + 'comps/';
+            if ( _path ) {
+                this.PATH = _path + 'comps/';
+            }
         } ,
 
         /**
