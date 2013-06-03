@@ -80,7 +80,6 @@ div.UXCCalendar select{
 
 div.UXCCalendar table a{
     display:block!important;
-    
 }
 
 div.UXCCalendar table{ 
@@ -101,6 +100,11 @@ div.UXCCalendar thead{
 }
 
 div.UXCCalendar tbody{
+}
+
+div.UXCCalendar tbody td{
+    width: 20px;
+    height: 20px;
 }
 
 div.UXCCalendar .UTableBorder{

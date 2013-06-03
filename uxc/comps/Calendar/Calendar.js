@@ -98,25 +98,55 @@
 
                 _logic.initYear( _layout, _dateObj );
                 _logic.initMonth( _layout, _dateObj );
+                _logic.initDay( _layout, _dateObj );
                 _logic.setPosition( _selector, _layout );
             }
 
+        , initDay:
+            function( _layout, _dateObj, _selected ){
+                var _maxday = _logic.maxDayOfMonth( _dateObj.date ), _weekday = _dateObj.date.getDay() || 7
+                    , _sumday = _weekday + _maxday, _row = 6, _ls = [], _premaxday, _prebegin, _tmp, i, j, k;
+
+                var _beginDate = _logic.cloneDate( _dateObj.date );
+                    _beginDate.setDate( 1 );
+                var _beginWeekday = _beginDate.getDay() || 7;
+                if( _beginWeekday < 2 ){
+                    _beginDate.setDate( -(_beginWeekday-1+6) );
+                }else{
+                    _beginDate.setDate( -(_beginWeekday-2) );
+                }
+
+                _ls.push('<tr>');
+                for( i = 1; i <= 42; i++ ){
+                    _ls.push( '<td>', _beginDate.getDate(), '</td>' );
+                    _beginDate.setDate( _beginDate.getDate() + 1 );
+                    if( i % 7 === 0 && i != 42 ) _ls.push( '</tr><tr>' );
+                }
+                _ls.push('</tr>');
+
+
+
+                _layout.find('table tbody' ).html( $( _ls.join('') ) );
+
+                UXC.log( _prebegin, _premaxday, _maxday, _weekday, _sumday, _row );
+            }
+
         , initMonth:
-            function( _layout, _dateObj, _selectedYear ){
+            function( _layout, _dateObj, _selected ){
                 $( _layout.find('select.UMonth').val( _dateObj.date.getMonth() + 1 ) );
             }
 
         , initYear:
-            function( _layout, _dateObj, _selectedYear ){
+            function( _layout, _dateObj, _selected ){
                 var _ls = [], _tmp
                     , _sYear = _dateObj.initMinvalue.getFullYear()
                     , _eYear = _dateObj.initMaxvalue.getFullYear();
 
-                if( !_selectedYear ) _selectedYear = _dateObj.date.getFullYear();
+                if( !_selected ) _selected = _dateObj.date.getFullYear();
 
                 for( var i = _sYear; i <= _eYear; i++ ){
                     _tmp = '';
-                    if( _selectedYear === i ) _tmp = " selected "
+                    if( _selected === i ) _tmp = " selected "
                     _ls.push( '<option value="'+i+'"'+_tmp+'>'+i+'</option>' );
                 }
 
@@ -200,6 +230,14 @@
             }
 
         , cloneDate: function( _date ){ var d = new Date(); d.setTime( _date.getTime() ); return d; }
+
+        , maxDayOfMonth:
+            function( _date ){
+                var _r, _d = new Date( _date.getFullYear(), _date.getMonth() + 1 );
+                    _d.setDate( _d.getDate() - 1 );
+                    _r = _d.getDate();
+                return _r;
+            }
 
         , tpl: 
         [
