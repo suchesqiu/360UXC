@@ -17,6 +17,13 @@
             Calendar.init( $('input[type=text]') );
         }, 200 );
 
+        $(document).on('click', function($evt){
+
+            if( _logic.isCalendarElement($evt.target||$evt.targetElement) ) return;
+            var _layout = $('#UXCCalendar');
+            _layout.length && _layout.hide();
+        });
+
         $(document).delegate( 'input.UXCCalendar_btn', 'click', function($evt){
             if( this.forCalendar ) _logic.pickDate( this.forCalendar );
         });
@@ -24,6 +31,14 @@
         $(document).delegate( 'input[datatype=date]', 'focus', function($evt){
             _logic.pickDate( this );
         });
+
+        $(document).delegate( '#UXCCalendar', 'click', function( $evt ){
+            $evt.stopPropagation();
+        });
+
+        $(document).delegate( '#UXCCalendar select.UMonth', 'click', function( $evt ){
+        });
+
     });
 
     var _logic =
@@ -50,7 +65,23 @@
                 });
             }
 
-        , lastIpt: null;
+        , lastIpt: null
+
+        , isCalendarElement:
+            function( _selector ){
+                _selector = $(_selector);
+                var _r = 0;
+
+                if( _selector.length ){
+                    if( _selector.hasClass('UXCCalendar_btn') ) _r = 1;
+                    if( _selector.prop('nodeName') 
+                            && _selector.attr('datatype')
+                            && _selector.prop('nodeName').toLowerCase()=='input' 
+                            && _selector.attr('datatype').toLowerCase()=='date') _r = 1;
+                }
+
+                return _r;
+            }
 
         , pickDate:
             function( _selector ){
@@ -65,17 +96,39 @@
 
                 var _layout = _logic.getLayout();
 
+                _logic.initYear( _layout, _dateObj );
                 _logic.setPosition( _selector, _layout );
+            }
+
+        , initYear:
+            function( _layout, _dateObj, _selectedYear ){
+                var _ls = [], _tmp
+                    , _sYear = _dateObj.initMinvalue.getFullYear()
+                    , _eYear = _dateObj.initMaxvalue.getFullYear();
+
+                if( !_selectedYear ) _selectedYear = _dateObj.date.getFullYear();
+
+                for( var i = _sYear; i <= _eYear; i++ ){
+                    _tmp = '';
+                    if( _selectedYear === i ) _tmp = " selected "
+                    _ls.push( '<option value="'+i+'"'+_tmp+'>'+i+'</option>' );
+                }
+
+                $( _ls.join('') ).appendTo( _layout.find('select.UYear') );
             }
 
         , setPosition:
             function( _ipt, _layout ){
                 _layout.css( {'left': '-9999px'} ).show();
                 var _lw = _layout.width(), _lh = _layout.height()
-                    , _iw = _ipt.width(), _ih = _ipt.height(), _ioset = _ipt.offset();
+                    , _iw = _ipt.width(), _ih = _ipt.height(), _ioset = _ipt.offset()
+                    , _x, _y;
 
+                _x = _ioset.left; _y = _ioset.top + _ih + 5;
 
-                UXC.log( _lw, _lh );
+                _layout.css( {left: _x+'px', top: _y+'px'} );
+
+                UXC.log( _lw, _lh, _iw, _ih, _ioset.left, _ioset.top );
             }
 
         , getLayout:
@@ -85,6 +138,20 @@
                 if( !_r.length ){
                     _r = $( Calendar.tpl || _logic.tpl );
                     _r.attr('id', 'UXCCalendar').hide().appendTo( document.body );
+                    var _month = $( [
+                                '<option value="0">一月</option>'
+                                , '<option value="0">二月</option>'
+                                , '<option value="0">三月</option>'
+                                , '<option value="0">四月</option>'
+                                , '<option value="0">五月</option>'
+                                , '<option value="0">六月</option>'
+                                , '<option value="0">七月</option>'
+                                , '<option value="0">八月</option>'
+                                , '<option value="0">九月</option>'
+                                , '<option value="0">十月</option>'
+                                , '<option value="0">十一月</option>'
+                                , '<option value="0">十二月</option>'
+                            ].join('') ).appendTo( _r.find('select.UMonth' ) );
                  }
                 _r.hide();
 
