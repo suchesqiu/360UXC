@@ -194,6 +194,13 @@
             this.old = current;
         }
     });
+    /**
+    * 以Toggle为基础的tab切换示例模型
+    * @namespace UXC.Toggle
+    * @method   tab
+    * @static
+    * @param {Object} options 选项
+    **/
     Toggle.tab = function(options) {
         var opts = mix({
             triggers: null,
