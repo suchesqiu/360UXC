@@ -152,4 +152,4 @@
      */
     UXC._getPath();
 
-}(jQuery))
+}(jQuery));
