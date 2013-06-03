@@ -97,7 +97,13 @@
                 var _layout = _logic.getLayout();
 
                 _logic.initYear( _layout, _dateObj );
+                _logic.initMonth( _layout, _dateObj );
                 _logic.setPosition( _selector, _layout );
+            }
+
+        , initMonth:
+            function( _layout, _dateObj, _selectedYear ){
+                $( _layout.find('select.UMonth').val( _dateObj.date.getMonth() + 1 ) );
             }
 
         , initYear:
@@ -139,18 +145,18 @@
                     _r = $( Calendar.tpl || _logic.tpl );
                     _r.attr('id', 'UXCCalendar').hide().appendTo( document.body );
                     var _month = $( [
-                                '<option value="0">一月</option>'
-                                , '<option value="0">二月</option>'
-                                , '<option value="0">三月</option>'
-                                , '<option value="0">四月</option>'
-                                , '<option value="0">五月</option>'
-                                , '<option value="0">六月</option>'
-                                , '<option value="0">七月</option>'
-                                , '<option value="0">八月</option>'
-                                , '<option value="0">九月</option>'
-                                , '<option value="0">十月</option>'
-                                , '<option value="0">十一月</option>'
-                                , '<option value="0">十二月</option>'
+                                '<option value="1">一月</option>'
+                                , '<option value="2">二月</option>'
+                                , '<option value="3">三月</option>'
+                                , '<option value="4">四月</option>'
+                                , '<option value="5">五月</option>'
+                                , '<option value="6">六月</option>'
+                                , '<option value="7">七月</option>'
+                                , '<option value="8">八月</option>'
+                                , '<option value="9">九月</option>'
+                                , '<option value="10">十月</option>'
+                                , '<option value="11">十一月</option>'
+                                , '<option value="12">十二月</option>'
                             ].join('') ).appendTo( _r.find('select.UMonth' ) );
                  }
                 _r.hide();

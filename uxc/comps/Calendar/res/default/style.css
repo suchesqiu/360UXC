@@ -47,6 +47,12 @@ div.UXCCalendar td.other a{
     color: #999!important;
 }
 
+div.UXCCalendar td.unable a{
+    color: #B5B5B5!important;
+    text-decoration: line-through!important;
+    cursor: default!important;
+}
+
 div.UXCCalendar td a:hover {
     background:#ddd!important;
     color:#fff!important;
@@ -80,7 +86,7 @@ div.UXCCalendar table a{
 div.UXCCalendar table{ 
     width:208px!important;
     font-family: sans-serif!important;
-    font-size: 12px!important;
+    font-size: 13px!important;
     border-collapse: collapse;
     margin: 0px auto!important;
 }
