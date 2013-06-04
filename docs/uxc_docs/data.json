@@ -809,6 +809,8 @@
             "itemtype": "property",
             "name": "tpl",
             "type": "string",
+            "access": "private",
+            "tagname": "",
             "class": "UXC.Calendar",
             "namespace": "UXC"
         },

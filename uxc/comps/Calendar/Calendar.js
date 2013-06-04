@@ -719,6 +719,7 @@
          * <p>这是默认模板, 用户可以给 UXC.Calendar.tpl 赋值, 更改为自己的模板</p>
          * @property    tpl
          * @type    string
+         * @private
          */
         , tpl: 
         [
