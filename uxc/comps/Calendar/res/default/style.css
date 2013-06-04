@@ -6,10 +6,12 @@ input.UXCCalendar_btn{
     height: 18px!important;
     cursor: pointer;
 }
-
-div.UXCCalendar{
+div.UXCCalendar, div.UXCCalendar *{
     padding: 0px!important;
     margin: 0px!important;
+}
+
+div.UXCCalendar{
     background: #F2F2F2!important;
     width: 222px!important;
     border:2px solid #a1a1a1;
@@ -37,6 +39,7 @@ div.UXCCalendar td.weekend a {
 
 div.UXCCalendar td.cur{
     background:#999!important;
+    color::#fff!important;
 }
 
 div.UXCCalendar td.cur a{
@@ -63,14 +66,14 @@ div.UXCCalendar table a, div.UXCCalendar th{
 }
 
 div.UXCCalendar .UHeader{
-    margin: 4px auto 0px;
+    margin: 4px auto 0px!important;
 }
 
 div.UXCCalendar img.UImg{
     background: transparent url('images/UpAndDown.gif') no-repeat left top!important;
     width: 13px!important;
     height: 18px!important;
-    margin-top: -1px;
+    margin-top: -1px!important;
     cursor: pointer;
 }
 
@@ -103,8 +106,6 @@ div.UXCCalendar tbody{
 }
 
 div.UXCCalendar tbody td{
-    width: 20px;
-    height: 20px;
 }
 
 div.UXCCalendar .UTableBorder{
@@ -123,10 +124,12 @@ div.UXCCalendar td{
 }
 
 div.UXCCalendar .UFooter{
-    margin: 4px auto 3px;
+    margin: 4px auto 3px!important;
 }
 
 div.UXCCalendar .UFooter button{
     cursor: pointer;
+    padding: 1px 4px!important;
+    margin: 0 2px!important;
 }
 

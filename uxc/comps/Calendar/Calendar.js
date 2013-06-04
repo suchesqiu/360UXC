@@ -5,6 +5,7 @@
     {
         pickDate: function( _selector ){ _logic.pickDate( _selector ); } 
         , init: function( _selector ){ _logic.initTrigger( _selector ); }
+        , hide: function(){ _logic.hide(); }
 
         , autoInit: true
         , defaultDateSpan: 10
@@ -36,7 +37,31 @@
             $evt.stopPropagation();
         });
 
+        $(document).delegate( '#UXCCalendar table a', 'click', function( $evt ){
+            $evt.preventDefault();
+            var _p = $(this), _tm = _p.attr('date')||'';
+            if( !_tm ) return;
+            if( _p.parent('td').hasClass('unable') ) return;
+
+            UXC.log( _tm );
+
+            _logic.setDate( _tm );
+            _logic.hide();
+        });
+
         $(document).delegate( '#UXCCalendar select.UMonth', 'click', function( $evt ){
+        });
+
+        $(document).delegate( '#UXCCalendar button.UConfirm', 'click', function( $evt ){
+        });
+
+        $(document).delegate( '#UXCCalendar button.UClear', 'click', function( $evt ){
+            _logic.lastIpt && _logic.lastIpt.length && _logic.lastIpt.val('');
+            UXC.log( _logic.lastIpt, _logic.lastIpt.length );
+        });
+
+        $(document).delegate( '#UXCCalendar button.UCancel', 'click', function( $evt ){
+            _logic.hide();
         });
 
     });
@@ -89,6 +114,7 @@
 
                 _selector = $(_selector);
                 if( !(_selector && _selector.length) ) return;
+                _logic.lastIpt = _selector;
 
                 var _dateObj = _logic.getDate( _selector );
 
@@ -105,7 +131,8 @@
         , initDay:
             function( _layout, _dateObj, _selected ){
                 var _maxday = _logic.maxDayOfMonth( _dateObj.date ), _weekday = _dateObj.date.getDay() || 7
-                    , _sumday = _weekday + _maxday, _row = 6, _ls = [], _premaxday, _prebegin, _tmp, i, j, k;
+                    , _sumday = _weekday + _maxday, _row = 6, _ls = [], _premaxday, _prebegin
+                    , _tmp, i, _class;
 
                 var _beginDate = _logic.cloneDate( _dateObj.date );
                     _beginDate.setDate( 1 );
@@ -118,7 +145,13 @@
 
                 _ls.push('<tr>');
                 for( i = 1; i <= 42; i++ ){
-                    _ls.push( '<td>', _beginDate.getDate(), '</td>' );
+                    _class = [];
+                    if( _beginDate.getDay() === 0 || _beginDate.getDay() == 6 ) _class.push('weekend');
+                    if( !_logic.isSameMonth( _dateObj.date, _beginDate ) ) _class.push( 'other' );
+                    if( _logic.isSameDay( _dateObj.date, _beginDate ) ) _class.push( 'cur' );
+                    _ls.push( '<td class="', _class.join(' '),'">'
+                            ,'<a href="javascript:" date="', _beginDate.getTime(),'">'
+                            , _beginDate.getDate(), '</a></td>' );
                     _beginDate.setDate( _beginDate.getDate() + 1 );
                     if( i % 7 === 0 && i != 42 ) _ls.push( '</tr><tr>' );
                 }
@@ -165,6 +198,12 @@
                 _layout.css( {left: _x+'px', top: _y+'px'} );
 
                 UXC.log( _lw, _lh, _iw, _ih, _ioset.left, _ioset.top );
+            }
+
+        , hide:
+            function(){
+                var _layout = $('#UXCCalendar');
+                _layout && _layout.length && _layout.hide();
             }
 
         , getLayout:
@@ -217,6 +256,25 @@
                 return _r;
             }
 
+        , setDate:
+            function( _timestamp ){
+                if( !(_timestamp && _logic.lastIpt && _logic.lastIpt.length ) ) return;
+                var _d = new Date(), _symbol = '-'; _d.setTime( _timestamp );
+                var _df = _logic.lastIpt.attr('dateFormat');
+                if( _df ){
+                    _df = _df.replace(/[\da-zA-Z]/g, '');
+                    if( _df.length ) _df = _df.slice(0, 1);
+                    _symbol = _df;
+                }
+                var _dStr = 
+                    [ 
+                        _d.getFullYear()
+                        , _logic.intPad( _d.getMonth() + 1 )
+                        , _logic.intPad( _d.getDate() ) 
+                     ].join(_symbol);
+                _logic.lastIpt.val( _dStr );
+            }
+
         , parseDate:
             function( _dateStr ){
                 var _re = /[^\d]/g, _r, _dateStr = _dateStr || '';
@@ -231,12 +289,31 @@
 
         , cloneDate: function( _date ){ var d = new Date(); d.setTime( _date.getTime() ); return d; }
 
+        , isSameDay:
+            function( _d1, _d2 ){
+                return [_d1.getFullYear(), _d1.getMonth(), _d1.getDate()].join() === [
+                        _d2.getFullYear(), _d2.getMonth(), _d2.getDate()].join()
+            }
+
+        , isSameMonth:
+            function( _d1, _d2 ){
+                return [_d1.getFullYear(), _d1.getMonth()].join() === [
+                        _d2.getFullYear(), _d2.getMonth()].join()
+            }
+
         , maxDayOfMonth:
             function( _date ){
                 var _r, _d = new Date( _date.getFullYear(), _date.getMonth() + 1 );
                     _d.setDate( _d.getDate() - 1 );
                     _r = _d.getDate();
                 return _r;
+            }
+
+        , intPad: 
+            function( _n, _len ){
+                if( typeof _len == 'undefined' ) _len = 2;
+                _n = new Array( _len + 1 ).join('0') + _n;
+                return _n.slice( _n.length - _len );
             }
 
         , tpl: 
@@ -265,8 +342,9 @@
         ,'   </table>\n'
         ,'   <table class="UTable UTableBorder">\n'
         ,'        <tbody>\n'
-         ,'           <!--<tr>\n'
-         ,'                <td class="cur"><a href="#">2</a></td>\n'
+        ,'           <!--<tr>\n'
+        ,'                <td class="cur"><a href="#">2</a></td>\n'
+        ,'                <td class="unable"><a href="#">2</a></td>\n'
         ,'                <td class="weekend cur"><a href="#">6</a></td>\n'
         ,'                <td class="weekend hover"><a href="#">13</a></td>\n'
         ,'                <td class="weekend other"><a href="#">41</a></td>\n'
@@ -275,7 +353,7 @@
         ,'        </tbody>\n'
         ,'    </table>\n'
         ,'    <div class="UFooter">\n'
-        ,'        <button type="button" class="USubmit">确定</button>\n'
+        ,'        <button type="button" class="UConfirm">确定</button>\n'
         ,'        <button type="button" class="UClear">清空</button>\n'
         ,'        <button type="button" class="UCancel">取消</button>\n'
         ,'    </div>\n'
