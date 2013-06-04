@@ -41,6 +41,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="../classes/UXC.Calendar.html">UXC.Calendar</a></li>
+            
                 <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
             
                 <li><a href="../classes/window.UXC.html">window.UXC</a></li>
@@ -90,7 +92,7 @@
     <pre class="code prettyprint linenums">
 (function( $ ){
     /**
-     * UXC jq 组件库 资源调用控制类&lt;br /&gt;
+     * UXC jquery 组件库 资源调用控制类&lt;br /&gt;
      * 这是一个单例模式, 全局访问使用 UXC 或 window.UXC
      * @namespace window
      * @class UXC
@@ -98,27 +100,31 @@
      * @requires    jQuery
      * @example 
      *      UXC.use( 组件名[,组件名] );
-     *
-     * @author  qiushaowei   &lt;suches@btbtd.org&gt; | {@link http://uxc.360.cn|360 UXC-FE Team}
+     * @author  qiushaowei   &lt;suches@btbtd.org&gt; | 360 UXC-FE Team
+     * @link    https://github.com/suchesqiu/360UXC.git
      * @date    2013-05-22
      */
     window.UXC = 
     {
+    
         /**
          * UXC组件库所在路径
          * @property    PATH
+         * @static
          * @type {string}
          */
         PATH: &#x27;/js/uxc/comps/&#x27;
         /**
          * 是否显示调试信息
          * @property    debug
+         * @static
          * @type {bool}
          */
         , debug: false
        /**
         * 导入UXC组件
         * @method   use
+        * @static
         * @param    {string}    _names -            模块名
         *                                           或者模块下面的某个js文件(test/test1.js, 路径前面不带&quot;/&quot;将视为test模块下的test1.js)
         *                                           或者一个绝对路径的js文件, 路径前面带 &quot;/&quot;
@@ -206,12 +212,31 @@
         * 输出调试信息, 可通过 UXC.debug 指定是否显示调试信息
         * @param    {[string[,string]]}  任意参数任意长度的字符串内容
         * @method log
+        * @static
         */
        log: 
            function(){
                 if( !this.debug ) return;
                 console.log( [].slice.apply( arguments ).join(&#x27; &#x27;) );
+            },
+        /**
+         * 获取命名空间，如果没有就创建一个
+         *
+         * @author rekey 2013-05-28
+         * @method namespace
+         * @static
+         * @param {String} str 命名空间
+         * @param {Object} context 命名空间基于这个对象生成，默认为window
+         * @return {Object} 返回生成的命名空间
+         */
+        namespace : function ( str , context ) {
+            var arr = str.split( &#x27;.&#x27; ), base = context || window;
+            for ( var i = 0 , len = arr.length ; i &lt; len ; i++ ) {
+                base[ arr[i] ] = base[ arr[i] ] || {};
+                base = base[ arr[i] ];
             }
+            return context;
+        }
     };
     /**
      * 如果 console 不可用, 则生成一个模拟的 console 对象
@@ -224,7 +249,7 @@
      */
     UXC._getPath();
 
-}(jQuery))
+}(jQuery));
 
     </pre>
 </div>

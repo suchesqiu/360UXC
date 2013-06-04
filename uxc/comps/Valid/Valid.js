@@ -8,7 +8,8 @@
      * @static
      * @uses jQuery
      * @version dev 0.1
-     * @author  qiushaowei   <suches@btbtd.org> | {@link http://uxc.360.cn|360 UXC-FE Team}
+     * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
+     * @link    https://github.com/suchesqiu/360UXC.git
      * @date    2013-05-22
      */
     var Valid = UXC.Valid = window.Valid =
@@ -16,7 +17,8 @@
         /**
          * 验证一个表单项, 如 文本框, 下拉框, 复选框, 单选框, 文本域, 隐藏域
          * @method check
-         * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
+         * @static
+         * @param      {selector}    _item -   需要验证规则正确与否的表单/表单项
          * @example 
          *          UXC.Valid.check( $('input.needValid') );
          *          UXC.Valid.check( document.getElementById('inputNeedValid') );
@@ -42,6 +44,7 @@
          /**
          * 清除Valid生成的错误样式
          * @method clearError
+         * @static
          * @param   {form|input|textarea|select|file|password}  _selector -     需要清除错误的选择器
          * @example
          *          UXC.Valid.clearError( 'form' );
@@ -71,7 +74,8 @@
     /**
      * 这个方法是 {@link Valid.check} 的别名
      * @method checkAll
-     * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
+     * @static
+     * @param      {selector}    _item -   需要验证规则正确与否的表单/表单项
      * @see Valid.check
      */
     Valid.checkAll = Valid;
@@ -92,6 +96,9 @@
     });
     /**
      * 私有逻辑处理对象, 验证所需的所有规则和方法都存放于此对象
+     * @property _logic
+     * @type {Object}
+     * @static
      * @private
      */
     var _logic =

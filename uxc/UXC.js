@@ -1,6 +1,6 @@
 (function( $ ){
     /**
-     * UXC jq 组件库 资源调用控制类<br />
+     * UXC jquery 组件库 资源调用控制类<br />
      * 这是一个单例模式, 全局访问使用 UXC 或 window.UXC
      * @namespace window
      * @class UXC
@@ -8,27 +8,31 @@
      * @requires    jQuery
      * @example 
      *      UXC.use( 组件名[,组件名] );
-     *
-     * @author  qiushaowei   <suches@btbtd.org> | {@link http://uxc.360.cn|360 UXC-FE Team}
+     * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
+     * @link    https://github.com/suchesqiu/360UXC.git
      * @date    2013-05-22
      */
     window.UXC = 
     {
+    
         /**
          * UXC组件库所在路径
          * @property    PATH
+         * @static
          * @type {string}
          */
         PATH: '/js/uxc/comps/'
         /**
          * 是否显示调试信息
          * @property    debug
+         * @static
          * @type {bool}
          */
         , debug: false
        /**
         * 导入UXC组件
         * @method   use
+        * @static
         * @param    {string}    _names -            模块名
         *                                           或者模块下面的某个js文件(test/test1.js, 路径前面不带"/"将视为test模块下的test1.js)
         *                                           或者一个绝对路径的js文件, 路径前面带 "/"
@@ -116,6 +120,7 @@
         * 输出调试信息, 可通过 UXC.debug 指定是否显示调试信息
         * @param    {[string[,string]]}  任意参数任意长度的字符串内容
         * @method log
+        * @static
         */
        log: 
            function(){
@@ -134,4 +139,4 @@
      */
     UXC._getPath();
 
-}(jQuery))
+}(jQuery));
