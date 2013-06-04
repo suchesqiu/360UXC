@@ -269,7 +269,7 @@
             "itemtype": "property",
             "name": "defaultDateSpan",
             "type": "{int}",
-            "default": "10",
+            "default": "20",
             "static": "<script>UXC.Calendar.defaultDateSpan = 20;</script>",
             "class": "UXC.Calendar",
             "namespace": "UXC"
@@ -277,7 +277,7 @@
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
             "line": 84,
-            "description": "自定义日历组件模板\n<p>默认模板为_logic.tpl</p>\n<p>如果用户显示定义Calendar.tpl的话, 将采用用户的模板</p>",
+            "description": "自定义日历组件模板\n<p>默认模板为_logic.tpl</p>\n<p>如果用户显示定义UXC.Calendar.tpl的话, 将采用用户的模板</p>",
             "itemtype": "property",
             "name": "tpl",
             "type": "{string}",
@@ -451,15 +451,21 @@
             "file": "../../uxc/comps/Calendar/Calendar.js",
             "line": 269,
             "description": "私有逻辑处理对象, 基本上所有逻辑方法都存放于此对象",
+            "itemtype": "property",
+            "name": "_logic",
+            "type": "{Object}",
+            "static": 1,
+            "access": "private",
+            "tagname": "",
             "class": "UXC.Calendar",
             "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 274,
+            "line": 278,
             "description": "初始化日历组件的触发按钮",
             "itemtype": "method",
-            "name": "initTrigger",
+            "name": "_logic.initTrigger",
             "params": [
                 {
                     "name": "_selector",
@@ -474,10 +480,10 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 301,
+            "line": 305,
             "description": "最后一个显示日历组件的文本框",
             "itemtype": "property",
-            "name": "lastIpt",
+            "name": "_logic.lastIpt",
             "type": "selector",
             "access": "private",
             "tagname": "",
@@ -486,10 +492,10 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 308,
+            "line": 312,
             "description": "最后一个显示日历组件的日期对象",
             "itemtype": "property",
-            "name": "lastDateObj",
+            "name": "_logic.lastDateObj",
             "type": "Object",
             "access": "private",
             "tagname": "",
@@ -498,10 +504,10 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 315,
+            "line": 319,
             "description": "判断选择器是否为日历组件的对象",
             "itemtype": "method",
-            "name": "isCalendarElement",
+            "name": "_logic.isCalendarElement",
             "params": [
                 {
                     "name": "_selector",
@@ -509,15 +515,17 @@
                     "type": "Selector"
                 }
             ],
+            "access": "private",
+            "tagname": "",
             "class": "UXC.Calendar",
             "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 335,
+            "line": 340,
             "description": "显示日历组件",
             "itemtype": "method",
-            "name": "pickDate",
+            "name": "_logic.pickDate",
             "params": [
                 {
                     "name": "_selector",
@@ -532,10 +540,10 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 356,
+            "line": 361,
             "description": "初始化日历组件的所有日期\n     _dateObj = { date: date, minvalue: date, maxvalue: date, initMinvalue: date, initMaxvalue: date };",
             "itemtype": "method",
-            "name": "initDateLayout",
+            "name": "_logic.initDateLayout",
             "params": [
                 {
                     "name": "_dateObj",
@@ -550,10 +558,10 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 369,
+            "line": 374,
             "description": "初始化月份的所有日期",
             "itemtype": "method",
-            "name": "initMonthDate",
+            "name": "_logic.initMonthDate",
             "params": [
                 {
                     "name": "_dateObj",
@@ -568,10 +576,10 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 414,
+            "line": 419,
             "description": "初始化月份",
             "itemtype": "method",
-            "name": "initMonth",
+            "name": "_logic.initMonth",
             "params": [
                 {
                     "name": "_dateObj",
@@ -586,10 +594,10 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 425,
+            "line": 430,
             "description": "初始化年份",
             "itemtype": "method",
-            "name": "initYear",
+            "name": "_logic.initYear",
             "params": [
                 {
                     "name": "_dateObj",
@@ -597,6 +605,71 @@
                     "type": "DateObjects"
                 }
             ],
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Calendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Calendar/Calendar.js",
+            "line": 454,
+            "description": "按年份更改日期",
+            "itemtype": "method",
+            "name": "_logic.setNewYear",
+            "params": [
+                {
+                    "name": "_year",
+                    "description": "新的年份, YYYY",
+                    "type": "Int"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Calendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Calendar/Calendar.js",
+            "line": 475,
+            "description": "按月份更改日期",
+            "itemtype": "method",
+            "name": "_logic.setNewMonth",
+            "params": [
+                {
+                    "name": "_month",
+                    "description": "新的月份, mm",
+                    "type": "Int"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Calendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Calendar/Calendar.js",
+            "line": 496,
+            "description": "设置日历组件的显示位置",
+            "itemtype": "method",
+            "name": "_logic.setPosition",
+            "params": [
+                {
+                    "name": "_ipt",
+                    "description": "需要显示日历组件的文本框",
+                    "type": "Selector"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Calendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Calendar/Calendar.js",
+            "line": 526,
+            "description": "隐藏日历组件",
+            "itemtype": "method",
+            "name": "_logic.hide",
             "access": "private",
             "tagname": "",
             "class": "UXC.Calendar",
@@ -1776,10 +1849,6 @@
         {
             "message": "Missing item type\n延迟200毫秒初始化页面的所有日历控件\n之所以要延迟是可以让用户自己设置是否需要自动初始化",
             "line": " ../../uxc/comps/Calendar/Calendar.js:101"
-        },
-        {
-            "message": "Missing item type\n私有逻辑处理对象, 基本上所有逻辑方法都存放于此对象",
-            "line": " ../../uxc/comps/Calendar/Calendar.js:269"
         },
         {
             "message": "Missing item type\nCreated with JetBrains WebStorm.\nUser: rekey\nDate: 13-5-29\nTime: 上午11:03\nTo change this template use File | Settings | File Templates.",

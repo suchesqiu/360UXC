@@ -8,7 +8,8 @@
      * @static
      * @uses jQuery
      * @version dev 0.1
-     * @author  qiushaowei   <suches@btbtd.org> | {@link http://uxc.360.cn|360 UXC-FE Team}
+     * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
+     * @link    https://github.com/suchesqiu/360UXC.git
      * @date    2013-05-22
      */
     var Valid = UXC.Valid = window.Valid =
@@ -95,6 +96,10 @@
     });
     /**
      * 私有逻辑处理对象, 验证所需的所有规则和方法都存放于此对象
+     * @property _logic
+     * @type {Object}
+     * @static
+     * @private
      */
     var _logic =
         {

@@ -174,15 +174,15 @@
          * 设置默认显示的年份数, 该数为前后各多少年 默认为前后各10年
          * @property    defaultDateSpan
          * @type        {int}
-         * @default     10
+         * @default     20
          * @static
                 &lt;script&gt;UXC.Calendar.defaultDateSpan = 20;&lt;/script&gt;
          */
-        , defaultDateSpan: 10
+        , defaultDateSpan: 20
         /**
          * 自定义日历组件模板
          * &lt;p&gt;默认模板为_logic.tpl&lt;/p&gt;
-         * &lt;p&gt;如果用户显示定义Calendar.tpl的话, 将采用用户的模板&lt;/p&gt;
+         * &lt;p&gt;如果用户显示定义UXC.Calendar.tpl的话, 将采用用户的模板&lt;/p&gt;
          * @property    tpl
          * @type    {string}
          * @default empty
@@ -360,18 +360,22 @@
         $(window).on(&#x27;scroll resize&#x27;, function($evt){
             var _layout = _logic.getLayout();
             if( !( _layout.is(&#x27;:visible&#x27;) &amp;&amp; _logic.lastIpt ) ) return;
-            _logic.setPosition( _logic.lastIpt, _layout );
+            _logic.setPosition( _logic.lastIpt );
         });
     });
 
     /**
      * 私有逻辑处理对象, 基本上所有逻辑方法都存放于此对象
+     * @property _logic
+     * @type {Object}
+     * @static
+     * @private
      */
     var _logic =
     {
         /**
          * 初始化日历组件的触发按钮
-         * @method  initTrigger
+         * @method  _logic.initTrigger
          * @param   {selector}      _selector   
          * @private
          */
@@ -398,22 +402,23 @@
             }
         /**
          * 最后一个显示日历组件的文本框
-         * @property  lastIpt
+         * @property  _logic.lastIpt
          * @type    selector
          * @private
          */
         , lastIpt: null
         /**
          * 最后一个显示日历组件的日期对象
-         * @property    lastDateObj
+         * @property    _logic.lastDateObj
          * @type        Object
          * @private
          */
         , lastDateObj: null
         /** 
          * 判断选择器是否为日历组件的对象
-         * @method  isCalendarElement
+         * @method  _logic.isCalendarElement
          * @param   {selector}  _selector
+         * @private
          */
         , isCalendarElement:
             function( _selector ){
@@ -432,7 +437,7 @@
             }
         /**
          * 显示日历组件
-         * @method  pickDate
+         * @method  _logic.pickDate
          * @param   {selector}  _selector input[type=text][datatype=date]
          * @private
          */
@@ -449,12 +454,12 @@
                 UXC.log( _dateObj.date.getFullYear(), _dateObj.date.getMonth()+1, _dateObj.date.getDate() );
 
                 _logic.initDateLayout( _dateObj );
-                _logic.setPosition( _selector, _logic.getLayout() );
+                _logic.setPosition( _selector );
             }
         /**
          * 初始化日历组件的所有日期
          *      _dateObj = { date: date, minvalue: date, maxvalue: date, initMinvalue: date, initMaxvalue: date };
-         * @method  initDateLayout
+         * @method  _logic.initDateLayout
          * @param   {DateObjects}   _dateObj   保存所有相关日期的对象
          * @private
          */
@@ -466,7 +471,7 @@
             }
         /**
          * 初始化月份的所有日期
-         * @method  initMonthDate
+         * @method  _logic.initMonthDate
          * @param   {DateObjects}   _dateObj   保存所有相关日期的对象
          * @private
          */
@@ -511,7 +516,7 @@
             }
         /**
          * 初始化月份
-         * @method  initMonth
+         * @method  _logic.initMonth
          * @param   {DateObjects}   _dateObj   保存所有相关日期的对象
          * @private
          */
@@ -522,7 +527,7 @@
             }
         /**
          * 初始化年份
-         * @method  initYear
+         * @method  _logic.initYear
          * @param   {DateObjects}   _dateObj   保存所有相关日期的对象
          * @private
          */
@@ -544,7 +549,12 @@
 
                 $( _ls.join(&#x27;&#x27;) ).appendTo( _layout.find(&#x27;select.UYear&#x27;).html(&#x27;&#x27;) );
             }
-
+        /**
+         * 按年份更改日期
+         * @method  _logic.setNewYear
+         * @param   {int}   _year   新的年份, YYYY
+         * @private
+         */
         , setNewYear:
             function( _year ){
                 UXC.log( _year );
@@ -560,7 +570,12 @@
                 _logic.initMonth( _logic.lastDateObj );
                 _logic.initMonthDate( _logic.lastDateObj );
             }
-
+        /**
+         * 按月份更改日期
+         * @method  _logic.setNewMonth
+         * @param   {int}   _month  新的月份, mm
+         * @private
+         */
         , setNewMonth:
             function( _month ){
                 UXC.log( _month );
@@ -576,9 +591,15 @@
                 _logic.initMonth( _logic.lastDateObj );
                 _logic.initMonthDate( _logic.lastDateObj );
             }
-
+        /**
+         * 设置日历组件的显示位置
+         * @method  _logic.setPosition
+         * @param   {selector}  _ipt    需要显示日历组件的文本框
+         * @private
+         */
         , setPosition:
-            function( _ipt, _layout ){
+            function( _ipt ){
+                var _layout = _logic.getLayout();
                 _layout.css( {&#x27;left&#x27;: &#x27;-9999px&#x27;} ).show();
                 var _lw = _layout.width(), _lh = _layout.height()
                     , _iw = _ipt.width(), _ih = _ipt.height(), _ioset = _ipt.offset()
@@ -600,7 +621,11 @@
                 UXC.log( _lw, _lh, _iw, _ih, _ioset.left, _ioset.top, _winw, _winh );
                 UXC.log( _scrtop, _x, _y );
             }
-
+        /**
+         * 隐藏日历组件
+         * @method _logic.hide
+         * @private
+         */
         , hide:
             function(){
                 _logic.getLayout().hide();
