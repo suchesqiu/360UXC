@@ -19,10 +19,17 @@
         }, 200 );
 
         $(document).on('click', function($evt){
-
             if( _logic.isCalendarElement($evt.target||$evt.targetElement) ) return;
-            var _layout = $('#UXCCalendar');
-            _layout.length && _layout.hide();
+            var _src = $evt.target || $evt.srcElement;
+
+            if( _src && _src.nodeName.toLowerCase() != 'input' ){
+                _logic.hide(); return;
+            }
+
+            setTimeout( function(){
+                if( _logic.lastIpt && _logic.lastIpt.length && _src == _logic.lastIpt[0] ) return;
+                _logic.hide();
+            }, 100);
         });
 
         $(document).delegate( 'input.UXCCalendar_btn', 'click', function($evt){
@@ -49,15 +56,21 @@
             _logic.hide();
         });
 
+        $(document).delegate( '#UXCCalendar select.UYear', 'change', function( $evt ){
+            _logic.setNewYear( $(this).val() );
+        });
+
         $(document).delegate( '#UXCCalendar select.UMonth', 'click', function( $evt ){
+            _logic.setNewMonth( $(this).val() );
         });
 
         $(document).delegate( '#UXCCalendar button.UConfirm', 'click', function( $evt ){
+            _logic.setSelectedDate();
+            _logic.hide();
         });
 
         $(document).delegate( '#UXCCalendar button.UClear', 'click', function( $evt ){
             _logic.lastIpt && _logic.lastIpt.length && _logic.lastIpt.val('');
-            UXC.log( _logic.lastIpt, _logic.lastIpt.length );
         });
 
         $(document).delegate( '#UXCCalendar button.UCancel', 'click', function( $evt ){
@@ -91,6 +104,7 @@
             }
 
         , lastIpt: null
+        , lastDateObj: null
 
         , isCalendarElement:
             function( _selector ){
@@ -116,7 +130,7 @@
                 if( !(_selector && _selector.length) ) return;
                 _logic.lastIpt = _selector;
 
-                var _dateObj = _logic.getDate( _selector );
+                var _dateObj = _logic.lastDateObj = _logic.getDate( _selector );
 
                 UXC.log( _dateObj.date.getFullYear(), _dateObj.date.getMonth()+1, _dateObj.date.getDate() );
 
@@ -124,11 +138,11 @@
 
                 _logic.initYear( _layout, _dateObj );
                 _logic.initMonth( _layout, _dateObj );
-                _logic.initDay( _layout, _dateObj );
+                _logic.initDate( _layout, _dateObj );
                 _logic.setPosition( _selector, _layout );
             }
 
-        , initDay:
+        , initDate:
             function( _layout, _dateObj, _selected ){
                 var _maxday = _logic.maxDayOfMonth( _dateObj.date ), _weekday = _dateObj.date.getDay() || 7
                     , _sumday = _weekday + _maxday, _row = 6, _ls = [], _premaxday, _prebegin
@@ -166,7 +180,7 @@
 
         , initMonth:
             function( _layout, _dateObj, _selected ){
-                $( _layout.find('select.UMonth').val( _dateObj.date.getMonth() + 1 ) );
+                $( _layout.find('select.UMonth').val( _dateObj.date.getMonth() ) );
             }
 
         , initYear:
@@ -186,6 +200,38 @@
                 $( _ls.join('') ).appendTo( _layout.find('select.UYear') );
             }
 
+        , setNewYear:
+            function( _year ){
+                UXC.log( _year );
+                if ( !_logic.lastDateObj ) return;
+                var _premaxday = _logic.maxDayOfMonth( _logic.lastDateObj.date )
+                    , _d = new Date( _year, _logic.lastDateObj.date.getMonth(), 1 )
+                    , _nextmaxday = _logic.maxDayOfMonth( _d );
+                if( _premaxday > _nextmaxday ) _d.setDate( _nextmaxday );
+                else _d.setDate( _logic.lastDateObj.date.getDate() );
+
+                _logic.lastDateObj.date = _d;
+
+                _logic.initMonth( _logic.getLayout(), _logic.lastDateObj );
+                _logic.initDate( _logic.getLayout(), _logic.lastDateObj );
+            }
+
+        , setNewMonth:
+            function( _month ){
+                UXC.log( _month );
+                if ( !_logic.lastDateObj ) return;
+                var _premaxday = _logic.maxDayOfMonth( _logic.lastDateObj.date )
+                    , _d = new Date( _logic.lastDateObj.date.getFullYear(), _month, 1 )
+                    , _nextmaxday = _logic.maxDayOfMonth( _d );
+                if( _premaxday > _nextmaxday ) _d.setDate( _nextmaxday );
+                else _d.setDate( _logic.lastDateObj.date.getDate() );
+
+                _logic.lastDateObj.date = _d;
+
+                _logic.initMonth( _logic.getLayout(), _logic.lastDateObj );
+                _logic.initDate( _logic.getLayout(), _logic.lastDateObj );
+            }
+
         , setPosition:
             function( _ipt, _layout ){
                 _layout.css( {'left': '-9999px'} ).show();
@@ -202,8 +248,7 @@
 
         , hide:
             function(){
-                var _layout = $('#UXCCalendar');
-                _layout && _layout.length && _layout.hide();
+                _logic.getLayout().hide();
             }
 
         , getLayout:
@@ -214,21 +259,21 @@
                     _r = $( Calendar.tpl || _logic.tpl );
                     _r.attr('id', 'UXCCalendar').hide().appendTo( document.body );
                     var _month = $( [
-                                '<option value="1">一月</option>'
-                                , '<option value="2">二月</option>'
-                                , '<option value="3">三月</option>'
-                                , '<option value="4">四月</option>'
-                                , '<option value="5">五月</option>'
-                                , '<option value="6">六月</option>'
-                                , '<option value="7">七月</option>'
-                                , '<option value="8">八月</option>'
-                                , '<option value="9">九月</option>'
-                                , '<option value="10">十月</option>'
-                                , '<option value="11">十一月</option>'
-                                , '<option value="12">十二月</option>'
+                                '<option value="0">一月</option>'
+                                , '<option value="1">二月</option>'
+                                , '<option value="2">三月</option>'
+                                , '<option value="3">四月</option>'
+                                , '<option value="4">五月</option>'
+                                , '<option value="5">六月</option>'
+                                , '<option value="6">七月</option>'
+                                , '<option value="7">八月</option>'
+                                , '<option value="8">九月</option>'
+                                , '<option value="9">十月</option>'
+                                , '<option value="10">十一月</option>'
+                                , '<option value="11">十二月</option>'
                             ].join('') ).appendTo( _r.find('select.UMonth' ) );
+                    _r.hide();
                  }
-                _r.hide();
 
                 return _r;
             }
@@ -273,6 +318,13 @@
                         , _logic.intPad( _d.getDate() ) 
                      ].join(_symbol);
                 _logic.lastIpt.val( _dStr );
+            }
+
+        , setSelectedDate:
+            function(){
+                var _cur;
+                _cur = _logic.getLayout().find('table td.cur a');
+                _cur && _cur.length && _cur.attr('date') && _logic.setDate( _cur.attr('date') );
             }
 
         , parseDate:

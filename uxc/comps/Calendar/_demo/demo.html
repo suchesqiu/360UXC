@@ -13,6 +13,7 @@
     <form action='' method='gest'>
         <dl>
             <dt>UXC.Calendar 示例</dt>
+            <dd><input type="text" name="date1" datatype="date" /></dd>
             <dd><input type="text" name="date1" datatype="date" value="2013-06-02" /></dd>
             <dd>
                 <input type="text" name="date2" datatype="date" value="2013-06-03" />
@@ -26,6 +27,12 @@
             <dd>
                 <input type="text" name="date5" datatype="date" value="20110201" /><input type="button" class="UXCCalendar_btn" />
             </dd>
+            <dd>
+                <input type="text" name="date6" class="manualPickDate" value="20110201" />manual UXC.Calendar.pickDate
+            </dd>
+            <dd>
+                <input type="text" name="date7" class="manualPickDate" />manual UXC.Calendar.pickDate
+            </dd>
         </dl>
         </dl>
     </form>
@@ -34,6 +41,9 @@
     <link href='../../../comps/Calendar/res/default/style.css' rel='stylesheet' />
     <script> UXC.debug = true; UXC.use( 'Calendar' ); </script>
     <script>
+        $(document).delegate('input.manualPickDate', 'focus', function($evt){
+            UXC.Calendar.pickDate( this );
+        });
     </script>
 </body>
 </html>
