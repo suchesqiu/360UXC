@@ -18,6 +18,61 @@
             Calendar.init( $('input[type=text]') );
         }, 200 );
 
+        $(document).delegate( '#UXCCalendar select.UYear', 'change', function( $evt ){
+            _logic.setNewYear( $(this).val() );
+        });
+
+        $(document).delegate( '#UXCCalendar select.UMonth', 'click', function( $evt ){
+            _logic.setNewMonth( $(this).val() );
+        });
+
+        $(document).delegate( '#UXCCalendar button.UConfirm', 'click', function( $evt ){
+            if( !_logic.setSelectedDate() ) return;
+            _logic.hide();
+        });
+
+        $(document).delegate( "map[name=UXCCalendar_Year] area" , 'click', function( $evt ){
+            $evt.preventDefault();
+            var _p = $(this), _do = _logic.lastDateObj;
+            if( !(_do && _p.attr("action") ) ) return;
+            if( _p.attr("action").toLowerCase() == 'up' ){
+                _do.date.setFullYear( _do.date.getFullYear() + 1 );
+                _do.initMinvalue.setFullYear( _do.initMinvalue.getFullYear() + 1 );
+                _do.initMaxvalue.setFullYear( _do.initMaxvalue.getFullYear() + 1 );
+            }else if( _p.attr("action").toLowerCase() == 'down' ){
+                _do.date.setFullYear( _do.date.getFullYear() - 1 );
+                _do.initMinvalue.setFullYear( _do.initMinvalue.getFullYear() - 1 );
+                _do.initMaxvalue.setFullYear( _do.initMaxvalue.getFullYear() - 1 );
+            }
+            _logic.initLayout( _do );
+            UXC.log( _p.attr("action") );
+        });
+
+        $(document).delegate( "map[name=UXCCalendar_Month] area" , 'click', function( $evt ){
+            $evt.preventDefault();
+            var _p = $(this), _do = _logic.lastDateObj;
+            if( !(_do && _p.attr("action") ) ) return;
+            if( _p.attr("action").toLowerCase() == 'up' ){
+                _do.date.setMonth( _do.date.getMonth() + 1 );
+                _do.initMinvalue.setMonth( _do.initMinvalue.getMonth() + 1 );
+                _do.initMaxvalue.setMonth( _do.initMaxvalue.getMonth() + 1 );
+            }else if( _p.attr("action").toLowerCase() == 'down' ){
+                _do.date.setMonth( _do.date.getMonth() - 1 );
+                _do.initMinvalue.setMonth( _do.initMinvalue.getMonth() - 1 );
+                _do.initMaxvalue.setMonth( _do.initMaxvalue.getMonth() - 1 );
+            }
+            _logic.initLayout( _do );
+            UXC.log( _p.attr("action") );
+        });
+
+        $(document).delegate( '#UXCCalendar button.UClear', 'click', function( $evt ){
+            _logic.lastIpt && _logic.lastIpt.length && _logic.lastIpt.val('');
+        });
+
+        $(document).delegate( '#UXCCalendar button.UCancel', 'click', function( $evt ){
+            _logic.hide();
+        });
+
         $(document).on('click', function($evt){
             if( _logic.isCalendarElement($evt.target||$evt.targetElement) ) return;
             var _src = $evt.target || $evt.srcElement;
@@ -56,27 +111,11 @@
             _logic.hide();
         });
 
-        $(document).delegate( '#UXCCalendar select.UYear', 'change', function( $evt ){
-            _logic.setNewYear( $(this).val() );
+        $(window).on('scroll resize', function($evt){
+            var _layout = _logic.getLayout();
+            if( !( _layout.is(':visible') && _logic.lastIpt ) ) return;
+            _logic.setPosition( _logic.lastIpt, _layout );
         });
-
-        $(document).delegate( '#UXCCalendar select.UMonth', 'click', function( $evt ){
-            _logic.setNewMonth( $(this).val() );
-        });
-
-        $(document).delegate( '#UXCCalendar button.UConfirm', 'click', function( $evt ){
-            _logic.setSelectedDate();
-            _logic.hide();
-        });
-
-        $(document).delegate( '#UXCCalendar button.UClear', 'click', function( $evt ){
-            _logic.lastIpt && _logic.lastIpt.length && _logic.lastIpt.val('');
-        });
-
-        $(document).delegate( '#UXCCalendar button.UCancel', 'click', function( $evt ){
-            _logic.hide();
-        });
-
     });
 
     var _logic =
@@ -134,12 +173,16 @@
 
                 UXC.log( _dateObj.date.getFullYear(), _dateObj.date.getMonth()+1, _dateObj.date.getDate() );
 
-                var _layout = _logic.getLayout();
+                _logic.initLayout( _dateObj );
+                _logic.setPosition( _selector, _logic.getLayout() );
+            }
 
+        , initLayout:
+            function( _dateObj ){
+                var _layout = _logic.getLayout();
                 _logic.initYear( _layout, _dateObj );
                 _logic.initMonth( _layout, _dateObj );
                 _logic.initDate( _layout, _dateObj );
-                _logic.setPosition( _selector, _layout );
             }
 
         , initDate:
@@ -162,6 +205,11 @@
                     _class = [];
                     if( _beginDate.getDay() === 0 || _beginDate.getDay() == 6 ) _class.push('weekend');
                     if( !_logic.isSameMonth( _dateObj.date, _beginDate ) ) _class.push( 'other' );
+                    if( _dateObj.minvalue && _beginDate.getTime() < _dateObj.minvalue.getTime() ) 
+                        _class.push( 'unable' );
+                    if( _dateObj.maxvalue && _beginDate.getTime() > _dateObj.maxvalue.getTime() ) 
+                        _class.push( 'unable' );
+
                     if( _logic.isSameDay( _dateObj.date, _beginDate ) ) _class.push( 'cur' );
                     _ls.push( '<td class="', _class.join(' '),'">'
                             ,'<a href="javascript:" date="', _beginDate.getTime(),'">'
@@ -173,7 +221,7 @@
 
 
 
-                _layout.find('table tbody' ).html( $( _ls.join('') ) );
+                _layout.find('table.UTableBorder tbody' ).html( $( _ls.join('') ) );
 
                 UXC.log( _prebegin, _premaxday, _maxday, _weekday, _sumday, _row );
             }
@@ -189,6 +237,8 @@
                     , _sYear = _dateObj.initMinvalue.getFullYear()
                     , _eYear = _dateObj.initMaxvalue.getFullYear();
 
+                UXC.log( _sYear, _eYear );
+
                 if( !_selected ) _selected = _dateObj.date.getFullYear();
 
                 for( var i = _sYear; i <= _eYear; i++ ){
@@ -197,7 +247,7 @@
                     _ls.push( '<option value="'+i+'"'+_tmp+'>'+i+'</option>' );
                 }
 
-                $( _ls.join('') ).appendTo( _layout.find('select.UYear') );
+                $( _ls.join('') ).appendTo( _layout.find('select.UYear').html('') );
             }
 
         , setNewYear:
@@ -237,13 +287,23 @@
                 _layout.css( {'left': '-9999px'} ).show();
                 var _lw = _layout.width(), _lh = _layout.height()
                     , _iw = _ipt.width(), _ih = _ipt.height(), _ioset = _ipt.offset()
-                    , _x, _y;
+                    , _x, _y, _winw = $(window).width(), _winh = $(window).height()
+                    , _scrtop = $(document).scrollTop()
+                    ;
 
                 _x = _ioset.left; _y = _ioset.top + _ih + 5;
 
+                if( ( _y + _lh - _scrtop ) > _winh ){
+                    UXC.log('y overflow');
+                    _y = _ioset.top - _lh - 3;
+
+                    if( _y < _scrtop ) _y = _scrtop;
+                }
+
                 _layout.css( {left: _x+'px', top: _y+'px'} );
 
-                UXC.log( _lw, _lh, _iw, _ih, _ioset.left, _ioset.top );
+                UXC.log( _lw, _lh, _iw, _ih, _ioset.left, _ioset.top, _winw, _winh );
+                UXC.log( _scrtop, _x, _y );
             }
 
         , hide:
@@ -285,8 +345,11 @@
                 if( _tmp = _logic.parseDate( _selector.val() ) ) _r.date = _tmp;
                 else _r.date = new Date();
 
-                _r.initMinvalue = _r.minvalue = _logic.parseDate( _selector.attr('minvalue') );
-                _r.initMaxvalue = _r.maxvalue = _logic.parseDate( _selector.attr('maxvalue') );
+                _r.minvalue = _logic.parseDate( _selector.attr('minvalue') );
+                _r.maxvalue = _logic.parseDate( _selector.attr('maxvalue') );
+                
+                _r.minvalue && ( _r.initMinvalue = _logic.cloneDate( _r.minvalue ) );
+                _r.maxvalue && ( _r.initMaxvalue = _logic.cloneDate( _r.maxvalue ) );
 
                 if( !_r.initMinvalue ){
                     _r.initMinvalue = _logic.cloneDate( _r.date );
@@ -324,7 +387,9 @@
             function(){
                 var _cur;
                 _cur = _logic.getLayout().find('table td.cur a');
+                if( _cur.parent('td').hasClass('unable') ) return 0;
                 _cur && _cur.length && _cur.attr('date') && _logic.setDate( _cur.attr('date') );
+                return 1;
             }
 
         , parseDate:
