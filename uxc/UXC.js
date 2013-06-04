@@ -18,18 +18,21 @@
         /**
          * UXC组件库所在路径
          * @property    PATH
+         * @static
          * @type {string}
          */
         PATH: '/js/uxc/comps/'
         /**
          * 是否显示调试信息
          * @property    debug
+         * @static
          * @type {bool}
          */
         , debug: false
        /**
         * 导入UXC组件
         * @method   use
+        * @static
         * @param    {string}    _names -            模块名
         *                                           或者模块下面的某个js文件(test/test1.js, 路径前面不带"/"将视为test模块下的test1.js)
         *                                           或者一个绝对路径的js文件, 路径前面带 "/"
@@ -117,6 +120,7 @@
         * 输出调试信息, 可通过 UXC.debug 指定是否显示调试信息
         * @param    {[string[,string]]}  任意参数任意长度的字符串内容
         * @method log
+        * @static
         */
        log: 
            function(){
@@ -128,6 +132,7 @@
          *
          * @author rekey 2013-05-28
          * @method namespace
+         * @static
          * @param {String} str 命名空间
          * @param {Object} context 命名空间基于这个对象生成，默认为window
          * @return {Object} 返回生成的命名空间

@@ -16,6 +16,7 @@
         /**
          * 验证一个表单项, 如 文本框, 下拉框, 复选框, 单选框, 文本域, 隐藏域
          * @method check
+         * @static
          * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
          * @example 
          *          UXC.Valid.check( $('input.needValid') );
@@ -42,6 +43,7 @@
          /**
          * 清除Valid生成的错误样式
          * @method clearError
+         * @static
          * @param   {form|input|textarea|select|file|password}  _selector -     需要清除错误的选择器
          * @example
          *          UXC.Valid.clearError( 'form' );
@@ -71,6 +73,7 @@
     /**
      * 这个方法是 {@link Valid.check} 的别名
      * @method checkAll
+     * @static
      * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
      * @see Valid.check
      */

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>../../uxc/lib.js</title>
+    <title>../../uxc/comps/Panel/Panel.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -92,25 +92,28 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: ../../uxc/lib.js</h1>
+                        <h1 class="file-heading">File: ../../uxc/comps/Panel/Panel.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
-/**
- * 取当前脚本标签的 src路径 
- * @author  scuehs@btbtd.org 2013-05-23
- * @return  {string} 脚本所在目录的完整路径
- */
-function script_path_f(){
-    var _sc = document.getElementsByTagName(&#x27;script&#x27;), _sc = _sc[ _sc.length - 1 ], _path = _sc.getAttribute(&#x27;src&#x27;);
-    if( /\//.test( _path ) ){ _path = _path.split(&#x27;/&#x27;); _path.pop(); _path = _path.join(&#x27;/&#x27;) + &#x27;/&#x27;; }
-    else if( /\\/.test( path ) ){ _path = _path.split(&#x27;\\&#x27;); _path.pop(); _path = _path.join(&#x27;\\&#x27;) + &#x27;/&#x27;; }
-    return _path;
-}
-(function(){
-    var _path = script_path_f();
-    document.write( &#x27;&lt;script src=&quot;&#x27;+_path+&#x27;jquery.js&quot; &gt;&lt;\/script&gt;&#x27;, &#x27;&lt;script src=&quot;&#x27;+_path+&#x27;UXC.js&quot; &gt;&lt;\/script&gt;&#x27; );
-}());
+(function($){
+    !window.UXC &amp;&amp; (window.UXC = { log:function(){} });
+    /**
+     * 弹出层/会话框/提示框&lt;br /&gt;
+     * @namespace UXC
+     * @class Panel
+     * @static
+     * @private
+     * @uses jQuery
+     * @version dev 0.1
+     * @author  qiushaowei   &lt;suches@btbtd.org&gt; | {@link http://uxc.360.cn|360 UXC-FE Team}
+     * @date    2013-05-30
+     */
+    window.Panel = UXC.Panel = 
+    function(){
+
+    };
+}(jQuery))
 
     </pre>
 </div>

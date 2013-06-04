@@ -41,6 +41,14 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="../classes/UXC.Calendar.html">UXC.Calendar</a></li>
+            
+                <li><a href="../classes/UXC.CustomEvent.html">UXC.CustomEvent</a></li>
+            
+                <li><a href="../classes/UXC.Panel.html">UXC.Panel</a></li>
+            
+                <li><a href="../classes/UXC.Toggle.html">UXC.Toggle</a></li>
+            
                 <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
             
                 <li><a href="../classes/window.UXC.html">window.UXC</a></li>
@@ -104,7 +112,7 @@
 
 
 <div class="box intro">
-    <p>UXC jq 组件库 资源调用控制类<br />
+    <p>UXC jquery 组件库 资源调用控制类<br />
 这是一个单例模式, 全局访问使用 UXC 或 window.UXC</p>
 </div>
 
@@ -138,6 +146,8 @@
                                 <a href="#method_use">use</a>
 
                                 
+                                    <span class="flag static">static</span>
+                                
                                 
                             </li>
                         
@@ -151,6 +161,17 @@
                             <li class="index-item method">
                                 <a href="#method_log">log</a>
 
+                                
+                                    <span class="flag static">static</span>
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_namespace">namespace</a>
+
+                                
+                                    <span class="flag static">static</span>
                                 
                                 
                             </li>
@@ -169,12 +190,16 @@
                                 <a href="#property_debug">debug</a>
 
                                 
+                                    <span class="flag static">static</span>
+                                
                                 
                             </li>
                         
                             <li class="index-item property">
                                 <a href="#property_PATH">PATH</a>
 
+                                
+                                    <span class="flag static">static</span>
                                 
                                 
                             </li>
@@ -231,6 +256,8 @@
     
 
     
+        <span class="flag static">static</span>
+    
 
     
 
@@ -247,7 +274,7 @@
             
         
         
-        <a href="../files/.._.._uxc_UXC.js.html#l29"><code>..&#x2F;..&#x2F;uxc&#x2F;UXC.js:29</code></a>
+        <a href="../files/.._.._uxc_UXC.js.html#l32"><code>..&#x2F;..&#x2F;uxc&#x2F;UXC.js:32</code></a>
         
         </p>
 
@@ -392,7 +419,7 @@
             
         
         
-        <a href="../files/.._.._uxc_UXC.js.html#l101"><code>..&#x2F;..&#x2F;uxc&#x2F;UXC.js:101</code></a>
+        <a href="../files/.._.._uxc_UXC.js.html#l105"><code>..&#x2F;..&#x2F;uxc&#x2F;UXC.js:105</code></a>
         
         </p>
 
@@ -453,6 +480,8 @@
     
 
     
+        <span class="flag static">static</span>
+    
 
     
 
@@ -469,7 +498,7 @@
             
         
         
-        <a href="../files/.._.._uxc_UXC.js.html#l115"><code>..&#x2F;..&#x2F;uxc&#x2F;UXC.js:115</code></a>
+        <a href="../files/.._.._uxc_UXC.js.html#l119"><code>..&#x2F;..&#x2F;uxc&#x2F;UXC.js:119</code></a>
         
         </p>
 
@@ -514,6 +543,133 @@
 </div>
 
                 
+                    <div id="method_namespace" class="method item">
+    <h3 class="name"><code>namespace</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>str</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>context</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+        <span class="returns-inline">
+            <span class="type">Object</span>
+        </span>
+    
+
+    
+
+    
+
+    
+
+    
+        <span class="flag static">static</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._uxc_UXC.js.html#l130"><code>..&#x2F;..&#x2F;uxc&#x2F;UXC.js:130</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>获取命名空间，如果没有就创建一个</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">str</code>
+                        <span class="type">String</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>命名空间</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">context</code>
+                        <span class="type">Object</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>命名空间基于这个对象生成，默认为window</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+        <div class="returns">
+            <h4>Returns:</h4>
+
+            <div class="returns-description">
+                
+                    
+                        <span class="type">Object</span>:
+                    
+                    返回生成的命名空间
+                
+            </div>
+        </div>
+    
+
+    
+</div>
+
+                
             </div>
         
 
@@ -533,6 +689,8 @@
     
 
     
+        <span class="flag static">static</span>
+    
 
     <div class="meta">
         
@@ -545,7 +703,7 @@
             
         
         
-        <a href="../files/.._.._uxc_UXC.js.html#l23"><code>..&#x2F;..&#x2F;uxc&#x2F;UXC.js:23</code></a>
+        <a href="../files/.._.._uxc_UXC.js.html#l25"><code>..&#x2F;..&#x2F;uxc&#x2F;UXC.js:25</code></a>
         
         </p>
 
@@ -577,6 +735,8 @@
     
 
     
+        <span class="flag static">static</span>
+    
 
     <div class="meta">
         
@@ -589,7 +749,7 @@
             
         
         
-        <a href="../files/.._.._uxc_UXC.js.html#l17"><code>..&#x2F;..&#x2F;uxc&#x2F;UXC.js:17</code></a>
+        <a href="../files/.._.._uxc_UXC.js.html#l18"><code>..&#x2F;..&#x2F;uxc&#x2F;UXC.js:18</code></a>
         
         </p>
 
