@@ -17,7 +17,7 @@
          * 验证一个表单项, 如 文本框, 下拉框, 复选框, 单选框, 文本域, 隐藏域
          * @method check
          * @static
-         * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
+         * @param      {selector}    _item -   需要验证规则正确与否的表单/表单项
          * @example 
          *          UXC.Valid.check( $('input.needValid') );
          *          UXC.Valid.check( document.getElementById('inputNeedValid') );
@@ -74,7 +74,7 @@
      * 这个方法是 {@link Valid.check} 的别名
      * @method checkAll
      * @static
-     * @param      {elements}    _item -   需要验证规则正确与否的表单/表单项
+     * @param      {selector}    _item -   需要验证规则正确与否的表单/表单项
      * @see Valid.check
      */
     Valid.checkAll = Valid;
@@ -95,7 +95,6 @@
     });
     /**
      * 私有逻辑处理对象, 验证所需的所有规则和方法都存放于此对象
-     * @private
      */
     var _logic =
         {

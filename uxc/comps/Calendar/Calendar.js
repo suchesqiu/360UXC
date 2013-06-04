@@ -1,11 +1,11 @@
 (function($){
     !window.UXC && (window.UXC = { log:function(){} });
     /**
-     * 日期选择组件
+     * 日历选择组件
      * <p>全局访问请使用 UXC.Calendar 或 Calendar</p>
      * <p>DOM 加载完毕后
-     * , Calendar会自动初始化所有附件要求的input[type=text][datatype=date]标签</p>
-     * <p>Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用Calendar.init( _selector )</p>
+     * , Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签</p>
+     * <p>Ajax 加载内容后, 如果有日期组件需求的话, 需要手动使用Calendar.init( _selector )</p>
      * <p>_selector 可以是 新加载的容器, 也可以是新加载的所有input</p>
      * @namespace UXC
      * @class Calendar
@@ -18,36 +18,128 @@
     var Calendar = UXC.Calendar = window.Calendar = 
     {
         /**
-         *
+         * 弹出日期选择框
+         * @method pickDate
+         * @static
+         * @param   {selector}  _selector 需要显示日期选择框的input[text]   
+         * @example
+                <dl>
+                    <dd>
+                        <input type="text" name="date6" class="manualPickDate" value="20110201" />
+                        manual UXC.Calendar.pickDate
+                    </dd>
+                    <dd>
+                        <input type="text" name="date7" class="manualPickDate" />
+                        manual UXC.Calendar.pickDate
+                    </dd>
+                </dl>
+                <script>
+                    $(document).delegate('input.manualPickDate', 'focus', function($evt){
+                    UXC.Calendar.pickDate( this );
+                    });
+                </script>
          */
         pickDate: function( _selector ){ _logic.pickDate( _selector ); } 
+        /**
+         * 初始化 _selector 中的所有日历组件
+         * @method  init
+         * @static
+         * @param   {selector}  _selector 需要初始化的日历组件父容器/日期选择input选择器
+         * @example
+                <script>
+                    $.post( url, function( _d ){
+                        _d = $(_d);
+                        _d.appendTo(body);
+                        UXC.Calendar.init( _d );
+                    });
+                </script>
+         */
         , init: function( _selector ){ _logic.initTrigger( _selector ); }
+        /**
+         * 隐藏日历组件
+         * @method  hide
+         * @static
+         * @example
+                <script>UXC.Calendar.hide();</script>
+         */
         , hide: function(){ _logic.hide(); }
-
+        /**
+         * 设置是否在 DOM 加载完毕后, 自动初始化所有日期控件
+         * @property    autoInit
+         * @default true
+         * @type    {bool}
+         * @static
+                <script>UXC.Calendar.autoInit = true;</script>
+         */
         , autoInit: true
+        /**
+         * 设置默认显示的年份数, 该数为前后各多少年 默认为前后各10年
+         * @property    defaultDateSpan
+         * @type        {int}
+         * @default     10
+         * @static
+                <script>UXC.Calendar.defaultDateSpan = 20;</script>
+         */
         , defaultDateSpan: 10
+        /**
+         * 自定义日历组件模板
+         * <p>默认模板为_logic.tpl</p>
+         * <p>如果用户显示定义Calendar.tpl的话, 将采用用户的模板</p>
+         * @property    tpl
+         * @type    {string}
+         * @default empty
+         * @static
+         */
         , tpl: ''
     };
-
+    /**
+     * DOM 加载完毕后, 初始化日历组件相关事件
+     * @event   dom ready
+     * @private
+     */
     $(document).ready( function($evt){
+        /**
+         * 延迟200毫秒初始化页面的所有日历控件
+         * 之所以要延迟是可以让用户自己设置是否需要自动初始化
+         */
         setTimeout( function( $evt ){
             if( !Calendar.autoInit ) return;
             Calendar.init( $('input[type=text]') );
         }, 200 );
-
+        /**
+         * 捕获用户更改年份 
+         * <p>监听 年份下拉框</p>
+         * @event year change
+         * @private
+         */
         $(document).delegate( '#UXCCalendar select.UYear', 'change', function( $evt ){
             _logic.setNewYear( $(this).val() );
         });
-
-        $(document).delegate( '#UXCCalendar select.UMonth', 'click', function( $evt ){
+        /**
+         * 捕获用户更改月份
+         * <p>监听 月份下拉框</p>
+         * @event   month change
+         * @private
+         */
+        $(document).delegate( '#UXCCalendar select.UMonth', 'change', function( $evt ){
             _logic.setNewMonth( $(this).val() );
         });
-
+        /**
+         * 选择当前日期
+         * <p>监听确定按钮</p>
+         * @event   confirm click
+         * @private
+         */
         $(document).delegate( '#UXCCalendar button.UConfirm', 'click', function( $evt ){
             if( !_logic.setSelectedDate() ) return;
             _logic.hide();
         });
-
+        /**
+         * 增加或者减少一年
+         * <p>监听 年份map</p>
+         * @event   year map click
+         * @private
+         */
         $(document).delegate( "map[name=UXCCalendar_Year] area" , 'click', function( $evt ){
             $evt.preventDefault();
             var _p = $(this), _do = _logic.lastDateObj;
@@ -61,10 +153,15 @@
                 _do.initMinvalue.setFullYear( _do.initMinvalue.getFullYear() - 1 );
                 _do.initMaxvalue.setFullYear( _do.initMaxvalue.getFullYear() - 1 );
             }
-            _logic.initLayout( _do );
+            _logic.initDateLayout( _do );
             UXC.log( _p.attr("action") );
         });
-
+        /**
+         * 增加或者减少一个月
+         * <p>监听 月份map</p>
+         * @event   month map click
+         * @private
+         */
         $(document).delegate( "map[name=UXCCalendar_Month] area" , 'click', function( $evt ){
             $evt.preventDefault();
             var _p = $(this), _do = _logic.lastDateObj;
@@ -78,18 +175,32 @@
                 _do.initMinvalue.setMonth( _do.initMinvalue.getMonth() - 1 );
                 _do.initMaxvalue.setMonth( _do.initMaxvalue.getMonth() - 1 );
             }
-            _logic.initLayout( _do );
+            _logic.initDateLayout( _do );
             UXC.log( _p.attr("action") );
         });
-
+        /**
+         * 清除文本框内容
+         * <p>监听 清空按钮</p>
+         * @event   clear click
+         * @private
+         */
         $(document).delegate( '#UXCCalendar button.UClear', 'click', function( $evt ){
             _logic.lastIpt && _logic.lastIpt.length && _logic.lastIpt.val('');
         });
-
+        /**
+         * 取消日历组件, 相当于隐藏
+         * <p>监听 取消按钮</p>
+         * @event cancel click
+         * @private
+         */
         $(document).delegate( '#UXCCalendar button.UCancel', 'click', function( $evt ){
             _logic.hide();
         });
-
+        /**
+         * dom 点击时, 检查事件源是否为日历组件对象, 如果不是则会隐藏日历组件
+         * @event dom click
+         * @private
+         */
         $(document).on('click', function($evt){
             if( _logic.isCalendarElement($evt.target||$evt.targetElement) ) return;
             var _src = $evt.target || $evt.srcElement;
@@ -103,19 +214,35 @@
                 _logic.hide();
             }, 100);
         });
-
+        /**
+         * 日历组件按钮点击事件
+         * @event calendar button click
+         * @private
+         */
         $(document).delegate( 'input.UXCCalendar_btn', 'click', function($evt){
             if( this.forCalendar ) _logic.pickDate( this.forCalendar );
         });
-
+        /**
+         * 日历组件文本框获得焦点
+         * @event input focus
+         * @private
+         */
         $(document).delegate( 'input[datatype=date]', 'focus', function($evt){
             _logic.pickDate( this );
         });
-
+        /**
+         * 日历组件点击事件, 阻止冒泡, 防止被 document click事件隐藏
+         * @event UXCCalendar click
+         * @private
+         */
         $(document).delegate( '#UXCCalendar', 'click', function( $evt ){
             $evt.stopPropagation();
         });
-
+        /**
+         * 日期点击事件
+         * @event date click
+         * @private
+         */
         $(document).delegate( '#UXCCalendar table a', 'click', function( $evt ){
             $evt.preventDefault();
             var _p = $(this), _tm = _p.attr('date')||'';
@@ -127,7 +254,11 @@
             _logic.setDate( _tm );
             _logic.hide();
         });
-
+        /**
+         * 监听窗口滚动和改变大小, 实时变更日历组件显示位置
+         * @event  window scroll, window resize
+         * @private
+         */
         $(window).on('scroll resize', function($evt){
             var _layout = _logic.getLayout();
             if( !( _layout.is(':visible') && _logic.lastIpt ) ) return;
@@ -135,8 +266,17 @@
         });
     });
 
+    /**
+     * 私有逻辑处理对象, 基本上所有逻辑方法都存放于此对象
+     */
     var _logic =
     {
+        /**
+         * 初始化日历组件的触发按钮
+         * @method  initTrigger
+         * @param   {selector}      _selector   
+         * @private
+         */
         initTrigger:
             function( _selector ){
                _selector.each( function(){
@@ -158,10 +298,25 @@
                     _btn[0].forCalendar = _p;
                 });
             }
-
+        /**
+         * 最后一个显示日历组件的文本框
+         * @property  lastIpt
+         * @type    selector
+         * @private
+         */
         , lastIpt: null
+        /**
+         * 最后一个显示日历组件的日期对象
+         * @property    lastDateObj
+         * @type        Object
+         * @private
+         */
         , lastDateObj: null
-
+        /** 
+         * 判断选择器是否为日历组件的对象
+         * @method  isCalendarElement
+         * @param   {selector}  _selector
+         */
         , isCalendarElement:
             function( _selector ){
                 _selector = $(_selector);
@@ -177,7 +332,12 @@
 
                 return _r;
             }
-
+        /**
+         * 显示日历组件
+         * @method  pickDate
+         * @param   {selector}  _selector input[type=text][datatype=date]
+         * @private
+         */
         , pickDate:
             function( _selector ){
                 UXC.log( 'Calendar.pickDate', new Date().getTime() );
@@ -190,20 +350,31 @@
 
                 UXC.log( _dateObj.date.getFullYear(), _dateObj.date.getMonth()+1, _dateObj.date.getDate() );
 
-                _logic.initLayout( _dateObj );
+                _logic.initDateLayout( _dateObj );
                 _logic.setPosition( _selector, _logic.getLayout() );
             }
-
-        , initLayout:
+        /**
+         * 初始化日历组件的所有日期
+         *      _dateObj = { date: date, minvalue: date, maxvalue: date, initMinvalue: date, initMaxvalue: date };
+         * @method  initDateLayout
+         * @param   {DateObjects}   _dateObj   保存所有相关日期的对象
+         * @private
+         */
+        , initDateLayout:
+            function( _dateObj ){
+                _logic.initYear( _dateObj );
+                _logic.initMonth( _dateObj );
+                _logic.initMonthDate( _dateObj );
+            }
+        /**
+         * 初始化月份的所有日期
+         * @method  initMonthDate
+         * @param   {DateObjects}   _dateObj   保存所有相关日期的对象
+         * @private
+         */
+        , initMonthDate:
             function( _dateObj ){
                 var _layout = _logic.getLayout();
-                _logic.initYear( _layout, _dateObj );
-                _logic.initMonth( _layout, _dateObj );
-                _logic.initDate( _layout, _dateObj );
-            }
-
-        , initDate:
-            function( _layout, _dateObj, _selected ){
                 var _maxday = _logic.maxDayOfMonth( _dateObj.date ), _weekday = _dateObj.date.getDay() || 7
                     , _sumday = _weekday + _maxday, _row = 6, _ls = [], _premaxday, _prebegin
                     , _tmp, i, _class;
@@ -236,21 +407,30 @@
                 }
                 _ls.push('</tr>');
 
-
-
                 _layout.find('table.UTableBorder tbody' ).html( $( _ls.join('') ) );
 
                 UXC.log( _prebegin, _premaxday, _maxday, _weekday, _sumday, _row );
             }
-
+        /**
+         * 初始化月份
+         * @method  initMonth
+         * @param   {DateObjects}   _dateObj   保存所有相关日期的对象
+         * @private
+         */
         , initMonth:
-            function( _layout, _dateObj, _selected ){
+            function( _dateObj ){
+                var _layout = _logic.getLayout();
                 $( _layout.find('select.UMonth').val( _dateObj.date.getMonth() ) );
             }
-
+        /**
+         * 初始化年份
+         * @method  initYear
+         * @param   {DateObjects}   _dateObj   保存所有相关日期的对象
+         * @private
+         */
         , initYear:
-            function( _layout, _dateObj, _selected ){
-                var _ls = [], _tmp
+            function( _dateObj ){
+                var _layout = _logic.getLayout(), _ls = [], _tmp, _selected
                     , _sYear = _dateObj.initMinvalue.getFullYear()
                     , _eYear = _dateObj.initMaxvalue.getFullYear();
 
@@ -279,8 +459,8 @@
 
                 _logic.lastDateObj.date = _d;
 
-                _logic.initMonth( _logic.getLayout(), _logic.lastDateObj );
-                _logic.initDate( _logic.getLayout(), _logic.lastDateObj );
+                _logic.initMonth( _logic.lastDateObj );
+                _logic.initMonthDate( _logic.lastDateObj );
             }
 
         , setNewMonth:
@@ -295,8 +475,8 @@
 
                 _logic.lastDateObj.date = _d;
 
-                _logic.initMonth( _logic.getLayout(), _logic.lastDateObj );
-                _logic.initDate( _logic.getLayout(), _logic.lastDateObj );
+                _logic.initMonth( _logic.lastDateObj );
+                _logic.initMonthDate( _logic.lastDateObj );
             }
 
         , setPosition:
