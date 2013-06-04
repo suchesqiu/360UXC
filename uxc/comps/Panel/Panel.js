@@ -8,10 +8,11 @@
      * @private
      * @uses jQuery
      * @version dev 0.1
-     * @author  qiushaowei   <suches@btbtd.org> | {@link http://uxc.360.cn|360 UXC-FE Team}
-     * @date    2013-05-30
+     * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
+     * @link    https://github.com/suchesqiu/360UXC.git
+     * @date    2013-06-04
      */
-    window.Panel = UXC.Panel = 
+    var Panel = window.Panel = UXC.Panel = 
     function(){
 
     };
