@@ -5,7 +5,7 @@
      * <p>全局访问请使用 UXC.Calendar 或 Calendar</p>
      * <p>DOM 加载完毕后
      * , Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签</p>
-     * <p>Ajax 加载内容后, 如果有日期组件需求的话, 需要手动使用Calendar.init( _selector )</p>
+     * <p>Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用Calendar.init( _selector )</p>
      * <p>_selector 可以是 新加载的容器, 也可以是新加载的所有input</p>
      * @namespace UXC
      * @class Calendar

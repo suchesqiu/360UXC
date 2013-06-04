@@ -43,12 +43,6 @@
             
                 <li><a href="../classes/UXC.Calendar.html">UXC.Calendar</a></li>
             
-                <li><a href="../classes/UXC.CustomEvent.html">UXC.CustomEvent</a></li>
-            
-                <li><a href="../classes/UXC.Panel.html">UXC.Panel</a></li>
-            
-                <li><a href="../classes/UXC.Toggle.html">UXC.Toggle</a></li>
-            
                 <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
             
                 <li><a href="../classes/window.UXC.html">window.UXC</a></li>
@@ -103,14 +97,15 @@
      * &lt;p&gt;全局访问请使用 UXC.Calendar 或 Calendar&lt;/p&gt;
      * &lt;p&gt;DOM 加载完毕后
      * , Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签&lt;/p&gt;
-     * &lt;p&gt;Ajax 加载内容后, 如果有日期组件需求的话, 需要手动使用Calendar.init( _selector )&lt;/p&gt;
+     * &lt;p&gt;Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用Calendar.init( _selector )&lt;/p&gt;
      * &lt;p&gt;_selector 可以是 新加载的容器, 也可以是新加载的所有input&lt;/p&gt;
      * @namespace UXC
      * @class Calendar
      * @static
      * @uses jQuery
      * @version dev 0.1
-     * @author  qiushaowei   &lt;suches@btbtd.org&gt; | {@link http://uxc.360.cn|360 UXC-FE Team}
+     * @author  qiushaowei   &lt;suches@btbtd.org&gt; | 360 UXC-FE Team
+     * @link    https://github.com/suchesqiu/360UXC.git
      * @date    2013-06-04
      */
     var Calendar = UXC.Calendar = window.Calendar = 
@@ -630,7 +625,12 @@
             function(){
                 _logic.getLayout().hide();
             }
-
+        /**
+         * 获取日历组件的外观
+         * @method  _logic.getLayout
+         * @return  {selector} 日历组件的selector
+         * @private
+         */
         , getLayout:
             function(){
                 var _r = $(&#x27;#UXCCalendar&#x27;);
@@ -657,7 +657,12 @@
 
                 return _r;
             }
-
+        /**
+         * 获取初始日期对象
+         * @method  _logic.getDate
+         * @param   {selector}  _selector   显示日历组件的input
+         * @private
+         */
         , getDate:
             function( _selector ){
                 var _r = { date: 0, minvalue: 0, maxvalue: 0, initMinvalue: 0, initMaxvalue: 0 }, _tmp;
@@ -683,7 +688,12 @@
 
                 return _r;
             }
-
+        /**
+         * 把日期赋值给文本框
+         * @method  _logic.setDate
+         * @param   {int}   _timestamp  日期对象的时间戳
+         * @private
+         */
         , setDate:
             function( _timestamp ){
                 if( !(_timestamp &amp;&amp; _logic.lastIpt &amp;&amp; _logic.lastIpt.length ) ) return;
@@ -702,7 +712,12 @@
                      ].join(_symbol);
                 _logic.lastIpt.val( _dStr );
             }
-
+        /**
+         * 给文本框赋值, 日期为控件的当前日期
+         * @method  _logic.setSelectedDate
+         * @return  {int}   0/1
+         * @private
+         */
         , setSelectedDate:
             function(){
                 var _cur;
@@ -711,7 +726,13 @@
                 _cur &amp;&amp; _cur.length &amp;&amp; _cur.attr(&#x27;date&#x27;) &amp;&amp; _logic.setDate( _cur.attr(&#x27;date&#x27;) );
                 return 1;
             }
-
+        /**
+         * 解析日期
+         * @method  _logic.parseDate
+         * @param   {string}    _dateStr
+         * @return  {Date}  返回解析得到的日期/或者当前日期
+         * @private
+         */
         , parseDate:
             function( _dateStr ){
                 var _re = /[^\d]/g, _r, _dateStr = _dateStr || &#x27;&#x27;;
@@ -723,21 +744,47 @@
                 }
                 return _r;
             }
-
+        /**
+         * 克隆日期对象
+         * @method  _logic.cloneDate
+         * @param   {Date}  _date   需要克隆的日期
+         * @return  {Date}  需要克隆的日期对象
+         * @private
+         */
         , cloneDate: function( _date ){ var d = new Date(); d.setTime( _date.getTime() ); return d; }
-
+        /**
+         * 判断两个日期是否为同一天
+         * @method  _logic.isSameDay
+         * @param   {Date}  _d1     需要判断的日期1
+         * @param   {Date}  _d2     需要判断的日期2
+         * @return {bool}
+         * @private
+         */
         , isSameDay:
             function( _d1, _d2 ){
                 return [_d1.getFullYear(), _d1.getMonth(), _d1.getDate()].join() === [
                         _d2.getFullYear(), _d2.getMonth(), _d2.getDate()].join()
             }
-
+        /**
+         * 判断两个日期是否为同一月份
+         * @method  _logic.isSameMonth
+         * @param   {Date}  _d1     需要判断的日期1
+         * @param   {Date}  _d2     需要判断的日期2
+         * @return {bool}
+         * @private
+         */
         , isSameMonth:
             function( _d1, _d2 ){
                 return [_d1.getFullYear(), _d1.getMonth()].join() === [
                         _d2.getFullYear(), _d2.getMonth()].join()
             }
-
+        /**
+         * 取得一个月份中最大的一天
+         * @method  _logic.maxDayOfMonth
+         * @param   {Date}  _date
+         * @return {int} 月份中最大的一天
+         * @private
+         */
         , maxDayOfMonth:
             function( _date ){
                 var _r, _d = new Date( _date.getFullYear(), _date.getMonth() + 1 );
@@ -745,14 +792,26 @@
                     _r = _d.getDate();
                 return _r;
             }
-
+        /**
+         * 为数字添加前置0
+         * @method  _logic.intPad
+         * @param   {int}   _n      需要添加前置0的数字
+         * @param   {int}   _len    需要添加_len个0, 默认为2
+         * @return  {string}
+         * @private
+         */
         , intPad: 
             function( _n, _len ){
                 if( typeof _len == &#x27;undefined&#x27; ) _len = 2;
                 _n = new Array( _len + 1 ).join(&#x27;0&#x27;) + _n;
                 return _n.slice( _n.length - _len );
             }
-
+        /**
+         * 日历组件模板
+         * &lt;p&gt;这是默认模板, 用户可以给 UXC.Calendar.tpl 赋值, 更改为自己的模板&lt;/p&gt;
+         * @property    tpl
+         * @type    string
+         */
         , tpl: 
         [
         &#x27;&lt;div id=&quot;UXCCalendar&quot; class=&quot;UXCCalendar&quot;&gt;\n&#x27;
