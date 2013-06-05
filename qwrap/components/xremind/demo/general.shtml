@@ -36,6 +36,8 @@ body
 var btn = document.getElementById("test");
 var box = document.getElementById("box");
 
+var autoHiddenMs = 3000;
+
 btn.onclick =
 function()
 {
@@ -44,6 +46,7 @@ function()
         {
             "type": XRemind.SUCCESS,
             "msg": '一二三四五六七八九十<br />十一十二十三',
+            'autoHiddenMs': autoHiddenMs,
             "injectCallback":
             function( $e )
             {
@@ -56,6 +59,7 @@ function()
         {
             "type": XRemind.FAILED,
             "msg": '一二三四五六七八九十<br />十一十二十三',
+            'autoHiddenMs': autoHiddenMs,
             "injectCallback":
             function( $e )
             {
@@ -68,6 +72,7 @@ function()
         {
             "type": XRemind.ALTER,
             "msg": '一二三四五六七八九十<br />十一十二十三',
+            'autoHiddenMs': autoHiddenMs,
             "injectCallback":
             function( $e )
             {
