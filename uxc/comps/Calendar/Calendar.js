@@ -717,7 +717,7 @@
         /**
          * 日历组件模板
          * <p>这是默认模板, 用户可以给 UXC.Calendar.tpl 赋值, 更改为自己的模板</p>
-         * @property    tpl
+         * @property    _logic.tpl
          * @type    string
          * @private
          */

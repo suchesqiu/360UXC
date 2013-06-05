@@ -3,9 +3,46 @@
 <head>
 <meta charset=utf-8 />
 <title>suches template</title>
+<style type='text/css'>
+    *{ margin: 0; padding: 0; }
+    body{ width: 680px; margin: 20px auto; }
+    .cclear{zoom:1;}
+    .cclear:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
+
+    .error{ color: red; }
+    input.error, select.error, textarea.error{ 
+        background-color: #fce1e1;
+        border: 1px solid #da9797;
+        box-shadow: 0 none;
+    }
+    input[type=text], input[type=password]{ width: 200px; }
+
+    dl.fm-items{ margin: 20px 0 20px; }
+    dl.fm-items dd { zoom: 1; padding: 5px 0 5px; clear:both; display:block; }
+    dl.fm-items dd:after {content:".";display:block;visibility:hidden;height:0;clear:both;}
+
+    div.f-l{ float: left; }
+    div.label{ width: 320px; text-align: right; padding-right: 20px }
+
+</style>
+<link href='../../../comps/Panel/res/default/style.css' rel='stylesheet' />
+<script src="../../../lib.js"></script>
+<script> UXC.debug = true; UXC.use( 'Panel' ); </script>
+<script>
+    $(document).ready( function($evt){
+
+    });
+</script>
+
 </head>    
 <body>
-    
+
+    <dl>
+        <dt>UXC.Panel 示例</dt>
+        <dd>
+        </dd>
+    </dl>
+
 </body>
 </html>
 
