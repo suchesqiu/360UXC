@@ -3,16 +3,20 @@
 <head>
     <title>Tab Example</title>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
     <link href="http://p0.qhimg.com/s/t01c8cb01f2deaf6a6d.css" rel="stylesheet"/>
     <script src="../../../lib.js"></script>
-    <script>UXC.use('Tab');</script>
+    <script>UXC.use( 'Tab' );</script>
 </head>
 <body>
 <style>
+    body {
+        font-family: "Hiragino Sans GB W3", "microsoft yahei", "tahoma", "serif";
+    }
+
     .tab {
         margin: 30px;
-        border: 1px solid #eee;
+        border: 1px solid #ccc;
         width: 320px;
         overflow: hidden;
         height: 180px;
@@ -20,7 +24,7 @@
     }
 
     .triggers {
-        background: #eee;
+        background: #ccc;
         line-height: 20px;
         height: 20px;
         overflow: hidden;
@@ -42,138 +46,127 @@
     .contents,
     .content {
         background: #fff;
-        height: 140px;
         padding: 10px;
     }
 </style>
 <div class="tab">
     <div class="triggers" id="triggers1">
-        <a href="#" data-index="0">0</a>
-        <a href="#" data-index="1">1</a>
-        <a href="#" data-index="2">2</a>
+        <a href="#" data-index="0">0</a> <a href="#" data-index="1">1</a> <a href="#" data-index="2">2</a>
         <a href="#" data-index="3">3</a>
     </div>
     <div class="contents" id="contents1">
         <div class="content">
             <h3>性感女神主题合集</h3>
+
             <p>飘逸的秀发，妩媚的脸蛋，隆起的胸脯，纤柔的腰肢，凸起的臀部，修长的美腿，勾魂的眼睛，性感的嘴唇，高耸的双乳，致命诱惑，尽在这里，一览无余！</p>
         </div>
         <div class="content">
             <h3>各路萌宠让人爱</h3>
+
             <p>动物总是可以带给我们无尽的欢乐，尤其是那些毛茸茸，圆滚滚的动物幼崽，总能引爆我们的萌点，看看这些小家伙们，喜欢了就装进手机欣赏吧！</p>
         </div>
         <div class="content">
             <h3>热血动漫海贼王</h3>
+
             <p>拥有财富、名声、 权势，这世界上的一切的男人 “海贼王”哥尔•D•罗杰，在遭到处刑之前说出了一句话，让全世界的人都奔向了大海 “想要我的财宝吗？想要的话拿去吧！你们去找吧！我把所有的财宝都放在那里！”，这个世界迎来了『大海贼时代』！</p>
         </div>
         <div class="content">
             <h3>超萌二次元萌娘来袭</h3>
+
             <p>萝莉有三好：音清、体柔、易推倒；御姐有三好：啤酒、洗澡、吃嫩草；女王有三妙：木马、蜡烛、皮鞭操；这么多属性萌娘，哪一款才是你的菜？</p>
         </div>
     </div>
 </div>
 
 <script>
-    jQuery(function ($) {
-        var triggers = $('#triggers1').find('a');
-        var contents = $('#contents1').find('div');
+    jQuery( function ( $ ) {
+        var triggers = $( '#triggers1' ).find( 'a' );
+        var contents = $( '#contents1' ).find( 'div' );
         contents.hide();
-        var tab = UXC.Toggle.tab({
-            triggers : triggers,
-            contents:contents,
-            current:0
-        });
-        triggers.on('mouseenter', function () {
-            tab.toggle($(this).data('index'));
-            return false;
-        });
 
-        triggers.on('click', function () {
-            tab.toggle($(this).data('index'));
+        var tab = UXC.Toggle.tab( {
+            triggers : triggers ,
+            contents : contents ,
+            current : 0
+        } );
+
+        triggers.on( 'mouseenter' , function () {
+            tab.toggle( $( this ).data( 'index' ) );
             return false;
-        });
-    });
+        } );
+
+        triggers.on( 'click' , function () {
+            tab.toggle( $( this ).data( 'index' ) );
+            return false;
+        } );
+    } );
 </script>
 
 <style>
-    .contents-2{
+    .contents-2 {
         position: relative;
         width: 300px;
     }
 
-    .contents-2 .content{
+    .contents-2 .content {
         position: absolute;
-        top:0;
-        left:0;
+        top: 0;
+        left: 0;
         width: 300px;
     }
 </style>
 <div class="tab">
     <div class="triggers" id="triggers2">
-        <a href="#" data-index="0">0</a>
-        <a href="#" data-index="1">1</a>
-        <a href="#" data-index="2">2</a>
+        <a href="#" data-index="0">0</a> <a href="#" data-index="1">1</a> <a href="#" data-index="2">2</a>
         <a href="#" data-index="3">3</a>
     </div>
     <div class="contents contents-2" id="contents2">
         <div class="content">
             <h3>性感女神主题合集</h3>
+
             <p>飘逸的秀发，妩媚的脸蛋，隆起的胸脯，纤柔的腰肢，凸起的臀部，修长的美腿，勾魂的眼睛，性感的嘴唇，高耸的双乳，致命诱惑，尽在这里，一览无余！</p>
         </div>
         <div class="content">
             <h3>各路萌宠让人爱</h3>
+
             <p>动物总是可以带给我们无尽的欢乐，尤其是那些毛茸茸，圆滚滚的动物幼崽，总能引爆我们的萌点，看看这些小家伙们，喜欢了就装进手机欣赏吧！</p>
         </div>
         <div class="content">
             <h3>热血动漫海贼王</h3>
+
             <p>拥有财富、名声、 权势，这世界上的一切的男人 “海贼王”哥尔•D•罗杰，在遭到处刑之前说出了一句话，让全世界的人都奔向了大海 “想要我的财宝吗？想要的话拿去吧！你们去找吧！我把所有的财宝都放在那里！”，这个世界迎来了『大海贼时代』！</p>
         </div>
         <div class="content">
             <h3>超萌二次元萌娘来袭</h3>
+
             <p>萝莉有三好：音清、体柔、易推倒；御姐有三好：啤酒、洗澡、吃嫩草；女王有三妙：木马、蜡烛、皮鞭操；这么多属性萌娘，哪一款才是你的菜？</p>
         </div>
     </div>
 </div>
 
 <script>
-    jQuery(function ($) {
-        var triggers = $('#triggers2').find('a');
-        var contents = $('#contents2').find('div').css({
-            opacity: 0
-        });
-        var tab = UXC.Toggle.tab({
-            total : contents.length
-        });
+    jQuery( function ( $ ) {
+        var triggers = $( '#triggers2' ).find( 'a' );
+        var contents = $( '#contents2' ).find( 'div' ).css( {
+            opacity : 0
+        } );
 
-        tab.off('beforeToggle');
-        tab.on('beforeToggle', function (e, data) {
-            if (data.current !== null) {
-                triggers.eq(data.current).removeClass('on');
-            }
-            contents.eq(data.current).stop(1, 1).animate({
-                opacity: 0
-            });
-        });
+        var tab2 = UXC.Toggle.slide( {
+            triggers : triggers ,
+            contents : contents ,
+            current : 2
+        } );
 
-        tab.off('afterToggle');
-        tab.on('afterToggle', function (e, data) {
-            triggers.eq(data.current).addClass('on');
-            contents.eq(data.current).stop(1, 1).animate({
-                opacity: 1
-            });
-        });
-
-        tab.toggle(2);
-        triggers.on('mouseenter', function () {
-            tab.toggle($(this).data('index'));
+        triggers.on( 'mouseenter' , function () {
+            tab2.toggle( $( this ).data( 'index' ) );
             return false;
-        });
+        } );
 
-        triggers.on('click', function () {
-            tab.toggle($(this).data('index'));
+        triggers.on( 'click' , function () {
+            tab2.toggle( $( this ).data( 'index' ) );
             return false;
-        });
-    });
+        } );
+    } );
 </script>
 </body>
 </html>
