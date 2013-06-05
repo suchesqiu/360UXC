@@ -15,7 +15,7 @@ div.UXCCalendar{
     background: #F2F2F2!important;
     width: 222px!important;
     border:2px solid #a1a1a1;
-    z-index: 999;
+    z-index: 20000;
     text-align: center;
     position: absolute;
 }
