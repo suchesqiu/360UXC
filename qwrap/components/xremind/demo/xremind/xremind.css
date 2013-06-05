@@ -1,0 +1,10 @@
+/**/
+.tishi_A{border:1px solid #daecce; border-radius:3px; background:#f3f8ef; overflow:hidden; line-height:15px; color:#000; margin:5px; position:relative;}
+.tishi_A p{display:inline; float:left; width:19px; height:19px; background:url(tishi_three.gif) -29px 0 no-repeat; margin:5px 8px 0; padding:0; }
+.tishi_A span{display:block; float:left; line-height:15px; padding:8px 0; font-size:12px;}
+.tishi_A a{display:inline; width:12px; height:12px; background:url(tishi_three.gif) -100px 0 no-repeat; float:right; position:absolute;right:8px; top:9px;}
+.tishi_A a:hover{background:url(tishi_three.gif) -86px 0 no-repeat;}
+.tishi_B{border-color:#fddfda; background:#f8e8e5;}
+.tishi_B p{background:url(tishi_three.gif) 0 0 no-repeat;}
+.tishi_C{border-color:#fbeeca; background:#f7f1e0;}
+.tishi_C p{background:url(tishi_three.gif) -58px 0 no-repeat;}

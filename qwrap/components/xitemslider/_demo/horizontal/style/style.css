@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+
+/*电影页面*/
+
+/*movie_wra*/
+.movie_wra{ padding-bottom:40px; position:relative; width:970px;}
+.mo_leftBtn,.mo_rightBtn{ position:absolute;width:30px; overflow:hidden; top:100px;}
+.mo_leftBtn a,.mo_rightBtn a{ background: url(images/scroll.png) no-repeat scroll -30px 0 transparent; width:30px; height:50px; display:block; overflow:hidden; text-indent:-9999px;}
+.mo_mid{  width:890px; height:249px; margin:0 auto;}
+.mo_leftBtn{ left:0;}
+.mo_rightBtn{right:0;}
+.mo_rightBtn a{ background-position:0 0;}
+.mo_leftBtn a:hover{background-position:-95px 0;}
+.mo_rightBtn a:hover{background-position:-60px 0;}
+
+
+
+.mo_midList{ width: 890px; overflow: hidden;}
+.mo_midList li{ width:174px;}
+.bV_scroll dt{width:172px; height:252px;}
+.bV_scroll dt a{ width:170px; height:250px}
+.bV_scroll dt img{height:246px; margin:0;}
+.bV_scroll dt .pc{ width:166px;  height:246px;}
+.bV_scroll dt .la{width:168px;}
+.bV_scroll dd{width:174px;}
+.bV_scroll .text{}
+.bV_scroll .text h3 { font-size: 12px;font-weight: normal;}
+.bV_scroll .adi{ display:none; }
+.bV_scroll .del{ display:none;}
+  .mo_midList ul{ float:left; width:}
+  .mo_midList .vList li{ position:relative; float:left; margin-right:4px;  }
+  .txt_po{ position:absolute; border:1px solid #9D9D9D; top:0; right:-190px; width:174px; background:#fff; padding:10px 0; z-index:300;}
+  .txt_po h4{ padding:0 10px;}
+  .txt_po .time{ display:block; color:#999; padding:0 10px;}
+  .txt_po p{ background:#E9EBEA; padding:10px;}
+  .mo_fen{ padding:0 10px; color:#718E38;}
+  .mo_fen .fenIcon01{ float:left; background:url(images/videoBtn.png) no-repeat -201px -41px; padding-left:25px; font-size:16px; font-weight:bold; height:26px; line-height:26px; width:85px;}
+  .mo_fen .fenIcon02{float:left; background:url(images/videoBtn.png) no-repeat -201px 2px; padding-left:25px; font-size:16px; font-weight:bold; height:26px; line-height:26px; width:85px;}
+  .mo_fen .Money{ float:right; border:1px solid #718E38; padding:0 2px; margin-top:5px; border-radius: 3px 3px 3px 3px;}
+  .icon003{ position:absolute; left:-13px; bottom:30px;}
+  
+  
+/*shao wei add for js*/
+
+/* 翻页划动 菜单 样式*/ 
+.leftList{width: 640px; height: 260px;}
+.leftList{overflow:hidden;position:relative;}
+.leftList ul{left: 0;top: 0;position:absolute;}
+/* 顶部 划动菜单样式*/ 
+#slideList{width: 890px; height: 252px;overflow: hidden;position: relative;left: 0;top: 0;
+}
+#slideList li
+{position: absolute;left: -9999px;top: 0;
+}

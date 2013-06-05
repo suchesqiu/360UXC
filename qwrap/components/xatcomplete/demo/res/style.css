@@ -1,0 +1,130 @@
+
+*
+{
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+}
+
+body
+{
+    width: 960px;
+    margin: 20px auto;
+}
+
+.txa
+{
+    width: 400px;
+    height: 300px;
+}
+
+
+/**
+ * @弹框样式
+ */ 
+.xat_box
+{
+    width: 186px;
+    position: absolute;
+    border: 1px solid #E2E2E2;
+    color: #666666;
+}
+
+.xat_box dt
+{
+    padding: 6px 13px;
+    border-bottom: 1px dashed #B6B6B6;
+    background: #fff;
+}
+
+.xat_box dd
+{
+    cursor: pointer;
+    background: #F5F5F5;
+}
+
+.xat_box ul
+{
+    padding: 3px 0;
+}
+
+.xat_box li
+{
+    list-style-type: none;
+    padding: 7px 13px 0px;
+    white-space: pre;
+    overflow: hidden;
+    text-align: left;
+    display: block;
+    word-wrap: nowrap;
+    height: 20px;
+}
+
+.xat_box li a
+, .xat_box li a:visited
+{
+    color: #666666;
+    text-decoration: none;
+}
+
+.xat_box li.on
+, .xat_box li a:hover
+{
+    color: #fff;
+    background: #7BAACD;
+}
+
+.xat_box li.sloading
+{
+    padding: 10px 5px;
+    text-align: center;
+}
+
+.xat_control_, #xat_debug_
+{
+    font-family: monospace;
+    font-size: 13px; 
+    word-break: break-all;
+    line-height: 13px\0/;/*ie 8/9*/
+    *line-height: 13px; /*ie 7*/
+    _line-height: 13px; /*ie 6*/
+}
+/**
+ * 模拟DIV样式
+ */ 
+.xat_mask
+{
+    text-align: left;
+    z-index: -9999;
+    overflow: hidden; 
+    position: absolute;
+    line-height: normal; 
+    outline: rgb(229, 151, 0) auto 5px; 
+    font-weight: normal; 
+    font-variant: normal; 
+    font-style: normal; 
+    
+    border-style: solid; 
+    border-width: 1px; 
+    margin: 0px; 
+    
+    font-family: monospace;
+    font-size: 13px; 
+    line-height:12.5px\0/;/*ie 8/9*/
+    *line-height: 13px; /*ie 7*/
+    _line-height: 13px; /*ie 6*/
+    
+    white-space: pre-wrap; 
+    word-break: break-all;
+    filter: alpha(opacity=0);
+    opacity: 0; 
+}
+@media all and (min-width:0) {
+    .xat_mask { line-height:12.7px \0/; }  /* IE9-IE10pp4 */
+}
+.xat_mask span
+{
+    background: red;
+    padding: 0px!important;
+    margin: 0px!important;
+}

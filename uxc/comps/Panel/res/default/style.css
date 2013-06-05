@@ -1,1 +1,47 @@
 
+div.UPanel{  
+    position: absolute;
+    border: 1px solid #acacac;
+    background: #fff;
+    zoom: 1;
+    box-shadow:0 0 3px #b3b3b3;
+}
+div.UPanel .UPContent{
+    position: relative;
+}
+
+div.UPanel .UPContent .hd{
+    height: 34px;
+    line-height: 34px;
+    border-bottom: 1px solid #e8e8e8;
+    border-top: 1px solid #fff;
+    background: #fbfbfb;
+    padding: 0 10px;
+    cursor: default;
+}
+
+div.UPanel .UPContent .bd{
+    margin: 15px 15px 15px;
+}
+
+div.UPanel .UPContent .ft{
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-top: 1px solid #e8e8e8;
+    border-bottom: 1px solid #fff;
+    background: #fbfbfb;
+    padding: 0 10px;
+    cursor: default;
+}
+
+div.UPanel .UPContent span.close{
+    position: absolute;
+    top: 10px;
+    cursor: pointer;
+    right: 10px;
+    width: 15px;
+    height: 15px;
+    background: url(images/cls.png) no-repeat;
+}
+

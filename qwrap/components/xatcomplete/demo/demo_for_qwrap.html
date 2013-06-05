@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>suches template</title>
+<link rel="stylesheet" type="text/css" href="res/style.css" />
+</head>    
+<body>
+
+<textarea class="txa xat_control_">                   @##$$####$$###$$###$$</textarea>
+<textarea class="txa xat_control_">dfsdfd@
+
+ 
+sadsdfsdfd@dfsdfdsf@
+s
+ddfds@fasdfsfddd＠
+sdfsdfsadf@＠
+sd
+f@dddddddddddd＠ddddddddddddddddddddd
+sdfsf＠sdfdsf@dsn
+@sasdasdasd 
+@sd＠stest12@天天向上@ttxs
+sd
+ffdsfsd@</textarea>
+<br /><br /><br />
+<textarea class="txa xat_control_">dfsdfd@
+sadsdf＠sdfd@dfsdfdsf@s
+s
+ddfds@fasdfsfddd
+@sdfsdfsadf@sds
+sd@
+f@ddddddddddddddddddddddddddddddddd
+sdfsfsdfdsf
+sd
+ffdsfsd@</textarea>
+<textarea class="txa" id="xat_debug_"></textarea>
+
+<dl class="xat_box" style="right: 100px; bottom: 200px;">
+    <dt>选择昵称或轻敲空格完成输入</dt>
+    <dd>
+        <ul>
+            <li>盛大创新院</li>
+            <li>盛大创新院搜索主题院</li>
+            <li class="on">盛大创新院</li>
+            <li>盛大创新院搜索主题院</li>
+            <li>盛大创新院</li>
+            <li class="sloading" isset="1">数据加载中, 请稍候...</li>
+            <li>盛大创新院搜索主题院</li>
+        </ul>
+    </dd>
+</dl>    
+
+<script src="../XAtComplete.js"></script>
+<script src="res/common.js"></script>
+<script src="res/qwrap.js"></script>
+<script>
+
+XAtComplete.updateQuanloo =
+function( $data )
+{
+    if( $data && $data.sug )
+    {
+        XAtComplete.update( $data.sug, $data.query );
+    }    
+};
+
+window.XAT_REQUEST_URL = 'http://at.sii.sdo.com/su?query=&qid=1754575752&cb=XAtComplete.updateQuanloo'
+
+Dom.ready
+(
+    function()
+    {
+        /**
+         * 只要 input, textarea 带有CSS CLASS xat_control_, 则在为焦点时, 初始化 微博@功能
+         */ 
+        W(document.body).focus(); 
+        W(document.body).delegate
+        (
+            "input.xat_control_, textarea.xat_control_", 'focus',
+            function($evt)
+            {
+                var p = this;
+                INIT_XATCOMPLETE( p );
+            }
+        );
+    }
+);
+
+function INIT_XATCOMPLETE( $ele )
+{
+    if(!window.XAT_REQUEST_URL) return;
+    if( $ele.INIT_XATCOMPLETE ) return;
+    $ele.INIT_XATCOMPLETE = true;
+    
+    XAtComplete.exec
+    (
+        {
+            "trigger": $ele
+            , "data_url": window.XAT_REQUEST_URL
+            , "debug": true
+        }
+    );  
+}
+
+</script>
+    
+</body>
+</html>

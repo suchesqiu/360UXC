@@ -1,13 +1,21 @@
 
 本需求文档 wiki 地址: http://wiki.1360.com/pages/viewpage.action?pageId=92963942
 
-UXC-FE常用组件收集
+
+h2. 列表中标三个星(***)的需求已经开发完毕
+
+\**\* 的组件可以到 [https://github.com/suchesqiu/360UXC] 获取, 位于 master 主干,  uxc 目录, 组件位置为 [uxc/comps/|https://github.com/suchesqiu/360UXC/tree/master/uxc/comps]
+
+已开发完毕的组件API文档位于目录 [docs/uxc_docs|https://github.com/suchesqiu/360UXC/tree/master/docs/uxc_docs]
+
+
+h2. 组件需求
 
 (左静)问答所用组件：
 # 图片轮播 （现用qwrap&nbsp; tabview）
 # 编辑器 &nbsp;(现用 baidu editor)
 # 浮层 (qwrap pannel)
-# 日历(qwrap calendar)
+# 日历(qwrap calendar)      \**\*
 # Cookie(qwrap cache)
 # 上传文件 (swfupload + html5upload)
 # Suggest (导航)
@@ -30,7 +38,7 @@ UXC-FE常用组件收集
 # 美化表单&nbsp; jquery jNice
 
 (少伟)我这边需要用到的几个组件基本都跟表单有关系
-# 表单验证
+# 表单验证    \**\*
 # 级联下拉框
 # 树菜单
 # AJAX 上传文件
