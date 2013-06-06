@@ -11,6 +11,11 @@ div.UPanel{
     zoom: 1;
     box-shadow:0 0 3px #b3b3b3;
 }
+
+div.UPanel select, div.UPanel input, div.UPanel button{
+    cursor: pointer;
+}
+
 div.UPanel .UPContent{
     position: relative;
 }

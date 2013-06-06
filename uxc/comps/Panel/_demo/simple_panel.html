@@ -17,29 +17,51 @@
     }
     input[type=text], input[type=password]{ width: 200px; }
 
-    dl.fm-items{ margin: 20px 0 20px; }
-    dl.fm-items dd { zoom: 1; padding: 5px 0 5px; clear:both; display:block; }
-    dl.fm-items dd:after {content:".";display:block;visibility:hidden;height:0;clear:both;}
-
-    div.f-l{ float: left; }
-    div.label{ width: 320px; text-align: right; padding-right: 20px }
+    dl.def > dd{
+        margin: 10px 0;
+    }
 
 </style>
 <link href='../../../comps/Panel/res/default/style.css' rel='stylesheet' />
 <script src="../../../lib.js"></script>
 <script> UXC.debug = true; UXC.use( 'Panel' ); </script>
 <script>
-    $(document).ready( function($evt){
+    var count = 1;
+    $(document).ready( function(_evt){
 
+        tmpPanel = new UXC.Panel( 'test panel', '<h2>test content</h2>', 'test footer');
+        tmpPanel.on('close', function(_evt, _panel){
+            UXC.log('user close evnet');
+        });
+        tmpPanel.show();
+
+        $(document).delegate( 'button', 'click', function(_evt){
+            var p = $(this), panelType = p.attr('panelType') || '', tmpPanel;
+            if( !panelType ) return;
+
+            panelType = panelType.toLowerCase();
+
+            switch( panelType ){
+                case 'default':
+                {
+                    tmpPanel = new UXC.Panel( 'header ' + count, 'body ' + count, 'footer ' + count);
+                    tmpPanel.show();
+                    break;
+                }
+            }
+
+            count++;
+        });
     });
 </script>
 
 </head>    
 <body>
 
-    <dl>
+    <dl class="def">
         <dt>UXC.Panel 示例</dt>
         <dd>
+        <button type="button" class="js_panel" panelType="default">默认Panel</button>
         </dd>
     </dl>
 
