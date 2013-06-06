@@ -60,6 +60,16 @@
                 };
                 return this;
             }    
+
+        , on:
+            function( _evtName, _cb ){
+                _evtName && ( _evtName = _evtName.toLowerCase() );
+                if( !(_evtName in this._model.events) ){
+                    this._model.events[ _evtName ] = [];
+                }
+                if( _cb ) this._model.events[_evtName].unshift( _cb );
+            }
+
         
         , show:
             function(){
@@ -79,14 +89,14 @@
                 this.trigger('close', this._model.getPanel() );
             }
 
-        , on:
-            function( _evtName, _cb ){
-                _evtName && ( _evtName = _evtName.toLowerCase() );
-                if( !(_evtName in this._model.events) ){
-                    this._model.events[ _evtName ] = [];
-                }
-                if( _cb ) this._model.events[_evtName].unshift( _cb );
+        , center:
+            function( _with ){
+                this.trigger('beforecenter', this._model.getPanel() );
+                this._view.center( _with );
+                this.trigger('center', this._model.getPanel() );
             }
+
+        , selector: function(){ return this._model.getPanel(); }
 
         , trigger:
             function( _evtName, _srcElement, _evt ){
@@ -105,23 +115,31 @@
             }
 
         , header:
-            function(){
-
+            function( _html ){
+                if( typeof _html != 'undefined' ) this._model.getHeader( _html );
+                var _selector = this._model.getHeader();
+                if( _selector && _selector.length ) return _selector.html();
             }
 
         , body:
-            function(){
-
+            function( _html ){
+                if( typeof _html != 'undefined' ) this._model.getBody( _html );
+                var _selector = this._model.getBody();
+                if( _selector && _selector.length ) return _selector.html();
             }
 
         , footer:
-            function(){
-
+            function( _html ){
+                if( typeof _html != 'undefined' ) this._model.getFooter( _html );
+                var _selector = this._model.getFooter();
+                if( _selector && _selector.length ) return _selector.html();
             }
 
         , panel:
-            function(){
-
+            function( _html ){
+                if( typeof _html != 'undefined' ) this._model.getPanel( _html );
+                var _selector = this._model.getPanel();
+                if( _selector && _selector.length ) return _selector.html();
             }
     }
     
@@ -169,13 +187,17 @@
             }
 
         , getPanel:
-            function(){
+            function( _udata ){
+                if( typeof _udata != 'undefined' ){
+                    this.getPanel().html( _udata );
+                }
                 return this._panel;
             }
 
         , getHeader:
-            function(){
+            function( _udata ){
                 var _selector = this.getPanel().find('div.UPContent > div.hd');
+                if( typeof _udata != 'undefined' ) this._headers = _udata;
                 if( typeof this._headers != 'undefined' ){
                     if( !_selector.length ){
                         this.getPanel().find('div.UPContent > div.bd')
@@ -188,8 +210,9 @@
             }
 
         , getBody:
-            function(){
+            function( _udata ){
                 var _selector = this.getPanel().find('div.UPContent > div.bd');
+                if( typeof _udata != 'undefined' ) this._bodys = _udata;
                 if( typeof this._bodys!= 'undefined' ){
                     _selector.html( this._bodys);
                     this._bodys = undefined;
@@ -199,8 +222,9 @@
 
 
         , getFooter:
-            function(){
+            function( _udata ){
                 var _selector = this.getPanel().find('div.UPContent > div.ft');
+                if( typeof _udata != 'undefined' ) this._footers = _udata;
                 if( typeof this._footers != 'undefined' ){
                     if( !_selector.length ){
                         this.getPanel().find('div.UPContent > div.bd')
@@ -244,6 +268,35 @@
             function(){
                 this._model.getPanel().remove();
             }
+
+        , center:
+            function( _with ){
+                _with && ( _with = $(_with) );
+                var _layout = this._model.getPanel(), _lw = _layout.width(), _lh = _layout.height()
+                    , _x, _y, _winw = $(window).width(), _winh = $(window).height()
+                    , _scrleft = $(document).scrollLeft(), _scrtop = $(document).scrollTop()
+                    ;
+                    _layout.css( {'left': '-9999px', 'top': '-9999px'} ).show();
+
+                if( _with && _with.length ){
+
+                }else{
+                    _x = (_winw - _lw) / 2 + _scrleft; 
+                    _y = (_winh - _lh) / 2 + _scrtop - 100;
+
+                    if( ( _y + _lh - _scrtop ) > _winh ){
+                        UXC.log('y overflow');
+                        _y = _scrtop + _winh - _lh;
+
+                        if( _y < _scrtop ) _y = _scrtop;
+                    }
+
+                    _layout.css( {left: _x+'px', top: _y+'px'} );
+
+                    UXC.log( _lw, _lh, _winw, _winh );
+
+                }
+            }
     };
 
     var _deftpl =
@@ -256,4 +309,4 @@
         ,'</div><!--end UPanel-->\n'
         ].join('')
 
-}(jQuery))
+}(jQuery));

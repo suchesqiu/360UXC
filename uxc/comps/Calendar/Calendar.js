@@ -503,7 +503,7 @@
         , setPosition:
             function( _ipt ){
                 var _layout = _logic.getLayout();
-                _layout.css( {'left': '-9999px'} ).show();
+                _layout.css( {'left': '-9999px', 'top': '-9999px'} ).show();
                 var _lw = _layout.width(), _lh = _layout.height()
                     , _iw = _ipt.width(), _ih = _ipt.height(), _ioset = _ipt.offset()
                     , _x, _y, _winw = $(window).width(), _winh = $(window).height()
