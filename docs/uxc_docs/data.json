@@ -1653,41 +1653,14 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 130,
-            "description": "获取命名空间，如果没有就创建一个",
-            "author": "rekey 2013-05-28",
-            "itemtype": "method",
-            "name": "namespace",
-            "static": 1,
-            "params": [
-                {
-                    "name": "str",
-                    "description": "命名空间",
-                    "type": "String"
-                },
-                {
-                    "name": "context",
-                    "description": "命名空间基于这个对象生成，默认为window",
-                    "type": "Object"
-                }
-            ],
-            "return": {
-                "description": "返回生成的命名空间",
-                "type": "Object"
-            },
-            "class": "window.UXC",
-            "namespace": "window"
-        },
-        {
-            "file": "../../uxc/UXC.js",
-            "line": 149,
+            "line": 131,
             "description": "如果 console 不可用, 则生成一个模拟的 console 对象",
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 155,
+            "line": 137,
             "description": "自动识别组件库所在路径",
             "class": "window.UXC",
             "namespace": "window"
@@ -2004,11 +1977,11 @@
         },
         {
             "message": "Missing item type\n如果 console 不可用, 则生成一个模拟的 console 对象",
-            "line": " ../../uxc/UXC.js:149"
+            "line": " ../../uxc/UXC.js:131"
         },
         {
             "message": "Missing item type\n自动识别组件库所在路径",
-            "line": " ../../uxc/UXC.js:155"
+            "line": " ../../uxc/UXC.js:137"
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",
