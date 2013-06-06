@@ -12,6 +12,38 @@
                 "UXC": 1
             }
         },
+        "../../uxc/comps/Panel/Panel.js": {
+            "name": "../../uxc/comps/Panel/Panel.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "../../uxc/comps/Panel/UXC.Panel.js": {
+            "name": "../../uxc/comps/Panel/UXC.Panel.js",
+            "modules": {},
+            "classes": {
+                "UXC.Panel": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "UXC": 1
+            }
+        },
+        "../../uxc/comps/Tab/Tab.js": {
+            "name": "../../uxc/comps/Tab/Tab.js",
+            "modules": {},
+            "classes": {
+                "UXC.CustomEvent": 1,
+                "UXC.Toggle": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "UXC": 1,
+                "CustomEvent": 1,
+                "UXC.Toggle": 1
+            }
+        },
         "../../uxc/comps/Valid/Valid.js": {
             "name": "../../uxc/comps/Valid/Valid.js",
             "modules": {},
@@ -64,6 +96,71 @@
             "author": "qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team",
             "link": "https://github.com/suchesqiu/360UXC.git",
             "date": "2013-06-04"
+        },
+        "UXC.Panel": {
+            "name": "UXC.Panel",
+            "shortname": "UXC.Panel",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC",
+            "file": "../../uxc/comps/Panel/UXC.Panel.js",
+            "line": 4,
+            "description": "弹出层/会话框/提示框<br />",
+            "static": 1,
+            "access": "private",
+            "tagname": "",
+            "uses": [
+                "jQuery"
+            ],
+            "version": "dev 0.1",
+            "author": "qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team",
+            "link": "https://github.com/suchesqiu/360UXC.git",
+            "date": "2013-06-04"
+        },
+        "UXC.CustomEvent": {
+            "name": "UXC.CustomEvent",
+            "shortname": "UXC.CustomEvent",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC",
+            "file": "../../uxc/comps/Tab/Tab.js",
+            "line": 11,
+            "description": "UXC jQuery 组件库 自定义事件类<br />",
+            "requires": [
+                "jQuery"
+            ],
+            "example": [
+                " $.extend(obj,new UXC.CustomEvent());"
+            ],
+            "author": "Rekey <rekey@me.com> | {@link http://uxc.360.cn|360 UXC-FE Team}",
+            "date": "2013-05-29"
+        },
+        "UXC.Toggle": {
+            "name": "UXC.Toggle",
+            "shortname": "UXC.Toggle",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC.Toggle",
+            "file": "../../uxc/comps/Tab/Tab.js",
+            "line": 61,
+            "description": "UXC jQuery 组件库 自定义事件类<br />",
+            "requires": [
+                "jQuery"
+            ],
+            "example": [
+                " new Toggle(3,{loop:true});"
+            ],
+            "author": "Rekey <rekey@me.com> | {@link http://uxc.360.cn|360 UXC-FE Team}",
+            "date": "2013-05-29"
         },
         "UXC.Valid": {
             "name": "UXC.Valid",
@@ -807,12 +904,189 @@
             "line": 717,
             "description": "日历组件模板\n<p>这是默认模板, 用户可以给 UXC.Calendar.tpl 赋值, 更改为自己的模板</p>",
             "itemtype": "property",
-            "name": "tpl",
+            "name": "_logic.tpl",
             "type": "string",
             "access": "private",
             "tagname": "",
             "class": "UXC.Calendar",
             "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/Panel.js",
+            "line": 1,
+            "description": "取当前脚本标签的 src路径",
+            "author": "scuehs@btbtd.org 2013-05-23",
+            "return": {
+                "description": "脚本所在目录的完整路径",
+                "type": "String"
+            },
+            "class": "UXC.Panel",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Tab/Tab.js",
+            "line": 1,
+            "description": "Created with JetBrains WebStorm.\nUser: rekey\nDate: 13-5-29\nTime: 上午11:03\nTo change this template use File | Settings | File Templates.",
+            "class": "UXC.CustomEvent",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Tab/Tab.js",
+            "line": 28,
+            "description": "触发自定义事件",
+            "itemtype": "method",
+            "name": "fire",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "自定义事件类型",
+                    "type": "String"
+                },
+                {
+                    "name": "data",
+                    "description": "自定义事件传递的数据",
+                    "type": "Bool"
+                }
+            ],
+            "class": "CustomEvent.CustomEvent",
+            "namespace": "CustomEvent"
+        },
+        {
+            "file": "../../uxc/comps/Tab/Tab.js",
+            "line": 38,
+            "description": "取消事件绑定",
+            "itemtype": "method",
+            "name": "off",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "自定义事件类型",
+                    "type": "String"
+                },
+                {
+                    "name": "fn",
+                    "description": "事件回调",
+                    "type": "Function"
+                }
+            ],
+            "class": "CustomEvent.CustomEvent",
+            "namespace": "CustomEvent"
+        },
+        {
+            "file": "../../uxc/comps/Tab/Tab.js",
+            "line": 48,
+            "description": "事件绑定",
+            "itemtype": "method",
+            "name": "on",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "自定义事件类型",
+                    "type": "String"
+                },
+                {
+                    "name": "fn",
+                    "description": "事件回调",
+                    "type": "Function"
+                }
+            ],
+            "class": "CustomEvent.CustomEvent",
+            "namespace": "CustomEvent"
+        },
+        {
+            "file": "../../uxc/comps/Tab/Tab.js",
+            "line": 81,
+            "description": "内部方法,初始化自定义事件",
+            "itemtype": "method",
+            "name": "_initEvent",
+            "class": "UXC.Toggle",
+            "namespace": "UXC.Toggle"
+        },
+        {
+            "file": "../../uxc/comps/Tab/Tab.js",
+            "line": 89,
+            "description": "切换焦点,将触发beforeToggle和afterToggle的自定义事件,分别对应切换前和切换后的事件\n         如果当前焦点是序列里的第一个或者最后一个,还将触发first或者end事件",
+            "itemtype": "method",
+            "name": "toggle",
+            "current": "{Number}    type        焦点值",
+            "class": "UXC.Toggle",
+            "namespace": "UXC.Toggle"
+        },
+        {
+            "file": "../../uxc/comps/Tab/Tab.js",
+            "line": 132,
+            "description": "切换到下一个焦点,内部调用toggle方法",
+            "itemtype": "method",
+            "name": "next",
+            "class": "UXC.Toggle",
+            "namespace": "UXC.Toggle"
+        },
+        {
+            "file": "../../uxc/comps/Tab/Tab.js",
+            "line": 146,
+            "description": "切换到上一个焦点,内部调用toggle方法",
+            "itemtype": "method",
+            "name": "prev",
+            "class": "UXC.Toggle",
+            "namespace": "UXC.Toggle"
+        },
+        {
+            "file": "../../uxc/comps/Tab/Tab.js",
+            "line": 160,
+            "description": "获取当前焦点",
+            "itemtype": "method",
+            "name": "getCurrent",
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "UXC.Toggle",
+            "namespace": "UXC.Toggle"
+        },
+        {
+            "file": "../../uxc/comps/Tab/Tab.js",
+            "line": 169,
+            "description": "获取前一个焦点",
+            "itemtype": "method",
+            "name": "getOldCurrent",
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "UXC.Toggle",
+            "namespace": "UXC.Toggle"
+        },
+        {
+            "file": "../../uxc/comps/Tab/Tab.js",
+            "line": 178,
+            "description": "设置焦点,但不触发事件",
+            "itemtype": "method",
+            "name": "getOldCurrent",
+            "params": [
+                {
+                    "name": "current",
+                    "description": "焦点值",
+                    "type": "Number"
+                }
+            ],
+            "class": "UXC.Toggle",
+            "namespace": "UXC.Toggle"
+        },
+        {
+            "file": "../../uxc/comps/Tab/Tab.js",
+            "line": 187,
+            "description": "设置前一个焦点,但不触发事件",
+            "itemtype": "method",
+            "name": "getOldCurrent",
+            "params": [
+                {
+                    "name": "current",
+                    "description": "焦点值",
+                    "type": "Number"
+                }
+            ],
+            "class": "UXC.Toggle",
+            "namespace": "UXC.Toggle"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
@@ -1720,6 +1994,30 @@
         },
         {
             "message": "unknown tag: version",
+            "line": " ../../uxc/comps/Panel/UXC.Panel.js:4"
+        },
+        {
+            "message": "unknown tag: link",
+            "line": " ../../uxc/comps/Panel/UXC.Panel.js:4"
+        },
+        {
+            "message": "unknown tag: date",
+            "line": " ../../uxc/comps/Panel/UXC.Panel.js:4"
+        },
+        {
+            "message": "unknown tag: date",
+            "line": " ../../uxc/comps/Tab/Tab.js:11"
+        },
+        {
+            "message": "unknown tag: date",
+            "line": " ../../uxc/comps/Tab/Tab.js:61"
+        },
+        {
+            "message": "unknown tag: current",
+            "line": " ../../uxc/comps/Tab/Tab.js:89"
+        },
+        {
+            "message": "unknown tag: version",
             "line": " ../../uxc/comps/Valid/Valid.js:3"
         },
         {
@@ -1821,6 +2119,14 @@
         {
             "message": "Missing item type\n延迟200毫秒初始化页面的所有日历控件\n之所以要延迟是可以让用户自己设置是否需要自动初始化",
             "line": " ../../uxc/comps/Calendar/Calendar.js:102"
+        },
+        {
+            "message": "Missing item type\n取当前脚本标签的 src路径",
+            "line": " ../../uxc/comps/Panel/Panel.js:1"
+        },
+        {
+            "message": "Missing item type\nCreated with JetBrains WebStorm.\nUser: rekey\nDate: 13-5-29\nTime: 上午11:03\nTo change this template use File | Settings | File Templates.",
+            "line": " ../../uxc/comps/Tab/Tab.js:1"
         },
         {
             "message": "Missing item type\n响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果",

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>../../uxc/lib.js</title>
+    <title>UXC.CustomEvent</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -92,27 +92,62 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: ../../uxc/lib.js</h1>
+                        <h1>UXC.CustomEvent Class</h1>
+<div class="box meta">
+    
 
-<div class="file">
-    <pre class="code prettyprint linenums">
-/**
- * 取当前脚本标签的 src路径 
- * @author  scuehs@btbtd.org 2013-05-23
- * @return  {string} 脚本所在目录的完整路径
- */
-function script_path_f(){
-    var _sc = document.getElementsByTagName(&#x27;script&#x27;), _sc = _sc[ _sc.length - 1 ], _path = _sc.getAttribute(&#x27;src&#x27;);
-    if( /\//.test( _path ) ){ _path = _path.split(&#x27;/&#x27;); _path.pop(); _path = _path.join(&#x27;/&#x27;) + &#x27;/&#x27;; }
-    else if( /\\/.test( path ) ){ _path = _path.split(&#x27;\\&#x27;); _path.pop(); _path = _path.join(&#x27;\\&#x27;) + &#x27;/&#x27;; }
-    return _path;
-}
-(function(){
-    var _path = script_path_f();
-    document.write( &#x27;&lt;script src=&quot;&#x27;+_path+&#x27;jquery.js&quot; &gt;&lt;\/script&gt;&#x27;, &#x27;&lt;script src=&quot;&#x27;+_path+&#x27;UXC.js&quot; &gt;&lt;\/script&gt;&#x27; );
-}());
+    
 
-    </pre>
+    
+        <div class="foundat">
+            Defined in: <a href="../files/.._.._uxc_comps_Tab_Tab.js.html#l11"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tab&#x2F;Tab.js:11</code></a>
+        </div>
+    
+
+    
+
+    
+</div>
+
+
+
+<div class="box intro">
+    <p>UXC jQuery 组件库 自定义事件类<br /></p>
+</div>
+
+
+
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+
+        
+        
+        
+        
+    </ul>
+
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+
+            
+
+            
+
+            
+
+            
+        </div>
+
+        
+
+        
+
+        
+
+        
+    </div>
 </div>
 
                     </div>

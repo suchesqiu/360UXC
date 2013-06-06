@@ -13,7 +13,8 @@
      * @link    https://github.com/suchesqiu/360UXC.git
      * @date    2013-06-04
      */
-    function Panel( _selector, _headers, _bodys, _footers ){
+    function Panel( _selector, _headers, _bodys, _footers )
+    {
         this._model = new Model( _selector, _headers, _bodys, _footers );
         this._view = new View( this._model );
 
@@ -29,24 +30,44 @@
         }
     });
     
-    Panel.prototype = {
+    Panel.prototype =
+    {
         _init:
-            function(){
+            function()
+            {
                 UXC.log('UXC.Panel.init()');
                 var _p = this;
                 this._view.getPanel().data('PanelInstace', this);
-
-                this._model.addEvent( 'close', function( _evt, _panel ){ _panel._view.close(); } );
-                this._model.addEvent( 'show', function( _evt, _panel ){ _panel._view.show(); } );
-                this._model.addEvent( 'hide', function( _evt, _panel ){ _panel._view.hide(); } );
-                this._model.addEvent( 'close', function( _evt, _panel ){ _panel._view.close(); } );
-               
-               return this;
+                this._model.events = {
+                    'close':   
+                        [
+                            function( _evt, _panel ){
+                                _panel._view.close();
+                            }
+                        ]
+                     , 'show':
+                        [
+                            function( _evt, _panel ){
+                                _panel._view.show();
+                            }
+                        ]
+                     , 'hide':
+                        [
+                            function( _evt, _panel ){
+                                _panel._view.hide();
+                            }
+                        ]
+                };
+                return this;
             }    
 
         , on:
             function( _evtName, _cb ){
-                _evtName && _cb && this._model.addEvent( _evtName, _cb );
+                _evtName && ( _evtName = _evtName.toLowerCase() );
+                if( !(_evtName in this._model.events) ){
+                    this._model.events[ _evtName ] = [];
+                }
+                if( _cb ) this._model.events[_evtName].unshift( _cb );
             }
 
         
@@ -70,23 +91,24 @@
 
         , center:
             function( _with ){
-                this.trigger('beforecenter', this._view.getPanel() );
+                this.trigger('beforecenter', this._model.getPanel() );
                 this._view.center( _with );
-                this.trigger('center', this._view.getPanel() );
+                this.trigger('center', this._model.getPanel() );
             }
 
-        , selector: function(){ return this._view.getPanel(); }
+        , selector: function(){ return this._model.getPanel(); }
 
         , trigger:
             function( _evtName, _srcElement, _evt ){
                 UXC.log( 'Panel.trigger', _evtName );
-                var _p = this, _evt = this._model.getEvent( _evtName );
-                if( !(_evt && _evt.length) ) return;
-
+                var _p = this;
+                _evtName && ( _evtName = _evtName.toLowerCase() );
                 _srcElement && (_srcElement = $(_srcElement) ) 
                     && _srcElement.length && (_srcElement = _srcElement[0]);
 
-                $.each( _evt, function( _ix, _cb ){
+                if( !(this._model.events[_evtName] && this._model.events[_evtName].length) ) return;
+
+                $.each( this._model.events[_evtName], function( _ix, _cb ){
                     if( _cb.call( _srcElement, _evt, _p ) === false ) return false; 
                 });
 
@@ -94,49 +116,53 @@
 
         , header:
             function( _html ){
-                if( typeof _html != 'undefined' ) this._view.getHeader( _html );
-                var _selector = this._view.getHeader();
+                if( typeof _html != 'undefined' ) this._model.getHeader( _html );
+                var _selector = this._model.getHeader();
                 if( _selector && _selector.length ) return _selector.html();
             }
 
         , body:
             function( _html ){
-                if( typeof _html != 'undefined' ) this._view.getBody( _html );
-                var _selector = this._view.getBody();
+                if( typeof _html != 'undefined' ) this._model.getBody( _html );
+                var _selector = this._model.getBody();
                 if( _selector && _selector.length ) return _selector.html();
             }
 
         , footer:
             function( _html ){
-                if( typeof _html != 'undefined' ) this._view.getFooter( _html );
-                var _selector = this._view.getFooter();
+                if( typeof _html != 'undefined' ) this._model.getFooter( _html );
+                var _selector = this._model.getFooter();
                 if( _selector && _selector.length ) return _selector.html();
             }
 
         , panel:
             function( _html ){
-                if( typeof _html != 'undefined' ) this._view.getPanel( _html );
-                var _selector = this._view.getPanel();
+                if( typeof _html != 'undefined' ) this._model.getPanel( _html );
+                var _selector = this._model.getPanel();
                 if( _selector && _selector.length ) return _selector.html();
             }
     }
     
-    function Model( _selector, _headers, _bodys, _footers ){
+    function Model( _selector, _headers, _bodys, _footers )
+    {
 
         this.selector = _selector;
         this.headers = _headers;
         this.bodys = _bodys;
         this.footers = _footers;
-        this.panel;
 
-        this._events = {};
+        this.panel;
+        this.events = {};
 
         this._init();
+
     }
     
-    Model.prototype = {
+    Model.prototype =
+    {
         _init:
-            function(){
+            function()
+            {
                 if( typeof this.selector  == 'undefined' || $(this.selector).length === 0 ){
                     this.footers = this.bodys;
                     this.bodys = this.headers;
@@ -146,38 +172,26 @@
                 return this;
             }
 
-        , addEvent:
-            function( _evtName, _cb ){
-                if( !(_evtName && _cb ) ) return;
-                _evtName && ( _evtName = _evtName.toLowerCase() );
-                if( !(_evtName in this._events ) ){
-                    this._events[ _evtName ] = []
-                }
-                this._events[ _evtName ].unshift( _cb );
-            }
-
-        , getEvent:
-            function( _evtName ){
-                return this._events[ _evtName ];
-            }
-
     };
     
-    function View( _model ){
+    function View( _model )
+    {
         this._model = _model;
-        this._tpl = _deftpl;
+        this.tpl = _deftpl;
 
         this._init();
     }
     
-    View.prototype = {
+    View.prototype = 
+    {
         _init:
-            function(){
+            function()
+            {
                 if( !this._model.panel ){
                     if( this._model.selector ){
-                        this._model.panel = this._model.selector;
+
                     }else{
-                        this._model.panel = $(this._tpl);
+                        this._model.panel = $(this.tpl);
                         this._model.panel.hide().appendTo(document.body);
                     }
                 }
@@ -215,14 +229,14 @@
         , getHeader:
             function( _udata ){
                 var _selector = this.getPanel().find('div.UPContent > div.hd');
-                if( typeof _udata != 'undefined' ) this._model.headers = _udata;
-                if( typeof this._model.headers != 'undefined' ){
+                if( typeof _udata != 'undefined' ) this.headers = _udata;
+                if( typeof this.headers != 'undefined' ){
                     if( !_selector.length ){
                         this.getPanel().find('div.UPContent > div.bd')
                             .before( _selector = $('<div class="hd">弹出框</div>') );
                     }
-                    _selector.html( this._model.headers );
-                    this._model.headers = undefined;
+                    _selector.html( this._headers );
+                    this.headers = undefined;
                 }
                 return _selector;
             }
@@ -230,10 +244,10 @@
         , getBody:
             function( _udata ){
                 var _selector = this.getPanel().find('div.UPContent > div.bd');
-                if( typeof _udata != 'undefined' ) this._model.bodys = _udata;
-                if( typeof this._model.bodys!= 'undefined' ){
-                    _selector.html( this._model.bodys);
-                    this._model.bodys = undefined;
+                if( typeof _udata != 'undefined' ) this.bodys = _udata;
+                if( typeof this._bodys!= 'undefined' ){
+                    _selector.html( this.bodys);
+                    this.bodys = undefined;
                 }
                 return _selector;
             }
@@ -242,14 +256,14 @@
         , getFooter:
             function( _udata ){
                 var _selector = this.getPanel().find('div.UPContent > div.ft');
-                if( typeof _udata != 'undefined' ) this._model.footers = _udata;
-                if( typeof this._model.footers != 'undefined' ){
+                if( typeof _udata != 'undefined' ) this.footers = _udata;
+                if( typeof this.footers != 'undefined' ){
                     if( !_selector.length ){
                         this.getPanel().find('div.UPContent > div.bd')
                             .after( _selector = $('<div class="ft" ></div>'));
                     }
-                    _selector.html( this._model.footers );
-                    this._model.footers = undefined;
+                    _selector.html( this.footers );
+                    this.footers = undefined;
                 }
                 return _selector;
             }

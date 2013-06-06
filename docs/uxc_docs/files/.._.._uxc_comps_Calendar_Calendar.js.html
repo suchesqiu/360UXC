@@ -43,6 +43,12 @@
             
                 <li><a href="../classes/UXC.Calendar.html">UXC.Calendar</a></li>
             
+                <li><a href="../classes/UXC.CustomEvent.html">UXC.CustomEvent</a></li>
+            
+                <li><a href="../classes/UXC.Panel.html">UXC.Panel</a></li>
+            
+                <li><a href="../classes/UXC.Toggle.html">UXC.Toggle</a></li>
+            
                 <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
             
                 <li><a href="../classes/window.UXC.html">window.UXC</a></li>
@@ -595,7 +601,7 @@
         , setPosition:
             function( _ipt ){
                 var _layout = _logic.getLayout();
-                _layout.css( {&#x27;left&#x27;: &#x27;-9999px&#x27;} ).show();
+                _layout.css( {&#x27;left&#x27;: &#x27;-9999px&#x27;, &#x27;top&#x27;: &#x27;-9999px&#x27;} ).show();
                 var _lw = _layout.width(), _lh = _layout.height()
                     , _iw = _ipt.width(), _ih = _ipt.height(), _ioset = _ipt.offset()
                     , _x, _y, _winw = $(window).width(), _winh = $(window).height()
@@ -809,7 +815,7 @@
         /**
          * 日历组件模板
          * &lt;p&gt;这是默认模板, 用户可以给 UXC.Calendar.tpl 赋值, 更改为自己的模板&lt;/p&gt;
-         * @property    tpl
+         * @property    _logic.tpl
          * @type    string
          * @private
          */
