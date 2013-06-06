@@ -282,14 +282,19 @@
 
                 }else{
                     _x = (_winw - _lw) / 2 + _scrleft; 
-                    _y = (_winh - _lh) / 2 + _scrtop - 100;
+                    _y = (_winh - _lh) / 2 + _scrtop;
+                    if( (_winh - _lh  - 100) > 300 ){
+                        _y -= 100;
+                    }
+                    UXC.log( (_winh - _lh / 2 - 100) )
 
                     if( ( _y + _lh - _scrtop ) > _winh ){
                         UXC.log('y overflow');
                         _y = _scrtop + _winh - _lh;
 
-                        if( _y < _scrtop ) _y = _scrtop;
                     }
+
+                    if( _y < _scrtop || _y < 0 ) _y = _scrtop;
 
                     _layout.css( {left: _x+'px', top: _y+'px'} );
 
