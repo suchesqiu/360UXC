@@ -1,20 +1,43 @@
 (function($){
+
+    $(document).on( 'click', function( _evt ){
+        var _p = $(_evt.target||_evt.srcElement)
+            , _paneltype = _p.attr('paneltype'), _panelmsg = _p.attr('panelmsg');
+        if( !(_paneltype && _panelmsg ) ) return;
+
+        _p.prop('nodeName') && _p.prop('nodeName').toLowerCase() == 'a' && _evt.preventDefault();
+
+        var  _panelstatus = ( parseInt( _p.attr('panelstatus'), 10 ) || 0 )
+           , _callback = _p.attr('panelcallback')
+           , _cancelcallback = _p.attr('panelcancelcallback');
+        
+        _callback && ( _callback = window[ _callback ] );
+        _cancelcallback && ( _cancelcallback = window[ _cancelcallback ] );
+
+        if( !_paneltype in UXC.Panel ) return;
+
+        var _panel = UXC.Panel[ _paneltype ]( _panelmsg, _p, _panelstatus );
+        if( _callback ) _panel.on( 'confirm', _callback );
+        if( _cancelcallback ) _panel.on( 'cancel', _cancelcallback );
+
+    });
+
     UXC.Panel.alert = 
-        function( _msg, _cb, _status, _popupSrc ){
-            return _logic.popup( _logic.tpl.alert, _msg, _cb, _status, _popupSrc );
+        function( _msg, _popupSrc, _status, _cb ){
+            return _logic.popup( _logic.tpl.alert, _msg, _popupSrc, _status, _cb );
         };
 
     UXC.Panel.confirm = 
-        function( _msg, _cb, _status, _popupSrc ){
-            return _logic.popup( _logic.tpl.confirm, _msg, _cb, _status, _popupSrc );
+        function( _msg, _popupSrc, _status, _cb ){
+            return _logic.popup( _logic.tpl.confirm, _msg, _popupSrc, _status, _cb );
         };
 
     var _logic = {
 
-        maxWidth: 500
+        minWidth: 180, maxWidth: 500
 
         , popup:
-        function( _tpl, _msg, _cb, _status, _popupSrc ){
+        function( _tpl, _msg, _popupSrc, _status, _cb ){
             if( !_msg ) return;
             if( _logic.ins.alert )
                 try{ 
@@ -154,6 +177,7 @@
             function( _msg, _panel ){
                 var _tmp = $('<div style="position:absolute; left:-9999px;top:-9999px;">' + _msg + '</div>').appendTo('body'), _w = _tmp.width() + 50;
                 _w > _logic.maxWidth && ( _w = _logic.maxWidth );
+                _w < _logic.minWidth && ( _w = _logic.minWidth );
 
                 _panel.selector().css('width', _w);
             }
