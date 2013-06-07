@@ -36,12 +36,12 @@
                 var _p = this;
                 this._view.getPanel().data('PanelInstace', this);
 
-                this._model.addEvent( 'close', function( _evt, _panel ){ _panel._view.close(); } );
-                this._model.addEvent( 'show', function( _evt, _panel ){ _panel._view.show(); } );
-                this._model.addEvent( 'hide', function( _evt, _panel ){ _panel._view.hide(); } );
+                this._model.addEvent( 'close_default', function( _evt, _panel ){ _panel._view.close(); } );
+                this._model.addEvent( 'show_default', function( _evt, _panel ){ _panel._view.show(); } );
+                this._model.addEvent( 'hide_default', function( _evt, _panel ){ _panel._view.hide(); } );
 
-                this._model.addEvent( 'confirm', function( _evt, _panel ){ _panel._view.close(); } );
-                this._model.addEvent( 'cancel', function( _evt, _panel ){ _panel._view.close(); } );
+                this._model.addEvent( 'confirm_default', function( _evt, _panel ){ _panel._view.close(); } );
+                this._model.addEvent( 'cancel_default', function( _evt, _panel ){ _panel._view.close(); } );
                
                return this;
             }    
@@ -83,17 +83,27 @@
         , trigger:
             function( _evtName, _srcElement ){
                 UXC.log( 'Panel.trigger', _evtName );
-                var _p = this, _evts = this._model.getEvent( _evtName );
-                if( !(_evts && _evts.length) ) return;
 
-                _srcElement && (_srcElement = $(_srcElement) ) 
-                    && _srcElement.length && (_srcElement = _srcElement[0]);
+                var _p = this, _evts = this._model.getEvent( _evtName ), _processDefEvt = true;
+                if( _evts && _evts.length ){
+                    _srcElement && (_srcElement = $(_srcElement) ) 
+                        && _srcElement.length && (_srcElement = _srcElement[0]);
 
-                _evts = _evts.slice(); _evts.reverse();
-                $.each( _evts, function( _ix, _cb ){
-                    if( _cb.call( _srcElement, _evtName, _p ) === false ) return false; 
-                });
+                    $.each( _evts, function( _ix, _cb ){
+                        if( _cb.call( _srcElement, _evtName, _p ) === false ) 
+                            return _processDefEvt = false; 
+                    });
+                }
 
+                if( _processDefEvt ){
+                    var _defEvts = this._model.getEvent( _evtName + '_default' );
+                    if( _defEvts && _defEvts.length ){
+                        $.each( _defEvts, function( _ix, _cb ){
+                            if( _cb.call( _srcElement, _evtName, _p ) === false ) 
+                                return false; 
+                        });
+                    }
+                }
             }
 
         , header:
