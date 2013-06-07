@@ -2,12 +2,14 @@
 div.UPanel, div.UPanel *{  
     font-family: sans-serif!important;
     font-size: 14px!important;
+    padding: 0; margin: 0;
 }
 
 div.UPanel{  
     position: absolute;
     border: 1px solid #acacac;
     background: #fff;
+    overflow: hidden;
     zoom: 1;
     box-shadow:0 0 3px #b3b3b3;
 }
@@ -15,6 +17,17 @@ div.UPanel{
 div.UPanel select, div.UPanel input, div.UPanel button{
     cursor: pointer;
 }
+
+div.UPanel .UButton{
+    text-align: center;
+    margin: 5px 0 0;
+}
+
+div.UPanel .UButton button{
+    padding: 0px 4px;
+    margin: 0px 4px;
+}
+
 
 div.UPanel .UPContent{
     position: relative;
@@ -98,16 +111,6 @@ div.UPanelPopup div.UText button.UPlaceholder{
     width: 28px;
     visibility: hidden;
     display: none;
-}
-
-div.UPanelPopup .UButton{
-    text-align: center;
-    margin: 5px 0 0;
-}
-
-div.UPanelPopup .UButton button{
-    padding: 0px 4px;
-    margin: 0px 4px;
 }
 
 div.UPanelSuccess button.UIcon{

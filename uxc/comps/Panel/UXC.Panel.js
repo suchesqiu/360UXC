@@ -40,8 +40,8 @@
                 this._model.addEvent( 'show_default', function( _evt, _panel ){ _panel._view.show(); } );
                 this._model.addEvent( 'hide_default', function( _evt, _panel ){ _panel._view.hide(); } );
 
-                this._model.addEvent( 'confirm_default', function( _evt, _panel ){ _panel._view.close(); } );
-                this._model.addEvent( 'cancel_default', function( _evt, _panel ){ _panel._view.close(); } );
+                this._model.addEvent( 'confirm_default', function( _evt, _panel ){ _panel.trigger('close'); } );
+                this._model.addEvent( 'cancel_default', function( _evt, _panel ){ _panel.trigger('close'); } );
                
                return this;
             }    
@@ -174,7 +174,8 @@
                 if( !(_evtName in this._events ) ){
                     this._events[ _evtName ] = []
                 }
-                this._events[ _evtName ].push( _cb );
+                if( /\_default/i.test( _evtName ) ) this._events[ _evtName ].unshift( _cb );
+                else this._events[ _evtName ].push( _cb );
             }
 
         , getEvent:
@@ -222,6 +223,7 @@
 
         , close:
             function(){
+                UXC.log( 'Panel._view.close()');
                 this.getPanel().remove();
             }
 
