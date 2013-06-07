@@ -21,6 +21,10 @@
         margin: 10px 0;
     }
 
+    dl.def > dd > button {
+        margin: 2px 10px;
+    }
+
 </style>
 <link href='../../../comps/Panel/res/default/style.css' rel='stylesheet' />
 <script src="../../../lib.js"></script>
@@ -29,26 +33,29 @@
     var count = 1;
     $(document).ready( function(_evt){
 
-        tmpPanel = new UXC.Panel( 'test panel', '<h2>test content</h2>', 'test footer');
+        tmpPanel = new UXC.Panel( '默认panel', '<h2>test content</h2>', 'test footer');
         tmpPanel.on('close', function(_evt, _panel){
             UXC.log('user close evnet');
         });
         tmpPanel.show();
 
-        $(document).delegate( 'button', 'click', function(_evt){
-            var p = $(this), panelType = p.attr('panelType') || '', tmpPanel;
-            if( !panelType ) return;
+        $(document).delegate( 'button.js_panel', 'click', function(_evt){
+            tmpPanel = new UXC.Panel( '默认panel ' + count, 'body ' + count, 'footer ' + count);
+            tmpPanel.show();
+            count++;
+        });
 
-            panelType = panelType.toLowerCase();
+        $(document).delegate( 'button.js_panel_alert', 'click', function(_evt){
 
-            switch( panelType ){
-                case 'default':
-                {
-                    tmpPanel = new UXC.Panel( 'header ' + count, 'body ' + count, 'footer ' + count);
-                    tmpPanel.show();
-                    break;
-                }
-            }
+            tmpPanel = UXC.Panel.alert( 'user manual UXC.Panel.alert ' + count
+                , function( _evt, _panel ){
+                    UXC.log( 'UXC.Panel.alert, user callback ' + new Date().getTime() );
+                }, 0, this );
+
+            tmpPanel.on('confirm'
+            , function( _evt, _panel ){ 
+                UXC.log('another uaer callback'); 
+            });
 
             count++;
         });
@@ -58,10 +65,17 @@
 </head>    
 <body>
 
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     <dl class="def">
         <dt>UXC.Panel 示例</dt>
         <dd>
-        <button type="button" class="js_panel" panelType="default">默认Panel</button>
+            <button type="button" class="js_panel">默认UXC.Panel</button>
+        </dd>
+        <dd>
+        <button type="button" class="js_panel_alert" >manul UXC.Panel.alert(msg)</button>
+        <button type="button" paneltype="alert" bodymsg="msg1">UXC.Panel.alert(msg)</button>
+        <button type="button" paneltype="alert" bodymsg="msg2msg2msg2msg2msg2msg2msg2msg2msg2msg2msg2">UXC.Panel.alert(msg)</button>
+        <button type="button" paneltype="alert" bodymsg="msgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsg">UXC.Panel.alert(msg)</button>
         </dd>
     </dl>
 

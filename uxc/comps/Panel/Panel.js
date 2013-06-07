@@ -11,5 +11,5 @@ function script_path_f(){
 }
 (function(){
     var _path = script_path_f();
-    document.write( '<script src="'+_path+'UXC.Panel.js" ><\/script>' );
+    document.write( '<script src="'+_path+'UXC.Panel.js" ><\/script>', '<script src="'+_path+'UXC.Panel.popup.js" ><\/script>' );
 }());

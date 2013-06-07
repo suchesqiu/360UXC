@@ -39,7 +39,9 @@
                 this._model.addEvent( 'close', function( _evt, _panel ){ _panel._view.close(); } );
                 this._model.addEvent( 'show', function( _evt, _panel ){ _panel._view.show(); } );
                 this._model.addEvent( 'hide', function( _evt, _panel ){ _panel._view.hide(); } );
-                this._model.addEvent( 'close', function( _evt, _panel ){ _panel._view.close(); } );
+
+                this._model.addEvent( 'confirm', function( _evt, _panel ){ _panel._view.close(); } );
+                this._model.addEvent( 'cancel', function( _evt, _panel ){ _panel._view.close(); } );
                
                return this;
             }    
@@ -64,30 +66,32 @@
 
         , close:
             function(){
+                UXC.log('Panel.close');
                 this.trigger('beforeclose', this._view.getPanel() );
                 this.trigger('close', this._view.getPanel() );
             }
 
         , center:
-            function( _with ){
+            function(){
                 this.trigger('beforecenter', this._view.getPanel() );
-                this._view.center( _with );
+                this._view.center();
                 this.trigger('center', this._view.getPanel() );
             }
 
         , selector: function(){ return this._view.getPanel(); }
 
         , trigger:
-            function( _evtName, _srcElement, _evt ){
+            function( _evtName, _srcElement ){
                 UXC.log( 'Panel.trigger', _evtName );
-                var _p = this, _evt = this._model.getEvent( _evtName );
-                if( !(_evt && _evt.length) ) return;
+                var _p = this, _evts = this._model.getEvent( _evtName );
+                if( !(_evts && _evts.length) ) return;
 
                 _srcElement && (_srcElement = $(_srcElement) ) 
                     && _srcElement.length && (_srcElement = _srcElement[0]);
 
-                $.each( _evt, function( _ix, _cb ){
-                    if( _cb.call( _srcElement, _evt, _p ) === false ) return false; 
+                _evts = _evts.slice(); _evts.reverse();
+                $.each( _evts, function( _ix, _cb ){
+                    if( _cb.call( _srcElement, _evtName, _p ) === false ) return false; 
                 });
 
             }
@@ -137,7 +141,14 @@
     Model.prototype = {
         _init:
             function(){
-                if( typeof this.selector  == 'undefined' || $(this.selector).length === 0 ){
+                var _selector = typeof this.selector != 'undefined' ? $(this.selector) : undefined;
+                if( _selector && _selector.length ){
+                    this.selector = _selector;
+                    UXC.log( 'user tpl', this.selector.parent().length );
+                    if( !this.selector.parent().length ){
+                        this.selector.appendTo( $(document.body ) );
+                    }
+                }else if( !_selector || _selector.length === 0 ){
                     this.footers = this.bodys;
                     this.bodys = this.headers;
                     this.headers = this.selector;
@@ -153,7 +164,7 @@
                 if( !(_evtName in this._events ) ){
                     this._events[ _evtName ] = []
                 }
-                this._events[ _evtName ].unshift( _cb );
+                this._events[ _evtName ].push( _cb );
             }
 
         , getEvent:
@@ -254,39 +265,32 @@
                 return _selector;
             }
 
-
         , center:
-            function( _with ){
-                _with && ( _with = $(_with) );
+            function( ){
                 var _layout = this.getPanel(), _lw = _layout.width(), _lh = _layout.height()
                     , _x, _y, _winw = $(window).width(), _winh = $(window).height()
                     , _scrleft = $(document).scrollLeft(), _scrtop = $(document).scrollTop()
                     ;
-                    _layout.css( {'left': '-9999px', 'top': '-9999px'} ).show();
 
-                if( _with && _with.length ){
+                _layout.css( {'left': '-9999px', 'top': '-9999px'} ).show();
+                _x = (_winw - _lw) / 2 + _scrleft; 
+                _y = (_winh - _lh) / 2 + _scrtop;
+                if( (_winh - _lh  - 100) > 300 ){
+                    _y -= 100;
+                }
+                UXC.log( (_winh - _lh / 2 - 100) )
 
-                }else{
-                    _x = (_winw - _lw) / 2 + _scrleft; 
-                    _y = (_winh - _lh) / 2 + _scrtop;
-                    if( (_winh - _lh  - 100) > 300 ){
-                        _y -= 100;
-                    }
-                    UXC.log( (_winh - _lh / 2 - 100) )
-
-                    if( ( _y + _lh - _scrtop ) > _winh ){
-                        UXC.log('y overflow');
-                        _y = _scrtop + _winh - _lh;
-
-                    }
-
-                    if( _y < _scrtop || _y < 0 ) _y = _scrtop;
-
-                    _layout.css( {left: _x+'px', top: _y+'px'} );
-
-                    UXC.log( _lw, _lh, _winw, _winh );
+                if( ( _y + _lh - _scrtop ) > _winh ){
+                    UXC.log('y overflow');
+                    _y = _scrtop + _winh - _lh;
 
                 }
+
+                if( _y < _scrtop || _y < 0 ) _y = _scrtop;
+
+                _layout.css( {left: _x+'px', top: _y+'px'} );
+
+                UXC.log( _lw, _lh, _winw, _winh );
             }
     };
 
