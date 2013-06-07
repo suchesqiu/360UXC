@@ -6,7 +6,7 @@
 
     UXC.Panel.confirm = 
         function( _msg, _cb, _status, _popupSrc ){
-            return _logic.popup( _logic.tpl.alert, _msg, _cb, _status, _popupSrc );
+            return _logic.popup( _logic.tpl.confirm, _msg, _cb, _status, _popupSrc );
         };
 
     var _logic = {
