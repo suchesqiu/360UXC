@@ -16,18 +16,18 @@
 
         if( !_paneltype in UXC.Panel ) return;
 
-        var _panel = UXC.Panel[ _paneltype ]( _panelmsg, _p, _panelstatus );
+        var _panel = UXC[ _paneltype ]( _panelmsg, _p, _panelstatus );
         if( _callback ) _panel.on( 'confirm', _callback );
         if( _cancelcallback ) _panel.on( 'cancel', _cancelcallback );
 
     });
 
-    UXC.Panel.alert = 
+    UXC.alert = 
         function( _msg, _popupSrc, _status, _cb ){
             return _logic.popup( _logic.tpl.alert, _msg, _popupSrc, _status, _cb );
         };
 
-    UXC.Panel.confirm = 
+    UXC.confirm = 
         function( _msg, _popupSrc, _status, _cb ){
             return _logic.popup( _logic.tpl.confirm, _msg, _popupSrc, _status, _cb );
         };
@@ -80,6 +80,8 @@
                 return false;
             });
 
+            if( _popupSrc && _popupSrc.length )_ins.selector().css( { 'left': '-9999px', 'top': '-9999px' } );
+
             _ins.show();
 
             return _ins;
@@ -92,42 +94,32 @@
 
                 var _poffset = _popupSrc.offset(), _selector = _panel.selector();
                 var _dom = _selector[0];
-                if( _dom.interval ){
-                    clearInterval( _dom.interval );
-                    _dom.interval = null;
-                }
+
+                _dom.interval && clearInterval( _dom.interval );
                 _dom.defaultWidth && _selector.width( _dom.defaultWidth );
                 _dom.defaultHeight && _selector.height( _dom.defaultHeight );
 
-                var _pw = _popupSrc.width()
-                    , _ph = _popupSrc.height()
-                    , _sh = _selector.height()
-                    ;
+                var _pw = _popupSrc.width(), _sh = _selector.height();
                 _dom.defaultWidth = _selector.width();
                 _dom.defaultHeight = _selector.height();
 
-                var _left = _poffset.left + _popupSrc.width() / 2 + 5 - _dom.defaultWidth / 2;
-                var _top = _poffset.top - _sh - 2;
+                var _left = _logic.getLeft( _poffset.left, _pw, _selector.width() );
+                var _top = _logic.getTop( _poffset.top, _popupSrc.height(), _sh );
+                    _top = _top - _sh - 2;
 
                 _selector.height(0);
                 _selector.css( { 'left': _left  + 'px' } );
 
-                var _beginDate = new Date(), _timepass, _count = 0, _ms = 200;
-                _dom.interval = setInterval(
-                    function(){
-                        _timepass = new Date() - _beginDate;
-                        _count = _timepass / _ms * _sh;
-                        if( _count >= _sh ){
-                            _count = _sh;
-                            clearInterval( _dom.interval );
-                            _doneCb && _doneCb();
-                        }
-
+                _dom.interval = 
+                    _logic.easyEffect( function( _curVal ){
                         _selector.css( {
-                            'top': _top + _count + 'px'
-                            , 'height': _sh - _count + 'px'
+                            'top': _top + _curVal + 'px'
+                            , 'height': _sh - _curVal + 'px'
                         });
-                    }, 2 );
+
+                        if( _sh === _curVal ) _selector.hide();
+                    }, _sh );
+
             }
 
         , showEffect:
@@ -137,40 +129,66 @@
 
                 var _poffset = _popupSrc.offset(), _selector = _panel.selector();
                 var _dom = _selector[0];
-                if( _dom.interval ){
-                    clearInterval( _dom.interval );
-                    _dom.interval = null;
-                }
+
+                _dom.interval && clearInterval( _dom.interval );
                 _dom.defaultWidth && _selector.width( _dom.defaultWidth );
                 _dom.defaultHeight && _selector.height( _dom.defaultHeight );
 
-                var _pw = _popupSrc.width()
-                    , _ph = _popupSrc.height()
-                    , _sh = _selector.height()
-                    ;
+                var _pw = _popupSrc.width(), _sh = _selector.height();
                 _dom.defaultWidth = _selector.width();
                 _dom.defaultHeight = _selector.height();
 
-                var _left = _poffset.left + _popupSrc.width() / 2 + 5 - _dom.defaultWidth / 2;
+                var _left = _logic.getLeft( _poffset.left, _pw, _selector.width() );
+                var _top = _logic.getTop( _poffset.top, _popupSrc.height(), _sh, 9 );
 
                 _selector.height(0);
                 _selector.css( { 'left': _left  + 'px' } );
 
-                var _beginDate = new Date(), _timepass, _count = 0, _ms = 200;
-                _dom.interval = setInterval(
-                    function(){
-                        _timepass = new Date() - _beginDate;
-                        _count = _timepass / _ms * _sh;
-                        if( _count >= _sh ){
-                            _count = _sh;
-                            clearInterval( _dom.interval );
-                        }
+                UXC.log( _top, _poffset.top );
 
-                        _selector.css( {
-                            'top': _poffset.top - _count - 3 + 'px'
-                            , 'height': _count + 'px'
-                        });
-                    }, 2 );
+                if( _top > _poffset.top ){
+                    _dom.interval = 
+                        _logic.easyEffect( function( _curVal ){
+                            _selector.css( {
+                                'top': _top - _sh - 3 + 'px'
+                                , 'height': _curVal + 'px'
+                            });
+                        }, _sh );
+
+                }else{
+                    _dom.interval = 
+                        _logic.easyEffect( function( _curVal ){
+                            _selector.css( {
+                                'top': _top - _curVal - 3 + 'px'
+                                , 'height': _curVal + 'px'
+                            });
+                        }, _sh );
+                }
+
+            }
+
+        , getTop:
+            function( _srcTop, _srcHeight, _targetHeight, _offset  ){
+                var _r = _srcTop
+                    , _scrTop = $(document).scrollTop()
+                    , _maxTop = $(window).height() - _targetHeight;
+
+                _r - _targetHeight < _scrTop && ( _r = _srcTop + _srcHeight + _targetHeight + _offset );
+
+                return _r;
+            }
+
+        , getLeft:
+            function( _srcLeft, _srcWidth, _targetWidth, _offset  ){
+                _offset == undefined && ( _offset = 5 );
+                var _r = _srcLeft + _srcWidth / 2 + _offset - _targetWidth / 2
+                    , _scrLeft = $(document).scrollLeft()
+                    , _maxLeft = $(window).width() - _targetWidth;
+
+                _r > _maxLeft && ( _r = _maxLeft - 2 );
+                _r < _scrLeft && ( _r = _scrLeft + 1 );
+
+                return _r;
             }
         
         , fixWidth:
@@ -193,6 +211,25 @@
                 return _r;
             }
 
+        , easyEffect:
+            function( _cb, _maxVal, _minVal, _duration, _stepMs ){
+                var _beginDate = new Date(), _timepass
+                    , _maxVal = _maxVal || 200, _minVal = _minVal || 0
+                    , _duration = _duration || 200, _stepMs = _stepMs || 2;
+                var _interval = setInterval(
+                    function(){
+                        _timepass = new Date() - _beginDate;
+                        _minVal = _timepass / _duration * _maxVal;
+
+                        if( _minVal > _maxVal ){
+                            _minVal = _maxVal
+                            clearInterval( _interval );
+                        }
+                        _cb && _cb( _minVal );
+                    }, _stepMs );
+
+                return _interval;
+            }
 
         , ins: {
             alert: null

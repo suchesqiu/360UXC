@@ -52,7 +52,7 @@
 
         $(document).delegate( 'button.js_panel_alert', 'click', function(_evt){
 
-            tmpPanel = UXC.Panel.alert( 'user manual UXC.Panel.alert ' + count, this );
+            tmpPanel = UXC.alert( 'user manual UXC.alert ' + count, this );
             tmpPanel.on('confirm', function( _evt, _panel ){ 
                 UXC.log('another uaer callback'); 
             });
@@ -62,7 +62,7 @@
 
         $(document).delegate( 'button.js_panel_confirm', 'click', function(_evt){
 
-            tmpPanel = UXC.Panel.confirm( 'user manual UXC.Panel.confirm ' + count, this );
+            tmpPanel = UXC.confirm( 'user manual UXC.confirm ' + count, this );
 
             tmpPanel.on('confirm', function( _evt, _panel ){ 
                 UXC.log('another uaer callback'); 
@@ -96,19 +96,29 @@
             <button type="button" class="js_panel">默认UXC.Panel</button>
         </dd>
         <dd>
-        <button type="button" class="js_panel_alert" >manul UXC.Panel.alert(msg)</button>
+        <button type="button" class="js_panel_alert" >manul UXC.alert(msg)</button>
         <button type="button" paneltype="alert" panelcallback="userCallback" panelstatus="0" panelmsg="msg1">attr alert success</button>
         <button type="button" paneltype="alert" panelcallback="userCallback1" panelstatus="1" panelmsg="msg2msg2msg2msg2msg2msg2msg2msg2msg2msg2msg2">attr alert1 alert</button>
         <button type="button" paneltype="alert" panelcallback="userCallback2" panelstatus="2" panelmsg="msgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsg">attr alert2 failure</button>
         </dd>
         <dd>
-        <button type="button" class="js_panel_confirm" >manul UXC.Panel.confirm(msg)</button>
+        <button type="button" class="js_panel_confirm" >manul UXC.confirm(msg)</button>
         <button type="button" paneltype="confirm" panelcallback="userCallback" paneltype="0" panelmsg="msg1">attr confirm success</button>
         <button type="button" paneltype="confirm" panelcallback="userCallback1" panelstatus="1" panelmsg="msg2msg2msg2msg2msg2msg2msg2msg2msg2msg2msg2">attr confirm1 alert</button>
         <button type="button" paneltype="confirm" panelcallback="userCallback2" panelstatus="2" panelmsg="msgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsgmsg">attr confirm2 failure</button>
         </dd>
 
     </dl>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
 
 </body>
 </html>
