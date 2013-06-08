@@ -53,7 +53,16 @@
 
         
         , show:
-            function(){
+            function( _position ){
+                var _p = this;
+                setTimeout(
+                    function(){
+                        if( _position != undefined ){
+                            switch( _position ){
+                                case 0: _p.center(); break;
+                            }
+                        }
+                    }, 50);
                 this.trigger('beforeshow', this._view.getPanel() );
                 this.trigger('show', this._view.getPanel() );
             }

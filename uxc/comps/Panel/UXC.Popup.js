@@ -1,9 +1,20 @@
 (function($){
 
+    UXC.alert = 
+        function( _msg, _popupSrc, _status, _cb ){
+            return _logic.popup( _logic.tpl.alert, _msg, _popupSrc, _status, _cb );
+        };
+
+    UXC.confirm = 
+        function( _msg, _popupSrc, _status, _cb ){
+            return _logic.popup( _logic.tpl.confirm, _msg, _popupSrc, _status, _cb );
+        };
+
     $(document).on( 'click', function( _evt ){
         var _p = $(_evt.target||_evt.srcElement)
             , _paneltype = _p.attr('paneltype'), _panelmsg = _p.attr('panelmsg');
         if( !(_paneltype && _panelmsg ) ) return;
+        _paneltype = _paneltype.toLowerCase();
 
         _p.prop('nodeName') && _p.prop('nodeName').toLowerCase() == 'a' && _evt.preventDefault();
 
@@ -14,23 +25,13 @@
         _callback && ( _callback = window[ _callback ] );
         _cancelcallback && ( _cancelcallback = window[ _cancelcallback ] );
 
-        if( !_paneltype in UXC.Panel ) return;
+        if( !(_paneltype in UXC) ) return;
 
         var _panel = UXC[ _paneltype ]( _panelmsg, _p, _panelstatus );
         if( _callback ) _panel.on( 'confirm', _callback );
         if( _cancelcallback ) _panel.on( 'cancel', _cancelcallback );
 
     });
-
-    UXC.alert = 
-        function( _msg, _popupSrc, _status, _cb ){
-            return _logic.popup( _logic.tpl.alert, _msg, _popupSrc, _status, _cb );
-        };
-
-    UXC.confirm = 
-        function( _msg, _popupSrc, _status, _cb ){
-            return _logic.popup( _logic.tpl.confirm, _msg, _popupSrc, _status, _cb );
-        };
 
     var _logic = {
 
@@ -193,7 +194,7 @@
         
         , fixWidth:
             function( _msg, _panel ){
-                var _tmp = $('<div style="position:absolute; left:-9999px;top:-9999px;">' + _msg + '</div>').appendTo('body'), _w = _tmp.width() + 50;
+                var _tmp = $('<div style="position:absolute; left:-9999px;top:-9999px;">' + _msg + '</div>').appendTo('body'), _w = _tmp.width() + 80;
                 _w > _logic.maxWidth && ( _w = _logic.maxWidth );
                 _w < _logic.minWidth && ( _w = _logic.minWidth );
 
@@ -273,8 +274,7 @@
                 ,'    </div><!--end UPContent-->\n'
                 ,'</div><!--end UPanel-->\n'
                 ].join('')
-
         }
-    }
+    };
 
 }(jQuery));
