@@ -2,15 +2,19 @@
     !window.UXC && (window.UXC = { log:function(){} });
     window.Panel = UXC.Panel = Panel;
     /**
-     * 弹出层/会话框/提示框<br />
+     * 弹出层基础类 UXC.Panel
+     * <br /><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>https://github.com/suchesqiu/360UXC.git</a>
+     * <br /><a href='http://uxc.btbtd.org/docs/uxc_docs/' target='_blank'>http://uxc.btbtd.org/docs/uxc_docs</a>
      * @namespace UXC
      * @class Panel
-     * @static
-     * @private
+     * @constructor
      * @uses jQuery
+     * @param   {selector|string}   _selector   自定义弹框模板, 如果 _selector不能解析为 HTML, 将视为@param _headers 
+     * @param   {string}            _headers    定义模板的 header 文字, 如果 _selector 不能解析为HTML, 视视为@param _bodys
+     * @param   {string}            _bodys      定义模板的 body 文字, 如果 _selector 不能解析为HTML, 视视为@param _footers
+     * @param   {string}            _footers    定义模板的 footer 文字
      * @version dev 0.1
      * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
-     * @link    https://github.com/suchesqiu/360UXC.git
      * @date    2013-06-04
      */
     function Panel( _selector, _headers, _bodys, _footers ){
@@ -30,18 +34,36 @@
     });
     
     Panel.prototype = {
+        /**
+         * 初始化Panel
+         * @method  _init
+         * @private
+         */
         _init:
             function(){
-                UXC.log('UXC.Panel.init()');
                 var _p = this;
                 this._view.getPanel().data('PanelInstace', this);
 
-                this._model.addEvent( 'close_default', function( _evt, _panel ){ _panel._view.close(); } );
-                this._model.addEvent( 'show_default', function( _evt, _panel ){ _panel._view.show(); } );
-                this._model.addEvent( 'hide_default', function( _evt, _panel ){ _panel._view.hide(); } );
+                /**
+                 * 初始化Panel 默认关闭事件
+                 * @event   close_default
+                 * @type    function
+                 * @private
+                 */
+                this._model.addEvent( 'close_default'
+                                    , function( _evt, _panel ){ _panel._view.close(); } );
 
-                this._model.addEvent( 'confirm_default', function( _evt, _panel ){ _panel.trigger('close'); } );
-                this._model.addEvent( 'cancel_default', function( _evt, _panel ){ _panel.trigger('close'); } );
+                this._model.addEvent( 'show_default'
+                                    , function( _evt, _panel ){ _panel._view.show(); } );
+
+                this._model.addEvent( 'hide_default'
+                                    , function( _evt, _panel ){ _panel._view.hide(); } );
+
+                this._model.addEvent( 'confirm_default'
+                                    , function( _evt, _panel ){ _panel.trigger('close'); } );
+
+                this._model.addEvent( 'cancel_default'
+                                    , function( _evt, _panel ){ _panel.trigger('close'); } );
                
                return this;
             }    
@@ -66,7 +88,6 @@
                 this.trigger('beforeshow', this._view.getPanel() );
                 this.trigger('show', this._view.getPanel() );
             }
-
         , hide:
             function(){
                 this.trigger('beforehide', this._view.getPanel() );
@@ -314,6 +335,36 @@
                 UXC.log( _lw, _lh, _winw, _winh );
             }
     };
+    /**
+     * Panel 关闭前会触发的事件<br/>
+     * 这个事件只有用户调用 _panelInstance.close() 时才会触发
+     * @event   beforeclose
+     * @type    function
+     * @example     
+     *      panelInstace.on( 'beforeclose', function( _evt, _panelInstance ){ do something });
+     */
+    /**
+     * 关闭事件
+     * @event   close
+     * @type    function
+     * @example     
+     *      panelInstace.on( 'close', function( _evt, _panelInstance ){ do something });
+     */
+    /**
+     * Panel 显示前会触发的事件<br/>
+     * 这个事件只有用户调用 _panelInstance.show() 时才会触发
+     * @event   beforeshow
+     * @type    function
+     * @example     
+     *      panelInstace.on( 'beforeshow', function( _evt, _panelInstance ){ do something });
+     */
+    /**
+     * 显示Panel时会触发的事件
+     * @event   show
+     * @type    function
+     * @example     
+     *      panelInstace.on( 'show', function( _evt, _panelInstance ){ do something });
+     */
 
     var _deftpl =
         [

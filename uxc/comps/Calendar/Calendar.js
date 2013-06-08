@@ -2,11 +2,14 @@
     !window.UXC && (window.UXC = { log:function(){} });
     /**
      * 日历选择组件
-     * <p>全局访问请使用 UXC.Calendar 或 Calendar</p>
-     * <p>DOM 加载完毕后
-     * , Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签</p>
-     * <p>Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用Calendar.init( _selector )</p>
-     * <p>_selector 可以是 新加载的容器, 也可以是新加载的所有input</p>
+     * <br />全局访问请使用 UXC.Calendar 或 Calendar
+     * <br />DOM 加载完毕后
+     * , Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签
+     * <br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用Calendar.init( _selector )
+     * <br />_selector 可以是 新加载的容器, 也可以是新加载的所有input
+     * <br /><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
+     * | <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Calendar.html' target='_blank'>API docs</a>
+     * | <a href='http://uxc.btbtd.org/uxc/comps/Calendar/_demo/' target='_blank'>demo link</a>
      * @namespace UXC
      * @class Calendar
      * @static

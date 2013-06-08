@@ -109,7 +109,10 @@ function script_path_f(){
 }
 (function(){
     var _path = script_path_f();
-    document.write( &#x27;&lt;script src=&quot;&#x27;+_path+&#x27;UXC.Panel.js&quot; &gt;&lt;\/script&gt;&#x27; );
+    document.write( &#x27;&lt;script src=&quot;&#x27;+_path+&#x27;UXC.Panel.js&quot; &gt;&lt;\/script&gt;&#x27;
+        , &#x27;&lt;script src=&quot;&#x27;+_path+&#x27;UXC.Popup.js&quot; &gt;&lt;\/script&gt;&#x27;
+        , &#x27;&lt;script src=&quot;&#x27;+_path+&#x27;UXC.Dialog.js&quot; &gt;&lt;\/script&gt;&#x27; 
+    );
 }());
 
     </pre>
