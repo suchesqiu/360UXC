@@ -3,10 +3,10 @@
     window.Panel = UXC.Panel = Panel;
     /**
      * 弹出层基础类 UXC.Panel
+     * <p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>
      * <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
      * | <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Panel.html' target='_blank'>API docs</a>
      * | <a href='http://uxc.btbtd.org/uxc/comps/Panel/_demo' target='_blank'>demo link</a></p>
-     * <p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>
      * @namespace UXC
      * @class Panel
      * @constructor

@@ -3,10 +3,10 @@
     /**
      * 表单验证
      * <br />全局访问请使用 UXC.Valid 或 Valid
+     * <p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>
      * <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
      * | <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Valid.html' target='_blank'>API docs</a>
      * | <a href='http://uxc.btbtd.org/uxc/comps/Valid/_demo/' target='_blank'>demo link</a></p>
-     * <p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>
      * @namespace UXC
      * @class Valid
      * @static

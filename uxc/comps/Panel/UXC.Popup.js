@@ -2,8 +2,11 @@
     /**
      * alert 提示 popup
      * <br /> 这个是不带 蒙板的 popup 弹框
-     * <br /><b>注意, 这是个方法, 写 @class 属性是为了生成文档用的</b>
+     * <br /><b>注意, 这是个方法, 写 @class 属性是为了生成文档</b>
      * <p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a>, <a href='UXC.Panel.html'>Panel</a></p>
+     * <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
+     * | <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.alert.html' target='_blank'>API docs</a>
+     * | <a href='http://uxc.btbtd.org/uxc/comps/Panel/_demo' target='_blank'>demo link</a></p>
      * @namespace UXC
      * @class   alert
      * @static
@@ -21,9 +24,12 @@
     /**
      * confirm 提示 popup
      * <br /> 这个是不带 蒙板的 popup 弹框
-     * <br /><b>注意, 这是个方法, 写 @class 属性是为了生成文档用的</b>
+     * <br /><b>注意, 这是个方法, 写 @class 属性是为了生成文档</b>
      * <p>private property see: <a href='UXC.alert.html'>UXC.alert</a>
      * <p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a>, <a href='UXC.Panel.html'>Panel</a></p>
+     * <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
+     * | <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.confirm.html' target='_blank'>API docs</a>
+     * | <a href='http://uxc.btbtd.org/uxc/comps/Panel/_demo' target='_blank'>demo link</a></p>
      * @namespace UXC
      * @class   confirm
      * @static
@@ -67,7 +73,15 @@
         if( _callback ) _panel.on( 'confirm', _callback );
         if( _cancelcallback ) _panel.on( 'cancel', _cancelcallback );
     });
-
+    /**
+     * 响应窗口改变大小 
+     */
+    $(window).on('resize', function( _evt ){
+        $('body > div.UPanelPopup_identifer').each( function(){
+            var _p = $(this);
+            _p.data('PopupInstance') && _logic.onresize( _p.data('PopupInstance') );
+        });
+    });
     /**
      * 弹框逻辑处理方法集
      * @property    _logic
@@ -94,6 +108,40 @@
          */
         , maxWidth: 500
         /**
+         * 显示时 X轴的偏移值
+         * @property    _logic.xoffset
+         * @type    number
+         * @default 9
+         * @for UXC.alert
+         * @private
+         */
+        , xoffset: 9
+        /**
+         * 显示时 Y轴的偏移值
+         * @property    _logic.yoffset
+         * @type    number
+         * @default 3
+         * @for UXC.alert
+         * @private
+         */
+        , yoffset: 3
+        /**
+         * 设置弹框的唯一性
+         * @method  _logic.popupIdentifier
+         * @for UXC.alert
+         * @private
+         * @param   {UXC.Panel} _panel  
+         */
+        , popupIdentifier:
+            function( _panel ){
+                if( !_panel ){
+                    $('body > div.UPanelPopup_identifer').remove();
+                }else{
+                    _panel.selector().addClass('UPanelPopup_identifer');
+                    _panel.selector().data('PopupInstance', _panel);
+                }
+            }
+        /**
          * 弹框通用处理方法
          * @method  _logic.popup
          * @for UXC.alert
@@ -108,18 +156,16 @@
         , popup:
         function( _tpl, _msg, _popupSrc, _status, _cb ){
             if( !_msg ) return;
-            if( _logic.ins )
-                try{ 
-                    _logic.ins.close(); 
-                    _logic.ins = null; 
-                }catch(ex){};
+            _logic.popupIdentifier();
 
             _popupSrc && ( _popupSrc = $(_popupSrc) );
 
             var _tpl = _tpl
                         .replace(/\{msg\}/g, _msg)
                         .replace(/\{status\}/g, _logic.getStatusClass(_status||'') );
-            var _ins = _logic.ins = new UXC.Panel(_tpl);
+            var _ins = new UXC.Panel(_tpl);
+            _logic.popupIdentifier( _ins );
+            _ins.selector().data('popupSrc', _popupSrc);
             _logic.fixWidth( _msg, _ins );
 
             _cb && _ins.on('confirm', _cb);
@@ -182,7 +228,7 @@
 
                 var _left = _logic.getLeft( _poffset.left, _pw, _selector.width() );
                 var _top = _logic.getTop( _poffset.top, _popupSrc.height(), _sh );
-                    _top = _top - _sh - 2;
+                    _top = _top - _sh - _logic.yoffset;
 
                 _selector.height(0);
                 _selector.css( { 'left': _left  + 'px' } );
@@ -223,7 +269,7 @@
                 _dom.defaultHeight = _selector.height();
 
                 var _left = _logic.getLeft( _poffset.left, _pw, _selector.width() );
-                var _top = _logic.getTop( _poffset.top, _popupSrc.height(), _sh, 9 );
+                var _top = _logic.getTop( _poffset.top, _popupSrc.height(), _sh, _logic.xoffset );
 
                 _selector.height(0);
                 _selector.css( { 'left': _left  + 'px' } );
@@ -234,7 +280,7 @@
                     _dom.interval = 
                         _logic.easyEffect( function( _curVal ){
                             _selector.css( {
-                                'top': _top - _sh - 3 + 'px'
+                                'top': _top - _sh - _logic.yoffset + 'px'
                                 , 'height': _curVal + 'px'
                             });
                         }, _sh );
@@ -243,12 +289,48 @@
                     _dom.interval = 
                         _logic.easyEffect( function( _curVal ){
                             _selector.css( {
-                                'top': _top - _curVal - 3 + 'px'
+                                'top': _top - _curVal - _logic.yoffset + 'px'
                                 , 'height': _curVal + 'px'
                             });
                         }, _sh );
                 }
 
+            }
+        /**
+         * 设置 Panel 的默认X,Y轴
+         * @method  _logic.onresize
+         * @private
+         * @for UXC.alert
+         * @param   {selector}  _panel
+         */
+        , onresize:
+            function( _panel ){
+                if(  !_panel.selector().is(':visible') ) return;
+                var _selector = _panel.selector(), _popupSrc = _selector.data('popupSrc');
+                if( !(_popupSrc && _popupSrc.length) ){
+                    _panel.center();
+                }else{
+                    var _srcoffset = _popupSrc.offset();
+                    var _srcTop = _srcoffset.top
+                        , _srcHeight = _popupSrc.height()
+                        , _targetHeight = _selector.height()
+                        , _yoffset = 0
+                        
+                        , _srcLeft = _srcoffset.left
+                        , _srcWidth = _popupSrc.width()
+                        , _targetWidth = _selector.width()
+                        , _xoffset = 0
+                        ;
+
+                    var _left = _logic.getLeft( _srcLeft, _srcWidth
+                                , _targetWidth, _xoffset ) + _logic.xoffset;
+                    var _top = _logic.getTop( _srcTop, _srcHeight
+                                , _targetHeight, _yoffset ) - _targetHeight - _logic.yoffset;
+
+                    _selector.css({
+                        'left': _left + 'px', 'top': _top + 'px'
+                    });
+                }
             }
         /**
          * 取得弹框最要显示的 y 轴
@@ -358,14 +440,6 @@
 
                 return _interval;
             }
-        /**
-         * 弹框的实例, 同一时间只能出现一个弹框
-         * @property    _logic.ins
-         * @type    UXC.Panel
-         * @for     UXC.alert
-         * @private
-         */
-        , ins: null
         /**
          * 保存弹框的所有默认模板
          * @property    _logic.tpls
