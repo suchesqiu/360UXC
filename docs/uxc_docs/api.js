@@ -4,6 +4,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "UXC.Calendar",
         "UXC.CustomEvent",
         "UXC.Panel",
+        "UXC.Panel.Model",
+        "UXC.Panel.View",
         "UXC.Toggle",
         "UXC.Valid",
         "window.UXC",

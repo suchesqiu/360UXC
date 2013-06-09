@@ -3,8 +3,9 @@
     window.Panel = UXC.Panel = Panel;
     /**
      * 弹出层基础类 UXC.Panel
-     * <br /><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>https://github.com/suchesqiu/360UXC.git</a>
-     * <br /><a href='http://uxc.btbtd.org/docs/uxc_docs/' target='_blank'>http://uxc.btbtd.org/docs/uxc_docs</a>
+     * <br /><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
+     * | <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Panel.html' target='_blank'>API docs</a>
+     * | <a href='http://uxc.btbtd.org/uxc/comps/Panel/_demo' target='_blank'>demo link</a>
      * @namespace UXC
      * @class Panel
      * @constructor
@@ -36,7 +37,17 @@
             </script>
      */
     function Panel( _selector, _headers, _bodys, _footers ){
+        /**
+         * 存放数据的model层, see <a href='UXC.Panel.Model.html'>Panel.Model</a>
+         * @property _model 
+         * @private
+         */
         this._model = new Model( _selector, _headers, _bodys, _footers );
+        /**
+         * 控制视图的view层, see <a href='UXC.Panel.View.html'>Panel.View</a>
+         * @property    _view 
+         * @private
+         */
         this._view = new View( this._model );
 
         this._init();
@@ -68,9 +79,7 @@
                 this._view.getPanel().data('PanelInstace', this);
 
                 /**
-                 * 初始化Panel 默认关闭事件
-                 * @event   close_default
-                 * @type    function
+                 * 初始化Panel 默认事件
                  * @private
                  */
                 this._model.addEvent( 'close_default'
@@ -116,7 +125,7 @@
                 _evtName && _cb && this._model.addEvent( _evtName, _cb );
             }
         /**
-         * 显示Panel
+         * 显示 Panel
          * <br /> Panel初始后, 默认是隐藏状态, 显示 Panel 需要显式调用 show 方法
          * @method  show
          * @param   {int}   _position   指定 panel 要显示的位置, 目前只有参数 0, 表示屏幕居中显示
@@ -141,28 +150,53 @@
                 this.trigger('beforeshow', this._view.getPanel() );
                 this.trigger('show', this._view.getPanel() );
             }
+        /**
+         * 隐藏 Panel
+         * <br /> 隐藏 Panel 设置 css display:none, 不会从DOM 删除 Panel
+         * @method  hide
+         */
         , hide:
             function(){
                 this.trigger('beforehide', this._view.getPanel() );
                 this.trigger('hide', this._view.getPanel() );
             }
-
+        /**
+         * 关闭 Panel
+         * <br /> <b>关闭 Panel 是直接从 DOM 中删除 Panel</b>
+         * @method  close
+         */
         , close:
             function(){
                 UXC.log('Panel.close');
                 this.trigger('beforeclose', this._view.getPanel() );
                 this.trigger('close', this._view.getPanel() );
             }
-
+        /**
+         * 把 Panel 位置设为屏幕居中
+         * @method  center
+         */
         , center:
             function(){
                 this.trigger('beforecenter', this._view.getPanel() );
                 this._view.center();
                 this.trigger('center', this._view.getPanel() );
             }
-
+        /**
+         * 返回 Panel 的 jquery dom选择器对象
+         * @method  selector
+         * @return  {selector}
+         */
         , selector: function(){ return this._view.getPanel(); }
-
+        /**
+         * 触发 Panel 已绑定的事件
+         * <br />用户可以使用该方法主动触发绑定的事件
+         * @method trigger
+         * @param   {string}    _evtName    要触发的事件名, 必填参数
+         * @param   {selector}  _srcElement 触发事件的源对象, 可选参数
+         * @example
+         *      panelInstace.trigger('close');
+         *      panelInstace.trigger('userevent', sourceElement);
+         */
         , trigger:
             function( _evtName, _srcElement ){
                 UXC.log( 'Panel.trigger', _evtName );
@@ -188,206 +222,61 @@
                     }
                 }
             }
-
+        /**
+         * 获取或者设置 Panel Header 的HTML内容
+         * <br />如果 Panel默认没有 Header的话, 使用该方法 _html 非空可动态创建一个Header
+         * @method  header
+         * @param   {string}    _html   
+         * @return  {string}    header 的HTML内容
+         */
         , header:
             function( _html ){
                 if( typeof _html != 'undefined' ) this._view.getHeader( _html );
                 var _selector = this._view.getHeader();
-                if( _selector && _selector.length ) return _selector.html();
+                if( _selector && _selector.length ) _html = _selector.html();
+                return _html || '';
             }
-
+        /**
+         * 获取或者设置 Panel body 的HTML内容
+         * @method  body
+         * @param   {string}    _html   
+         * @return  {string}    body 的HTML内容
+         */
         , body:
             function( _html ){
                 if( typeof _html != 'undefined' ) this._view.getBody( _html );
                 var _selector = this._view.getBody();
-                if( _selector && _selector.length ) return _selector.html();
+                if( _selector && _selector.length ) _html = _selector.html();
+                return _html || '';
             }
-
+        /**
+         * 获取或者设置 Panel footer 的HTML内容
+         * <br />如果 Panel默认没有 footer的话, 使用该方法 _html 非空可动态创建一个footer
+         * @method  footer
+         * @param   {string}    _html   
+         * @return  {string}    footer 的HTML内容
+         */
         , footer:
             function( _html ){
                 if( typeof _html != 'undefined' ) this._view.getFooter( _html );
                 var _selector = this._view.getFooter();
-                if( _selector && _selector.length ) return _selector.html();
+                if( _selector && _selector.length ) _html = _selector.html();
+                return _html || '';
             }
-
+        /**
+         * 获取或者设置 Panel 的HTML内容
+         * @method  panel
+         * @param   {string}    _html   
+         * @return  {string}    panel 的HTML内容
+         */
         , panel:
             function( _html ){
                 if( typeof _html != 'undefined' ) this._view.getPanel( _html );
                 var _selector = this._view.getPanel();
-                if( _selector && _selector.length ) return _selector.html();
+                if( _selector && _selector.length ) _html = _selector.html();
+                return _html || '';
             }
     }
-    
-    function Model( _selector, _headers, _bodys, _footers ){
-
-        this.selector = _selector;
-        this.headers = _headers;
-        this.bodys = _bodys;
-        this.footers = _footers;
-        this.panel;
-
-        this._events = {};
-
-        this._init();
-    }
-    
-    Model.prototype = {
-        _init:
-            function(){
-                var _selector = typeof this.selector != 'undefined' ? $(this.selector) : undefined;
-                if( _selector && _selector.length ){
-                    this.selector = _selector;
-                    UXC.log( 'user tpl', this.selector.parent().length );
-                    if( !this.selector.parent().length ){
-                        this.selector.appendTo( $(document.body ) );
-                    }
-                }else if( !_selector || _selector.length === 0 ){
-                    this.footers = this.bodys;
-                    this.bodys = this.headers;
-                    this.headers = this.selector;
-                    this.selector = undefined;
-                }
-                return this;
-            }
-
-        , addEvent:
-            function( _evtName, _cb ){
-                if( !(_evtName && _cb ) ) return;
-                _evtName && ( _evtName = _evtName.toLowerCase() );
-                if( !(_evtName in this._events ) ){
-                    this._events[ _evtName ] = []
-                }
-                if( /\_default/i.test( _evtName ) ) this._events[ _evtName ].unshift( _cb );
-                else this._events[ _evtName ].push( _cb );
-            }
-
-        , getEvent:
-            function( _evtName ){
-                return this._events[ _evtName ];
-            }
-
-    };
-    
-    function View( _model ){
-        this._model = _model;
-        this._tpl = _deftpl;
-
-        this._init();
-    }
-    
-    View.prototype = {
-        _init:
-            function(){
-                if( !this._model.panel ){
-                    if( this._model.selector ){
-                        this._model.panel = this._model.selector;
-                    }else{
-                        this._model.panel = $(this._tpl);
-                        this._model.panel.hide().appendTo(document.body);
-                    }
-                }
-
-                this.getHeader();
-                this.getBody();
-                this.getFooter();
-
-                return this;
-            }
-
-        , show:
-            function(){
-                this.getPanel().show();
-            }
-
-        , hide:
-            function(){
-                this.getPanel().hide();
-            }
-
-        , close:
-            function(){
-                UXC.log( 'Panel._view.close()');
-                this.getPanel().remove();
-            }
-
-        , getPanel:
-            function( _udata ){
-                if( typeof _udata != 'undefined' ){
-                    this.getPanel().html( _udata );
-                }
-                return this._model.panel;
-            }
-
-        , getHeader:
-            function( _udata ){
-                var _selector = this.getPanel().find('div.UPContent > div.hd');
-                if( typeof _udata != 'undefined' ) this._model.headers = _udata;
-                if( typeof this._model.headers != 'undefined' ){
-                    if( !_selector.length ){
-                        this.getPanel().find('div.UPContent > div.bd')
-                            .before( _selector = $('<div class="hd">弹出框</div>') );
-                    }
-                    _selector.html( this._model.headers );
-                    this._model.headers = undefined;
-                }
-                return _selector;
-            }
-
-        , getBody:
-            function( _udata ){
-                var _selector = this.getPanel().find('div.UPContent > div.bd');
-                if( typeof _udata != 'undefined' ) this._model.bodys = _udata;
-                if( typeof this._model.bodys!= 'undefined' ){
-                    _selector.html( this._model.bodys);
-                    this._model.bodys = undefined;
-                }
-                return _selector;
-            }
-
-
-        , getFooter:
-            function( _udata ){
-                var _selector = this.getPanel().find('div.UPContent > div.ft');
-                if( typeof _udata != 'undefined' ) this._model.footers = _udata;
-                if( typeof this._model.footers != 'undefined' ){
-                    if( !_selector.length ){
-                        this.getPanel().find('div.UPContent > div.bd')
-                            .after( _selector = $('<div class="ft" ></div>'));
-                    }
-                    _selector.html( this._model.footers );
-                    this._model.footers = undefined;
-                }
-                return _selector;
-            }
-
-        , center:
-            function( ){
-                var _layout = this.getPanel(), _lw = _layout.width(), _lh = _layout.height()
-                    , _x, _y, _winw = $(window).width(), _winh = $(window).height()
-                    , _scrleft = $(document).scrollLeft(), _scrtop = $(document).scrollTop()
-                    ;
-
-                _layout.css( {'left': '-9999px', 'top': '-9999px'} ).show();
-                _x = (_winw - _lw) / 2 + _scrleft; 
-                _y = (_winh - _lh) / 2 + _scrtop;
-                if( (_winh - _lh  - 100) > 300 ){
-                    _y -= 100;
-                }
-                UXC.log( (_winh - _lh / 2 - 100) )
-
-                if( ( _y + _lh - _scrtop ) > _winh ){
-                    UXC.log('y overflow');
-                    _y = _scrtop + _winh - _lh;
-
-                }
-
-                if( _y < _scrtop || _y < 0 ) _y = _scrtop;
-
-                _layout.css( {left: _x+'px', top: _y+'px'} );
-
-                UXC.log( _lw, _lh, _winw, _winh );
-            }
-    };
     /**
      * Panel 显示前会触发的事件<br/>
      * 这个事件在用户调用 _panelInstance.show() 时触发
@@ -476,6 +365,292 @@
      *      </script>
      */
 
+    /**
+     * 存储 Panel 的基础数据类
+     * <br /><b>这个类为 Panel 的私有类</b>
+     * @class   Model
+     * @namespace   UXC.Panel
+     * @constructor
+     * @param   {selector|string}   _selector   自定义弹框模板, 如果 _selector不能解析为 HTML, 将视为@param _headers 
+     * @param   {string}            _headers    定义模板的 header 文字, 如果 _selector 不能解析为HTML, 视视为@param _bodys
+     * @param   {string}            _bodys      定义模板的 body 文字, 如果 _selector 不能解析为HTML, 视视为@param _footers
+     * @param   {string}            _footers    定义模板的 footer 文字
+     */
+    function Model( _selector, _headers, _bodys, _footers ){
+        /**
+         * panel 的 HTML 对象或者字符串
+         * <br /> 这是初始化时的原始数据
+         * @property    selector
+         * @type    selector|string   
+         */
+        this.selector = _selector;
+        /**
+         * header 内容 
+         * <br /> 这是初始化时的原始数据
+         * @property    headers
+         * @type    string
+         */
+        this.headers = _headers;
+        /**
+         * body 内容
+         * <br /> 这是初始化时的原始数据
+         * @property bodys
+         * @type    string
+         */
+        this.bodys = _bodys;
+        /**
+         * footers 内容
+         * <br /> 这是初始化时的原始数据
+         * @property footers
+         * @type    string
+         */
+        this.footers = _footers;
+        /**
+         * panel 初始化后的 selector 对象
+         * @property    panel
+         * @type    selector
+         */
+        this.panel;
+        /**
+         * 存储用户事件和默认事件的对象
+         * @property    _events
+         * @type    Object
+         */
+        this._events = {};
+        this._init();
+    }
+    
+    Model.prototype = {
+        /**
+         * Model 初始化方法
+         * @method  _init
+         * @private
+         * @return  {Model instance}
+         */
+        _init:
+            function(){
+                var _selector = typeof this.selector != 'undefined' ? $(this.selector) : undefined;
+                if( _selector && _selector.length ){
+                    this.selector = _selector;
+                    UXC.log( 'user tpl', this.selector.parent().length );
+                    if( !this.selector.parent().length ){
+                        this.selector.appendTo( $(document.body ) );
+                    }
+                }else if( !_selector || _selector.length === 0 ){
+                    this.footers = this.bodys;
+                    this.bodys = this.headers;
+                    this.headers = this.selector;
+                    this.selector = undefined;
+                }
+                return this;
+            }
+        /**
+         * 添加事件方法
+         * @method  addEvent
+         * @param   {string}    _evtName    事件名
+         * @param   {function}  _cb         事件的回调函数
+         */
+        , addEvent:
+            function( _evtName, _cb ){
+                if( !(_evtName && _cb ) ) return;
+                _evtName && ( _evtName = _evtName.toLowerCase() );
+                if( !(_evtName in this._events ) ){
+                    this._events[ _evtName ] = []
+                }
+                if( /\_default/i.test( _evtName ) ) this._events[ _evtName ].unshift( _cb );
+                else this._events[ _evtName ].push( _cb );
+            }
+        /**
+         * 获取事件方法
+         * @method  getEvent
+         * @param   {string}    _evtName    事件名
+         * @return  {array}     某类事件类型的所有回调
+         */
+        , getEvent:
+            function( _evtName ){
+                return this._events[ _evtName ];
+            }
+
+    };
+     /**
+     * 存储 Panel 的基础视图类
+     * <br /><b>这个类为 Panel 的私有类</b>
+     * @class   View
+     * @namespace   UXC.Panel
+     * @constructor
+     * @param   {Panel.Model}   _model  Panel的基础数据类, see <a href='UXC.Panel.Model.html'>Panel.Model</a>
+     */
+    function View( _model ){
+        /**
+         * Panel的基础数据类, see <a href='UXC.Panel.Model.html'>Panel.Model</a>
+         * @property _model
+         * @type Panel.Model
+         * @private
+         */
+        this._model = _model;
+        /**
+         * 默认模板
+         * @prototype   _tpl
+         * @type        string
+         * @private
+         */
+        this._tpl = _deftpl;
+
+        this._init();
+    }
+    
+    View.prototype = {
+        /**
+         * View 的初始方法
+         * @method  _init
+         * @private
+         */
+        _init:
+            function(){
+                if( !this._model.panel ){
+                    if( this._model.selector ){
+                        this._model.panel = this._model.selector;
+                    }else{
+                        this._model.panel = $(this._tpl);
+                        this._model.panel.hide().appendTo(document.body);
+                    }
+                }
+
+                this.getHeader();
+                this.getBody();
+                this.getFooter();
+
+                return this;
+            }
+        /**
+         * 显示 Panel
+         * @method  show
+         */
+        , show:
+            function(){
+                this.getPanel().show();
+            }
+        /**
+         * 隐藏 Panel
+         * @method hide
+         */
+        , hide:
+            function(){
+                this.getPanel().hide();
+            }
+        /**
+         * 关闭 Panel
+         * @method  close
+         */
+        , close:
+            function(){
+                UXC.log( 'Panel._view.close()');
+                this.getPanel().remove();
+            }
+        /**
+         * 获取 Panel 的 selector 对象
+         * @method  getPanel
+         * @return  selector
+         */
+        , getPanel:
+            function( _udata ){
+                if( typeof _udata != 'undefined' ){
+                    this.getPanel().html( _udata );
+                }
+                return this._model.panel;
+            }
+        /**
+         * 获取或设置Panel的 header 内容, see <a href='UXC.Panel.html#method_header'>Panel.header</a>
+         * @method  getHeader
+         * @param   {string}    _udata  
+         * @return  string
+         */
+        , getHeader:
+            function( _udata ){
+                var _selector = this.getPanel().find('div.UPContent > div.hd');
+                if( typeof _udata != 'undefined' ) this._model.headers = _udata;
+                if( typeof this._model.headers != 'undefined' ){
+                    if( !_selector.length ){
+                        this.getPanel().find('div.UPContent > div.bd')
+                            .before( _selector = $('<div class="hd">弹出框</div>') );
+                    }
+                    _selector.html( this._model.headers );
+                    this._model.headers = undefined;
+                }
+                return _selector;
+            }
+        /**
+         * 获取或设置Panel的 body 内容, see <a href='UXC.Panel.html#method_body'>Panel.body</a>
+         * @method  getBody
+         * @param   {string}    _udata  
+         * @return  string
+         */
+        , getBody:
+            function( _udata ){
+                var _selector = this.getPanel().find('div.UPContent > div.bd');
+                if( typeof _udata != 'undefined' ) this._model.bodys = _udata;
+                if( typeof this._model.bodys!= 'undefined' ){
+                    _selector.html( this._model.bodys);
+                    this._model.bodys = undefined;
+                }
+                return _selector;
+            }
+        /**
+         * 获取或设置Panel的 footer 内容, see <a href='UXC.Panel.html#method_footer'>Panel.footer</a>
+         * @method  getFooter
+         * @param   {string}    _udata  
+         * @return  string
+         */
+        , getFooter:
+            function( _udata ){
+                var _selector = this.getPanel().find('div.UPContent > div.ft');
+                if( typeof _udata != 'undefined' ) this._model.footers = _udata;
+                if( typeof this._model.footers != 'undefined' ){
+                    if( !_selector.length ){
+                        this.getPanel().find('div.UPContent > div.bd')
+                            .after( _selector = $('<div class="ft" ></div>'));
+                    }
+                    _selector.html( this._model.footers );
+                    this._model.footers = undefined;
+                }
+                return _selector;
+            }
+        /**
+         * 居中显示 Panel
+         * @method  center
+         */
+        , center:
+            function(){
+                var _layout = this.getPanel(), _lw = _layout.width(), _lh = _layout.height()
+                    , _x, _y, _winw = $(window).width(), _winh = $(window).height()
+                    , _scrleft = $(document).scrollLeft(), _scrtop = $(document).scrollTop()
+                    ;
+
+                _layout.css( {'left': '-9999px', 'top': '-9999px'} ).show();
+                _x = (_winw - _lw) / 2 + _scrleft; 
+                _y = (_winh - _lh) / 2 + _scrtop;
+                if( (_winh - _lh  - 100) > 300 ){
+                    _y -= 100;
+                }
+                UXC.log( (_winh - _lh / 2 - 100) )
+
+                if( ( _y + _lh - _scrtop ) > _winh ){
+                    UXC.log('y overflow');
+                    _y = _scrtop + _winh - _lh;
+
+                }
+
+                if( _y < _scrtop || _y < 0 ) _y = _scrtop;
+
+                _layout.css( {left: _x+'px', top: _y+'px'} );
+
+                UXC.log( _lw, _lh, _winw, _winh );
+            }
+    };
+    /**
+     * Panel 的默认模板
+     * @private
+     */
     var _deftpl =
         [
         '<div class="UPanel" style="width: 600px;">\n'

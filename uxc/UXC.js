@@ -3,7 +3,7 @@
      * UXC jquery 组件库 资源调用控制类
      * <br />这是一个单例模式, 全局访问使用 UXC 或 window.UXC
      * <br /><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
-     * | <a href='http://uxc.btbtd.org/docs/uxc_docs/' target='_blank'>API docs</a>
+     * | <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/window.UXC.html' target='_blank'>API docs</a>
      * | <a href='http://uxc.btbtd.org/uxc/' target='_blank'>demo link</a>
      * @class UXC
      * @namespace   window
