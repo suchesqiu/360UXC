@@ -3,13 +3,13 @@
     window.Panel = UXC.Panel = Panel;
     /**
      * 弹出层基础类 UXC.Panel
-     * <br /><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
+     * <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
      * | <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Panel.html' target='_blank'>API docs</a>
-     * | <a href='http://uxc.btbtd.org/uxc/comps/Panel/_demo' target='_blank'>demo link</a>
+     * | <a href='http://uxc.btbtd.org/uxc/comps/Panel/_demo' target='_blank'>demo link</a></p>
+     * <p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>
      * @namespace UXC
      * @class Panel
      * @constructor
-     * @uses window.jQuery
      * @param   {selector|string}   _selector   自定义弹框模板, 如果 _selector不能解析为 HTML, 将视为@param _headers 
      * @param   {string}            _headers    定义模板的 header 文字, 如果 _selector 不能解析为HTML, 视视为@param _bodys
      * @param   {string}            _bodys      定义模板的 body 文字, 如果 _selector 不能解析为HTML, 视视为@param _footers
@@ -415,6 +415,7 @@
          * 存储用户事件和默认事件的对象
          * @property    _events
          * @type    Object
+         * @private
          */
         this._events = {};
         this._init();

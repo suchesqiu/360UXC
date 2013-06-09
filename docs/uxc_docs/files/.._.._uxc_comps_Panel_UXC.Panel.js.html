@@ -41,7 +41,11 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="../classes/UXC.alert.html">UXC.alert</a></li>
+            
                 <li><a href="../classes/UXC.Calendar.html">UXC.Calendar</a></li>
+            
+                <li><a href="../classes/UXC.confirm.html">UXC.confirm</a></li>
             
                 <li><a href="../classes/UXC.CustomEvent.html">UXC.CustomEvent</a></li>
             
@@ -107,13 +111,13 @@
     window.Panel = UXC.Panel = Panel;
     /**
      * 弹出层基础类 UXC.Panel
-     * &lt;br /&gt;&lt;a href=&#x27;https://github.com/suchesqiu/360UXC.git&#x27; target=&#x27;_blank&#x27;&gt;UXC Project Site&lt;/a&gt;
+     * &lt;p&gt;&lt;a href=&#x27;https://github.com/suchesqiu/360UXC.git&#x27; target=&#x27;_blank&#x27;&gt;UXC Project Site&lt;/a&gt;
      * | &lt;a href=&#x27;http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Panel.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
-     * | &lt;a href=&#x27;http://uxc.btbtd.org/uxc/comps/Panel/_demo&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;
+     * | &lt;a href=&#x27;http://uxc.btbtd.org/uxc/comps/Panel/_demo&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;&lt;/p&gt;
+     * &lt;p&gt;&lt;b&gt;requires&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;&lt;/p&gt;
      * @namespace UXC
      * @class Panel
      * @constructor
-     * @uses window.jQuery
      * @param   {selector|string}   _selector   自定义弹框模板, 如果 _selector不能解析为 HTML, 将视为@param _headers 
      * @param   {string}            _headers    定义模板的 header 文字, 如果 _selector 不能解析为HTML, 视视为@param _bodys
      * @param   {string}            _bodys      定义模板的 body 文字, 如果 _selector 不能解析为HTML, 视视为@param _footers
@@ -519,6 +523,7 @@
          * 存储用户事件和默认事件的对象
          * @property    _events
          * @type    Object
+         * @private
          */
         this._events = {};
         this._init();

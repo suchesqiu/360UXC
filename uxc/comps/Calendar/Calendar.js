@@ -7,13 +7,13 @@
      * , Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签
      * <br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用Calendar.init( _selector )
      * <br />_selector 可以是 新加载的容器, 也可以是新加载的所有input
-     * <br /><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
+     * <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
      * | <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Calendar.html' target='_blank'>API docs</a>
-     * | <a href='http://uxc.btbtd.org/uxc/comps/Calendar/_demo/' target='_blank'>demo link</a>
+     * | <a href='http://uxc.btbtd.org/uxc/comps/Calendar/_demo/' target='_blank'>demo link</a></p>
+     * <p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>
      * @namespace UXC
      * @class Calendar
      * @static
-     * @uses window.jQuery
      * @version dev 0.1
      * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
      * @date    2013-06-04

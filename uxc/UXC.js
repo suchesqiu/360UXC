@@ -2,13 +2,13 @@
     /**
      * UXC jquery 组件库 资源调用控制类
      * <br />这是一个单例模式, 全局访问使用 UXC 或 window.UXC
-     * <br /><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
+     * <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
      * | <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/window.UXC.html' target='_blank'>API docs</a>
-     * | <a href='http://uxc.btbtd.org/uxc/' target='_blank'>demo link</a>
+     * | <a href='http://uxc.btbtd.org/uxc/' target='_blank'>demo link</a></p>
+     * <p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>
      * @class UXC
      * @namespace   window
      * @static
-     * @uses    window.jQuery
      * @example 
      *      UXC.use( 组件名[,组件名] );
      * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team

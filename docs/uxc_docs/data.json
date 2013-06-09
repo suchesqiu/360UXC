@@ -39,6 +39,20 @@
                 "UXC.Panel": 1
             }
         },
+        "../../uxc/comps/Panel/UXC.Popup.js": {
+            "name": "../../uxc/comps/Panel/UXC.Popup.js",
+            "modules": {},
+            "classes": {
+                "UXC.alert": 1,
+                "UXC.confirm": 1
+            },
+            "fors": {
+                "UXC.alert": 1
+            },
+            "namespaces": {
+                "UXC": 1
+            }
+        },
         "../../uxc/comps/Tab/Tab.js": {
             "name": "../../uxc/comps/Tab/Tab.js",
             "modules": {},
@@ -107,11 +121,8 @@
             "namespace": "UXC",
             "file": "../../uxc/comps/Calendar/Calendar.js",
             "line": 3,
-            "description": "日历选择组件\n<br />全局访问请使用 UXC.Calendar 或 Calendar\n<br />DOM 加载完毕后\n, Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签\n<br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用Calendar.init( _selector )\n<br />_selector 可以是 新加载的容器, 也可以是新加载的所有input\n<br /><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Calendar.html' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/comps/Calendar/_demo/' target='_blank'>demo link</a>",
+            "description": "日历选择组件\n<br />全局访问请使用 UXC.Calendar 或 Calendar\n<br />DOM 加载完毕后\n, Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签\n<br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用Calendar.init( _selector )\n<br />_selector 可以是 新加载的容器, 也可以是新加载的所有input\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Calendar.html' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/comps/Calendar/_demo/' target='_blank'>demo link</a></p>\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>",
             "static": 1,
-            "uses": [
-                "window.jQuery"
-            ],
             "version": "dev 0.1",
             "author": "qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team",
             "date": "2013-06-04"
@@ -127,11 +138,8 @@
             "namespace": "UXC",
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
             "line": 4,
-            "description": "弹出层基础类 UXC.Panel\n<br /><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Panel.html' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/comps/Panel/_demo' target='_blank'>demo link</a>",
+            "description": "弹出层基础类 UXC.Panel\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Panel.html' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/comps/Panel/_demo' target='_blank'>demo link</a></p>\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>",
             "is_constructor": 1,
-            "uses": [
-                "window.jQuery"
-            ],
             "params": [
                 {
                     "name": "_selector",
@@ -207,7 +215,7 @@
             "extension_for": [],
             "namespace": "UXC.Panel",
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 475,
+            "line": 476,
             "description": "存储 Panel 的基础视图类\n<br /><b>这个类为 Panel 的私有类</b>",
             "is_constructor": 1,
             "params": [
@@ -217,6 +225,86 @@
                     "type": "Panel.Model"
                 }
             ]
+        },
+        "UXC.alert": {
+            "name": "UXC.alert",
+            "shortname": "UXC.alert",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC",
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 2,
+            "description": "alert 提示 popup\n<br /> 这个是不带 蒙板的 popup 弹框\n<br /><b>注意, 这是个方法, 写 @class 属性是为了生成文档用的</b>\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a>, <a href='UXC.Panel.html'>Panel</a></p>",
+            "static": 1,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "_msg",
+                    "description": "提示内容",
+                    "type": "String"
+                },
+                {
+                    "name": "_popupSrc",
+                    "description": "触发弹框的事件源 selector, 不为空显示 缓动效果, 为空居中显示",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_status",
+                    "description": "显示弹框的状态, 0: 成功, 1: 错误, 2: 警告",
+                    "type": "Int"
+                },
+                {
+                    "name": "_cb",
+                    "description": "点击弹框确定按钮的回调",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "<a href='UXC.Panel.html'>UXC.Panel</a>"
+            }
+        },
+        "UXC.confirm": {
+            "name": "UXC.confirm",
+            "shortname": "UXC.confirm",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC",
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 21,
+            "description": "confirm 提示 popup\n<br /> 这个是不带 蒙板的 popup 弹框\n<br /><b>注意, 这是个方法, 写 @class 属性是为了生成文档用的</b>\n<p>private property see: <a href='UXC.alert.html'>UXC.alert</a>\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a>, <a href='UXC.Panel.html'>Panel</a></p>",
+            "static": 1,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "_msg",
+                    "description": "提示内容",
+                    "type": "String"
+                },
+                {
+                    "name": "_popupSrc",
+                    "description": "触发弹框的事件源 selector, 不为空显示 缓动效果, 为空居中显示",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_status",
+                    "description": "显示弹框的状态, 0: 成功, 1: 错误, 2: 警告",
+                    "type": "Int"
+                },
+                {
+                    "name": "_cb",
+                    "description": "点击弹框确定按钮的回调",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "<a href='UXC.Panel.html'>UXC.Panel</a>"
+            }
         },
         "UXC.CustomEvent": {
             "name": "UXC.CustomEvent",
@@ -271,11 +359,8 @@
             "namespace": "UXC",
             "file": "../../uxc/comps/Valid/Valid.js",
             "line": 3,
-            "description": "表单验证\n<br />全局访问请使用 UXC.Valid 或 Valid\n<br /><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Valid.html' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/comps/Valid/_demo/' target='_blank'>demo link</a>",
+            "description": "表单验证\n<br />全局访问请使用 UXC.Valid 或 Valid\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Valid.html' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/comps/Valid/_demo/' target='_blank'>demo link</a></p>\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>",
             "static": 1,
-            "uses": [
-                "window.jQuery"
-            ],
             "version": "dev 0.1",
             "author": "qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team",
             "date": "2013-05-22"
@@ -291,11 +376,8 @@
             "namespace": "window",
             "file": "../../uxc/UXC.js",
             "line": 2,
-            "description": "UXC jquery 组件库 资源调用控制类\n<br />这是一个单例模式, 全局访问使用 UXC 或 window.UXC\n<br /><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/window.UXC.html' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/' target='_blank'>demo link</a>",
+            "description": "UXC jquery 组件库 资源调用控制类\n<br />这是一个单例模式, 全局访问使用 UXC 或 window.UXC\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/window.UXC.html' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/' target='_blank'>demo link</a></p>\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>",
             "static": 1,
-            "uses": [
-                "window.jQuery"
-            ],
             "example": [
                 " \n     UXC.use( 组件名[,组件名] );"
             ],
@@ -309,12 +391,7 @@
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
-            "extension_for": [
-                "UXC.Calendar",
-                "UXC.Panel",
-                "UXC.Valid",
-                "window.UXC"
-            ],
+            "extension_for": [],
             "namespace": "window",
             "file": "../../uxc/jquery.js",
             "line": 1,
@@ -1465,12 +1542,14 @@
             "itemtype": "property",
             "name": "_events",
             "type": "Object",
+            "access": "private",
+            "tagname": "",
             "class": "UXC.Panel.Model",
             "namespace": "UXC.Panel"
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 424,
+            "line": 425,
             "description": "Model 初始化方法",
             "itemtype": "method",
             "name": "_init",
@@ -1485,7 +1564,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 447,
+            "line": 448,
             "description": "添加事件方法",
             "itemtype": "method",
             "name": "addEvent",
@@ -1506,7 +1585,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 463,
+            "line": 464,
             "description": "获取事件方法",
             "itemtype": "method",
             "name": "getEvent",
@@ -1526,7 +1605,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 484,
+            "line": 485,
             "description": "Panel的基础数据类, see <a href='UXC.Panel.Model.html'>Panel.Model</a>",
             "itemtype": "property",
             "name": "_model",
@@ -1538,7 +1617,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 491,
+            "line": 492,
             "description": "默认模板",
             "prototype": "_tpl",
             "type": "string",
@@ -1549,7 +1628,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 503,
+            "line": 504,
             "description": "View 的初始方法",
             "itemtype": "method",
             "name": "_init",
@@ -1560,7 +1639,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 525,
+            "line": 526,
             "description": "显示 Panel",
             "itemtype": "method",
             "name": "show",
@@ -1569,7 +1648,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 533,
+            "line": 534,
             "description": "隐藏 Panel",
             "itemtype": "method",
             "name": "hide",
@@ -1578,7 +1657,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 541,
+            "line": 542,
             "description": "关闭 Panel",
             "itemtype": "method",
             "name": "close",
@@ -1587,7 +1666,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 550,
+            "line": 551,
             "description": "获取 Panel 的 selector 对象",
             "itemtype": "method",
             "name": "getPanel",
@@ -1599,7 +1678,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 562,
+            "line": 563,
             "description": "获取或设置Panel的 header 内容, see <a href='UXC.Panel.html#method_header'>Panel.header</a>",
             "itemtype": "method",
             "name": "getHeader",
@@ -1618,7 +1697,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 582,
+            "line": 583,
             "description": "获取或设置Panel的 body 内容, see <a href='UXC.Panel.html#method_body'>Panel.body</a>",
             "itemtype": "method",
             "name": "getBody",
@@ -1637,7 +1716,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 598,
+            "line": 599,
             "description": "获取或设置Panel的 footer 内容, see <a href='UXC.Panel.html#method_footer'>Panel.footer</a>",
             "itemtype": "method",
             "name": "getFooter",
@@ -1656,7 +1735,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 618,
+            "line": 619,
             "description": "居中显示 Panel",
             "itemtype": "method",
             "name": "center",
@@ -1665,7 +1744,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 650,
+            "line": 651,
             "description": "Panel 的默认模板",
             "access": "private",
             "tagname": "",
@@ -1673,11 +1752,348 @@
             "namespace": "UXC.Panel"
         },
         {
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 41,
+            "description": "从 HTML 属性 自动执行 UXC.alert / UXC.confirm",
+            "attr": "{function}  panelcancelcallback cancel  回调",
+            "class": "UXC.confirm",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 71,
+            "description": "弹框逻辑处理方法集",
+            "itemtype": "property",
+            "name": "_logic",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.alert",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 78,
+            "description": "弹框最小宽度",
+            "itemtype": "property",
+            "name": "_logic.minWidth",
+            "type": "int",
+            "default": "180",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.alert",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 87,
+            "description": "弹框最大宽度",
+            "itemtype": "property",
+            "name": "_logic.maxWidth",
+            "type": "int",
+            "default": "500",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.alert",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 96,
+            "description": "弹框通用处理方法",
+            "itemtype": "method",
+            "name": "_logic.popup",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "_tpl",
+                    "description": "弹框模板",
+                    "type": "String"
+                },
+                {
+                    "name": "_msg",
+                    "description": "弹框提示",
+                    "type": "String"
+                },
+                {
+                    "name": "_popupSrc",
+                    "description": "弹框事件源对象",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_status",
+                    "description": "弹框状态",
+                    "type": "Int"
+                },
+                {
+                    "name": "_cb",
+                    "description": "confirm 回调",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "UXC.Panel"
+            },
+            "class": "UXC.alert",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 158,
+            "description": "隐藏弹框缓动效果",
+            "itemtype": "method",
+            "name": "_logic.hideEffect",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "_panel",
+                    "description": "",
+                    "type": "UXC.Panel"
+                },
+                {
+                    "name": "_popupSrc",
+                    "description": "",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_doneCb",
+                    "description": "缓动完成后的回调",
+                    "type": "Function"
+                }
+            ],
+            "class": "UXC.alert",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 201,
+            "description": "隐藏弹框缓动效果",
+            "itemtype": "method",
+            "name": "_logic.showEffect",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "_panel",
+                    "description": "",
+                    "type": "UXC.Panel"
+                },
+                {
+                    "name": "_popupSrc",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "class": "UXC.alert",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 253,
+            "description": "取得弹框最要显示的 y 轴",
+            "itemtype": "method",
+            "name": "_logic.getTop",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "_scrTop",
+                    "description": "滚动条Y位置",
+                    "type": "Number"
+                },
+                {
+                    "name": "_srcHeight",
+                    "description": "事件源 高度",
+                    "type": "Number"
+                },
+                {
+                    "name": "_targetHeight",
+                    "description": "弹框高度",
+                    "type": "Number"
+                },
+                {
+                    "name": "_offset",
+                    "description": "Y轴偏移值",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "UXC.alert",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 274,
+            "description": "取得弹框最要显示的 x 轴",
+            "itemtype": "method",
+            "name": "_logic.getLeft",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "_scrTop",
+                    "description": "滚动条Y位置",
+                    "type": "Number"
+                },
+                {
+                    "name": "_srcHeight",
+                    "description": "事件源 高度",
+                    "type": "Number"
+                },
+                {
+                    "name": "_targetHeight",
+                    "description": "弹框高度",
+                    "type": "Number"
+                },
+                {
+                    "name": "_offset",
+                    "description": "Y轴偏移值",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Number"
+            },
+            "class": "UXC.alert",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 297,
+            "description": "修正弹框的默认显示宽度",
+            "itemtype": "method",
+            "name": "_logic.fixWidth",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "_msg",
+                    "description": "查显示的文本",
+                    "type": "String"
+                },
+                {
+                    "name": "_panel",
+                    "description": "",
+                    "type": "UXC.Panel"
+                }
+            ],
+            "class": "UXC.alert",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 314,
+            "description": "获取弹框的显示状态, 默认为0(成功)",
+            "itemtype": "method",
+            "name": "_logic.fixWidth",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "_status",
+                    "description": "弹框状态: 0:成功, 1:失败, 2:警告",
+                    "type": "Int"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Int"
+            },
+            "class": "UXC.alert",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 332,
+            "description": "缓动函数, 动画效果为按时间缓动",
+            "itemtype": "method",
+            "name": "_logic.easyEffect",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "_cb",
+                    "description": "缓动运动时的回调",
+                    "type": "Function"
+                },
+                {
+                    "name": "_maxVal",
+                    "description": "缓动的最大值",
+                    "type": "Number"
+                },
+                {
+                    "name": "_minVal",
+                    "description": "缓动的起始值",
+                    "type": "Number"
+                },
+                {
+                    "name": "_duration",
+                    "description": "缓动的总时间, 单位毫秒",
+                    "type": "Number"
+                }
+            ],
+            "class": "UXC.alert",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 361,
+            "description": "弹框的实例, 同一时间只能出现一个弹框",
+            "itemtype": "property",
+            "name": "_logic.ins",
+            "type": "UXC.Panel",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.alert",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 369,
+            "description": "保存弹框的所有默认模板",
+            "itemtype": "property",
+            "name": "_logic.tpls",
+            "type": "Object",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.alert",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 377,
+            "description": "alert 弹框的默认模板",
+            "itemtype": "property",
+            "name": "_logic.tpls.alert",
+            "type": "string",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.alert",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 400,
+            "description": "confirm 弹框的默认模板",
+            "itemtype": "property",
+            "name": "_logic.tpls.confirm",
+            "type": "string",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.alert",
+            "namespace": "UXC"
+        },
+        {
             "file": "../../uxc/comps/Tab/Tab.js",
             "line": 1,
             "description": "Created with JetBrains WebStorm.\nUser: rekey\nDate: 13-5-29\nTime: 上午11:03\nTo change this template use File | Settings | File Templates.",
             "class": "UXC.CustomEvent",
-            "namespace": "UXC.Panel"
+            "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Tab/Tab.js",
@@ -2847,7 +3263,27 @@
         },
         {
             "message": "unknown tag: prototype",
-            "line": " ../../uxc/comps/Panel/UXC.Panel.js:491"
+            "line": " ../../uxc/comps/Panel/UXC.Panel.js:492"
+        },
+        {
+            "message": "unknown tag: attr",
+            "line": " ../../uxc/comps/Panel/UXC.Popup.js:41"
+        },
+        {
+            "message": "unknown tag: attr",
+            "line": " ../../uxc/comps/Panel/UXC.Popup.js:41"
+        },
+        {
+            "message": "unknown tag: attr",
+            "line": " ../../uxc/comps/Panel/UXC.Popup.js:41"
+        },
+        {
+            "message": "unknown tag: attr",
+            "line": " ../../uxc/comps/Panel/UXC.Popup.js:41"
+        },
+        {
+            "message": "unknown tag: attr",
+            "line": " ../../uxc/comps/Panel/UXC.Popup.js:41"
         },
         {
             "message": "unknown tag: date",
@@ -2975,11 +3411,15 @@
         },
         {
             "message": "Missing item type\n默认模板",
-            "line": " ../../uxc/comps/Panel/UXC.Panel.js:491"
+            "line": " ../../uxc/comps/Panel/UXC.Panel.js:492"
         },
         {
             "message": "Missing item type\nPanel 的默认模板",
-            "line": " ../../uxc/comps/Panel/UXC.Panel.js:650"
+            "line": " ../../uxc/comps/Panel/UXC.Panel.js:651"
+        },
+        {
+            "message": "Missing item type\n从 HTML 属性 自动执行 UXC.alert / UXC.confirm",
+            "line": " ../../uxc/comps/Panel/UXC.Popup.js:41"
         },
         {
             "message": "Missing item type\nCreated with JetBrains WebStorm.\nUser: rekey\nDate: 13-5-29\nTime: 上午11:03\nTo change this template use File | Settings | File Templates.",
