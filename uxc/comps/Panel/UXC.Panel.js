@@ -8,7 +8,7 @@
      * @namespace UXC
      * @class Panel
      * @constructor
-     * @uses jQuery
+     * @uses window.jQuery
      * @param   {selector|string}   _selector   自定义弹框模板, 如果 _selector不能解析为 HTML, 将视为@param _headers 
      * @param   {string}            _headers    定义模板的 header 文字, 如果 _selector 不能解析为HTML, 视视为@param _bodys
      * @param   {string}            _bodys      定义模板的 body 文字, 如果 _selector 不能解析为HTML, 视视为@param _footers
@@ -16,6 +16,24 @@
      * @version dev 0.1
      * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
      * @date    2013-06-04
+     * @example
+            <script src="../../../lib.js"></script>
+            <script>UXC.use( 'Panel' ); </script>
+            <script>
+                var btnstr = [
+                    '<div style="text-align:center" class="UButton">'
+                    , '<button type="button" eventtype="confirm">确定</button>'
+                    , '<button type="button" eventtype="cancel">取消</button>\n'
+                    , '</div>'
+                ].join('');
+                $(document).ready( function(_evt){
+                    tmpPanel = new UXC.Panel( '默认panel', '<h2>test content</h2>' + btnstr, 'test footer');
+                    tmpPanel.on('close', function(_evt, _panel){
+                        UXC.log('user close evnet');
+                    });
+                    tmpPanel.show( 0 );
+                });
+            </script>
      */
     function Panel( _selector, _headers, _bodys, _footers ){
         this._model = new Model( _selector, _headers, _bodys, _footers );
@@ -23,7 +41,12 @@
 
         this._init();
     }
-
+    /**
+     * 监听Panel的所有点击事件
+     * <br />如果事件源有 eventtype 属性, 则会触发eventtype的事件类型
+     * @event   Panel click
+     * @private
+     */
     $(document).delegate( 'div.UPanel', 'click', function( _evt ){
         var _panel = $(this), _src = $(_evt.target || _evt.srcElement), _evtName;
         if( _src && _src.length && _src.is("[eventtype]") ){
@@ -67,13 +90,43 @@
                
                return this;
             }    
+        /**
+         * 为Panel绑定事件
+         * <br /> 内置事件类型有 show, hide, close, center, confirm, cancel
+         * , beforeshow, beforehide, beforeclose, beforecenter
+         * <br /> 用户可通过 HTML eventtype 属性自定义事件类型
+         * @method on
+         * @param   {string}    _evtName    要绑定的事件名
+         * @param   {function}  _cb         要绑定的事件回调函数
+         * @example
+                //绑定内置事件
+                <button type="button" eventtype="close">text</button>
+                <script>
+                panelInstace.on( 'close', function( _evt, _panel ){ do something } );
+                </script>
 
+                //绑定自定义事件
+                <button type="button" eventtype="userevent">text</button>
+                <script>
+                panelInstace.on( 'userevent', function( _evt, _pan:el ){ do something } );
+                </script>
+         */
         , on:
             function( _evtName, _cb ){
                 _evtName && _cb && this._model.addEvent( _evtName, _cb );
             }
-
-        
+        /**
+         * 显示Panel
+         * <br /> Panel初始后, 默认是隐藏状态, 显示 Panel 需要显式调用 show 方法
+         * @method  show
+         * @param   {int}   _position   指定 panel 要显示的位置, 目前只有参数 0, 表示屏幕居中显示
+         * @example
+         *      //默认显示
+         *      panelInstace.show();
+         *
+         *      //居中显示
+         *      panelInstace.show( 0 );
+         */
         , show:
             function( _position ){
                 var _p = this;
@@ -336,23 +389,8 @@
             }
     };
     /**
-     * Panel 关闭前会触发的事件<br/>
-     * 这个事件只有用户调用 _panelInstance.close() 时才会触发
-     * @event   beforeclose
-     * @type    function
-     * @example     
-     *      panelInstace.on( 'beforeclose', function( _evt, _panelInstance ){ do something });
-     */
-    /**
-     * 关闭事件
-     * @event   close
-     * @type    function
-     * @example     
-     *      panelInstace.on( 'close', function( _evt, _panelInstance ){ do something });
-     */
-    /**
      * Panel 显示前会触发的事件<br/>
-     * 这个事件只有用户调用 _panelInstance.show() 时才会触发
+     * 这个事件在用户调用 _panelInstance.show() 时触发
      * @event   beforeshow
      * @type    function
      * @example     
@@ -364,6 +402,78 @@
      * @type    function
      * @example     
      *      panelInstace.on( 'show', function( _evt, _panelInstance ){ do something });
+     */
+    /**
+     * Panel 隐藏前会触发的事件<br/>
+     * <br />这个事件在用户调用 _panelInstance.hide() 时触发
+     * @event   beforehide
+     * @type    function
+     * @example     
+     *      panelInstace.on( 'beforehide', function( _evt, _panelInstance ){ do something });
+     */
+    /**
+     * Panel 隐藏时会触发的事件<br/>
+     * <br />这个事件在用户调用 _panelInstance.hide() 时触发
+     * @event   hide
+     * @type    function
+     * @example     
+     *      panelInstace.on( 'hide', function( _evt, _panelInstance ){ do something });
+     */
+    /**
+     * Panel 关闭前会触发的事件<br/>
+     * 这个事件在用户调用 _panelInstance.close() 时触发
+     * @event   beforeclose
+     * @type    function
+     * @example     
+     *      <button type="button" eventtype="close">text</button>
+     *      <script>
+     *      panelInstace.on( 'beforeclose', function( _evt, _panelInstance ){ do something });
+     *      </script>
+     */
+    /**
+     * 关闭事件
+     * @event   close
+     * @type    function
+     * @example     
+     *      <button type="button" eventtype="close">text</button>
+     *      <script>
+     *      panelInstace.on( 'close', function( _evt, _panelInstance ){ do something });
+     *      </script>
+     */
+    /**
+     * Panel 居中显示前会触发的事件<br/>
+     * 这个事件在用户调用 _panelInstance.center() 时触发
+     * @event   beforecenter
+     * @type    function
+     * @example     
+     *      panelInstace.on( 'beforecenter', function( _evt, _panelInstance ){ do something });
+     */
+    /**
+     * Panel 居中后会触发的事件
+     * @event   center
+     * @type    function
+     * @example     
+     *      panelInstace.on( 'center', function( _evt, _panelInstance ){ do something });
+     */
+    /**
+     * Panel 点击确认按钮触发的事件
+     * @event   confirm
+     * @type    function
+     * @example     
+     *      <button type="button" eventtype="confirm">text</button>
+     *      <script>
+     *      panelInstace.on( 'confirm', function( _evt, _panelInstance ){ do something });
+     *      </script>
+     */
+    /**
+     * Panel 点击确取消按钮触发的事件
+     * @event   cancel
+     * @type    function
+     * @example     
+     *      <button type="button" eventtype="cancel">text</button>
+     *      <script>
+     *      panelInstace.on( 'cancel', function( _evt, _panelInstance ){ do something });
+     *      </script>
      */
 
     var _deftpl =

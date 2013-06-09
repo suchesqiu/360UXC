@@ -5,14 +5,13 @@
      * <br /><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
      * | <a href='http://uxc.btbtd.org/docs/uxc_docs/' target='_blank'>API docs</a>
      * | <a href='http://uxc.btbtd.org/uxc/' target='_blank'>demo link</a>
-     * @namespace window
      * @class UXC
+     * @namespace   window
      * @static
-     * @requires    jQuery
+     * @uses    window.jQuery
      * @example 
      *      UXC.use( 组件名[,组件名] );
      * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
-     * @link    https://github.com/suchesqiu/360UXC.git
      * @date    2013-05-22
      */
     window.UXC = 

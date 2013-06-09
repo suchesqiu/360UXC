@@ -1,5 +1,11 @@
 {
-    "project": {},
+    "project": {
+        "name": "UXC jquery components",
+        "description": "The third party jquery UI components",
+        "version": "0.1",
+        "url": "http://uxc.btbtd.org/docs/uxc_docs/",
+        "logo": "../images/uxc.png"
+    },
     "files": {
         "../../uxc/comps/Calendar/Calendar.js": {
             "name": "../../uxc/comps/Calendar/Calendar.js",
@@ -66,6 +72,17 @@
                 "window": 1
             }
         },
+        "../../uxc/jquery.js": {
+            "name": "../../uxc/jquery.js",
+            "modules": {},
+            "classes": {
+                "window.jQuery": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "window": 1
+            }
+        },
         "../../uxc/lib.js": {
             "name": "../../uxc/lib.js",
             "modules": {},
@@ -90,11 +107,10 @@
             "description": "日历选择组件\n<br />全局访问请使用 UXC.Calendar 或 Calendar\n<br />DOM 加载完毕后\n, Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签\n<br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用Calendar.init( _selector )\n<br />_selector 可以是 新加载的容器, 也可以是新加载的所有input\n<br /><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Calendar.html' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/comps/Calendar/_demo/' target='_blank'>demo link</a>",
             "static": 1,
             "uses": [
-                "jQuery"
+                "window.jQuery"
             ],
             "version": "dev 0.1",
             "author": "qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team",
-            "link": "https://github.com/suchesqiu/360UXC.git",
             "date": "2013-06-04"
         },
         "UXC.Panel": {
@@ -111,7 +127,7 @@
             "description": "弹出层基础类 UXC.Panel\n<br /><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>https://github.com/suchesqiu/360UXC.git</a>\n<br /><a href='http://uxc.btbtd.org/docs/uxc_docs/' target='_blank'>http://uxc.btbtd.org/docs/uxc_docs</a>",
             "is_constructor": 1,
             "uses": [
-                "jQuery"
+                "window.jQuery"
             ],
             "params": [
                 {
@@ -137,7 +153,10 @@
             ],
             "version": "dev 0.1",
             "author": "qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team",
-            "date": "2013-06-04"
+            "date": "2013-06-04",
+            "example": [
+                "\n           <script src=\"../../../lib.js\"></script>\n           <script>UXC.use( 'Panel' ); </script>\n           <script>\n               var btnstr = [\n                   '<div style=\"text-align:center\" class=\"UButton\">'\n                   , '<button type=\"button\" eventtype=\"confirm\">确定</button>'\n                   , '<button type=\"button\" eventtype=\"cancel\">取消</button>\\n'\n                   , '</div>'\n               ].join('');\n               $(document).ready( function(_evt){\n                   tmpPanel = new UXC.Panel( '默认panel', '<h2>test content</h2>' + btnstr, 'test footer');\n                   tmpPanel.on('close', function(_evt, _panel){\n                       UXC.log('user close evnet');\n                   });\n                   tmpPanel.show( 0 );\n               });\n           </script>"
+            ]
         },
         "UXC.CustomEvent": {
             "name": "UXC.CustomEvent",
@@ -195,11 +214,10 @@
             "description": "表单验证\n<br />全局访问请使用 UXC.Valid 或 Valid\n<br /><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Valid.html' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/comps/Valid/_demo/' target='_blank'>demo link</a>",
             "static": 1,
             "uses": [
-                "jQuery"
+                "window.jQuery"
             ],
             "version": "dev 0.1",
             "author": "qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team",
-            "link": "https://github.com/suchesqiu/360UXC.git",
             "date": "2013-05-22"
         },
         "window.UXC": {
@@ -215,21 +233,39 @@
             "line": 2,
             "description": "UXC jquery 组件库 资源调用控制类\n<br />这是一个单例模式, 全局访问使用 UXC 或 window.UXC\n<br /><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/' target='_blank'>demo link</a>",
             "static": 1,
-            "requires": [
-                "jQuery"
+            "uses": [
+                "window.jQuery"
             ],
             "example": [
                 " \n     UXC.use( 组件名[,组件名] );"
             ],
             "author": "qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team",
-            "link": "https://github.com/suchesqiu/360UXC.git",
             "date": "2013-05-22"
+        },
+        "window.jQuery": {
+            "name": "window.jQuery",
+            "shortname": "window.jQuery",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [
+                "UXC.Calendar",
+                "UXC.Panel",
+                "UXC.Valid",
+                "window.UXC"
+            ],
+            "namespace": "window",
+            "file": "../../uxc/jquery.js",
+            "line": 1,
+            "description": "jQuery JavaScript Library v1.9.1\n<pre>http://jquery.com/\n\nIncludes Sizzle.js\nhttp://sizzlejs.com/\n\nCopyright 2005, 2012 jQuery Foundation, Inc. and other contributors\nReleased under the MIT license\nhttp://jquery.org/license\nDate: 2013-2-4</pre>",
+            "global": ""
         }
     },
     "classitems": [
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 24,
+            "line": 23,
             "description": "弹出日期选择框",
             "itemtype": "method",
             "name": "pickDate",
@@ -249,7 +285,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 47,
+            "line": 46,
             "description": "初始化 _selector 中的所有日历组件",
             "itemtype": "method",
             "name": "init",
@@ -269,7 +305,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 62,
+            "line": 61,
             "description": "隐藏日历组件",
             "itemtype": "method",
             "name": "hide",
@@ -282,7 +318,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 70,
+            "line": 69,
             "description": "设置是否在 DOM 加载完毕后, 自动初始化所有日期控件",
             "itemtype": "property",
             "name": "autoInit",
@@ -294,7 +330,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 79,
+            "line": 78,
             "description": "设置默认显示的年份数, 该数为前后各多少年 默认为前后各10年",
             "itemtype": "property",
             "name": "defaultDateSpan",
@@ -306,7 +342,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 88,
+            "line": 87,
             "description": "自定义日历组件模板\n<p>默认模板为_logic.tpl</p>\n<p>如果用户显示定义UXC.Calendar.tpl的话, 将采用用户的模板</p>",
             "itemtype": "property",
             "name": "tpl",
@@ -318,7 +354,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 99,
+            "line": 98,
             "description": "DOM 加载完毕后, 初始化日历组件相关事件",
             "itemtype": "event",
             "name": "dom ready",
@@ -329,14 +365,14 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 105,
+            "line": 104,
             "description": "延迟200毫秒初始化页面的所有日历控件\n之所以要延迟是可以让用户自己设置是否需要自动初始化",
             "class": "UXC.Calendar",
             "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 113,
+            "line": 112,
             "description": "捕获用户更改年份 \n<p>监听 年份下拉框</p>",
             "itemtype": "event",
             "name": "year change",
@@ -347,7 +383,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 122,
+            "line": 121,
             "description": "捕获用户更改月份\n<p>监听 月份下拉框</p>",
             "itemtype": "event",
             "name": "month change",
@@ -358,7 +394,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 131,
+            "line": 130,
             "description": "选择当前日期\n<p>监听确定按钮</p>",
             "itemtype": "event",
             "name": "confirm click",
@@ -369,7 +405,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 141,
+            "line": 140,
             "description": "增加或者减少一年\n<p>监听 年份map</p>",
             "itemtype": "event",
             "name": "year map click",
@@ -380,7 +416,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 163,
+            "line": 162,
             "description": "增加或者减少一个月\n<p>监听 月份map</p>",
             "itemtype": "event",
             "name": "month map click",
@@ -391,7 +427,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 185,
+            "line": 184,
             "description": "清除文本框内容\n<p>监听 清空按钮</p>",
             "itemtype": "event",
             "name": "clear click",
@@ -402,7 +438,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 194,
+            "line": 193,
             "description": "取消日历组件, 相当于隐藏\n<p>监听 取消按钮</p>",
             "itemtype": "event",
             "name": "cancel click",
@@ -413,7 +449,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 203,
+            "line": 202,
             "description": "dom 点击时, 检查事件源是否为日历组件对象, 如果不是则会隐藏日历组件",
             "itemtype": "event",
             "name": "dom click",
@@ -424,7 +460,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 221,
+            "line": 220,
             "description": "日历组件按钮点击事件",
             "itemtype": "event",
             "name": "calendar button click",
@@ -435,7 +471,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 229,
+            "line": 228,
             "description": "日历组件文本框获得焦点",
             "itemtype": "event",
             "name": "input focus",
@@ -446,7 +482,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 237,
+            "line": 236,
             "description": "日历组件点击事件, 阻止冒泡, 防止被 document click事件隐藏",
             "itemtype": "event",
             "name": "UXCCalendar click",
@@ -457,7 +493,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 245,
+            "line": 244,
             "description": "日期点击事件",
             "itemtype": "event",
             "name": "date click",
@@ -468,7 +504,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 261,
+            "line": 260,
             "description": "监听窗口滚动和改变大小, 实时变更日历组件显示位置",
             "itemtype": "event",
             "name": "window scroll, window resize",
@@ -479,7 +515,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 273,
+            "line": 272,
             "description": "私有逻辑处理对象, 基本上所有逻辑方法都存放于此对象",
             "itemtype": "property",
             "name": "_logic",
@@ -492,7 +528,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 282,
+            "line": 281,
             "description": "初始化日历组件的触发按钮",
             "itemtype": "method",
             "name": "_logic.initTrigger",
@@ -510,7 +546,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 309,
+            "line": 308,
             "description": "最后一个显示日历组件的文本框",
             "itemtype": "property",
             "name": "_logic.lastIpt",
@@ -522,7 +558,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 316,
+            "line": 315,
             "description": "最后一个显示日历组件的日期对象",
             "itemtype": "property",
             "name": "_logic.lastDateObj",
@@ -534,7 +570,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 323,
+            "line": 322,
             "description": "判断选择器是否为日历组件的对象",
             "itemtype": "method",
             "name": "_logic.isCalendarElement",
@@ -552,7 +588,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 344,
+            "line": 343,
             "description": "显示日历组件",
             "itemtype": "method",
             "name": "_logic.pickDate",
@@ -570,7 +606,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 365,
+            "line": 364,
             "description": "初始化日历组件的所有日期\n     _dateObj = { date: date, minvalue: date, maxvalue: date, initMinvalue: date, initMaxvalue: date };",
             "itemtype": "method",
             "name": "_logic.initDateLayout",
@@ -588,7 +624,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 378,
+            "line": 377,
             "description": "初始化月份的所有日期",
             "itemtype": "method",
             "name": "_logic.initMonthDate",
@@ -606,7 +642,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 423,
+            "line": 422,
             "description": "初始化月份",
             "itemtype": "method",
             "name": "_logic.initMonth",
@@ -624,7 +660,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 434,
+            "line": 433,
             "description": "初始化年份",
             "itemtype": "method",
             "name": "_logic.initYear",
@@ -642,7 +678,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 458,
+            "line": 457,
             "description": "按年份更改日期",
             "itemtype": "method",
             "name": "_logic.setNewYear",
@@ -660,7 +696,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 479,
+            "line": 478,
             "description": "按月份更改日期",
             "itemtype": "method",
             "name": "_logic.setNewMonth",
@@ -678,7 +714,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 500,
+            "line": 499,
             "description": "设置日历组件的显示位置",
             "itemtype": "method",
             "name": "_logic.setPosition",
@@ -696,7 +732,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 530,
+            "line": 529,
             "description": "隐藏日历组件",
             "itemtype": "method",
             "name": "_logic.hide",
@@ -707,7 +743,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 539,
+            "line": 538,
             "description": "获取日历组件的外观",
             "itemtype": "method",
             "name": "_logic.getLayout",
@@ -722,7 +758,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 571,
+            "line": 570,
             "description": "获取初始日期对象",
             "itemtype": "method",
             "name": "_logic.getDate",
@@ -740,7 +776,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 602,
+            "line": 601,
             "description": "把日期赋值给文本框",
             "itemtype": "method",
             "name": "_logic.setDate",
@@ -758,7 +794,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 626,
+            "line": 625,
             "description": "给文本框赋值, 日期为控件的当前日期",
             "itemtype": "method",
             "name": "_logic.setSelectedDate",
@@ -773,7 +809,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 640,
+            "line": 639,
             "description": "解析日期",
             "itemtype": "method",
             "name": "_logic.parseDate",
@@ -795,7 +831,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 658,
+            "line": 657,
             "description": "克隆日期对象",
             "itemtype": "method",
             "name": "_logic.cloneDate",
@@ -817,7 +853,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 666,
+            "line": 665,
             "description": "判断两个日期是否为同一天",
             "itemtype": "method",
             "name": "_logic.isSameDay",
@@ -844,7 +880,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 679,
+            "line": 678,
             "description": "判断两个日期是否为同一月份",
             "itemtype": "method",
             "name": "_logic.isSameMonth",
@@ -871,7 +907,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 692,
+            "line": 691,
             "description": "取得一个月份中最大的一天",
             "itemtype": "method",
             "name": "_logic.maxDayOfMonth",
@@ -893,7 +929,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 706,
+            "line": 705,
             "description": "为数字添加前置0",
             "itemtype": "method",
             "name": "_logic.intPad",
@@ -920,7 +956,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/Calendar.js",
-            "line": 720,
+            "line": 719,
             "description": "日历组件模板\n<p>这是默认模板, 用户可以给 UXC.Calendar.tpl 赋值, 更改为自己的模板</p>",
             "itemtype": "property",
             "name": "_logic.tpl",
@@ -944,7 +980,18 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 37,
+            "line": 44,
+            "description": "监听Panel的所有点击事件\n<br />如果事件源有 eventtype 属性, 则会触发eventtype的事件类型",
+            "itemtype": "event",
+            "name": "Panel click",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Panel",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Panel.js",
+            "line": 60,
             "description": "初始化Panel",
             "itemtype": "method",
             "name": "_init",
@@ -955,7 +1002,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 47,
+            "line": 70,
             "description": "初始化Panel 默认关闭事件",
             "itemtype": "event",
             "name": "close_default",
@@ -967,34 +1014,51 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 338,
-            "description": "Panel 关闭前会触发的事件<br/>\n这个事件只有用户调用 _panelInstance.close() 时才会触发",
-            "itemtype": "event",
-            "name": "beforeclose",
-            "type": "function",
+            "line": 93,
+            "description": "为Panel绑定事件\n<br /> 内置事件类型有 show, hide, close, center, confirm, cancel\n, beforeshow, beforehide, beforeclose, beforecenter\n<br /> 用户可通过 HTML eventtype 属性自定义事件类型",
+            "itemtype": "method",
+            "name": "on",
+            "params": [
+                {
+                    "name": "_evtName",
+                    "description": "要绑定的事件名",
+                    "type": "String"
+                },
+                {
+                    "name": "_cb",
+                    "description": "要绑定的事件回调函数",
+                    "type": "Function"
+                }
+            ],
             "example": [
-                "     \n     panelInstace.on( 'beforeclose', function( _evt, _panelInstance ){ do something });"
+                "\n               //绑定内置事件\n               <button type=\"button\" eventtype=\"close\">text</button>\n               <script>\n               panelInstace.on( 'close', function( _evt, _panel ){ do something } );\n               </script>\n\n               //绑定自定义事件\n               <button type=\"button\" eventtype=\"userevent\">text</button>\n               <script>\n               panelInstace.on( 'userevent', function( _evt, _pan:el ){ do something } );\n               </script>"
             ],
             "class": "UXC.Panel",
             "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 346,
-            "description": "关闭事件",
-            "itemtype": "event",
-            "name": "close",
-            "type": "function",
+            "line": 118,
+            "description": "显示Panel\n<br /> Panel初始后, 默认是隐藏状态, 显示 Panel 需要显式调用 show 方法",
+            "itemtype": "method",
+            "name": "show",
+            "params": [
+                {
+                    "name": "_position",
+                    "description": "指定 panel 要显示的位置, 目前只有参数 0, 表示屏幕居中显示",
+                    "type": "Int"
+                }
+            ],
             "example": [
-                "     \n     panelInstace.on( 'close', function( _evt, _panelInstance ){ do something });"
+                "\n     //默认显示\n     panelInstace.show();\n\n     //居中显示\n     panelInstace.show( 0 );"
             ],
             "class": "UXC.Panel",
             "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 353,
-            "description": "Panel 显示前会触发的事件<br/>\n这个事件只有用户调用 _panelInstance.show() 时才会触发",
+            "line": 391,
+            "description": "Panel 显示前会触发的事件<br/>\n这个事件在用户调用 _panelInstance.show() 时触发",
             "itemtype": "event",
             "name": "beforeshow",
             "type": "function",
@@ -1006,13 +1070,117 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 361,
+            "line": 399,
             "description": "显示Panel时会触发的事件",
             "itemtype": "event",
             "name": "show",
             "type": "function",
             "example": [
                 "     \n     panelInstace.on( 'show', function( _evt, _panelInstance ){ do something });"
+            ],
+            "class": "UXC.Panel",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Panel.js",
+            "line": 406,
+            "description": "Panel 隐藏前会触发的事件<br/>\n<br />这个事件在用户调用 _panelInstance.hide() 时触发",
+            "itemtype": "event",
+            "name": "beforehide",
+            "type": "function",
+            "example": [
+                "     \n     panelInstace.on( 'beforehide', function( _evt, _panelInstance ){ do something });"
+            ],
+            "class": "UXC.Panel",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Panel.js",
+            "line": 414,
+            "description": "Panel 隐藏时会触发的事件<br/>\n<br />这个事件在用户调用 _panelInstance.hide() 时触发",
+            "itemtype": "event",
+            "name": "hide",
+            "type": "function",
+            "example": [
+                "     \n     panelInstace.on( 'hide', function( _evt, _panelInstance ){ do something });"
+            ],
+            "class": "UXC.Panel",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Panel.js",
+            "line": 422,
+            "description": "Panel 关闭前会触发的事件<br/>\n这个事件在用户调用 _panelInstance.close() 时触发",
+            "itemtype": "event",
+            "name": "beforeclose",
+            "type": "function",
+            "example": [
+                "     \n     <button type=\"button\" eventtype=\"close\">text</button>\n     <script>\n     panelInstace.on( 'beforeclose', function( _evt, _panelInstance ){ do something });\n     </script>"
+            ],
+            "class": "UXC.Panel",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Panel.js",
+            "line": 433,
+            "description": "关闭事件",
+            "itemtype": "event",
+            "name": "close",
+            "type": "function",
+            "example": [
+                "     \n     <button type=\"button\" eventtype=\"close\">text</button>\n     <script>\n     panelInstace.on( 'close', function( _evt, _panelInstance ){ do something });\n     </script>"
+            ],
+            "class": "UXC.Panel",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Panel.js",
+            "line": 443,
+            "description": "Panel 居中显示前会触发的事件<br/>\n这个事件在用户调用 _panelInstance.center() 时触发",
+            "itemtype": "event",
+            "name": "beforecenter",
+            "type": "function",
+            "example": [
+                "     \n     panelInstace.on( 'beforecenter', function( _evt, _panelInstance ){ do something });"
+            ],
+            "class": "UXC.Panel",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Panel.js",
+            "line": 451,
+            "description": "Panel 居中后会触发的事件",
+            "itemtype": "event",
+            "name": "center",
+            "type": "function",
+            "example": [
+                "     \n     panelInstace.on( 'center', function( _evt, _panelInstance ){ do something });"
+            ],
+            "class": "UXC.Panel",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Panel.js",
+            "line": 458,
+            "description": "Panel 点击确认按钮触发的事件",
+            "itemtype": "event",
+            "name": "confirm",
+            "type": "function",
+            "example": [
+                "     \n     <button type=\"button\" eventtype=\"confirm\">text</button>\n     <script>\n     panelInstace.on( 'confirm', function( _evt, _panelInstance ){ do something });\n     </script>"
+            ],
+            "class": "UXC.Panel",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Panel.js",
+            "line": 468,
+            "description": "Panel 点击确取消按钮触发的事件",
+            "itemtype": "event",
+            "name": "cancel",
+            "type": "function",
+            "example": [
+                "     \n     <button type=\"button\" eventtype=\"cancel\">text</button>\n     <script>\n     panelInstace.on( 'cancel', function( _evt, _panelInstance ){ do something });\n     </script>"
             ],
             "class": "UXC.Panel",
             "namespace": "UXC"
@@ -1184,7 +1352,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 20,
+            "line": 19,
             "description": "验证一个表单项, 如 文本框, 下拉框, 复选框, 单选框, 文本域, 隐藏域",
             "itemtype": "method",
             "name": "check",
@@ -1208,7 +1376,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 47,
+            "line": 46,
             "description": "清除Valid生成的错误样式",
             "itemtype": "method",
             "name": "clearError",
@@ -1228,7 +1396,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 77,
+            "line": 76,
             "description": "这个方法是 <a href='UXC.Valid.html#method_check'>Valid.check</a> 的别名",
             "itemtype": "method",
             "name": "checkAll",
@@ -1248,7 +1416,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 86,
+            "line": 85,
             "description": "响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果",
             "access": "private",
             "tagname": "",
@@ -1257,7 +1425,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 93,
+            "line": 92,
             "description": "响应表单子对象的 change 事件, 触发事件时, 检查并显示错误或正确的视觉效果",
             "access": "private",
             "tagname": "",
@@ -1266,7 +1434,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 100,
+            "line": 99,
             "description": "私有逻辑处理对象, 验证所需的所有规则和方法都存放于此对象",
             "itemtype": "property",
             "name": "_logic",
@@ -1279,7 +1447,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 109,
+            "line": 108,
             "description": "分析_item是否附合规则要求",
             "params": [
                 {
@@ -1293,7 +1461,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 158,
+            "line": 157,
             "description": "检查 _item 是否为 Valid 的检查对象",
             "params": [
                 {
@@ -1307,7 +1475,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 177,
+            "line": 176,
             "description": "显示正确的视觉效果",
             "params": [
                 {
@@ -1321,7 +1489,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 188,
+            "line": 187,
             "description": "显示错误的视觉效果",
             "params": [
                 {
@@ -1335,7 +1503,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 213,
+            "line": 212,
             "description": "获取 _selector 对象\n这个方法的存在是为了向后兼容qwrap, qwrap DOM参数都为ID",
             "params": [
                 {
@@ -1349,7 +1517,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 223,
+            "line": 222,
             "description": "获取 _item 的检查类型, 所有可用的检查类型位于 _logic.datatype 对象",
             "params": [
                 {
@@ -1363,7 +1531,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 231,
+            "line": 230,
             "description": "获取 _item 的检查子类型, 所有可用的检查子类型位于 _logic.subdatatype 对象",
             "params": [
                 {
@@ -1377,7 +1545,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 239,
+            "line": 238,
             "description": "获取对应的错误信息, 默认的错误信息有 reqmsg, errmsg, <br />\n注意: 错误信息第一个字符如果为空格的话, 将完全使用用户定义的错误信息, 将不会动态添加 请上传/选择/填写",
             "params": [
                 {
@@ -1401,7 +1569,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 270,
+            "line": 269,
             "description": "计算字符串的字节长度, 非 ASCII 0-255的字符视为两个字节",
             "params": [
                 {
@@ -1415,7 +1583,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 278,
+            "line": 277,
             "description": "获取日期字符串的 timestamp, 字符串格式为 YYYY[^\\d]*?MM[^\\d]*?DD",
             "params": [
                 {
@@ -1429,14 +1597,14 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 287,
+            "line": 286,
             "description": "此对象存储可供检查的子类型",
             "class": "UXC.Valid",
             "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 291,
+            "line": 290,
             "description": "此类型检查 2|N个对象必须至少有一个是有输入内容的, \n常用于 手机/电话 二填一",
             "params": [
                 {
@@ -1453,7 +1621,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 341,
+            "line": 340,
             "description": "此类型检查 2|N 个对象填写的值必须一致\n常用于注意时密码验证/重置密码",
             "params": [
                 {
@@ -1470,14 +1638,14 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 386,
+            "line": 385,
             "description": "此对象存储可供检查的类型",
             "class": "UXC.Valid",
             "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 390,
+            "line": 389,
             "description": "检查是否为正确的数字<br />\n默认范围 0 - Math.pow(10, 10)",
             "params": [
                 {
@@ -1495,7 +1663,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 437,
+            "line": 436,
             "description": "检查是否为合法的日期,\n日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD",
             "params": [
                 {
@@ -1513,7 +1681,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 472,
+            "line": 471,
             "description": "检查两个输入框的日期\n日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD",
             "params": [
                 {
@@ -1531,7 +1699,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 527,
+            "line": 526,
             "description": "检查时间格式, 格式为 mm:dd:ss",
             "params": [
                 {
@@ -1548,7 +1716,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 541,
+            "line": 540,
             "description": "检查时间格式, 格式为 mm:dd:ss",
             "params": [
                 {
@@ -1565,7 +1733,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 555,
+            "line": 554,
             "description": "检查银行卡号码<br />\n格式为 d{19} | d{16} | 1111 1111 1111 1111 111 | 1111 1111 1111 1111111",
             "params": [
                 {
@@ -1582,7 +1750,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 571,
+            "line": 570,
             "description": "检查中文姓名<br />\n格式: 汉字和大小写字母\n规则: 长度 2-32个字节, 非 ASCII 算2个字节",
             "params": [
                 {
@@ -1599,7 +1767,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 588,
+            "line": 587,
             "description": "检查注册用户名<br />\n格式: a-zA-Z0-9_-\n规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 29",
             "params": [
                 {
@@ -1616,7 +1784,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 605,
+            "line": 604,
             "description": "检查身份证号码<br />\n目前只使用最简单的位数判断~ 有待完善",
             "params": [
                 {
@@ -1633,7 +1801,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 621,
+            "line": 620,
             "description": "检查手机号码<br />",
             "params": [
                 {
@@ -1650,7 +1818,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 637,
+            "line": 636,
             "description": "检查手机号码加强方法\n格式: [+国家代码] [零]11位数字",
             "params": [
                 {
@@ -1667,7 +1835,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 654,
+            "line": 653,
             "description": "检查电话号码\n格式: [区号]7/8位电话号码",
             "params": [
                 {
@@ -1684,7 +1852,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 671,
+            "line": 670,
             "description": "检查电话号码\n格式: [+国家代码][ ][电话区号][ ]7/8位电话号码[#分机号]",
             "params": [
                 {
@@ -1701,7 +1869,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 688,
+            "line": 687,
             "description": "检查电话区号",
             "params": [
                 {
@@ -1718,7 +1886,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 703,
+            "line": 702,
             "description": "检查电话号码\n格式: 7/8位数字",
             "params": [
                 {
@@ -1735,7 +1903,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 719,
+            "line": 718,
             "description": "检查电话分机号码",
             "params": [
                 {
@@ -1752,7 +1920,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 734,
+            "line": 733,
             "description": "检查内容的长度",
             "params": [
                 {
@@ -1770,14 +1938,14 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 759,
+            "line": 758,
             "description": "根据特殊的 datatype 实现不同的计算方法",
             "class": "UXC.Valid",
             "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 785,
+            "line": 784,
             "description": "检查内容是否为空,\n如果声明了该属性, 那么 value 须不为空",
             "params": [
                 {
@@ -1794,7 +1962,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 808,
+            "line": 807,
             "description": "自定义正则校验",
             "params": [
                 {
@@ -1812,7 +1980,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 834,
+            "line": 833,
             "description": "检查验证码<br />\n格式: 为 0-9a-zA-Z, 长度 默认为4",
             "params": [
                 {
@@ -1830,7 +1998,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 857,
+            "line": 856,
             "description": "检查文本长度",
             "see": [
                 "_logic.datatype.length"
@@ -1841,7 +2009,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 863,
+            "line": 862,
             "description": "检查文本的字节长度",
             "see": [
                 "_logic.datatype.length"
@@ -1852,7 +2020,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 869,
+            "line": 868,
             "description": "检查富文本的字节",
             "see": [
                 "_logic.datatype.length"
@@ -1863,7 +2031,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 875,
+            "line": 874,
             "description": "检查URL",
             "params": [
                 {
@@ -1880,7 +2048,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 889,
+            "line": 888,
             "description": "检查域名",
             "params": [
                 {
@@ -1894,7 +2062,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 902,
+            "line": 901,
             "description": "检查电子邮件",
             "params": [
                 {
@@ -1911,7 +2079,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 916,
+            "line": 915,
             "description": "检查邮政编码",
             "params": [
                 {
@@ -1928,7 +2096,7 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 20,
+            "line": 19,
             "description": "UXC组件库所在路径",
             "itemtype": "property",
             "name": "PATH",
@@ -1939,7 +2107,7 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 27,
+            "line": 26,
             "description": "是否显示调试信息",
             "itemtype": "property",
             "name": "debug",
@@ -1950,7 +2118,7 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 34,
+            "line": 33,
             "description": "导入UXC组件",
             "itemtype": "method",
             "name": "use",
@@ -1980,7 +2148,7 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 83,
+            "line": 82,
             "description": "去除多余的 正叙扛或反叙扛",
             "access": "private",
             "tagname": "",
@@ -1989,7 +2157,7 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 107,
+            "line": 106,
             "description": "获取组件库所在路径",
             "itemtype": "method",
             "name": "",
@@ -2004,7 +2172,7 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 121,
+            "line": 120,
             "description": "输出调试信息, 可通过 UXC.debug 指定是否显示调试信息",
             "params": [
                 {
@@ -2021,7 +2189,7 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 132,
+            "line": 131,
             "description": "获取命名空间，如果没有就创建一个",
             "author": "rekey 2013-05-28",
             "itemtype": "method",
@@ -2048,16 +2216,116 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 151,
+            "line": 150,
             "description": "如果 console 不可用, 则生成一个模拟的 console 对象",
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 157,
+            "line": 156,
             "description": "自动识别组件库所在路径",
             "class": "window.UXC",
+            "namespace": "window"
+        },
+        {
+            "file": "../../uxc/jquery.js",
+            "line": 3839,
+            "description": "For feature detection",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to test for native support",
+                    "type": "Function"
+                }
+            ],
+            "class": "window.jQuery",
+            "namespace": "window"
+        },
+        {
+            "file": "../../uxc/jquery.js",
+            "line": 3847,
+            "description": "Create key-value caches of limited size",
+            "return": {
+                "description": "Returns the Object data after storing it on itself with\n\tproperty name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)\n\tdeleting the oldest entry",
+                "type": "Function(string, Object)"
+            },
+            "class": "window.jQuery",
+            "namespace": "window"
+        },
+        {
+            "file": "../../uxc/jquery.js",
+            "line": 3867,
+            "description": "Mark a function for special use by Sizzle",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "The function to mark",
+                    "type": "Function"
+                }
+            ],
+            "class": "window.jQuery",
+            "namespace": "window"
+        },
+        {
+            "file": "../../uxc/jquery.js",
+            "line": 3876,
+            "description": "Support testing using an element",
+            "params": [
+                {
+                    "name": "fn",
+                    "description": "Passed the created div and expects a boolean result",
+                    "type": "Function"
+                }
+            ],
+            "class": "window.jQuery",
+            "namespace": "window"
+        },
+        {
+            "file": "../../uxc/jquery.js",
+            "line": 4003,
+            "description": "Detect xml",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "An element or a document",
+                    "type": "Element|Object"
+                }
+            ],
+            "class": "window.jQuery",
+            "namespace": "window"
+        },
+        {
+            "file": "../../uxc/jquery.js",
+            "line": 4014,
+            "description": "Sets document-related variables once based on the current document",
+            "params": [
+                {
+                    "name": "doc",
+                    "description": "An element or document object to use to set the document",
+                    "type": "Element|Object",
+                    "optional": true
+                }
+            ],
+            "return": {
+                "description": "Returns the current document",
+                "type": "Object"
+            },
+            "class": "window.jQuery",
+            "namespace": "window"
+        },
+        {
+            "file": "../../uxc/jquery.js",
+            "line": 4507,
+            "description": "Utility function for retrieving the text value of an array of DOM nodes",
+            "params": [
+                {
+                    "name": "elem",
+                    "description": "",
+                    "type": "Array|Element"
+                }
+            ],
+            "class": "window.jQuery",
             "namespace": "window"
         },
         {
@@ -2076,10 +2344,6 @@
     "warnings": [
         {
             "message": "unknown tag: version",
-            "line": " ../../uxc/comps/Calendar/Calendar.js:3"
-        },
-        {
-            "message": "unknown tag: link",
             "line": " ../../uxc/comps/Calendar/Calendar.js:3"
         },
         {
@@ -2111,104 +2375,104 @@
             "line": " ../../uxc/comps/Valid/Valid.js:3"
         },
         {
-            "message": "unknown tag: link",
-            "line": " ../../uxc/comps/Valid/Valid.js:3"
-        },
-        {
             "message": "unknown tag: date",
             "line": " ../../uxc/comps/Valid/Valid.js:3"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:390"
+            "line": " ../../uxc/comps/Valid/Valid.js:389"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:390"
+            "line": " ../../uxc/comps/Valid/Valid.js:389"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:390"
+            "line": " ../../uxc/comps/Valid/Valid.js:389"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:437"
+            "line": " ../../uxc/comps/Valid/Valid.js:436"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:437"
+            "line": " ../../uxc/comps/Valid/Valid.js:436"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:437"
+            "line": " ../../uxc/comps/Valid/Valid.js:436"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:472"
+            "line": " ../../uxc/comps/Valid/Valid.js:471"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:472"
+            "line": " ../../uxc/comps/Valid/Valid.js:471"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:472"
+            "line": " ../../uxc/comps/Valid/Valid.js:471"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:472"
+            "line": " ../../uxc/comps/Valid/Valid.js:471"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:472"
+            "line": " ../../uxc/comps/Valid/Valid.js:471"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:734"
+            "line": " ../../uxc/comps/Valid/Valid.js:733"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:734"
+            "line": " ../../uxc/comps/Valid/Valid.js:733"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:734"
+            "line": " ../../uxc/comps/Valid/Valid.js:733"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:808"
+            "line": " ../../uxc/comps/Valid/Valid.js:807"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:808"
+            "line": " ../../uxc/comps/Valid/Valid.js:807"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:834"
+            "line": " ../../uxc/comps/Valid/Valid.js:833"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:857"
+            "line": " ../../uxc/comps/Valid/Valid.js:856"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:863"
+            "line": " ../../uxc/comps/Valid/Valid.js:862"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:869"
-        },
-        {
-            "message": "unknown tag: link",
-            "line": " ../../uxc/UXC.js:2"
+            "line": " ../../uxc/comps/Valid/Valid.js:868"
         },
         {
             "message": "unknown tag: date",
             "line": " ../../uxc/UXC.js:2"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " ../../uxc/jquery.js:3847"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " ../../uxc/jquery.js:4014"
         },
         {
             "message": "Missing item type\n延迟200毫秒初始化页面的所有日历控件\n之所以要延迟是可以让用户自己设置是否需要自动初始化",
-            "line": " ../../uxc/comps/Calendar/Calendar.js:105"
+            "line": " ../../uxc/comps/Calendar/Calendar.js:104"
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",
@@ -2220,191 +2484,219 @@
         },
         {
             "message": "Missing item type\n响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果",
-            "line": " ../../uxc/comps/Valid/Valid.js:86"
+            "line": " ../../uxc/comps/Valid/Valid.js:85"
         },
         {
             "message": "Missing item type\n响应表单子对象的 change 事件, 触发事件时, 检查并显示错误或正确的视觉效果",
-            "line": " ../../uxc/comps/Valid/Valid.js:93"
+            "line": " ../../uxc/comps/Valid/Valid.js:92"
         },
         {
             "message": "Missing item type\n分析_item是否附合规则要求",
-            "line": " ../../uxc/comps/Valid/Valid.js:109"
+            "line": " ../../uxc/comps/Valid/Valid.js:108"
         },
         {
             "message": "Missing item type\n检查 _item 是否为 Valid 的检查对象",
-            "line": " ../../uxc/comps/Valid/Valid.js:158"
+            "line": " ../../uxc/comps/Valid/Valid.js:157"
         },
         {
             "message": "Missing item type\n显示正确的视觉效果",
-            "line": " ../../uxc/comps/Valid/Valid.js:177"
+            "line": " ../../uxc/comps/Valid/Valid.js:176"
         },
         {
             "message": "Missing item type\n显示错误的视觉效果",
-            "line": " ../../uxc/comps/Valid/Valid.js:188"
+            "line": " ../../uxc/comps/Valid/Valid.js:187"
         },
         {
             "message": "Missing item type\n获取 _selector 对象\n这个方法的存在是为了向后兼容qwrap, qwrap DOM参数都为ID",
-            "line": " ../../uxc/comps/Valid/Valid.js:213"
+            "line": " ../../uxc/comps/Valid/Valid.js:212"
         },
         {
             "message": "Missing item type\n获取 _item 的检查类型, 所有可用的检查类型位于 _logic.datatype 对象",
-            "line": " ../../uxc/comps/Valid/Valid.js:223"
+            "line": " ../../uxc/comps/Valid/Valid.js:222"
         },
         {
             "message": "Missing item type\n获取 _item 的检查子类型, 所有可用的检查子类型位于 _logic.subdatatype 对象",
-            "line": " ../../uxc/comps/Valid/Valid.js:231"
+            "line": " ../../uxc/comps/Valid/Valid.js:230"
         },
         {
             "message": "Missing item type\n获取对应的错误信息, 默认的错误信息有 reqmsg, errmsg, <br />\n注意: 错误信息第一个字符如果为空格的话, 将完全使用用户定义的错误信息, 将不会动态添加 请上传/选择/填写",
-            "line": " ../../uxc/comps/Valid/Valid.js:239"
+            "line": " ../../uxc/comps/Valid/Valid.js:238"
         },
         {
             "message": "Missing item type\n计算字符串的字节长度, 非 ASCII 0-255的字符视为两个字节",
-            "line": " ../../uxc/comps/Valid/Valid.js:270"
+            "line": " ../../uxc/comps/Valid/Valid.js:269"
         },
         {
             "message": "Missing item type\n获取日期字符串的 timestamp, 字符串格式为 YYYY[^\\d]*?MM[^\\d]*?DD",
-            "line": " ../../uxc/comps/Valid/Valid.js:278"
+            "line": " ../../uxc/comps/Valid/Valid.js:277"
         },
         {
             "message": "Missing item type\n此对象存储可供检查的子类型",
-            "line": " ../../uxc/comps/Valid/Valid.js:287"
+            "line": " ../../uxc/comps/Valid/Valid.js:286"
         },
         {
             "message": "Missing item type\n此类型检查 2|N个对象必须至少有一个是有输入内容的, \n常用于 手机/电话 二填一",
-            "line": " ../../uxc/comps/Valid/Valid.js:291"
+            "line": " ../../uxc/comps/Valid/Valid.js:290"
         },
         {
             "message": "Missing item type\n此类型检查 2|N 个对象填写的值必须一致\n常用于注意时密码验证/重置密码",
-            "line": " ../../uxc/comps/Valid/Valid.js:341"
+            "line": " ../../uxc/comps/Valid/Valid.js:340"
         },
         {
             "message": "Missing item type\n此对象存储可供检查的类型",
-            "line": " ../../uxc/comps/Valid/Valid.js:386"
+            "line": " ../../uxc/comps/Valid/Valid.js:385"
         },
         {
             "message": "Missing item type\n检查是否为正确的数字<br />\n默认范围 0 - Math.pow(10, 10)",
-            "line": " ../../uxc/comps/Valid/Valid.js:390"
+            "line": " ../../uxc/comps/Valid/Valid.js:389"
         },
         {
             "message": "Missing item type\n检查是否为合法的日期,\n日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD",
-            "line": " ../../uxc/comps/Valid/Valid.js:437"
+            "line": " ../../uxc/comps/Valid/Valid.js:436"
         },
         {
             "message": "Missing item type\n检查两个输入框的日期\n日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD",
-            "line": " ../../uxc/comps/Valid/Valid.js:472"
+            "line": " ../../uxc/comps/Valid/Valid.js:471"
         },
         {
             "message": "Missing item type\n检查时间格式, 格式为 mm:dd:ss",
-            "line": " ../../uxc/comps/Valid/Valid.js:527"
+            "line": " ../../uxc/comps/Valid/Valid.js:526"
         },
         {
             "message": "Missing item type\n检查时间格式, 格式为 mm:dd:ss",
-            "line": " ../../uxc/comps/Valid/Valid.js:541"
+            "line": " ../../uxc/comps/Valid/Valid.js:540"
         },
         {
             "message": "Missing item type\n检查银行卡号码<br />\n格式为 d{19} | d{16} | 1111 1111 1111 1111 111 | 1111 1111 1111 1111111",
-            "line": " ../../uxc/comps/Valid/Valid.js:555"
+            "line": " ../../uxc/comps/Valid/Valid.js:554"
         },
         {
             "message": "Missing item type\n检查中文姓名<br />\n格式: 汉字和大小写字母\n规则: 长度 2-32个字节, 非 ASCII 算2个字节",
-            "line": " ../../uxc/comps/Valid/Valid.js:571"
+            "line": " ../../uxc/comps/Valid/Valid.js:570"
         },
         {
             "message": "Missing item type\n检查注册用户名<br />\n格式: a-zA-Z0-9_-\n规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 29",
-            "line": " ../../uxc/comps/Valid/Valid.js:588"
+            "line": " ../../uxc/comps/Valid/Valid.js:587"
         },
         {
             "message": "Missing item type\n检查身份证号码<br />\n目前只使用最简单的位数判断~ 有待完善",
-            "line": " ../../uxc/comps/Valid/Valid.js:605"
+            "line": " ../../uxc/comps/Valid/Valid.js:604"
         },
         {
             "message": "Missing item type\n检查手机号码<br />",
-            "line": " ../../uxc/comps/Valid/Valid.js:621"
+            "line": " ../../uxc/comps/Valid/Valid.js:620"
         },
         {
             "message": "Missing item type\n检查手机号码加强方法\n格式: [+国家代码] [零]11位数字",
-            "line": " ../../uxc/comps/Valid/Valid.js:637"
+            "line": " ../../uxc/comps/Valid/Valid.js:636"
         },
         {
             "message": "Missing item type\n检查电话号码\n格式: [区号]7/8位电话号码",
-            "line": " ../../uxc/comps/Valid/Valid.js:654"
+            "line": " ../../uxc/comps/Valid/Valid.js:653"
         },
         {
             "message": "Missing item type\n检查电话号码\n格式: [+国家代码][ ][电话区号][ ]7/8位电话号码[#分机号]",
-            "line": " ../../uxc/comps/Valid/Valid.js:671"
+            "line": " ../../uxc/comps/Valid/Valid.js:670"
         },
         {
             "message": "Missing item type\n检查电话区号",
-            "line": " ../../uxc/comps/Valid/Valid.js:688"
+            "line": " ../../uxc/comps/Valid/Valid.js:687"
         },
         {
             "message": "Missing item type\n检查电话号码\n格式: 7/8位数字",
-            "line": " ../../uxc/comps/Valid/Valid.js:703"
+            "line": " ../../uxc/comps/Valid/Valid.js:702"
         },
         {
             "message": "Missing item type\n检查电话分机号码",
-            "line": " ../../uxc/comps/Valid/Valid.js:719"
+            "line": " ../../uxc/comps/Valid/Valid.js:718"
         },
         {
             "message": "Missing item type\n检查内容的长度",
-            "line": " ../../uxc/comps/Valid/Valid.js:734"
+            "line": " ../../uxc/comps/Valid/Valid.js:733"
         },
         {
             "message": "Missing item type\n根据特殊的 datatype 实现不同的计算方法",
-            "line": " ../../uxc/comps/Valid/Valid.js:759"
+            "line": " ../../uxc/comps/Valid/Valid.js:758"
         },
         {
             "message": "Missing item type\n检查内容是否为空,\n如果声明了该属性, 那么 value 须不为空",
-            "line": " ../../uxc/comps/Valid/Valid.js:785"
+            "line": " ../../uxc/comps/Valid/Valid.js:784"
         },
         {
             "message": "Missing item type\n自定义正则校验",
-            "line": " ../../uxc/comps/Valid/Valid.js:808"
+            "line": " ../../uxc/comps/Valid/Valid.js:807"
         },
         {
             "message": "Missing item type\n检查验证码<br />\n格式: 为 0-9a-zA-Z, 长度 默认为4",
-            "line": " ../../uxc/comps/Valid/Valid.js:834"
+            "line": " ../../uxc/comps/Valid/Valid.js:833"
         },
         {
             "message": "Missing item type\n检查文本长度",
-            "line": " ../../uxc/comps/Valid/Valid.js:857"
+            "line": " ../../uxc/comps/Valid/Valid.js:856"
         },
         {
             "message": "Missing item type\n检查文本的字节长度",
-            "line": " ../../uxc/comps/Valid/Valid.js:863"
+            "line": " ../../uxc/comps/Valid/Valid.js:862"
         },
         {
             "message": "Missing item type\n检查富文本的字节",
-            "line": " ../../uxc/comps/Valid/Valid.js:869"
+            "line": " ../../uxc/comps/Valid/Valid.js:868"
         },
         {
             "message": "Missing item type\n检查URL",
-            "line": " ../../uxc/comps/Valid/Valid.js:875"
+            "line": " ../../uxc/comps/Valid/Valid.js:874"
         },
         {
             "message": "Missing item type\n检查域名",
-            "line": " ../../uxc/comps/Valid/Valid.js:889"
+            "line": " ../../uxc/comps/Valid/Valid.js:888"
         },
         {
             "message": "Missing item type\n检查电子邮件",
-            "line": " ../../uxc/comps/Valid/Valid.js:902"
+            "line": " ../../uxc/comps/Valid/Valid.js:901"
         },
         {
             "message": "Missing item type\n检查邮政编码",
-            "line": " ../../uxc/comps/Valid/Valid.js:916"
+            "line": " ../../uxc/comps/Valid/Valid.js:915"
         },
         {
             "message": "Missing item type\n去除多余的 正叙扛或反叙扛",
-            "line": " ../../uxc/UXC.js:83"
+            "line": " ../../uxc/UXC.js:82"
         },
         {
             "message": "Missing item type\n如果 console 不可用, 则生成一个模拟的 console 对象",
-            "line": " ../../uxc/UXC.js:151"
+            "line": " ../../uxc/UXC.js:150"
         },
         {
             "message": "Missing item type\n自动识别组件库所在路径",
-            "line": " ../../uxc/UXC.js:157"
+            "line": " ../../uxc/UXC.js:156"
+        },
+        {
+            "message": "Missing item type\nFor feature detection",
+            "line": " ../../uxc/jquery.js:3839"
+        },
+        {
+            "message": "Missing item type\nCreate key-value caches of limited size",
+            "line": " ../../uxc/jquery.js:3847"
+        },
+        {
+            "message": "Missing item type\nMark a function for special use by Sizzle",
+            "line": " ../../uxc/jquery.js:3867"
+        },
+        {
+            "message": "Missing item type\nSupport testing using an element",
+            "line": " ../../uxc/jquery.js:3876"
+        },
+        {
+            "message": "Missing item type\nDetect xml",
+            "line": " ../../uxc/jquery.js:4003"
+        },
+        {
+            "message": "Missing item type\nSets document-related variables once based on the current document",
+            "line": " ../../uxc/jquery.js:4014"
+        },
+        {
+            "message": "Missing item type\nUtility function for retrieving the text value of an array of DOM nodes",
+            "line": " ../../uxc/jquery.js:4507"
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",

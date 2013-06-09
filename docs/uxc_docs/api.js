@@ -6,7 +6,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "UXC.Panel",
         "UXC.Toggle",
         "UXC.Valid",
-        "window.UXC"
+        "window.UXC",
+        "window.jQuery"
     ],
     "modules": [],
     "allModules": []

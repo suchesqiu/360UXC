@@ -9,10 +9,9 @@
      * @namespace UXC
      * @class Valid
      * @static
-     * @uses jQuery
+     * @uses window.jQuery
      * @version dev 0.1
      * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
-     * @link    https://github.com/suchesqiu/360UXC.git
      * @date    2013-05-22
      */
     var Valid = UXC.Valid = window.Valid =

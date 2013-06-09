@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>UXC.Panel</title>
+    <title>UXC.Panel - UXC jquery components</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,11 +15,11 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="../assets/css/logo.png" title=""></h1>
+                <h1><img src="../../images/uxc.png" title="UXC jquery components"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: </em>
+            <em>API Docs for: 0.1</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -50,6 +50,8 @@
                 <li><a href="../classes/UXC.Toggle.html">UXC.Toggle</a></li>
             
                 <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
+            
+                <li><a href="../classes/window.jQuery.html">window.jQuery</a></li>
             
                 <li><a href="../classes/window.UXC.html">window.UXC</a></li>
             
@@ -99,7 +101,7 @@
             Uses
             <ul class="inline commas">
                 
-                    <li><a href="jQuery.html">jQuery</a></li>
+                    <li><a href="window.jQuery.html">window.jQuery</a></li>
                 
             </ul>
         </div>
@@ -212,7 +214,7 @@
                 <li class="param">
                     
                         <code class="param-name">_selector</code>
-                        <span class="type">Selector | String</span>
+                        <span class="type">Selector | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
@@ -227,7 +229,7 @@
                 <li class="param">
                     
                         <code class="param-name">_headers</code>
-                        <span class="type">String</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
@@ -242,7 +244,7 @@
                 <li class="param">
                     
                         <code class="param-name">_bodys</code>
-                        <span class="type">String</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
@@ -257,7 +259,7 @@
                 <li class="param">
                     
                         <code class="param-name">_footers</code>
-                        <span class="type">String</span>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     
 
                     
@@ -275,6 +277,31 @@
 
     
 
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>       &lt;script src="../../../lib.js"&gt;&lt;/script&gt;
+       &lt;script&gt;UXC.use( 'Panel' ); &lt;/script&gt;
+       &lt;script&gt;
+           var btnstr = [
+               '&lt;div style="text-align:center" class="UButton"&gt;'
+               , '&lt;button type="button" eventtype="confirm"&gt;确定&lt;/button&gt;'
+               , '&lt;button type="button" eventtype="cancel"&gt;取消&lt;/button&gt;\n'
+               , '&lt;/div&gt;'
+           ].join('');
+           $(document).ready( function(_evt){
+               tmpPanel = new UXC.Panel( '默认panel', '&lt;h2&gt;test content&lt;/h2&gt;' + btnstr, 'test footer');
+               tmpPanel.on('close', function(_evt, _panel){
+                   UXC.log('user close evnet');
+               });
+               tmpPanel.show( 0 );
+           });
+       &lt;/script&gt;
+</code></pre>
+            </div>
+        </div>
     
 </div>
 
@@ -312,6 +339,20 @@
                                 
                             </li>
                         
+                            <li class="index-item method">
+                                <a href="#method_on">on</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item method">
+                                <a href="#method_show">show</a>
+
+                                
+                                
+                            </li>
+                        
                     </ul>
                 </div>
             
@@ -327,6 +368,13 @@
                     <ul class="index-list events">
                         
                             <li class="index-item event">
+                                <a href="#event_beforecenter">beforecenter</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
                                 <a href="#event_beforeclose">beforeclose</a>
 
                                 
@@ -334,7 +382,28 @@
                             </li>
                         
                             <li class="index-item event">
+                                <a href="#event_beforehide">beforehide</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
                                 <a href="#event_beforeshow">beforeshow</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#event_cancel">cancel</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#event_center">center</a>
 
                                 
                                 
@@ -349,6 +418,27 @@
                         
                             <li class="index-item event private">
                                 <a href="#event_close_default">close_default</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#event_confirm">confirm</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event">
+                                <a href="#event_hide">hide</a>
+
+                                
+                                
+                            </li>
+                        
+                            <li class="index-item event private">
+                                <a href="#event_Panel click">Panel click</a>
 
                                 
                                 
@@ -405,7 +495,7 @@
             
         
         
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l37"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:37</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l60"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:60</code></a>
         
         </p>
 
@@ -427,6 +517,237 @@
 </div>
 
                 
+                    <div id="method_on" class="method item">
+    <h3 class="name"><code>on</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>_evtName</code>
+                    
+                </li>
+            
+                <li class="arg">
+                    
+                        <code>_cb</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l93"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:93</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>为Panel绑定事件
+<br /> 内置事件类型有 show, hide, close, center, confirm, cancel
+, beforeshow, beforehide, beforeclose, beforecenter
+<br /> 用户可通过 HTML eventtype 属性自定义事件类型</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">_evtName</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>要绑定的事件名</p>
+                    </div>
+
+                    
+                </li>
+            
+                <li class="param">
+                    
+                        <code class="param-name">_cb</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>要绑定的事件回调函数</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code>           //绑定内置事件
+           &lt;button type="button" eventtype="close"&gt;text&lt;/button&gt;
+           &lt;script&gt;
+           panelInstace.on( 'close', function( _evt, _panel ){ do something } );
+           &lt;/script&gt;
+
+           //绑定自定义事件
+           &lt;button type="button" eventtype="userevent"&gt;text&lt;/button&gt;
+           &lt;script&gt;
+           panelInstace.on( 'userevent', function( _evt, _pan:el ){ do something } );
+           &lt;/script&gt;
+</code></pre>
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="method_show" class="method item">
+    <h3 class="name"><code>show</code></h3>
+
+    
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+            
+                <li class="arg">
+                    
+                        <code>_position</code>
+                    
+                </li>
+            
+            </ul><span class="paren">)</span>
+        </div>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l118"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:118</code></a>
+        
+        </p>
+
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>显示Panel
+<br /> Panel初始后, 默认是隐藏状态, 显示 Panel 需要显式调用 show 方法</p>
+    </div>
+
+    
+        <div class="params">
+            <h4>Parameters:</h4>
+
+            <ul class="params-list">
+            
+                <li class="param">
+                    
+                        <code class="param-name">_position</code>
+                        <span class="type">Int</span>
+                    
+
+                    
+
+                    <div class="param-description">
+                        <p>指定 panel 要显示的位置, 目前只有参数 0, 表示屏幕居中显示</p>
+                    </div>
+
+                    
+                </li>
+            
+            </ul>
+        </div>
+    
+
+    
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code> //默认显示
+ panelInstace.show();
+
+ //居中显示
+ panelInstace.show( 0 );
+</code></pre>
+            </div>
+        </div>
+    
+</div>
+
+                
             </div>
         
 
@@ -439,9 +760,9 @@
                 <h2 class="off-left">Events</h2>
 
                 
-                    <div id="event_beforeclose" class="events item">
-    <h3 class="name"><code>beforeclose</code></h3>
-    <span class="type">Function</span>
+                    <div id="event_beforecenter" class="events item">
+    <h3 class="name"><code>beforecenter</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
 
     
 
@@ -462,7 +783,7 @@
             
         
         
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l338"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:338</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l443"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:443</code></a>
         
         </p>
 
@@ -472,8 +793,8 @@
     </div>
 
     <div class="description">
-        <p>Panel 关闭前会触发的事件<br/>
-这个事件只有用户调用 _panelInstance.close() 时才会触发</p>
+        <p>Panel 居中显示前会触发的事件<br/>
+这个事件在用户调用 _panelInstance.center() 时触发</p>
     </div>
 
     
@@ -484,7 +805,7 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code> panelInstace.on( 'beforeclose', function( _evt, _panelInstance ){ do something });
+                <pre class="code prettyprint"><code> panelInstace.on( 'beforecenter', function( _evt, _panelInstance ){ do something });
 </code></pre>
             </div>
         </div>
@@ -492,9 +813,9 @@
 </div>
 
                 
-                    <div id="event_beforeshow" class="events item">
-    <h3 class="name"><code>beforeshow</code></h3>
-    <span class="type">Function</span>
+                    <div id="event_beforeclose" class="events item">
+    <h3 class="name"><code>beforeclose</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
 
     
 
@@ -515,7 +836,116 @@
             
         
         
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l353"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:353</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l422"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:422</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Panel 关闭前会触发的事件<br/>
+这个事件在用户调用 _panelInstance.close() 时触发</p>
+    </div>
+
+    
+
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code> &lt;button type="button" eventtype="close"&gt;text&lt;/button&gt;
+ &lt;script&gt;
+ panelInstace.on( 'beforeclose', function( _evt, _panelInstance ){ do something });
+ &lt;/script&gt;
+</code></pre>
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="event_beforehide" class="events item">
+    <h3 class="name"><code>beforehide</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l406"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:406</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Panel 隐藏前会触发的事件<br/>
+<br />这个事件在用户调用 _panelInstance.hide() 时触发</p>
+    </div>
+
+    
+
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code> panelInstace.on( 'beforehide', function( _evt, _panelInstance ){ do something });
+</code></pre>
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="event_beforeshow" class="events item">
+    <h3 class="name"><code>beforeshow</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l391"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:391</code></a>
         
         </p>
 
@@ -526,7 +956,7 @@
 
     <div class="description">
         <p>Panel 显示前会触发的事件<br/>
-这个事件只有用户调用 _panelInstance.show() 时才会触发</p>
+这个事件在用户调用 _panelInstance.show() 时触发</p>
     </div>
 
     
@@ -545,9 +975,9 @@
 </div>
 
                 
-                    <div id="event_close" class="events item">
-    <h3 class="name"><code>close</code></h3>
-    <span class="type">Function</span>
+                    <div id="event_cancel" class="events item">
+    <h3 class="name"><code>cancel</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
 
     
 
@@ -568,7 +998,114 @@
             
         
         
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l346"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:346</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l468"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:468</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Panel 点击确取消按钮触发的事件</p>
+    </div>
+
+    
+
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code> &lt;button type="button" eventtype="cancel"&gt;text&lt;/button&gt;
+ &lt;script&gt;
+ panelInstace.on( 'cancel', function( _evt, _panelInstance ){ do something });
+ &lt;/script&gt;
+</code></pre>
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="event_center" class="events item">
+    <h3 class="name"><code>center</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l451"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:451</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Panel 居中后会触发的事件</p>
+    </div>
+
+    
+
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code> panelInstace.on( 'center', function( _evt, _panelInstance ){ do something });
+</code></pre>
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="event_close" class="events item">
+    <h3 class="name"><code>close</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l433"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:433</code></a>
         
         </p>
 
@@ -589,7 +1126,10 @@
             <h4>Example:</h4>
 
             <div class="example-content">
-                <pre class="code prettyprint"><code> panelInstace.on( 'close', function( _evt, _panelInstance ){ do something });
+                <pre class="code prettyprint"><code> &lt;button type="button" eventtype="close"&gt;text&lt;/button&gt;
+ &lt;script&gt;
+ panelInstace.on( 'close', function( _evt, _panelInstance ){ do something });
+ &lt;/script&gt;
 </code></pre>
             </div>
         </div>
@@ -599,7 +1139,7 @@
                 
                     <div id="event_close_default" class="events item private">
     <h3 class="name"><code>close_default</code></h3>
-    <span class="type">Function</span>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
 
     
 
@@ -622,7 +1162,7 @@
             
         
         
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l47"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:47</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l70"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:70</code></a>
         
         </p>
 
@@ -642,9 +1182,9 @@
 </div>
 
                 
-                    <div id="event_show" class="events item">
-    <h3 class="name"><code>show</code></h3>
-    <span class="type">Function</span>
+                    <div id="event_confirm" class="events item">
+    <h3 class="name"><code>confirm</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
 
     
 
@@ -665,7 +1205,161 @@
             
         
         
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l361"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:361</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l458"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:458</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Panel 点击确认按钮触发的事件</p>
+    </div>
+
+    
+
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code> &lt;button type="button" eventtype="confirm"&gt;text&lt;/button&gt;
+ &lt;script&gt;
+ panelInstace.on( 'confirm', function( _evt, _panelInstance ){ do something });
+ &lt;/script&gt;
+</code></pre>
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="event_hide" class="events item">
+    <h3 class="name"><code>hide</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l414"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:414</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>Panel 隐藏时会触发的事件<br/>
+<br />这个事件在用户调用 _panelInstance.hide() 时触发</p>
+    </div>
+
+    
+
+
+    
+        <div class="example">
+            <h4>Example:</h4>
+
+            <div class="example-content">
+                <pre class="code prettyprint"><code> panelInstace.on( 'hide', function( _evt, _panelInstance ){ do something });
+</code></pre>
+            </div>
+        </div>
+    
+</div>
+
+                
+                    <div id="event_Panel click" class="events item private">
+    <h3 class="name"><code>Panel click</code></h3>
+    <span class="type"></span>
+
+    
+
+    
+        <span class="flag private">private</span>
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l44"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:44</code></a>
+        
+        </p>
+
+        
+
+        
+    </div>
+
+    <div class="description">
+        <p>监听Panel的所有点击事件
+<br />如果事件源有 eventtype 属性, 则会触发eventtype的事件类型</p>
+    </div>
+
+    
+
+
+    
+</div>
+
+                
+                    <div id="event_show" class="events item">
+    <h3 class="name"><code>show</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+
+    
+
+    
+
+    
+
+    
+
+    <div class="meta">
+        
+            
+                
+                <p>
+                
+                Defined in
+                
+            
+        
+        
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l399"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:399</code></a>
         
         </p>
 

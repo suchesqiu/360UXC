@@ -1,1 +1,2 @@
-yuidoc ../../uxc -o ../uxc_docs
+yuidoc -c ./uxc.json
+#yuidoc ../../uxc -o ../uxc_docs
