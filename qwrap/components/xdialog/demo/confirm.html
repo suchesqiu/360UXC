@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>XDialog - shawl.qiu template</title>
+<style type="text/css">
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+body
+{
+    width: 980px;
+    margin: 0 auto;
+}
+</style>
+</head>
+<body>
+
+<br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br />
+<br /><br /><br /><br /><br /><br />
+
+<link rel="stylesheet" href="dialog/dialog.css" type="text/css" />
+<script src="config.js"></script>
+<script src="XMask.js"></script>
+<script src='../XDialog.js'></script>
+<script src='../XDialog_extend.js'></script>
+
+<button id="test">test</button>
+<script>
+
+var test = document.getElementById("test");
+var count = 1;
+
+test.onclick = 
+function()
+{
+    newDialog();
+};
+
+function newDialog()
+{
+    XDialog.confirm( 'hello' + (count++) , newDialog );
+    return false;
+}
+
+setTimeout
+(
+    function()
+    {
+        XDialog.confirm( 'hello' , function(){ alert( 'submit' ) }, function(){ alert( 'cancel' ); }  );
+    }
+    , 500
+);
+
+</script>
+
+</body>
+</html>

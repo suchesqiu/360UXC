@@ -1,27 +1,28 @@
 (function( $ ){
     /**
-     * UXC jquery 组件库 资源调用控制类<br />
-     * 这是一个单例模式, 全局访问使用 UXC 或 window.UXC
-     * @namespace window
+     * UXC jquery 组件库 资源调用控制类
+     * <br />这是一个单例模式, 全局访问使用 UXC 或 window.UXC
+     * <p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>
+     * <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
+     * | <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/window.UXC.html' target='_blank'>API docs</a>
+     * | <a href='http://uxc.btbtd.org/uxc/' target='_blank'>demo link</a></p>
      * @class UXC
+     * @namespace   window
      * @static
-     * @requires    jQuery
      * @example 
      *      UXC.use( 组件名[,组件名] );
      * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
-     * @link    https://github.com/suchesqiu/360UXC.git
      * @date    2013-05-22
      */
     window.UXC = 
     {
-    
         /**
          * UXC组件库所在路径
          * @property    PATH
          * @static
          * @type {string}
          */
-        PATH: '/js/uxc/comps/'
+        PATH: '/js/comps/'
         /**
          * 是否显示调试信息
          * @property    debug
@@ -126,7 +127,25 @@
            function(){
                 if( !this.debug ) return;
                 console.log( [].slice.apply( arguments ).join(' ') );
+            },
+        /**
+         * 获取命名空间，如果没有就创建一个
+         *
+         * @author rekey 2013-05-28
+         * @method namespace
+         * @static
+         * @param {String} str 命名空间
+         * @param {Object} context 命名空间基于这个对象生成，默认为window
+         * @return {Object} 返回生成的命名空间
+         */
+        namespace : function ( str , context ) {
+            var arr = str.split( '.' ), base = context || window;
+            for ( var i = 0 , len = arr.length ; i < len ; i++ ) {
+                base[ arr[i] ] = base[ arr[i] ] || {};
+                base = base[ arr[i] ];
             }
+            return context;
+        }
     };
     /**
      * 如果 console 不可用, 则生成一个模拟的 console 对象

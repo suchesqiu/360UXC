@@ -1,0 +1,273 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>XDrag - shawl.qiu template</title>
+</head>
+<body>
+
+    
+
+<style>
+*
+{
+    margin: 0; padding: 0;
+}
+
+body
+{
+    width: 960px;
+    margin: 40px auto;
+}
+
+.drag_box
+{
+
+}
+
+.drag_box li
+{
+    width: 80px;
+    height: 22px;
+    border: 1px solid #000;
+    margin: 2px;
+    float: left;
+    list-style-type: none;
+    text-align: center;
+    cursor: move;
+}
+
+.temp_box li
+{
+    width: 80px;
+    height: 22px;
+    border: 1px solid #000;
+    margin: 2px;
+    list-style-type: none;
+    text-align: center;
+    cursor: move;
+    position: absolute;
+    background:#fff;
+    
+    opacity: .35;
+}
+</style>
+
+<ul class="drag_box" id="drag_box">
+    <li data-id="1">1</li>
+    <li data-id="2">2</li>
+    <li data-id="3">3</li>
+    <li data-id="4">4</li>
+    <li data-id="5">5</li>
+</ul>
+
+<ul id="temp_box" class="temp_box"></ul>
+
+<script>
+
+window.MAX_INDEX = 9999; 
+/**
+ * 获取页面上最大的z-index值, 并+1
+ * x@btbtd.org  2012-3-23  
+ */ 
+function getMaxIndex()
+{
+    return ++window.MAX_INDEX;
+}
+
+window.XCLONE_DRAG_ITEM;
+    
+/**
+ *  @description    兼容各浏览器的附加事件函数
+ *  @author         suches
+ *  @date           2008-9-22
+ */ 
+function attach_event_f(e_, event_name_s, func_f, capture_b)
+{
+    if(document.addEventListener){e_.addEventListener(event_name_s, func_f, capture_b);}
+    else if(document.attachEvent)
+    {
+        event_name_s = 'on'+event_name_s;
+        if(e_[event_name_s]==null){e_[event_name_s] = func_f;} else{e_.attachEvent(event_name_s, func_f);}
+    }
+}
+
+/**
+ *  @description    兼容各浏览器的附加事件函数
+ *  @author         suches
+ *  @date           2008-9-22
+ */ 
+function detach_event_f(e_, event_name_s, func_f, capture_b)
+{
+    if(document.removeEventListener){e_.removeEventListener(event_name_s, func_f, capture_b);}
+    else if(document.detachEvent)
+    {
+        event_name_s = 'on'+event_name_s;
+        if(e_[event_name_s]){e_.detachEvent(event_name_s, func_f);}
+    }
+}
+
+function mouseX(evt) 
+{
+    if (evt.pageX) return evt.pageX;
+    else if (evt.clientX)
+        return evt.clientX 
+                + (document.documentElement.scrollLeft 
+                ? document.documentElement.scrollLeft 
+                : document.body.scrollLeft);
+    else return null;
+}
+
+function mouseY(evt) {
+    if (evt.pageY) return evt.pageY;
+    else if (evt.clientY)
+        return evt.clientY 
+                + (document.documentElement.scrollTop 
+                ? document.documentElement.scrollTop 
+                : document.body.scrollTop);
+    else return null;
+}
+
+/**
+ * @description    取某个元素的座标和大小
+ * @author         suches
+ * @date           2008-9-9
+ */ 
+function ele_pos_f(arg_e)
+{
+    var a = [], t = arg_e.offsetTop, l = arg_e.offsetLeft, w = arg_e.offsetWidth, h = arg_e.offsetHeight; 
+    while(arg_e = arg_e.offsetParent){ t += arg_e.offsetTop; l += arg_e.offsetLeft; } 
+    return {top:t, left:l, width:w, height:h};
+}
+/**
+ * X/Y 轴数据类
+ * @author      suches@btbtd.org
+ * @date        2012-2-24  
+ */     
+function Point( $x, $y )
+{
+    this.x = $x;
+    this.y = $y;
+}
+/**
+ * 交换DOM对象位置函数
+ * x@btbtd.org  2012-3-26 
+ */ 
+function xswap( $src, $tar )
+{
+    var temp = $src.cloneNode(true);
+    temp.style.display = 'none';
+    
+    $tar.parentNode.insertBefore( temp, $tar );
+    $src.parentNode.insertBefore( $tar, $src );
+    temp.parentNode.insertBefore( $src, temp );
+    temp.parentNode.removeChild( temp );
+}
+/**
+ * 阻止事件默认行为
+ * @author      suches@btbtd.org
+ * @date        2011-7-26                  
+ */                 
+function preventDefault($evt)
+{            
+    $evt = $evt || window.event;
+    if( $evt.preventDefault ) $evt.preventDefault(); else $evt.returnValue = false;
+}
+</script>
+<script src="../XCloneDrag.js"></script>
+<script>
+
+init();
+
+function init()
+{
+
+    var drag_box = document.getElementById("drag_box");
+    var drag_list = drag_box.getElementsByTagName('li');
+    
+    var temp_box = document.getElementById("temp_box");
+    
+    for( var i = 0; i < drag_list.length; i++ )
+    {        
+        XCloneDrag.exec
+        ( 
+            {
+                dragItem: drag_list[i]
+                
+                , cloneItemAppendNode: temp_box
+                
+                , afterDownCallback: 
+                function( $evt, $srcEle, $dragEle )
+                {
+                    document.title = 'down';
+                }
+                
+                , afterMoveCallback: 
+                function( $evt, $srcEle, $dragEle )
+                {
+                    document.title = 'move';
+                }
+                
+                , afterUpCallback: 
+                function( $evt, $srcEle, $dragEle )
+                {
+                    document.title = 'up';
+                    
+                    var findList = [];
+                    var findItem;
+                    
+                    for( var i = 0; i < drag_list.length; i++ )
+                    {
+                        var item = drag_list[i];
+                        var pos = ele_pos_f( item );
+                        
+                        //alert( pos.left + ', ' + $dragEle.offsetLeft )
+                        
+                        if( 
+                            (pos.left + pos.width) > $dragEle.offsetLeft
+                            && ( pos.left <  $dragEle.offsetLeft + $dragEle.offsetWidth)
+                        )
+                        {
+                            findList.push( item );
+                        }
+                    }
+                    
+                    if( findList.length === 1 )
+                    {
+                        findItem = findList[0];
+                    }
+                    else if( findList.length > 1 )
+                    {
+                        var mid = $dragEle.offsetLeft + $dragEle.offsetWidth / 2;
+                        
+                        for( var i = 0; i < findList.length; i++ )
+                        {
+                            var item = findList[i];                            
+                            var pos = ele_pos_f( item );
+                            
+                            if( pos.left + pos.width > mid )
+                            {
+                                findItem = item;
+                                break;
+                            }
+                        }
+                    }
+                    
+                    if( findItem )
+                    {                    
+                        if( findItem.getAttribute('data-id') == $srcEle.getAttribute('data-id') )
+                        {
+                            return;
+                        }
+                        document.title =findItem.innerHTML;
+                        
+                        xswap( $srcEle, findItem );
+                    }
+                }
+            } 
+        );
+    }
+}
+</script>
+</body>
+</html>

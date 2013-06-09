@@ -2,18 +2,20 @@
     !window.UXC && (window.UXC = { log:function(){} });
     /**
      * 日历选择组件
-     * <p>全局访问请使用 UXC.Calendar 或 Calendar</p>
-     * <p>DOM 加载完毕后
-     * , Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签</p>
-     * <p>Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用Calendar.init( _selector )</p>
-     * <p>_selector 可以是 新加载的容器, 也可以是新加载的所有input</p>
+     * <br />全局访问请使用 UXC.Calendar 或 Calendar
+     * <br />DOM 加载完毕后
+     * , Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签
+     * <br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用Calendar.init( _selector )
+     * <br />_selector 可以是 新加载的容器, 也可以是新加载的所有input
+     * <p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>
+     * <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
+     * | <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Calendar.html' target='_blank'>API docs</a>
+     * | <a href='http://uxc.btbtd.org/uxc/comps/Calendar/_demo/' target='_blank'>demo link</a></p>
      * @namespace UXC
      * @class Calendar
      * @static
-     * @uses jQuery
      * @version dev 0.1
      * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
-     * @link    https://github.com/suchesqiu/360UXC.git
      * @date    2013-06-04
      */
     var Calendar = UXC.Calendar = window.Calendar = 
@@ -503,7 +505,7 @@
         , setPosition:
             function( _ipt ){
                 var _layout = _logic.getLayout();
-                _layout.css( {'left': '-9999px'} ).show();
+                _layout.css( {'left': '-9999px', 'top': '-9999px'} ).show();
                 var _lw = _layout.width(), _lh = _layout.height()
                     , _iw = _ipt.width(), _ih = _ipt.height(), _ioset = _ipt.offset()
                     , _x, _y, _winw = $(window).width(), _winh = $(window).height()
@@ -717,7 +719,7 @@
         /**
          * 日历组件模板
          * <p>这是默认模板, 用户可以给 UXC.Calendar.tpl 赋值, 更改为自己的模板</p>
-         * @property    tpl
+         * @property    _logic.tpl
          * @type    string
          * @private
          */

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>../../uxc/comps/Calendar/Calendar.js</title>
+    <title>../../uxc/comps/Calendar/Calendar.js - UXC jquery components</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -15,11 +15,11 @@
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
             
-                <h1><img src="../assets/css/logo.png" title=""></h1>
+                <h1><img src="../../images/uxc.png" title="UXC jquery components"></h1>
             
         </div>
         <div class="yui3-u-1-4 version">
-            <em>API Docs for: </em>
+            <em>API Docs for: 0.1</em>
         </div>
     </div>
     <div id="bd" class="yui3-g">
@@ -41,9 +41,27 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="../classes/UXC.alert.html">UXC.alert</a></li>
+            
                 <li><a href="../classes/UXC.Calendar.html">UXC.Calendar</a></li>
             
+                <li><a href="../classes/UXC.confirm.html">UXC.confirm</a></li>
+            
+                <li><a href="../classes/UXC.Dialog.html">UXC.Dialog</a></li>
+            
+                <li><a href="../classes/UXC.Dialog.alert.html">UXC.Dialog.alert</a></li>
+            
+                <li><a href="../classes/UXC.Dialog.confirm.html">UXC.Dialog.confirm</a></li>
+            
+                <li><a href="../classes/UXC.Panel.html">UXC.Panel</a></li>
+            
+                <li><a href="../classes/UXC.Panel.Model.html">UXC.Panel.Model</a></li>
+            
+                <li><a href="../classes/UXC.Panel.View.html">UXC.Panel.View</a></li>
+            
                 <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
+            
+                <li><a href="../classes/window.jQuery.html">window.jQuery</a></li>
             
                 <li><a href="../classes/window.UXC.html">window.UXC</a></li>
             
@@ -94,18 +112,20 @@
     !window.UXC &amp;&amp; (window.UXC = { log:function(){} });
     /**
      * 日历选择组件
-     * &lt;p&gt;全局访问请使用 UXC.Calendar 或 Calendar&lt;/p&gt;
-     * &lt;p&gt;DOM 加载完毕后
-     * , Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签&lt;/p&gt;
-     * &lt;p&gt;Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用Calendar.init( _selector )&lt;/p&gt;
-     * &lt;p&gt;_selector 可以是 新加载的容器, 也可以是新加载的所有input&lt;/p&gt;
+     * &lt;br /&gt;全局访问请使用 UXC.Calendar 或 Calendar
+     * &lt;br /&gt;DOM 加载完毕后
+     * , Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签
+     * &lt;br /&gt;Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用Calendar.init( _selector )
+     * &lt;br /&gt;_selector 可以是 新加载的容器, 也可以是新加载的所有input
+     * &lt;p&gt;&lt;b&gt;requires&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;&lt;/p&gt;
+     * &lt;p&gt;&lt;a href=&#x27;https://github.com/suchesqiu/360UXC.git&#x27; target=&#x27;_blank&#x27;&gt;UXC Project Site&lt;/a&gt;
+     * | &lt;a href=&#x27;http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Calendar.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
+     * | &lt;a href=&#x27;http://uxc.btbtd.org/uxc/comps/Calendar/_demo/&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;&lt;/p&gt;
      * @namespace UXC
      * @class Calendar
      * @static
-     * @uses jQuery
      * @version dev 0.1
      * @author  qiushaowei   &lt;suches@btbtd.org&gt; | 360 UXC-FE Team
-     * @link    https://github.com/suchesqiu/360UXC.git
      * @date    2013-06-04
      */
     var Calendar = UXC.Calendar = window.Calendar = 
@@ -595,7 +615,7 @@
         , setPosition:
             function( _ipt ){
                 var _layout = _logic.getLayout();
-                _layout.css( {&#x27;left&#x27;: &#x27;-9999px&#x27;} ).show();
+                _layout.css( {&#x27;left&#x27;: &#x27;-9999px&#x27;, &#x27;top&#x27;: &#x27;-9999px&#x27;} ).show();
                 var _lw = _layout.width(), _lh = _layout.height()
                     , _iw = _ipt.width(), _ih = _ipt.height(), _ioset = _ipt.offset()
                     , _x, _y, _winw = $(window).width(), _winh = $(window).height()
@@ -809,7 +829,7 @@
         /**
          * 日历组件模板
          * &lt;p&gt;这是默认模板, 用户可以给 UXC.Calendar.tpl 赋值, 更改为自己的模板&lt;/p&gt;
-         * @property    tpl
+         * @property    _logic.tpl
          * @type    string
          * @private
          */

@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>suches template</title>
+<script src="qwrap.js"></script>
+<script src="common.js"></script>
+<script src="../XLinkParams.js"></script>
+</head>    
+<body>
+
+<ul>
+    <li><a href="http://www.baidu.com" data-lks="{key1:'key1val', key2:'key2val', key3:'key3val', nul:null}" target=_blank>baidu.com</a></li>
+    <li><a href="http://www.google.com" data-lks="{key1:'key1val', key2:'key2val', key3:'key3val'}">google.com</a></li>
+    <li><a href="http://cn.bing.com" data-lks="{key1:'key1val', key2:'key2val', key3:'key3val'}">bing.com</a></li>
+    <li><a href="http://cn.yahoo.com" id="yahoo" data-lks="{key1:'key1val'}">yahoo.com</a></li>
+    <li><a href="http://sogou.com" id="sogou" data-lks="{key1:'key1val'}">sogou.com</a></li>
+    <li><a href="###test" data-lks="{key1:'key1val', key2:'key2val', key3:'key3val'}" target=_blank>test sharp</a></li>
+    <li><a href="http://www.str.com" data-lks="a=av&b=bv" id="str" target=_blank>for string</a></li>
+    <li><A href="http://www.baidu.com" target="_blank" data-lks="t=1">！@频</A></li>
+</ul>
+
+<script>
+//
+//这里是添加 data-lks 属性 自动执行
+//
+Dom.ready
+(
+    function()
+    {        
+        XLinkParams.exec
+        (
+            {
+                'data_key': 'data-lks'
+            }
+        );
+    }
+);
+//
+//这里是使用 invoke 方法, 手动执行
+//如果 A 标签被JS阻止了冒泡行为的话, 则可以使用这个方法手动执行
+// 
+W('#sogou').on
+(
+    'click',
+    function($evt)
+    {
+        $evt.stopPropagation();
+        //$evt.preventDefault();
+    
+        XLinkParams.invoke( this );
+    }
+);
+W('#yahoo').on
+(
+    'click',
+    function($evt)
+    {
+        $evt.stopPropagation();
+    
+        var data = {key2:'key2val', key3:'key2val'};
+        
+        XLinkParams.invoke( this, data );
+    }
+);
+W('#str').on
+(
+    'click',
+    function($evt)
+    {
+        $evt.stopPropagation();
+        XLinkParams.invoke( this );
+    }
+);
+</script>
+    
+</body>
+</html>

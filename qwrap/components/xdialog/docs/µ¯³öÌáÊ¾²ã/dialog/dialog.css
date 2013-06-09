@@ -1,0 +1,26 @@
+.dialog_ts_box {font: 12px/1.5em  "宋体";}
+.dialog_ts_box{margin:0px; padding:0px;}
+div,p {border:0;margin:0px; padding:0px;}
+.dialog_ts_box img, .dialog_ts_box input{vertical-align:middle;}
+.dialog_cfix:after{content:".";visibility:hidden;display:block;clear:both;height:0;}
+.dialog_cfix{zoom:1;}
+/**/
+.dialog_ts_boxbg{width:100%; height:100%; position:fixed; background:#000;opacity:0.4;filter:alpha(opacity=40); overflow:hidden;}
+.dialog_ts_box{width:400px; margin:0 auto; overflow:hidden; position:relative;}
+.dialog_ts_boxA{width:390px; padding:5px; border-radius:5px; background:#666;}
+.dialog_ts_boxB{width:370px; background:#fff; border-radius:3px; padding:15px 10px; color:#000;}
+.dialog_ts_boxB p.one,.dialog_ts_boxB p.two{display:inline-block; line-height:24px; text-align:center; width:100%; padding: 0 0 5px 0; overflow:hidden;}
+.dialog_ts_boxB p.two a{color:#666; text-decoration:none; margin-left:15px; margin-top:5px;}
+.dialog_ts_boxB p.two a:hover{text-decoration:underline;}
+.dialog_ts_boxB p.three{position:absolute; right:10px; width:100%; height:12px; top:10px;}
+.dialog_ts_boxB p.three a,.dialog_ts_boxB p.three a:hover{display:block; float:right; height:12px; width:12px; background:url(Comedy_icon.css.gif) -93px 0 no-repeat;}
+.dialog_ts_boxB p.three a:hover{background-position:-79px 0;}
+
+.dialog_ts_box .dialog_image
+{
+    background:url(ts_butA.gif) 0px 0 no-repeat;
+    border:0;
+    width: 37px;
+    height: 24px;
+    cursor: pointer;
+}

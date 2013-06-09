@@ -1,15 +1,17 @@
 (function($){
     !window.UXC && (window.UXC = { log:function(){} });
     /**
-     * 表单验证<br />
-     * 全局访问请使用 UXC.Valid 或 Valid<br />
+     * 表单验证
+     * <br />全局访问请使用 UXC.Valid 或 Valid
+     * <p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>
+     * <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
+     * | <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Valid.html' target='_blank'>API docs</a>
+     * | <a href='http://uxc.btbtd.org/uxc/comps/Valid/_demo/' target='_blank'>demo link</a></p>
      * @namespace UXC
      * @class Valid
      * @static
-     * @uses jQuery
      * @version dev 0.1
      * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
-     * @link    https://github.com/suchesqiu/360UXC.git
      * @date    2013-05-22
      */
     var Valid = UXC.Valid = window.Valid =
@@ -72,7 +74,7 @@
 
     };
     /**
-     * 这个方法是 {@link Valid.check} 的别名
+     * 这个方法是 <a href='UXC.Valid.html#method_check'>Valid.check</a> 的别名
      * @method checkAll
      * @static
      * @param      {selector}    _item -   需要验证规则正确与否的表单/表单项
