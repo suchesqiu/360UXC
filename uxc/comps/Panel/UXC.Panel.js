@@ -505,6 +505,7 @@
          * View 的初始方法
          * @method  _init
          * @private
+         * @for View
          */
         _init:
             function(){

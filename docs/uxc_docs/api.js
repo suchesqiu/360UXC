@@ -11,6 +11,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "UXC.Panel.View",
         "UXC.Toggle",
         "UXC.Valid",
+        "UXC.View",
         "UXC.alert",
         "UXC.confirm",
         "window.UXC",
