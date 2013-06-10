@@ -3,7 +3,7 @@
     "description": "The third party jquery UI components",
     "version": "0.1",
     "url": "http://uxc.btbtd.org/docs/uxc_docs/",
-    "logo": "../images/uxc.png",
+    "logo": "uxc.png",
     "options": {
         "linkNatives": "true",        
         "attributesEmit": "true",
