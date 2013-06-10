@@ -14,7 +14,7 @@ var tmp = [];
 
 
 fs.writeFileSync( cpath + 'Panel.js', tmp.join('\n') );
-
+/*
 new compressor.minify({
     type: 'yui-js',
     fileIn: cpath + 'Panel.js',
@@ -22,10 +22,11 @@ new compressor.minify({
     callback: function(err){
     }
 });
+*/
 
 fs.copy( dir + '_demo', cpath + '_demo' );
 fs.copy( dir + 'res', cpath + 'res' );
-
+/*
 new compressor.minify({
     type: 'yui-css',
     fileIn: cpath + 'res/default/style.css',
@@ -33,3 +34,4 @@ new compressor.minify({
     callback: function(err){
     }
 });
+*/
