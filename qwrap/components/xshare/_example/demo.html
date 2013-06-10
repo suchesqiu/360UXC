@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>shawl.qiu template</title>
+</head>
+<body>
+
+<style>
+*
+{
+    padding: 0; margin: 0;
+}
+body
+{
+    width: 960px;
+    margin: 50px auto;
+}
+
+.content
+{
+    width: 600px;
+    height: 80px;
+}
+</style>
+
+<dl>
+    <dd>
+        <label>url:</label>
+        <input type="text" id="url" value="         http://www.baidu.com             " />
+    </dd>
+    <dd>
+        <label>pic:</label>
+        <input type="text" id="image" value="" />
+    </dd>
+    <dd>
+        <p>content:</p>
+        <textarea id="content" class="content">test</textarea>
+    </dd>
+    <dd id="share_area">
+        <button type="button" data-sns="sina_weibo">sina weibo</button>
+        <button type="button" data-sns="sohu_weibo">sohu weibo</button>
+        <button type="button" data-sns="tencent_weibo">tencent weibo</button>
+    </dd>
+</dl>
+
+
+
+<script src="../XShare.js"></script>
+<script>
+
+initShare();
+
+function initShare()
+{
+    var share_area = getId('share_area');
+    
+    if( share_area )
+    {
+        var list = share_area.getElementsByTagName('button');
+        
+        for( var i = 0; i < list.length; i++ )
+        {
+            list[i].onclick = SHARE_ACTION;
+        }
+    }
+}
+
+function SHARE_ACTION( $e )
+{
+    var type = this.getAttribute('data-sns');
+    var url = trim( getId('url').value );
+    var image = trim( getId('image').value );
+    var content = trim( getId('content').value );
+    
+    XShare.exec( { "type": type, "url": url, "image": image, "textContent": content } );
+}
+
+/**
+ * 从对象ID取得DOM对象
+ * @date        2011-7-21      
+ */         
+function getId($id)
+{
+    return typeof $id==="string"?document.getElementById($id):$id;
+}
+
+/**
+ * 清除字符串头尾的空白字符
+ * x@btbtd.org  2012-2-21
+ */
+function trim( $s )
+{
+    return ($s||'').replace( /^[\s]+|[\s]+$/g, '' );
+} 
+</script>
+</body>
+</html>

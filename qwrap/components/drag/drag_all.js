@@ -1,15 +1,1 @@
-(function() {
-	var els=document.getElementsByTagName('script'), srcPath = '';
-	for (var i = 0; i < els.length; i++) {
-		var src = els[i].src.split(/components[\\\/]/g);
-		if (src[1]) {
-			srcPath = src[0];
-			break;
-		}
-	}
-
-	document.write(
-		  '<script type="text/javascript" src="'+srcPath+'components/drag/drag.js"></script>'
-		, '<script type="text/javascript" src="'+srcPath+'components/drag/dualslider.js"></script>'
-	);
-})();
+(function(){var e=document.getElementsByTagName("script"),g="";for(var f=0;f<e.length;f++){var h=e[f].src.split(/components[\\\/]/g);if(h[1]){g=h[0];break}}document.write('<script type="text/javascript" src="'+g+'components/drag/drag.js"><\/script>','<script type="text/javascript" src="'+g+'components/drag/dualslider.js"><\/script>')})();
