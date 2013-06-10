@@ -1,7 +1,10 @@
 var compressor = require('node-minify');
 var fs = require('fs');
 
-var dir = __dirname + '/uxc';
+var dir = __dirname;
+if( /\\/.test( dir ) ){
+    dir = 'uxc';
+}else dir += '/uxc';
 
 recursive_compress( dir, dir, fs);
 
@@ -27,6 +30,10 @@ function recursive_compress( $sourceRoot, $outputRoot, $fs ){
     for( var i = 0, j = fl.length; i < j; i++ ){
         var cspath = [$sourceRoot, fl[i]].join('/');
         var copath = [$outputRoot, fl[i]].join('/');
+/*
+        console.log( cspath, '\n', copath, '\n\n' );
+        continue;
+        */
 
         var fstat = $fs.statSync( cspath )  
 

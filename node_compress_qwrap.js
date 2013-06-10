@@ -1,7 +1,10 @@
 var compressor = require('node-minify');
 var fs = require('fs');
 
-var dir = __dirname + '/qwrap';
+var dir = __dirname;
+if( /\\/.test( dir ) ){
+    dir = 'qwrap';
+}else dir += '/qwrap';
 
 recursive_compress( dir, dir, fs);
 
