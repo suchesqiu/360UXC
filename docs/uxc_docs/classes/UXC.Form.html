@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>UXC.confirm - UXC jquery components</title>
+    <title>UXC.Form - UXC jquery components</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -78,103 +78,116 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>UXC.confirm Class</h1>
+                        <h1>UXC.Form Class</h1>
 <div class="box meta">
         <div class="foundat">
-            Defined in: <a href="../files/.._.._uxc_comps_Panel_UXC.Popup.js.html#l24"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Popup.js:24</code></a>
+            Defined in: <a href="../files/.._.._uxc_comps_Form_UXC.Form.js.html#l3"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Form&#x2F;UXC.Form.js:3</code></a>
         </div>
 </div>
 <div class="box intro">
-    <p>confirm 提示 popup
-<br /> 这个是不带 蒙板的 popup 弹框
-<br /><b>注意, 这是个方法, 写 @class 属性是为了生成文档</b></p>
-<p>private property see: <a href='UXC.alert.html'>UXC.alert</a>
-<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a>, <a href='UXC.Panel.html'>Panel</a></p>
+    <p>表单常用功能类 UXC.Form</p>
+<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>
 <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
-| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.confirm.html' target='_blank'>API docs</a>
-| <a href='http://uxc.btbtd.org/uxc/comps/Panel/_demo' target='_blank'>demo link</a></p>
+| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Form.html' target='_blank'>API docs</a>
+| <a href='http://uxc.btbtd.org/uxc/comps/Form/_demo' target='_blank'>demo link</a></p>
 </div>
-    <div class="constructor">
-        <h2>Constructor</h2>
-        <div id="method_UXC.confirm" class="method item">
-    <h3 class="name"><code>UXC.confirm</code></h3>
+<div id="classdocs" class="tabview">
+    <ul class="api-class-tabs">
+        <li class="api-class-tab index"><a href="#index">Index</a></li>
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+    </ul>
+    <div>
+        <div id="index" class="api-class-tabpanel index">
+            <h2 class="off-left">Item Index</h2>
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+                    <ul class="index-list methods">
+                            <li class="index-item method">
+                                <a href="#method_initCheckAll">initCheckAll</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                    </ul>
+                </div>
+        </div>
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+                    <div id="method_initCheckAll" class="method item">
+    <h3 class="name"><code>initCheckAll</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>_msg</code>
-                </li>
-                <li class="arg">
-                        <code>_popupSrc</code>
-                </li>
-                <li class="arg">
-                        <code>_status</code>
-                </li>
-                <li class="arg">
-                        <code>_cb</code>
+                        <code>_selector</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
         <span class="flag static">static</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Popup.js.html#l24"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Popup.js:24</code></a>
+        <a href="../files/.._.._uxc_comps_Form_UXC.Form.initCheckAll.js.html#l2"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initCheckAll.js:2</code></a>
         </p>
     </div>
     <div class="description">
+        <p>初始化 checkbox 全选反选功能
+<br />只要引用本脚本, 页面加载完毕时就会自动初始化全选反选功能
+<br /><br />动态添加的 DOM 需要显式调用 UXC.Form.initCheckAll( domSelector ) 进行初始化
+<br /><br />要使页面上的全选反选功能能够自动初始化, 需要在全选反选按钮上加入一些HTML 属性
+<br /><b>checktype</b>: all | inverse, all=全选/全不选, inverse=反选
+<br /><b>checkfor</b>: selector, 要全选/反选的 checkbox 选择器语法
+<br /><b>checkall</b>: selector, 全选按钮的选择器, 这个只有反选按钮需要, 反选时变更全选按钮的状态</p>
     </div>
         <div class="params">
             <h4>Parameters:</h4>
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">_msg</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    <div class="param-description">
-                        <p>提示内容</p>
-                    </div>
-                </li>
-                <li class="param">
-                        <code class="param-name">_popupSrc</code>
+                        <code class="param-name">_selector</code>
                         <span class="type">Selector</span>
                     <div class="param-description">
-                        <p>触发弹框的事件源 selector, 不为空显示 缓动效果, 为空居中显示</p>
-                    </div>
-                </li>
-                <li class="param">
-                        <code class="param-name">_status</code>
-                        <span class="type">Int</span>
-                    <div class="param-description">
-                        <p>显示弹框的状态, 0: 成功, 1: 错误, 2: 警告</p>
-                    </div>
-                </li>
-                <li class="param">
-                        <code class="param-name">_cb</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    <div class="param-description">
-                        <p>点击弹框确定按钮的回调</p>
+                        <p>要初始化的全选反选的选择器</p>
                     </div>
                 </li>
             </ul>
         </div>
-        <div class="returns">
-            <h4>Returns:</h4>
-            <div class="returns-description">
-                    <a href='UXC.Panel.html'>UXC.Panel</a>
+        <div class="example">
+            <h4>Example:</h4>
+            <div class="example-content">
+                <pre class="code prettyprint"><code>       AJAX data:
+       &lt;dl class="def example24"&gt;
+           &lt;dt&gt;checkall example 24&lt;/dt&gt;
+           &lt;dd&gt;
+           &lt;input type="checkbox"  id="checkall24" checktype="all" checkfor="dl.example24 input[type=checkbox]"&gt;&lt;label for="checkall24"&gt;全选&lt;/label&gt;
+           &lt;input type="checkbox"  id="checkall24_inverse" checktype="inverse" checkfor="dl.example24 input[type=checkbox]" checkall="dl.example24 input[checktype=all]"&gt;&lt;label for="checkall24_inverse"&gt;反选&lt;/label&gt;
+           &lt;/dd&gt;
+           &lt;dd&gt;
+           &lt;input type='checkbox' id='checkall24_1' value='' name='' checked /&gt;
+           &lt;label for='checkall24_1'&gt;checkall24_1&lt;/label&gt;
+           &lt;input type='checkbox' id='checkall24_2' value='' name='' checked /&gt;
+           &lt;label for='checkall24_2'&gt;checkall24_2&lt;/label&gt;
+           &lt;input type='checkbox' id='checkall24_3' value='' name='' checked /&gt;
+           &lt;label for='checkall24_3'&gt;checkall24_3&lt;/label&gt;
+           &lt;input type='checkbox' id='checkall24_4' value='' name='' checked /&gt;
+           &lt;label for='checkall24_4'&gt;checkall24_4&lt;/label&gt;
+           &lt;input type='checkbox' id='checkall24_5' value='' name='' checked /&gt;
+           &lt;label for='checkall24_5'&gt;checkall24_5&lt;/label&gt;
+           &lt;/dd&gt;
+       &lt;/dl&gt;
+       &lt;script&gt;
+       $(document).delegate( 'button.js_ajaxTest', 'click', function(){
+           var _p = $(this);
+           _p.prop('disabled', true);
+           setTimeout( function(){ _p.prop('disabled', false); }, 1000 );
+           $.get( './php/initCheckAll.php?rnd='+new Date().getTime(), function( _r ){
+               var _selector = $(_r);
+               $( $( 'body' ).children().first() ).before( _selector );
+               UXC.Form.initCheckAll( _selector );
+           });
+       });
+       &lt;/script&gt;
+</code></pre>
             </div>
         </div>
 </div>
-    </div>
-<div id="classdocs" class="tabview">
-    <ul class="api-class-tabs">
-        <li class="api-class-tab index"><a href="#index">Index</a></li>
-    </ul>
-    <div>
-        <div id="index" class="api-class-tabpanel index">
-            <h2 class="off-left">Item Index</h2>
-        </div>
+            </div>
     </div>
 </div>
                     </div>
