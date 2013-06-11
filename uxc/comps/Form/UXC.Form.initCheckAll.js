@@ -13,26 +13,26 @@
      * @version dev 0.1
      * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
      * @date    2013-06-11
-     * @param   {selector}  _selector   要初始化的全选反选的选择器
+     * @param   {selector}  _selector   要初始化的全选反选的父级节点
      * @example
-            AJAX data:
+            <h2>AJAX data:</h2>
             <dl class="def example24">
                 <dt>checkall example 24</dt>
                 <dd>
-                <input type="checkbox"  id="checkall24" checktype="all" checkfor="dl.example24 input[type=checkbox]"><label for="checkall24">全选</label>
-                <input type="checkbox"  id="checkall24_inverse" checktype="inverse" checkfor="dl.example24 input[type=checkbox]" checkall="dl.example24 input[checktype=all]"><label for="checkall24_inverse">反选</label>
+                <input type="checkbox" id="checkall24" checktype="all" checkfor="dl.example24 input[type=checkbox]"><label for="checkall24">全选</label>
+                <input type="checkbox" id="checkall24_inverse" checktype="inverse" checkfor="dl.example24 input[type=checkbox]" checkall="dl.example24 input[checktype=all]"><label for="checkall24_inverse">反选</label>
                 </dd>
                 <dd>
-                <input type='checkbox' id='checkall24_1' value='' name='' checked />
-                <label for='checkall24_1'>checkall24_1</label>
-                <input type='checkbox' id='checkall24_2' value='' name='' checked />
-                <label for='checkall24_2'>checkall24_2</label>
-                <input type='checkbox' id='checkall24_3' value='' name='' checked />
-                <label for='checkall24_3'>checkall24_3</label>
-                <input type='checkbox' id='checkall24_4' value='' name='' checked />
-                <label for='checkall24_4'>checkall24_4</label>
-                <input type='checkbox' id='checkall24_5' value='' name='' checked />
-                <label for='checkall24_5'>checkall24_5</label>
+                <input type="checkbox" id="checkall24_1" value="" name="" checked />
+                <label for="checkall24_1">checkall24_1</label>
+                <input type="checkbox" id="checkall24_2" value="" name="" checked />
+                <label for="checkall24_2">checkall24_2</label>
+                <input type="checkbox" id="checkall24_3" value="" name="" checked />
+                <label for="checkall24_3">checkall24_3</label>
+                <input type="checkbox" id="checkall24_4" value="" name="" checked />
+                <label for="checkall24_4">checkall24_4</label>
+                <input type="checkbox" id="checkall24_5" value="" name="" checked />
+                <label for="checkall24_5">checkall24_5</label>
                 </dd>
             </dl>
 
@@ -42,7 +42,7 @@
                 _p.prop('disabled', true);
                 setTimeout( function(){ _p.prop('disabled', false); }, 1000 );
 
-                $.get( './php/initCheckAll.php?rnd='+new Date().getTime(), function( _r ){
+                $.get( './data/initCheckAll.php?rnd='+new Date().getTime(), function( _r ){
                     var _selector = $(_r);
                     $( $( 'body' ).children().first() ).before( _selector );
                     UXC.Form.initCheckAll( _selector );
@@ -75,7 +75,9 @@
     $(document).ready( function( _evt ){
         UXC.Form.initCheckAll( $(document) );
     });
-
+    /**
+     * 监听 全选/反选 按钮的点击事件
+     */
     $(document).delegate( 'input[type=checkbox][checktype][checkfor]', 'click', function( _evt ){
         var _p = $(this)
             , _type = _p.attr('checktype').toLowerCase()
@@ -109,12 +111,16 @@
                 }
         }
     });
-
+    /**
+     * 判断 input 是否为 全选反选 按钮
+     */
     function isControler( _selector ){
         _selector = $( _selector );
         return _selector.is( '[checktype]' ) && _selector.is( '[checkfor]');
     }
-
+    /**
+     * input 改变状态时, 全选按钮也改为正确的状态
+     */
     function fixCheckAllStatus( _all, _for ){
         var _isAll = true, _all = $(_all), _for = $(_for);
         _for.each( function(){

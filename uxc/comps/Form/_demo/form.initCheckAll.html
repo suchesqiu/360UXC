@@ -21,7 +21,7 @@
             _p.prop('disabled', true);
             setTimeout( function(){ _p.prop('disabled', false); }, 1000 );
 
-            $.get( './php/initCheckAll.php?rnd='+new Date().getTime(), function( _r ){
+            $.get( './data/initCheckAll.php?rnd='+new Date().getTime(), function( _r ){
                 var _selector = $(_r);
                 $( $( 'body' ).children().first() ).before( _selector );
                 UXC.Form.initCheckAll( _selector );
