@@ -5,4 +5,4 @@
 
 demo site on here: http://uxc.btbtd.org
 
- API docs on here: http://uxc.btbtd.org/docs/uxc_docs/
+ API docs on here: http://uxc.btbtd.org/docs/uxc_docs/classes/window.UXC.html
