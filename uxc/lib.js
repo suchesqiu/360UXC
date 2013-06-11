@@ -9727,7 +9727,25 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
            function(){
                 if( !this.debug ) return;
                 console.log( [].slice.apply( arguments ).join(' ') );
+            },
+        /**
+         * 获取命名空间，如果没有就创建一个
+         *
+         * @author rekey 2013-05-28
+         * @method namespace
+         * @static
+         * @param {String} str 命名空间
+         * @param {Object} context 命名空间基于这个对象生成，默认为window
+         * @return {Object} 返回生成的命名空间
+         */
+        namespace : function ( str , context ) {
+            var arr = str.split( '.' ), base = context || window;
+            for ( var i = 0 , len = arr.length ; i < len ; i++ ) {
+                base[ arr[i] ] = base[ arr[i] ] || {};
+                base = base[ arr[i] ];
             }
+            return context;
+        }
     };
     /**
      * 如果 console 不可用, 则生成一个模拟的 console 对象
