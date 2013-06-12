@@ -129,26 +129,26 @@
      * @version dev 0.1
      * @author  qiushaowei   &lt;suches@btbtd.org&gt; | 360 UXC-FE Team
      * @date    2013-06-11
-     * @param   {selector}  _selector   要初始化的全选反选的选择器
+     * @param   {selector}  _selector   要初始化的全选反选的父级节点
      * @example
-            AJAX data:
+            &lt;h2&gt;AJAX data:&lt;/h2&gt;
             &lt;dl class=&quot;def example24&quot;&gt;
                 &lt;dt&gt;checkall example 24&lt;/dt&gt;
                 &lt;dd&gt;
-                &lt;input type=&quot;checkbox&quot;  id=&quot;checkall24&quot; checktype=&quot;all&quot; checkfor=&quot;dl.example24 input[type=checkbox]&quot;&gt;&lt;label for=&quot;checkall24&quot;&gt;全选&lt;/label&gt;
-                &lt;input type=&quot;checkbox&quot;  id=&quot;checkall24_inverse&quot; checktype=&quot;inverse&quot; checkfor=&quot;dl.example24 input[type=checkbox]&quot; checkall=&quot;dl.example24 input[checktype=all]&quot;&gt;&lt;label for=&quot;checkall24_inverse&quot;&gt;反选&lt;/label&gt;
+                &lt;input type=&quot;checkbox&quot; id=&quot;checkall24&quot; checktype=&quot;all&quot; checkfor=&quot;dl.example24 input[type=checkbox]&quot;&gt;&lt;label for=&quot;checkall24&quot;&gt;全选&lt;/label&gt;
+                &lt;input type=&quot;checkbox&quot; id=&quot;checkall24_inverse&quot; checktype=&quot;inverse&quot; checkfor=&quot;dl.example24 input[type=checkbox]&quot; checkall=&quot;dl.example24 input[checktype=all]&quot;&gt;&lt;label for=&quot;checkall24_inverse&quot;&gt;反选&lt;/label&gt;
                 &lt;/dd&gt;
                 &lt;dd&gt;
-                &lt;input type=&#x27;checkbox&#x27; id=&#x27;checkall24_1&#x27; value=&#x27;&#x27; name=&#x27;&#x27; checked /&gt;
-                &lt;label for=&#x27;checkall24_1&#x27;&gt;checkall24_1&lt;/label&gt;
-                &lt;input type=&#x27;checkbox&#x27; id=&#x27;checkall24_2&#x27; value=&#x27;&#x27; name=&#x27;&#x27; checked /&gt;
-                &lt;label for=&#x27;checkall24_2&#x27;&gt;checkall24_2&lt;/label&gt;
-                &lt;input type=&#x27;checkbox&#x27; id=&#x27;checkall24_3&#x27; value=&#x27;&#x27; name=&#x27;&#x27; checked /&gt;
-                &lt;label for=&#x27;checkall24_3&#x27;&gt;checkall24_3&lt;/label&gt;
-                &lt;input type=&#x27;checkbox&#x27; id=&#x27;checkall24_4&#x27; value=&#x27;&#x27; name=&#x27;&#x27; checked /&gt;
-                &lt;label for=&#x27;checkall24_4&#x27;&gt;checkall24_4&lt;/label&gt;
-                &lt;input type=&#x27;checkbox&#x27; id=&#x27;checkall24_5&#x27; value=&#x27;&#x27; name=&#x27;&#x27; checked /&gt;
-                &lt;label for=&#x27;checkall24_5&#x27;&gt;checkall24_5&lt;/label&gt;
+                &lt;input type=&quot;checkbox&quot; id=&quot;checkall24_1&quot; value=&quot;&quot; name=&quot;&quot; checked /&gt;
+                &lt;label for=&quot;checkall24_1&quot;&gt;checkall24_1&lt;/label&gt;
+                &lt;input type=&quot;checkbox&quot; id=&quot;checkall24_2&quot; value=&quot;&quot; name=&quot;&quot; checked /&gt;
+                &lt;label for=&quot;checkall24_2&quot;&gt;checkall24_2&lt;/label&gt;
+                &lt;input type=&quot;checkbox&quot; id=&quot;checkall24_3&quot; value=&quot;&quot; name=&quot;&quot; checked /&gt;
+                &lt;label for=&quot;checkall24_3&quot;&gt;checkall24_3&lt;/label&gt;
+                &lt;input type=&quot;checkbox&quot; id=&quot;checkall24_4&quot; value=&quot;&quot; name=&quot;&quot; checked /&gt;
+                &lt;label for=&quot;checkall24_4&quot;&gt;checkall24_4&lt;/label&gt;
+                &lt;input type=&quot;checkbox&quot; id=&quot;checkall24_5&quot; value=&quot;&quot; name=&quot;&quot; checked /&gt;
+                &lt;label for=&quot;checkall24_5&quot;&gt;checkall24_5&lt;/label&gt;
                 &lt;/dd&gt;
             &lt;/dl&gt;
 
@@ -158,7 +158,7 @@
                 _p.prop(&#x27;disabled&#x27;, true);
                 setTimeout( function(){ _p.prop(&#x27;disabled&#x27;, false); }, 1000 );
 
-                $.get( &#x27;./php/initCheckAll.php?rnd=&#x27;+new Date().getTime(), function( _r ){
+                $.get( &#x27;./data/initCheckAll.php?rnd=&#x27;+new Date().getTime(), function( _r ){
                     var _selector = $(_r);
                     $( $( &#x27;body&#x27; ).children().first() ).before( _selector );
                     UXC.Form.initCheckAll( _selector );
@@ -191,7 +191,9 @@
     $(document).ready( function( _evt ){
         UXC.Form.initCheckAll( $(document) );
     });
-
+    /**
+     * 监听 全选/反选 按钮的点击事件
+     */
     $(document).delegate( &#x27;input[type=checkbox][checktype][checkfor]&#x27;, &#x27;click&#x27;, function( _evt ){
         var _p = $(this)
             , _type = _p.attr(&#x27;checktype&#x27;).toLowerCase()
@@ -225,12 +227,16 @@
                 }
         }
     });
-
+    /**
+     * 判断 input 是否为 全选反选 按钮
+     */
     function isControler( _selector ){
         _selector = $( _selector );
         return _selector.is( &#x27;[checktype]&#x27; ) &amp;&amp; _selector.is( &#x27;[checkfor]&#x27;);
     }
-
+    /**
+     * input 改变状态时, 全选按钮也改为正确的状态
+     */
     function fixCheckAllStatus( _all, _for ){
         var _isAll = true, _all = $(_all), _for = $(_for);
         _for.each( function(){

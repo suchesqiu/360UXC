@@ -16,10 +16,33 @@
         <script src="../../../lib.js"></script>
         <script>UXC.debug = true; UXC.use('Form');</script>
         <script>
-            //UXC.Form.initAutoSelect.hideEmpty = true;
             if( /file\:|\\/.test( location.href ) ){
                 alert('本示例需要HTTP环境');
             }
+
+            UXC.Form.initAutoSelect.hideEmpty = true;
+
+            $(document).delegate( 'button.js_ajaxTest', 'click', function(){
+                var _p = $(this);
+                _p.prop('disabled', true);
+                setTimeout( function(){ _p.prop('disabled', false); }, 1000 );
+
+                $.get( './data/shengshi_html.php?rnd='+new Date().getTime(), function( _r ){
+                    var _selector = $(_r);
+                    $( 'dl.def > dt' ).after( _selector );
+                    UXC.Form.initAutoSelect( _selector );
+                });
+            });
+
+            UXC.Form.initAutoSelect.dataFilter = 
+                function( _data, _select ){
+                    var _r = _data;
+                    if( _data && !_data.length && _data.data ){
+                        _r = _data.data;
+                    }
+                    return _r;
+                };
+
         </script>
     </head>    
     <body>
@@ -234,6 +257,91 @@
                 <select name='select6_2' selectvalue="2341" selecturl="data/shengshi.php?id={0}" selecttarget="select[name=select6_3]"><option value="-1" defaultoption>请选择</option></select>
                 <select name='select6_3' selectvalue="2343" selecturl="data/shengshi.php?id={0}"><option value="-1" defaultoption>请选择</option></select>
             </dd>
+
+            <dd>
+                <select name='select7_1' defaultselect selecturl="data/shengshi.php?id=0" selecttarget="select[name=select7_2]">
+                    <option value="-1" defaultoption>请选择</option>
+                    <option value="28">北京 </option>
+                    <option value="29">天津 </option>
+                    <option value="34">河北省 </option>
+                    <option value="1">山西省 </option>
+                    <option value="23">内蒙古自治区 </option>
+                    <option value="2">辽宁省 </option>
+                    <option value="3">吉林省 </option>
+                    <option value="4">黑龙江省 </option>
+                    <option value="8">福建省 </option>
+                    <option value="7">安徽省 </option>
+                    <option value="30">上海 </option>
+                    <option value="5">江苏省 </option>
+                    <option value="6">浙江省 </option>
+                    <option value="9">江西省 </option>
+                    <option value="10">山东省 </option>
+                    <option value="11">河南省 </option>
+                    <option value="14" selected>广东省 </option>
+                    <option value="12">湖北省 </option>
+                    <option value="13">湖南省 </option>
+                    <option value="17">贵州省 </option>
+                    <option value="24">广西壮族自治区 </option>
+                    <option value="15">海南省 </option>
+                    <option value="31">重庆 </option>
+                    <option value="16">四川省 </option>
+                    <option value="25">西藏自治区 </option>
+                    <option value="20">甘肃省 </option>
+                    <option value="19">陕西省 </option>
+                    <option value="18">云南省 </option>
+                    <option value="21">青海省 </option>
+                    <option value="26">宁夏回族自治区 </option>
+                    <option value="27">新疆维吾尔自治区 </option>
+                    <option value="22">台湾省 </option>
+                    <option value="32">香港特别行政区 </option>
+                    <option value="33">澳门特别行政区 </option>
+                </select>
+                <select name='select7_2' selecturl="data/shengshi.php?id={0}" selecttarget="select[name=select7_3]"><option value="-1" defaultoption>请选择</option></select>
+                <select name='select7_3' selecturl="data/shengshi.php?id={0}"><option value="-1" defaultoption>请选择</option></select>
+            </dd>
+
+            <dd>
+                <select name='select8_1' defaultselect selecturl="data/shengshi.php?id=0" selecttarget="select[name=select8_2]">
+                    <option value="-1" defaultoption>请选择</option>
+                    <option value="28">北京 </option>
+                    <option value="29">天津 </option>
+                    <option value="34">河北省 </option>
+                    <option value="1">山西省 </option>
+                    <option value="23">内蒙古自治区 </option>
+                    <option value="2">辽宁省 </option>
+                    <option value="3">吉林省 </option>
+                    <option value="4">黑龙江省 </option>
+                    <option value="8">福建省 </option>
+                    <option value="7">安徽省 </option>
+                    <option value="30">上海 </option>
+                    <option value="5">江苏省 </option>
+                    <option value="6">浙江省 </option>
+                    <option value="9">江西省 </option>
+                    <option value="10">山东省 </option>
+                    <option value="11">河南省 </option>
+                    <option value="14" selected>广东省 </option>
+                    <option value="12">湖北省 </option>
+                    <option value="13">湖南省 </option>
+                    <option value="17">贵州省 </option>
+                    <option value="24">广西壮族自治区 </option>
+                    <option value="15">海南省 </option>
+                    <option value="31">重庆 </option>
+                    <option value="16">四川省 </option>
+                    <option value="25">西藏自治区 </option>
+                    <option value="20">甘肃省 </option>
+                    <option value="19">陕西省 </option>
+                    <option value="18">云南省 </option>
+                    <option value="21">青海省 </option>
+                    <option value="26">宁夏回族自治区 </option>
+                    <option value="27">新疆维吾尔自治区 </option>
+                    <option value="22">台湾省 </option>
+                    <option value="32">香港特别行政区 </option>
+                    <option value="33">澳门特别行政区 </option>
+                </select>
+                <select name='select8_2' selectvalue="2341" selecturl="data/shengshi.php?id={0}" selecttarget="select[name=select8_3]"><option value="-1" defaultoption>请选择</option></select>
+                <select name='select8_3' selectvalue="2343" selecturl="data/shengshi.php?id={0}"><option value="-1" defaultoption>请选择</option></select>
+            </dd>
+
 
         </dl>
 
