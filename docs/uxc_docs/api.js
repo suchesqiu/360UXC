@@ -5,6 +5,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "UXC.Dialog",
         "UXC.Dialog.alert",
         "UXC.Dialog.confirm",
+        "UXC.Form",
         "UXC.Panel",
         "UXC.Panel.Model",
         "UXC.Panel.View",

@@ -2,11 +2,11 @@ var fs = require('fs-extra');
 
 var dir = __dirname + '/';
 
-var path1 = dir + 'UXC.Panel.js';
-var path2 = dir + 'UXC.Popup.js';
-var path3 = dir + 'UXC.Dialog.js';
+var path1 = dir + 'UXC.Form.js';
+var path2 = dir + 'UXC.Form.initCheckAll.js';
+var path3 = dir + 'UXC.Form.initAutoSelect.js';
 
-var outPath = dir + 'Panel.js';
+var outPath = dir + 'Form.js';
 
 if( !( fs.existsSync( path1 ) && fs.existsSync( path2 ) && fs.existsSync( path3 ) ) ) return;
 

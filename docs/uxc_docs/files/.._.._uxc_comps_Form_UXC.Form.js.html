@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>../../uxc/comps/Panel/Panel.js - UXC jquery components</title>
+    <title>../../uxc/comps/Form/UXC.Form.js - UXC jquery components</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -106,28 +106,130 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: ../../uxc/comps/Panel/Panel.js</h1>
+                        <h1 class="file-heading">File: ../../uxc/comps/Form/UXC.Form.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
+;(function($){
+    !window.UXC &amp;&amp; (window.UXC = { log:function(){} });
+    /**
+     * 表单常用功能类 UXC.Form
+     * &lt;p&gt;&lt;b&gt;requires&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;&lt;/p&gt;
+     * &lt;p&gt;&lt;a href=&#x27;https://github.com/suchesqiu/360UXC.git&#x27; target=&#x27;_blank&#x27;&gt;UXC Project Site&lt;/a&gt;
+     * | &lt;a href=&#x27;http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Form.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
+     * | &lt;a href=&#x27;http://uxc.btbtd.org/uxc/comps/Form/_demo&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;&lt;/p&gt;
+     * @namespace UXC
+     * @class Form
+     * @static
+     * @version dev 0.1
+     * @author  qiushaowei   &lt;suches@btbtd.org&gt; | 360 UXC-FE Team
+     * @date    2013-06-11
+     */
+    window.UXCForm = UXC.Form = {};
+}(jQuery));
+
 /**
- * 取当前脚本标签的 src路径 
- * @author  scuehs@btbtd.org 2013-05-23
- * @return  {string} 脚本所在目录的完整路径
- */
-function script_path_f(){
-    var _sc = document.getElementsByTagName(&#x27;script&#x27;), _sc = _sc[ _sc.length - 1 ], _path = _sc.getAttribute(&#x27;src&#x27;);
-    if( /\//.test( _path ) ){ _path = _path.split(&#x27;/&#x27;); _path.pop(); _path = _path.join(&#x27;/&#x27;) + &#x27;/&#x27;; }
-    else if( /\\/.test( path ) ){ _path = _path.split(&#x27;\\&#x27;); _path.pop(); _path = _path.join(&#x27;\\&#x27;) + &#x27;/&#x27;; }
-    return _path;
+ * 添加URL参数
+ * x@btbtd.org  2013-06-12
+ * @example
+        var url = add_url_params( location.href, {&#x27;key1&#x27;: &#x27;key1value&#x27;, &#x27;key2&#x27;: &#x27;key2value&#x27; } );
+ */ 
+function add_url_params( $url, $params ){
+    var sharp = &#x27;&#x27;;
+    if( !$params ){
+        $params = $url;
+        $url = location.href;
+    }
+
+    if( $url.indexOf(&#x27;#&#x27;) &gt; -1 ){
+        sharp = $url.split(&#x27;#&#x27;)[1];
+        $url = $url.split(&#x27;#&#x27;)[0];
+    }
+
+    for( var k in $params ){
+        $url = del_url_param($url, k);
+        $url.indexOf(&#x27;?&#x27;) &gt; -1 
+            ? $url += &#x27;&amp;&#x27; + k +&#x27;=&#x27; + $params[k]
+            : $url += &#x27;?&#x27; + k +&#x27;=&#x27; + $params[k];
+    }
+    sharp &amp;&amp; ( $url += &#x27;#&#x27; + sharp );
+    $url = $url.replace(/\?\&amp;/g, &#x27;?&#x27; );
+    return $url;   
 }
-(function(){
-    var _path = script_path_f();
-    document.write( &#x27;&lt;script src=&quot;&#x27;+_path+&#x27;UXC.Panel.js&quot; &gt;&lt;\/script&gt;&#x27;
-        , &#x27;&lt;script src=&quot;&#x27;+_path+&#x27;UXC.Popup.js&quot; &gt;&lt;\/script&gt;&#x27;
-        , &#x27;&lt;script src=&quot;&#x27;+_path+&#x27;UXC.Dialog.js&quot; &gt;&lt;\/script&gt;&#x27; 
-    );
-}());
+/**
+ * 删除URL参数
+ * x@btbtd.org  2012/4/24  
+ * @example
+        var url = del_url_param( location.href, &#x27;tag&#x27; );
+ */ 
+function del_url_param( $url, $key )
+{
+    var sharp = &#x27;&#x27;;
+    if( $url.indexOf(&#x27;#&#x27;) &gt; -1 )
+    {
+        sharp = $url.split(&#x27;#&#x27;)[1];
+        $url = $url.split(&#x27;#&#x27;)[0];
+    }
+    
+    if( $url.indexOf(&#x27;?&#x27;) &gt; -1 )
+    {
+        var params = $url.split(&#x27;?&#x27;)[1];
+        var $url = $url.split(&#x27;?&#x27;)[0];
+        
+        var paramAr = params.split(&#x27;&amp;&#x27;);
+        var newParamAr = [];
+        for( var i = 0; i &lt; paramAr.length; i++ )
+        {
+            var items = paramAr[i].split(&#x27;=&#x27;);
+            
+            items[0] = items[0].replace(/^\s+|\s+$/g, &#x27;&#x27;);
+             
+            if( items[0].toLowerCase() == $key.toLowerCase() )
+            {
+                continue;
+            } 
+            newParamAr.push( items.join(&#x27;=&#x27;) )
+        }
+        $url += &#x27;?&#x27; + newParamAr.join(&#x27;&amp;&#x27;);
+    }
+    
+    if( sharp )
+    {
+        $url += &#x27;#&#x27; + sharp;
+    }
+    
+    return $url;
+}
+/**
+ * 取URL参数的值
+ * x@btbtd.org  2012/4/24 
+ * @example
+        var defaultTag = get_url_param(location.href, &#x27;tag&#x27;);  
+ */ 
+function get_url_param( $url, $key )
+{
+    var result = &#x27;&#x27;;
+    if( $url.indexOf(&#x27;#&#x27;) &gt; -1 ) $url = $url.split(&#x27;#&#x27;)[0];
+    
+    if( $url.indexOf(&#x27;?&#x27;) &gt; -1 )
+    {
+        var paramAr = $url.split(&#x27;?&#x27;)[1].split(&#x27;&amp;&#x27;);
+        for( var i = 0; i &lt; paramAr.length; i++ )
+        {
+            var items = paramAr[i].split(&#x27;=&#x27;);
+            
+            items[0] = items[0].replace(/^\s+|\s+$/g, &#x27;&#x27;);
+             
+            if( items[0].toLowerCase() == $key.toLowerCase() )
+            {
+                result = items[1];
+                break;
+            } 
+        }
+    }
+    
+    return result;
+}
 
     </pre>
 </div>
