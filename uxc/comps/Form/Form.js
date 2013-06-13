@@ -13,6 +13,7 @@ function script_path_f(){
     var _path = script_path_f();
     document.write( '<script src="'+_path+'UXC.Form.js" ><\/script>'
         , '<script src="'+_path+'UXC.Form.initCheckAll.js" ><\/script>'
+        , '<script src="'+_path+'UXC.Form.initAutoFill.js" ><\/script>' 
         , '<script src="'+_path+'UXC.Form.initAutoSelect.js" ><\/script>' 
     );
 }());

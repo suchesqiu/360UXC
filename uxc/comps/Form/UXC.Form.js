@@ -118,3 +118,21 @@ function get_url_param( $url, $key )
     
     return result;
 }
+/**
+ * 判断URL中是否有某个get参数
+ * x@btbtd.org  2013-06-13
+ * @example
+ *      var bool = has_url_param( 'getkey' );
+ */
+function has_url_param( _url, _key ){
+    var _r = false;
+    if( !_key ){ _key = _url; _url = location.href; }
+    if( /\?/.test( _url ) ){
+        _url = _url.split( '?' ); _url = _url[ _url.length - 1 ];
+        _url = _url.split('&');
+        for( var i = 0, j = _url.length; i < j; i++ ){
+            if( _url[i].split('=')[0].toLowerCase() == _key.toLowerCase() ){ _r = true; break; };
+        }
+    }
+    return _r;
+}

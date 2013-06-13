@@ -25,6 +25,15 @@
             "fors": {},
             "namespaces": {}
         },
+        "../../uxc/comps/Form/UXC.Form.initAutoFill.js": {
+            "name": "../../uxc/comps/Form/UXC.Form.initAutoFill.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "UXC.Form": 1
+            },
+            "namespaces": {}
+        },
         "../../uxc/comps/Form/UXC.Form.initAutoSelect.js": {
             "name": "../../uxc/comps/Form/UXC.Form.initAutoSelect.js",
             "modules": {},
@@ -1285,6 +1294,58 @@
             "namespace": "UXC"
         },
         {
+            "file": "../../uxc/comps/Form/UXC.Form.initAutoFill.js",
+            "line": 2,
+            "description": "表单自动填充 URL GET 参数\n<br />只要引用本脚本, DOM 加载完毕后, 页面上所有带 class js_autoFillUrlForm 的 form 都会自动初始化默认值\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Form.html' target='_blank'>API docs</a>",
+            "itemtype": "method",
+            "name": "initAutoFill",
+            "static": 1,
+            "version": "dev 0.1",
+            "author": "qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team",
+            "date": "2013-06-13",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "显示指定要初始化的区域, 默认为 document",
+                    "type": "Selector|url string"
+                },
+                {
+                    "name": "_url",
+                    "description": "显示指定, 取初始化值的 URL, 默认为 location.href",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n     UXC.Form.initAutoFill( myCustomSelector, myUrl );"
+            ],
+            "class": "UXC.Form",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Form/UXC.Form.initAutoFill.js",
+            "line": 52,
+            "description": "判断下拉框的option里是否有给定的值",
+            "itemtype": "method",
+            "name": "initAutoFill.selectHasVal",
+            "access": "private",
+            "tagname": "",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_select",
+                    "description": "",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_val",
+                    "description": "要查找的值",
+                    "type": "String"
+                }
+            ],
+            "class": "UXC.Form",
+            "namespace": "UXC"
+        },
+        {
             "file": "../../uxc/comps/Form/UXC.Form.initAutoSelect.js",
             "line": 2,
             "description": "初始化 级联下拉框\n<br />只要引用本脚本, 页面加载完毕时就会自动初始化级联下拉框功能\n<br /><br />动态添加的 DOM 需要显式调用 UXC.Form.initAutoSelect( domSelector ) 进行初始化\n<br /><br />要使页面上的级联下拉框功能能够自动初始化, 需要在select标签上加入一些HTML 属性\n<br /><b>defaultselect</b>: none, 该属性声明这是级联下拉框的第一个下拉框, <b>这是必填项,初始化时以这个为入口</b>\n<br /><b>selectvalue</b>: string, 下拉框的默认选中值\n<br /><b>selecturl</b>: string, 下拉框的数据请求接口, 符号 {0} 代表下拉框值的占位符\n<br /><b>selecttarget</b>: selector, 下一级下拉框的选择器语法\n<br /><b>defaultoption</b>: none, 声明默认 option 选项, 更新option时, 有该属性的项不会被清除\n<p>\n     数据格式: [ [id, name], [id, name] ... ]\n     <br /> 如果获取到的数据格式不是默认格式,\n     可以通过 <a href='UXC.Form.html#property_initAutoSelect.dataFilter'>UXC.Form.initAutoSelect.dataFilter</a> 属性自定义函数, 进行数据过滤\n</p>",
@@ -1617,6 +1678,16 @@
             "description": "取URL参数的值\nx@btbtd.org  2012/4/24",
             "example": [
                 "\n       var defaultTag = get_url_param(location.href, 'tag');  "
+            ],
+            "class": "UXC.Form",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Form/UXC.Form.js",
+            "line": 121,
+            "description": "判断URL中是否有某个get参数\nx@btbtd.org  2013-06-13",
+            "example": [
+                "\n     var bool = has_url_param( 'getkey' );"
             ],
             "class": "UXC.Form",
             "namespace": "UXC"
@@ -4040,6 +4111,14 @@
         },
         {
             "message": "unknown tag: version",
+            "line": " ../../uxc/comps/Form/UXC.Form.initAutoFill.js:2"
+        },
+        {
+            "message": "unknown tag: date",
+            "line": " ../../uxc/comps/Form/UXC.Form.initAutoFill.js:2"
+        },
+        {
+            "message": "unknown tag: version",
             "line": " ../../uxc/comps/Form/UXC.Form.initAutoSelect.js:2"
         },
         {
@@ -4265,6 +4344,10 @@
         {
             "message": "Missing item type\n取URL参数的值\nx@btbtd.org  2012/4/24",
             "line": " ../../uxc/comps/Form/UXC.Form.js:91"
+        },
+        {
+            "message": "Missing item type\n判断URL中是否有某个get参数\nx@btbtd.org  2013-06-13",
+            "line": " ../../uxc/comps/Form/UXC.Form.js:121"
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",
