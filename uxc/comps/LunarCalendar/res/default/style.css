@@ -1,3 +1,178 @@
+div.UXCLunarCalendar, div.UXCLunarCalendar *{
+    padding: 0px!important;
+    margin: 0px!important;
+}
+
+div.UXCLunarCalendar{
+    background-color: #fff!important;
+    width: 352px!important;
+    z-index: 20000;
+    text-align: center;
+}
+
+div.UXCLunarCalendar_wrapper{
+    position: relative;
+}
+
+div.UXCLunarCalendar th{
+    padding: 5px 4px!important;
+}
+
+div.UXCLunarCalendar .UHeader{
+    height: 34px;
+    line-height: 34px;
+    background-color:#92D055!important;
+}
+
+div.UXCLunarCalendar .UHeader button{
+    border:none!important;
+    background-color: transparent!important;
+    color:#fff!important;
+    font-size: 14px;
+    margin-right:5px!important;
+}
+
+div.UXCLunarCalendar table a{
+    display:block!important;
+}
+
+div.UXCLunarCalendar table{ 
+    width:100%!important;
+    font-family: sans-serif!important;
+    font-size: 13px!important;
+    border-collapse: collapse;
+}
+
+div.UXCLunarCalendar th, div.UXCLunarCalendar td{
+    text-align: center!important;
+    vertical-align: middle!important;
+}
+
+div.UXCLunarCalendar thead{
+    font-size:14px!important;
+    background-color:#EFF6E4!important;
+}
+div.UXCLunarCalendar thead th{
+    height: 28px;
+    line-height: 28px;
+}
+
+div.UXCLunarCalendar tbody{
+}
+
+div.UXCLunarCalendar tbody td{
+}
+
+div.UXCLunarCalendar .UTableBorder{
+    border-left: 1px solid #E4F0E6;
+    border-bottom: 1px solid #E4F0E6;
+}
+
+div.UXCLunarCalendar .UTableBorder td{
+    border-top: 1px solid #E4F0E6;
+    border-right: 1px solid #E4F0E6; 
+    padding:0!important;
+}
+
+div.UXCLunarCalendar .UTableThead{
+    border-left: 1px solid #E4F0E6;
+    border-bottom: 0px solid #E4F0E6;
+}
+
+div.UXCLunarCalendar .UTableThead th{
+    border-top: 1px solid #E4F0E6;
+    border-right: 1px solid #E4F0E6; 
+}
+
+div.UXCLunarCalendar .UTableBorder td a:hover {
+    border: 2px solid #E9DBAA!important;
+    background-color:#FFFBE7!important;
+    margin: 0px!important;
+    padding:0px!important;
+}
+
+div.UXCLunarCalendar td a:hover b{
+    color: #000!important;
+}
+div.UXCLunarCalendar td a:hover label{
+    color:#999!important;
+}
+
+div.UXCLunarCalendar .UTableBorder td a{
+    height:45px;
+    width:45px;
+    padding: 2px!important;
+}
+
+div.UXCLunarCalendar .UTableBorder td b{
+    display: block;
+    padding: 5px 0 !important;
+    font-size: 14px;
+}
+
+div.UXCLunarCalendar .UTableBorder td label{
+    display: block;
+    padding: 0px 0 0!important;
+    color:#999!important;
+}
+
+
+div.UXCLunarCalendar td{
+    font-weight: normal!important;
+}
+
+div.UXCLunarCalendar .UFooter{
+    margin: 4px auto 3px!important;
+}
+
+div.UXCLunarCalendar .UFooter button{
+    cursor: pointer;
+    padding: 1px 4px!important;
+    margin: 0 2px!important;
+}
+
+div.UXCLunarCalendar td.cur {
+}
+
+div.UXCLunarCalendar td.cur a{
+    background-color:transparent!important;
+    border: 2px solid #39AC33!important; 
+    padding:0!important;
+}
+
+div.UXCLunarCalendar td.cur b{
+    color: #39ac33!important;
+}
+div.UXCLunarCalendar td.cur label{
+    color: #999!important;
+}
+
+div.UXCLunarCalendar .UTableBorder a{
+    position: relative;
+}
+
+div.UXCLunarCalendar td.shangban a{
+    background-image: url('images/icon.gif')!important;
+    background-position: 0 0;
+    background-repeat: no-repeat;
+}
+
+div.UXCLunarCalendar td.xiuxi a{
+    background-image: url('images/icon.gif')!important;
+    background-position: 0 -61px;
+    background-repeat: no-repeat;
+}
+
+div.UXCLunarCalendar .UTableBorder a div.zhushi{
+    position: absolute;
+    width: 8px;
+    height: 18px;
+    right: -3px;
+    top: 0px;
+    background-image: url('images/icon.gif')!important;
+    background-position: 0 -125px;
+    background-repeat: no-repeat;
+}
 
 input.UXCLunarCalendar_btn{
     border:none!important;
@@ -5,19 +180,6 @@ input.UXCLunarCalendar_btn{
     width: 21px!important;
     height: 18px!important;
     cursor: pointer;
-}
-div.UXCLunarCalendar, div.UXCLunarCalendar *{
-    padding: 0px!important;
-    margin: 0px!important;
-}
-
-div.UXCLunarCalendar{
-    background: #F2F2F2!important;
-    width: 222px!important;
-    border:2px solid #a1a1a1;
-    z-index: 20000;
-    text-align: center;
-    position: absolute;
 }
 
 div.UXCLunarCalendar img{
@@ -33,17 +195,8 @@ div.UXCLunarCalendar a{
     blr:expression(this.onFocus=this.blur());
 }
 
-div.UXCLunarCalendar td.weekend a {
+div.UXCLunarCalendar td.weekend a, div.UXCLunarCalendar th.weekend {
     color: #82B341!important;
-}
-
-div.UXCLunarCalendar td.cur{
-    background:#999!important;
-    color::#fff!important;
-}
-
-div.UXCLunarCalendar td.cur a{
-    color:#fff!important;
 }
 
 div.UXCLunarCalendar td.other a{
@@ -54,82 +207,5 @@ div.UXCLunarCalendar td.unable a{
     color: #B5B5B5!important;
     text-decoration: line-through!important;
     cursor: default!important;
-}
-
-div.UXCLunarCalendar td a:hover {
-    background:#ddd!important;
-    color:#fff!important;
-}
-
-div.UXCLunarCalendar table a, div.UXCLunarCalendar th{
-    padding: 5px 4px!important;
-}
-
-div.UXCLunarCalendar .UHeader{
-    margin: 4px auto 0px!important;
-}
-
-div.UXCLunarCalendar img.UImg{
-    background: transparent url('images/UpAndDown.gif') no-repeat left top!important;
-    width: 13px!important;
-    height: 18px!important;
-    margin-top: -1px!important;
-    cursor: pointer;
-}
-
-div.UXCLunarCalendar select{
-    width: 85px;
-}
-
-div.UXCLunarCalendar table a{
-    display:block!important;
-}
-
-div.UXCLunarCalendar table{ 
-    width:208px!important;
-    font-family: sans-serif!important;
-    font-size: 13px!important;
-    border-collapse: collapse;
-    margin: 0px auto!important;
-}
-
-div.UXCLunarCalendar th, div.UXCLunarCalendar td{
-    text-align: center!important;
-    vertical-align: middle!important;
-}
-
-div.UXCLunarCalendar thead{
-    font-size:12px!important;
-}
-
-div.UXCLunarCalendar tbody{
-}
-
-div.UXCLunarCalendar tbody td{
-}
-
-div.UXCLunarCalendar .UTableBorder{
-    border-left: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-}
-
-div.UXCLunarCalendar .UTableBorder td{
-    border-top: 1px solid #ccc;
-    border-right: 1px solid #ccc; 
-    padding:0!important;
-}
-
-div.UXCLunarCalendar td{
-    font-weight: normal!important;
-}
-
-div.UXCLunarCalendar .UFooter{
-    margin: 4px auto 3px!important;
-}
-
-div.UXCLunarCalendar .UFooter button{
-    cursor: pointer;
-    padding: 1px 4px!important;
-    margin: 0 2px!important;
 }
 

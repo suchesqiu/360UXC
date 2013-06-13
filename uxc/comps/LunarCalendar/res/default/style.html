@@ -9,124 +9,105 @@
     dd{ margin: 10px 0; }
 </style>
 <link href="style.css" rel="stylesheet" />
+<script src="../../../../lib.js"></script>
+<script type="text/javascript">
+    $(document).ready( function(){
+        $('table.UTableBorder a > div.zhushi').click( function( _evt ){
+            _evt.stopPropagation();
+            _evt.preventDefault();
+            alert(1);
+        });
+    });
+</script>
+
 </head>    
 <body>
 
     <dl>
         <dt>UXC LunarCalendar 默认模板 1234567890</dt>
         <dd>
-            <input type="button" class="UXCLunarCalendar_btn"  />
-        </dd>
-        <dd>
             <div id="UXCLunarCalendar" class="UXCLunarCalendar">
-                <div class="UHeader">
-                    <select class="UYear">
-                        <OPTION>2013</OPTION>
-                        <OPTION>8888</OPTION>
-                        <OPTION>8888</OPTION>
-                    </select>
-                    <img class="UImg yearctl" align="absMiddle" usemap="#UXCLunarCalendar_Year" />
-                    <map name="UXCLunarCalendar_Year"><area shape="rect" coords="0,0,13,8" href="#" action="up"><area shape="rect" coords="0,10,13,17" href="#" action="down"></map>
-                    <select class="UMonth">
-                        <OPTION>十二月</OPTION>
-                        <OPTION>十二月</OPTION>
-                    </select>
-                    <img class="UImg monthctl" align="absMiddle" usemap="#UXCLunarCalendar_Month"  />
-                    <map name="UXCLunarCalendar_Month"><area shape="rect" coords="0,0,13,8" href="#" action="up"><area shape="rect" coords="0,10,13,17" href="#" action="down"></map>
-                </div>
-                <table class="UTable">
-                    <thead>
-                        <tr>
-                            <th>一</th>
-                            <th>二</th>
-                            <th>三</th>
-                            <th>四</th>
-                            <th>五</th>
-                            <th>六</th>
-                            <th>日</th>
-                        </tr>
-                    </thead>
-               </table>
-               <table class="UTable UTableBorder">
-                    <tbody>
-                        <tr>
-                            <td><a href="#">1</a></td>
-                            <td class="cur"><a href="#">2</a></td>
-                            <td class="unable"><a href="#">33</a></td>
-                            <td class="unable"><a href="#">44</a></td>
-                            <td class="unable"><a href="#">5</a></td>
-                            <td class="weekend cur"><a href="#">6</a></td>
-                            <td class="weekend"><a href="#">7</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">8</a></td>
-                            <td><a href="#">9</a></td>
-                            <td><a href="#">10</a></td>
-                            <td class="hover"><a href="#">11</a></td>
-                            <td><a href="#">12</a></td>
-                            <td class="weekend hover"><a href="#">13</a></td>
-                            <td class="weekend"><a href="#">14</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">15</a></td>
-                            <td><a href="#">16</a></td>
-                            <td><a href="#">17</a></td>
-                            <td><a href="#">18</a></td>
-                            <td><a href="#">19</a></td>
-                            <td class="weekend"><a href="#">20</a></td>
-                            <td class="weekend"><a href="#">21</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">22</a></td>
-                            <td><a href="#">23</a></td>
-                            <td><a href="#">24</a></td>
-                            <td><a href="#">25</a></td>
-                            <td><a href="#">26</a></td>
-                            <td class="weekend"><a href="#">27</a></td>
-                            <td class="weekend"><a href="#">28</a></td>
-                        </tr>
-                        <tr>
-                            <td><a href="#">29</a></td>
-                            <td><a href="#">30</a></td>
-                            <td><a href="#">31</a></td>
-                            <td><a href="#">32</a></td>
-                            <td><a href="#">33</a></td>
-                            <td class="weekend"><a href="#">34</a></td>
-                            <td class="weekend"><a href="#">35</a></td>
-                        </tr>
-                        <tr>
-                            <td class="other"><a href="#">36</a></td>
-                            <td class="other"><a href="#">37</a></td>
-                            <td class="other"><a href="#">38</a></td>
-                            <td class="other"><a href="#">39</a></td>
-                            <td class="other"><a href="#">40</a></td>
-                            <td class="weekend other"><a href="#">41</a></td>
-                            <td class="weekend other"><a href="#">42</a></td>
-                        </tr>
+                <div class="UXCLunarCalendar_wrapper">
+                    <div class="UHeader">
+                        <button type="button" class="UButton UYear">2013</button>
+                        <button type="button" class="UButton UMonth">1月</button>
+                    </div>
+                    <table class="UTable UTableThead">
+                        <thead>
+                            <tr>
+                                <th>一</th>
+                                <th>二</th>
+                                <th>三</th>
+                                <th>四</th>
+                                <th>五</th>
+                                <th class="weekend">六</th>
+                                <th class="weekend">日</th>
+                            </tr>
+                        </thead>
+                   </table>
+                   <table class="UTable UTableBorder">
+                        <tbody>
+                            <tr>
+                                <td class="unable"><a href="#"><b>1</b><label>两字</label></a></td>
+                                <td class="unable cur"><a href="#"><b>2</b><label>两字</label></a></td>
+                                <td class="unable"><a href="#"><b>33</b><label>两字</label></a></td>
+                                <td class="unable"><a href="#"><b>44</b><label>两字</label></a></td>
+                                <td class="unable"><a href="#"><b>5</b><label>两字</label></a></td>
+                                <td class="weekend shangban cur"><a href="#"><b>6</b><label>两字</label></a></td>
+                                <td class="weekend"><a href="#"><b>7</b><label>两字</label></a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#"><b>8</b><label>两字</label></a></td>
+                                <td class="shangban"><a href="#"><b>9</b><label>两字</label></a></td>
+                                <td ><a href="#"><b>10</b><label>两字</label></a></td>
+                                <td class="hover"><a href="#"><b>11</b><label>两字</label></a></td>
+                                <td ><a href="#"><b>12</b><label>两字</label></a></td>
+                                <td class="weekend hover"><a href="#"><b>13</b><label>两字</label></a></td>
+                                <td class="weekend"><a href="#"><b>14</b><label>两字</label></a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#"><b>15</b><label>两字</label></a></td>
+                                <td class="xiuxi"><a href="#"><b>16</b><label>两字</label></a></td>
+                                <td><a href="#"><b>17</b><label>两字</label></a></td>
+                                <td><a href="#"><b>18</b><label>两字</label></a></td>
+                                <td><a href="#"><b>19</b><label>两字</label></a></td>
+                                <td class="weekend cur"><a href="#"><b>20</b><label>两字</label><div class="zhushi"></div></a></td>
+                                <td class="weekend"><a href="#"><b>21</b><label>两字</label></a></td>
+                            </tr>
+                            <tr>
+                                <td class="hover"><a href="#"><b>22</b><label>三个字</label></a></td>
+                                <td class="hover"><a href="#"><b>23</b><label>三个字</label></a></td>
+                                <td><a href="#"><b>24</b><label>三个字</label></a></td>
+                                <td><a href="#"><b>25</b><label>三个字</label></a></td>
+                                <td><a href="#"><b>26</b><label>三个字</label></a></td>
+                                <td class="weekend"><a href="#"><b>27</b><label>三个字</label></a></td>
+                                <td class="xiuxi weekend"><a href="#"><b>28</b><label>三个字</label></a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="#"><b>29</b><label>三个字</label></a></td>
+                                <td class="xiuxi"><a href="#"><b>30</b><label>三个字</label></a></td>
+                                <td><a href="#"><b>31</b><label>三个字</label></a></td>
+                                <td class="weekend"><a href="#"><b>32</b><label>三个字</label><div class="zhushi"></div></a></td>
+                                <td><a href="#"><b>33</b><label>三个字</label></a></td>
+                                <td class="weekend"><a href="#"><b>34</b><label>三个字</label></a></td>
+                                <td class="weekend"><a href="#"><b>35</b><label>三个字</label></a></td>
+                            </tr>
+                            <tr>
+                                <td class="other"><a href="#"><b>36</b><label>三个字</label></a></td>
+                                <td class="other"><a href="#"><b>37</b><label>三个字</label></a></td>
+                                <td class="other"><a href="#"><b>38</b><label>三个字</label></a></td>
+                                <td class="other"><a href="#"><b>39</b><label>三个字</label></a></td>
+                                <td class="other"><a href="#"><b>40</b><label>三个字</label></a></td>
+                                <td class="weekend other"><a href="#"><b>41</b><label>三个字</label></a></td>
+                                <td class="weekend other"><a href="#"><b>42</b><label>三个字</label></a></td>
+                            </tr>
 
-                    </tbody>
-                </table>
-                <div class="UFooter">
-                    <button type="button" class="UConfirm">确定</button>
-                    <button type="button" class="UClear">清空</button>
-                    <button type="button" class="UCancel">取消</button>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </dd>
     </dl>
-
-    <script src="../../../../lib.js"></script>
-    <script type="text/javascript">
-        $("map[name=UXCLunarCalendar_Year] area").click( function( $evt ){
-            var p = $(this);
-            alert( p.attr("action") );
-        });
-
-        $("map[name=UXCLunarCalendar_Month] area").click( function( $evt ){
-            var p = $(this);
-            alert( p.attr("action") );
-        });
-    </script>
 </body>
 </html>
  
