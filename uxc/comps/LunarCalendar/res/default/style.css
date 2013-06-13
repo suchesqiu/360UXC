@@ -85,8 +85,8 @@ div.UXCLunarCalendar .UTableThead th{
 }
 
 div.UXCLunarCalendar .UTableBorder td a:hover {
-    border: 2px solid #E9DBAA!important;
-    background-color:#FFFBE7!important;
+    border: 2px solid #FFF100!important;
+    background-color:#fff!important;
     margin: 0px!important;
     padding:0px!important;
 }
@@ -131,20 +131,32 @@ div.UXCLunarCalendar .UFooter button{
     margin: 0 2px!important;
 }
 
-div.UXCLunarCalendar td.cur {
-}
-
-div.UXCLunarCalendar td.cur a{
+div.UXCLunarCalendar td.today a{
     background-color:transparent!important;
     border: 2px solid #39AC33!important; 
     padding:0!important;
 }
 
-div.UXCLunarCalendar td.cur b{
+div.UXCLunarCalendar td.today b{
     color: #39ac33!important;
 }
-div.UXCLunarCalendar td.cur label{
+div.UXCLunarCalendar td.today label{
     color: #999!important;
+}
+
+div.UXCLunarCalendar td.cur a {
+    border: 2px solid #E9DBAA!important;
+    background-color:#FFFBE7!important;
+    margin: 0px!important;
+    padding:0px!important;
+}
+
+div.UXCLunarCalendar td.cur a b{
+    color: #000!important;
+}
+
+div.UXCLunarCalendar td.cur a label{
+    color:#999!important;
 }
 
 div.UXCLunarCalendar .UTableBorder a{
@@ -159,7 +171,7 @@ div.UXCLunarCalendar td.shangban a{
 
 div.UXCLunarCalendar td.xiuxi a{
     background-image: url('images/icon.gif')!important;
-    background-position: 0 -61px;
+    background-position: 0 -62px;
     background-repeat: no-repeat;
 }
 
