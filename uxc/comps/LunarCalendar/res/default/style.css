@@ -1,0 +1,135 @@
+
+input.UXCLunarCalendar_btn{
+    border:none!important;
+    background: transparent url('images/LunarCalendar.gif') no-repeat left top!important;
+    width: 21px!important;
+    height: 18px!important;
+    cursor: pointer;
+}
+div.UXCLunarCalendar, div.UXCLunarCalendar *{
+    padding: 0px!important;
+    margin: 0px!important;
+}
+
+div.UXCLunarCalendar{
+    background: #F2F2F2!important;
+    width: 222px!important;
+    border:2px solid #a1a1a1;
+    z-index: 20000;
+    text-align: center;
+    position: absolute;
+}
+
+div.UXCLunarCalendar img{
+    padding: 0px!important;
+    margin: 0px!important;
+    border:0px!important;
+}
+
+div.UXCLunarCalendar a{
+    text-decoration:none!important;
+    color: #000!important;
+    outline: none;
+    blr:expression(this.onFocus=this.blur());
+}
+
+div.UXCLunarCalendar td.weekend a {
+    color: #82B341!important;
+}
+
+div.UXCLunarCalendar td.cur{
+    background:#999!important;
+    color::#fff!important;
+}
+
+div.UXCLunarCalendar td.cur a{
+    color:#fff!important;
+}
+
+div.UXCLunarCalendar td.other a{
+    color: #999!important;
+}
+
+div.UXCLunarCalendar td.unable a{
+    color: #B5B5B5!important;
+    text-decoration: line-through!important;
+    cursor: default!important;
+}
+
+div.UXCLunarCalendar td a:hover {
+    background:#ddd!important;
+    color:#fff!important;
+}
+
+div.UXCLunarCalendar table a, div.UXCLunarCalendar th{
+    padding: 5px 4px!important;
+}
+
+div.UXCLunarCalendar .UHeader{
+    margin: 4px auto 0px!important;
+}
+
+div.UXCLunarCalendar img.UImg{
+    background: transparent url('images/UpAndDown.gif') no-repeat left top!important;
+    width: 13px!important;
+    height: 18px!important;
+    margin-top: -1px!important;
+    cursor: pointer;
+}
+
+div.UXCLunarCalendar select{
+    width: 85px;
+}
+
+div.UXCLunarCalendar table a{
+    display:block!important;
+}
+
+div.UXCLunarCalendar table{ 
+    width:208px!important;
+    font-family: sans-serif!important;
+    font-size: 13px!important;
+    border-collapse: collapse;
+    margin: 0px auto!important;
+}
+
+div.UXCLunarCalendar th, div.UXCLunarCalendar td{
+    text-align: center!important;
+    vertical-align: middle!important;
+}
+
+div.UXCLunarCalendar thead{
+    font-size:12px!important;
+}
+
+div.UXCLunarCalendar tbody{
+}
+
+div.UXCLunarCalendar tbody td{
+}
+
+div.UXCLunarCalendar .UTableBorder{
+    border-left: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+div.UXCLunarCalendar .UTableBorder td{
+    border-top: 1px solid #ccc;
+    border-right: 1px solid #ccc; 
+    padding:0!important;
+}
+
+div.UXCLunarCalendar td{
+    font-weight: normal!important;
+}
+
+div.UXCLunarCalendar .UFooter{
+    margin: 4px auto 3px!important;
+}
+
+div.UXCLunarCalendar .UFooter button{
+    cursor: pointer;
+    padding: 1px 4px!important;
+    margin: 0 2px!important;
+}
+
