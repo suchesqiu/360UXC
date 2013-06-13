@@ -1,5 +1,6 @@
 (function($){
     !window.UXC && (window.UXC = { log:function(){} });
+    UXC.LunarCalendar = window.LunarCalendar = LunarCalendar;
     /**
      * 日历选择组件
      * <br />全局访问请使用 UXC.LunarCalendar 或 LunarCalendar
@@ -18,7 +19,17 @@
      * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
      * @date    2013-06-04
      */
-    var LunarCalendar = UXC.LunarCalendar = window.LunarCalendar = 
+    function LunarCalendar( _selector, _date ){
+        _selector && ( _selector = $(_selector) );
+        !(_selector && _selector.length) && ( _selector = $(document) );
+        !_date && ( _date = new Date() );
+    }
+
+    LunarCalendar.prototype = {
+
+    };
+    
+    var test =
     {
         /**
          * 弹出日期选择框

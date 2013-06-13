@@ -13,45 +13,19 @@
     <link href='../../../comps/LunarCalendar/res/default/style.css' rel='stylesheet' />
     <script> UXC.debug = true; UXC.use( 'LunarCalendar' ); </script>
     <script>
-        $(document).delegate('input.manualPickDate', 'focus', function($evt){
-            UXC.LunarCalendar.pickDate( this );
+        $(document).ready( function(){
+            var ins = new UXC.LunarCalendar( '#ph1' );
         });
     </script>
 </head>    
 <body>
     <br /><br /><br /><br /><br /><br />
     <br /><br /><br /><br /><br /><br />
-    <form action='' method='gest'>
+    <form action='' method='get'>
         <dl>
             <dt>UXC.LunarCalendar 示例</dt>
-            <dd><input type="text" name="date1" datatype="date" /></dd>
-            <dd><input type="text" name="date1" datatype="date" value="2013-06-02" /></dd>
             <dd>
-                <input type="text" name="date2" datatype="date" value="2013-06-03" />
-                <input type="button" class="UXCLunarCalendar_btn" />
-            </dd>
-            <dd><input type="text" name="date3" datatype="date" value="2013-05-03" /></dd>
-            <dd><input type="text" name="notdate" />not date</dd>
-            <dd>
-                <input type="text" name="date4" datatype="date" value="2012.04.02" /><input type="button" class="UXCLunarCalendar_btn" />
-            </dd>
-            <dd>
-                <input type="text" name="date5" datatype="date" value="20110201" /><input type="button" class="UXCLunarCalendar_btn" />
-            </dd>
-            <dd>
-                <input type="text" name="date6" class="manualPickDate" value="20110201" />manual UXC.LunarCalendar.pickDate
-            </dd>
-            <dd>
-                <input type="text" name="date7" class="manualPickDate" />manual UXC.LunarCalendar.pickDate
-            </dd>
-            <dd>
-                <input type="text" name="date2" datatype="date" value="2013-06-03" minvalue="2013-06-03" /> minvalue="2013-06-03"
-            </dd>
-            <dd>
-                <input type="text" name="date2" datatype="date" value="2013-06-03" maxvalue="2013-06-30" /> maxvalue="2013-06-30"
-            </dd>
-            <dd>
-            <input type="text" name="date2" datatype="date" value="2013-06-03" minvalue="2013-06-01" maxvalue="2013-06-30" />  minvalue="2013-06-01" maxvalue="2013-06-30"
+                <div id="ph1"></div>
             </dd>
         </dl>
     </form>
