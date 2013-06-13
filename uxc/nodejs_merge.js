@@ -1,5 +1,4 @@
 var fs = require('fs-extra');
-var compressor = require('node-minify');
 
 var dir = __dirname + '/';
 

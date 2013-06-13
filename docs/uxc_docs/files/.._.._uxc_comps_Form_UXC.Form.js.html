@@ -230,6 +230,24 @@ function get_url_param( $url, $key )
     
     return result;
 }
+/**
+ * 判断URL中是否有某个get参数
+ * x@btbtd.org  2013-06-13
+ * @example
+ *      var bool = has_url_param( &#x27;getkey&#x27; );
+ */
+function has_url_param( _url, _key ){
+    var _r = false;
+    if( !_key ){ _key = _url; _url = location.href; }
+    if( /\?/.test( _url ) ){
+        _url = _url.split( &#x27;?&#x27; ); _url = _url[ _url.length - 1 ];
+        _url = _url.split(&#x27;&amp;&#x27;);
+        for( var i = 0, j = _url.length; i &lt; j; i++ ){
+            if( _url[i].split(&#x27;=&#x27;)[0].toLowerCase() == _key.toLowerCase() ){ _r = true; break; };
+        }
+    }
+    return _r;
+}
 
     </pre>
 </div>
