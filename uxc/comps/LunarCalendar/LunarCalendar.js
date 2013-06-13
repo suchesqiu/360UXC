@@ -74,6 +74,19 @@
                 if( !_date ) return;
                 this._view.initLayout( _date );
             }
+
+        , nextMonth: function(){}
+        , preMonth: function(){}
+
+        , nextYear: function(){}
+        , preYear: function(){}
+
+        , getDate: function(){}
+        , getAllDate: function(){}
+
+        , getSelectedDate: function(){}
+
+        , setDateStatus: function(){}
     }
     
     function View( _model ){
