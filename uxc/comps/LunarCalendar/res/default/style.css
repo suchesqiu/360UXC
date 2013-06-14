@@ -84,20 +84,6 @@ div.UXCLunarCalendar .UTableThead th{
     border-right: 1px solid #E4F0E6; 
 }
 
-div.UXCLunarCalendar .UTableBorder td a:hover {
-    border: 2px solid #FFF100!important;
-    background-color:#fff!important;
-    margin: 0px!important;
-    padding:0px!important;
-}
-
-div.UXCLunarCalendar td a:hover b{
-    color: #000!important;
-}
-div.UXCLunarCalendar td a:hover label{
-    color:#999!important;
-}
-
 div.UXCLunarCalendar .UTableBorder td a{
     height:45px;
     width:45px;
@@ -131,33 +117,63 @@ div.UXCLunarCalendar .UFooter button{
     margin: 0 2px!important;
 }
 
-div.UXCLunarCalendar td.today a{
-    background-color:transparent!important;
-    border: 2px solid #39AC33!important; 
-    padding:0!important;
+div.UXCLunarCalendar .UTableBorder td a:hover {
+    border: 2px solid #FFF100!important;
+    margin: 0px!important;
+    padding:0px!important;
 }
 
-div.UXCLunarCalendar td.today b{
-    color: #39ac33!important;
-}
-div.UXCLunarCalendar td.today label{
-    color: #999!important;
+div.UXCLunarCalendar td a:hover b{
+    color: #000!important;
 }
 
-div.UXCLunarCalendar td.cur a {
+div.UXCLunarCalendar td a:hover label{
+    color:#000!important;
+}
+
+div.UXCLunarCalendar td.festival a {
     border: 2px solid #E9DBAA!important;
     background-color:#FFFBE7!important;
     margin: 0px!important;
     padding:0px!important;
 }
 
-div.UXCLunarCalendar td.cur a b{
+div.UXCLunarCalendar td.festival a b{
     color: #000!important;
 }
 
-div.UXCLunarCalendar td.cur a label{
+div.UXCLunarCalendar td.festival a label{
     color:#999!important;
 }
+
+div.UXCLunarCalendar td.today a{
+    background-color:#B4E39F!important;
+    border: 2px solid #9AD97E!important; 
+    padding:0!important;
+}
+
+div.UXCLunarCalendar td.today b{
+    color: #4D9237!important;
+}
+
+div.UXCLunarCalendar td.today label{
+    color: #4D9237!important;
+}
+
+div.UXCLunarCalendar td.cur a {
+    border: 2px solid #39AC33!important;     
+    margin: 0px!important;
+    padding:0px!important;
+}
+
+div.UXCLunarCalendar td.cur a b{
+    color: #39ac33!important;
+}
+
+div.UXCLunarCalendar td.cur a label{
+    color: #999!important;
+}
+
 
 div.UXCLunarCalendar .UTableBorder a{
     position: relative;
