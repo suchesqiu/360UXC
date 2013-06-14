@@ -60,11 +60,13 @@
             <script>UXC.LunarCalendar.defaultYearSpan = 20;</script>
      */
     LunarCalendar.defaultYearSpan = 20
+    LunarCalendar.nationalHolidays = {};
 
 
     LunarCalendar.prototype = {
         _init:
             function(){
+                this._view.layout.data('LunarCalendar', this);
                 
                 return this;
             }    
@@ -188,9 +190,9 @@
 
                     var lunarDate = LunarCalendar.gregorianToLunar( _beginDate );
                     var festivals = LunarCalendar.getFestival( lunarDate, _beginDate );
-                    if( festivals.isHoliday ){
-                        _class.push( 'festival' );
-                    }
+
+                    if( festivals.isHoliday ){ _class.push( 'festival' ); _class.push('xiuxi'); }
+                    if( festivals.isWorkday ) _class.push( 'shangban' );
 
                     if( this._model.isSameDay( today, _beginDate ) ) _class.push( 'today' );
                     _ls.push( '<td class="', _class.join(' '),'">'
@@ -239,6 +241,7 @@
 
                 if( _tmp = this.parseDate( _selector.attr('defaultdate') )) _r.date = _tmp;
                 else _r.date = new Date();
+
 
                 _r.minvalue = this.parseDate( _selector.attr('minvalue') );
                 _r.maxvalue = this.parseDate( _selector.attr('maxvalue') );
@@ -408,12 +411,16 @@
      * @private
      */
     $(document).ready( function($evt){
-        
+        setTimeout( function(){
+            $('div.js_LunarCalendar, td.js_LunarCalendar, li.js_LunarCalendar').each( function(){
+                new LunarCalendar( $(this) );
+            });
+        }, 100);
     });
 
-    $(document).delegate( 'div.UXCLunarCalendar .UTableBorder td', 'click', function(){
+    $(document).delegate( 'div.UXCLunarCalendar table.UTableBorder td', 'click', function(){
         var _p = $(this);
-        _p.parents('div.UXCLunarCalendar').find('td.cur').removeClass('cur');
+        $('div.UXCLunarCalendar table.UTableBorder td.cur').removeClass('cur');
         _p.addClass('cur');
     });
 

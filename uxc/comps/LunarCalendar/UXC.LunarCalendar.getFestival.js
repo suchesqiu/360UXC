@@ -4,8 +4,9 @@
     function getFestival( _lunarDate, _greDate ){
         var _r = { 'dayName': '', 'festivals': [], 'isHoliday': false }
             , _lunarDay = [ intPad(_lunarDate.month), intPad(_lunarDate.day) ].join('')
-            , _greDay = [ intPad(_greDate.getMonth()+1), intPad(_greDate.getDate()) ].join('');
-
+            , _greDay = [ intPad(_greDate.getMonth()+1), intPad(_greDate.getDate()) ].join('')
+            , _greToday = _greDate.getFullYear() + _greDay
+            ;
 
         _r.dayName = _lunarDate.ri;
         if( _r.dayName == '初一' ) _r.dayName = _lunarDate.yue + '月';
@@ -24,6 +25,12 @@
                 _r.dayName = fes.name;
             }
         }
+
+        if( UXC.LunarCalendar.nationalHolidays ){
+            if( _greToday in UXC.LunarCalendar.nationalHolidays ){
+                _r.festivals.push( UXC.LunarCalendar.nationalHolidays[ _greToday ] );
+            }
+        }
        
         if( _r.festivals.length ){
             for( var i = 0, j = _r.festivals.length - 1; i < j; i++ ){
@@ -39,12 +46,28 @@
             for( var i = 0, j = _r.festivals.length; i < j; i++ ){
                 if( _r.festivals[i].isHoliday ){ _r.isHoliday = true; break; }
             }
+            for( var i = 0, j = _r.festivals.length; i < j; i++ ){
+                if( _r.festivals[i].isWorkday ){ _r.isWorkday = true; break; }
+            }
         }
 
-        UXC.log( _lunarDay, _greDay, _r.festivals.length );
+        /*UXC.log( _lunarDay, _greDay, _r.festivals.length );*/
 
         return _r;
     }
+
+    var lunarFes = {
+        '0101': { 'name': '春节', 'fullname': '春节', 'priority': 8, 'isHoliday': true },  
+        '0115': { 'name': '元宵节', 'fullname': '元宵节', 'priority': 8, 'isHoliday': true },  
+        '0505': { 'name': '端午节', 'fullname': '端午节', 'priority': 8, 'isHoliday': true },  
+        '0707': { 'name': '七夕', 'fullname': '七夕情人节', 'priority': 5 },  
+        '0715': { 'name': '中元节', 'fullname': '中元节', 'priority': 5 },  
+        '0815': { 'name': '中秋节', 'fullname': '中秋节', 'priority': 8, 'isHoliday': true },  
+        '0909': { 'name': '重阳节', 'fullname': '重阳节', 'priority': 5 },  
+        '1208': { 'name': '腊八节', 'fullname': '腊八节', 'priority': 5 },  
+        '1223': { 'name': '小年', 'fullname': '小年', 'priority': 5 },  
+        '0100': { 'name': '除夕', 'fullname': '除夕', 'priority': 8, 'isHoliday': true }
+    };
 
     var gregorianFes = {
         '0101': { 'name': '元旦节', 'fullname': '元旦节', 'priority': 6, 'isHoliday': true },  
@@ -65,7 +88,7 @@
         '0324': { 'name': '', 'fullname': '世界防治结核病日', 'priority': 1 },  
         '0325': { 'name': '', 'fullname': '全国中小学生安全教育日', 'priority': 1 },  
         '0401': { 'name': '愚人节', 'fullname': '愚人节 全国爱国卫生运动月(四月) 税收宣传月(四月)', 'priority': 2 },  
-        '0404': { 'name': '清明节', 'fullname': '清明节', 'priority': 8, 'isHoliday': true },  
+        /*'0404': { 'name': '清明节', 'fullname': '清明节', 'priority': 8, 'isHoliday': true },*/
         '0407': { 'name': '卫生日', 'fullname': '世界卫生日', 'priority': 1 },  
         '0422': { 'name': '地球日', 'fullname': '世界地球日', 'priority': 1 },  
         '0423': { 'name': '', 'fullname': '世界图书和版权日', 'priority': 1 },  
@@ -146,31 +169,18 @@
         '1226': { 'name': '', 'fullname': '毛诞辰纪念', 'priority': 1 }
     };
 
-    var lunarFes = {
-        '0101': { 'name': '春节', 'fullname': '春节', 'priority': 8, 'isHoliday': true },  
-        '0115': { 'name': '元宵节', 'fullname': '元宵节', 'priority': 8, 'isHoliday': true },  
-        '0505': { 'name': '端午节', 'fullname': '端午节', 'priority': 8, 'isHoliday': true },  
-        '0707': { 'name': '七夕', 'fullname': '七夕情人节', 'priority': 5, 'isHoliday': true },  
-        '0715': { 'name': '中元节', 'fullname': '中元节', 'priority': 5 },  
-        '0815': { 'name': '中秋节', 'fullname': '中秋节', 'priority': 8, 'isHoliday': true },  
-        '0909': { 'name': '重阳节', 'fullname': '重阳节', 'priority': 5, 'isHoliday': true },  
-        '1208': { 'name': '腊八节', 'fullname': '腊八节', 'priority': 5, 'isHoliday': true },  
-        '1223': { 'name': '小年', 'fullname': '小年', 'priority': 5, 'isHoliday': true },  
-        '0100': { 'name': '除夕', 'fullname': '除夕', 'priority': 8, 'isHoliday': true }
-    };
-
     var byDayOrWeekFes = {
-        '0150': { 'name': '麻风日', 'fullname': '世界麻风日', 'level': 1 }, //一月的最后一个星期日（月倒数第一个星期日）  
-        '0520': { 'name': '母亲节', 'fullname': '国际母亲节', 'level': 1 },  
-        '0530': { 'name': '助残日', 'fullname': '全国助残日', 'level': 1 },  
-        '0630': { 'name': '父亲节', 'fullname': '父亲节', 'level': 1 },  
-        '0730': { 'name': '', 'fullname': '被奴役国家周', 'level': 1 },  
-        '0932': { 'name': '和平日', 'fullname': '国际和平日', 'level': 1 },  
-        '0940': { 'name': '聋人节 世界儿童日', 'fullname': '国际聋人节 世界儿童日', 'level': 1 },  
-        '0950': { 'name': '海事日', 'fullname': '世界海事日', 'level': 1 },  
-        '1011': { 'name': '住房日', 'fullname': '国际住房日', 'level': 1 },  
-        '1013': { 'name': '减灾日', 'fullname': '国际减轻自然灾害日(减灾日)', 'level': 1 },  
-        '1144': { 'name': '感恩节', 'fullname': '感恩节', 'level': 1 }
+        '0150': { 'name': '麻风日', 'fullname': '世界麻风日', 'priority': 1 }, //一月的最后一个星期日（月倒数第一个星期日）  
+        '0520': { 'name': '母亲节', 'fullname': '国际母亲节', 'priority': 1 },  
+        '0530': { 'name': '助残日', 'fullname': '全国助残日', 'priority': 1 },  
+        '0630': { 'name': '父亲节', 'fullname': '父亲节', 'priority': 1 },  
+        '0730': { 'name': '', 'fullname': '被奴役国家周', 'priority': 1 },  
+        '0932': { 'name': '和平日', 'fullname': '国际和平日', 'priority': 1 },  
+        '0940': { 'name': '聋人节 世界儿童日', 'fullname': '国际聋人节 世界儿童日', 'priority': 1 },  
+        '0950': { 'name': '海事日', 'fullname': '世界海事日', 'priority': 1 },  
+        '1011': { 'name': '住房日', 'fullname': '国际住房日', 'priority': 1 },  
+        '1013': { 'name': '减灾日', 'fullname': '国际减轻自然灾害日(减灾日)', 'priority': 1 },  
+        '1144': { 'name': '感恩节', 'fullname': '感恩节', 'priority': 1 }
     };
 
     /**

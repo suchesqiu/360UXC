@@ -132,8 +132,8 @@ div.UXCLunarCalendar td a:hover label{
 }
 
 div.UXCLunarCalendar td.festival a {
-    border: 2px solid #E9DBAA!important;
-    background-color:#FFFBE7!important;
+    border: 2px solid #39AC33!important;     
+    /*background-color:#FFFBE7!important;*/
     margin: 0px!important;
     padding:0px!important;
 }
@@ -161,7 +161,7 @@ div.UXCLunarCalendar td.today label{
 }
 
 div.UXCLunarCalendar td.cur a {
-    border: 2px solid #39AC33!important;     
+    border: 2px solid blue!important;
     margin: 0px!important;
     padding:0px!important;
 }
@@ -179,7 +179,13 @@ div.UXCLunarCalendar .UTableBorder a{
     position: relative;
 }
 
+div.UXCLunarCalendar td.shangban{
+}
+
 div.UXCLunarCalendar td.shangban a{
+    border: 2px solid #F7BC76;
+    margin: 0px!important;
+    padding:0px!important;
     background-image: url('images/icon.gif')!important;
     background-position: 0 0;
     background-repeat: no-repeat;

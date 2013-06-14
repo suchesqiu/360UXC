@@ -14,5 +14,6 @@ function script_path_f(){
     document.write( '<script src="'+_path+'UXC.LunarCalendar.js" ><\/script>'
         , '<script src="'+_path+'UXC.LunarCalendar.gregorianToLunar.js" ><\/script>'
         , '<script src="'+_path+'UXC.LunarCalendar.getFestival.js" ><\/script>'
+        , '<script src="'+_path+'nationalHolidays.js" ><\/script>'
     );
 }());

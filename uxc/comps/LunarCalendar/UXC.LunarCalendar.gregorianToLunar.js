@@ -22,7 +22,7 @@
                 + lunarMonth[_date.getMonth()] + _date.getDate() - 23;
 
         if (_date.getFullYear() % 4 == 0 && _date.getMonth() > 1) total++;
-        UXC.log( 'month:', _r.month, 0 );
+        /*UXC.log( 'month:', _r.month, 0 );*/
 
         for (m = 0; ; m++) {
             k = (lunarDays[m] < 4095) ? 11 : 12;
@@ -42,13 +42,13 @@
         _r.month = k - n + 1;
         _r.day = total;
          
-        UXC.log( 'month:', _r.month, k,  1 );
+        /*UXC.log( 'month:', _r.month, k,  1 );*/
 
         if (k == 12) {
-            if (_r.month == Math.floor(lunarDays[m] / 0x10000) + 1) { _r.month = 1 - _r.month; console.log( 'ZZZ' ); }
-            if (_r.month > Math.floor(lunarDays[m] / 0x10000) + 1) { _r.month--; console.log( 'XXX' ); }
+            if (_r.month == Math.floor(lunarDays[m] / 0x10000) + 1) { _r.month = 1 - _r.month; }
+            if (_r.month > Math.floor(lunarDays[m] / 0x10000) + 1) { _r.month--; }
         }
-        UXC.log( 'month:', _r.month, k, 11 );
+        /*UXC.log( 'month:', _r.month, k, 11 );*/
         _r.hour = Math.floor((_date.getHours() + 3) / 2);
         //UXC.log( _r.year, _r.month, _r.day, _r.hour );
 
@@ -68,7 +68,7 @@
         }
         _r.ri == "廿" && ( _r.ri = "二十" );
         _r.ri == "卅" && ( _r.ri = "三十" );
-        UXC.log( 'month:', _r.month, 2 );
+        /*UXC.log( 'month:', _r.month, 2 );*/
 
         _r.shi = dizhi.charAt((_r.hour - 1) % 12);
         return _r;

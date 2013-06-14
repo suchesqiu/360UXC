@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>360 UXC-FE</title>
+<style type='text/css'>
+    *{ margin: 0; padding: 0; }
+    body{ width: 900px; margin: 20px auto 20px; background:#ececec; }
+    dl dd{ margin: 10px 0; }
+    tr.ctl td{
+        padding: 20px 0 0;
+    }
+</style>
+    <script src="../../../lib.js"></script>
+    <link href='../../../comps/LunarCalendar/res/default/style.css' rel='stylesheet' />
+    <link href='../../../comps/Panel/res/default/style.css' rel='stylesheet' />
+    <script> UXC.debug = true; UXC.use( 'LunarCalendar, Panel' ); </script>
+    <script>
+    $(document).ready( function(){
+        var date = new Date(2013, 5, 1);
+        $('div.js_LunarCalendar').each( function(){
+            $(this).attr('defaultdate', [date.getFullYear(), pad_char_f( date.getMonth()+1 ), pad_char_f( date.getDate() )].join('-') );
+            date.setMonth( date.getMonth()+1 );
+        });
+    });
+    $(document).delegate('button.js_userpremonth, button.js_usernextmonth', 'click', function(){
+        var l = $('#leftCalendar'), r = $('#rightCalendar');
+        if( !( l.data('LunarCalendar') && r.data('LunarCalendar') ) ) return;
+
+        if( $(this).hasClass('js_userpremonth')  ){
+            l.data('LunarCalendar').preMonth();
+            r.data('LunarCalendar').preMonth();
+        }else{
+            l.data('LunarCalendar').nextMonth();
+            r.data('LunarCalendar').nextMonth();
+        }
+    });
+    $(document).delegate('button.js_setWorkday', 'click', function(){
+        var selectedDate;
+        $('div.UXCLunarCalendar').each( function(){
+            var tmp =  $(this).data('LunarCalendar').getSelectedDate();
+            tmp && (!selectedDate) && (selectedDate = tmp );
+        });
+
+        selectedDate && UXC.log( selectedDate );
+
+        if( !selectedDate ){
+            UXC.alert( '请选择日期, 再进行操作', this );
+            return;
+        }
+
+        actionDelay( this );
+    });
+    function actionDelay( _btn ){
+        _btn = $(_btn);
+        if( _btn.attr('disabled') ) return;
+
+        _btn.attr('disabled', true);
+        setTimeout( function(){ _btn.attr('disabled', false); }, 2000 );
+    }
+    /**
+     * js 附加字串函数 fPadNum
+     * x@btbtd.org 2013-06-14
+     */
+    function pad_char_f(input_s, len_i, char_s){
+        len_i   =  len_i||2; char_s  = char_s||"0"; 
+        input_s = input_s.toString();
+        if(input_s.length>len_i){ return input_s; }
+        input_s   = new Array(len_i+1).join(char_s)+input_s;
+        return input_s.slice(input_s.length-len_i);
+    }
+    </script>
+</head>    
+<body>
+    <br /><br /><br /><br /><br /><br />
+    <form action='' method='get'>
+        <dl>
+            <dt>UXC.LunarCalendar 示例</dt>
+            <dd>
+            <table cellspacing='0' width="100%">
+                <tr>
+                    <td><button type="button" class="js_userpremonth">上个月</button></td>
+                    <td>
+                        <div id="leftCalendar" class="js_LunarCalendar"></div>
+                    </td>
+                    <td>
+                        <div id="rightCalendar" class="js_LunarCalendar"></div>
+                    </td>
+                    <td><button type="button" class="js_usernextmonth">下个月</button></td>
+                </tr>
+                <tr class="ctl">
+                    <td colspan="2">
+                    </td>
+                    <td colspan="2" style="text-align:right">
+                        <button type="button" class="js_setWorkday">设为工作日</button>
+                    </td>
+                </tr>
+            </table>
+            </dd>
+        </dl>
+    </form>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</body>
+</html>
+
