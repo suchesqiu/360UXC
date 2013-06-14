@@ -45,6 +45,23 @@
             return _logic.popup( _logic.tpls.confirm, _msg, _popupSrc, _status, _cb );
         };
     /**
+     * 隐藏 或 从DOM清除所有 UXC.alert/UXC.confirm
+     * <br /><b>注意, 这是个方法, 写 @class 属性是为了生成文档</b>
+     * @namespace UXC
+     * @class hideAllPopup
+     * @static
+     * @constructor
+     * @param   {bool}  _isClose    为真从DOM清除UXC.alert/UXC.confirm, 为假隐藏, 默认为false
+     */
+    UXC.hideAllPopup =
+        function( _isClose ){
+            if( _isClose ){
+                $('body > div.UPanelPopup_identifer').remove();
+            }else{
+                $('body > div.UPanelPopup_identifer').hide();
+            }
+        };
+    /**
      * 从 HTML 属性 自动执行 UXC.alert / UXC.confirm
      * @attr    {string}    paneltype           弹框类型, alert | confirm
      * @attr    {string}    panelmsg            弹框提示
@@ -369,7 +386,7 @@
                 _offset == undefined && ( _offset = 5 );
                 var _r = _srcLeft + _srcWidth / 2 + _offset - _targetWidth / 2
                     , _scrLeft = $(document).scrollLeft()
-                    , _maxLeft = $(window).width() - _targetWidth;
+                    , _maxLeft = $(window).width() + _scrLeft - _targetWidth;
 
                 _r > _maxLeft && ( _r = _maxLeft - 2 );
                 _r < _scrLeft && ( _r = _scrLeft + 1 );

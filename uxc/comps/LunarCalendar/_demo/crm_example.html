@@ -16,6 +16,22 @@
     <link href='../../../comps/Panel/res/default/style.css' rel='stylesheet' />
     <script> UXC.debug = true; UXC.use( 'LunarCalendar, Panel' ); </script>
     <script>
+    /*
+     tm: item timestamp, timestamp is id
+       
+     action: 
+        1: workday
+        2: holiday
+        3: comment
+        4: comment + holiday
+        5: comment + workday
+        6: add comment
+        7: edit comment
+        8: delete comment
+
+     cm: comment data, action = 6/7
+     */
+    LunarCalendar.showFestivalOnlyCurrentMonth = true;
     $(document).ready( function(){
         var date = new Date(2013, 5, 1);
         $('div.js_LunarCalendar').each( function(){
@@ -36,21 +52,35 @@
         }
     });
     $(document).delegate('button.js_setWorkday', 'click', function(){
-        var selectedDate;
-        $('div.UXCLunarCalendar').each( function(){
-            var tmp =  $(this).data('LunarCalendar').getSelectedDate();
-            tmp && (!selectedDate) && (selectedDate = tmp );
-        });
+        UXC.hideAllPopup( 1 );
+        var item = UXC.LunarCalendar.getSelectedItemGlobal();
 
-        selectedDate && UXC.log( selectedDate );
+        item && UXC.log( item.date, item.td.length );
 
-        if( !selectedDate ){
-            UXC.alert( '请选择日期, 再进行操作', this );
+        if( !item ){
+            UXC.alert( '请选择日期, 再进行操作', this, 1 );
             return;
         }
 
+        var _ptm = toPostTimestamp( item.date );
+        UXC.log( _ptm );
+
+        $.post( './data/dataspan.php', { 'tm': _ptm, 'action': 1 }, function( _r ){
+            UXC.log( 'post result: ', _r );
+            var json = $.parseJSON( _r );
+            if( json.errorno === 0 ){
+                UXC.LunarCalendar.addWorkday( item.td );
+            }
+        });
+
         actionDelay( this );
     });
+
+    function toPostTimestamp( _date ){
+        var _tmp = Math.floor( new Date( _date.getFullYear(), _date.getMonth(), _date.getDate() ).getTime() / 1000 );
+        return _tmp;
+    }
+    
     function actionDelay( _btn ){
         _btn = $(_btn);
         if( _btn.attr('disabled') ) return;

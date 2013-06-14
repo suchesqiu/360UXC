@@ -57,20 +57,20 @@
     }
 
     var lunarFes = {
-        '0101': { 'name': '春节', 'fullname': '春节', 'priority': 8, 'isHoliday': true },  
-        '0115': { 'name': '元宵节', 'fullname': '元宵节', 'priority': 8, 'isHoliday': true },  
-        '0505': { 'name': '端午节', 'fullname': '端午节', 'priority': 8, 'isHoliday': true },  
+        '0101': { 'name': '春节', 'fullname': '春节', 'priority': 8 },  
+        '0115': { 'name': '元宵节', 'fullname': '元宵节', 'priority': 8 },  
+        '0505': { 'name': '端午节', 'fullname': '端午节', 'priority': 8 },  
         '0707': { 'name': '七夕', 'fullname': '七夕情人节', 'priority': 5 },  
         '0715': { 'name': '中元节', 'fullname': '中元节', 'priority': 5 },  
-        '0815': { 'name': '中秋节', 'fullname': '中秋节', 'priority': 8, 'isHoliday': true },  
+        '0815': { 'name': '中秋节', 'fullname': '中秋节', 'priority': 8 },  
         '0909': { 'name': '重阳节', 'fullname': '重阳节', 'priority': 5 },  
         '1208': { 'name': '腊八节', 'fullname': '腊八节', 'priority': 5 },  
         '1223': { 'name': '小年', 'fullname': '小年', 'priority': 5 },  
-        '0100': { 'name': '除夕', 'fullname': '除夕', 'priority': 8, 'isHoliday': true }
+        '0100': { 'name': '除夕', 'fullname': '除夕', 'priority': 8 }
     };
 
     var gregorianFes = {
-        '0101': { 'name': '元旦节', 'fullname': '元旦节', 'priority': 6, 'isHoliday': true },  
+        '0101': { 'name': '元旦节', 'fullname': '元旦节', 'priority': 6 },  
         '0202': { 'name': '湿地日', 'fullname': '世界湿地日', 'priority': 1 },  
         '0210': { 'name': '气象节', 'fullname': '国际气象节', 'priority': 1 },  
         '0214': { 'name': '情人节', 'fullname': '情人节', 'priority': 3 },  
@@ -88,12 +88,11 @@
         '0324': { 'name': '', 'fullname': '世界防治结核病日', 'priority': 1 },  
         '0325': { 'name': '', 'fullname': '全国中小学生安全教育日', 'priority': 1 },  
         '0401': { 'name': '愚人节', 'fullname': '愚人节 全国爱国卫生运动月(四月) 税收宣传月(四月)', 'priority': 2 },  
-        /*'0404': { 'name': '清明节', 'fullname': '清明节', 'priority': 8, 'isHoliday': true },*/
         '0407': { 'name': '卫生日', 'fullname': '世界卫生日', 'priority': 1 },  
         '0422': { 'name': '地球日', 'fullname': '世界地球日', 'priority': 1 },  
         '0423': { 'name': '', 'fullname': '世界图书和版权日', 'priority': 1 },  
         '0424': { 'name': '', 'fullname': '亚非新闻工作者日', 'priority': 1 },  
-        '0501': { 'name': '劳动节', 'fullname': '劳动节', 'priority': 6, 'isHoliday': true  },  
+        '0501': { 'name': '劳动节', 'fullname': '劳动节', 'priority': 6 },  
         '0504': { 'name': '青年节', 'fullname': '青年节', 'priority': 1 },  
         '0505': { 'name': '', 'fullname': '碘缺乏病防治日', 'priority': 1 },  
         '0508': { 'name': '', 'fullname': '世界红十字日', 'priority': 1 },  
@@ -127,7 +126,7 @@
         '0920': { 'name': '爱牙日', 'fullname': '国际爱牙日', 'priority': 1 },  
         '0927': { 'name': '旅游日', 'fullname': '世界旅游日', 'priority': 1 },  
         '0928': { 'name': '', 'fullname': '孔子诞辰', 'priority': 1 },  
-        '1001': { 'name': '国庆节', 'fullname': '国庆节 世界音乐日 国际老人节', 'priority': 6, 'isHoliday': true },  
+        '1001': { 'name': '国庆节', 'fullname': '国庆节 世界音乐日 国际老人节', 'priority': 6 },  
         '1002': { 'name': '', 'fullname': '国际和平与民主自由斗争日', 'priority': 1 },  
         '1004': { 'name': '', 'fullname': '世界动物日', 'priority': 1 },  
         '1006': { 'name': '', 'fullname': '老人节', 'priority': 1 },  

@@ -61,7 +61,36 @@
      */
     LunarCalendar.defaultYearSpan = 20
     LunarCalendar.nationalHolidays = {};
-
+    LunarCalendar.showFestivalOnlyCurrentMonth = false;
+    LunarCalendar.getSelectedItemGlobal = 
+        function(){
+            var _r;
+            $('div.UXCLunarCalendar table.UTableBorder td.cur a').each( function(){
+                var _tm = $(this).attr('date'), _tmp = new Date(); _tmp.setTime( _tm );
+                _r = { 'date': _tmp, 'item': $(this), 'td': $(this).parent('td') };
+                return false;
+            });
+            if( !_r ){
+                $('div.UXCLunarCalendar table.UTableBorder td.today a').each( function(){
+                var _tm = $(this).attr('date'), _tmp = new Date(); _tmp.setTime( _tm );
+                    _r = { 'date': _tmp, 'item': $(this), 'td': $(this).parent('td') };
+                    return false;
+                });
+            }
+            return _r;
+        };
+    LunarCalendar.getSelectedDateGlobal = 
+        function(){
+            var _r, _tmp = LunarCalendar.getSelectedItemGlobal();
+            if( _tmp && _tmp.date ) _r = _tmp.date;
+            return _r;
+        };
+    LunarCalendar.addWorkday =
+        function( _td ){
+            _td = $( _td );
+            _td.removeClass( 'festival' ).removeClass( 'xiuxi' ).addClass( 'shangban' );
+            UXC.log( 'addWorkday' );
+        };
 
     LunarCalendar.prototype = {
         _init:
@@ -113,7 +142,16 @@
                 var _tm = $(this).attr('date');
                 _r = new Date();
                 _r.setTime( _tm );
+                return false;
             });
+            if( !_r ){
+               this._view.layout.find( 'td.today a').each( function(){
+                    var _tm = $(this).attr('date');
+                    _r = new Date();
+                    _r.setTime( _tm );
+                    return false;
+                });
+            }
             return _r;
         }
     }
@@ -191,8 +229,15 @@
                     var lunarDate = LunarCalendar.gregorianToLunar( _beginDate );
                     var festivals = LunarCalendar.getFestival( lunarDate, _beginDate );
 
-                    if( festivals.isHoliday ){ _class.push( 'festival' ); _class.push('xiuxi'); }
-                    if( festivals.isWorkday ) _class.push( 'shangban' );
+                    if( !LunarCalendar.showFestivalOnlyCurrentMonth ){
+                        if( festivals.isHoliday ){ _class.push( 'festival' ); _class.push('xiuxi'); }
+                        if( festivals.isWorkday ) _class.push( 'shangban' );
+                    }else{
+                        if( _dateObj.date.getMonth() === _beginDate.getMonth() ){
+                            if( festivals.isHoliday ){ _class.push( 'festival' ); _class.push('xiuxi'); }
+                            if( festivals.isWorkday ) _class.push( 'shangban' );
+                        }
+                    }
 
                     if( this._model.isSameDay( today, _beginDate ) ) _class.push( 'today' );
                     _ls.push( '<td class="', _class.join(' '),'">'
