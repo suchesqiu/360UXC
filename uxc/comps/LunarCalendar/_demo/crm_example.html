@@ -30,7 +30,7 @@
     <script src="../../../lib.js"></script>
     <link href='../../../comps/LunarCalendar/res/default/style.css' rel='stylesheet' />
     <link href='../../../comps/Panel/res/default/style.css' rel='stylesheet' />
-    <script> UXC.debug = true; UXC.use( 'LunarCalendar,Panel' ); </script>
+    <script> UXC.debug = true; UXC.use( 'LunarCalendar, Panel, Form, Valid' ); </script>
     <script>
     /*
      tm: item timestamp, timestamp is id
@@ -56,7 +56,7 @@
         });
 
         setTimeout( function(){
-            //updateLunarCalendarStatus();
+            updateLunarCalendarStatus();
         }, 500);
     });
 
@@ -158,10 +158,10 @@
 
         if( _action ){
             UXC.log( 'add comment' );
-            commentDialog( '添加注释', './data/dataspan.php', _ptm, '', commentAddTpl );
+            commentDialog( '添加注释 '+formatISODate(item.date), './data/dataspan.php', _ptm, '', commentAddTpl );
         }else{
             UXC.log( 'delete comment' );
-            commentDialog( '编辑注释', './data/dataspan.php', _ptm, UXC.LunarCalendar.getComment( item.td ), commentEditTpl );
+            commentDialog( '编辑注释 '+formatISODate(item.date), './data/dataspan.php', _ptm, UXC.LunarCalendar.getComment( item.td ), commentEditTpl );
             /*
             $.post( './data/dataspan.php', { 'tm': _ptm, 'dayaction': _action }, function( _r ){
                 UXC.log( 'post result: ', _r );
@@ -178,6 +178,17 @@
         actionDelay();
     });
 
+    $(document).delegate( 'div.UXCLunarCalendar table.UTableBorder td.zhushi div', 'click', function(){
+        var _p = $(this), _a = _p.parent('a'), _d;
+        _d = new Date(); _d.setTime( _a.attr('date' ) );
+        var _ptm = toPostTimestamp( _d ), _comment = _a.attr('comment');
+        commentDialog( '编辑注释 '+formatISODate(_d), './data/dataspan.php', _ptm, _comment, commentAddTpl );
+    });
+
+    function formatISODate( _date ){
+        _date = _date || new Date();
+        return [ _date.getFullYear(), _date.getMonth() + 1, _date.getDate() ].join('-');
+    }
 
     function commentDialog( _header, _url, _tm, _comment, _tpl ){
         var _ins = UXC.Dialog( _header, _tpl ), _selector = _ins.selector();
@@ -252,43 +263,6 @@
         });
     }
 
-    var commentAddTpl =
-        [
-        '<div class="CalendarComment"><form action="" method="POST">'
-            , '<dl>'
-            , '<dd>'
-            , '     <input type="hidden" name="commentaction" value="1" />'
-            , '     <input type="hidden" name="tm" value="" />'
-            , '     <textarea name="comment" datatype="text" reqmsg="注释" errmsg="长度2-240" minlength="2" maxlength="240" emEl="em.comment_dialog_err"></textarea>'
-            , '<em class="comment_dialog_err error"></em>'
-            , '</dd>'
-            , '<dd>'
-            , '     <button type="button" eventtype="confirm" class="js_add">确定</button>'
-            , '     <button type="button" eventtype="cancel">取消</button>'
-            , '</dd>'
-            , '</dl>'
-            , '</div>'
-        ].join('');
-
-    var commentEditTpl =
-        [
-        '<div class="CalendarComment"><form action="" method="POST">'
-            , '<dl>'
-            , '<dd>'
-            , '     <input type="hidden" name="commentaction" value="1" />'
-            , '     <input type="hidden" name="tm" value="" />'
-            , '     <textarea name="comment" datatype="text" reqmsg="注释" errmsg="长度2-240" minlength="2" maxlength="240" emEl="em.comment_dialog_err"></textarea>'
-            , '<em class="comment_dialog_err error"></em>'
-            , '</dd>'
-            , '<dd>'
-            , '     <button type="button" eventtype="confirm" class="js_add">确定</button>'
-            , '     <button type="button" eventtype="confirm" class="js_del">删除</button>'
-            , '     <button type="button" eventtype="cancel">取消</button>'
-            , '</dd>'
-            , '</dl>'
-            , '</div>'
-        ].join('');
-
 
     function setCommentButtonStatus(){
         var item = UXC.LunarCalendar.getSelectedItemGlobal(), _action;
@@ -331,7 +305,6 @@
             });
     }
 
-
     $(document).delegate( 'div.UXCLunarCalendar table.UTableBorder td', 'click', function(){
         if( $(this).hasClass('nopointer') ) return;
         setTimeout( function(){ 
@@ -361,6 +334,44 @@
         _str = new Array( _len + 1 ).join( _char ) + _str
         return _str.slice( _str.length - _len );
     }
+
+    var commentAddTpl =
+        [
+        '<div class="CalendarComment"><form action="" method="POST">'
+            , '<dl>'
+            , '<dd>'
+            , '     <input type="hidden" name="commentaction" value="1" />'
+            , '     <input type="hidden" name="tm" value="" />'
+            , '     <textarea name="comment" datatype="text" reqmsg="注释" errmsg="长度2-240" minlength="2" maxlength="240" emEl="em.comment_dialog_err"></textarea>'
+            , '<em class="comment_dialog_err error"></em>'
+            , '</dd>'
+            , '<dd>'
+            , '     <button type="button" eventtype="confirm" class="js_add">确定</button>'
+            , '     <button type="button" eventtype="cancel">取消</button>'
+            , '</dd>'
+            , '</dl>'
+            , '</div>'
+        ].join('');
+
+    var commentEditTpl =
+        [
+        '<div class="CalendarComment"><form action="" method="POST">'
+            , '<dl>'
+            , '<dd>'
+            , '     <input type="hidden" name="commentaction" value="1" />'
+            , '     <input type="hidden" name="tm" value="" />'
+            , '     <textarea name="comment" datatype="text" reqmsg="注释" errmsg="长度2-240" minlength="2" maxlength="240" emEl="em.comment_dialog_err"></textarea>'
+            , '<em class="comment_dialog_err error"></em>'
+            , '</dd>'
+            , '<dd>'
+            , '     <button type="button" eventtype="confirm" class="js_add">确定</button>'
+            , '     <button type="button" eventtype="confirm" class="js_del">删除</button>'
+            , '     <button type="button" eventtype="cancel">取消</button>'
+            , '</dd>'
+            , '</dl>'
+            , '</div>'
+        ].join('');
+
     </script>
 </head>    
 <body>
