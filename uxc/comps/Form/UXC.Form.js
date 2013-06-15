@@ -13,7 +13,25 @@
      * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
      * @date    2013-06-11
      */
-    window.UXCForm = UXC.Form = {};
+    window.UXCForm = UXC.Form = {
+        /**
+         * 禁用按钮一定时间, 默认为1秒
+         * @method  disableButton
+         * @static
+         * @param   {selector}  _selector   要禁用button的选择器
+         * @param   {int}       _durationMs 禁用多少时间, 单位毫秒, 默认1秒
+         */
+        'disableButton':
+            function( _selector, _durationMs ){
+                if( !_selector ) return;
+                _selector = $(_selector);
+                _durationMs = _durationMs || 1000;
+                _selector.attr('disabled', true);
+                setTimeout( function(){
+                    _selector.attr('disabled', false);
+                }, _durationMs);
+            }
+    };
 }(jQuery));
 
 /**

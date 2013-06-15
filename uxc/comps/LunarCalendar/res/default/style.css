@@ -197,8 +197,13 @@ div.UXCLunarCalendar td.xiuxi a{
     background-repeat: no-repeat;
 }
 
-div.UXCLunarCalendar .UTableBorder a div.zhushi{
+div.UXCLunarCalendar .UTableBorder td.zhushi a div{
+    display: none;
+}
+
+div.UXCLunarCalendar .UTableBorder td.zhushi a div{
     position: absolute;
+    display: block;
     width: 8px;
     height: 18px;
     right: -3px;
@@ -229,6 +234,10 @@ div.UXCLunarCalendar a{
     blr:expression(this.onFocus=this.blur());
 }
 
+div.UXCLunarCalendar td.nopointer a{
+    cursor: default!important;
+}
+
 div.UXCLunarCalendar td.weekend a, div.UXCLunarCalendar th.weekend {
     color: #82B341!important;
 }
@@ -243,3 +252,12 @@ div.UXCLunarCalendar td.unable a{
     cursor: default!important;
 }
 
+div.UXCLunarCalendar td.unable a:hover {
+    border:none!important;
+    height:45px;
+    width:45px;
+    padding: 2px!important;
+}
+div.UXCLunarCalendar td.unable a:hover b, div.UXCLunarCalendar td.unable a:hover label{
+    color: #B5B5B5!important;
+}

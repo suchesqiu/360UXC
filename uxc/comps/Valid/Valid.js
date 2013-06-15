@@ -1,4 +1,4 @@
-(function($){
+;(function($){
     !window.UXC && (window.UXC = { log:function(){} });
     /**
      * 表单验证

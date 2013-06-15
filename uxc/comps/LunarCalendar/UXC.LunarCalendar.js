@@ -61,7 +61,7 @@
      */
     LunarCalendar.defaultYearSpan = 20
     LunarCalendar.nationalHolidays = {};
-    LunarCalendar.showFestivalOnlyCurrentMonth = false;
+
     LunarCalendar.getSelectedItemGlobal = 
         function(){
             var _r;
@@ -79,17 +79,170 @@
             }
             return _r;
         };
+
+    LunarCalendar.getItemByTimestamp =
+        function( _tm ){
+            var _r, _tmp;
+            if( _tm ){
+                _tm += '';
+                (_tm.length < 13) && (_tm += new Array( 13 - _tm.length + 1 ).join('0'));
+                $('div.UXCLunarCalendar table.UTableBorder td a[date='+_tm+']').each( function(){
+                    _tmp = $(this).parent('td');
+                    if( !_tmp.hasClass('unable') ){
+                        _r = _tmp;
+                        return false;
+                    }
+                });
+            }
+            return _r;
+        };
+
     LunarCalendar.getSelectedDateGlobal = 
         function(){
             var _r, _tmp = LunarCalendar.getSelectedItemGlobal();
             if( _tmp && _tmp.date ) _r = _tmp.date;
             return _r;
         };
-    LunarCalendar.addWorkday =
+
+    LunarCalendar.setWorkday =
+        function( _td, _customSet ){
+            _td = $( _td );
+            if( typeof _customSet != 'undefined' ){
+                _customSet && _td.removeClass( 'xiuxi' ).addClass( 'shangban' );
+                !_customSet && _td.removeClass( 'shangban' );
+            }else _td.removeClass( 'xiuxi' ).addClass( 'shangban' );
+        };
+
+    LunarCalendar.isWorkday =
         function( _td ){
             _td = $( _td );
-            _td.removeClass( 'festival' ).removeClass( 'xiuxi' ).addClass( 'shangban' );
-            UXC.log( 'addWorkday' );
+            return _td.hasClass( 'shangban' );
+        };
+
+    LunarCalendar.setHoliday =
+        function( _td, _customSet ){
+            _td = $( _td );
+            if( typeof _customSet != 'undefined' ){
+                _customSet && _td.addClass( 'xiuxi' ).removeClass( 'shangban' );
+                !_customSet && _td.removeClass( 'xiuxi' );
+            }else _td.addClass( 'xiuxi' ).removeClass( 'shangban' );
+            
+        };
+
+    LunarCalendar.isHoliday =
+        function( _td ){
+            _td = $( _td );
+            return _td.hasClass( 'xiuxi' );
+        };
+
+    LunarCalendar.setComment =
+        function( _td, _customSet ){
+            var _comment;
+            _td = $( _td );
+
+            if( typeof _customSet == 'string' ){
+                _comment = _customSet;
+            }
+
+            if( typeof _comment != 'undefined' ){
+                _td.addClass( 'zhushi' );
+                LunarCalendar.addTitle( _td.find('a'), _comment );
+                _td.find('a').attr('comment', _comment);
+            }else{
+                alert( 1 );
+                _td.removeClass( 'zhushi' );
+                _td.find('a').removeAttr('comment');
+                LunarCalendar.addTitle( _td.find('a') );
+            }
+        };
+
+    LunarCalendar.getComment =
+        function( _td ){
+            var _r = '';
+            if( _td && _td.length ){
+                _r = _td.find('a').attr('comment') || '';
+            }
+            return _r;
+        };
+
+    LunarCalendar.addTitle =
+        function( _a, _title ){
+            var _hasDataTitle = _a.is( '[datatitle]' );
+
+            if( _title ){
+                _title = '==========comment==========\n'+_title;
+                if( _hasDataTitle ){
+                    _title = _a.attr('datatitle') + '\n' + _title;
+                }
+                _a.attr('title', _title);
+            }else{
+                if( _hasDataTitle ){
+                    _a.attr('title', _a.attr('datatitle') );
+                }else{
+                    _a.removeAttr('title');
+                }
+            }
+        };
+
+    LunarCalendar.isComment =
+        function( _td ){
+            _td = $( _td );
+            return _td.hasClass( 'zhushi' );
+        };
+
+    LunarCalendar.updateStatus =
+        function( _data ){
+            if( !_data ) return;
+            $('div.UXCLunarCalendar').each( function(){
+                var _p = $(this), _ins = _p.data('LunarCalendar'), _tmp;
+                var _min = 0, _max = 3000000000000;
+                if( _ins.getContainer().is('[nopreviousfestivals]') ){
+                    _min = new Date( _ins.getDate().getFullYear(), _ins.getDate().getMonth(), 1 ).getTime();
+                }
+                if( _ins.getContainer().is('[nonextmonthfestivals]') ){
+                    _max = new Date( _ins.getDate().getFullYear(), _ins.getDate().getMonth() + 1, 1 ).getTime();
+                }
+                UXC.log( _ins, _min, _max );
+
+                var _k, _item, _finalk, _itema, _itemtd;
+                for( var _k in _data ){
+                    _item = _data[_k];
+                    _finalk = _k + '';
+                    _finalk.length < 13 && (_finalk += new Array( 13 - _finalk.length + 1 ).join('0'));
+                    if( !(_finalk >= _min &&  _finalk < _max) ) continue;
+
+                    _itema = _p.find('table.UTableBorder td > a[date='+_finalk+']');
+                    if( !_itema.length ) continue;
+                    _itemtd = _itema.parent( 'td' );
+
+                    if( 'dayaction' in _item ){
+                        switch( _item.dayaction ){
+                            case 1:
+                                {
+                                    LunarCalendar.setWorkday( _itemtd );
+                                    break;
+                                }
+
+                            case 2:
+                                {
+                                    LunarCalendar.setHoliday( _itemtd );
+                                    break;
+                                }
+
+                            default:
+                                {
+                                    LunarCalendar.setWorkday(_itemtd, 0);
+                                    LunarCalendar.setHoliday(_itemtd, 0);
+                                    break;
+                                }
+                        }
+                    }
+
+                    if( 'comment' in _item ){
+                        LunarCalendar.setComment( _itemtd, _item['comment'] );
+                    }
+                }
+            });
         };
 
     LunarCalendar.prototype = {
@@ -154,6 +307,8 @@
             }
             return _r;
         }
+        , getContainer: function(){ return this._model.container; }
+        , getLayout: function(){ return this._view.layout; }
     }
     
     function View( _model ){
@@ -214,6 +369,8 @@
                     _beginDate.setDate( -(_beginWeekday-2) );
                 }
 
+                _dateObj.beginDate = this._model.cloneDate( _beginDate );
+
                 var today = new Date();
 
                 _ls.push('<tr>');
@@ -229,24 +386,33 @@
                     var lunarDate = LunarCalendar.gregorianToLunar( _beginDate );
                     var festivals = LunarCalendar.getFestival( lunarDate, _beginDate );
 
-                    if( !LunarCalendar.showFestivalOnlyCurrentMonth ){
+                    var _min = 0, _max = 3000000000000, _curtime = _beginDate.getTime();
+
+                    if( this._model.container.is('[nopreviousfestivals]') ){
+                        _min = new Date( _dateObj.date.getFullYear(), _dateObj.date.getMonth(), 1 ).getTime();
+                    }
+                    if( this._model.container.is('[nonextmonthfestivals]') ){
+                        _max = new Date( _dateObj.date.getFullYear(), _dateObj.date.getMonth() + 1, 1 ).getTime();
+                    }
+
+                    if( _curtime >= _min && _curtime < _max ){
                         if( festivals.isHoliday ){ _class.push( 'festival' ); _class.push('xiuxi'); }
                         if( festivals.isWorkday ) _class.push( 'shangban' );
                     }else{
-                        if( _dateObj.date.getMonth() === _beginDate.getMonth() ){
-                            if( festivals.isHoliday ){ _class.push( 'festival' ); _class.push('xiuxi'); }
-                            if( festivals.isWorkday ) _class.push( 'shangban' );
-                        }
+                        _class.push('nopointer');
+                        _class.push('unable');
                     }
 
                     if( this._model.isSameDay( today, _beginDate ) ) _class.push( 'today' );
                     _ls.push( '<td class="', _class.join(' '),'">'
                             ,'<a href="javascript:" date="', _beginDate.getTime(),'"><b>'
-                            , _beginDate.getDate(), '</b><label>', festivals.dayName,  '</label></a></td>' );
+                            , _beginDate.getDate(), '</b><label>', festivals.dayName,  '</label><div></div></a></td>' );
                     _beginDate.setDate( _beginDate.getDate() + 1 );
                     if( i % 7 === 0 && i != 42 ) _ls.push( '</tr><tr>' );
                 }
                 _ls.push('</tr>');
+                _beginDate.setDate( _beginDate.getDate() - 1 );
+                _dateObj.endDate = this._model.cloneDate( _beginDate );
 
                 _layout.find('table.UTableBorder tbody' ).html( $( _ls.join('') ) );
 
@@ -464,9 +630,22 @@
     });
 
     $(document).delegate( 'div.UXCLunarCalendar table.UTableBorder td', 'click', function(){
-        var _p = $(this);
-        $('div.UXCLunarCalendar table.UTableBorder td.cur').removeClass('cur');
-        _p.addClass('cur');
+        var _p = $(this), _selector = _p.parents( 'div.UXCLunarCalendar' );
+        if( !_selector.length ) return;
+        var _itema = _p.find('> a'), _curtime = _itema.attr('date'), _ins = _selector.data('LunarCalendar');
+
+        var _min = 0, _max = 3000000000000;
+        if( _ins.getContainer().is('[nopreviousfestivals]') ){
+            _min = new Date( _ins.getDate().getFullYear(), _ins.getDate().getMonth(), 1 ).getTime();
+        }
+        if( _ins.getContainer().is('[nonextmonthfestivals]') ){
+            _max = new Date( _ins.getDate().getFullYear(), _ins.getDate().getMonth() + 1, 1 ).getTime();
+        }
+
+        if( _curtime >= _min && _curtime < _max ){
+            $('div.UXCLunarCalendar table.UTableBorder td.cur').removeClass('cur');
+            _p.addClass('cur');
+        }
     });
 
 }(jQuery));
