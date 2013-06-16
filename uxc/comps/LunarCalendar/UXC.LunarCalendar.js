@@ -584,7 +584,7 @@
 
                 var today = new Date();
 
-                this._model.title();
+                //this._model.title();
 
                 _ls.push('<tr>');
                 for( i = 1; i <= 42; i++ ){
@@ -741,7 +741,7 @@
         , title: 
             function( _key, _title )
             {
-                if( !(_key && _title ) ){
+                if( !(_key || _title ) ){
                     this._titleObj = {};
                     return;
                 }
