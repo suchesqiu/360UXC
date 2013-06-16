@@ -216,7 +216,7 @@
                     if( _r && _r.errorno === 0 ){
                         var _td = LunarCalendar.getItemByTimestamp( _tm );
                         if( _td && _td.length ){
-                            LunarCalendar.setComment( _td, _comment );
+                            LunarCalendar.comment( _td, _comment );
                         }
                         _ins.close();
                         setCommentButtonStatus();
@@ -243,7 +243,7 @@
                         if( _r && _r.errorno === 0 ){
                             var _td = LunarCalendar.getItemByTimestamp( _tm );
                             if( _td && _td.length ){
-                                LunarCalendar.setComment( _td );
+                                LunarCalendar.comment( _td );
                             }
                             _ins.close();
                         }else{
