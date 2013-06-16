@@ -47,7 +47,6 @@
 
      cm: comment data, with commentaction = 1/2
      */
-
     $(document).ready( function(){
         var date = new Date(2013, 5, 1);
         $('div.js_LunarCalendar').each( function(){
@@ -92,7 +91,7 @@
             UXC.log( 'post result: ', _r );
             _r = $.parseJSON( _r );
             if( _r.errorno === 0 ){
-                UXC.LunarCalendar.setWorkday( item.td, _action );
+                UXC.LunarCalendar.workday( item.td, _action );
             }
             setWorkdayButtonStatus(); 
             setHolidayButtonStatus();
@@ -126,7 +125,7 @@
             UXC.log( 'post result: ', _r );
             _r = $.parseJSON( _r );
             if( _r.errorno === 0 ){
-                UXC.LunarCalendar.setHoliday( item.td, _action );
+                UXC.LunarCalendar.holiday( item.td, _action );
             }
             setWorkdayButtonStatus(); 
             setHolidayButtonStatus();
@@ -182,7 +181,7 @@
         var _p = $(this), _a = _p.parent('a'), _d;
         _d = new Date(); _d.setTime( _a.attr('date' ) );
         var _ptm = toPostTimestamp( _d ), _comment = _a.attr('comment');
-        commentDialog( '编辑注释 '+formatISODate(_d), './data/dataspan.php', _ptm, _comment, commentAddTpl );
+        commentDialog( '编辑注释 '+formatISODate(_d), './data/dataspan.php', _ptm, _comment, commentEditTpl );
     });
 
     function formatISODate( _date ){
@@ -200,7 +199,6 @@
             var _p = _selector.find('form');
 
             var _btn = $(this);
-            UXC.log( );
 
             if( _btn.hasClass('js_add') ){
                if( ! UXC.Valid.check( _p ) ){
@@ -288,7 +286,7 @@
 
         $.get( ['./data/dataspan.php?tmstart=', tmstart, '&tmover=', tmover, '&rnd=', new Date().getTime()].join('')
             , function( _r ){
-                UXC.log( _r );
+                //UXC.log( _r );
                 _r = $.parseJSON( _r );
                 if( !(_r && _r.data) ) return;
 
@@ -296,13 +294,7 @@
                 setWorkdayButtonStatus(); 
                 setHolidayButtonStatus();
                 setCommentButtonStatus();
-                /*
-                for( var k in _r.data ){
-                    var itema = $('div.UXCLunarCalendar table.UTableBorder td > a[date='+ k +'000]');
-                    UXC.log( itema.length );
-                }
-                */
-            });
+             });
     }
 
     $(document).delegate( 'div.UXCLunarCalendar table.UTableBorder td', 'click', function(){
@@ -384,7 +376,7 @@
                 <tr>
                     <td><button type="button" class="js_userpremonth">上个月</button></td>
                     <td>
-                        <div id="leftCalendar" class="js_LunarCalendar" nonextmonthfestivals hidecontrol></div>
+                        <div id="leftCalendar" class="js_LunarCalendar" nonextfestivals hidecontrol></div>
                     </td>
                     <td>
                         <div id="rightCalendar" class="js_LunarCalendar" nopreviousfestivals hidecontrol></div>

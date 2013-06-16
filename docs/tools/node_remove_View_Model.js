@@ -1,4 +1,4 @@
-var fs = require('fs-extra');
+var fs = require('fs');
 var dir = '../uxc_docs/classes';
 
 removeIgnoreItem( '../uxc_docs/index.html' );

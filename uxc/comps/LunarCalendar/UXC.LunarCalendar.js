@@ -8,26 +8,47 @@
      * , LunarCalendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签
      * <br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用LunarCalendar.init( _selector )
      * <br />_selector 可以是 新加载的容器, 也可以是新加载的所有input
+     * <p>
+     *      初始化时, 如果日历是添加到某个selector里, 那么selector可以指定一些设置属性
+     *      <br /><b>hidecontrol</b>: 如果设置该属性, 那么日历将隐藏操作控件
+     *      <br /><b>minvalue</b>: 设置日历的有效最小选择范围, 格式YYYY-mm-dd
+     *      <br /><b>maxvalue</b>: 设置日历的有效最大选择范围, 格式YYYY-mm-dd
+     *      <br /><b>nopreviousfestivals</b>: 不显示上个月的节日
+     *      <br /><b>nonextfestivals</b>: 不显示下个月的节日
+     * </p>
      * <p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>
      * <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
      * | <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.LunarCalendar.html' target='_blank'>API docs</a>
      * | <a href='http://uxc.btbtd.org/uxc/comps/LunarCalendar/_demo/' target='_blank'>demo link</a></p>
      * @namespace UXC
      * @class LunarCalendar
-     * @static
+     * @constructor
+     * @param   {selector}  _container  指定要显示日历的选择器, 如果不显示指定该值, 默认为 document.body
+     * @param   {date}      _date       日历的当前日期, 如果不显示指定该值, 默认为当天
      * @version dev 0.1
      * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
      * @date    2013-06-13
      */
-    function LunarCalendar( _container, _date, _params ){
+    function LunarCalendar( _container, _date ){
         _container && ( _container = $(_container) );
-        !(_container && _container.length) && ( _container = $(document) );
+        !(_container && _container.length) && ( _container = $(document.body) );
         !_date && ( _date = new Date() );
         _container.data('LunarCalendar', this);
 
         UXC.log( 'LunarCalendar.constructor' );
-
-        this._model = new Model( _container, _date, _params );
+        /**
+         * LunarCalendar 的数据模型对象
+         * @property    _model
+         * @type    UXC.LunarCalendar.Model
+         * @private
+         */
+        this._model = new Model( _container, _date );
+        /**
+         * LunarCalendar 的视图对像
+         * @property    _view
+         * @type    UXC.LunarCalendar.View
+         * @private
+         */
         this._view = new View( this._model );
         
         this._init();
@@ -60,8 +81,13 @@
             <script>UXC.LunarCalendar.defaultYearSpan = 20;</script>
      */
     LunarCalendar.defaultYearSpan = 20
-    LunarCalendar.nationalHolidays = {};
-
+    /**
+     * 从所有的LunarCalendar取得当前选中的日期
+     * <br /> 如果用户没有显式选中某个日期, 将尝试获取当前日期, 如果两者都没有返回undefined
+     * @method  getSelectedItemGlobal
+     * @static
+     * @return  {Object|undefined}  如果能获取到选中的日期将返回 { date: 当天日期, item: 选中的a, td: 选中的td }
+     */
     LunarCalendar.getSelectedItemGlobal = 
         function(){
             var _r;
@@ -79,7 +105,26 @@
             }
             return _r;
         };
-
+    /**
+     * 从所有的LunarCalendar取得当前选中日期的日期对象
+     * <br /> 如果用户没有显式选中某个日期, 将尝试获取当前日期, 如果两者都没有返回undefined
+     * @method  getSelectedDateGlobal
+     * @static
+     * @return  {date|undefined}    
+     */
+    LunarCalendar.getSelectedDateGlobal = 
+        function(){
+            var _r, _tmp = LunarCalendar.getSelectedItemGlobal();
+            if( _tmp && _tmp.date ) _r = _tmp.date;
+            return _r;
+        };
+    /**
+     * 从时间截获取选择器对象
+     * @method  getItemByTimestamp
+     * @static
+     * @param   {int}                   _tm     时间截, 如果时间截少于13位, 将自动补0到13位, ps: php时间截为10位
+     * @return  {selector|undefined}    td selector, 如果 td class unable 不可选, 将忽略
+     */
     LunarCalendar.getItemByTimestamp =
         function( _tm ){
             var _r, _tmp;
@@ -96,15 +141,15 @@
             }
             return _r;
         };
-
-    LunarCalendar.getSelectedDateGlobal = 
-        function(){
-            var _r, _tmp = LunarCalendar.getSelectedItemGlobal();
-            if( _tmp && _tmp.date ) _r = _tmp.date;
-            return _r;
-        };
-
-    LunarCalendar.setWorkday =
+    /**
+     * 添加或者清除工作日样式
+     * @method  workday
+     * @static
+     * @param   {selector}      _td         要设置为工作日状态的 td 
+     * @param   {any}           _customSet  如果 _customSet 为 undefined, 将设为工作日. 
+     *                                      如果 _customSet 非 undefined, 那么根据真假值判断清除工作日/添加工作日
+     */
+    LunarCalendar.workday =
         function( _td, _customSet ){
             _td = $( _td );
             if( typeof _customSet != 'undefined' ){
@@ -112,30 +157,55 @@
                 !_customSet && _td.removeClass( 'shangban' );
             }else _td.removeClass( 'xiuxi' ).addClass( 'shangban' );
         };
-
+    /**
+     * 判断 td 是否为工作日状态
+     * @method  isWorkday
+     * @static
+     * @param   {selector}  _td 
+     * @return  {bool}
+     */
     LunarCalendar.isWorkday =
         function( _td ){
             _td = $( _td );
             return _td.hasClass( 'shangban' );
         };
-
-    LunarCalendar.setHoliday =
+    /**
+     * 添加或者清除假日样式
+     * @method  holiday
+     * @static
+     * @param   {selector}      _td         要设置为假日状态的 td 
+     * @param   {any}           _customSet  如果 _customSet 为 undefined, 将设为假日. 
+     *                                      如果 _customSet 非 undefined, 那么根据真假值判断清除假日/添加假日
+     */
+    LunarCalendar.holiday =
         function( _td, _customSet ){
             _td = $( _td );
             if( typeof _customSet != 'undefined' ){
                 _customSet && _td.addClass( 'xiuxi' ).removeClass( 'shangban' );
                 !_customSet && _td.removeClass( 'xiuxi' );
             }else _td.addClass( 'xiuxi' ).removeClass( 'shangban' );
-            
         };
-
+    /**
+     * 判断 td 是否为假日状态
+     * @method  isHoliday
+     * @static
+     * @param   {selector}  _td 
+     * @return  {bool}
+     */
     LunarCalendar.isHoliday =
         function( _td ){
             _td = $( _td );
             return _td.hasClass( 'xiuxi' );
         };
-
-    LunarCalendar.setComment =
+    /**
+     * 添加或者清除注释
+     * @method  comment
+     * @static
+     * @param   {selector}      _td         要设置注释的 td 
+     * @param   {string|bool}   _customSet  如果 _customSet 为 undefined, 将清除注释. 
+     *                                      如果 _customSet 为 string, 将添加注释
+     */
+    LunarCalendar.comment =
         function( _td, _customSet ){
             var _comment;
             _td = $( _td );
@@ -146,16 +216,33 @@
 
             if( typeof _comment != 'undefined' ){
                 _td.addClass( 'zhushi' );
-                LunarCalendar.addTitle( _td.find('a'), _comment );
+                LunarCalendar.commentTitle( _td, _comment );
                 _td.find('a').attr('comment', _comment);
             }else{
-                alert( 1 );
                 _td.removeClass( 'zhushi' );
                 _td.find('a').removeAttr('comment');
-                LunarCalendar.addTitle( _td.find('a') );
+                LunarCalendar.commentTitle( _td );
             }
         };
-
+    /**
+     * 判断 td 是否为注释状态
+     * @method  isComment
+     * @static
+     * @param   {selector}  _td 
+     * @return  {bool}
+     */
+    LunarCalendar.isComment =
+        function( _td ){
+            _td = $( _td );
+            return _td.hasClass( 'zhushi' );
+        };
+    /**
+     * 返回 td 的注释
+     * @method  getComment
+     * @static
+     * @param   {selector}  _td 
+     * @return  {string}
+     */
     LunarCalendar.getComment =
         function( _td ){
             var _r = '';
@@ -164,13 +251,28 @@
             }
             return _r;
         };
-
-    LunarCalendar.addTitle =
-        function( _a, _title ){
-            var _hasDataTitle = _a.is( '[datatitle]' );
+    /**
+     * 用于分隔默认title和注释的分隔符
+     * @property    commentSeparator
+     * @type    string
+     * @default ==========comment==========
+     * @static
+     */
+    LunarCalendar.commentSeparator = '==========comment==========';
+    /**
+     * 把注释添加到 a title 里
+     * @method  commentTitle
+     * @static
+     * @param   {selector}          _td     要设置注释的 a 父容器 td 
+     * @param   {string|undefined}  _title  如果 _title 为真, 将把注释添加到a title里. 
+     *                                      如果 _title 为假, 将从 a title 里删除注释
+     */
+    LunarCalendar.commentTitle =
+        function( _td, _title ){
+            var _a = _td.find( 'a' ), _hasDataTitle = _a.is( '[datatitle]' );
 
             if( _title ){
-                _title = '==========comment==========\n'+_title;
+                _title = LunarCalendar.commentSeparator + '\n'+_title;
                 if( _hasDataTitle ){
                     _title = _a.attr('datatitle') + '\n' + _title;
                 }
@@ -183,13 +285,37 @@
                 }
             }
         };
-
-    LunarCalendar.isComment =
-        function( _td ){
-            _td = $( _td );
-            return _td.hasClass( 'zhushi' );
-        };
-
+    /**
+     * 从JSON数据更新日历状态( 工作日, 休息日, 注释 )
+     * <br /> 注意, 该方法更新页面上所有的 LunarCalendar 
+     * @method  updateStatus
+     * @static
+     * @param   {Object}    _data   { phpTimestamp:{ dayaction: 0|1|2, comment: string}, ... }
+     *<pre>      
+     *          dayaction: 
+     *          0: delete workday/holiday
+     *          1: workday
+     *          2: holiday
+     *</pre>
+     * @example
+     *      LunarCalendar.updateStatus(  {
+                                            "1369843200": {
+                                                "dayaction": 2,
+                                                "comment": "dfdfgdsfgsdfgsdg<b></b>'\"'asdf\"\"'sdf"
+                                            },
+                                            "1370966400": {
+                                                "dayaction": 0,
+                                                "comment": "asdfasdfsa"
+                                            },
+                                            "1371139200": {
+                                                "dayaction": 1
+                                            },
+                                            "1371225600": {
+                                                "dayaction": 0,
+                                                "comment": "dddd"
+                                            }
+                                        });
+     */
     LunarCalendar.updateStatus =
         function( _data ){
             if( !_data ) return;
@@ -199,10 +325,10 @@
                 if( _ins.getContainer().is('[nopreviousfestivals]') ){
                     _min = new Date( _ins.getDate().getFullYear(), _ins.getDate().getMonth(), 1 ).getTime();
                 }
-                if( _ins.getContainer().is('[nonextmonthfestivals]') ){
+                if( _ins.getContainer().is('[nonextfestivals]') ){
                     _max = new Date( _ins.getDate().getFullYear(), _ins.getDate().getMonth() + 1, 1 ).getTime();
                 }
-                UXC.log( _ins, _min, _max );
+                //UXC.log( _ins, _min, _max );
 
                 var _k, _item, _finalk, _itema, _itemtd;
                 for( var _k in _data ){
@@ -219,76 +345,112 @@
                         switch( _item.dayaction ){
                             case 1:
                                 {
-                                    LunarCalendar.setWorkday( _itemtd );
+                                    LunarCalendar.workday( _itemtd );
                                     break;
                                 }
 
                             case 2:
                                 {
-                                    LunarCalendar.setHoliday( _itemtd );
+                                    LunarCalendar.holiday( _itemtd );
                                     break;
                                 }
 
                             default:
                                 {
-                                    LunarCalendar.setWorkday(_itemtd, 0);
-                                    LunarCalendar.setHoliday(_itemtd, 0);
+                                    LunarCalendar.workday(_itemtd, 0);
+                                    LunarCalendar.holiday(_itemtd, 0);
                                     break;
                                 }
                         }
                     }
 
                     if( 'comment' in _item ){
-                        LunarCalendar.setComment( _itemtd, _item['comment'] );
+                        LunarCalendar.comment( _itemtd, _item['comment'] );
                     }
                 }
             });
         };
 
     LunarCalendar.prototype = {
+        /**
+         * LunarCalendar 内部初始化
+         * @method  _init
+         * @private
+         */
         _init:
             function(){
                 this._view.layout.data('LunarCalendar', this);
                 
                 return this;
             }    
-
+        /**
+         * 更新日历视图为自定义的日期
+         * @method  update
+         * @param   {date}  _date   更新日历视图为 _date 所在日期的月份
+         */
         , update:
             function( _date ){
                 if( !_date ) return;
                 this._view.initLayout( _date );
             }
-
+        /**
+         * 显示下一个月的日期
+         * @method  nextMonth
+         */
         , nextMonth: 
             function(){
                 var _date = this._model.getDate().date;
                 _date.setMonth( _date.getMonth() + 1 );
                 this._view.initLayout( _date );
             }
-
+        /**
+         * 显示上一个月的日期
+         * @method  preMonth
+         */
         , preMonth:
             function(){
                 var _date = this._model.getDate().date;
                 _date.setMonth( _date.getMonth() - 1 );
                 this._view.initLayout( _date );
             }
-
+        /**
+         * 显示下一年的日期
+         * @method  nextYear
+         */
         , nextYear: 
             function(){
                 var _date = this._model.getDate().date;
                 _date.setFullYear( _date.getFullYear() + 1 );
                 this._view.initLayout( _date );
             }
+        /**
+         * 显示上一年的日期
+         * @method  preYear
+         */
         , preYear: 
             function(){
                 var _date = this._model.getDate().date;
                 _date.setFullYear( _date.getFullYear() - 1 );
                 this._view.initLayout( _date );
             }
-
+        /**
+         * 获取默认时间对象
+         * @method  getDate
+         * @return  {date}  
+         */
         , getDate: function(){ return this._model.getDate().date;  }
+        /**
+         * 获取所有的默认时间对象
+         * @method getAllDate
+         * @return  {object}    { date: 默认时间, minvalue: 有效最小时间
+         *                        , maxvalue: 有效最大时间, beginDate: 日历的起始时间, endDate: 日历的结束时间 }
+         */
         , getAllDate: function(){ return this._model.getDate();  }
-
+        /**
+         * 获取当前选中的日期, 如果用户没有显式选择, 将查找当前日期, 如果两者都没有的话返回undefined
+         * @method  getSelectedDate
+         * @return  {date}
+         */
         , getSelectedDate: function(){
             var _r;
             this._view.layout.find( 'td.cur a').each( function(){
@@ -307,18 +469,56 @@
             }
             return _r;
         }
+        /**
+         * 获取初始化日历的选择器对象
+         * @method  getContainer
+         * @return  selector
+         */
         , getContainer: function(){ return this._model.container; }
+        /**
+         * 获取日历的主选择器对象
+         * @method  getLayout
+         * @return  selector
+         */
         , getLayout: function(){ return this._view.layout; }
+        /**
+         * 判断日历是否隐藏操作控件
+         * @method  isHideControl
+         * @return  bool
+         */
+        , isHideControl: function(){ return this._model.hideControl; }
     }
-    
+    /**
+     * LunarCalendar 视图类
+     * @namespace   UXC.LunarCalendar
+     * @class   View
+     * @constructor
+     * @param   {UXC.LunarCalendar.Model}   _model
+     */
     function View( _model ){
+        /**
+         * LunarCalendar model 对象
+         * @property    _model
+         * @type    UXC.LunarCalendar.Model
+         * @private
+         */
         this._model = _model;
+        /**
+         * LunarCalendar 的主容器
+         * @property    layout
+         * @type    selector
+         */
         this.layout;
 
         this._init();
     }
     
     View.prototype = {
+        /**
+         * 初始化 View
+         * @method  _init
+         * @private
+         */
         _init:
             function()
             {
@@ -326,7 +526,11 @@
                 this.initLayout();
                 return this;
             }
-
+        /**
+         * 初始化日历外观
+         * @method  initLayout
+         * @param   {date}  _date
+         */
         , initLayout:
             function( _date ){
                 var _dateObj = this._model.getDate();
@@ -337,12 +541,20 @@
                 this.initMonth( _dateObj );
                 this.initMonthDate( _dateObj );
             }
-
+        /**
+         * 初始化年份
+         * @method  initYear
+         * @param   {DateObject}    _dateObj
+         */
         , initYear:
             function( _dateObj ){
                 this.layout.find('button.UYear').html(  _dateObj.date.getFullYear() );
             }
-
+        /**
+         * 初始化月份
+         * @method  initMonth
+         * @param   {DateObject}    _dateObj
+         */
         , initMonth:
             function( _dateObj ){
                 this.layout.find('button.UMonth').html(  _dateObj.date.getMonth() + 1 + '月' );
@@ -351,11 +563,10 @@
          * 初始化月份的所有日期
          * @method  _logic.initMonthDate
          * @param   {DateObjects}   _dateObj   保存所有相关日期的对象
-         * @private
          */
         , initMonthDate:
             function( _dateObj ){
-                var _layout = this.layout;
+                var _p = this, _layout = this.layout;
                 var _maxday = this._model.maxDayOfMonth( _dateObj.date ), _weekday = _dateObj.date.getDay() || 7
                     , _sumday = _weekday + _maxday, _row = 6, _ls = [], _premaxday, _prebegin
                     , _tmp, i, _class;
@@ -373,6 +584,8 @@
 
                 var today = new Date();
 
+                this._model.title();
+
                 _ls.push('<tr>');
                 for( i = 1; i <= 42; i++ ){
                     _class = [];
@@ -384,14 +597,34 @@
                         _class.push( 'unable' );
 
                     var lunarDate = LunarCalendar.gregorianToLunar( _beginDate );
-                    var festivals = LunarCalendar.getFestival( lunarDate, _beginDate );
+                    var festivals = LunarCalendar.getFestivals( lunarDate, _beginDate );
 
                     var _min = 0, _max = 3000000000000, _curtime = _beginDate.getTime();
+                    var _title = [ _beginDate.getFullYear(), '年 '
+                                    , _beginDate.getMonth() + 1, '月 '
+                                    , _beginDate.getDate(), '日', '\n' ];
+                    _title.push( '农历 ', lunarDate.yue, lunarDate.ri );
+                    _title.push( ' ', lunarDate.ganzhi, '【', lunarDate.shengxiao, '】年' );
+
+                    if( festivals && festivals.festivals.length ){
+                        var _festivalsAr = [];
+                        $.each( festivals.festivals, function( _ix, _item ){
+                            //UXC.log( _item );
+                            if( _item.fullname ){
+                                _festivalsAr = _festivalsAr.concat( _item.fullname.split(/[\s]+/) );
+                            }
+                        });
+
+                        if( _festivalsAr.length ){
+                            _title.push( '\n节日: ' );
+                            _title.push( _festivalsAr.join( ', ' ) );
+                        }
+                    }
 
                     if( this._model.container.is('[nopreviousfestivals]') ){
                         _min = new Date( _dateObj.date.getFullYear(), _dateObj.date.getMonth(), 1 ).getTime();
                     }
-                    if( this._model.container.is('[nonextmonthfestivals]') ){
+                    if( this._model.container.is('[nonextfestivals]') ){
                         _max = new Date( _dateObj.date.getFullYear(), _dateObj.date.getMonth() + 1, 1 ).getTime();
                     }
 
@@ -403,10 +636,14 @@
                         _class.push('unable');
                     }
 
+
+                    this._model.title( _beginDate.getTime(), _title.join('') );
+
                     if( this._model.isSameDay( today, _beginDate ) ) _class.push( 'today' );
                     _ls.push( '<td class="', _class.join(' '),'">'
-                            ,'<a href="javascript:" date="', _beginDate.getTime(),'"><b>'
-                            , _beginDate.getDate(), '</b><label>', festivals.dayName,  '</label><div></div></a></td>' );
+                            ,'<a href="javascript:" date="', _beginDate.getTime(),'">'
+                            ,'<b>', _beginDate.getDate(), '</b>'
+                            ,'<label>', festivals.dayName,  '</label><div></div></a></td>' );
                     _beginDate.setDate( _beginDate.getDate() + 1 );
                     if( i % 7 === 0 && i != 42 ) _ls.push( '</tr><tr>' );
                 }
@@ -414,21 +651,83 @@
                 _beginDate.setDate( _beginDate.getDate() - 1 );
                 _dateObj.endDate = this._model.cloneDate( _beginDate );
 
-                _layout.find('table.UTableBorder tbody' ).html( $( _ls.join('') ) );
+                _layout.find('table.UTableBorder tbody' ).html( $( _ls.join('') ) )
+                    .find('td').each( function(){
+                        _p.addTitle( $(this) );
+                    });
+
+                this.hideControl();
 
                 UXC.log( _prebegin, _premaxday, _maxday, _weekday, _sumday, _row );
             }
-
+        /**
+         * 把具体的公历和农历日期写进a标签的title里
+         * @method  addTitle
+         * @param   {selector}  _td
+         */
+        , addTitle:
+            function( _td ){
+                var _a = _td.find('a'), _tm = _a.attr( 'date' ), _title = this._model.title( _tm );
+                _a.attr('title', _title ).attr('datatitle', _title);
+            }
+        /**
+         * 检查是否要隐藏操作控件
+         * @method  hideControl
+         */
+        , hideControl: 
+            function(){
+                if( this._model.hideControl ){
+                    this.layout.find('select, button.UPreYear, button.UPreMonth, button.UNextMonth, button.UNextYear').hide();
+                    this.layout.find('table.UHeader').addClass('nopointer');
+                }
+            }
     };
-
-    function Model( _container, _date, _params ){
+    /**
+     * LunarCalendar 数据模型类
+     * @namespace UXC.LunarCalendar
+     * @class   Model
+     * @constructor
+     * @param   {selector}      _container
+     * @param   {date}          _date
+     */
+    function Model( _container, _date ){
+        /**
+         * LunarCalendar 所要显示的selector
+         * @property    {selector}  container
+         * @type    selector
+         * @default document.body
+         */
         this.container = _container;
+        /**
+         * 初始化时的时期
+         * @property    date
+         * @type    date    
+         * @default new Date()
+         */
         this.date = _date;
-        this.selector;
+        /**
+         * 日历默认模板
+         * @property    tpl
+         * @type    string
+         * @default UXC.LunarCalendar._deftpl
+         */
         this.tpl;
+        /**
+         * 显示日历时所需要的所有日期对象
+         * @property    dateObj
+         * @type    Object
+         */
         this.dateObj;
+        /**
+         * a 标签 title 的临时存储对象
+         * @property    _titleObj
+         * @type    Object
+         * @default {}
+         * @private
+         */
+        this._titleObj = {};
+        this.hideControl;
 
-        if( _params ) for( var k in _params ) this[k] = _params[k];
         this._init();
     }
     
@@ -436,7 +735,18 @@
         _init:
             function(){
                 this.tpl = UXC.LunarCalendar.tpl || _deftpl;
+                this.container.is( '[hidecontrol]' ) && ( this.hideControl = true );
                 return this;
+            }
+        , title: 
+            function( _key, _title )
+            {
+                if( !(_key && _title ) ){
+                    this._titleObj = {};
+                    return;
+                }
+                _title && ( this._titleObj[_key ] = _title );
+                return this._titleObj[_key];
             }
         /**
          * 获取初始日期对象
@@ -448,7 +758,7 @@
             function(){
                 if( this.dateObj ) return this.dateObj;
                 var _selector = this.container;
-                var _r = { date: 0, minvalue: 0, maxvalue: 0, initMinvalue: 0, initMaxvalue: 0 }, _tmp;
+                var _r = { date: 0, minvalue: 0, maxvalue: 0 }, _tmp;
 
                 if( _tmp = this.parseDate( _selector.attr('defaultdate') )) _r.date = _tmp;
                 else _r.date = new Date();
@@ -457,19 +767,6 @@
                 _r.minvalue = this.parseDate( _selector.attr('minvalue') );
                 _r.maxvalue = this.parseDate( _selector.attr('maxvalue') );
                 
-                _r.minvalue && ( _r.initMinvalue = this.cloneDate( _r.minvalue ) );
-                _r.maxvalue && ( _r.initMaxvalue = this.cloneDate( _r.maxvalue ) );
-
-                if( !_r.initMinvalue ){
-                    _r.initMinvalue = this.cloneDate( _r.date );
-                    _r.initMinvalue.setFullYear( _r.initMinvalue.getFullYear() - LunarCalendar.defaultYearSpan );
-                }
-
-                if( !_r.initMaxvalue ){
-                    _r.initMaxvalue = this.cloneDate( _r.date );
-                    _r.initMaxvalue.setFullYear( _r.initMaxvalue.getFullYear() + LunarCalendar.defaultYearSpan );
-                }
-
                 return this.dateObj = _r;
             }
         /**
@@ -578,15 +875,185 @@
             }
 
     };
+    /**
+     * 监听上一年按钮
+     */
+    $(document).delegate( 'div.UXCLunarCalendar button.UPreYear', 'click', function(){
+        var _p = $(this), _selector = _p.parents( 'div.UXCLunarCalendar' );
+        if( !_selector.length ) return;
+        var _ins = _selector.data('LunarCalendar');
+        _ins.preYear();
+    });
+    /**
+     * 监听上一月按钮
+     */
+    $(document).delegate( 'div.UXCLunarCalendar button.UPreMonth', 'click', function(){
+        var _p = $(this), _selector = _p.parents( 'div.UXCLunarCalendar' );
+        if( !_selector.length ) return;
+        var _ins = _selector.data('LunarCalendar');
+        _ins.preMonth();
+    });
+    /**
+     * 监听下一月按钮
+     */
+    $(document).delegate( 'div.UXCLunarCalendar button.UNextMonth', 'click', function(){
+        var _p = $(this), _selector = _p.parents( 'div.UXCLunarCalendar' );
+        if( !_selector.length ) return;
+        var _ins = _selector.data('LunarCalendar');
+        _ins.nextMonth();
+    });
+    /**
+     * 监听下一年按钮
+     */
+    $(document).delegate( 'div.UXCLunarCalendar button.UNextYear', 'click', function(){
+        var _p = $(this), _selector = _p.parents( 'div.UXCLunarCalendar' );
+        if( !_selector.length ) return;
+        var _ins = _selector.data('LunarCalendar');
+        _ins.nextYear();
+    });
+    /**
+     * 监听年份按钮, 是否要显示年份列表 
+     */
+    $(document).delegate( 'div.UXCLunarCalendar button.UYear', 'click', function( _evt ){
+        _evt.stopPropagation();
+        var _p = $(this), _selector = _p.parents( 'div.UXCLunarCalendar' );
+        if( !_selector.length ) return;
+        var _ins = _selector.data('LunarCalendar');
+        if( _ins.isHideControl() ) return;
+        var _date = _ins.getDate(), _year = _date.getFullYear();
+        var _start = _date.getFullYear() - LunarCalendar.defaultYearSpan
+            , _over = _date.getFullYear() + LunarCalendar.defaultYearSpan;
+        var _r = [], _selected = '';
+        $('div.UXCLunarCalendar select').hide();
 
+        for( ; _start < _over; _start++ ){
+            if( _start === _year ) _selected = ' selected '; else _selected = ''
+            _r.push( '<option value="', _start, '"', _selected ,'>', _start, '</option>' );
+        }
+        var _scrollTop = LunarCalendar.defaultYearSpan / 2 * 18;
+        _ins.getLayout().find('select.UYearList').html(_r.join('')).show().prop('size', 20).scrollTop( _scrollTop );
+    });
+    /**
+     * 监听月份按钮, 是否要显示月份列表 
+     */
+    $(document).delegate( 'div.UXCLunarCalendar button.UMonth', 'click', function( _evt ){
+        _evt.stopPropagation();
+        var _p = $(this), _selector = _p.parents( 'div.UXCLunarCalendar' );
+        if( !_selector.length ) return;
+        var _ins = _selector.data('LunarCalendar');
+        if( _ins.isHideControl() ) return;
+        var _date = _ins.getDate(), _year = _date.getFullYear();
+        $('div.UXCLunarCalendar select').hide();
+
+        _ins.getLayout().find('select.UMonthList').val( _date.getMonth() ).prop('size', 12).show();
+    });
+    /**
+     * 监听年份列表选择状态
+     */
+    $(document).delegate( 'div.UXCLunarCalendar select.UYearList', 'change', function(){
+        var _p = $(this), _layout = _p.parents( 'div.UXCLunarCalendar' )
+            , _ins = _layout.data('LunarCalendar'), _date = _ins.getDate();
+
+        _date.setFullYear( _p.val() );
+        _ins.update( _date );
+    });
+    /**
+     * 监听月份列表选择状态
+     */
+    $(document).delegate( 'div.UXCLunarCalendar select.UMonthList', 'change', function(){
+        var _p = $(this), _layout = _p.parents( 'div.UXCLunarCalendar' )
+            , _ins = _layout.data('LunarCalendar'), _date = _ins.getDate();
+
+        _date.setMonth( _p.val() );
+        _ins.update( _date );
+    });
+    /**
+     * 监听日期单元格点击事件
+     */
+    $(document).delegate( 'div.UXCLunarCalendar table.UTableBorder td', 'click', function(){
+        var _p = $(this), _selector = _p.parents( 'div.UXCLunarCalendar' );
+        if( !_selector.length ) return;
+        if( _p.hasClass('unable') ) return;
+        var _itema = _p.find('> a'), _curtime = _itema.attr('date'), _ins = _selector.data('LunarCalendar');
+
+        var _min = 0, _max = 3000000000000;
+        if( _ins.getContainer().is('[nopreviousfestivals]') ){
+            _min = new Date( _ins.getDate().getFullYear(), _ins.getDate().getMonth(), 1 ).getTime();
+        }
+        if( _ins.getContainer().is('[nonextfestivals]') ){
+            _max = new Date( _ins.getDate().getFullYear(), _ins.getDate().getMonth() + 1, 1 ).getTime();
+        }
+
+        if( _curtime >= _min && _curtime < _max ){
+            $('div.UXCLunarCalendar table.UTableBorder td.cur').removeClass('cur');
+            _p.addClass('cur');
+        }
+    });
+    /**
+     * 监听body点击事件, 点击时隐藏日历控件的年份和月份列表
+     */
+    $(document).on('click', function(){
+        $('div.UXCLunarCalendar select').hide();
+    });
+    /**
+     * DOM 加载完毕后, 初始化日历组件
+     * @event   dom ready
+     * @private
+     */
+    $(document).ready( function($evt){
+        if( LunarCalendar.autoInit ){
+            setTimeout( function(){
+                $('div.js_LunarCalendar, td.js_LunarCalendar, li.js_LunarCalendar').each( function(){
+                    new LunarCalendar( $(this) );
+                });
+            }, 100);
+        }
+    });
+    /**
+     * LunarCalendar 日历默认模板
+     * @property    _deftpl
+     * @type string
+     * @static
+     * @private
+     */
     var _deftpl = 
         [
         '<div id="UXCLunarCalendar" class="UXCLunarCalendar">\n'
         ,'    <div class="UXCLunarCalendar_wrapper">\n'
-        ,'        <div class="UHeader">\n'
-        ,'            <button type="button" class="UButton UYear">2013</button>\n'
-        ,'            <button type="button" class="UButton UMonth">1月</button>\n'
-        ,'        </div>\n'
+        ,'<table class="UHeader">\n'
+        ,'    <tbody>\n'
+        ,'        <tr>\n'
+        ,'            <td class="ULeftControl">\n'
+        ,'                <button type="button" class="UButton UPreYear">&nbsp;&lt;&lt;&nbsp;</button>\n'
+        ,'                <button type="button" class="UButton UPreMonth">&nbsp;&lt;&nbsp;</button>\n'
+        ,'            </td>\n'
+        ,'            <td class="UMidControl">\n'
+        ,'                <button type="button" class="UButton UYear">2013</button>\n'
+        ,'                <select class="UYearList">\n'
+        ,'                </select>\n'
+        ,'                <button type="button" class="UButton UMonth">1月</button>\n'
+        ,'                <select class="UMonthList">\n'
+        ,'                    <option value=\'0\'>一月</option>\n'
+        ,'                    <option value=\'1\'>二月</option>\n'
+        ,'                    <option value=\'2\'>三月</option>\n'
+        ,'                    <option value=\'3\'>四月</option>\n'
+        ,'                    <option value=\'4\'>五月</option>\n'
+        ,'                    <option value=\'5\'>六月</option>\n'
+        ,'                    <option value=\'6\'>七月</option>\n'
+        ,'                    <option value=\'7\'>八月</option>\n'
+        ,'                    <option value=\'8\'>九月</option>\n'
+        ,'                    <option value=\'9\'>十月</option>\n'
+        ,'                    <option value=\'10\'>十一月</option>\n'
+        ,'                    <option value=\'11\'>十二月</option>\n'
+        ,'                </select>\n'
+        ,'            </td>\n'
+        ,'            <td class="URightControl">\n'
+        ,'                <button type="button" class="UButton UNextMonth">&nbsp;&gt;&nbsp;</button>\n'
+        ,'                <button type="button" class="UButton UNextYear">&nbsp;&gt;&gt;&nbsp;</button>\n'
+        ,'            </td>\n'
+        ,'        </tr>\n'
+        ,'    </tbody>\n'
+        ,'</table>\n'
         ,'        <table class="UTable UTableThead">\n'
         ,'            <thead>\n'
         ,'                <tr>\n'
@@ -616,37 +1083,6 @@
         ,'    </div>\n'
         ,'</div>\n'
         ].join('');    
-    /**
-     * DOM 加载完毕后, 初始化日历组件相关事件
-     * @event   dom ready
-     * @private
-     */
-    $(document).ready( function($evt){
-        setTimeout( function(){
-            $('div.js_LunarCalendar, td.js_LunarCalendar, li.js_LunarCalendar').each( function(){
-                new LunarCalendar( $(this) );
-            });
-        }, 100);
-    });
-
-    $(document).delegate( 'div.UXCLunarCalendar table.UTableBorder td', 'click', function(){
-        var _p = $(this), _selector = _p.parents( 'div.UXCLunarCalendar' );
-        if( !_selector.length ) return;
-        var _itema = _p.find('> a'), _curtime = _itema.attr('date'), _ins = _selector.data('LunarCalendar');
-
-        var _min = 0, _max = 3000000000000;
-        if( _ins.getContainer().is('[nopreviousfestivals]') ){
-            _min = new Date( _ins.getDate().getFullYear(), _ins.getDate().getMonth(), 1 ).getTime();
-        }
-        if( _ins.getContainer().is('[nonextmonthfestivals]') ){
-            _max = new Date( _ins.getDate().getFullYear(), _ins.getDate().getMonth() + 1, 1 ).getTime();
-        }
-
-        if( _curtime >= _min && _curtime < _max ){
-            $('div.UXCLunarCalendar table.UTableBorder td.cur').removeClass('cur');
-            _p.addClass('cur');
-        }
-    });
 
 }(jQuery));
 

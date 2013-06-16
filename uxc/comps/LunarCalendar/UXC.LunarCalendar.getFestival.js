@@ -1,7 +1,17 @@
 (function($){
-    UXC.LunarCalendar.getFestival = getFestival;
-
-    function getFestival( _lunarDate, _greDate ){
+    UXC.LunarCalendar.getFestivals = getFestivals;
+    /**
+     * 返回农历和国历的所在日期的所有节日
+     * <br /> 假日条目数据样例: { 'name': '春节', 'fullname': '春节', 'priority': 8 }
+     * <br /> 返回数据格式: { 'dayName': 农历日期/节日名, 'festivals': 节日数组, 'isHoliday': 是否为假日 }
+     * @method getFestivals
+     * @static
+     * @for UXC.LunarCalendar
+     * @param   {Object}    _lunarDate      农历日期对象, 由UXC.LunarCalendar.gregorianToLunar 获取
+     * @param   {Date}      _greDate        日期对象
+     * @return  Object    
+     */
+    function getFestivals( _lunarDate, _greDate ){
         var _r = { 'dayName': '', 'festivals': [], 'isHoliday': false }
             , _lunarDay = [ intPad(_lunarDate.month), intPad(_lunarDate.day) ].join('')
             , _greDay = [ intPad(_greDate.getMonth()+1), intPad(_greDate.getDate()) ].join('')
@@ -9,7 +19,7 @@
             ;
 
         _r.dayName = _lunarDate.ri;
-        if( _r.dayName == '初一' ) _r.dayName = _lunarDate.yue + '月';
+        if( _r.dayName == '初一' ) _r.dayName = _lunarDate.yue;
 
         if( _greDay in gregorianFes ) _r.festivals.push( gregorianFes[ _greDay ] );
         if( _lunarDay in lunarFes ) {
@@ -49,7 +59,7 @@
             for( var i = 0, j = _r.festivals.length; i < j; i++ ){
                 if( _r.festivals[i].isWorkday ){ _r.isWorkday = true; break; }
             }
-        }
+       }
 
         /*UXC.log( _lunarDay, _greDay, _r.festivals.length );*/
 

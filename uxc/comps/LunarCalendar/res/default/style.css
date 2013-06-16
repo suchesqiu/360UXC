@@ -3,6 +3,11 @@ div.UXCLunarCalendar, div.UXCLunarCalendar *{
     margin: 0px!important;
 }
 
+div.UXCLunarCalendar a, div.UXCLunarCalendar button{
+    outline: none;
+    blr:expression(this.onFocus=this.blur());
+}
+
 div.UXCLunarCalendar{
     background-color: #fff!important;
     width: 352px!important;
@@ -11,17 +16,23 @@ div.UXCLunarCalendar{
 }
 
 div.UXCLunarCalendar_wrapper{
-    position: relative;
 }
 
 div.UXCLunarCalendar th{
     padding: 5px 4px!important;
 }
 
-div.UXCLunarCalendar .UHeader{
+div.UXCLunarCalendar .UHeader td{
     height: 34px;
     line-height: 34px;
+    *height: 30px;
+    *line-height: 30px;
+    _height: 30px;
+    _line-height: 30px;
     background-color:#92D055!important;
+    width: 100%;
+    margin: 0!important;
+    padding: 0!important;
 }
 
 div.UXCLunarCalendar .UHeader button{
@@ -30,6 +41,50 @@ div.UXCLunarCalendar .UHeader button{
     color:#fff!important;
     font-size: 14px;
     margin-right:5px!important;
+    cursor: pointer;
+}
+
+div.UXCLunarCalendar .UHeader td.ULeftControl button, div.UXCLunarCalendar .UHeader td.URightControl button{
+    margin-right:0px!important;
+}
+
+div.UXCLunarCalendar .UHeader td.ULeftControl{
+    width: 20%;
+    text-align: left!important;
+}
+
+div.UXCLunarCalendar .UHeader td.ULeftControl .UPreYear{
+}
+
+div.UXCLunarCalendar .UYearList, div.UXCLunarCalendar .UMonthList{
+    position: absolute;
+    z-index: 2;
+    text-align: left!important;
+    padding: 0px!important;
+    margin: 0px!important;
+    width: 80px;
+    top: 7px;
+    display: none;
+}
+
+div.UXCLunarCalendar .UYearList{
+    left: 25px;
+}
+
+div.UXCLunarCalendar .UMonthList{
+    left: 110px;
+}
+
+div.UXCLunarCalendar .UHeader td.UMidControl{
+    position: relative;
+    width: 60%;
+    text-align: center!important;
+    z-index: 25001;
+}
+
+div.UXCLunarCalendar .UHeader td.URightControl{
+    width: 20%;
+    text-align: right!important;
 }
 
 div.UXCLunarCalendar table a{
@@ -234,7 +289,7 @@ div.UXCLunarCalendar a{
     blr:expression(this.onFocus=this.blur());
 }
 
-div.UXCLunarCalendar td.nopointer a{
+div.UXCLunarCalendar .nopointer a, div.UXCLunarCalendar .nopointer button{
     cursor: default!important;
 }
 

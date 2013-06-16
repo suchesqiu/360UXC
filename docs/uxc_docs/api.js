@@ -7,6 +7,9 @@ YUI.add("yuidoc-meta", function(Y) {
         "UXC.Dialog.alert",
         "UXC.Dialog.confirm",
         "UXC.Form",
+        "UXC.LunarCalendar",
+        "UXC.LunarCalendar.Model",
+        "UXC.LunarCalendar.View",
         "UXC.Panel",
         "UXC.Panel.Model",
         "UXC.Panel.View",
@@ -14,6 +17,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "UXC.Valid",
         "UXC.alert",
         "UXC.confirm",
+        "UXC.hideAllPopup",
         "window.UXC",
         "window.jQuery"
     ],
