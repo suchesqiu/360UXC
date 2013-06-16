@@ -9,5 +9,6 @@ echo "sleep done";
 sh -c "cd $dir/uxc && node nodejs_merge.js";
 sh -c "cd $dir/uxc/comps/Panel && node nodejs_merge.js";
 sh -c "cd $dir/uxc/comps/Form && node nodejs_merge.js";
+sh -c "cd $dir/uxc/comps/LunarCalendar && node nodejs_merge.js";
 
 echo $dir;

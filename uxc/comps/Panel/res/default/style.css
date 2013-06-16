@@ -6,6 +6,7 @@
     top: 0;
     left: 0;
     background: #000;
+    z-index: 40000;
     opacity: .35;
     filter: alpha(opacity=35);
 }

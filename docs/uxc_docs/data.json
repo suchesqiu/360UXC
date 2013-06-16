@@ -63,6 +63,45 @@
                 "UXC": 1
             }
         },
+        "../../uxc/comps/LunarCalendar/LunarCalendar.js": {
+            "name": "../../uxc/comps/LunarCalendar/LunarCalendar.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.getFestival.js": {
+            "name": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.getFestival.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "UXC.LunarCalendar": 1
+            },
+            "namespaces": {}
+        },
+        "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.gregorianToLunar.js": {
+            "name": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.gregorianToLunar.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "UXC.LunarCalendar": 1
+            },
+            "namespaces": {}
+        },
+        "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js": {
+            "name": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "modules": {},
+            "classes": {
+                "UXC.LunarCalendar": 1,
+                "UXC.LunarCalendar.View": 1,
+                "UXC.LunarCalendar.Model": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "UXC": 1,
+                "UXC.LunarCalendar": 1
+            }
+        },
         "../../uxc/comps/Panel/Panel.js": {
             "name": "../../uxc/comps/Panel/Panel.js",
             "modules": {},
@@ -106,7 +145,8 @@
             "modules": {},
             "classes": {
                 "UXC.alert": 1,
-                "UXC.confirm": 1
+                "UXC.confirm": 1,
+                "UXC.hideAllPopup": 1
             },
             "fors": {
                 "UXC.alert": 1
@@ -191,6 +231,82 @@
             "version": "dev 0.1",
             "author": "qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team",
             "date": "2013-06-11"
+        },
+        "UXC.LunarCalendar": {
+            "name": "UXC.LunarCalendar",
+            "shortname": "UXC.LunarCalendar",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC.LunarCalendar",
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 4,
+            "description": "日历选择组件\n<br />全局访问请使用 UXC.LunarCalendar 或 LunarCalendar\n<br />DOM 加载完毕后\n, LunarCalendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签\n<br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用LunarCalendar.init( _selector )\n<br />_selector 可以是 新加载的容器, 也可以是新加载的所有input\n<p>\n     初始化时, 如果日历是添加到某个selector里, 那么selector可以指定一些设置属性\n     <br /><b>hidecontrol</b>: 如果设置该属性, 那么日历将隐藏操作控件\n     <br /><b>minvalue</b>: 设置日历的有效最小选择范围, 格式YYYY-mm-dd\n     <br /><b>maxvalue</b>: 设置日历的有效最大选择范围, 格式YYYY-mm-dd\n     <br /><b>nopreviousfestivals</b>: 不显示上个月的节日\n     <br /><b>nonextfestivals</b>: 不显示下个月的节日\n</p>\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.LunarCalendar.html' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/comps/LunarCalendar/_demo/' target='_blank'>demo link</a></p>",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "_container",
+                    "description": "指定要显示日历的选择器, 如果不显示指定该值, 默认为 document.body",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_date",
+                    "description": "日历的当前日期, 如果不显示指定该值, 默认为当天",
+                    "type": "Date"
+                }
+            ],
+            "version": "dev 0.1",
+            "author": "qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team",
+            "date": "2013-06-13"
+        },
+        "UXC.LunarCalendar.View": {
+            "name": "UXC.LunarCalendar.View",
+            "shortname": "UXC.LunarCalendar.View",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC.LunarCalendar",
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 491,
+            "description": "LunarCalendar 视图类",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "_model",
+                    "description": "",
+                    "type": "UXC.LunarCalendar.Model"
+                }
+            ]
+        },
+        "UXC.LunarCalendar.Model": {
+            "name": "UXC.LunarCalendar.Model",
+            "shortname": "UXC.LunarCalendar.Model",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC.LunarCalendar",
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 685,
+            "description": "LunarCalendar 数据模型类",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "_container",
+                    "description": "",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_date",
+                    "description": "",
+                    "type": "Date"
+                }
+            ]
         },
         "UXC.Dialog": {
             "name": "UXC.Dialog",
@@ -469,6 +585,28 @@
             "return": {
                 "description": "<a href='UXC.Panel.html'>UXC.Panel</a>"
             }
+        },
+        "UXC.hideAllPopup": {
+            "name": "UXC.hideAllPopup",
+            "shortname": "UXC.hideAllPopup",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC",
+            "file": "../../uxc/comps/Panel/UXC.Popup.js",
+            "line": 47,
+            "description": "隐藏 或 从DOM清除所有 UXC.alert/UXC.confirm\n<br /><b>注意, 这是个方法, 写 @class 属性是为了生成文档</b>",
+            "static": 1,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "_isClose",
+                    "description": "为真从DOM清除UXC.alert/UXC.confirm, 为假隐藏, 默认为false",
+                    "type": "Bool"
+                }
+            ]
         },
         "UXC.Valid": {
             "name": "UXC.Valid",
@@ -1227,7 +1365,7 @@
         },
         {
             "file": "../../uxc/comps/Form/Form.js",
-            "line": 1,
+            "line": 2,
             "description": "取当前脚本标签的 src路径",
             "author": "scuehs@btbtd.org 2013-05-23",
             "return": {
@@ -1598,7 +1736,29 @@
         },
         {
             "file": "../../uxc/comps/Form/UXC.Form.js",
-            "line": 19,
+            "line": 17,
+            "description": "禁用按钮一定时间, 默认为1秒",
+            "itemtype": "method",
+            "name": "disableButton",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "要禁用button的选择器",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_durationMs",
+                    "description": "禁用多少时间, 单位毫秒, 默认1秒",
+                    "type": "Int"
+                }
+            ],
+            "class": "UXC.Form",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Form/UXC.Form.js",
+            "line": 37,
             "description": "添加URL参数\nx@btbtd.org  2013-06-12",
             "example": [
                 "\n       var url = add_url_params( location.href, {'key1': 'key1value', 'key2': 'key2value' } );"
@@ -1608,7 +1768,7 @@
         },
         {
             "file": "../../uxc/comps/Form/UXC.Form.js",
-            "line": 47,
+            "line": 65,
             "description": "删除URL参数\nx@btbtd.org  2012/4/24",
             "example": [
                 "\n       var url = del_url_param( location.href, 'tag' );"
@@ -1618,7 +1778,7 @@
         },
         {
             "file": "../../uxc/comps/Form/UXC.Form.js",
-            "line": 91,
+            "line": 109,
             "description": "取URL参数的值\nx@btbtd.org  2012/4/24",
             "example": [
                 "\n       var defaultTag = get_url_param(location.href, 'tag');  "
@@ -1628,7 +1788,7 @@
         },
         {
             "file": "../../uxc/comps/Form/UXC.Form.js",
-            "line": 121,
+            "line": 139,
             "description": "判断URL中是否有某个get参数\nx@btbtd.org  2013-06-13",
             "example": [
                 "\n     var bool = has_url_param( 'getkey' );"
@@ -1637,8 +1797,1014 @@
             "namespace": "UXC"
         },
         {
+            "file": "../../uxc/comps/LunarCalendar/LunarCalendar.js",
+            "line": 2,
+            "description": "取当前脚本标签的 src路径",
+            "author": "scuehs@btbtd.org 2013-05-23",
+            "return": {
+                "description": "脚本所在目录的完整路径",
+                "type": "String"
+            },
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.getFestival.js",
+            "line": 3,
+            "description": "返回农历和国历的所在日期的所有节日\n<br /> 假日条目数据样例: { 'name': '春节', 'fullname': '春节', 'priority': 8 }\n<br /> 返回数据格式: { 'dayName': 农历日期/节日名, 'festivals': 节日数组, 'isHoliday': 是否为假日 }",
+            "itemtype": "method",
+            "name": "getFestivals",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_lunarDate",
+                    "description": "农历日期对象, 由UXC.LunarCalendar.gregorianToLunar 获取",
+                    "type": "Object"
+                },
+                {
+                    "name": "_greDate",
+                    "description": "日期对象",
+                    "type": "Date"
+                }
+            ],
+            "return": {
+                "description": "Object"
+            },
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.getFestival.js",
+            "line": 195,
+            "description": "为数字添加前置0",
+            "itemtype": "method",
+            "name": "UXC.LunarCalendar.getFestival.intPad",
+            "params": [
+                {
+                    "name": "_n",
+                    "description": "需要添加前置0的数字",
+                    "type": "Int"
+                },
+                {
+                    "name": "_len",
+                    "description": "需要添加_len个0, 默认为2",
+                    "type": "Int"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "static": 1,
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.gregorianToLunar.js",
+            "line": 2,
+            "description": "从公历日期获得农历日期\n<br /> 返回的数据格式\n<pre>\n       {\n           shengxiao: ''   //生肖\n           , ganzhi: ''    //干支\n           , yue: ''       //月份\n           , ri: ''        //日\n           , shi: ''       //时\n           , year: ''      //农历数字年\n           , month: ''     //农历数字月\n           , day: ''       //农历数字天\n           , hour: ''      //农历数字时\n       };\n</pre>",
+            "itemtype": "method",
+            "name": "gregorianToLunar",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_date",
+                    "description": "要获取农历日期的时间对象",
+                    "type": "Date"
+                }
+            ],
+            "return": {
+                "description": "Object"
+            },
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 39,
+            "description": "LunarCalendar 的数据模型对象",
+            "itemtype": "property",
+            "name": "_model",
+            "type": "UXC.LunarCalendar.Model",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 46,
+            "description": "LunarCalendar 的视图对像",
+            "itemtype": "property",
+            "name": "_view",
+            "type": "UXC.LunarCalendar.View",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 56,
+            "description": "自定义日历组件模板\n<p>默认模板为UXC.LunarCalendar.Model#tpl</p>\n<p>如果用户显示定义UXC.LunarCalendar.tpl的话, 将采用用户的模板</p>",
+            "itemtype": "property",
+            "name": "tpl",
+            "type": "{string}",
+            "default": "empty",
+            "static": 1,
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 66,
+            "description": "设置是否在 dom 加载完毕后, 自动初始化所有日期控件",
+            "itemtype": "property",
+            "name": "autoinit",
+            "default": "true",
+            "type": "{bool}",
+            "static": "<script>UXC.LunarCalendar.autoInit = true;</script>",
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 75,
+            "description": "设置默认显示的年份数, 该数为前后各多少年 默认为前后各10年",
+            "itemtype": "property",
+            "name": "defaultYearSpan",
+            "type": "{int}",
+            "default": "20",
+            "static": "<script>UXC.LunarCalendar.defaultYearSpan = 20;</script>",
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 84,
+            "description": "从所有的LunarCalendar取得当前选中的日期\n<br /> 如果用户没有显式选中某个日期, 将尝试获取当前日期, 如果两者都没有返回undefined",
+            "itemtype": "method",
+            "name": "getSelectedItemGlobal",
+            "static": 1,
+            "return": {
+                "description": "如果能获取到选中的日期将返回 { date: 当天日期, item: 选中的a, td: 选中的td }",
+                "type": "Object|undefined"
+            },
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 108,
+            "description": "从所有的LunarCalendar取得当前选中日期的日期对象\n<br /> 如果用户没有显式选中某个日期, 将尝试获取当前日期, 如果两者都没有返回undefined",
+            "itemtype": "method",
+            "name": "getSelectedDateGlobal",
+            "static": 1,
+            "return": {
+                "description": "",
+                "type": "Date|undefined"
+            },
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 121,
+            "description": "从时间截获取选择器对象",
+            "itemtype": "method",
+            "name": "getItemByTimestamp",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_tm",
+                    "description": "时间截, 如果时间截少于13位, 将自动补0到13位, ps: php时间截为10位",
+                    "type": "Int"
+                }
+            ],
+            "return": {
+                "description": "td selector, 如果 td class unable 不可选, 将忽略",
+                "type": "Selector|undefined"
+            },
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 144,
+            "description": "添加或者清除工作日样式",
+            "itemtype": "method",
+            "name": "workday",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_td",
+                    "description": "要设置为工作日状态的 td",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_customSet",
+                    "description": "如果 _customSet 为 undefined, 将设为工作日. \n                                     如果 _customSet 非 undefined, 那么根据真假值判断清除工作日/添加工作日",
+                    "type": "Any"
+                }
+            ],
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 160,
+            "description": "判断 td 是否为工作日状态",
+            "itemtype": "method",
+            "name": "isWorkday",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_td",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Bool"
+            },
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 172,
+            "description": "添加或者清除假日样式",
+            "itemtype": "method",
+            "name": "holiday",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_td",
+                    "description": "要设置为假日状态的 td",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_customSet",
+                    "description": "如果 _customSet 为 undefined, 将设为假日. \n                                     如果 _customSet 非 undefined, 那么根据真假值判断清除假日/添加假日",
+                    "type": "Any"
+                }
+            ],
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 188,
+            "description": "判断 td 是否为假日状态",
+            "itemtype": "method",
+            "name": "isHoliday",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_td",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Bool"
+            },
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 200,
+            "description": "添加或者清除注释",
+            "itemtype": "method",
+            "name": "comment",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_td",
+                    "description": "要设置注释的 td",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_customSet",
+                    "description": "如果 _customSet 为 undefined, 将清除注释. \n                                     如果 _customSet 为 string, 将添加注释",
+                    "type": "String|bool"
+                }
+            ],
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 227,
+            "description": "判断 td 是否为注释状态",
+            "itemtype": "method",
+            "name": "isComment",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_td",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Bool"
+            },
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 239,
+            "description": "返回 td 的注释",
+            "itemtype": "method",
+            "name": "getComment",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_td",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 254,
+            "description": "用于分隔默认title和注释的分隔符",
+            "itemtype": "property",
+            "name": "commentSeparator",
+            "type": "string",
+            "default": "==========comment==========",
+            "static": 1,
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 262,
+            "description": "把注释添加到 a title 里",
+            "itemtype": "method",
+            "name": "commentTitle",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_td",
+                    "description": "要设置注释的 a 父容器 td",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_title",
+                    "description": "如果 _title 为真, 将把注释添加到a title里. \n                                     如果 _title 为假, 将从 a title 里删除注释",
+                    "type": "String|undefined"
+                }
+            ],
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 288,
+            "description": "从JSON数据更新日历状态( 工作日, 休息日, 注释 )\n<br /> 注意, 该方法更新页面上所有的 LunarCalendar",
+            "itemtype": "method",
+            "name": "updateStatus",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_data",
+                    "description": "{ phpTimestamp:{ dayaction: 0|1|2, comment: string}, ... }\n<pre>      \n         dayaction: \n         0: delete workday/holiday\n         1: workday\n         2: holiday\n</pre>",
+                    "type": "Object"
+                }
+            ],
+            "example": [
+                "\n     LunarCalendar.updateStatus(  {\n                                           \"1369843200\": {\n                                               \"dayaction\": 2,\n                                               \"comment\": \"dfdfgdsfgsdfgsdg<b></b>'\\\"'asdf\\\"\\\"'sdf\"\n                                           },\n                                           \"1370966400\": {\n                                               \"dayaction\": 0,\n                                               \"comment\": \"asdfasdfsa\"\n                                           },\n                                           \"1371139200\": {\n                                               \"dayaction\": 1\n                                           },\n                                           \"1371225600\": {\n                                               \"dayaction\": 0,\n                                               \"comment\": \"dddd\"\n                                           }\n                                       });"
+            ],
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 375,
+            "description": "LunarCalendar 内部初始化",
+            "itemtype": "method",
+            "name": "_init",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 386,
+            "description": "更新日历视图为自定义的日期",
+            "itemtype": "method",
+            "name": "update",
+            "params": [
+                {
+                    "name": "_date",
+                    "description": "更新日历视图为 _date 所在日期的月份",
+                    "type": "Date"
+                }
+            ],
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 396,
+            "description": "显示下一个月的日期",
+            "itemtype": "method",
+            "name": "nextMonth",
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 406,
+            "description": "显示上一个月的日期",
+            "itemtype": "method",
+            "name": "preMonth",
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 416,
+            "description": "显示下一年的日期",
+            "itemtype": "method",
+            "name": "nextYear",
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 426,
+            "description": "显示上一年的日期",
+            "itemtype": "method",
+            "name": "preYear",
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 436,
+            "description": "获取默认时间对象",
+            "itemtype": "method",
+            "name": "getDate",
+            "return": {
+                "description": "",
+                "type": "Date"
+            },
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 442,
+            "description": "获取所有的默认时间对象",
+            "itemtype": "method",
+            "name": "getAllDate",
+            "return": {
+                "description": "{ date: 默认时间, minvalue: 有效最小时间\n                       , maxvalue: 有效最大时间, beginDate: 日历的起始时间, endDate: 日历的结束时间 }",
+                "type": "Object"
+            },
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 449,
+            "description": "获取当前选中的日期, 如果用户没有显式选择, 将查找当前日期, 如果两者都没有的话返回undefined",
+            "itemtype": "method",
+            "name": "getSelectedDate",
+            "return": {
+                "description": "",
+                "type": "Date"
+            },
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 472,
+            "description": "获取初始化日历的选择器对象",
+            "itemtype": "method",
+            "name": "getContainer",
+            "return": {
+                "description": "selector"
+            },
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 478,
+            "description": "获取日历的主选择器对象",
+            "itemtype": "method",
+            "name": "getLayout",
+            "return": {
+                "description": "selector"
+            },
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 484,
+            "description": "判断日历是否隐藏操作控件",
+            "itemtype": "method",
+            "name": "isHideControl",
+            "return": {
+                "description": "bool"
+            },
+            "class": "UXC.LunarCalendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 499,
+            "description": "LunarCalendar model 对象",
+            "itemtype": "property",
+            "name": "_model",
+            "type": "UXC.LunarCalendar.Model",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar.View",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 506,
+            "description": "LunarCalendar 的主容器",
+            "itemtype": "property",
+            "name": "layout",
+            "type": "selector",
+            "class": "UXC.LunarCalendar.View",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 517,
+            "description": "初始化 View",
+            "itemtype": "method",
+            "name": "_init",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar.View",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 529,
+            "description": "初始化日历外观",
+            "itemtype": "method",
+            "name": "initLayout",
+            "params": [
+                {
+                    "name": "_date",
+                    "description": "",
+                    "type": "Date"
+                }
+            ],
+            "class": "UXC.LunarCalendar.View",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 544,
+            "description": "初始化年份",
+            "itemtype": "method",
+            "name": "initYear",
+            "params": [
+                {
+                    "name": "_dateObj",
+                    "description": "",
+                    "type": "DateObject"
+                }
+            ],
+            "class": "UXC.LunarCalendar.View",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 553,
+            "description": "初始化月份",
+            "itemtype": "method",
+            "name": "initMonth",
+            "params": [
+                {
+                    "name": "_dateObj",
+                    "description": "",
+                    "type": "DateObject"
+                }
+            ],
+            "class": "UXC.LunarCalendar.View",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 562,
+            "description": "初始化月份的所有日期",
+            "itemtype": "method",
+            "name": "_logic.initMonthDate",
+            "params": [
+                {
+                    "name": "_dateObj",
+                    "description": "保存所有相关日期的对象",
+                    "type": "DateObjects"
+                }
+            ],
+            "class": "UXC.LunarCalendar.View",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 663,
+            "description": "把具体的公历和农历日期写进a标签的title里",
+            "itemtype": "method",
+            "name": "addTitle",
+            "params": [
+                {
+                    "name": "_td",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "class": "UXC.LunarCalendar.View",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 673,
+            "description": "检查是否要隐藏操作控件",
+            "itemtype": "method",
+            "name": "hideControl",
+            "class": "UXC.LunarCalendar.View",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 694,
+            "description": "LunarCalendar 所要显示的selector",
+            "itemtype": "property",
+            "name": "container",
+            "type": "selector",
+            "default": "document.body",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 701,
+            "description": "初始化时的时期",
+            "itemtype": "property",
+            "name": "date",
+            "type": "date",
+            "default": "new Date()",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 708,
+            "description": "日历默认模板",
+            "itemtype": "property",
+            "name": "tpl",
+            "type": "string",
+            "default": "UXC.LunarCalendar._deftpl",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 715,
+            "description": "显示日历时所需要的所有日期对象",
+            "itemtype": "property",
+            "name": "dateObj",
+            "type": "Object",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 721,
+            "description": "a 标签 title 的临时存储对象",
+            "itemtype": "property",
+            "name": "_titleObj",
+            "type": "Object",
+            "default": "{}",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 751,
+            "description": "获取初始日期对象",
+            "itemtype": "method",
+            "name": "getDate",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "显示日历组件的input",
+                    "type": "Selector"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 772,
+            "description": "把日期赋值给文本框",
+            "itemtype": "method",
+            "name": "setDate",
+            "params": [
+                {
+                    "name": "_timestamp",
+                    "description": "日期对象的时间戳",
+                    "type": "Int"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 782,
+            "description": "给文本框赋值, 日期为控件的当前日期",
+            "itemtype": "method",
+            "name": "setSelectedDate",
+            "return": {
+                "description": "0/1",
+                "type": "Int"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 796,
+            "description": "解析日期",
+            "itemtype": "method",
+            "name": "parseDate",
+            "params": [
+                {
+                    "name": "_dateStr",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "返回解析得到的日期/或者当前日期",
+                "type": "Date"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 814,
+            "description": "克隆日期对象",
+            "itemtype": "method",
+            "name": "cloneDate",
+            "params": [
+                {
+                    "name": "_date",
+                    "description": "需要克隆的日期",
+                    "type": "Date"
+                }
+            ],
+            "return": {
+                "description": "需要克隆的日期对象",
+                "type": "Date"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 822,
+            "description": "判断两个日期是否为同一天",
+            "itemtype": "method",
+            "name": "isSameDay",
+            "params": [
+                {
+                    "name": "_d1",
+                    "description": "需要判断的日期1",
+                    "type": "Date"
+                },
+                {
+                    "name": "_d2",
+                    "description": "需要判断的日期2",
+                    "type": "Date"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Bool"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 835,
+            "description": "判断两个日期是否为同一月份",
+            "itemtype": "method",
+            "name": "isSameMonth",
+            "params": [
+                {
+                    "name": "_d1",
+                    "description": "需要判断的日期1",
+                    "type": "Date"
+                },
+                {
+                    "name": "_d2",
+                    "description": "需要判断的日期2",
+                    "type": "Date"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Bool"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 848,
+            "description": "取得一个月份中最大的一天",
+            "itemtype": "method",
+            "name": "maxDayOfMonth",
+            "params": [
+                {
+                    "name": "_date",
+                    "description": "",
+                    "type": "Date"
+                }
+            ],
+            "return": {
+                "description": "月份中最大的一天",
+                "type": "Int"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 862,
+            "description": "为数字添加前置0",
+            "itemtype": "method",
+            "name": "intPad",
+            "params": [
+                {
+                    "name": "_n",
+                    "description": "需要添加前置0的数字",
+                    "type": "Int"
+                },
+                {
+                    "name": "_len",
+                    "description": "需要添加_len个0, 默认为2",
+                    "type": "Int"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String"
+            },
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 878,
+            "description": "监听上一年按钮",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 887,
+            "description": "监听上一月按钮",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 896,
+            "description": "监听下一月按钮",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 905,
+            "description": "监听下一年按钮",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 914,
+            "description": "监听年份按钮, 是否要显示年份列表",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 936,
+            "description": "监听月份按钮, 是否要显示月份列表",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 950,
+            "description": "监听年份列表选择状态",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 960,
+            "description": "监听月份列表选择状态",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 970,
+            "description": "监听日期单元格点击事件",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 992,
+            "description": "监听body点击事件, 点击时隐藏日历控件的年份和月份列表",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 998,
+            "description": "DOM 加载完毕后, 初始化日历组件",
+            "itemtype": "event",
+            "name": "dom ready",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
+            "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
+            "line": 1012,
+            "description": "LunarCalendar 日历默认模板",
+            "itemtype": "property",
+            "name": "_deftpl",
+            "type": "string",
+            "static": 1,
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.LunarCalendar.Model",
+            "namespace": "UXC.LunarCalendar"
+        },
+        {
             "file": "../../uxc/comps/Panel/Panel.js",
-            "line": 1,
+            "line": 2,
             "description": "取当前脚本标签的 src路径",
             "author": "scuehs@btbtd.org 2013-05-23",
             "return": {
@@ -1646,7 +2812,7 @@
                 "type": "String"
             },
             "class": "UXC.Dialog",
-            "namespace": "UXC"
+            "namespace": "UXC.LunarCalendar"
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
@@ -2496,22 +3662,22 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 47,
+            "line": 64,
             "description": "从 HTML 属性 自动执行 UXC.alert / UXC.confirm",
             "attr": "{function}  panelcancelcallback cancel  回调",
-            "class": "UXC.confirm",
+            "class": "UXC.hideAllPopup",
             "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 76,
+            "line": 93,
             "description": "响应窗口改变大小",
-            "class": "UXC.confirm",
+            "class": "UXC.hideAllPopup",
             "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 85,
+            "line": 102,
             "description": "弹框逻辑处理方法集",
             "itemtype": "property",
             "name": "_logic",
@@ -2522,7 +3688,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 92,
+            "line": 109,
             "description": "弹框最小宽度",
             "itemtype": "property",
             "name": "_logic.minWidth",
@@ -2535,7 +3701,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 101,
+            "line": 118,
             "description": "弹框最大宽度",
             "itemtype": "property",
             "name": "_logic.maxWidth",
@@ -2548,7 +3714,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 110,
+            "line": 127,
             "description": "显示时 X轴的偏移值",
             "itemtype": "property",
             "name": "_logic.xoffset",
@@ -2561,7 +3727,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 119,
+            "line": 136,
             "description": "显示时 Y轴的偏移值",
             "itemtype": "property",
             "name": "_logic.yoffset",
@@ -2574,7 +3740,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 128,
+            "line": 145,
             "description": "设置弹框的唯一性",
             "itemtype": "method",
             "name": "_logic.popupIdentifier",
@@ -2592,7 +3758,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 144,
+            "line": 161,
             "description": "弹框通用处理方法",
             "itemtype": "method",
             "name": "_logic.popup",
@@ -2633,7 +3799,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 204,
+            "line": 221,
             "description": "隐藏弹框缓动效果",
             "itemtype": "method",
             "name": "_logic.hideEffect",
@@ -2661,7 +3827,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 247,
+            "line": 264,
             "description": "隐藏弹框缓动效果",
             "itemtype": "method",
             "name": "_logic.showEffect",
@@ -2684,7 +3850,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 299,
+            "line": 316,
             "description": "设置 Panel 的默认X,Y轴",
             "itemtype": "method",
             "name": "_logic.onresize",
@@ -2702,7 +3868,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 335,
+            "line": 352,
             "description": "取得弹框最要显示的 y 轴",
             "itemtype": "method",
             "name": "_logic.getTop",
@@ -2739,7 +3905,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 356,
+            "line": 373,
             "description": "取得弹框最要显示的 x 轴",
             "itemtype": "method",
             "name": "_logic.getLeft",
@@ -2776,7 +3942,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 379,
+            "line": 396,
             "description": "修正弹框的默认显示宽度",
             "itemtype": "method",
             "name": "_logic.fixWidth",
@@ -2799,7 +3965,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 396,
+            "line": 413,
             "description": "获取弹框的显示状态, 默认为0(成功)",
             "itemtype": "method",
             "name": "_logic.fixWidth",
@@ -2821,7 +3987,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 414,
+            "line": 431,
             "description": "缓动函数, 动画效果为按时间缓动",
             "itemtype": "method",
             "name": "_logic.easyEffect",
@@ -2854,7 +4020,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 443,
+            "line": 460,
             "description": "保存弹框的所有默认模板",
             "itemtype": "property",
             "name": "_logic.tpls",
@@ -2866,7 +4032,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 451,
+            "line": 468,
             "description": "alert 弹框的默认模板",
             "itemtype": "property",
             "name": "_logic.tpls.alert",
@@ -2878,7 +4044,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 474,
+            "line": 491,
             "description": "confirm 弹框的默认模板",
             "itemtype": "property",
             "name": "_logic.tpls.confirm",
@@ -3868,7 +5034,7 @@
         },
         {
             "file": "../../uxc/lib.js",
-            "line": 1,
+            "line": 2,
             "description": "取当前脚本标签的 src路径",
             "author": "scuehs@btbtd.org 2013-05-23",
             "return": {
@@ -3921,6 +5087,14 @@
             "line": " ../../uxc/comps/Form/UXC.Form.js:3"
         },
         {
+            "message": "unknown tag: version",
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:4"
+        },
+        {
+            "message": "unknown tag: date",
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:4"
+        },
+        {
             "message": "unknown tag: attr",
             "line": " ../../uxc/comps/Panel/UXC.Dialog.js:101"
         },
@@ -3954,23 +5128,23 @@
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Panel/UXC.Popup.js:47"
+            "line": " ../../uxc/comps/Panel/UXC.Popup.js:64"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Panel/UXC.Popup.js:47"
+            "line": " ../../uxc/comps/Panel/UXC.Popup.js:64"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Panel/UXC.Popup.js:47"
+            "line": " ../../uxc/comps/Panel/UXC.Popup.js:64"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Panel/UXC.Popup.js:47"
+            "line": " ../../uxc/comps/Panel/UXC.Popup.js:64"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Panel/UXC.Popup.js:47"
+            "line": " ../../uxc/comps/Panel/UXC.Popup.js:64"
         },
         {
             "message": "unknown tag: version",
@@ -4078,7 +5252,7 @@
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",
-            "line": " ../../uxc/comps/Form/Form.js:1"
+            "line": " ../../uxc/comps/Form/Form.js:2"
         },
         {
             "message": "Missing item type\n页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰",
@@ -4102,23 +5276,67 @@
         },
         {
             "message": "Missing item type\n添加URL参数\nx@btbtd.org  2013-06-12",
-            "line": " ../../uxc/comps/Form/UXC.Form.js:19"
+            "line": " ../../uxc/comps/Form/UXC.Form.js:37"
         },
         {
             "message": "Missing item type\n删除URL参数\nx@btbtd.org  2012/4/24",
-            "line": " ../../uxc/comps/Form/UXC.Form.js:47"
+            "line": " ../../uxc/comps/Form/UXC.Form.js:65"
         },
         {
             "message": "Missing item type\n取URL参数的值\nx@btbtd.org  2012/4/24",
-            "line": " ../../uxc/comps/Form/UXC.Form.js:91"
+            "line": " ../../uxc/comps/Form/UXC.Form.js:109"
         },
         {
             "message": "Missing item type\n判断URL中是否有某个get参数\nx@btbtd.org  2013-06-13",
-            "line": " ../../uxc/comps/Form/UXC.Form.js:121"
+            "line": " ../../uxc/comps/Form/UXC.Form.js:139"
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",
-            "line": " ../../uxc/comps/Panel/Panel.js:1"
+            "line": " ../../uxc/comps/LunarCalendar/LunarCalendar.js:2"
+        },
+        {
+            "message": "Missing item type\n监听上一年按钮",
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:878"
+        },
+        {
+            "message": "Missing item type\n监听上一月按钮",
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:887"
+        },
+        {
+            "message": "Missing item type\n监听下一月按钮",
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:896"
+        },
+        {
+            "message": "Missing item type\n监听下一年按钮",
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:905"
+        },
+        {
+            "message": "Missing item type\n监听年份按钮, 是否要显示年份列表",
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:914"
+        },
+        {
+            "message": "Missing item type\n监听月份按钮, 是否要显示月份列表",
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:936"
+        },
+        {
+            "message": "Missing item type\n监听年份列表选择状态",
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:950"
+        },
+        {
+            "message": "Missing item type\n监听月份列表选择状态",
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:960"
+        },
+        {
+            "message": "Missing item type\n监听日期单元格点击事件",
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:970"
+        },
+        {
+            "message": "Missing item type\n监听body点击事件, 点击时隐藏日历控件的年份和月份列表",
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:992"
+        },
+        {
+            "message": "Missing item type\n取当前脚本标签的 src路径",
+            "line": " ../../uxc/comps/Panel/Panel.js:2"
         },
         {
             "message": "Missing item type\n从 HTML 属性 自动执行 UXC.Dialog.alert / UXC.Dialog.confirm",
@@ -4142,11 +5360,11 @@
         },
         {
             "message": "Missing item type\n从 HTML 属性 自动执行 UXC.alert / UXC.confirm",
-            "line": " ../../uxc/comps/Panel/UXC.Popup.js:47"
+            "line": " ../../uxc/comps/Panel/UXC.Popup.js:64"
         },
         {
             "message": "Missing item type\n响应窗口改变大小",
-            "line": " ../../uxc/comps/Panel/UXC.Popup.js:76"
+            "line": " ../../uxc/comps/Panel/UXC.Popup.js:93"
         },
         {
             "message": "Missing item type\n响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果",
@@ -4366,7 +5584,7 @@
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",
-            "line": " ../../uxc/lib.js:1"
+            "line": " ../../uxc/lib.js:2"
         }
     ]
 }
