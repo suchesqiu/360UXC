@@ -55,6 +55,14 @@
             
                 <li><a href="../classes/UXC.Form.html">UXC.Form</a></li>
             
+                <li><a href="../classes/UXC.hideAllPopup.html">UXC.hideAllPopup</a></li>
+            
+                <li><a href="../classes/UXC.LunarCalendar.html">UXC.LunarCalendar</a></li>
+            
+                <li><a href="../classes/UXC.LunarCalendar.Model.html">UXC.LunarCalendar.Model</a></li>
+            
+                <li><a href="../classes/UXC.LunarCalendar.View.html">UXC.LunarCalendar.View</a></li>
+            
                 <li><a href="../classes/UXC.Panel.html">UXC.Panel</a></li>
             
                 <li><a href="../classes/UXC.Panel.Model.html">UXC.Panel.Model</a></li>
@@ -125,7 +133,25 @@
      * @author  qiushaowei   &lt;suches@btbtd.org&gt; | 360 UXC-FE Team
      * @date    2013-06-11
      */
-    window.UXCForm = UXC.Form = {};
+    window.UXCForm = UXC.Form = {
+        /**
+         * 禁用按钮一定时间, 默认为1秒
+         * @method  disableButton
+         * @static
+         * @param   {selector}  _selector   要禁用button的选择器
+         * @param   {int}       _durationMs 禁用多少时间, 单位毫秒, 默认1秒
+         */
+        &#x27;disableButton&#x27;:
+            function( _selector, _durationMs ){
+                if( !_selector ) return;
+                _selector = $(_selector);
+                _durationMs = _durationMs || 1000;
+                _selector.attr(&#x27;disabled&#x27;, true);
+                setTimeout( function(){
+                    _selector.attr(&#x27;disabled&#x27;, false);
+                }, _durationMs);
+            }
+    };
 }(jQuery));
 
 /**

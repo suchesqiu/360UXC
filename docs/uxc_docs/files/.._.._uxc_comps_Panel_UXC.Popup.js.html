@@ -55,6 +55,14 @@
             
                 <li><a href="../classes/UXC.Form.html">UXC.Form</a></li>
             
+                <li><a href="../classes/UXC.hideAllPopup.html">UXC.hideAllPopup</a></li>
+            
+                <li><a href="../classes/UXC.LunarCalendar.html">UXC.LunarCalendar</a></li>
+            
+                <li><a href="../classes/UXC.LunarCalendar.Model.html">UXC.LunarCalendar.Model</a></li>
+            
+                <li><a href="../classes/UXC.LunarCalendar.View.html">UXC.LunarCalendar.View</a></li>
+            
                 <li><a href="../classes/UXC.Panel.html">UXC.Panel</a></li>
             
                 <li><a href="../classes/UXC.Panel.Model.html">UXC.Panel.Model</a></li>
@@ -155,6 +163,23 @@
     UXC.confirm = 
         function( _msg, _popupSrc, _status, _cb ){
             return _logic.popup( _logic.tpls.confirm, _msg, _popupSrc, _status, _cb );
+        };
+    /**
+     * 隐藏 或 从DOM清除所有 UXC.alert/UXC.confirm
+     * &lt;br /&gt;&lt;b&gt;注意, 这是个方法, 写 @class 属性是为了生成文档&lt;/b&gt;
+     * @namespace UXC
+     * @class hideAllPopup
+     * @static
+     * @constructor
+     * @param   {bool}  _isClose    为真从DOM清除UXC.alert/UXC.confirm, 为假隐藏, 默认为false
+     */
+    UXC.hideAllPopup =
+        function( _isClose ){
+            if( _isClose ){
+                $(&#x27;body &gt; div.UPanelPopup_identifer&#x27;).remove();
+            }else{
+                $(&#x27;body &gt; div.UPanelPopup_identifer&#x27;).hide();
+            }
         };
     /**
      * 从 HTML 属性 自动执行 UXC.alert / UXC.confirm
@@ -481,7 +506,7 @@
                 _offset == undefined &amp;&amp; ( _offset = 5 );
                 var _r = _srcLeft + _srcWidth / 2 + _offset - _targetWidth / 2
                     , _scrLeft = $(document).scrollLeft()
-                    , _maxLeft = $(window).width() - _targetWidth;
+                    , _maxLeft = $(window).width() + _scrLeft - _targetWidth;
 
                 _r &gt; _maxLeft &amp;&amp; ( _r = _maxLeft - 2 );
                 _r &lt; _scrLeft &amp;&amp; ( _r = _scrLeft + 1 );
