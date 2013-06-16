@@ -8,7 +8,6 @@ div.UXCLunarCalendar a, div.UXCLunarCalendar button{
     blr:expression(this.onFocus=this.blur());
 }
 
-
 div.UXCLunarCalendar{
     background-color: #fff!important;
     width: 352px!important;
