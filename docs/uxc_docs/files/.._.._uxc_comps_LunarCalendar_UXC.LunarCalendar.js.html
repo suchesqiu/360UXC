@@ -704,7 +704,7 @@
 
                 var today = new Date();
 
-                this._model.title();
+                //this._model.title();
 
                 _ls.push(&#x27;&lt;tr&gt;&#x27;);
                 for( i = 1; i &lt;= 42; i++ ){
@@ -861,7 +861,7 @@
         , title: 
             function( _key, _title )
             {
-                if( !(_key &amp;&amp; _title ) ){
+                if( !(_key || _title ) ){
                     this._titleObj = {};
                     return;
                 }
