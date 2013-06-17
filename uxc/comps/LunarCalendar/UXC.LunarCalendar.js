@@ -1,4 +1,7 @@
 (function($){
+    ///
+    /// TODO: 添加事件响应机制
+    ///
     !window.UXC && (window.UXC = { log:function(){} });
     UXC.LunarCalendar = window.LunarCalendar = LunarCalendar;
     /**
