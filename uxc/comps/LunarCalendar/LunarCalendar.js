@@ -2,7 +2,7 @@
     !window.UXC && (window.UXC = { log:function(){} });
     UXC.LunarCalendar = window.LunarCalendar = LunarCalendar;
     /**
-     * 日历选择组件
+     * 农历日历组件
      * <br />全局访问请使用 UXC.LunarCalendar 或 LunarCalendar
      * <br />DOM 加载完毕后
      * , LunarCalendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签

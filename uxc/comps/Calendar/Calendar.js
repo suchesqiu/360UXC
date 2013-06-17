@@ -1,7 +1,7 @@
 (function($){
     !window.UXC && (window.UXC = { log:function(){} });
     /**
-     * 日历选择组件
+     * 日期选择组件
      * <br />全局访问请使用 UXC.Calendar 或 Calendar
      * <br />DOM 加载完毕后
      * , Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签
