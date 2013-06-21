@@ -141,10 +141,20 @@
                 var _p = this;
                 setTimeout(
                     function(){
-                        if( _position != undefined ){
-                            switch( _position ){
-                                case 0: _p.center(); break;
-                            }
+                        switch( typeof _position ){
+                            case 'number': 
+                                {
+                                    switch( _position ){
+                                        case 0: _p.center(); break;
+                                    }
+                                    break;
+                                }
+                            case 'object':
+                                {
+                                    _position = $(_position);
+                                    _position.length && _p._view.positionWith( _position );
+                                    break;
+                                }
                         }
                     }, 50);
                 this.trigger('beforeshow', this._view.getPanel() );
@@ -523,6 +533,13 @@
                 this.getFooter();
 
                 return this;
+            }
+        /**
+         *
+         */
+        , positionWith:
+            function( _src ){
+                
             }
         /**
          * 显示 Panel
