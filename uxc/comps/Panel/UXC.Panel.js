@@ -1,4 +1,4 @@
-(function($){
+;(function($){
     !window.UXC && (window.UXC = { log:function(){} });
     window.Panel = UXC.Panel = Panel;
     /**
