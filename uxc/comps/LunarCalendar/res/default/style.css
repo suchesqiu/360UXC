@@ -1,6 +1,7 @@
 div.UXCLunarCalendar, div.UXCLunarCalendar *{
     padding: 0px!important;
     margin: 0px!important;
+    font: 12px/1.4 Tahoma,Helvetica,Arial,'宋体',sans-serif!important;
 }
 
 div.UXCLunarCalendar a, div.UXCLunarCalendar button{
@@ -39,7 +40,7 @@ div.UXCLunarCalendar .UHeader button{
     border:none!important;
     background-color: transparent!important;
     color:#fff!important;
-    font-size: 14px;
+    font-size: 14px!important;
     margin-right:5px!important;
     cursor: pointer;
 }
