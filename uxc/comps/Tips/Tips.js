@@ -1,18 +1,24 @@
 ;(function($){
     !window.UXC && (window.UXC = { log:function(){} });
-    window.ZIDNEX_COUNT = window.ZINDEX_COUNT || 50001;
+    window.ZINDEX_COUNT = parseInt( window.ZINDEX_COUNT ) || 50001;
 
     $(document).ready( function( _devt ){
         setTimeout( function(){
             if( !UXC.Tips.autoInit ) return;
+
+            if( typeof window.event == 'object' && document.attachEvent ){
+                $('[title]').each( function(){
+                    $(this).attr( 'tipsData', $(this).attr('title') ).removeAttr( 'title' );
+                });
+            }
             
-            $(document).delegate('*', 'mouseover', function( _evt ){
+            $(document).delegate('*', 'mouseenter', function( _evt ){
                 var _p = $(this);
                 if( _p.data('initedTips') ) return;
-                if( !_p.attr('title') ) return;
-                UXC.log( _p.prop( 'nodeName' ) );
+                if( !( _p.attr('title') || _p.attr('tipsData') ) ) return;
+                //UXC.log( _p.prop( 'nodeName' ) );
                 UXC.Tips.init( _p );
-                tipMouseover.call( this, _evt );
+                tipMouseenter.call( this, _evt );
             });
         }, 10);
     });
@@ -23,11 +29,11 @@
                 if( !_selector ) return;
                 _selector = $(_selector);
                 if( !_selector.length ) return;
-                var _r;
+                var _r = [];
                 _selector.each( function(){
                     var _p = $(this);
                     if( _p.data('initedTips') ) return;
-                    _r = new Tips( _p );
+                    _r.push( new Tips( _p ) );
                 });
                 return _r;
             }
@@ -39,6 +45,7 @@
             , 'left': { 'x': -28, 'y': 5 }
             , 'top': { 'x': -2, 'y': -22 }
         }
+        , minWidth: 200, maxWidth: 400
     };
 
     function Tips( _selector ){
@@ -56,7 +63,7 @@
             function(){
                 var _p = this;
                 this._model.selector().data('tipIns', _p);
-                this._model.selector().on( 'mouseover', tipMouseover );
+                this._model.selector().on( 'mouseenter', tipMouseenter );
                 return this;
             }    
 
@@ -67,27 +74,25 @@
 
         , hide: function(){ this._view.hide(); }
         , selector: function(){ return this._model.selector(); }
-        , layout: function(){ return this._view.layout(); }
+        , layout: function( _update ){ return this._view.layout( _update ); }
     }
 
-    function tipMouseover( _evt ){
+    function tipMouseenter( _evt ){
         var _sp = $(this), _p = _sp.data('tipIns');
-        try{ $(window).unbind( 'mousemove', tipMousemove ); }catch(_ex){}
+        _p.layout( 1 ).css( 'z-index', ZINDEX_COUNT++ );
         _p.show( _evt );
 
         $(document).on('mousemove', tipMousemove );
-        UXC.log( 'tipMouseover' );
+        _sp.on('mouseleave', tipMouseleave );
 
         function tipMousemove( _wevt ){
-            UXC.log( new Date().getTime() );
-            _wevt.stopPropagation();
-            if( !pointInRect( {x: _wevt.pageX, y: _wevt.pageY }, selectorRect( _p.selector() ) ) ){
-                $(document).unbind( 'mousemove', tipMousemove );
-                _p.hide();
-                UXC.log( 'false xxx' );
-                return;
-            }
             _p.show( _wevt );
+        }
+
+        function tipMouseleave( _wevt ){
+            $(document).unbind( 'mousemove', tipMousemove );
+            $(_sp).unbind( 'mouseleave', tipMouseleave );
+            _p.hide();
         }
     }
 
@@ -132,17 +137,24 @@
     Model.prototype = {
         _init:
             function(){
-                if( !this._selector.attr('title') ) return;
-                this._data = this._selector.attr('title');
-                this._selector.removeAttr('title');
-                if( this._selector.data('initedTips') ) return;
-                this._selector.data('initedTips', true);
+                this.update();
                 return this;
             }
 
         , data:
-            function(){
+            function( _update ){
+                _update && this.update();
                 return this._data;
+            }
+        
+        , update: 
+            function(){
+                if( !(this._selector.attr('title') || this._selector.attr('tipsData') ) ) return;
+                this._data = $.trim( this._selector.attr('title') || this._selector.attr('tipsData') )
+                             .replace( /(?:\r\n|\n\r|\r|\n)/g, '<br />');
+                this._selector.removeAttr('title').removeAttr( 'tipsData' );
+                if( this._selector.data('initedTips') ) return;
+                this._selector.data('initedTips', true);
             }
 
         , selector: function(){ return this._selector; }
@@ -162,7 +174,7 @@
             }
         , show:
             function( _evt ){
-                UXC.log( 'tips view show' );
+                //UXC.log( 'tips view show' );
                 var _x = _evt.pageX, _y = _evt.pageY;
 
                 _x += UXC.Tips.offset.bottom.x;
@@ -193,16 +205,26 @@
         , hide: function(){ this.layout().hide(); }
 
         , layout: 
-            function(){ 
+            function( _update ){ 
                 if( !this._layout ){
                     this._layout = $('#UXCTipsLayout');
                     if( !(this._layout && this._layout.length) ){
                         this._layout = $(UXC.Tips.tpl || this._model.tpl);
-                        this._layout.attr('id', 'UXCTipsLayout');
+                        this._layout.attr('id', 'UXCTipsLayout').css('position', 'absolute');
                         this._layout.appendTo(document.body);
                     }
                 }
-                this._layout.html( this._model.data() );
+                if( _update ){
+                    var _data = this._model.data( _update );
+                    this._layout.html( _data ).css( {'width': 'auto'
+                                                            , 'left': '-9999px'
+                                                            , 'top': '-9999px'
+                                                            , 'display': 'block' });  
+                    var _w = this._layout.width(), _h = this._layout.height();
+
+                    _w < UXC.Tips.minWidth && this._layout.css('width', UXC.Tips.minWidth + 'px');
+                    _w > UXC.Tips.maxWidth && this._layout.css('width', UXC.Tips.maxWidth + 'px');
+                }
                 return this._layout; 
             }
     };

@@ -1,5 +1,6 @@
 ;(function($){
     !window.UXC && (window.UXC = { log:function(){} });
+    window.ZINDEX_COUNT = parseInt( window.ZINDEX_COUNT ) || 50001;
     window.Panel = UXC.Panel = Panel;
     /**
      * 弹出层基础类 UXC.Panel
@@ -593,7 +594,7 @@
          */
         , show:
             function(){
-                this.getPanel().show();
+                this.getPanel().css( { 'z-index': ZINDEX_COUNT++ } ).show();
             }
         /**
          * 隐藏 Panel

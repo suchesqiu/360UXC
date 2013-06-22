@@ -1,6 +1,6 @@
 (function($){
 
-    window.ZIDNEX_COUNT = window.ZINDEX_COUNT || 50001;
+    window.ZINDEX_COUNT = window.ZINDEX_COUNT || 50001;
     var isIE6 = !!window.ActiveXObject && !window.XMLHttpRequest;
     /**
      * 带蒙板的会话弹框
