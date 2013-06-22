@@ -248,7 +248,9 @@
          * 显示 Panel
          * &lt;br /&gt; Panel初始后, 默认是隐藏状态, 显示 Panel 需要显式调用 show 方法
          * @method  show
-         * @param   {int}   _position   指定 panel 要显示的位置, 目前只有参数 0, 表示屏幕居中显示
+         * @param   {int|selector}   _position   指定 panel 要显示的位置, 
+         *  &lt;br /&gt;如果 _position 为 int:  0, 表示屏幕居中显示
+         *  &lt;br /&gt;如果 _position 为 selector:  Paenl 的显示位置将基于 _position 的上下左右
          * @example
          *      //默认显示
          *      panelInstace.show();
@@ -261,14 +263,49 @@
                 var _p = this;
                 setTimeout(
                     function(){
-                        if( _position != undefined ){
-                            switch( _position ){
-                                case 0: _p.center(); break;
-                            }
+                        switch( typeof _position ){
+                            case &#x27;number&#x27;: 
+                                {
+                                    switch( _position ){
+                                        case 0: _p.center(); break;
+                                    }
+                                    break;
+                                }
+                            case &#x27;object&#x27;:
+                                {
+                                    _position = $(_position);
+                                    _position.length &amp;&amp; _p._view.positionWith( _position );
+
+                                    if( !_p._model.bindedPositionWithEvent ){
+                                        _p._model.bindedPositionWithEvent = true;
+
+                                        $(window).on(&#x27;resize&#x27;, changePosition );
+                                        _p.on(&#x27;close&#x27;, function(){
+                                            _p._model.bindedPositionWithEvent = false;
+                                            $(window).unbind(&#x27;resize&#x27;, changePosition);
+                                        });
+
+                                        function changePosition(){
+                                            _p.positionWith( _position );
+                                        }
+                                    }
+
+                                    break;
+                                }
                         }
-                    }, 50);
+                    }, 10);
                 this.trigger(&#x27;beforeshow&#x27;, this._view.getPanel() );
                 this.trigger(&#x27;show&#x27;, this._view.getPanel() );
+            }
+        /**
+         * 设置Panel的显示位置基于 _src 的左右上下
+         * @method  positionWith
+         * @param   {selector}      _src 
+         */
+        , positionWith: 
+            function( _src ){ 
+                _src = $(_src ); 
+                _src &amp;&amp; _src.length &amp;&amp; this._view.positionWith( _src ); 
             }
         /**
          * 隐藏 Panel
@@ -634,7 +671,7 @@
                         this._model.panel = this._model.selector;
                     }else{
                         this._model.panel = $(this._tpl);
-                        this._model.panel.hide().appendTo(document.body);
+                        this._model.panel.appendTo(document.body);
                     }
                 }
 
@@ -643,6 +680,32 @@
                 this.getFooter();
 
                 return this;
+            }
+        /**
+         * 设置Panel的显示位置基于 _src 的左右上下
+         * @method  positionWith
+         * @param   {selector}      _src 
+         */
+        , positionWith:
+            function( _src ){
+                if( !( _src &amp;&amp; _src.length ) ) return;
+                this.getPanel().css( { &#x27;left&#x27;: &#x27;-9999px&#x27;, &#x27;top&#x27;: &#x27;-9999px&#x27;, &#x27;display&#x27;: &#x27;block&#x27;, &#x27;position&#x27;: &#x27;absolute&#x27; } );
+                var _soffset = _src.offset(), _swidth = _src.prop(&#x27;offsetWidth&#x27;), _sheight = _src.prop(&#x27;offsetHeight&#x27;);
+                var _lwidth = this.getPanel().prop(&#x27;offsetWidth&#x27;), _lheight = this.getPanel().prop(&#x27;offsetHeight&#x27;);
+                var _wwidth = $(window).width(), _wheight = $(window).height();
+                var _stop = $(document).scrollTop(), _sleft = $(document).scrollLeft();
+                var _x = _soffset.left + _sleft
+                    , _y = _soffset.top + _sheight + 1;
+
+                var _maxY = _stop + _wheight - _lheight, _minY = _stop;
+                if( _y &gt; _maxY ) _y = _soffset.top - _lheight - 1;
+                if( _y &lt; _minY ) _y = _stop;
+
+                var _maxX = _sleft + _wwidth - _lwidth, _minX = _sleft;
+                if( _x &gt; _maxX ) _x = _sleft + _wwidth - _lwidth - 1;
+                if( _x &lt; _minX ) _x = _sleft;
+
+                this.getPanel().css( { &#x27;left&#x27;: _x + &#x27;px&#x27;, &#x27;top&#x27;: _y + &#x27;px&#x27; } );
             }
         /**
          * 显示 Panel
