@@ -32,7 +32,7 @@
         $('button.dom_panel').on( 'click', function( _evt ){
             /**
              * 注意, 如果是从DOM读取模板的话, 
-             * 而且需要多次使用这个模板, 需要使用 clone(true) 方法克隆对象, 否则dom对象会被清除
+             * 而且需要多次使用这个模板, 需要使用 clone(true) 方法克隆对象, 否则dom对象会被删除
              */
             var panel = new UXC.Panel( $('div.dom_panel').clone(true) ); 
                 panel.show( this ); //让Panel显示在 this 的上方或下方
@@ -112,6 +112,8 @@
 <body>
 
     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br />
     <dl class="def">
         <dt>UXC.Panel 示例</dt>
         <dd>
