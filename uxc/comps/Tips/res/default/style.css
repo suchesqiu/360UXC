@@ -1,7 +1,7 @@
 div.UTips, div.UTips *{
     padding: 0px;
     margin: 0px;
-    font: 14px/1.5 Tahoma,Helvetica,Arial,'宋体',sans-serif!important;
+    font: 14px/1.5 Tahoma,Helvetica,Arial,'宋体',sans-serif;
 }
 
 div.UTips{    
@@ -13,6 +13,8 @@ div.UTips{
     color: white; 
     z-index: 30000; 
     display: none;
+    word-wrap: break-word;
+    word-break: break-all;
     opacity: 0.9; 
     filters: alpha(opacity=90);
 }

@@ -133,11 +133,9 @@
          *  <br />如果 _position 为 int:  0, 表示屏幕居中显示
          *  <br />如果 _position 为 selector:  Paenl 的显示位置将基于 _position 的上下左右
          * @example
-         *      //默认显示
-         *      panelInstace.show();
-         *
-         *      //居中显示
-         *      panelInstace.show( 0 );
+         *      panelInstace.show();            //默认显示
+         *      panelInstace.show( 0 );         //居中显示
+         *      panelInstace.show( _selector ); //位于 _selector 的上下左右
          */
         , show:
             function( _position ){

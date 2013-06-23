@@ -2,7 +2,6 @@ YUI.add("yuidoc-meta", function(Y) {
    Y.YUIDoc = { meta: {
     "classes": [
         "UXC.Calendar",
-        "UXC.CustomEvent",
         "UXC.Dialog",
         "UXC.Dialog.alert",
         "UXC.Dialog.confirm",
@@ -13,7 +12,9 @@ YUI.add("yuidoc-meta", function(Y) {
         "UXC.Panel",
         "UXC.Panel.Model",
         "UXC.Panel.View",
-        "UXC.Toggle",
+        "UXC.Tips",
+        "UXC.Tips.Model",
+        "UXC.Tips.View",
         "UXC.Valid",
         "UXC.alert",
         "UXC.confirm",

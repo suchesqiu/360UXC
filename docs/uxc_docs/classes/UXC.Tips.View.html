@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>UXC.Toggle - UXC jquery components</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -37,7 +36,6 @@
                 <li><a href="../classes/UXC.alert.html">UXC.alert</a></li>
                 <li><a href="../classes/UXC.Calendar.html">UXC.Calendar</a></li>
                 <li><a href="../classes/UXC.confirm.html">UXC.confirm</a></li>
-                <li><a href="../classes/UXC.CustomEvent.html">UXC.CustomEvent</a></li>
                 <li><a href="../classes/UXC.Dialog.html">UXC.Dialog</a></li>
                 <li><a href="../classes/UXC.Dialog.alert.html">UXC.Dialog.alert</a></li>
                 <li><a href="../classes/UXC.Dialog.confirm.html">UXC.Dialog.confirm</a></li>
@@ -45,7 +43,7 @@
                 <li><a href="../classes/UXC.hideAllPopup.html">UXC.hideAllPopup</a></li>
                 <li><a href="../classes/UXC.LunarCalendar.html">UXC.LunarCalendar</a></li>
                 <li><a href="../classes/UXC.Panel.html">UXC.Panel</a></li>
-                <li><a href="../classes/UXC.Toggle.html">UXC.Toggle</a></li>
+                <li><a href="../classes/UXC.Tips.html">UXC.Tips</a></li>
                 <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
                 <li><a href="../classes/window.jQuery.html">window.jQuery</a></li>
                 <li><a href="../classes/window.UXC.html">window.UXC</a></li>
@@ -80,19 +78,48 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>UXC.Toggle Class</h1>
 <div class="box meta">
         <div class="foundat">
-            Defined in: <a href="../files/.._.._uxc_comps_Tab_Tab.js.html#l61"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tab&#x2F;Tab.js:61</code></a>
+            Defined in: <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l274"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:274</code></a>
         </div>
 </div>
 <div class="box intro">
-    <p>UXC jQuery 组件库 自定义事件类<br /></p>
+    <p>Tips 视图类</p>
 </div>
+    <div class="constructor">
+        <h2>Constructor</h2>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_model</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l274"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:274</code></a>
+        </p>
+    </div>
+    <div class="description">
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_model</code>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+</div>
+    </div>
 <div id="classdocs" class="tabview">
     <ul class="api-class-tabs">
         <li class="api-class-tab index"><a href="#index">Index</a></li>
             <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
     </ul>
     <div>
         <div id="index" class="api-class-tabpanel index">
@@ -100,192 +127,214 @@
                 <div class="index-section methods">
                     <h3>Methods</h3>
                     <ul class="index-list methods">
-                            <li class="index-item method">
-                                <a href="#method__initEvent">_initEvent</a>
+                            <li class="index-item method private">
+                                <a href="#method__init">_init</a>
                             </li>
                             <li class="index-item method">
-                                <a href="#method_getCurrent">getCurrent</a>
+                                <a href="#method_hide">hide</a>
                             </li>
                             <li class="index-item method">
-                                <a href="#method_getOldCurrent">getOldCurrent</a>
+                                <a href="#method_layout">layout</a>
                             </li>
                             <li class="index-item method">
-                                <a href="#method_getOldCurrent">getOldCurrent</a>
+                                <a href="#method_show">show</a>
                             </li>
-                            <li class="index-item method">
-                                <a href="#method_getOldCurrent">getOldCurrent</a>
+                            <li class="index-item method private">
+                                <a href="#method_tipMouseenter">tipMouseenter</a>
+                                    <span class="flag static">static</span>
                             </li>
-                            <li class="index-item method">
-                                <a href="#method_next">next</a>
+                    </ul>
+                </div>
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+                    <ul class="index-list properties">
+                            <li class="index-item property private">
+                                <a href="#property__defTpl">_defTpl</a>
                             </li>
-                            <li class="index-item method">
-                                <a href="#method_prev">prev</a>
+                            <li class="index-item property private">
+                                <a href="#property__layout">_layout</a>
                             </li>
-                            <li class="index-item method">
-                                <a href="#method_toggle">toggle</a>
+                            <li class="index-item property private">
+                                <a href="#property__model">_model</a>
                             </li>
                     </ul>
                 </div>
         </div>
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
-                    <div id="method__initEvent" class="method item">
-    <h3 class="name"><code>_initEvent</code></h3>
+                    <div id="method__init" class="method item private">
+    <h3 class="name"><code>_init</code></h3>
+        <span class="paren">()</span>
+        <span class="flag private">private</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l301"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:301</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>初始化 Tips 视图类</p>
+    </div>
+</div>
+                    <div id="method_hide" class="method item">
+    <h3 class="name"><code>hide</code></h3>
         <span class="paren">()</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Tab_Tab.js.html#l81"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tab&#x2F;Tab.js:81</code></a>
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l345"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:345</code></a>
         </p>
     </div>
     <div class="description">
-        <p>内部方法,初始化自定义事件</p>
+        <p>隐藏 Tips</p>
     </div>
 </div>
-                    <div id="method_getCurrent" class="method item">
-    <h3 class="name"><code>getCurrent</code></h3>
-        <span class="paren">()</span>
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-        </span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._.._uxc_comps_Tab_Tab.js.html#l160"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tab&#x2F;Tab.js:160</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>获取当前焦点</p>
-    </div>
-        <div class="returns">
-            <h4>Returns:</h4>
-            <div class="returns-description">
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
-            </div>
-        </div>
-</div>
-                    <div id="method_getOldCurrent" class="method item">
-    <h3 class="name"><code>getOldCurrent</code></h3>
-        <span class="paren">()</span>
-        <span class="returns-inline">
-            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
-        </span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._.._uxc_comps_Tab_Tab.js.html#l169"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tab&#x2F;Tab.js:169</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>获取前一个焦点</p>
-    </div>
-        <div class="returns">
-            <h4>Returns:</h4>
-            <div class="returns-description">
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>:
-            </div>
-        </div>
-</div>
-                    <div id="method_getOldCurrent" class="method item">
-    <h3 class="name"><code>getOldCurrent</code></h3>
+                    <div id="method_layout" class="method item">
+    <h3 class="name"><code>layout</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>current</code>
+                        <code>_update</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l350"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:350</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>获取 Tips 外观的 选择器</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_update</code>
+                        <span class="type">Bool</span>
+                    <div class="param-description">
+                        <p>是否更新 Tips 数据</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    selector
+            </div>
+        </div>
+</div>
+                    <div id="method_show" class="method item">
+    <h3 class="name"><code>show</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_evt</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Tab_Tab.js.html#l178"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tab&#x2F;Tab.js:178</code></a>
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l310"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:310</code></a>
         </p>
     </div>
     <div class="description">
-        <p>设置焦点,但不触发事件</p>
+        <p>显示 Tips</p>
     </div>
         <div class="params">
             <h4>Parameters:</h4>
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">current</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                        <code class="param-name">_evt</code>
+                        <span class="type">Event | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     <div class="param-description">
-                        <p>焦点值</p>
+                        <p>_evt 可以是事件/或者带 pageX &amp;&amp; pageY 属性的 Object
+                                 <br />pageX 和 pageY 是显示位于整个文档的绝对 x/y 轴位置</p>
                     </div>
                 </li>
             </ul>
         </div>
 </div>
-                    <div id="method_getOldCurrent" class="method item">
-    <h3 class="name"><code>getOldCurrent</code></h3>
+                    <div id="method_tipMouseenter" class="method item private">
+    <h3 class="name"><code>tipMouseenter</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>current</code>
+                        <code>_evt</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
+        <span class="flag private">private</span>
+        <span class="flag static">static</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Tab_Tab.js.html#l187"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tab&#x2F;Tab.js:187</code></a>
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l399"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:399</code></a>
         </p>
     </div>
     <div class="description">
-        <p>设置前一个焦点,但不触发事件</p>
+        <p>鼠标移动到 Tips 触发源的触发事件</p>
     </div>
         <div class="params">
             <h4>Parameters:</h4>
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">current</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                        <code class="param-name">_evt</code>
+                        <span class="type">Event</span>
                     <div class="param-description">
-                        <p>焦点值</p>
                     </div>
                 </li>
             </ul>
         </div>
 </div>
-                    <div id="method_next" class="method item">
-    <h3 class="name"><code>next</code></h3>
-        <span class="paren">()</span>
+            </div>
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+                    <div id="property__defTpl" class="property item private">
+    <h3 class="name"><code>_defTpl</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        <span class="flag private">private</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Tab_Tab.js.html#l132"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tab&#x2F;Tab.js:132</code></a>
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l425"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:425</code></a>
         </p>
     </div>
     <div class="description">
-        <p>切换到下一个焦点,内部调用toggle方法</p>
+        <p>Tips 的默认模板</p>
     </div>
 </div>
-                    <div id="method_prev" class="method item">
-    <h3 class="name"><code>prev</code></h3>
-        <span class="paren">()</span>
+                    <div id="property__layout" class="property item private">
+    <h3 class="name"><code>_layout</code></h3>
+    <span class="type">Selector</span>
+        <span class="flag private">private</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Tab_Tab.js.html#l146"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tab&#x2F;Tab.js:146</code></a>
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l289"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:289</code></a>
         </p>
     </div>
     <div class="description">
-        <p>切换到上一个焦点,内部调用toggle方法</p>
+        <p>保存 Tips 的显示外观选择器</p>
     </div>
 </div>
-                    <div id="method_toggle" class="method item">
-    <h3 class="name"><code>toggle</code></h3>
-        <span class="paren">()</span>
+                    <div id="property__model" class="property item private">
+    <h3 class="name"><code>_model</code></h3>
+        <span class="flag private">private</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Tab_Tab.js.html#l89"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tab&#x2F;Tab.js:89</code></a>
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l282"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:282</code></a>
         </p>
     </div>
     <div class="description">
-        <p>切换焦点,将触发beforeToggle和afterToggle的自定义事件,分别对应切换前和切换后的事件
-         如果当前焦点是序列里的第一个或者最后一个,还将触发first或者end事件</p>
+        <p>保存 Tips 数据模型类的实例引用</p>
     </div>
 </div>
             </div>

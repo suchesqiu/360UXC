@@ -47,8 +47,6 @@
             
                 <li><a href="../classes/UXC.confirm.html">UXC.confirm</a></li>
             
-                <li><a href="../classes/UXC.CustomEvent.html">UXC.CustomEvent</a></li>
-            
                 <li><a href="../classes/UXC.Dialog.html">UXC.Dialog</a></li>
             
                 <li><a href="../classes/UXC.Dialog.alert.html">UXC.Dialog.alert</a></li>
@@ -71,7 +69,11 @@
             
                 <li><a href="../classes/UXC.Panel.View.html">UXC.Panel.View</a></li>
             
-                <li><a href="../classes/UXC.Toggle.html">UXC.Toggle</a></li>
+                <li><a href="../classes/UXC.Tips.html">UXC.Tips</a></li>
+            
+                <li><a href="../classes/UXC.Tips.Model.html">UXC.Tips.Model</a></li>
+            
+                <li><a href="../classes/UXC.Tips.View.html">UXC.Tips.View</a></li>
             
                 <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
             
@@ -208,6 +210,7 @@
                      * @private
                      */
                     !_urlRe.test( _val ) &amp;&amp; ( _val = _val.replace( /(\\)\1|(\/)\2/g, &#x27;$1&#x27; ) ); 
+                    _val = $.trim( _val );
 
                     if( !_nginxStyle ){
                         _paths.push( &#x27;&lt;script src=&quot;&#x27;+_val+&#x27;&quot;&gt;&lt;\/script&gt;&#x27; );
@@ -251,25 +254,7 @@
            function(){
                 if( !this.debug ) return;
                 console.log( [].slice.apply( arguments ).join(&#x27; &#x27;) );
-            },
-        /**
-         * 获取命名空间，如果没有就创建一个
-         *
-         * @author rekey 2013-05-28
-         * @method namespace
-         * @static
-         * @param {String} str 命名空间
-         * @param {Object} context 命名空间基于这个对象生成，默认为window
-         * @return {Object} 返回生成的命名空间
-         */
-        namespace : function ( str , context ) {
-            var arr = str.split( &#x27;.&#x27; ), base = context || window;
-            for ( var i = 0 , len = arr.length ; i &lt; len ; i++ ) {
-                base[ arr[i] ] = base[ arr[i] ] || {};
-                base = base[ arr[i] ];
             }
-            return context;
-        }
     };
     /**
      * 如果 console 不可用, 则生成一个模拟的 console 对象

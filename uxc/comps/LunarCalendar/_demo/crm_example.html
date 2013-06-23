@@ -56,6 +56,8 @@
             date.setMonth( date.getMonth()+1 );
         });
 
+        if( !httpRequire() ) return;
+
         setTimeout( function(){
             updateLunarCalendarStatus();
         }, 500);
@@ -78,6 +80,7 @@
     });
 
     $(document).delegate('button.js_setWorkday', 'click', function(){
+        if( !httpRequire() ) return;
         UXC.hideAllPopup( 1 );
         var item = UXC.LunarCalendar.getSelectedItemGlobal(), _action;
         if( !item ){
@@ -124,6 +127,7 @@
     }
 
     $(document).delegate('button.js_setHoliday', 'click', function(){
+        if( !httpRequire() ) return;
         UXC.hideAllPopup( 1 );
         var item = UXC.LunarCalendar.getSelectedItemGlobal(), _action;
         if( !item ){
@@ -210,6 +214,7 @@
         _selector.find('textarea').val( _comment );
 
         _ins.on('confirm', function( _evt, _panel ){
+            if( !httpRequire() ) return false;
             var _p = _selector.find('form');
 
             var _btn = $(this);
@@ -287,7 +292,6 @@
     }
 
     function updateLunarCalendarStatus(){
-        if( !httpRequire() ) return;
         var l = $('#leftCalendar').data('LunarCalendar')
             , r = $('#rightCalendar').data('LunarCalendar');
         if( !( l && r ) ) return;
