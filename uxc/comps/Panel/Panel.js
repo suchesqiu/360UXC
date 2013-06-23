@@ -1,5 +1,6 @@
-(function($){
+;(function($){
     !window.UXC && (window.UXC = { log:function(){} });
+    window.ZINDEX_COUNT = parseInt( window.ZINDEX_COUNT ) || 50001;
     window.Panel = UXC.Panel = Panel;
     /**
      * 弹出层基础类 UXC.Panel
@@ -132,11 +133,9 @@
          *  <br />如果 _position 为 int:  0, 表示屏幕居中显示
          *  <br />如果 _position 为 selector:  Paenl 的显示位置将基于 _position 的上下左右
          * @example
-         *      //默认显示
-         *      panelInstace.show();
-         *
-         *      //居中显示
-         *      panelInstace.show( 0 );
+         *      panelInstace.show();            //默认显示
+         *      panelInstace.show( 0 );         //居中显示
+         *      panelInstace.show( _selector ); //位于 _selector 的上下左右
          */
         , show:
             function( _position ){
@@ -593,7 +592,7 @@
          */
         , show:
             function(){
-                this.getPanel().show();
+                this.getPanel().css( { 'z-index': ZINDEX_COUNT++ } ).show();
             }
         /**
          * 隐藏 Panel
@@ -1249,7 +1248,7 @@
 
 (function($){
 
-    window.ZIDNEX_COUNT = window.ZINDEX_COUNT || 50001;
+    window.ZINDEX_COUNT = window.ZINDEX_COUNT || 50001;
     var isIE6 = !!window.ActiveXObject && !window.XMLHttpRequest;
     /**
      * 带蒙板的会话弹框

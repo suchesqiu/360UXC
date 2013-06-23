@@ -80,11 +80,11 @@
                     <div class="content">
 <div class="box meta">
         <div class="foundat">
-            Defined in: <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l494"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:494</code></a>
+            Defined in: <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l277"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:277</code></a>
         </div>
 </div>
 <div class="box intro">
-    <p>LunarCalendar 视图类</p>
+    <p>Tips 视图类</p>
 </div>
     <div class="constructor">
         <h2>Constructor</h2>
@@ -98,7 +98,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l494"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:494</code></a>
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l277"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:277</code></a>
         </p>
     </div>
     <div class="description">
@@ -131,22 +131,17 @@
                                 <a href="#method__init">_init</a>
                             </li>
                             <li class="index-item method">
-                                <a href="#method__logic.initMonthDate">_logic.initMonthDate</a>
+                                <a href="#method_hide">hide</a>
                             </li>
                             <li class="index-item method">
-                                <a href="#method_addTitle">addTitle</a>
+                                <a href="#method_layout">layout</a>
                             </li>
                             <li class="index-item method">
-                                <a href="#method_hideControl">hideControl</a>
+                                <a href="#method_show">show</a>
                             </li>
-                            <li class="index-item method">
-                                <a href="#method_initLayout">initLayout</a>
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_initMonth">initMonth</a>
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_initYear">initYear</a>
+                            <li class="index-item method private">
+                                <a href="#method_tipMouseenter">tipMouseenter</a>
+                                    <span class="flag static">static</span>
                             </li>
                     </ul>
                 </div>
@@ -154,10 +149,13 @@
                     <h3>Properties</h3>
                     <ul class="index-list properties">
                             <li class="index-item property private">
-                                <a href="#property__model">_model</a>
+                                <a href="#property__defTpl">_defTpl</a>
                             </li>
-                            <li class="index-item property">
-                                <a href="#property_layout">layout</a>
+                            <li class="index-item property private">
+                                <a href="#property__layout">_layout</a>
+                            </li>
+                            <li class="index-item property private">
+                                <a href="#property__model">_model</a>
                             </li>
                     </ul>
                 </div>
@@ -171,171 +169,124 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l520"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:520</code></a>
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l304"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:304</code></a>
         </p>
     </div>
     <div class="description">
-        <p>初始化 View</p>
+        <p>初始化 Tips 视图类</p>
     </div>
 </div>
-                    <div id="method__logic.initMonthDate" class="method item">
-    <h3 class="name"><code>_logic.initMonthDate</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_dateObj</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l565"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:565</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>初始化月份的所有日期</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_dateObj</code>
-                        <span class="type">DateObjects</span>
-                    <div class="param-description">
-                        <p>保存所有相关日期的对象</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
-                    <div id="method_addTitle" class="method item">
-    <h3 class="name"><code>addTitle</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_td</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l666"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:666</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>把具体的公历和农历日期写进a标签的title里</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_td</code>
-                        <span class="type">Selector</span>
-                    <div class="param-description">
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
-                    <div id="method_hideControl" class="method item">
-    <h3 class="name"><code>hideControl</code></h3>
+                    <div id="method_hide" class="method item">
+    <h3 class="name"><code>hide</code></h3>
         <span class="paren">()</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l676"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:676</code></a>
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l348"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:348</code></a>
         </p>
     </div>
     <div class="description">
-        <p>检查是否要隐藏操作控件</p>
+        <p>隐藏 Tips</p>
     </div>
 </div>
-                    <div id="method_initLayout" class="method item">
-    <h3 class="name"><code>initLayout</code></h3>
+                    <div id="method_layout" class="method item">
+    <h3 class="name"><code>layout</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>_date</code>
+                        <code>_update</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l353"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:353</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>获取 Tips 外观的 选择器</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_update</code>
+                        <span class="type">Bool</span>
+                    <div class="param-description">
+                        <p>是否更新 Tips 数据</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    selector
+            </div>
+        </div>
+</div>
+                    <div id="method_show" class="method item">
+    <h3 class="name"><code>show</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_evt</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l532"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:532</code></a>
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l313"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:313</code></a>
         </p>
     </div>
     <div class="description">
-        <p>初始化日历外观</p>
+        <p>显示 Tips</p>
     </div>
         <div class="params">
             <h4>Parameters:</h4>
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">_date</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date" class="crosslink external" target="_blank">Date</a></span>
+                        <code class="param-name">_evt</code>
+                        <span class="type">Event | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     <div class="param-description">
+                        <p>_evt 可以是事件/或者带 pageX &amp;&amp; pageY 属性的 Object
+                                 <br />pageX 和 pageY 是显示位于整个文档的绝对 x/y 轴位置</p>
                     </div>
                 </li>
             </ul>
         </div>
 </div>
-                    <div id="method_initMonth" class="method item">
-    <h3 class="name"><code>initMonth</code></h3>
+                    <div id="method_tipMouseenter" class="method item private">
+    <h3 class="name"><code>tipMouseenter</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>_dateObj</code>
+                        <code>_evt</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
+        <span class="flag private">private</span>
+        <span class="flag static">static</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l556"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:556</code></a>
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l402"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:402</code></a>
         </p>
     </div>
     <div class="description">
-        <p>初始化月份</p>
+        <p>鼠标移动到 Tips 触发源的触发事件</p>
     </div>
         <div class="params">
             <h4>Parameters:</h4>
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">_dateObj</code>
-                        <span class="type">DateObject</span>
-                    <div class="param-description">
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
-                    <div id="method_initYear" class="method item">
-    <h3 class="name"><code>initYear</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_dateObj</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l547"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:547</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>初始化年份</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_dateObj</code>
-                        <span class="type">DateObject</span>
+                        <code class="param-name">_evt</code>
+                        <span class="type">Event</span>
                     <div class="param-description">
                     </div>
                 </li>
@@ -345,30 +296,45 @@
             </div>
             <div id="properties" class="api-class-tabpanel">
                 <h2 class="off-left">Properties</h2>
+                    <div id="property__defTpl" class="property item private">
+    <h3 class="name"><code>_defTpl</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        <span class="flag private">private</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l428"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:428</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>Tips 的默认模板</p>
+    </div>
+</div>
+                    <div id="property__layout" class="property item private">
+    <h3 class="name"><code>_layout</code></h3>
+    <span class="type">Selector</span>
+        <span class="flag private">private</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l292"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:292</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>保存 Tips 的显示外观选择器</p>
+    </div>
+</div>
                     <div id="property__model" class="property item private">
     <h3 class="name"><code>_model</code></h3>
         <span class="flag private">private</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l502"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:502</code></a>
+        <a href="../files/.._.._uxc_comps_Tips_Tips.js.html#l285"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Tips&#x2F;Tips.js:285</code></a>
         </p>
     </div>
     <div class="description">
-        <p>LunarCalendar model 对象</p>
-    </div>
-</div>
-                    <div id="property_layout" class="property item">
-    <h3 class="name"><code>layout</code></h3>
-    <span class="type">Selector</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l509"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:509</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>LunarCalendar 的主容器</p>
+        <p>保存 Tips 数据模型类的实例引用</p>
     </div>
 </div>
             </div>

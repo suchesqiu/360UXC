@@ -30,8 +30,10 @@
     <script src="../../../lib.js"></script>
     <link href='../../../comps/LunarCalendar/res/default/style.css' rel='stylesheet' />
     <link href='../../../comps/Panel/res/default/style.css' rel='stylesheet' />
-    <script> UXC.debug = true; UXC.use( 'LunarCalendar, Panel, Form, Valid' ); </script>
-    <script>
+    <link href='../../../comps/Tips/res/default/style.css' rel='stylesheet' />
+    <script> 
+        UXC.debug = true; 
+        UXC.use( 'LunarCalendar, Panel, Form, Valid, Tips' );
     /*
      tm: item timestamp, timestamp is id
        
@@ -53,6 +55,8 @@
             $(this).attr('defaultdate', [date.getFullYear(), pad_char_f( date.getMonth()+1 ), pad_char_f( date.getDate() )].join('-') );
             date.setMonth( date.getMonth()+1 );
         });
+
+        if( !httpRequire() ) return;
 
         setTimeout( function(){
             updateLunarCalendarStatus();
@@ -76,6 +80,7 @@
     });
 
     $(document).delegate('button.js_setWorkday', 'click', function(){
+        if( !httpRequire() ) return;
         UXC.hideAllPopup( 1 );
         var item = UXC.LunarCalendar.getSelectedItemGlobal(), _action;
         if( !item ){
@@ -108,8 +113,21 @@
         UXC.LunarCalendar.isWorkday( item.td ) && _btn.html('取消工作日');
         !UXC.LunarCalendar.isWorkday( item.td ) && _btn.html('设为工作日');
     }
+        /**
+     * 提示需要 HTTP 环境
+     * suches@btbtd.org     2013-06-18
+     */
+    function httpRequire( _msg ){
+        _msg = _msg || '本示例需要HTTP环境';
+        if( /file\:|\\/.test( location.href ) ){
+            alert( _msg );
+            return false;
+        }
+        return true;
+    }
 
     $(document).delegate('button.js_setHoliday', 'click', function(){
+        if( !httpRequire() ) return;
         UXC.hideAllPopup( 1 );
         var item = UXC.LunarCalendar.getSelectedItemGlobal(), _action;
         if( !item ){
@@ -196,6 +214,7 @@
         _selector.find('textarea').val( _comment );
 
         _ins.on('confirm', function( _evt, _panel ){
+            if( !httpRequire() ) return false;
             var _p = _selector.find('form');
 
             var _btn = $(this);
@@ -294,6 +313,8 @@
                 setWorkdayButtonStatus(); 
                 setHolidayButtonStatus();
                 setCommentButtonStatus();
+
+                Tips.init( 'table a[title]' );
              });
     }
 
