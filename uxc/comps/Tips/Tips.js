@@ -102,10 +102,13 @@
      */
     Tips.tpl = null;
     /**
-     * 设置 Tips 的超过边界的默认偏移像素
-     * @property    offset  bottom: 边界超过屏幕底部的偏移
-     *                        left: 边界低于屏幕左侧的偏移
-     *                         top: 边界低于屏幕顶部的偏移
+     * 设置 Tips 超过边界的默认偏移像素
+     * <p>
+     * bottom: 边界超过屏幕底部的偏移
+     * <br />left: 边界低于屏幕左侧的偏移
+     * <br />top: 边界低于屏幕顶部的偏移
+     * </p>
+     * @property    offset  
      * @type        {point object}
      * @default     { 'bottom': { 'x': 15, 'y': 15 }, 'left': { 'x': -28, 'y': 5 }, 'top': { 'x': -2, 'y': -22 } };
      * @static

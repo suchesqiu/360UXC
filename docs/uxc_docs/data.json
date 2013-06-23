@@ -659,7 +659,7 @@
             "extension_for": [],
             "namespace": "UXC.Tips",
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 197,
+            "line": 200,
             "description": "Tips 数据模型类",
             "is_constructor": 1,
             "params": [
@@ -680,7 +680,7 @@
             "extension_for": [],
             "namespace": "UXC.Tips",
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 274,
+            "line": 277,
             "description": "Tips 视图类",
             "is_constructor": 1,
             "params": [
@@ -4239,9 +4239,9 @@
         {
             "file": "../../uxc/comps/Tips/Tips.js",
             "line": 104,
-            "description": "设置 Tips 的超过边界的默认偏移像素",
+            "description": "设置 Tips 超过边界的默认偏移像素\n<p>\nbottom: 边界超过屏幕底部的偏移\n<br />left: 边界低于屏幕左侧的偏移\n<br />top: 边界低于屏幕顶部的偏移\n</p>",
             "itemtype": "property",
-            "name": "offset  bottom: 边界超过屏幕底部的偏移\n                       left: 边界低于屏幕左侧的偏移\n                        top: 边界低于屏幕顶部的偏移",
+            "name": "offset",
             "type": "{point object}",
             "default": "{ 'bottom': { 'x': 15, 'y': 15 }, 'left': { 'x': -28, 'y': 5 }, 'top': { 'x': -2, 'y': -22 } };",
             "static": 1,
@@ -4250,7 +4250,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 118,
+            "line": 121,
             "description": "Tips 的最小宽度",
             "itemtype": "property",
             "name": "minWidth",
@@ -4262,7 +4262,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 126,
+            "line": 129,
             "description": "Tips 的最大宽度",
             "itemtype": "property",
             "name": "maxWidth",
@@ -4274,7 +4274,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 134,
+            "line": 137,
             "description": "把 tag 的 title 属性 转为 tipsData \n<p><b>注意:</b> 这个方法只有当 Tips.autoInit 为假时, 或者浏览器会 IE时才会生效\n<br />Tips.autoInit 为真时, 非IE浏览器无需转换\n<br />如果为IE浏览器, 无论 Tips.autoInit 为真假, 都会进行转换\n<br />方法内部已经做了判断, 可以直接调用, 对IE会生效\n, 这个方法的存在是因为 IE 的 title为延时显示, 所以tips显示后, 默认title会盖在tips上面\n</p>",
             "itemtype": "method",
             "name": "titleToTipsdata",
@@ -4290,7 +4290,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 156,
+            "line": 159,
             "description": "初始化 Tips 内部属性",
             "itemtype": "method",
             "name": "_init",
@@ -4301,7 +4301,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 168,
+            "line": 171,
             "description": "显示 Tips",
             "itemtype": "method",
             "name": "show",
@@ -4317,7 +4317,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 178,
+            "line": 181,
             "description": "隐藏 Tips",
             "itemtype": "method",
             "name": "hide",
@@ -4326,7 +4326,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 183,
+            "line": 186,
             "description": "获取 显示 tips 的触发源选择器, 比如 a 标签",
             "itemtype": "method",
             "name": "selector",
@@ -4338,7 +4338,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 189,
+            "line": 192,
             "description": "获取 tips 外观的 选择器",
             "itemtype": "method",
             "name": "layout",
@@ -4357,7 +4357,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 205,
+            "line": 208,
             "description": "tips 默认模板",
             "itemtype": "property",
             "name": "tpl",
@@ -4368,7 +4368,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 212,
+            "line": 215,
             "description": "保存 tips 的触发源选择器",
             "itemtype": "property",
             "name": "_selector",
@@ -4380,7 +4380,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 219,
+            "line": 222,
             "description": "tips 的显示内容\n<br />标签的 title/tipsData 会保存在这个属性, 然后 title/tipsData 会被清除掉",
             "itemtype": "property",
             "name": "_data",
@@ -4392,7 +4392,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 231,
+            "line": 234,
             "description": "初始化 tips 模型类",
             "itemtype": "method",
             "name": "_init",
@@ -4404,7 +4404,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 243,
+            "line": 246,
             "description": "获取/更新 tips 显示内容",
             "itemtype": "method",
             "name": "data",
@@ -4423,7 +4423,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 254,
+            "line": 257,
             "description": "更新 tips 数据",
             "itemtype": "method",
             "name": "update",
@@ -4432,7 +4432,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 267,
+            "line": 270,
             "description": "获取 tips 触发源选择器",
             "itemtype": "method",
             "name": "selector",
@@ -4444,7 +4444,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 282,
+            "line": 285,
             "description": "保存 Tips 数据模型类的实例引用",
             "itemtype": "property",
             "name": "_model",
@@ -4456,7 +4456,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 289,
+            "line": 292,
             "description": "保存 Tips 的显示外观选择器",
             "itemtype": "property",
             "name": "_layout",
@@ -4468,7 +4468,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 301,
+            "line": 304,
             "description": "初始化 Tips 视图类",
             "itemtype": "method",
             "name": "_init",
@@ -4479,7 +4479,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 310,
+            "line": 313,
             "description": "显示 Tips",
             "itemtype": "method",
             "name": "show",
@@ -4495,7 +4495,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 345,
+            "line": 348,
             "description": "隐藏 Tips",
             "itemtype": "method",
             "name": "hide",
@@ -4504,7 +4504,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 350,
+            "line": 353,
             "description": "获取 Tips 外观的 选择器",
             "itemtype": "method",
             "name": "layout",
@@ -4523,14 +4523,14 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 380,
+            "line": 383,
             "description": "页面加载完毕后, 是否自动初始化 Tips",
             "class": "UXC.Tips.View",
             "namespace": "UXC.Tips"
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 399,
+            "line": 402,
             "description": "鼠标移动到 Tips 触发源的触发事件",
             "itemtype": "method",
             "name": "tipMouseenter",
@@ -4549,7 +4549,7 @@
         },
         {
             "file": "../../uxc/comps/Tips/Tips.js",
-            "line": 425,
+            "line": 428,
             "description": "Tips 的默认模板",
             "itemtype": "property",
             "name": "_defTpl",
@@ -5854,7 +5854,7 @@
         },
         {
             "message": "Missing item type\n页面加载完毕后, 是否自动初始化 Tips",
-            "line": " ../../uxc/comps/Tips/Tips.js:380"
+            "line": " ../../uxc/comps/Tips/Tips.js:383"
         },
         {
             "message": "Missing item type\n响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果",
