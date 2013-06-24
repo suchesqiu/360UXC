@@ -25,9 +25,10 @@
             div.label{ width: 320px; text-align: right; padding-right: 20px }
 
         </style>
+        <link href='../../../comps/Calendar/res/default/style.css' rel='stylesheet' />
 
         <script src="../../../lib.js"></script>
-        <script> UXC.debug = true; UXC.use( 'Valid' ); </script>
+        <script> UXC.debug = true; UXC.use( 'Valid, Calendar' ); </script>
         <script>
             $(document).ready( function($evt){
                 $(document).delegate( 'button.js-clear-error', 'click', function( $evt ){
@@ -150,7 +151,8 @@
                     <label>(datatype d, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD, YYYYMMDD )日期:</label>
                 </div>
                 <div class="f-l">
-                    <input type="text" name="company_d" errmsg="请填写正确的日期范围2013-05-01 - 2013-05-31" datatype="daterange" minvalue="2013-05-01" maxvalue="2013-05-31" >
+                    <input type="text" name="company_d" errmsg="请填写正确的日期范围2013-05-01 - 2013-05-31" 
+                        datatype="date" minvalue="2013-05-01" maxvalue="2013-05-31" value="2013-05-15" >
                 </div>
                 </dd>
 
@@ -159,11 +161,27 @@
                     <label>(datatype daterange, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD, YYYYMMDD )日期范围:</label>
                 </div>
                 <div class="f-l">
-                    <input type="text" name="company_daterange" errmsg="请填写正确的日期范围,并且起始日期不能大于结束日期" id="start_date" datatype="daterange" toDateEl="end_date" emEl="date-err-em" >
-                    - <input type="text" name="company_daterange" errmsg="请填写正确的日期范围,并且起始日期不能大于结束日期" id="end_date" datatype="daterange" fromDateEl="start_date" emEl="date-err-em" >
+                    <input type="text" name="company_daterange" errmsg="请填写正确的日期范围,并且起始日期不能大于结束日期" 
+                            id="start_date" datatype="daterange" toDateEl="end_date" emEl="date-err-em" value="2013-06-16" >
+                            - <input type="text" name="company_daterange" errmsg="请填写正确的日期范围,并且起始日期不能大于结束日期" 
+                            id="end_date" datatype="daterange" fromDateEl="start_date" emEl="date-err-em" value="2013-06-08" >
                     <br /><em id="date-err-em"></em>
                 </div>
                 </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype daterange, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD, YYYYMMDD )日期范围 - 自动初始化:</label>
+                </div>
+                <div class="f-l">
+                    <input type="text" name="company_daterange" errmsg="请填写正确的日期范围,并且起始日期不能大于结束日期" 
+                            id="start_date" datatype="daterange" emEl="date-err-em1" value="2013-06-16" >
+                            - <input type="text" name="company_daterange" errmsg="请填写正确的日期范围,并且起始日期不能大于结束日期" 
+                            id="end_date" datatype="daterange" emEl="date-err-em1" value="2013-06-08" >
+                    <br /><em id="date-err-em1"></em>
+                </div>
+                </dd>
+
 
                 <dd>
                 <div class="f-l label">

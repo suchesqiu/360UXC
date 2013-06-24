@@ -89,6 +89,9 @@
     $(document).delegate( 'input[type=text], input[type=password], textarea', 'blur', function($evt){
         UXC.Valid.check( this )
     });
+    $(document).delegate( 'input[datatype=date], input[datatype=daterange]', 'focus', function($evt){
+        UXC.Valid.check( this )
+    });
     /**
      * 响应表单子对象的 change 事件, 触发事件时, 检查并显示错误或正确的视觉效果
      * @private
@@ -496,6 +499,14 @@
                                 var _fromDateEl, _toDateEl;
                                 if( _item.is( '[fromDateEl]' ) ) _fromDateEl = _logic.getElement( _item.attr('fromDateEl') );
                                 if( _item.is( '[toDateEl]' ) ) _toDateEl = _logic.getElement( _item.attr('toDateEl') );
+
+                                if( !(_fromDateEl && _fromDateEl.length || _toDateEl && _toDateEl.length) ){
+                                    var _pnt = _item.parent(), _items = _pnt.find('input[datatype=daterange]');
+                                        if( _items.length === 2 ){
+                                            _fromDateEl = $(_items[0]);
+                                            _toDateEl = $(_items[1]);
+                                        }
+                                }
                                 if( _fromDateEl && _fromDateEl.length || _toDateEl && _toDateEl.length ){
 
                                     _fromDateEl && _fromDateEl.length && !( _toDateEl && _toDateEl.length ) && ( _toDateEl = _item );
@@ -930,4 +941,4 @@
             }//datatype
         };//_logic
 
-}(jQuery))
+}(jQuery));

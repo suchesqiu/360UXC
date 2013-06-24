@@ -622,7 +622,7 @@
                         , _logic.intPad( _d.getMonth() + 1 )
                         , _logic.intPad( _d.getDate() ) 
                      ].join(_symbol);
-                _logic.lastIpt.val( _dStr );
+                _logic.lastIpt.val( _dStr ).focus();
             }
         /**
          * 给文本框赋值, 日期为控件的当前日期
