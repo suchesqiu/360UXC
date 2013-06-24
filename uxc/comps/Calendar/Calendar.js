@@ -1,5 +1,6 @@
 (function($){
     !window.UXC && (window.UXC = { log:function(){} });
+    window.ZINDEX_COUNT = window.ZINDEX_COUNT || 50001;
     /**
      * 日期选择组件
      * <br />全局访问请使用 UXC.Calendar 或 Calendar
@@ -506,7 +507,7 @@
         , setPosition:
             function( _ipt ){
                 var _layout = _logic.getLayout();
-                _layout.css( {'left': '-9999px', 'top': '-9999px'} ).show();
+                _layout.css( {'left': '-9999px', 'top': '-9999px', 'z-index': ZINDEX_COUNT++ } ).show();
                 var _lw = _layout.width(), _lh = _layout.height()
                     , _iw = _ipt.width(), _ih = _ipt.height(), _ioset = _ipt.offset()
                     , _x, _y, _winw = $(window).width(), _winh = $(window).height()
