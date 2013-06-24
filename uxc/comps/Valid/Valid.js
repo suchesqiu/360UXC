@@ -89,9 +89,6 @@
     $(document).delegate( 'input[type=text], input[type=password], textarea', 'blur', function($evt){
         UXC.Valid.check( this )
     });
-    $(document).delegate( 'input[datatype=date], input[datatype=daterange]', 'focus', function($evt){
-        UXC.Valid.check( this )
-    });
     /**
      * 响应表单子对象的 change 事件, 触发事件时, 检查并显示错误或正确的视觉效果
      * @private
@@ -414,7 +411,7 @@
                         var _r = true, _valStr = _item.val(), _val = +_valStr,_min = 0, _max = Math.pow( 10, 10 ), _n, _f, _tmp;
 
                         if( !isNaN( _val ) && _val >= 0 ){
-                            _item.attr('datatype').replace( /^n\-(.*)$/, function( $0, $1 ){
+                            _item.attr('datatype').replace( /^n[^\-]*\-(.*)$/, function( $0, $1 ){
                                 _tmp = $1.split('.');
                                 _n = _tmp[0];
                                 _f = _tmp[1];
@@ -431,6 +428,66 @@
 
                             UXC.log( 'nValid', _val, typeof _n, typeof _f, typeof _min, typeof _max, _min, _max );
                         }else _r = false;
+
+                        !_r && _logic.error( _item );
+
+                        return _r;
+                    }
+                /**
+                 * fromNEl
+                 * toNEl
+                 */
+                , nrange:
+                    function( _item ){
+                        var _r = _logic.datatype.n( _item ), _min, _max;
+
+                        UXC.log( 'zzzz', _r );
+
+                        if( _r ){
+                            var _fromNEl, _toNEl;
+                            if( _item.is( '[fromNEl]' ) ) _fromNEl = _logic.getElement( _item.attr('fromNEl') );
+                            if( _item.is( '[toNEl]' ) ) _toNEl = _logic.getElement( _item.attr('toNEl') );
+
+                            if( !(_fromNEl && _fromNEl.length || _toNEl && _toNEl.length) ){
+                                var _pnt = _item.parent(), _items = [];
+                                    _pnt.find('input[datatype]').each( function(){
+                                        var _sp = $(this);
+                                        /nrange/i.test( _sp.attr('datatype') ) && _items.push( this );
+                                    });
+                                    UXC.log( 'ccc', _items.length );
+                                    if( _items.length === 2 ){
+                                        _fromNEl = $(_items[0]);
+                                        _toNEl = $(_items[1]);
+                                    }
+                            }
+                            UXC.log( 'aaaa', _r );
+                            if( _fromNEl && _fromNEl.length || _toNEl && _toNEl.length ){
+
+                                _fromNEl && _fromNEl.length && !( _toNEl && _toNEl.length ) && ( _toNEl = _item );
+                                !(_fromNEl && _fromNEl.length) && _toNEl && _toNEl.length && ( _fromNEl = _item );
+
+                                UXC.log( 'nrange', _fromNEl.length, _toNEl.length );
+
+                                _toNEl.val( $.trim( _toNEl.val() ) );
+                                _fromNEl.val( $.trim( _fromNEl.val() ) );
+                                
+                                if( _toNEl[0] != _fromNEl[0] && _toNEl.val().length && _fromNEl.val().length ){
+
+                                    _r && ( _r = _logic.datatype.n( _toNEl ) );
+                                    _r && ( _r = _logic.datatype.n( _fromNEl ) );
+
+                                    _r && ( +_fromNEl.val() ) > ( +_toNEl.val() ) && ( _r = false );
+                                    
+                                    UXC.log( +_fromNEl.val(), +_toNEl.val(), _r );
+
+                                    _r && _logic.valid( _fromNEl );
+                                    _r && _logic.valid( _toNEl );
+
+                                    if( _r ){ _fromNEl.removeClass('error'); _toNEl.removeClass('error'); }
+                                    else{ _fromNEl.addClass('error'); _toNEl.addClass('error'); }
+                                }
+                            }
+                        }
 
                         !_r && _logic.error( _item );
 
@@ -491,49 +548,46 @@
                  */
                 , daterange:
                     function( _item ){
-                        var _r = _logic.datatype.d( _item ), _mind, _maxd;
+                        var _r = _logic.datatype.d( _item ), _min, _max;
 
                         if( _r ){
-                        
-                            if( _r ){
-                                var _fromDateEl, _toDateEl;
-                                if( _item.is( '[fromDateEl]' ) ) _fromDateEl = _logic.getElement( _item.attr('fromDateEl') );
-                                if( _item.is( '[toDateEl]' ) ) _toDateEl = _logic.getElement( _item.attr('toDateEl') );
+                            var _fromDateEl, _toDateEl;
+                            if( _item.is( '[fromDateEl]' ) ) _fromDateEl = _logic.getElement( _item.attr('fromDateEl') );
+                            if( _item.is( '[toDateEl]' ) ) _toDateEl = _logic.getElement( _item.attr('toDateEl') );
 
-                                if( !(_fromDateEl && _fromDateEl.length || _toDateEl && _toDateEl.length) ){
-                                    var _pnt = _item.parent(), _items = _pnt.find('input[datatype=daterange]');
-                                        if( _items.length === 2 ){
-                                            _fromDateEl = $(_items[0]);
-                                            _toDateEl = $(_items[1]);
-                                        }
-                                }
-                                if( _fromDateEl && _fromDateEl.length || _toDateEl && _toDateEl.length ){
-
-                                    _fromDateEl && _fromDateEl.length && !( _toDateEl && _toDateEl.length ) && ( _toDateEl = _item );
-                                    !(_fromDateEl && _fromDateEl.length) && _toDateEl && _toDateEl.length && ( _fromDateEl = _item );
-
-                                    UXC.log( 'daterange', _fromDateEl.length, _toDateEl.length );
-
-                                    if( _toDateEl[0] != _fromDateEl[0] ){
-
-
-                                        _r && ( _r = _logic.datatype.d( _toDateEl ) );
-                                        _r && ( _r = _logic.datatype.d( _fromDateEl ) );
-
-                                        _r && _logic.getTimestamp( _fromDateEl.val() ) > _logic.getTimestamp( _toDateEl.val() ) && ( _r = false );
-
-                                        _r && _logic.valid( _fromDateEl );
-                                        _r && _logic.valid( _toDateEl );
-
-                                        if( _r ){ _fromDateEl.removeClass('error'); _toDateEl.removeClass('error'); }
-                                        else{ _fromDateEl.addClass('error'); _toDateEl.addClass('error'); }
+                            if( !(_fromDateEl && _fromDateEl.length || _toDateEl && _toDateEl.length) ){
+                                var _pnt = _item.parent(), _items = _pnt.find('input[datatype=daterange]');
+                                    if( _items.length === 2 ){
+                                        _fromDateEl = $(_items[0]);
+                                        _toDateEl = $(_items[1]);
                                     }
+                            }
+                            if( _fromDateEl && _fromDateEl.length || _toDateEl && _toDateEl.length ){
+
+                                _fromDateEl && _fromDateEl.length && !( _toDateEl && _toDateEl.length ) && ( _toDateEl = _item );
+                                !(_fromDateEl && _fromDateEl.length) && _toDateEl && _toDateEl.length && ( _fromDateEl = _item );
+
+                                UXC.log( 'daterange', _fromDateEl.length, _toDateEl.length );
+
+                                _toDateEl.val( $.trim( _toDateEl.val() ) );
+                                _fromDateEl.val( $.trim( _fromDateEl.val() ) );
+                                if( _toDateEl[0] != _fromDateEl[0] && _toDateEl.val().length && _fromDateEl.val().length ){
+
+                                    _r && ( _r = _logic.datatype.d( _toDateEl ) );
+                                    _r && ( _r = _logic.datatype.d( _fromDateEl ) );
+
+                                    _r && _logic.getTimestamp( _fromDateEl.val() ) > _logic.getTimestamp( _toDateEl.val() ) && ( _r = false );
+
+                                    _r && _logic.valid( _fromDateEl );
+                                    _r && _logic.valid( _toDateEl );
+
+                                    if( _r ){ _fromDateEl.removeClass('error'); _toDateEl.removeClass('error'); }
+                                    else{ _fromDateEl.addClass('error'); _toDateEl.addClass('error'); }
                                 }
                             }
                         }
 
                         !_r && _logic.error( _item );
-                        
 
                         return _r;
                     }
