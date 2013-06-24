@@ -233,6 +233,9 @@
         {
             /**
              * 分析_item是否附合规则要求
+             * @method  _logic.parse
+             * @private
+             * @static
              * @param   {selector}  _item 
              */
             parse: 
@@ -282,6 +285,9 @@
                 }
             /**
              * 检查 _item 是否为 Valid 的检查对象
+             * @method  _logic.isValidItem
+             * @private
+             * @static
              * @param   {selector}  _item
              */
             , isValidItem: 
@@ -301,6 +307,9 @@
                 }
             /**
              * 显示正确的视觉效果
+             * @method  _logic.valid
+             * @private
+             * @static
              * @param   {selector}  _item
              */
             , valid:
@@ -312,6 +321,9 @@
                 }
             /**
              * 显示错误的视觉效果
+             * @method  _logic.error
+             * @private
+             * @static
              * @param   {selector}  _item
              */
             , error: 
@@ -337,7 +349,10 @@
                 }
             /**
              * 获取 _selector 对象
-             * 这个方法的存在是为了向后兼容qwrap, qwrap DOM参数都为ID
+             * &lt;br /&gt;这个方法的存在是为了向后兼容qwrap, qwrap DOM参数都为ID
+             * @method  _logic.getElement
+             * @private
+             * @static
              * @param   {selector}  _item
              */
             , getElement: 
@@ -347,6 +362,9 @@
                 }
             /**
              * 获取 _item 的检查类型, 所有可用的检查类型位于 _logic.datatype 对象
+             * @method  _logic.getDatatype
+             * @private
+             * @static
              * @param   {selector}  _item
              */
             , getDatatype: 
@@ -355,6 +373,9 @@
                 }
            /**
              * 获取 _item 的检查子类型, 所有可用的检查子类型位于 _logic.subdatatype 对象
+             * @method  _logic.getSubdatatype
+             * @private
+             * @static
              * @param   {selector}  _item
              */
             , getSubdatatype: 
@@ -364,6 +385,9 @@
             /**
              * 获取对应的错误信息, 默认的错误信息有 reqmsg, errmsg, &lt;br /&gt;
              * 注意: 错误信息第一个字符如果为空格的话, 将完全使用用户定义的错误信息, 将不会动态添加 请上传/选择/填写
+             * @method  _logic.getMsg
+             * @private
+             * @static
              * @param   {selector}  _item
              * @param   {string}    _msgAttr    - 显示指定需要读取的错误信息属性名, 默认为 reqmsg, errmsg, 通过该属性可以指定别的属性名
              * @param   {bool}      _fullMsg    - 显示指定错误信息为属性的值, 而不是自动添加的 请上传/选择/填写
@@ -394,6 +418,9 @@
                 }
             /**
              * 计算字符串的字节长度, 非 ASCII 0-255的字符视为两个字节
+             * @method  _logic.bytelen
+             * @private
+             * @static
              * @param   {string}    _s
              */
             , bytelen: 
@@ -402,6 +429,9 @@
                 }
             /**
              * 获取日期字符串的 timestamp, 字符串格式为 YYYY[^\d]*?MM[^\d]*?DD
+             * @method  _logic.getTimestamp
+             * @private
+             * @static
              * @param   {string}    _date_str
              */
             , getTimestamp:
@@ -411,11 +441,18 @@
                 }
             /**
              * 此对象存储可供检查的子类型
+             * @property    _logic.subdatatype
+             * @type        Object
+             * @private
+             * @static
              */
             , subdatatype: {
                 /**
                  * 此类型检查 2|N个对象必须至少有一个是有输入内容的, 
-                 * 常用于 手机/电话 二填一
+                 * &lt;br&gt; 常用于 手机/电话 二填一
+                 * @method  _logic.subdatatype.alternative
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         &lt;dd&gt;
@@ -466,6 +503,9 @@
                 /**
                  * 此类型检查 2|N 个对象填写的值必须一致
                  * 常用于注意时密码验证/重置密码
+                 * @method  _logic.subdatatype.reconfirm
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         &lt;dd&gt;
@@ -510,11 +550,18 @@
             }//subdatatype
             /**
              * 此对象存储可供检查的类型
+             * @property    _logic.datatype
+             * @type        Object
+             * @private
+             * @static
              */
             , datatype:{
                 /**
                  * 检查是否为正确的数字&lt;br /&gt;
-                 * 默认范围 0 - Math.pow(10, 10)
+                 * &lt;br&gt;默认范围 0 - Math.pow(10, 10)
+                 * @method  _logic.datatype.n
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @attr    {require}               datatype    - n | n-整数位数.小数位数
                  * @attr    {integer|optional}      minvalue    - 数值的下限
@@ -537,7 +584,7 @@
                         var _r = true, _valStr = _item.val(), _val = +_valStr,_min = 0, _max = Math.pow( 10, 10 ), _n, _f, _tmp;
 
                         if( !isNaN( _val ) &amp;&amp; _val &gt;= 0 ){
-                            _item.attr(&#x27;datatype&#x27;).replace( /^n\-(.*)$/, function( $0, $1 ){
+                            _item.attr(&#x27;datatype&#x27;).replace( /^n[^\-]*\-(.*)$/, function( $0, $1 ){
                                 _tmp = $1.split(&#x27;.&#x27;);
                                 _n = _tmp[0];
                                 _f = _tmp[1];
@@ -560,8 +607,92 @@
                         return _r;
                     }
                 /**
+                 * 检查两个输入框的数值
+                 * &lt;br /&gt; 数字格式为 0-pow(10,10)
+                 * &lt;br /&gt; 带小数点使用 nrange-int.float, 例: nrange-1.2  nrange-2.2
+                 * &lt;br /&gt; &lt;b&gt;注意:&lt;/b&gt; 如果不显示指定 fromNEl, toNEl, 
+                 *              将会从父级查找 datatype=nrange属性的input, 如果数量等于2, 则会进行验证, 不等2将忽略
+                 * @method  _logic.datatype.nrange
+                 * @private
+                 * @static
+                 * @param   {selector}  _item
+                 * @attr    {require}               datatype    - nrange
+                 * @attr    {selector|optional}     fromNEl     - 起始数值选择器
+                 * @attr    {selector|optional}     toNEl       - 结束数值选择器
+                 * @attr    {date string|optional}  minvalue    - 日期的下限
+                 * @attr    {date string|optional}  maxvalue    - 日期的上限
+                 * @example
+                    &lt;div class=&quot;f-l label&quot;&gt;
+                        &lt;label&gt;(datatype nrange)正数:&lt;br/&gt;&lt;b style=&quot;color:red&quot;&gt;注意: 这个是大小颠倒位置的nrange&lt;/b&gt;&lt;/label&gt;
+                        大&lt;input type=&quot;text&quot; name=&quot;company_n10&quot; id=&quot;company_n10&quot; fromNEl=&quot;company_n11&quot;
+                            errmsg=&quot;请填写正确的数值范围&quot; datatype=&quot;nrange&quot; emEl=&quot;nrange_n1011&quot; &gt;
+                        - 小&lt;input type=&quot;text&quot; name=&quot;company_n11&quot; id=&quot;company_n11&quot; toNEl=&quot;company_n10&quot;
+                            errmsg=&quot;请填写正确的数值范围&quot; datatype=&quot;nrange&quot; emEl=&quot;nrange_n1011&quot; &gt;
+                        &lt;em id=&quot;nrange_n1011&quot;&gt;&lt;/em&gt;
+                    &lt;/div&gt;
+                 */
+                , nrange:
+                    function( _item ){
+                        var _r = _logic.datatype.n( _item ), _min, _max;
+
+                        UXC.log( &#x27;zzzz&#x27;, _r );
+
+                        if( _r ){
+                            var _fromNEl, _toNEl;
+                            if( _item.is( &#x27;[fromNEl]&#x27; ) ) _fromNEl = _logic.getElement( _item.attr(&#x27;fromNEl&#x27;) );
+                            if( _item.is( &#x27;[toNEl]&#x27; ) ) _toNEl = _logic.getElement( _item.attr(&#x27;toNEl&#x27;) );
+
+                            if( !(_fromNEl &amp;&amp; _fromNEl.length || _toNEl &amp;&amp; _toNEl.length) ){
+                                var _pnt = _item.parent(), _items = [];
+                                    _pnt.find(&#x27;input[datatype]&#x27;).each( function(){
+                                        var _sp = $(this);
+                                        /nrange/i.test( _sp.attr(&#x27;datatype&#x27;) ) &amp;&amp; _items.push( this );
+                                    });
+                                    UXC.log( &#x27;ccc&#x27;, _items.length );
+                                    if( _items.length === 2 ){
+                                        _fromNEl = $(_items[0]);
+                                        _toNEl = $(_items[1]);
+                                    }
+                            }
+                            UXC.log( &#x27;aaaa&#x27;, _r );
+                            if( _fromNEl &amp;&amp; _fromNEl.length || _toNEl &amp;&amp; _toNEl.length ){
+
+                                _fromNEl &amp;&amp; _fromNEl.length &amp;&amp; !( _toNEl &amp;&amp; _toNEl.length ) &amp;&amp; ( _toNEl = _item );
+                                !(_fromNEl &amp;&amp; _fromNEl.length) &amp;&amp; _toNEl &amp;&amp; _toNEl.length &amp;&amp; ( _fromNEl = _item );
+
+                                UXC.log( &#x27;nrange&#x27;, _fromNEl.length, _toNEl.length );
+
+                                _toNEl.val( $.trim( _toNEl.val() ) );
+                                _fromNEl.val( $.trim( _fromNEl.val() ) );
+                                
+                                if( _toNEl[0] != _fromNEl[0] &amp;&amp; _toNEl.val().length &amp;&amp; _fromNEl.val().length ){
+
+                                    _r &amp;&amp; ( _r = _logic.datatype.n( _toNEl ) );
+                                    _r &amp;&amp; ( _r = _logic.datatype.n( _fromNEl ) );
+
+                                    _r &amp;&amp; ( +_fromNEl.val() ) &gt; ( +_toNEl.val() ) &amp;&amp; ( _r = false );
+                                    
+                                    UXC.log( +_fromNEl.val(), +_toNEl.val(), _r );
+
+                                    _r &amp;&amp; _logic.valid( _fromNEl );
+                                    _r &amp;&amp; _logic.valid( _toNEl );
+
+                                    if( _r ){ _fromNEl.removeClass(&#x27;error&#x27;); _toNEl.removeClass(&#x27;error&#x27;); }
+                                    else{ _fromNEl.addClass(&#x27;error&#x27;); _toNEl.addClass(&#x27;error&#x27;); }
+                                }
+                            }
+                        }
+
+                        !_r &amp;&amp; _logic.error( _item );
+
+                        return _r;
+                    }
+                /**
                  * 检查是否为合法的日期,
-                 * 日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD
+                 * &lt;br /&gt;日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD
+                 * @method  _logic.datatype.d
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @attr    {require}               datatype    - d
                  * @attr    {date string|optional}  minvalue    - 日期的下限
@@ -573,7 +704,7 @@
                  */
                 , d: 
                     function( _item ){
-                        var _val = _item.val().trim(), _r, _re = /^[\d]{4}([\/.-]|)[01][\d]\1[0-3][\d]$/;
+                        var _val = $.trim( _item.val() ), _r, _re = /^[\d]{4}([\/.-]|)[01][\d]\1[0-3][\d]$/;
                         if( !_val ) return true;
                             
                         if( _r = _re.test( _val ) ){
@@ -596,7 +727,12 @@
                     }
                 /**
                  * 检查两个输入框的日期
-                 * 日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD
+                 * &lt;br /&gt;日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD
+                 * &lt;br /&gt; &lt;b&gt;注意:&lt;/b&gt; 如果不显示指定 fromDateEl, toDateEl, 
+                 *              将会从父级查找 datatype=datarange属性的input, 如果数量等于2, 则会进行验证, 不等2将忽略
+                 * @method  _logic.datatype.daterange
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @attr    {require}               datatype    - datarange
                  * @attr    {selector|optional}     fromDateEl  - 起始日期选择器
@@ -614,33 +750,41 @@
                  */
                 , daterange:
                     function( _item ){
-                        var _r = _logic.datatype.d( _item ), _mind, _maxd;
+                        var _r = _logic.datatype.d( _item ), _min, _max;
 
                         if( _r ){
-                        
-                            if( _r ){
-                                var _fromDateEl, _toDateEl;
-                                if( _item.is( &#x27;[fromDateEl]&#x27; ) ) _fromDateEl = _logic.getElement( _item.attr(&#x27;fromDateEl&#x27;) );
-                                if( _item.is( &#x27;[toDateEl]&#x27; ) ) _toDateEl = _logic.getElement( _item.attr(&#x27;toDateEl&#x27;) );
-                                if( _fromDateEl &amp;&amp; _fromDateEl.length || _toDateEl &amp;&amp; _toDateEl.length ){
+                            var _fromDateEl, _toDateEl;
+                            if( _item.is( &#x27;[fromDateEl]&#x27; ) ) _fromDateEl = _logic.getElement( _item.attr(&#x27;fromDateEl&#x27;) );
+                            if( _item.is( &#x27;[toDateEl]&#x27; ) ) _toDateEl = _logic.getElement( _item.attr(&#x27;toDateEl&#x27;) );
 
-                                    _fromDateEl &amp;&amp; _fromDateEl.length &amp;&amp; !( _toDateEl &amp;&amp; _toDateEl.length ) &amp;&amp; ( _toDateEl = _item );
-                                    !(_fromDateEl &amp;&amp; _fromDateEl.length) &amp;&amp; _toDateEl &amp;&amp; _toDateEl.length &amp;&amp; ( _fromDateEl = _item );
-
-                                    UXC.log( &#x27;daterange&#x27;, _fromDateEl.length, _toDateEl.length );
-
-                                    if( _toDateEl[0] != _fromDateEl[0] ){
-
-
-                                        _r &amp;&amp; ( _r = _logic.datatype.d( _toDateEl ) );
-                                        _r &amp;&amp; ( _r = _logic.datatype.d( _fromDateEl ) );
-
-                                        _r &amp;&amp; _logic.getTimestamp( _fromDateEl.val() ) &gt; _logic.getTimestamp( _toDateEl.val() ) &amp;&amp; ( _r = false );
-
-                                        _r &amp;&amp; _logic.valid( _fromDateEl );
-                                        _r &amp;&amp; _logic.valid( _toDateEl );
-
+                            if( !(_fromDateEl &amp;&amp; _fromDateEl.length || _toDateEl &amp;&amp; _toDateEl.length) ){
+                                var _pnt = _item.parent(), _items = _pnt.find(&#x27;input[datatype=daterange]&#x27;);
+                                    if( _items.length === 2 ){
+                                        _fromDateEl = $(_items[0]);
+                                        _toDateEl = $(_items[1]);
                                     }
+                            }
+                            if( _fromDateEl &amp;&amp; _fromDateEl.length || _toDateEl &amp;&amp; _toDateEl.length ){
+
+                                _fromDateEl &amp;&amp; _fromDateEl.length &amp;&amp; !( _toDateEl &amp;&amp; _toDateEl.length ) &amp;&amp; ( _toDateEl = _item );
+                                !(_fromDateEl &amp;&amp; _fromDateEl.length) &amp;&amp; _toDateEl &amp;&amp; _toDateEl.length &amp;&amp; ( _fromDateEl = _item );
+
+                                UXC.log( &#x27;daterange&#x27;, _fromDateEl.length, _toDateEl.length );
+
+                                _toDateEl.val( $.trim( _toDateEl.val() ) );
+                                _fromDateEl.val( $.trim( _fromDateEl.val() ) );
+                                if( _toDateEl[0] != _fromDateEl[0] &amp;&amp; _toDateEl.val().length &amp;&amp; _fromDateEl.val().length ){
+
+                                    _r &amp;&amp; ( _r = _logic.datatype.d( _toDateEl ) );
+                                    _r &amp;&amp; ( _r = _logic.datatype.d( _fromDateEl ) );
+
+                                    _r &amp;&amp; _logic.getTimestamp( _fromDateEl.val() ) &gt; _logic.getTimestamp( _toDateEl.val() ) &amp;&amp; ( _r = false );
+
+                                    _r &amp;&amp; _logic.valid( _fromDateEl );
+                                    _r &amp;&amp; _logic.valid( _toDateEl );
+
+                                    if( _r ){ _fromDateEl.removeClass(&#x27;error&#x27;); _toDateEl.removeClass(&#x27;error&#x27;); }
+                                    else{ _fromDateEl.addClass(&#x27;error&#x27;); _toDateEl.addClass(&#x27;error&#x27;); }
                                 }
                             }
                         }
@@ -651,6 +795,9 @@
                     }
                 /**
                  * 检查时间格式, 格式为 mm:dd:ss
+                 * @method  _logic.datatype.time
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         &lt;div class=&quot;f-l&quot;&gt;
@@ -665,6 +812,9 @@
                     }
                 /**
                  * 检查时间格式, 格式为 mm:dd:ss
+                 * @method  _logic.datatype.minute
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         &lt;div class=&quot;f-l&quot;&gt;
@@ -678,8 +828,11 @@
                         return _r;
                     }
                 /**
-                 * 检查银行卡号码&lt;br /&gt;
-                 * 格式为 d{19} | d{16} | 1111 1111 1111 1111 111 | 1111 1111 1111 1111111
+                 * 检查银行卡号码
+                 * &lt;br /&gt;格式为 d{19} | d{16} | 1111 1111 1111 1111 111 | 1111 1111 1111 1111111
+                 * @method  _logic.datatype.bankcard
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         &lt;div class=&quot;f-l&quot;&gt;
@@ -694,9 +847,12 @@
                         return _r;
                     }
                 /**
-                 * 检查中文姓名&lt;br /&gt;
-                 * 格式: 汉字和大小写字母
-                 * 规则: 长度 2-32个字节, 非 ASCII 算2个字节
+                 * 检查中文姓名
+                 * &lt;br&gt;格式: 汉字和大小写字母
+                 * &lt;br&gt;规则: 长度 2-32个字节, 非 ASCII 算2个字节
+                 * @method  _logic.datatype.cnname
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         &lt;div class=&quot;f-l&quot;&gt;
@@ -711,9 +867,12 @@
                         return _r;
                     }
                 /**
-                 * 检查注册用户名&lt;br /&gt;
-                 * 格式: a-zA-Z0-9_-
-                 * 规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 29
+                 * 检查注册用户名
+                 * &lt;br&gt;格式: a-zA-Z0-9_-
+                 * &lt;br&gt;规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 29
+                 * @method  _logic.datatype.username
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         &lt;div class=&quot;f-l&quot;&gt;
@@ -730,6 +889,9 @@
                 /**
                  * 检查身份证号码&lt;br /&gt;
                  * 目前只使用最简单的位数判断~ 有待完善
+                 * @method  _logic.datatype.idnumber
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                     &lt;div class=&quot;f-l&quot;&gt;
@@ -745,6 +907,9 @@
                     }
                 /**
                  * 检查手机号码&lt;br /&gt;
+                 * @method  _logic.datatype.mobilecode
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                     &lt;div class=&quot;f-l&quot;&gt;
@@ -761,7 +926,10 @@
                     }
                 /**
                  * 检查手机号码加强方法
-                 * 格式: [+国家代码] [零]11位数字
+                 * &lt;br&gt;格式: [+国家代码] [零]11位数字
+                 * @method  _logic.datatype.mobilezonecode
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         &lt;div class=&quot;f-l&quot;&gt;
@@ -778,7 +946,10 @@
                     }
                 /**
                  * 检查电话号码
-                 * 格式: [区号]7/8位电话号码
+                 * &lt;br&gt;格式: [区号]7/8位电话号码
+                 * @method  _logic.datatype.phone
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         &lt;div class=&quot;f-l&quot;&gt;
@@ -795,7 +966,10 @@
                     }
                 /**
                  * 检查电话号码
-                 * 格式: [+国家代码][ ][电话区号][ ]7/8位电话号码[#分机号]
+                 * &lt;br&gt;格式: [+国家代码][ ][电话区号][ ]7/8位电话号码[#分机号]
+                 * @method  _logic.datatype.phoneall
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         &lt;div class=&quot;f-l&quot;&gt;
@@ -812,6 +986,9 @@
                     }
                 /**
                  * 检查电话区号
+                 * @method  _logic.datatype.phonezone
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         &lt;div&gt;
@@ -827,7 +1004,10 @@
                     }
                 /**
                  * 检查电话号码
-                 * 格式: 7/8位数字
+                 * &lt;br&gt;格式: 7/8位数字
+                 * @method  _logic.datatype.phonecode
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         &lt;div&gt;
@@ -843,6 +1023,9 @@
                     }
                 /**
                  * 检查电话分机号码
+                 * @method  _logic.datatype.phoneext
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         &lt;div&gt;
@@ -858,6 +1041,9 @@
                     }
                 /**
                  * 检查内容的长度
+                 * @method  _logic.datatype.length
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @attr    {string}    datatype        数字类型 text|bytetext|richtext
                  *
@@ -909,7 +1095,10 @@
                     }
                 /**
                  * 检查内容是否为空,
-                 * 如果声明了该属性, 那么 value 须不为空
+                 * &lt;br&gt;如果声明了该属性, 那么 value 须不为空
+                 * @method  _logic.datatype.reqmsg
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         &lt;div class=&quot;f-l&quot;&gt;
@@ -921,7 +1110,7 @@
 
                         var _r;
                         if( _item.val() &amp;&amp; _item.val().constructor == Array ){
-                            _r = !!( ( _item.val().join(&#x27;&#x27;) + &#x27;&#x27; ).trim() );
+                            _r = !!( $.trim( _item.val().join(&#x27;&#x27;) + &#x27;&#x27; ) );
                         }else{
                             _r = !!$.trim( _item.val() ||&#x27;&#x27;) ;
                         }
@@ -932,11 +1121,11 @@
                     }
                 /**
                  * 自定义正则校验
+                 * @method  _logic.datatype.reg
+                 * @private
+                 * @static
                  * @param   {selector}  _item
-                 *
-                 * @attr    {string}    datatype        reg|reg-/规则/选项
                  * @attr    {string}    reg-pattern     正则规则 /规则/选项
-                 *
                  * @example
                             &lt;div&gt;&lt;input type=&quot;TEXT&quot; name=&quot;company_addr&quot; datatype=&quot;reg&quot; reg-pattern=&quot;/^[\s\S]{2,120}$/i&quot; errmsg=&quot;请填写正确的地址&quot;&gt;&lt;/div&gt;
                             &lt;div&gt;&lt;input type=&quot;TEXT&quot; name=&quot;company_addr&quot; datatype=&quot;reg-/^[\s\S]{2,120}$/i&quot; errmsg=&quot;请填写正确的地址&quot;&gt;&lt;/div&gt;
@@ -959,6 +1148,9 @@
                 /**
                  * 检查验证码&lt;br /&gt;
                  * 格式: 为 0-9a-zA-Z, 长度 默认为4
+                 * @method  _logic.datatype.vcode
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @attr    {string}    datatype    vcode|vcode-[\d]+
                  * @example
@@ -973,7 +1165,7 @@
                  */
                 , vcode:
                     function( _item ){
-                        var _r, _len = parseInt( _item.attr(&#x27;datatype&#x27;).trim().replace( /^vcode(?:\-|)/i, &#x27;&#x27; ), 10 ) || 4; 
+                        var _r, _len = parseInt( $.trim(_item.attr(&#x27;datatype&#x27;)).replace( /^vcode(?:\-|)/i, &#x27;&#x27; ), 10 ) || 4; 
                         UXC.log( &#x27;vcodeValid: &#x27; + _len );
                         _r = new RegExp( &#x27;^[0-9a-zA-Z]{&#x27;+_len+&#x27;}$&#x27; ).test( _item.val() );
                         !_r &amp;&amp; _logic.error( _item );
@@ -981,24 +1173,36 @@
                     }
                 /**
                  * 检查文本长度
+                 * @method  _logic.datatype.text
+                 * @private
+                 * @static
                  * @see _logic.datatype.length
                  * @attr    {string}    datatype    text
                  */
                 , text: function(_item){ return true; }
                 /**
                  * 检查文本的字节长度
+                 * @method  _logic.datatype.bytetext
+                 * @private
+                 * @static
                  * @see _logic.datatype.length
                  * @attr    {string}    datatype    bytetext
                  */
                 , bytetext: function(_item){ return true; }
                 /**
                  * 检查富文本的字节
+                 * @method  _logic.datatype.richtext
+                 * @private
+                 * @static
                  * @see _logic.datatype.length
                  * @attr    {string}    datatype    richtext
                  */
                 , richtext: function(_item){ return true; }
                 /**
                  * 检查URL
+                 * @method  _logic.datatype.url
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         &lt;div class=&quot;f-l&quot;&gt;
@@ -1013,6 +1217,9 @@
                     }
                 /**
                  * 检查域名
+                 * @method  _logic.datatype.domain
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                         &lt;div class=&quot;f-l&quot;&gt;
                             &lt;input type=&quot;TEXT&quot; name=&quot;company_domain&quot; datatype=&quot;domain&quot; reqmsg=&quot;域名&quot; errmsg=&quot;请填写正确的域名&quot;&gt;
@@ -1020,12 +1227,16 @@
                  */
                 , domain:
                     function( _item ){
-                        var _r = /^(?:(?:f|ht)tp\:\/\/|)((?:(?:(?:\w[\.\-\+]?)*)\w)*)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})(?:\/|)$/.test( _item.val() );
+                        //var _r = /^(?:(?:f|ht)tp\:\/\/|)((?:(?:(?:\w[\.\-\+]?)*)\w)*)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})(?:\/|)$/.test( _item.val() );
+                        var _r = /^(?:(?:f|ht)tp\:\/\/|)((?:(?:(?:\w[\.\-\+]*))\w)*)((?:(?:(?:\w[\.\-\+]*){0,62})\w)+)\.(\w{2,6})(?:\/|)$/.test( _item.val() );
                         !_r &amp;&amp; _logic.error( _item );
                         return _r;
                     }
                 /**
                  * 检查电子邮件
+                 * @method  _logic.datatype.email
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         &lt;div class=&quot;f-l&quot;&gt;
@@ -1040,6 +1251,9 @@
                     }
                 /**
                  * 检查邮政编码
+                 * @method  _logic.datatype.zipcode
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         &lt;div class=&quot;f-l&quot;&gt;
@@ -1055,7 +1269,7 @@
             }//datatype
         };//_logic
 
-}(jQuery))
+}(jQuery));
 
     </pre>
 </div>

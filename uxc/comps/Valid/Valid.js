@@ -107,6 +107,9 @@
         {
             /**
              * 分析_item是否附合规则要求
+             * @method  _logic.parse
+             * @private
+             * @static
              * @param   {selector}  _item 
              */
             parse: 
@@ -156,6 +159,9 @@
                 }
             /**
              * 检查 _item 是否为 Valid 的检查对象
+             * @method  _logic.isValidItem
+             * @private
+             * @static
              * @param   {selector}  _item
              */
             , isValidItem: 
@@ -175,6 +181,9 @@
                 }
             /**
              * 显示正确的视觉效果
+             * @method  _logic.valid
+             * @private
+             * @static
              * @param   {selector}  _item
              */
             , valid:
@@ -186,6 +195,9 @@
                 }
             /**
              * 显示错误的视觉效果
+             * @method  _logic.error
+             * @private
+             * @static
              * @param   {selector}  _item
              */
             , error: 
@@ -211,7 +223,10 @@
                 }
             /**
              * 获取 _selector 对象
-             * 这个方法的存在是为了向后兼容qwrap, qwrap DOM参数都为ID
+             * <br />这个方法的存在是为了向后兼容qwrap, qwrap DOM参数都为ID
+             * @method  _logic.getElement
+             * @private
+             * @static
              * @param   {selector}  _item
              */
             , getElement: 
@@ -221,6 +236,9 @@
                 }
             /**
              * 获取 _item 的检查类型, 所有可用的检查类型位于 _logic.datatype 对象
+             * @method  _logic.getDatatype
+             * @private
+             * @static
              * @param   {selector}  _item
              */
             , getDatatype: 
@@ -229,6 +247,9 @@
                 }
            /**
              * 获取 _item 的检查子类型, 所有可用的检查子类型位于 _logic.subdatatype 对象
+             * @method  _logic.getSubdatatype
+             * @private
+             * @static
              * @param   {selector}  _item
              */
             , getSubdatatype: 
@@ -238,6 +259,9 @@
             /**
              * 获取对应的错误信息, 默认的错误信息有 reqmsg, errmsg, <br />
              * 注意: 错误信息第一个字符如果为空格的话, 将完全使用用户定义的错误信息, 将不会动态添加 请上传/选择/填写
+             * @method  _logic.getMsg
+             * @private
+             * @static
              * @param   {selector}  _item
              * @param   {string}    _msgAttr    - 显示指定需要读取的错误信息属性名, 默认为 reqmsg, errmsg, 通过该属性可以指定别的属性名
              * @param   {bool}      _fullMsg    - 显示指定错误信息为属性的值, 而不是自动添加的 请上传/选择/填写
@@ -268,6 +292,9 @@
                 }
             /**
              * 计算字符串的字节长度, 非 ASCII 0-255的字符视为两个字节
+             * @method  _logic.bytelen
+             * @private
+             * @static
              * @param   {string}    _s
              */
             , bytelen: 
@@ -276,6 +303,9 @@
                 }
             /**
              * 获取日期字符串的 timestamp, 字符串格式为 YYYY[^\d]*?MM[^\d]*?DD
+             * @method  _logic.getTimestamp
+             * @private
+             * @static
              * @param   {string}    _date_str
              */
             , getTimestamp:
@@ -285,11 +315,18 @@
                 }
             /**
              * 此对象存储可供检查的子类型
+             * @property    _logic.subdatatype
+             * @type        Object
+             * @private
+             * @static
              */
             , subdatatype: {
                 /**
                  * 此类型检查 2|N个对象必须至少有一个是有输入内容的, 
-                 * 常用于 手机/电话 二填一
+                 * <br> 常用于 手机/电话 二填一
+                 * @method  _logic.subdatatype.alternative
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         <dd>
@@ -340,6 +377,9 @@
                 /**
                  * 此类型检查 2|N 个对象填写的值必须一致
                  * 常用于注意时密码验证/重置密码
+                 * @method  _logic.subdatatype.reconfirm
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         <dd>
@@ -384,11 +424,18 @@
             }//subdatatype
             /**
              * 此对象存储可供检查的类型
+             * @property    _logic.datatype
+             * @type        Object
+             * @private
+             * @static
              */
             , datatype:{
                 /**
                  * 检查是否为正确的数字<br />
-                 * 默认范围 0 - Math.pow(10, 10)
+                 * <br>默认范围 0 - Math.pow(10, 10)
+                 * @method  _logic.datatype.n
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @attr    {require}               datatype    - n | n-整数位数.小数位数
                  * @attr    {integer|optional}      minvalue    - 数值的下限
@@ -434,8 +481,29 @@
                         return _r;
                     }
                 /**
-                 * fromNEl
-                 * toNEl
+                 * 检查两个输入框的数值
+                 * <br /> 数字格式为 0-pow(10,10)
+                 * <br /> 带小数点使用 nrange-int.float, 例: nrange-1.2  nrange-2.2
+                 * <br /> <b>注意:</b> 如果不显示指定 fromNEl, toNEl, 
+                 *              将会从父级查找 datatype=nrange属性的input, 如果数量等于2, 则会进行验证, 不等2将忽略
+                 * @method  _logic.datatype.nrange
+                 * @private
+                 * @static
+                 * @param   {selector}  _item
+                 * @attr    {require}               datatype    - nrange
+                 * @attr    {selector|optional}     fromNEl     - 起始数值选择器
+                 * @attr    {selector|optional}     toNEl       - 结束数值选择器
+                 * @attr    {date string|optional}  minvalue    - 日期的下限
+                 * @attr    {date string|optional}  maxvalue    - 日期的上限
+                 * @example
+                    <div class="f-l label">
+                        <label>(datatype nrange)正数:<br/><b style="color:red">注意: 这个是大小颠倒位置的nrange</b></label>
+                        大<input type="text" name="company_n10" id="company_n10" fromNEl="company_n11"
+                            errmsg="请填写正确的数值范围" datatype="nrange" emEl="nrange_n1011" >
+                        - 小<input type="text" name="company_n11" id="company_n11" toNEl="company_n10"
+                            errmsg="请填写正确的数值范围" datatype="nrange" emEl="nrange_n1011" >
+                        <em id="nrange_n1011"></em>
+                    </div>
                  */
                 , nrange:
                     function( _item ){
@@ -495,7 +563,10 @@
                     }
                 /**
                  * 检查是否为合法的日期,
-                 * 日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD
+                 * <br />日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD
+                 * @method  _logic.datatype.d
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @attr    {require}               datatype    - d
                  * @attr    {date string|optional}  minvalue    - 日期的下限
@@ -530,7 +601,12 @@
                     }
                 /**
                  * 检查两个输入框的日期
-                 * 日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD
+                 * <br />日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD
+                 * <br /> <b>注意:</b> 如果不显示指定 fromDateEl, toDateEl, 
+                 *              将会从父级查找 datatype=datarange属性的input, 如果数量等于2, 则会进行验证, 不等2将忽略
+                 * @method  _logic.datatype.daterange
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @attr    {require}               datatype    - datarange
                  * @attr    {selector|optional}     fromDateEl  - 起始日期选择器
@@ -593,6 +669,9 @@
                     }
                 /**
                  * 检查时间格式, 格式为 mm:dd:ss
+                 * @method  _logic.datatype.time
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         <div class="f-l">
@@ -607,6 +686,9 @@
                     }
                 /**
                  * 检查时间格式, 格式为 mm:dd:ss
+                 * @method  _logic.datatype.minute
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         <div class="f-l">
@@ -620,8 +702,11 @@
                         return _r;
                     }
                 /**
-                 * 检查银行卡号码<br />
-                 * 格式为 d{19} | d{16} | 1111 1111 1111 1111 111 | 1111 1111 1111 1111111
+                 * 检查银行卡号码
+                 * <br />格式为 d{19} | d{16} | 1111 1111 1111 1111 111 | 1111 1111 1111 1111111
+                 * @method  _logic.datatype.bankcard
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         <div class="f-l">
@@ -636,9 +721,12 @@
                         return _r;
                     }
                 /**
-                 * 检查中文姓名<br />
-                 * 格式: 汉字和大小写字母
-                 * 规则: 长度 2-32个字节, 非 ASCII 算2个字节
+                 * 检查中文姓名
+                 * <br>格式: 汉字和大小写字母
+                 * <br>规则: 长度 2-32个字节, 非 ASCII 算2个字节
+                 * @method  _logic.datatype.cnname
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         <div class="f-l">
@@ -653,9 +741,12 @@
                         return _r;
                     }
                 /**
-                 * 检查注册用户名<br />
-                 * 格式: a-zA-Z0-9_-
-                 * 规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 29
+                 * 检查注册用户名
+                 * <br>格式: a-zA-Z0-9_-
+                 * <br>规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 29
+                 * @method  _logic.datatype.username
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         <div class="f-l">
@@ -672,6 +763,9 @@
                 /**
                  * 检查身份证号码<br />
                  * 目前只使用最简单的位数判断~ 有待完善
+                 * @method  _logic.datatype.idnumber
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                     <div class="f-l">
@@ -687,6 +781,9 @@
                     }
                 /**
                  * 检查手机号码<br />
+                 * @method  _logic.datatype.mobilecode
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                     <div class="f-l">
@@ -703,7 +800,10 @@
                     }
                 /**
                  * 检查手机号码加强方法
-                 * 格式: [+国家代码] [零]11位数字
+                 * <br>格式: [+国家代码] [零]11位数字
+                 * @method  _logic.datatype.mobilezonecode
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         <div class="f-l">
@@ -720,7 +820,10 @@
                     }
                 /**
                  * 检查电话号码
-                 * 格式: [区号]7/8位电话号码
+                 * <br>格式: [区号]7/8位电话号码
+                 * @method  _logic.datatype.phone
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         <div class="f-l">
@@ -737,7 +840,10 @@
                     }
                 /**
                  * 检查电话号码
-                 * 格式: [+国家代码][ ][电话区号][ ]7/8位电话号码[#分机号]
+                 * <br>格式: [+国家代码][ ][电话区号][ ]7/8位电话号码[#分机号]
+                 * @method  _logic.datatype.phoneall
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         <div class="f-l">
@@ -754,6 +860,9 @@
                     }
                 /**
                  * 检查电话区号
+                 * @method  _logic.datatype.phonezone
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         <div>
@@ -769,7 +878,10 @@
                     }
                 /**
                  * 检查电话号码
-                 * 格式: 7/8位数字
+                 * <br>格式: 7/8位数字
+                 * @method  _logic.datatype.phonecode
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         <div>
@@ -785,6 +897,9 @@
                     }
                 /**
                  * 检查电话分机号码
+                 * @method  _logic.datatype.phoneext
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         <div>
@@ -800,6 +915,9 @@
                     }
                 /**
                  * 检查内容的长度
+                 * @method  _logic.datatype.length
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @attr    {string}    datatype        数字类型 text|bytetext|richtext
                  *
@@ -851,7 +969,10 @@
                     }
                 /**
                  * 检查内容是否为空,
-                 * 如果声明了该属性, 那么 value 须不为空
+                 * <br>如果声明了该属性, 那么 value 须不为空
+                 * @method  _logic.datatype.reqmsg
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         <div class="f-l">
@@ -874,11 +995,11 @@
                     }
                 /**
                  * 自定义正则校验
+                 * @method  _logic.datatype.reg
+                 * @private
+                 * @static
                  * @param   {selector}  _item
-                 *
-                 * @attr    {string}    datatype        reg|reg-/规则/选项
                  * @attr    {string}    reg-pattern     正则规则 /规则/选项
-                 *
                  * @example
                             <div><input type="TEXT" name="company_addr" datatype="reg" reg-pattern="/^[\s\S]{2,120}$/i" errmsg="请填写正确的地址"></div>
                             <div><input type="TEXT" name="company_addr" datatype="reg-/^[\s\S]{2,120}$/i" errmsg="请填写正确的地址"></div>
@@ -901,6 +1022,9 @@
                 /**
                  * 检查验证码<br />
                  * 格式: 为 0-9a-zA-Z, 长度 默认为4
+                 * @method  _logic.datatype.vcode
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @attr    {string}    datatype    vcode|vcode-[\d]+
                  * @example
@@ -923,24 +1047,36 @@
                     }
                 /**
                  * 检查文本长度
+                 * @method  _logic.datatype.text
+                 * @private
+                 * @static
                  * @see _logic.datatype.length
                  * @attr    {string}    datatype    text
                  */
                 , text: function(_item){ return true; }
                 /**
                  * 检查文本的字节长度
+                 * @method  _logic.datatype.bytetext
+                 * @private
+                 * @static
                  * @see _logic.datatype.length
                  * @attr    {string}    datatype    bytetext
                  */
                 , bytetext: function(_item){ return true; }
                 /**
                  * 检查富文本的字节
+                 * @method  _logic.datatype.richtext
+                 * @private
+                 * @static
                  * @see _logic.datatype.length
                  * @attr    {string}    datatype    richtext
                  */
                 , richtext: function(_item){ return true; }
                 /**
                  * 检查URL
+                 * @method  _logic.datatype.url
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         <div class="f-l">
@@ -955,6 +1091,9 @@
                     }
                 /**
                  * 检查域名
+                 * @method  _logic.datatype.domain
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                         <div class="f-l">
                             <input type="TEXT" name="company_domain" datatype="domain" reqmsg="域名" errmsg="请填写正确的域名">
@@ -969,6 +1108,9 @@
                     }
                 /**
                  * 检查电子邮件
+                 * @method  _logic.datatype.email
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         <div class="f-l">
@@ -983,6 +1125,9 @@
                     }
                 /**
                  * 检查邮政编码
+                 * @method  _logic.datatype.zipcode
+                 * @private
+                 * @static
                  * @param   {selector}  _item
                  * @example
                         <div class="f-l">
