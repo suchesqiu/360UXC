@@ -126,6 +126,7 @@
     <pre class="code prettyprint linenums">
 (function($){
     !window.UXC &amp;&amp; (window.UXC = { log:function(){} });
+    window.ZINDEX_COUNT = window.ZINDEX_COUNT || 50001;
     /**
      * 日期选择组件
      * &lt;br /&gt;全局访问请使用 UXC.Calendar 或 Calendar
@@ -356,7 +357,7 @@
          * @event input focus
          * @private
          */
-        $(document).delegate( &#x27;input[datatype=date]&#x27;, &#x27;focus&#x27;, function($evt){
+        $(document).delegate( &#x27;input[datatype=date], input[datatype=daterange]&#x27;, &#x27;focus&#x27;, function($evt){
             _logic.pickDate( this );
         });
         /**
@@ -420,7 +421,8 @@
                         arguments.callee( _selector.query( $(&#x27;input[type=text]&#x27;) ) ); 
                         return; 
                     }
-                    if( $.trim( _p.attr(&#x27;datatype&#x27;) || &#x27;&#x27;).toLowerCase() != &#x27;date&#x27; ) return;
+                    if( !($.trim( _p.attr(&#x27;datatype&#x27;) || &#x27;&#x27;).toLowerCase() == &#x27;date&#x27; 
+                            || $.trim( _p.attr(&#x27;datatype&#x27;) || &#x27;&#x27;).toLowerCase() == &#x27;daterange&#x27;) ) return;
 
                     UXC.log( &#x27;find Calendar item:&#x27;, _p.attr(&#x27;name&#x27;), _p.attr(&#x27;id&#x27;), _p.attr(&#x27;datatype&#x27;) );
                     var _btn = _p.find( &#x27;+ input.UXCCalendar_btn&#x27; );
@@ -486,6 +488,8 @@
 
                 _logic.initDateLayout( _dateObj );
                 _logic.setPosition( _selector );
+
+                _selector.blur();
             }
         /**
          * 初始化日历组件的所有日期
@@ -631,7 +635,7 @@
         , setPosition:
             function( _ipt ){
                 var _layout = _logic.getLayout();
-                _layout.css( {&#x27;left&#x27;: &#x27;-9999px&#x27;, &#x27;top&#x27;: &#x27;-9999px&#x27;} ).show();
+                _layout.css( {&#x27;left&#x27;: &#x27;-9999px&#x27;, &#x27;top&#x27;: &#x27;-9999px&#x27;, &#x27;z-index&#x27;: ZINDEX_COUNT++ } ).show();
                 var _lw = _layout.width(), _lh = _layout.height()
                     , _iw = _ipt.width(), _ih = _ipt.height(), _ioset = _ipt.offset()
                     , _x, _y, _winw = $(window).width(), _winh = $(window).height()
@@ -746,7 +750,7 @@
                         , _logic.intPad( _d.getMonth() + 1 )
                         , _logic.intPad( _d.getDate() ) 
                      ].join(_symbol);
-                _logic.lastIpt.val( _dStr );
+                _logic.lastIpt.val( _dStr ).focus();
             }
         /**
          * 给文本框赋值, 日期为控件的当前日期

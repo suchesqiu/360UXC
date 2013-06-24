@@ -1,5 +1,6 @@
 (function($){
     !window.UXC && (window.UXC = { log:function(){} });
+    window.ZINDEX_COUNT = window.ZINDEX_COUNT || 50001;
     /**
      * 日期选择组件
      * <br />全局访问请使用 UXC.Calendar 或 Calendar
@@ -230,7 +231,7 @@
          * @event input focus
          * @private
          */
-        $(document).delegate( 'input[datatype=date]', 'focus', function($evt){
+        $(document).delegate( 'input[datatype=date], input[datatype=daterange]', 'focus', function($evt){
             _logic.pickDate( this );
         });
         /**
@@ -294,7 +295,8 @@
                         arguments.callee( _selector.query( $('input[type=text]') ) ); 
                         return; 
                     }
-                    if( $.trim( _p.attr('datatype') || '').toLowerCase() != 'date' ) return;
+                    if( !($.trim( _p.attr('datatype') || '').toLowerCase() == 'date' 
+                            || $.trim( _p.attr('datatype') || '').toLowerCase() == 'daterange') ) return;
 
                     UXC.log( 'find Calendar item:', _p.attr('name'), _p.attr('id'), _p.attr('datatype') );
                     var _btn = _p.find( '+ input.UXCCalendar_btn' );
@@ -360,6 +362,8 @@
 
                 _logic.initDateLayout( _dateObj );
                 _logic.setPosition( _selector );
+
+                _selector.blur();
             }
         /**
          * 初始化日历组件的所有日期
@@ -505,7 +509,7 @@
         , setPosition:
             function( _ipt ){
                 var _layout = _logic.getLayout();
-                _layout.css( {'left': '-9999px', 'top': '-9999px'} ).show();
+                _layout.css( {'left': '-9999px', 'top': '-9999px', 'z-index': ZINDEX_COUNT++ } ).show();
                 var _lw = _layout.width(), _lh = _layout.height()
                     , _iw = _ipt.width(), _ih = _ipt.height(), _ioset = _ipt.offset()
                     , _x, _y, _winw = $(window).width(), _winh = $(window).height()
@@ -620,7 +624,7 @@
                         , _logic.intPad( _d.getMonth() + 1 )
                         , _logic.intPad( _d.getDate() ) 
                      ].join(_symbol);
-                _logic.lastIpt.val( _dStr );
+                _logic.lastIpt.val( _dStr ).focus();
             }
         /**
          * 给文本框赋值, 日期为控件的当前日期

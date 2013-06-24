@@ -1,6 +1,6 @@
 ;(function($){
     !window.UXC && (window.UXC = { log:function(){} });
-    window.ZINDEX_COUNT = parseInt( window.ZINDEX_COUNT ) || 50001;
+    window.ZINDEX_COUNT = window.ZINDEX_COUNT || 50001;
     window.Panel = UXC.Panel = Panel;
     /**
      * 弹出层基础类 UXC.Panel
