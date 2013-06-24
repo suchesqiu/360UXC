@@ -231,7 +231,7 @@
          * @event input focus
          * @private
          */
-        $(document).delegate( 'input[datatype=date], input[datatype=daterange]', 'focus', function($evt){
+        $(document).delegate( 'input[datatype=date], input[datatype=daterange]', 'click', function($evt){
             _logic.pickDate( this );
         });
         /**
@@ -362,6 +362,8 @@
 
                 _logic.initDateLayout( _dateObj );
                 _logic.setPosition( _selector );
+
+                _selector.focus();
             }
         /**
          * 初始化日历组件的所有日期

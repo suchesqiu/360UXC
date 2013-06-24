@@ -450,7 +450,7 @@
                  */
                 , d: 
                     function( _item ){
-                        var _val = _item.val().trim(), _r, _re = /^[\d]{4}([\/.-]|)[01][\d]\1[0-3][\d]$/;
+                        var _val = $.trim( _item.val() ), _r, _re = /^[\d]{4}([\/.-]|)[01][\d]\1[0-3][\d]$/;
                         if( !_val ) return true;
                             
                         if( _r = _re.test( _val ) ){
@@ -525,12 +525,15 @@
                                         _r && _logic.valid( _fromDateEl );
                                         _r && _logic.valid( _toDateEl );
 
+                                        if( _r ){ _fromDateEl.removeClass('error'); _toDateEl.removeClass('error'); }
+                                        else{ _fromDateEl.addClass('error'); _toDateEl.addClass('error'); }
                                     }
                                 }
                             }
                         }
 
                         !_r && _logic.error( _item );
+                        
 
                         return _r;
                     }
@@ -806,7 +809,7 @@
 
                         var _r;
                         if( _item.val() && _item.val().constructor == Array ){
-                            _r = !!( ( _item.val().join('') + '' ).trim() );
+                            _r = !!( $.trim( _item.val().join('') + '' ) );
                         }else{
                             _r = !!$.trim( _item.val() ||'') ;
                         }
@@ -858,7 +861,7 @@
                  */
                 , vcode:
                     function( _item ){
-                        var _r, _len = parseInt( _item.attr('datatype').trim().replace( /^vcode(?:\-|)/i, '' ), 10 ) || 4; 
+                        var _r, _len = parseInt( $.trim(_item.attr('datatype')).replace( /^vcode(?:\-|)/i, '' ), 10 ) || 4; 
                         UXC.log( 'vcodeValid: ' + _len );
                         _r = new RegExp( '^[0-9a-zA-Z]{'+_len+'}$' ).test( _item.val() );
                         !_r && _logic.error( _item );
