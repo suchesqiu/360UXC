@@ -230,7 +230,7 @@
          * @event input focus
          * @private
          */
-        $(document).delegate( 'input[datatype=date]', 'focus', function($evt){
+        $(document).delegate( 'input[datatype=date], input[datatype=daterange]', 'focus', function($evt){
             _logic.pickDate( this );
         });
         /**
@@ -294,7 +294,8 @@
                         arguments.callee( _selector.query( $('input[type=text]') ) ); 
                         return; 
                     }
-                    if( $.trim( _p.attr('datatype') || '').toLowerCase() != 'date' ) return;
+                    if( !($.trim( _p.attr('datatype') || '').toLowerCase() == 'date' 
+                            || $.trim( _p.attr('datatype') || '').toLowerCase() == 'daterange') ) return;
 
                     UXC.log( 'find Calendar item:', _p.attr('name'), _p.attr('id'), _p.attr('datatype') );
                     var _btn = _p.find( '+ input.UXCCalendar_btn' );
