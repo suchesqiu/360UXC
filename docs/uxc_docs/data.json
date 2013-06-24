@@ -4963,7 +4963,7 @@
                     "type": "Selector"
                 }
             ],
-            "attr": "{date string|optional}  maxvalue    - 日期的上限",
+            "attr": "{date string|optional}  maxvalue    - 数值的上限",
             "example": [
                 "\n                   <div class=\"f-l label\">\n                       <label>(datatype nrange)正数:<br/><b style=\"color:red\">注意: 这个是大小颠倒位置的nrange</b></label>\n                       大<input type=\"text\" name=\"company_n10\" id=\"company_n10\" fromNEl=\"company_n11\"\n                           errmsg=\"请填写正确的数值范围\" datatype=\"nrange\" emEl=\"nrange_n1011\" >\n                       - 小<input type=\"text\" name=\"company_n11\" id=\"company_n11\" toNEl=\"company_n10\"\n                           errmsg=\"请填写正确的数值范围\" datatype=\"nrange\" emEl=\"nrange_n1011\" >\n                       <em id=\"nrange_n1011\"></em>\n                   </div>"
             ],

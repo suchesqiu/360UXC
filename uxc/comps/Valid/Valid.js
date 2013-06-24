@@ -493,8 +493,8 @@
                  * @attr    {require}               datatype    - nrange
                  * @attr    {selector|optional}     fromNEl     - 起始数值选择器
                  * @attr    {selector|optional}     toNEl       - 结束数值选择器
-                 * @attr    {date string|optional}  minvalue    - 日期的下限
-                 * @attr    {date string|optional}  maxvalue    - 日期的上限
+                 * @attr    {date string|optional}  minvalue    - 数值的下限
+                 * @attr    {date string|optional}  maxvalue    - 数值的上限
                  * @example
                     <div class="f-l label">
                         <label>(datatype nrange)正数:<br/><b style="color:red">注意: 这个是大小颠倒位置的nrange</b></label>
