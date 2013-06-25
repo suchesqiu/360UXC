@@ -5546,7 +5546,7 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 26,
+            "line": 27,
             "description": "是否显示调试信息",
             "itemtype": "property",
             "name": "debug",
@@ -5557,7 +5557,7 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 33,
+            "line": 34,
             "description": "导入UXC组件",
             "itemtype": "method",
             "name": "use",
@@ -5587,7 +5587,7 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 82,
+            "line": 87,
             "description": "去除多余的 正叙扛或反叙扛",
             "access": "private",
             "tagname": "",
@@ -5596,7 +5596,7 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 107,
+            "line": 112,
             "description": "获取组件库所在路径",
             "itemtype": "method",
             "name": "",
@@ -5611,7 +5611,7 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 121,
+            "line": 126,
             "description": "输出调试信息, 可通过 UXC.debug 指定是否显示调试信息",
             "params": [
                 {
@@ -5628,14 +5628,14 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 133,
+            "line": 138,
             "description": "如果 console 不可用, 则生成一个模拟的 console 对象",
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 139,
+            "line": 144,
             "description": "自动识别组件库所在路径",
             "class": "window.UXC",
             "namespace": "window"
@@ -6116,15 +6116,15 @@
         },
         {
             "message": "Missing item type\n去除多余的 正叙扛或反叙扛",
-            "line": " ../../uxc/UXC.js:82"
+            "line": " ../../uxc/UXC.js:87"
         },
         {
             "message": "Missing item type\n如果 console 不可用, 则生成一个模拟的 console 对象",
-            "line": " ../../uxc/UXC.js:133"
+            "line": " ../../uxc/UXC.js:138"
         },
         {
             "message": "Missing item type\n自动识别组件库所在路径",
-            "line": " ../../uxc/UXC.js:139"
+            "line": " ../../uxc/UXC.js:144"
         },
         {
             "message": "Missing item type\nFor feature detection",

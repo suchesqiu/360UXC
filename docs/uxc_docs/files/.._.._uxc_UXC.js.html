@@ -124,7 +124,7 @@
 
 <div class="file">
     <pre class="code prettyprint linenums">
-(function( $ ){
+;(function( $ ){
     /**
      * UXC jquery 组件库 资源调用控制类
      * &lt;br /&gt;这是一个单例模式, 全局访问使用 UXC 或 window.UXC
@@ -148,7 +148,8 @@
          * @static
          * @type {string}
          */
-        PATH: &#x27;/js/comps/&#x27;
+        PATH: &#x27;/js&#x27;
+        , compsDir: &#x27;/comps/&#x27;
         /**
          * 是否显示调试信息
          * @property    debug
@@ -196,20 +197,24 @@
 
                     var _isCustomPath = _urlRe.test(_val) || /\//.test( _val ) || !!_basePath;
 
-                    if( !/\.js$/i.test( _val ) &amp; !_basePath )  _val =  [ _val, &#x27;/&#x27;, _val, &#x27;.js&#x27; ].join(&#x27;&#x27;);
+                    if( !/\.js$/i.test( _val ) &amp; !_basePath ){
+                        if( window.UXC[ _val ] ) return;
+                        _val =  [ _val, &#x27;/&#x27;, _val, &#x27;.js&#x27; ].join(&#x27;&#x27;);
+                    }
 
                     if( _isCustomPath ){
                         if( _urlRe.test( _val ) ){} 
                         else if( _basePath &amp;&amp; !_nginxStyle ) _val = _basePath + _val;
                         else if( !/[\/\\]/.test( _val.slice( 0, 1 ) ) &amp;&amp; !_nginxStyle ) _val = _p.PATH + _val;
                     }else{
-                        _val = _p.PATH + _val;
+                        alert( _val );
+                        _val = _p.PATH + _p.compsDir + _val;
                     }
                     /**
                      * 去除多余的 正叙扛或反叙扛
                      * @private
                      */
-                    !_urlRe.test( _val ) &amp;&amp; ( _val = _val.replace( /(\\)\1|(\/)\2/g, &#x27;$1&#x27; ) ); 
+                    !_urlRe.test( _val ) &amp;&amp; ( _val = _val.replace( /(\\)\1|(\/)\2/g, &#x27;$1$2&#x27; ) ); 
                     _val = $.trim( _val );
 
                     if( !_nginxStyle ){
@@ -241,7 +246,7 @@
                 var _sc = $(&#x27;script&#x27;).last(), _path = _sc.attr(&#x27;src&#x27;);
                 if( /\//.test( _path ) ){ _path = _path.split(&#x27;/&#x27;); _path.pop(); _path = _path.join(&#x27;/&#x27;) + &#x27;/&#x27;; }
                 else if( /\\/.test( _path ) ){ _path = _path.split(&#x27;\\&#x27;); _path.pop(); _path = _path.join(&#x27;\\&#x27;) + &#x27;/&#x27;; }
-                this.PATH = _path + &#x27;comps/&#x27;;
+                this.PATH = _path;
             },
 
        /**

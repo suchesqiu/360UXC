@@ -9598,7 +9598,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 
 })( window );
 
-(function( $ ){
+;(function( $ ){
     /**
      * UXC jquery 组件库 资源调用控制类
      * <br />这是一个单例模式, 全局访问使用 UXC 或 window.UXC
@@ -9622,7 +9622,8 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
          * @static
          * @type {string}
          */
-        PATH: '/js/comps/'
+        PATH: '/js'
+        , compsDir: '/comps/'
         /**
          * 是否显示调试信息
          * @property    debug
@@ -9670,20 +9671,24 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 
                     var _isCustomPath = _urlRe.test(_val) || /\//.test( _val ) || !!_basePath;
 
-                    if( !/\.js$/i.test( _val ) & !_basePath )  _val =  [ _val, '/', _val, '.js' ].join('');
+                    if( !/\.js$/i.test( _val ) & !_basePath ){
+                        if( window.UXC[ _val ] ) return;
+                        _val =  [ _val, '/', _val, '.js' ].join('');
+                    }
 
                     if( _isCustomPath ){
                         if( _urlRe.test( _val ) ){} 
                         else if( _basePath && !_nginxStyle ) _val = _basePath + _val;
                         else if( !/[\/\\]/.test( _val.slice( 0, 1 ) ) && !_nginxStyle ) _val = _p.PATH + _val;
                     }else{
-                        _val = _p.PATH + _val;
+                        alert( _val );
+                        _val = _p.PATH + _p.compsDir + _val;
                     }
                     /**
                      * 去除多余的 正叙扛或反叙扛
                      * @private
                      */
-                    !_urlRe.test( _val ) && ( _val = _val.replace( /(\\)\1|(\/)\2/g, '$1' ) ); 
+                    !_urlRe.test( _val ) && ( _val = _val.replace( /(\\)\1|(\/)\2/g, '$1$2' ) ); 
                     _val = $.trim( _val );
 
                     if( !_nginxStyle ){
@@ -9715,7 +9720,7 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
                 var _sc = $('script').last(), _path = _sc.attr('src');
                 if( /\//.test( _path ) ){ _path = _path.split('/'); _path.pop(); _path = _path.join('/') + '/'; }
                 else if( /\\/.test( _path ) ){ _path = _path.split('\\'); _path.pop(); _path = _path.join('\\') + '/'; }
-                this.PATH = _path + 'comps/';
+                this.PATH = _path;
             },
 
        /**
