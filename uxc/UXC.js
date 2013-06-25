@@ -71,13 +71,17 @@
 
                     var _isCustomPath = _urlRe.test(_val) || /\//.test( _val ) || !!_basePath;
 
-                    if( !/\.js$/i.test( _val ) & !_basePath )  _val =  [ _val, '/', _val, '.js' ].join('');
+                    if( !/\.js$/i.test( _val ) & !_basePath ){
+                        if( window.UXC[ _val ] ) return;
+                        _val =  [ _val, '/', _val, '.js' ].join('');
+                    }
 
                     if( _isCustomPath ){
                         if( _urlRe.test( _val ) ){} 
                         else if( _basePath && !_nginxStyle ) _val = _basePath + _val;
                         else if( !/[\/\\]/.test( _val.slice( 0, 1 ) ) && !_nginxStyle ) _val = _p.PATH + _val;
                     }else{
+                        alert( _val );
                         _val = _p.PATH + _p.compsDir + _val;
                     }
                     /**
