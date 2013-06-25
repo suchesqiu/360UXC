@@ -81,7 +81,6 @@
                         else if( _basePath && !_nginxStyle ) _val = _basePath + _val;
                         else if( !/[\/\\]/.test( _val.slice( 0, 1 ) ) && !_nginxStyle ) _val = _p.PATH + _val;
                     }else{
-                        alert( _val );
                         _val = _p.PATH + _p.compsDir + _val;
                     }
                     /**
