@@ -135,9 +135,9 @@ div.UPanelSuccess button.UIcon{
 }
 
 div.UPanelError button.UIcon{
-    background: #fff url('images/status.gif') no-repeat -58px 0!important;
+    background: #fff url('images/status.gif') no-repeat -0px 0!important;
 }
 
 div.UPanelAlert button.UIcon{
-    background: #fff url('images/status.gif') no-repeat -0px 0!important;
+    background: #fff url('images/status.gif') no-repeat -58px 0!important;
 }
