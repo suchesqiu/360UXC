@@ -8,35 +8,8 @@ html{
  overflow-x: hidden; overflow-y: hidden;
 }
 *{ margin: 0; padding: 0; }
-body{ width: 100%; margin: 0 auto; }
+body{ width: 100%; margin: 0 auto; visibility: hidden; }
 
-.upbtn{
-    width: 88px;
-    overflow: hidden;
-    cursor: pointer;
-    filter:alpha(opacity:0);opacity: 0;
-}
-
-input, button{
-    position: absolute;
-    -webkit-box-align: center;
-    text-align: center;
-    cursor: default;
-    color: buttontext;
-    padding: 0px 6px 3px;
-    border: 2px outset buttonface;
-    border-image: initial;
-    background-color: buttonface;
-    box-sizing: border-box;
-}
-
-button, input, .upbtn{ cursor: pointer!important; }
-
-.btn{background:url(http://p17.qhimg.com/d/_open360crmspr_v2.png) 0 0; width: 80px; height: 30px;
- vertical-align: middle;
- text-align: center; color: #fff; font-size: 16px; font-family: "microsoft yahei"; border:none;}
-.btn-2{background-position:0 -30px; color: #2473a2; font-size: 12px; font-family: arial; height: 22px;
-width: 84px; cursor:pointer; *margin-top:2px;}
 
 </style>
 </head>    
@@ -60,17 +33,27 @@ width: 84px; cursor:pointer; *margin-top:2px;}
         }
    <\/script>
 */
+onload = function(){
+    document.body.style.visibility = 'visible';
+};
 var infobtn = document.getElementById('info')
 , fm = document.getElementById( 'upload_form' )
 , flBtn = document.getElementById( 'upbtn' );
 
 var infoval = get_url_param( 'info' ) 
 , uploadurl = get_url_param( 'url' )
-, uploadname = get_url_param( 'name' );
+, uploadname = get_url_param( 'name' )
+, btntext = get_url_param( 'btntext' )
+, styles = get_url_param( 'style' );
+
+styles = styles || "1";
+
+addCssByLink( [ './res/style', styles, '/style.css' ].join('') );
 
 if( infoval ){ try{ infoval = decodeURIComponent( infoval ); }catch(ex){} }
 if( uploadurl ){ try{ uploadurl = decodeURIComponent( uploadurl ); }catch(ex){} }
 if( uploadname ){ try{ uploadname = decodeURIComponent( uploadname ); }catch(ex){} }
+if( btntext ){ try{ btntext = decodeURIComponent( btntext ); }catch(ex){} }
 
 infobtn.value = infoval;
 
@@ -78,6 +61,9 @@ uploadurl && fm.setAttribute( 'action', uploadurl );
 uploadname && flBtn.setAttribute( 'name', uploadname );
 
 var upbtn = document.getElementById('upbtn');
+var btn = document.getElementById('btn');
+
+if( btntext ) btn.innerHTML = btntext;
 
 upbtn.onchange = function(){
     if( this.value  ){
@@ -126,6 +112,19 @@ function get_url_param( $url, $key )
     }
     
     return result;
+}
+function addCssByLink(url){
+	var doc=document;
+	var link=doc.createElement("link");
+	link.setAttribute("rel", "stylesheet");
+    link.setAttribute("type", "text/css");
+    link.setAttribute("href", url);
+
+	var heads = doc.getElementsByTagName("head");
+	if(heads.length)
+		heads[0].appendChild(link);
+	else
+		doc.documentElement.appendChild(link);
 }
 
 </script>
