@@ -214,6 +214,7 @@
 
             if( _popupSrc && _popupSrc.length )_ins.selector().css( { 'left': '-9999px', 'top': '-9999px' } );
 
+            _ins.selector().css( 'z-index', window.ZINDEX_COUNT++ );
             _ins.show();
 
             return _ins;
