@@ -1,0 +1,135 @@
+<!doctype html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>iframe upload - suches template</title>
+<style>
+html{
+ overflow-x: hidden; overflow-y: hidden;
+}
+*{ margin: 0; padding: 0; }
+body{ width: 100%; margin: 0 auto; }
+
+.upbtn{
+    width: 88px;
+    overflow: hidden;
+    cursor: pointer;
+    filter:alpha(opacity:0);opacity: 0;
+}
+
+input, button{
+    position: absolute;
+    -webkit-box-align: center;
+    text-align: center;
+    cursor: default;
+    color: buttontext;
+    padding: 0px 6px 3px;
+    border: 2px outset buttonface;
+    border-image: initial;
+    background-color: buttonface;
+    box-sizing: border-box;
+}
+
+button, input, .upbtn{ cursor: pointer!important; }
+
+.btn{background:url(http://p17.qhimg.com/d/_open360crmspr_v2.png) 0 0; width: 80px; height: 30px;
+ vertical-align: middle;
+ text-align: center; color: #fff; font-size: 16px; font-family: "microsoft yahei"; border:none;}
+.btn-2{background-position:0 -30px; color: #2473a2; font-size: 12px; font-family: arial; height: 22px;
+width: 84px; cursor:pointer; *margin-top:2px;}
+
+</style>
+</head>    
+<body>
+ <form name="upload_form" method="POST"  action="" 
+ target="UPLOAD_IFRAME"
+ enctype="multipart/form-data"
+ id="upload_form" >
+    <button type="button" id="btn" class="btn btn-2">上传文件</button>
+    <input type="file" name="file" id="upbtn" class="upbtn" />
+    <input type="text" name="info" id="info" class="info" value="info" style="display:none" />
+    <input type="submit" value="submit" style="display:none" />
+</form>
+<iframe name="UPLOAD_IFRAME" style="display:none"></iframe>
+<script>
+/*
+   iframe 提交返回数据
+   <script>
+        if( window.parent ){ 
+            window.parent.IFRAME_UPLOAD( {"errorno":0,"data":{"newname":"5174fda3dd367.jpg","size":240521,"info":"up_1366621587036"}} );
+        }
+   <\/script>
+*/
+var infobtn = document.getElementById('info')
+, fm = document.getElementById( 'upload_form' )
+, flBtn = document.getElementById( 'upbtn' );
+
+var infoval = get_url_param( 'info' ) 
+, uploadurl = get_url_param( 'url' )
+, uploadname = get_url_param( 'name' );
+
+if( infoval ){ try{ infoval = decodeURIComponent( infoval ); }catch(ex){} }
+if( uploadurl ){ try{ uploadurl = decodeURIComponent( uploadurl ); }catch(ex){} }
+if( uploadname ){ try{ uploadname = decodeURIComponent( uploadname ); }catch(ex){} }
+
+infobtn.value = infoval;
+
+uploadurl && fm.setAttribute( 'action', uploadurl );
+uploadname && flBtn.setAttribute( 'name', uploadname );
+
+var upbtn = document.getElementById('upbtn');
+
+upbtn.onchange = function(){
+    if( this.value  ){
+        this.form.submit();
+        document.getElementById('btn').disabled = true;
+        document.getElementById('upbtn').disabled = true;
+    }
+};
+
+function IFRAME_UPLOAD( $json ){
+    document.getElementById('btn').disabled = false;
+    document.getElementById('upbtn').disabled = false;
+
+    if( window.parent && window.parent.IFRAME_UPLOAD ){
+        window.parent.IFRAME_UPLOAD( $json );
+    }
+}
+
+/**
+ * 取URL参数的值
+ * x@btbtd.org  2012/4/24 
+ * @example
+        var defaultTag = get_url_param(location.href, 'tag');  
+ */ 
+function get_url_param( $url, $key )
+{
+    if( $url && !$key){ $key = $url; $url = location.href; }
+    var result = '';
+    if( $url.indexOf('#') > -1 ) $url = $url.split('#')[0];
+    
+    if( $url.indexOf('?') > -1 )
+    {
+        var paramAr = $url.split('?')[1].split('&');
+        for( var i = 0; i < paramAr.length; i++ )
+        {
+            var items = paramAr[i].split('=');
+            
+            items[0] = items[0].replace(/^\s+|\s+$/g, '');
+             
+            if( items[0].toLowerCase() == $key.toLowerCase() )
+            {
+                result = items[1];
+                break;
+            } 
+        }
+    }
+    
+    return result;
+}
+
+</script>
+   
+</body>
+</html>
+
