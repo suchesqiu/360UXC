@@ -33,6 +33,10 @@
             _ins.on('close_default', function( _evt, _panel){
                 _logic.hideMask();
             });
+
+            _ins.on('hide_default', function( _evt, _panel){
+                _logic.hideMask();
+            });
             
             _logic.timeout = setTimeout( function(){
                 _ins.show( 0 );
