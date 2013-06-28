@@ -51,7 +51,7 @@
 
         , _process:
             function( _data, _parentNode ){
-                for( var i = 0, j = _data, _item, _isLast; i < j; i++ ){
+                for( var i = 0, j = _data.length, _item, _isLast; i < j; i++ ){
                     _item = _data[i];
                     _isLast = i === j - 1;
 
@@ -65,10 +65,27 @@
 
         , _initFolder:
             function( _parentNode, _data, _isLast ){
+                var _last = '', _last1 = '';
+                    _isLast && ( _last = 'folder_span_lst ', _last1 = 'folder_last' );
+                var _node = $( printf( '<li><span class="folder_img_closed folder {1}">&nbsp;</span><div class="node_ctn">{0}</div></li>', _data[1], _last ) );
+                    _node.addClass( printf( 'folder_closed {0} folder', _last1 ));
+                    _node.attr('id', this._model.id( _data[0] ) );
+
+                var _r =  $( '<ul style="display:none;"></ul>' )
+                    _r.appendTo( _node );
+
+                    _node.appendTo( _parentNode );
+                    this._process( this._model.child( _data[0] ), _r );
             }
 
         , _initFile:
             function( _parentNode, _data, _isLast ){
+                var _last = 'folder_img_bottom ', _last1 = '';
+                    _isLast && ( _last = 'folder_img_last ', _last1 = '' );
+                var _node = $( printf( '<li><span class="{1}file">&nbsp;</span><div class="node_ctn">{0}</div></li>', _data[1], _last ) );
+                    _node.addClass( 'folder_closed file');
+                    _node.attr('id', this._model.id( _data[0] ) );
+                    _node.appendTo( _parentNode );
             }
 
         , _initRoot:
@@ -86,25 +103,11 @@
                     _root.appendTo( _wrap );
                     _wrap.appendTo( _p._model.container() );
 
-                    $( '<ul style="" class="tree_wrap_inner"></ul>' ).appendTo( _wrap );
+                var _r =  $( '<ul style="" class="tree_wrap_inner"></ul>' )
+                    _r.appendTo( _wrap );
 
-                return _wrap;
+                return _r;
             }
         
     };
-/**
- * 按格式输出字符串
- * @method printf
- * @param   {string}    _str
- * @example
- *      printf( 'asdfasdf{0}sdfasdf{1}', '000', 1111 );
- *      //return asdfasdf000sdfasdf1111
- */
-function printf( _str ){
-    for(var i = 1, _len = arguments.length; i < _len; i++){
-        _str = _str.replace( new RegExp('\\{'+( i - 1 )+'\\}'), arguments[i] );
-    }
-    return _str;
-}
- 
 }(jQuery));

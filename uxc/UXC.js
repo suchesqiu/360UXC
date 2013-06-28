@@ -146,3 +146,20 @@
     UXC._getPath();
 
 }(jQuery));
+/**
+ * 按格式输出字符串
+ * @namespace   window
+ * @method printf
+ * @static
+ * @param   {string}    _str
+ * @example
+ *      printf( 'asdfasdf{0}sdfasdf{1}', '000', 1111 );
+ *      //return asdfasdf000sdfasdf1111
+ */
+function printf( _str ){
+    for(var i = 1, _len = arguments.length; i < _len; i++){
+        _str = _str.replace( new RegExp('\\{'+( i - 1 )+'\\}'), arguments[i] );
+    }
+    return _str;
+}
+
