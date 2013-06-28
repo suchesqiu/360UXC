@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+<meta charset=utf-8 />
+<title>360 UXC-FE</title>
+<style>
+    body{ width: 680px; margin: 20px auto; }
+</style>
+<link href='../../../comps/Tree/res/default/style.css' rel='stylesheet' />
+<script src="../../../lib.js"></script>
+<script>
+    UXC.use( 'Tree' );
+
+    $(document).ready( function(){
+        var treeData = {
+            data: {"24":[["25","\u4e8c\u7ec4\u4e00\u961f"],["26","\u4e8c\u7ec4\u4e8c\u961f"],["27","\u4e8c\u7ec4\u4e09\u961f"]],"23":[["24","\u9500\u552e\u4e8c\u7ec4"],["28","\u552e\u524d\u5ba1\u6838\u7ec4"]]},
+		    root: ["23",'客户发展部']
+		};
+
+        var _tree = new Tree( $('#tree_box'), treeData, "0" );
+            _tree.init();
+    });
+
+</script>
+</head>    
+<body>
+    <dl>
+        <dt>Tree 示例</dt>
+        <dd>
+            <div id="tree_box"></div>
+        </dd>
+    </dl>
+</body>
+</html>
+

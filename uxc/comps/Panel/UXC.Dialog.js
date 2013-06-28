@@ -22,6 +22,11 @@
     var Dialog = window.Dialog = UXC.Dialog = 
         function( _selector, _headers, _bodys, _footers ){
             if( _logic.timeout ) clearTimeout( _logic.timeout );
+
+            if( typeof _selector != 'string' && $(_selector).data( 'DialogInstance' ) ){
+                return $(_selector).data('DialogInstance');
+            }
+
             _logic.dialogIdentifier();
 
             var _ins = new UXC.Panel( _selector, _headers, _bodys, _footers );
@@ -204,7 +209,7 @@
             function( _panel ){
                 if( !_panel ){
                     _logic.hideMask();
-                    $('body > div.UPanelDialog_identifer').remove();
+                    $('body > div.UPanelDialog_identifer').hide();
                 }else{
                     _panel.selector().addClass('UPanelDialog_identifer');
                     _panel.selector().data('DialogInstance', _panel);

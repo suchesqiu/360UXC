@@ -38,6 +38,9 @@
             </script>
      */
     function Panel( _selector, _headers, _bodys, _footers ){
+        if( _selector && typeof _selector != 'string' ){
+            if( $(_selector).data( 'PanelInstace' ) ) return $(_selector).data('PanelInstace');
+        }
         /**
          * 存放数据的model层, see <a href='UXC.Panel.Model.html'>Panel.Model</a>
          * @property _model 
@@ -207,6 +210,17 @@
                 this.trigger('beforeclose', this._view.getPanel() );
                 this.trigger('close', this._view.getPanel() );
             }
+        /**
+         * 从DOM清除Panel
+         * <br /> <b>close 方法清除 Panel可以被用户阻止, 该方法不会被用户阻止</b>
+         * @method  dispose
+         */
+        , dispose:
+            function(){
+                UXC.log('Panel.dispose');
+                this._view.close();
+            }
+
         /**
          * 把 Panel 位置设为屏幕居中
          * @method  center
