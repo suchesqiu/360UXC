@@ -192,6 +192,7 @@
                     _item.removeClass('error');
                     _item.find('~ em').show();
                     _item.find('~ em.error').hide();
+                    _item.attr('emel') && $( '#' + _item.attr('emel').replace( /[\#]+/, '#' ) ).hide();
                 }
             /**
              * 显示错误的视觉效果
