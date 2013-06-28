@@ -53,11 +53,11 @@
     UXC.Form.initCheckAll = 
         function( _selector ){
             _selector = $( _selector );
-            var _ls = _selector.find( 'input[type=checkbox][checktype]' );
+            var _ls = _selector.find( 'input[type=checkbox][checktype][checkfor]' );
             _ls.each( function(){
                 var _p = $(this)
                     , _type = _p.attr('checktype').toLowerCase()
-                    , _for = _p.attr('checkfor').toLowerCase();
+                    , _for = _p.attr('checkfor');
                 if( _type != 'all' || !_for ) return;
                 fixCheckAllStatus( _p, _for );
 
@@ -81,7 +81,7 @@
     $(document).delegate( 'input[type=checkbox][checktype][checkfor]', 'click', function( _evt ){
         var _p = $(this)
             , _type = _p.attr('checktype').toLowerCase()
-            , _for = _p.attr('checkfor').toLowerCase();
+            , _for = _p.attr('checkfor');
             UXC.log( _type, _for );
 
         switch( _type ){
