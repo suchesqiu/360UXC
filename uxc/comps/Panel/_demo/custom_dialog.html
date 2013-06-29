@@ -30,69 +30,66 @@
     UXC.debug = true; UXC.use( 'Panel' ); 
 
     $(document).ready( function(_evt){
-        $('button.dom_panel').on( 'click', function( _evt ){
+        $('button.dom_dialog').on( 'click', function( _evt ){
             /**
              * 注意, 如果是从DOM读取模板的话, 
              * 需要做个判断, 是否之前初始化过, 否则会导致重复初始化
              *
              * 如果需要重复使用的话, 还需要对 close 事件做一次重载, 避免关闭时从DOM清除
-             *      panel.on( 'close', function( _evt, _panel ){ _panel.hide(); return false; });
-             *      //如果要强制从DOM清除, 可以调用 panel.dispose();
+             *      dialog.on( 'close', function( _evt, _panel ){ _panel.hide(); return false; });
+             *      //如果要强制从DOM清除, 可以调用 dialog.dispose();
              */
-            var panel = Panel.getInstance( $('div.dom_panel') ); 
-            if( !panel ){
-                panel = new UXC.Panel( $('div.dom_panel') ); 
-                panel.on( 'confirm', function( _evt, _panel ){
+            //这里使用 Panel.getInstance 是因为 Dialog 的 base 类是Panel
+            if( !UXC.Panel.getInstance( $('div.dom_dialog') ) ){
+                var dialog = UXC.Dialog( $('div.dom_dialog') ); 
+                dialog.on( 'confirm', function( _evt, _dialog ){
                     UXC.log( 'dom confirm' );
                 });
 
-                panel.on( 'cancel', function( _evt, _panel ){
+                dialog.on( 'cancel', function( _evt, _dialog ){
                     UXC.log( 'dom cancel' );
                 });
 
-                panel.on( 'close', function( _evt, _panel ){ _panel.hide(); return false; });
+                dialog.on( 'close', function( _evt, _dialog ){ _dialog.hide(); return false; });
+            }else{
+                UXC.Dialog( $('div.dom_dialog') ); 
             }
-            panel.show( this ); //让Panel显示在 this 的上方或下方
         });
 
-        $('button.string_panel').on( 'click', function( _evt ){
-            var panel = new UXC.Panel( str_panel_content ); 
-                panel.center();
-                panel.show();
+        $('button.string_dialog').on( 'click', function( _evt ){
+            var dialog = UXC.Dialog( str_dialog_content ); 
 
-                panel.on( 'confirm', function( _evt, _panel ){
+                dialog.on( 'confirm', function( _evt, _dialog ){
                     UXC.log( 'string confirm' );
                 });
 
-                panel.on( 'cancel', function( _evt, _panel ){
+                dialog.on( 'cancel', function( _evt, _dialog ){
                     UXC.log( 'string cancel' );
                 });
 
-                panel.on( 'close', function( _evt, _panel ){
+                dialog.on( 'close', function( _evt, _dialog ){
                     UXC.log( 'string close' );
                 });
         });
 
-        $('button.string_panel_with_src').on( 'click', function( _evt ){
-            var panel = new UXC.Panel( str_panel_content, 'string_panel_with_src panel' ); 
-                panel.show( this );
+        $('button.string_dialog_with_src').on( 'click', function( _evt ){
+            var dialog = UXC.Dialog( str_dialog_content, 'string_dialog_with_src dialog' ); 
 
-                panel.on( 'confirm', function( _evt, _panel ){
-                    UXC.log( 'string_panel_with_src confirm' );
+                dialog.on( 'confirm', function( _evt, _dialog ){
+                    UXC.log( 'string_dialog_with_src confirm' );
                 });
 
-                panel.on( 'cancel', function( _evt, _panel ){
-                    UXC.log( 'string_panel_with_src cancel' );
+                dialog.on( 'cancel', function( _evt, _dialog ){
+                    UXC.log( 'string_dialog_with_src cancel' );
                 });
 
-                panel.on( 'close', function( _evt, _panel ){
-                    UXC.log( 'string_panel_with_src close' );
-                });
-        });
+                dialog.on( 'close', function( _evt, _dialog ){ UXC.log( 'string_dialog_with_src close' ); }); 
+        }); 
 
     });
 
-    var str_panel_content =
+
+    var str_dialog_content =
     [
     '<div class="UPanel" style="display:none; width: 400px;" >\n'
     ,'    <div class="UPContent">\n'
@@ -120,15 +117,15 @@
     <dl class="def">
         <dt>UXC.Panel 示例</dt>
         <dd>
-            <button type="button" class="dom_panel">dom panel</button>
-            <button type="button" class="string_panel">string panel</button>
-            <button type="button" class="string_panel_with_src">string panel with source</button>
+            <button type="button" class="dom_dialog">dom panel</button>
+            <button type="button" class="string_dialog">string panel</button>
+            <button type="button" class="string_dialog_with_src">string panel with source</button>
         </dd>
 
     </dl>
 
 
-<div class="UPanel dom_panel" style="display:none; width: 400px;" >
+<div class="UPanel dom_dialog" style="display:none; width: 400px;" >
     <div class="UPContent">
         <div class="hd">dom panel</div>
         <div class="bd">

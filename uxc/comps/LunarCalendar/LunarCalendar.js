@@ -8,9 +8,8 @@
      * 农历日历组件
      * <br />全局访问请使用 UXC.LunarCalendar 或 LunarCalendar
      * <br />DOM 加载完毕后
-     * , LunarCalendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签
-     * <br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用LunarCalendar.init( _selector )
-     * <br />_selector 可以是 新加载的容器, 也可以是新加载的所有input
+     * , LunarCalendar会自动初始化页面所有具体识别符的日历, 目前可识别: div.js_LunarCalendar, td.js_LunarCalendar, li.js_LunarCalendar
+     * <br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动初始化 var ins = new UXC.LunarCalendar( _selector );
      * <p>
      *      初始化时, 如果日历是添加到某个selector里, 那么selector可以指定一些设置属性
      *      <br /><b>hidecontrol</b>: 如果设置该属性, 那么日历将隐藏操作控件

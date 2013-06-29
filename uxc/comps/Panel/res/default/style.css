@@ -27,6 +27,8 @@ div.UPanel{
     background: #fff;
     overflow: hidden;
     z-index: 50000;
+    left: -9999px;
+    top: -9999px;
     zoom: 1;
     box-shadow:0 0 3px #b3b3b3;
 }
@@ -135,9 +137,9 @@ div.UPanelSuccess button.UIcon{
 }
 
 div.UPanelError button.UIcon{
-    background: #fff url('images/status.gif') no-repeat -58px 0!important;
+    background: #fff url('images/status.gif') no-repeat -0px 0!important;
 }
 
 div.UPanelAlert button.UIcon{
-    background: #fff url('images/status.gif') no-repeat -0px 0!important;
+    background: #fff url('images/status.gif') no-repeat -58px 0!important;
 }

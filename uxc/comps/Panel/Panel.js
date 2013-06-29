@@ -38,6 +38,7 @@
             </script>
      */
     function Panel( _selector, _headers, _bodys, _footers ){
+        if( Panel.getInstance( _selector ) ) return Panel.getInstance( _selector );
         /**
          * 存放数据的model层, see <a href='UXC.Panel.Model.html'>Panel.Model</a>
          * @property _model 
@@ -53,6 +54,21 @@
 
         this._init();
     }
+    /**
+     * 从 selector 获取 Panel 的实例
+     * <br /><b>如果从DOM初始化, 不进行判断的话, 会重复初始化多次</b>
+     * @method getInstance
+     * @param   {selector}      _selector
+     * @static
+     * @return  {Panel instance}
+     */
+    Panel.getInstance =
+        function( _selector ){
+            if( typeof _selector == 'string' && !/</.test( _selector ) ) 
+                    _selector = $(_selector);
+            if( _selector && typeof _selector == 'string' ) return;
+            return $(_selector).data('PanelInstace');
+        };
     /**
      * 监听Panel的所有点击事件
      * <br />如果事件源有 eventtype 属性, 则会触发eventtype的事件类型
@@ -124,6 +140,7 @@
         , on:
             function( _evtName, _cb ){
                 _evtName && _cb && this._model.addEvent( _evtName, _cb );
+                return this;
             }
         /**
          * 显示 Panel
@@ -175,6 +192,8 @@
                     }, 10);
                 this.trigger('beforeshow', this._view.getPanel() );
                 this.trigger('show', this._view.getPanel() );
+
+                return this;
             }
         /**
          * 设置Panel的显示位置基于 _src 的左右上下
@@ -185,6 +204,7 @@
             function( _src ){ 
                 _src = $(_src ); 
                 _src && _src.length && this._view.positionWith( _src ); 
+                return this;
             }
         /**
          * 隐藏 Panel
@@ -195,6 +215,7 @@
             function(){
                 this.trigger('beforehide', this._view.getPanel() );
                 this.trigger('hide', this._view.getPanel() );
+                return this;
             }
         /**
          * 关闭 Panel
@@ -206,6 +227,18 @@
                 UXC.log('Panel.close');
                 this.trigger('beforeclose', this._view.getPanel() );
                 this.trigger('close', this._view.getPanel() );
+                return this;
+            }
+        /**
+         * 从DOM清除Panel
+         * <br /> <b>close 方法清除 Panel可以被用户阻止, 该方法不会被用户阻止</b>
+         * @method  dispose
+         */
+        , dispose:
+            function(){
+                UXC.log('Panel.dispose');
+                this._view.close();
+                return this;
             }
         /**
          * 把 Panel 位置设为屏幕居中
@@ -216,13 +249,29 @@
                 this.trigger('beforecenter', this._view.getPanel() );
                 this._view.center();
                 this.trigger('center', this._view.getPanel() );
+                return this;
             }
         /**
          * 返回 Panel 的 jquery dom选择器对象
+         * <br />这个方法以后将会清除, 请使用 layout 方法
          * @method  selector
          * @return  {selector}
          */
         , selector: function(){ return this._view.getPanel(); }
+        /**
+         * 返回 Panel 的 jquery dom选择器对象
+         * @method  layout
+         * @return  {selector}
+         */
+        , layout: function(){ return this._view.getPanel(); }
+        /**
+         * 从 Panel 选择器中查找内容
+         * <br />添加这个方法是为了方便jquery 使用者的习惯
+         * @method  find
+         * @param   {selector}  _selector
+         * @return  selector
+         */
+        , find: function( _selector ){ return this.layout().find( _selector ); }
         /**
          * 触发 Panel 已绑定的事件
          * <br />用户可以使用该方法主动触发绑定的事件
@@ -257,6 +306,7 @@
                         });
                     }
                 }
+                return this;
             }
         /**
          * 获取或者设置 Panel Header 的HTML内容
@@ -943,6 +993,7 @@
 
             if( _popupSrc && _popupSrc.length )_ins.selector().css( { 'left': '-9999px', 'top': '-9999px' } );
 
+            _ins.selector().css( 'z-index', window.ZINDEX_COUNT++ );
             _ins.show();
 
             return _ins;
@@ -1270,6 +1321,12 @@
     var Dialog = window.Dialog = UXC.Dialog = 
         function( _selector, _headers, _bodys, _footers ){
             if( _logic.timeout ) clearTimeout( _logic.timeout );
+
+            if( UXC.Panel.getInstance( _selector ) ){
+                UXC.Panel.getInstance( _selector ).center().show();
+                return UXC.Panel.getInstance( _selector );
+            }
+
             _logic.dialogIdentifier();
 
             var _ins = new UXC.Panel( _selector, _headers, _bodys, _footers );
@@ -1280,6 +1337,14 @@
 
             _ins.on('close_default', function( _evt, _panel){
                 _logic.hideMask();
+            });
+
+            _ins.on('hide_default', function( _evt, _panel){
+                _logic.hideMask();
+            });
+
+            _ins.on('show_default', function( _evt, _panel){
+                _logic.showMask();
             });
             
             _logic.timeout = setTimeout( function(){
@@ -1345,6 +1410,20 @@
             _cb && _ins.on('confirm', _cb);
 
             return _ins;
+        };
+    /**
+     * 显示或隐藏 蒙板
+     * <br /><b>注意, 这是个方法, 写 @class 属性是为了生成文档</b>
+     * @namespace   UXC.Dialog
+     * @class   mask
+     * @static
+     * @constructor
+     * @param   {bool}  _isHide     空/假 显示蒙板, 为真 隐藏蒙板
+     */
+    UXC.Dialog.mask =
+        function( _isHide ){
+            !_isHide && _logic.showMask();
+            _isHide && _logic.hideMask();
         };
     /**
      * 从 HTML 属性 自动执行 UXC.Dialog.alert / UXC.Dialog.confirm
@@ -1444,7 +1523,7 @@
             function( _panel ){
                 if( !_panel ){
                     _logic.hideMask();
-                    $('body > div.UPanelDialog_identifer').remove();
+                    $('body > div.UPanelDialog_identifer').hide();
                 }else{
                     _panel.selector().addClass('UPanelDialog_identifer');
                     _panel.selector().data('DialogInstance', _panel);
