@@ -95,8 +95,8 @@ function get_url_param( $url, $key ){
  * 删除URL参数
  * @method  del_url_param
  * @static
- * @params  {string}    $url
- * @params  {string}    $key
+ * @param  {string}    $url
+ * @param  {string}    $key
  * @example
         var url = del_url_param( location.href, 'tag' );
  */ 
@@ -118,4 +118,17 @@ function del_url_param( $url, $key ){
     sharp && ( $url += '#' + sharp );
     return $url;
 }
-
+/**
+ * 提示需要 HTTP 环境
+ * @method  httpRequire
+ * @static
+ * @param  {string}  _msg   要提示的文字, 默认 "本示例需要HTTP环境'
+ */
+function httpRequire( _msg ){
+    _msg = _msg || '本示例需要HTTP环境';
+    if( /file\:|\\/.test( location.href ) ){
+        alert( _msg );
+        return false;
+    }
+    return true;
+}

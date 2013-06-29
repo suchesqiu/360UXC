@@ -38,9 +38,7 @@
             </script>
      */
     function Panel( _selector, _headers, _bodys, _footers ){
-        if( _selector && typeof _selector != 'string' ){
-            if( $(_selector).data( 'PanelInstace' ) ) return $(_selector).data('PanelInstace');
-        }
+        if( Panel.getInstance( _selector ) ) return Panel.getInstance( _selector );
         /**
          * 存放数据的model层, see <a href='UXC.Panel.Model.html'>Panel.Model</a>
          * @property _model 
@@ -57,7 +55,8 @@
         this._init();
     }
     /**
-     * 从 dom 或者 selector 获取 Panel 的实例
+     * 从 selector 获取 Panel 的实例
+     * <br /><b>如果从DOM初始化, 不进行判断的话, 会重复初始化多次</b>
      * @method getInstance
      * @param   {selector}      _selector
      * @static
@@ -65,6 +64,9 @@
      */
     Panel.getInstance =
         function( _selector ){
+            if( typeof _selector == 'string' && !/</.test( _selector ) ) 
+                    _selector = $(_selector);
+            if( _selector && typeof _selector == 'string' ) return;
             return $(_selector).data('PanelInstace');
         };
     /**
@@ -138,6 +140,7 @@
         , on:
             function( _evtName, _cb ){
                 _evtName && _cb && this._model.addEvent( _evtName, _cb );
+                return this;
             }
         /**
          * 显示 Panel
@@ -189,6 +192,8 @@
                     }, 10);
                 this.trigger('beforeshow', this._view.getPanel() );
                 this.trigger('show', this._view.getPanel() );
+
+                return this;
             }
         /**
          * 设置Panel的显示位置基于 _src 的左右上下
@@ -199,6 +204,7 @@
             function( _src ){ 
                 _src = $(_src ); 
                 _src && _src.length && this._view.positionWith( _src ); 
+                return this;
             }
         /**
          * 隐藏 Panel
@@ -209,6 +215,7 @@
             function(){
                 this.trigger('beforehide', this._view.getPanel() );
                 this.trigger('hide', this._view.getPanel() );
+                return this;
             }
         /**
          * 关闭 Panel
@@ -220,6 +227,7 @@
                 UXC.log('Panel.close');
                 this.trigger('beforeclose', this._view.getPanel() );
                 this.trigger('close', this._view.getPanel() );
+                return this;
             }
         /**
          * 从DOM清除Panel
@@ -230,8 +238,8 @@
             function(){
                 UXC.log('Panel.dispose');
                 this._view.close();
+                return this;
             }
-
         /**
          * 把 Panel 位置设为屏幕居中
          * @method  center
@@ -241,13 +249,29 @@
                 this.trigger('beforecenter', this._view.getPanel() );
                 this._view.center();
                 this.trigger('center', this._view.getPanel() );
+                return this;
             }
         /**
          * 返回 Panel 的 jquery dom选择器对象
+         * <br />这个方法以后将会清除, 请使用 layout 方法
          * @method  selector
          * @return  {selector}
          */
         , selector: function(){ return this._view.getPanel(); }
+        /**
+         * 返回 Panel 的 jquery dom选择器对象
+         * @method  layout
+         * @return  {selector}
+         */
+        , layout: function(){ return this._view.getPanel(); }
+        /**
+         * 从 Panel 选择器中查找内容
+         * <br />添加这个方法是为了方便jquery 使用者的习惯
+         * @method  find
+         * @param   {selector}  _selector
+         * @return  selector
+         */
+        , find: function( _selector ){ return this.layout().find( _selector ); }
         /**
          * 触发 Panel 已绑定的事件
          * <br />用户可以使用该方法主动触发绑定的事件
@@ -282,6 +306,7 @@
                         });
                     }
                 }
+                return this;
             }
         /**
          * 获取或者设置 Panel Header 的HTML内容

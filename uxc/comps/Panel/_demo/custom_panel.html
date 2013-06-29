@@ -26,18 +26,22 @@
 </style>
 <link href='../../../comps/Panel/res/default/style.css' rel='stylesheet' />
 <script src="../../../lib.js"></script>
-<script> UXC.debug = true; UXC.use( 'Panel' ); </script>
 <script>
+    UXC.debug = true; UXC.use( 'Panel' ); 
+
     $(document).ready( function(_evt){
-        var dom_panel = null;
         $('button.dom_panel').on( 'click', function( _evt ){
             /**
              * 注意, 如果是从DOM读取模板的话, 
-             * 而且需要多次使用这个模板, 需要使用 clone(true) 方法克隆对象, 否则dom对象会被删除
+             * 需要做个判断, 是否之前初始化过, 否则会导致重复初始化
+             *
+             * 如果需要重复使用的话, 还需要对 close 事件做一次重载, 避免关闭时从DOM清除
+             *      panel.on( 'close', function( _evt, _panel ){ _panel.hide(); return false; });
+             *      //如果要强制从DOM清除, 可以调用 panel.dispose();
              */
-            var panel = new UXC.Panel( $('div.dom_panel') ); 
-
-            if( !dom_panel ){
+            var panel = Panel.getInstance( $('div.dom_panel') ); 
+            if( !panel ){
+                panel = new UXC.Panel( $('div.dom_panel') ); 
                 panel.on( 'confirm', function( _evt, _panel ){
                     UXC.log( 'dom confirm' );
                 });
@@ -46,14 +50,8 @@
                     UXC.log( 'dom cancel' );
                 });
 
-                panel.on( 'close', function( _evt, _panel ){
-                    UXC.log( 'dom close' );
-                    _panel.hide();
-                    return false;
-                });
-                dom_panel = panel;
+                panel.on( 'close', function( _evt, _panel ){ _panel.hide(); return false; });
             }
-
             panel.show( this ); //让Panel显示在 this 的上方或下方
         });
 
@@ -63,15 +61,15 @@
                 panel.show();
 
                 panel.on( 'confirm', function( _evt, _panel ){
-                    alert( 'string confirm' );
+                    UXC.log( 'string confirm' );
                 });
 
                 panel.on( 'cancel', function( _evt, _panel ){
-                    alert( 'string cancel' );
+                    UXC.log( 'string cancel' );
                 });
 
                 panel.on( 'close', function( _evt, _panel ){
-                    alert( 'string close' );
+                    UXC.log( 'string close' );
                 });
         });
 
@@ -80,21 +78,19 @@
                 panel.show( this );
 
                 panel.on( 'confirm', function( _evt, _panel ){
-                    alert( 'string_panel_with_src confirm' );
+                    UXC.log( 'string_panel_with_src confirm' );
                 });
 
                 panel.on( 'cancel', function( _evt, _panel ){
-                    alert( 'string_panel_with_src cancel' );
+                    UXC.log( 'string_panel_with_src cancel' );
                 });
 
                 panel.on( 'close', function( _evt, _panel ){
-                    alert( 'string_panel_with_src close' );
+                    UXC.log( 'string_panel_with_src close' );
                 });
         });
 
-
     });
-
 
     var str_panel_content =
     [

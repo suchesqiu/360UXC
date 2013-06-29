@@ -23,8 +23,9 @@
         function( _selector, _headers, _bodys, _footers ){
             if( _logic.timeout ) clearTimeout( _logic.timeout );
 
-            if( typeof _selector != 'string' && $(_selector).data( 'DialogInstance' ) ){
-                return $(_selector).data('DialogInstance');
+            if( UXC.Panel.getInstance( _selector ) ){
+                UXC.Panel.getInstance( _selector ).center().show();
+                return UXC.Panel.getInstance( _selector );
             }
 
             _logic.dialogIdentifier();
@@ -110,6 +111,20 @@
             _cb && _ins.on('confirm', _cb);
 
             return _ins;
+        };
+    /**
+     * 显示或隐藏 蒙板
+     * <br /><b>注意, 这是个方法, 写 @class 属性是为了生成文档</b>
+     * @namespace   UXC.Dialog
+     * @class   mask
+     * @static
+     * @constructor
+     * @param   {bool}  _isHide     空/假 显示蒙板, 为真 隐藏蒙板
+     */
+    UXC.Dialog.mask =
+        function( _isHide ){
+            !_isHide && _logic.showMask();
+            _isHide && _logic.hideMask();
         };
     /**
      * 从 HTML 属性 自动执行 UXC.Dialog.alert / UXC.Dialog.confirm

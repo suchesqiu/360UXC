@@ -55,6 +55,8 @@
             
                 <li><a href="../classes/UXC.Dialog.confirm.html">UXC.Dialog.confirm</a></li>
             
+                <li><a href="../classes/UXC.Dialog.mask.html">UXC.Dialog.mask</a></li>
+            
                 <li><a href="../classes/UXC.Form.html">UXC.Form</a></li>
             
                 <li><a href="../classes/UXC.hideAllPopup.html">UXC.hideAllPopup</a></li>
@@ -170,9 +172,7 @@
             &lt;/script&gt;
      */
     function Panel( _selector, _headers, _bodys, _footers ){
-        if( _selector &amp;&amp; typeof _selector != &#x27;string&#x27; ){
-            if( $(_selector).data( &#x27;PanelInstace&#x27; ) ) return $(_selector).data(&#x27;PanelInstace&#x27;);
-        }
+        if( Panel.getInstance( _selector ) ) return Panel.getInstance( _selector );
         /**
          * 存放数据的model层, see &lt;a href=&#x27;UXC.Panel.Model.html&#x27;&gt;Panel.Model&lt;/a&gt;
          * @property _model 
@@ -188,6 +188,21 @@
 
         this._init();
     }
+    /**
+     * 从 selector 获取 Panel 的实例
+     * &lt;br /&gt;&lt;b&gt;如果从DOM初始化, 不进行判断的话, 会重复初始化多次&lt;/b&gt;
+     * @method getInstance
+     * @param   {selector}      _selector
+     * @static
+     * @return  {Panel instance}
+     */
+    Panel.getInstance =
+        function( _selector ){
+            if( typeof _selector == &#x27;string&#x27; &amp;&amp; !/&lt;/.test( _selector ) ) 
+                    _selector = $(_selector);
+            if( _selector &amp;&amp; typeof _selector == &#x27;string&#x27; ) return;
+            return $(_selector).data(&#x27;PanelInstace&#x27;);
+        };
     /**
      * 监听Panel的所有点击事件
      * &lt;br /&gt;如果事件源有 eventtype 属性, 则会触发eventtype的事件类型
@@ -259,6 +274,7 @@
         , on:
             function( _evtName, _cb ){
                 _evtName &amp;&amp; _cb &amp;&amp; this._model.addEvent( _evtName, _cb );
+                return this;
             }
         /**
          * 显示 Panel
@@ -310,6 +326,8 @@
                     }, 10);
                 this.trigger(&#x27;beforeshow&#x27;, this._view.getPanel() );
                 this.trigger(&#x27;show&#x27;, this._view.getPanel() );
+
+                return this;
             }
         /**
          * 设置Panel的显示位置基于 _src 的左右上下

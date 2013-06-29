@@ -6,6 +6,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "UXC.Dialog",
         "UXC.Dialog.alert",
         "UXC.Dialog.confirm",
+        "UXC.Dialog.mask",
         "UXC.Form",
         "UXC.LunarCalendar",
         "UXC.LunarCalendar.Model",

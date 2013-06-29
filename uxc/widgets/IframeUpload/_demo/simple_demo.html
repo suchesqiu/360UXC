@@ -18,6 +18,8 @@
         </dd>
     </dl>
     <script>
+        httpRequire();
+
         function cb1( _data ){
             alert( 'cb1' );
         }
@@ -25,6 +27,22 @@
         function cb2( _data ){
             alert( 'cb2' );
         }
+
+        /**
+         * 提示需要 HTTP 环境
+         * @method  httpRequire
+         * @static
+         * @param  {string}  _msg   要提示的文字, 默认 "本示例需要HTTP环境'
+         */
+        function httpRequire( _msg ){
+            _msg = _msg || '本示例需要HTTP环境';
+            if( /file\:|\\/.test( location.href ) ){
+                alert( _msg );
+                return false;
+            }
+            return true;
+        }
+
     </script>
 </body>
 </html>

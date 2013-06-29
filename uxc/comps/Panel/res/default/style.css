@@ -27,6 +27,8 @@ div.UPanel{
     background: #fff;
     overflow: hidden;
     z-index: 50000;
+    left: -9999px;
+    top: -9999px;
     zoom: 1;
     box-shadow:0 0 3px #b3b3b3;
 }

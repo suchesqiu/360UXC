@@ -26,19 +26,22 @@
 </style>
 <link href='../../../comps/Panel/res/default/style.css' rel='stylesheet' />
 <script src="../../../lib.js"></script>
-<script> UXC.debug = true; UXC.use( 'Panel' ); </script>
 <script>
+    UXC.debug = true; UXC.use( 'Panel' ); 
+
     $(document).ready( function(_evt){
-        var dom_dialog = null;
         $('button.dom_dialog').on( 'click', function( _evt ){
             /**
              * 注意, 如果是从DOM读取模板的话, 
-             * 绑定事件需要特别注意, 需要为 Dialog instance 做一个全局判断
-             * 否则会重复绑定事件
+             * 需要做个判断, 是否之前初始化过, 否则会导致重复初始化
+             *
+             * 如果需要重复使用的话, 还需要对 close 事件做一次重载, 避免关闭时从DOM清除
+             *      dialog.on( 'close', function( _evt, _panel ){ _panel.hide(); return false; });
+             *      //如果要强制从DOM清除, 可以调用 dialog.dispose();
              */
-            var dialog = Dialog( $('div.dom_dialog') ); 
-
-            if( !dom_dialog ){
+            //这里使用 Panel.getInstance 是因为 Dialog 的 base 类是Panel
+            if( !UXC.Panel.getInstance( $('div.dom_dialog') ) ){
+                var dialog = UXC.Dialog( $('div.dom_dialog') ); 
                 dialog.on( 'confirm', function( _evt, _dialog ){
                     UXC.log( 'dom confirm' );
                 });
@@ -47,20 +50,14 @@
                     UXC.log( 'dom cancel' );
                 });
 
-                dialog.on( 'close', function( _evt, _dialog ){
-                    UXC.log( 'dom close' );
-                    _dialog.hide();
-                    return false;
-                });
-                dom_dialog = dialog;
+                dialog.on( 'close', function( _evt, _dialog ){ _dialog.hide(); return false; });
+            }else{
+                UXC.Dialog( $('div.dom_dialog') ); 
             }
-
-            dialog.show(); //让dialog显示在 this 的上方或下方
         });
 
         $('button.string_dialog').on( 'click', function( _evt ){
-            var dialog = Dialog( str_dialog_content ); 
-                dialog.show();
+            var dialog = UXC.Dialog( str_dialog_content ); 
 
                 dialog.on( 'confirm', function( _evt, _dialog ){
                     UXC.log( 'string confirm' );
@@ -76,8 +73,7 @@
         });
 
         $('button.string_dialog_with_src').on( 'click', function( _evt ){
-            var dialog = Dialog( str_dialog_content, 'string_dialog_with_src dialog' ); 
-                dialog.show();
+            var dialog = UXC.Dialog( str_dialog_content, 'string_dialog_with_src dialog' ); 
 
                 dialog.on( 'confirm', function( _evt, _dialog ){
                     UXC.log( 'string_dialog_with_src confirm' );
@@ -87,7 +83,8 @@
                     UXC.log( 'string_dialog_with_src cancel' );
                 });
 
-                dialog.on( 'close', function( _evt, _dialog ){ UXC.log( 'string_dialog_with_src close' ); }); }); 
+                dialog.on( 'close', function( _evt, _dialog ){ UXC.log( 'string_dialog_with_src close' ); }); 
+        }); 
 
     });
 
