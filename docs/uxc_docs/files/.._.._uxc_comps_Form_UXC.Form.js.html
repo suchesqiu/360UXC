@@ -41,6 +41,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="../classes/.window.html">.window</a></li>
+            
                 <li><a href="../classes/UXC.alert.html">UXC.alert</a></li>
             
                 <li><a href="../classes/UXC.Calendar.html">UXC.Calendar</a></li>
@@ -74,6 +76,10 @@
                 <li><a href="../classes/UXC.Tips.Model.html">UXC.Tips.Model</a></li>
             
                 <li><a href="../classes/UXC.Tips.View.html">UXC.Tips.View</a></li>
+            
+                <li><a href="../classes/UXC.Tree.html">UXC.Tree</a></li>
+            
+                <li><a href="../classes/UXC.Tree.Model.html">UXC.Tree.Model</a></li>
             
                 <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
             
@@ -159,127 +165,6 @@
             }
     };
 }(jQuery));
-
-/**
- * 添加URL参数
- * x@btbtd.org  2013-06-12
- * @example
-        var url = add_url_params( location.href, {&#x27;key1&#x27;: &#x27;key1value&#x27;, &#x27;key2&#x27;: &#x27;key2value&#x27; } );
- */ 
-function add_url_params( $url, $params ){
-    var sharp = &#x27;&#x27;;
-    if( !$params ){
-        $params = $url;
-        $url = location.href;
-    }
-
-    if( $url.indexOf(&#x27;#&#x27;) &gt; -1 ){
-        sharp = $url.split(&#x27;#&#x27;)[1];
-        $url = $url.split(&#x27;#&#x27;)[0];
-    }
-
-    for( var k in $params ){
-        $url = del_url_param($url, k);
-        $url.indexOf(&#x27;?&#x27;) &gt; -1 
-            ? $url += &#x27;&amp;&#x27; + k +&#x27;=&#x27; + $params[k]
-            : $url += &#x27;?&#x27; + k +&#x27;=&#x27; + $params[k];
-    }
-    sharp &amp;&amp; ( $url += &#x27;#&#x27; + sharp );
-    $url = $url.replace(/\?\&amp;/g, &#x27;?&#x27; );
-    return $url;   
-}
-/**
- * 删除URL参数
- * x@btbtd.org  2012/4/24  
- * @example
-        var url = del_url_param( location.href, &#x27;tag&#x27; );
- */ 
-function del_url_param( $url, $key )
-{
-    var sharp = &#x27;&#x27;;
-    if( $url.indexOf(&#x27;#&#x27;) &gt; -1 )
-    {
-        sharp = $url.split(&#x27;#&#x27;)[1];
-        $url = $url.split(&#x27;#&#x27;)[0];
-    }
-    
-    if( $url.indexOf(&#x27;?&#x27;) &gt; -1 )
-    {
-        var params = $url.split(&#x27;?&#x27;)[1];
-        var $url = $url.split(&#x27;?&#x27;)[0];
-        
-        var paramAr = params.split(&#x27;&amp;&#x27;);
-        var newParamAr = [];
-        for( var i = 0; i &lt; paramAr.length; i++ )
-        {
-            var items = paramAr[i].split(&#x27;=&#x27;);
-            
-            items[0] = items[0].replace(/^\s+|\s+$/g, &#x27;&#x27;);
-             
-            if( items[0].toLowerCase() == $key.toLowerCase() )
-            {
-                continue;
-            } 
-            newParamAr.push( items.join(&#x27;=&#x27;) )
-        }
-        $url += &#x27;?&#x27; + newParamAr.join(&#x27;&amp;&#x27;);
-    }
-    
-    if( sharp )
-    {
-        $url += &#x27;#&#x27; + sharp;
-    }
-    
-    return $url;
-}
-/**
- * 取URL参数的值
- * x@btbtd.org  2012/4/24 
- * @example
-        var defaultTag = get_url_param(location.href, &#x27;tag&#x27;);  
- */ 
-function get_url_param( $url, $key )
-{
-    var result = &#x27;&#x27;;
-    if( $url.indexOf(&#x27;#&#x27;) &gt; -1 ) $url = $url.split(&#x27;#&#x27;)[0];
-    
-    if( $url.indexOf(&#x27;?&#x27;) &gt; -1 )
-    {
-        var paramAr = $url.split(&#x27;?&#x27;)[1].split(&#x27;&amp;&#x27;);
-        for( var i = 0; i &lt; paramAr.length; i++ )
-        {
-            var items = paramAr[i].split(&#x27;=&#x27;);
-            
-            items[0] = items[0].replace(/^\s+|\s+$/g, &#x27;&#x27;);
-             
-            if( items[0].toLowerCase() == $key.toLowerCase() )
-            {
-                result = items[1];
-                break;
-            } 
-        }
-    }
-    
-    return result;
-}
-/**
- * 判断URL中是否有某个get参数
- * x@btbtd.org  2013-06-13
- * @example
- *      var bool = has_url_param( &#x27;getkey&#x27; );
- */
-function has_url_param( _url, _key ){
-    var _r = false;
-    if( !_key ){ _key = _url; _url = location.href; }
-    if( /\?/.test( _url ) ){
-        _url = _url.split( &#x27;?&#x27; ); _url = _url[ _url.length - 1 ];
-        _url = _url.split(&#x27;&amp;&#x27;);
-        for( var i = 0, j = _url.length; i &lt; j; i++ ){
-            if( _url[i].split(&#x27;=&#x27;)[0].toLowerCase() == _key.toLowerCase() ){ _r = true; break; };
-        }
-    }
-    return _r;
-}
 
     </pre>
 </div>

@@ -71,7 +71,7 @@
         });
     });
 
-    $(document).delegate('button.js_open_to', 'click', function(){
+    $(document).delegate('button.js_open_for', 'click', function(){
     
         var _tgr = $(this).attr('data_target');
         if( !_tgr ) return;
@@ -82,6 +82,18 @@
         });
     });
 
+    $(document).delegate('button.js_close_for', 'click', function(){
+    
+        var _tgr = $(this).attr('data_target');
+        if( !_tgr ) return;
+        _tgr = $.trim( $( _tgr ).val() );
+
+        $('div.tree_container').each( function(){
+            UXC.Tree.getInstance( this ) && UXC.Tree.getInstance(this).close( _tgr );
+        });
+    });
+
+
 </script>
 </head>    
 <body>
@@ -90,8 +102,9 @@
             <dd>
             <button type="button" class="js_open_all">open all</button>
             <button type="button" class="js_close_all">close all</button>
-            <button type="button" class="js_open_to" data_target="#open_to_val">open to</button>
-            <input type="text" value="25" id="open_to_val" />
+            <button type="button" class="js_open_for" data_target="#open_to_val">open for</button>
+            <input type="text" value="24" id="open_to_val" />
+            <button type="button" class="js_close_for" data_target="#open_to_val">close for</button>
             </dd>
         </dl>
     </div>

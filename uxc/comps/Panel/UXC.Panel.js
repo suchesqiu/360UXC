@@ -57,6 +57,17 @@
         this._init();
     }
     /**
+     * 从 dom 或者 selector 获取 Panel 的实例
+     * @method getInstance
+     * @param   {selector}      _selector
+     * @static
+     * @return  {Panel instance}
+     */
+    Panel.getInstance =
+        function( _selector ){
+            return $(_selector).data('PanelInstace');
+        };
+    /**
      * 监听Panel的所有点击事件
      * <br />如果事件源有 eventtype 属性, 则会触发eventtype的事件类型
      * @event   Panel click

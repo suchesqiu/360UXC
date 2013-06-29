@@ -41,6 +41,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="../classes/.window.html">.window</a></li>
+            
                 <li><a href="../classes/UXC.alert.html">UXC.alert</a></li>
             
                 <li><a href="../classes/UXC.Calendar.html">UXC.Calendar</a></li>
@@ -74,6 +76,10 @@
                 <li><a href="../classes/UXC.Tips.Model.html">UXC.Tips.Model</a></li>
             
                 <li><a href="../classes/UXC.Tips.View.html">UXC.Tips.View</a></li>
+            
+                <li><a href="../classes/UXC.Tree.html">UXC.Tree</a></li>
+            
+                <li><a href="../classes/UXC.Tree.Model.html">UXC.Tree.Model</a></li>
             
                 <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
             
@@ -318,6 +324,7 @@
                     _item.removeClass(&#x27;error&#x27;);
                     _item.find(&#x27;~ em&#x27;).show();
                     _item.find(&#x27;~ em.error&#x27;).hide();
+                    _item.attr(&#x27;emel&#x27;) &amp;&amp; $( &#x27;#&#x27; + _item.attr(&#x27;emel&#x27;).replace( /[\#]+/, &#x27;#&#x27; ) ).hide();
                 }
             /**
              * 显示错误的视觉效果
@@ -619,8 +626,8 @@
                  * @attr    {require}               datatype    - nrange
                  * @attr    {selector|optional}     fromNEl     - 起始数值选择器
                  * @attr    {selector|optional}     toNEl       - 结束数值选择器
-                 * @attr    {date string|optional}  minvalue    - 日期的下限
-                 * @attr    {date string|optional}  maxvalue    - 日期的上限
+                 * @attr    {date string|optional}  minvalue    - 数值的下限
+                 * @attr    {date string|optional}  maxvalue    - 数值的上限
                  * @example
                     &lt;div class=&quot;f-l label&quot;&gt;
                         &lt;label&gt;(datatype nrange)正数:&lt;br/&gt;&lt;b style=&quot;color:red&quot;&gt;注意: 这个是大小颠倒位置的nrange&lt;/b&gt;&lt;/label&gt;

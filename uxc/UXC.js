@@ -49,7 +49,7 @@
                 ///  导入类 SomeClass, SomeClass目录下的file1.js, 
                 ///  AnotherClass, AnotherClass 下的file2.js
                 //
-                UXC.use( 'SomeClass, SomeClass/file1.js, AnotherClass/file2.js' );   
+                UXC.use( 'SomeClass, comps/SomeClass/file1.js, comps/AnotherClass/file2.js' );   
                 UXC.use( '/js/Test/Test1.js' );                      //导入文件  /js/Test/Test1.js, 如果起始处为 "/", 将视为文件的绝对路径
                 //
                 /// nginx style 的文件加载方式, 如 /js/??file1.js,file2.js,file3.js

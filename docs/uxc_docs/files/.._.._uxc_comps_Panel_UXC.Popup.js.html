@@ -41,6 +41,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="../classes/.window.html">.window</a></li>
+            
                 <li><a href="../classes/UXC.alert.html">UXC.alert</a></li>
             
                 <li><a href="../classes/UXC.Calendar.html">UXC.Calendar</a></li>
@@ -74,6 +76,10 @@
                 <li><a href="../classes/UXC.Tips.Model.html">UXC.Tips.Model</a></li>
             
                 <li><a href="../classes/UXC.Tips.View.html">UXC.Tips.View</a></li>
+            
+                <li><a href="../classes/UXC.Tree.html">UXC.Tree</a></li>
+            
+                <li><a href="../classes/UXC.Tree.Model.html">UXC.Tree.Model</a></li>
             
                 <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
             
@@ -340,6 +346,7 @@
 
             if( _popupSrc &amp;&amp; _popupSrc.length )_ins.selector().css( { &#x27;left&#x27;: &#x27;-9999px&#x27;, &#x27;top&#x27;: &#x27;-9999px&#x27; } );
 
+            _ins.selector().css( &#x27;z-index&#x27;, window.ZINDEX_COUNT++ );
             _ins.show();
 
             return _ins;

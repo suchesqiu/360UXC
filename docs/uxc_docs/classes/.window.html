@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <title>.window - UXC jquery components</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -80,48 +81,18 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
+                        <h1>.window Class</h1>
 <div class="box meta">
         <div class="foundat">
-            Defined in: <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l493"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:493</code></a>
+            Defined in: <a href="../files/.._.._uxc_common.js.html#l1"><code>..&#x2F;..&#x2F;uxc&#x2F;common.js:1</code></a>
         </div>
 </div>
 <div class="box intro">
-    <p>LunarCalendar 视图类</p>
 </div>
-    <div class="constructor">
-        <h2>Constructor</h2>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_model</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l493"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:493</code></a>
-        </p>
-    </div>
-    <div class="description">
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_model</code>
-                    <div class="param-description">
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
-    </div>
 <div id="classdocs" class="tabview">
     <ul class="api-class-tabs">
         <li class="api-class-tab index"><a href="#index">Index</a></li>
             <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
-            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
     </ul>
     <div>
         <div id="index" class="api-class-tabpanel index">
@@ -129,249 +100,257 @@
                 <div class="index-section methods">
                     <h3>Methods</h3>
                     <ul class="index-list methods">
-                            <li class="index-item method private">
-                                <a href="#method__init">_init</a>
+                            <li class="index-item method">
+                                <a href="#method_add_url_params">add_url_params</a>
+                                    <span class="flag static">static</span>
                             </li>
                             <li class="index-item method">
-                                <a href="#method__logic.initMonthDate">_logic.initMonthDate</a>
+                                <a href="#method_del_url_param">del_url_param</a>
+                                    <span class="flag static">static</span>
                             </li>
                             <li class="index-item method">
-                                <a href="#method_addTitle">addTitle</a>
+                                <a href="#method_get_url_param">get_url_param</a>
+                                    <span class="flag static">static</span>
                             </li>
                             <li class="index-item method">
-                                <a href="#method_hideControl">hideControl</a>
+                                <a href="#method_has_url_param">has_url_param</a>
+                                    <span class="flag static">static</span>
                             </li>
                             <li class="index-item method">
-                                <a href="#method_initLayout">initLayout</a>
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_initMonth">initMonth</a>
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_initYear">initYear</a>
-                            </li>
-                    </ul>
-                </div>
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-                    <ul class="index-list properties">
-                            <li class="index-item property private">
-                                <a href="#property__model">_model</a>
-                            </li>
-                            <li class="index-item property">
-                                <a href="#property_layout">layout</a>
+                                <a href="#method_printf">printf</a>
+                                    <span class="flag static">static</span>
                             </li>
                     </ul>
                 </div>
         </div>
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
-                    <div id="method__init" class="method item private">
-    <h3 class="name"><code>_init</code></h3>
-        <span class="paren">()</span>
-        <span class="flag private">private</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l519"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:519</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>初始化 View</p>
-    </div>
-</div>
-                    <div id="method__logic.initMonthDate" class="method item">
-    <h3 class="name"><code>_logic.initMonthDate</code></h3>
+                    <div id="method_add_url_params" class="method item">
+    <h3 class="name"><code>add_url_params</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>_dateObj</code>
+                        <code>_url</code>
+                </li>
+                <li class="arg">
+                        <code>$params</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
+        <span class="flag static">static</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l564"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:564</code></a>
+        <a href="../files/.._.._uxc_common.js.html#l42"><code>..&#x2F;..&#x2F;uxc&#x2F;common.js:42</code></a>
         </p>
     </div>
     <div class="description">
-        <p>初始化月份的所有日期</p>
+        <p>添加URL参数</p>
     </div>
         <div class="params">
             <h4>Parameters:</h4>
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">_dateObj</code>
-                        <span class="type">DateObjects</span>
+                        <code class="param-name">_url</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     <div class="param-description">
-                        <p>保存所有相关日期的对象</p>
                     </div>
                 </li>
-            </ul>
-        </div>
-</div>
-                    <div id="method_addTitle" class="method item">
-    <h3 class="name"><code>addTitle</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_td</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l665"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:665</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>把具体的公历和农历日期写进a标签的title里</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">_td</code>
-                        <span class="type">Selector</span>
+                        <code class="param-name">$params</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
                     <div class="param-description">
                     </div>
                 </li>
             </ul>
         </div>
-</div>
-                    <div id="method_hideControl" class="method item">
-    <h3 class="name"><code>hideControl</code></h3>
-        <span class="paren">()</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l675"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:675</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>检查是否要隐藏操作控件</p>
-    </div>
-</div>
-                    <div id="method_initLayout" class="method item">
-    <h3 class="name"><code>initLayout</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_date</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l531"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:531</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>初始化日历外观</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_date</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Date" class="crosslink external" target="_blank">Date</a></span>
-                    <div class="param-description">
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
-                    <div id="method_initMonth" class="method item">
-    <h3 class="name"><code>initMonth</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_dateObj</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l555"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:555</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>初始化月份</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_dateObj</code>
-                        <span class="type">DateObject</span>
-                    <div class="param-description">
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
-                    <div id="method_initYear" class="method item">
-    <h3 class="name"><code>initYear</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_dateObj</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l546"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:546</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>初始化年份</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_dateObj</code>
-                        <span class="type">DateObject</span>
-                    <div class="param-description">
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
+        <div class="example">
+            <h4>Example:</h4>
+            <div class="example-content">
+                <pre class="code prettyprint"><code>   var url = add_url_params( location.href, {'key1': 'key1value', 'key2': 'key2value' } );
+</code></pre>
             </div>
-            <div id="properties" class="api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
-                    <div id="property__model" class="property item private">
-    <h3 class="name"><code>_model</code></h3>
-        <span class="flag private">private</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l501"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:501</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>LunarCalendar model 对象</p>
-    </div>
+        </div>
 </div>
-                    <div id="property_layout" class="property item">
-    <h3 class="name"><code>layout</code></h3>
-    <span class="type">Selector</span>
+                    <div id="method_del_url_param" class="method item">
+    <h3 class="name"><code>del_url_param</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>$url</code>
+                </li>
+                <li class="arg">
+                        <code>$key</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="flag static">static</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l508"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:508</code></a>
+        <a href="../files/.._.._uxc_common.js.html#l94"><code>..&#x2F;..&#x2F;uxc&#x2F;common.js:94</code></a>
         </p>
     </div>
     <div class="description">
-        <p>LunarCalendar 的主容器</p>
+        <p>删除URL参数</p>
     </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">$url</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">$key</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="example">
+            <h4>Example:</h4>
+            <div class="example-content">
+                <pre class="code prettyprint"><code>   var url = del_url_param( location.href, 'tag' );
+</code></pre>
+            </div>
+        </div>
+</div>
+                    <div id="method_get_url_param" class="method item">
+    <h3 class="name"><code>get_url_param</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>$url</code>
+                </li>
+                <li class="arg">
+                        <code>$key</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_common.js.html#l66"><code>..&#x2F;..&#x2F;uxc&#x2F;common.js:66</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>取URL参数的值</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">$url</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">$key</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="example">
+            <h4>Example:</h4>
+            <div class="example-content">
+                <pre class="code prettyprint"><code>   var defaultTag = get_url_param(location.href, 'tag');  
+</code></pre>
+            </div>
+        </div>
+</div>
+                    <div id="method_has_url_param" class="method item">
+    <h3 class="name"><code>has_url_param</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_url</code>
+                </li>
+                <li class="arg">
+                        <code>_key</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_common.js.html#l21"><code>..&#x2F;..&#x2F;uxc&#x2F;common.js:21</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>判断URL中是否有某个get参数</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_url</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_key</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="example">
+            <h4>Example:</h4>
+            <div class="example-content">
+                <pre class="code prettyprint"><code> var bool = has_url_param( 'getkey' );
+</code></pre>
+            </div>
+        </div>
+</div>
+                    <div id="method_printf" class="method item">
+    <h3 class="name"><code>printf</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_str</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_common.js.html#l6"><code>..&#x2F;..&#x2F;uxc&#x2F;common.js:6</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>按格式输出字符串</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_str</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="example">
+            <h4>Example:</h4>
+            <div class="example-content">
+                <pre class="code prettyprint"><code> printf( 'asdfasdf{0}sdfasdf{1}', '000', 1111 );
+ //return asdfasdf000sdfasdf1111
+</code></pre>
+            </div>
+        </div>
 </div>
             </div>
     </div>

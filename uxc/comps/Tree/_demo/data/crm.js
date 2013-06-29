@@ -51,6 +51,10 @@ $(document).ready( function(){
                     _p.find( '> input[type=hidden]' ).val( _dataid );
                     _p.trigger( 'click' );
                  });
+                _tree.on( 'RenderLabel', function( _data ){
+                    var _node = $(this);
+                    _node.html( printf( '<a href="javascript:" dataid="{0}">{1}</a>', _data[0], _data[1] ) );
+                });
                 _tree.init();
 
                 var _defSelected = _p.find( '> input[type=hidden]' ).val();

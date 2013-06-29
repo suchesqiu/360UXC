@@ -41,6 +41,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="../classes/.window.html">.window</a></li>
+            
                 <li><a href="../classes/UXC.alert.html">UXC.alert</a></li>
             
                 <li><a href="../classes/UXC.Calendar.html">UXC.Calendar</a></li>
@@ -74,6 +76,10 @@
                 <li><a href="../classes/UXC.Tips.Model.html">UXC.Tips.Model</a></li>
             
                 <li><a href="../classes/UXC.Tips.View.html">UXC.Tips.View</a></li>
+            
+                <li><a href="../classes/UXC.Tree.html">UXC.Tree</a></li>
+            
+                <li><a href="../classes/UXC.Tree.Model.html">UXC.Tree.Model</a></li>
             
                 <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
             
@@ -164,6 +170,9 @@
             &lt;/script&gt;
      */
     function Panel( _selector, _headers, _bodys, _footers ){
+        if( _selector &amp;&amp; typeof _selector != &#x27;string&#x27; ){
+            if( $(_selector).data( &#x27;PanelInstace&#x27; ) ) return $(_selector).data(&#x27;PanelInstace&#x27;);
+        }
         /**
          * 存放数据的model层, see &lt;a href=&#x27;UXC.Panel.Model.html&#x27;&gt;Panel.Model&lt;/a&gt;
          * @property _model 
@@ -333,6 +342,17 @@
                 this.trigger(&#x27;beforeclose&#x27;, this._view.getPanel() );
                 this.trigger(&#x27;close&#x27;, this._view.getPanel() );
             }
+        /**
+         * 从DOM清除Panel
+         * &lt;br /&gt; &lt;b&gt;close 方法清除 Panel可以被用户阻止, 该方法不会被用户阻止&lt;/b&gt;
+         * @method  dispose
+         */
+        , dispose:
+            function(){
+                UXC.log(&#x27;Panel.dispose&#x27;);
+                this._view.close();
+            }
+
         /**
          * 把 Panel 位置设为屏幕居中
          * @method  center

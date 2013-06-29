@@ -1,6 +1,10 @@
+/**
+ * @namespace 
+ * @class   window
+ * @static
+ */
  /**
  * 按格式输出字符串
- * @namespace   window
  * @method printf
  * @static
  * @param   {string}    _str
@@ -16,7 +20,6 @@ function printf( _str ){
 }
 /**
  * 判断URL中是否有某个get参数
- * @namespace   window
  * @method  has_url_param
  * @static
  * @param   {string}    _url
@@ -38,7 +41,6 @@ function has_url_param( _url, _key ){
 }
 /**
  * 添加URL参数
- * @namespace   window
  * @method  add_url_params
  * @static
  * @param   {string}    _url
@@ -63,7 +65,6 @@ function add_url_params( $url, $params ){
  
 /**
  * 取URL参数的值
- * @namespace   window
  * @method  get_url_param
  * @static
  * @param   {string}    $url
@@ -92,7 +93,6 @@ function get_url_param( $url, $key ){
  
 /**
  * 删除URL参数
- * @namespace   window
  * @method  del_url_param
  * @static
  * @params  {string}    $url
