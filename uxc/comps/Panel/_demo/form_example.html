@@ -118,7 +118,7 @@
              *      //如果要强制从DOM清除, 可以调用 panel.dispose();
              */
             if( !Panel.getInstance( $('div.dialog_dom_panel') ) ){
-                var panel = UXC.Dialog( $('div.dialog_dom_panel') ); 
+                var panel = UXC.Dialog( $('div.dialog_dom_panel'), 'dialog dom panel' ); 
 
                 panel.find('form').ajaxForm( {
                     beforeSubmit:
