@@ -34,17 +34,20 @@
         </div>
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
+                <li><a href="../classes/.window.html">.window</a></li>
                 <li><a href="../classes/UXC.alert.html">UXC.alert</a></li>
                 <li><a href="../classes/UXC.Calendar.html">UXC.Calendar</a></li>
                 <li><a href="../classes/UXC.confirm.html">UXC.confirm</a></li>
                 <li><a href="../classes/UXC.Dialog.html">UXC.Dialog</a></li>
                 <li><a href="../classes/UXC.Dialog.alert.html">UXC.Dialog.alert</a></li>
                 <li><a href="../classes/UXC.Dialog.confirm.html">UXC.Dialog.confirm</a></li>
+                <li><a href="../classes/UXC.Dialog.mask.html">UXC.Dialog.mask</a></li>
                 <li><a href="../classes/UXC.Form.html">UXC.Form</a></li>
                 <li><a href="../classes/UXC.hideAllPopup.html">UXC.hideAllPopup</a></li>
                 <li><a href="../classes/UXC.LunarCalendar.html">UXC.LunarCalendar</a></li>
                 <li><a href="../classes/UXC.Panel.html">UXC.Panel</a></li>
                 <li><a href="../classes/UXC.Tips.html">UXC.Tips</a></li>
+                <li><a href="../classes/UXC.Tree.html">UXC.Tree</a></li>
                 <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
                 <li><a href="../classes/window.jQuery.html">window.jQuery</a></li>
                 <li><a href="../classes/window.UXC.html">window.UXC</a></li>
@@ -89,9 +92,8 @@
     <p>农历日历组件
 <br />全局访问请使用 UXC.LunarCalendar 或 LunarCalendar
 <br />DOM 加载完毕后
-, LunarCalendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签
-<br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用LunarCalendar.init( <em>selector )
-<br /></em>selector 可以是 新加载的容器, 也可以是新加载的所有input</p>
+, LunarCalendar会自动初始化页面所有具体识别符的日历, 目前可识别: div.js<em>LunarCalendar, td.js</em>LunarCalendar, li.js_LunarCalendar
+<br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动初始化 var ins = new UXC.LunarCalendar( _selector );</p>
 <p>
      初始化时, 如果日历是添加到某个selector里, 那么selector可以指定一些设置属性
      <br /><b>hidecontrol</b>: 如果设置该属性, 那么日历将隐藏操作控件
@@ -295,7 +297,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l378"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:378</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l377"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:377</code></a>
         </p>
     </div>
     <div class="description">
@@ -318,7 +320,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l203"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:203</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l202"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:202</code></a>
         </p>
     </div>
     <div class="description">
@@ -361,7 +363,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l265"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:265</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l264"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:264</code></a>
         </p>
     </div>
     <div class="description">
@@ -397,7 +399,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l445"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:445</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l444"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:444</code></a>
         </p>
     </div>
     <div class="description">
@@ -428,7 +430,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l242"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:242</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l241"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:241</code></a>
         </p>
     </div>
     <div class="description">
@@ -461,7 +463,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l475"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:475</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l474"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:474</code></a>
         </p>
     </div>
     <div class="description">
@@ -483,7 +485,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l439"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:439</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l438"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:438</code></a>
         </p>
     </div>
     <div class="description">
@@ -565,7 +567,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l124"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:124</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l123"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:123</code></a>
         </p>
     </div>
     <div class="description">
@@ -600,7 +602,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l481"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:481</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l480"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:480</code></a>
         </p>
     </div>
     <div class="description">
@@ -622,7 +624,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l452"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:452</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l451"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:451</code></a>
         </p>
     </div>
     <div class="description">
@@ -645,7 +647,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l111"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:111</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l110"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:110</code></a>
         </p>
     </div>
     <div class="description">
@@ -669,7 +671,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l87"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:87</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l86"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:86</code></a>
         </p>
     </div>
     <div class="description">
@@ -755,7 +757,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l175"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:175</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l174"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:174</code></a>
         </p>
     </div>
     <div class="description">
@@ -798,7 +800,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l230"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:230</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l229"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:229</code></a>
         </p>
     </div>
     <div class="description">
@@ -831,7 +833,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l487"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:487</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l486"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:486</code></a>
         </p>
     </div>
     <div class="description">
@@ -860,7 +862,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l191"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:191</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l190"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:190</code></a>
         </p>
     </div>
     <div class="description">
@@ -900,7 +902,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l163"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:163</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l162"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:162</code></a>
         </p>
     </div>
     <div class="description">
@@ -930,7 +932,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l399"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:399</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l398"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:398</code></a>
         </p>
     </div>
     <div class="description">
@@ -943,7 +945,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l419"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:419</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l418"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:418</code></a>
         </p>
     </div>
     <div class="description">
@@ -956,7 +958,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l409"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:409</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l408"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:408</code></a>
         </p>
     </div>
     <div class="description">
@@ -969,7 +971,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l429"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:429</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l428"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:428</code></a>
         </p>
     </div>
     <div class="description">
@@ -988,7 +990,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l389"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:389</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l388"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:388</code></a>
         </p>
     </div>
     <div class="description">
@@ -1020,7 +1022,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l291"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:291</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l290"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:290</code></a>
         </p>
     </div>
     <div class="description">
@@ -1137,7 +1139,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l147"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:147</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l146"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:146</code></a>
         </p>
     </div>
     <div class="description">
@@ -1173,7 +1175,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l42"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:42</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l41"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:41</code></a>
         </p>
     </div>
     <div class="description">
@@ -1186,7 +1188,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l49"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:49</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l48"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:48</code></a>
         </p>
     </div>
     <div class="description">
@@ -1200,7 +1202,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l69"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:69</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l68"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:68</code></a>
         </p>
     </div>
     <div class="description">
@@ -1215,7 +1217,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l257"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:257</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l256"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:256</code></a>
         </p>
     </div>
     <div class="description">
@@ -1230,7 +1232,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l78"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:78</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l77"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:77</code></a>
         </p>
     </div>
     <div class="description">
@@ -1245,7 +1247,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l59"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:59</code></a>
+        <a href="../files/.._.._uxc_comps_LunarCalendar_UXC.LunarCalendar.js.html#l58"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;LunarCalendar&#x2F;UXC.LunarCalendar.js:58</code></a>
         </p>
     </div>
     <div class="description">

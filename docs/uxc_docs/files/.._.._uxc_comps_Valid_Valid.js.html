@@ -41,6 +41,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="../classes/.window.html">.window</a></li>
+            
                 <li><a href="../classes/UXC.alert.html">UXC.alert</a></li>
             
                 <li><a href="../classes/UXC.Calendar.html">UXC.Calendar</a></li>
@@ -52,6 +54,8 @@
                 <li><a href="../classes/UXC.Dialog.alert.html">UXC.Dialog.alert</a></li>
             
                 <li><a href="../classes/UXC.Dialog.confirm.html">UXC.Dialog.confirm</a></li>
+            
+                <li><a href="../classes/UXC.Dialog.mask.html">UXC.Dialog.mask</a></li>
             
                 <li><a href="../classes/UXC.Form.html">UXC.Form</a></li>
             
@@ -74,6 +78,10 @@
                 <li><a href="../classes/UXC.Tips.Model.html">UXC.Tips.Model</a></li>
             
                 <li><a href="../classes/UXC.Tips.View.html">UXC.Tips.View</a></li>
+            
+                <li><a href="../classes/UXC.Tree.html">UXC.Tree</a></li>
+            
+                <li><a href="../classes/UXC.Tree.Model.html">UXC.Tree.Model</a></li>
             
                 <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
             
@@ -318,6 +326,7 @@
                     _item.removeClass(&#x27;error&#x27;);
                     _item.find(&#x27;~ em&#x27;).show();
                     _item.find(&#x27;~ em.error&#x27;).hide();
+                    _item.attr(&#x27;emel&#x27;) &amp;&amp; $( &#x27;#&#x27; + _item.attr(&#x27;emel&#x27;).replace( /[\#]+/, &#x27;#&#x27; ) ).hide();
                 }
             /**
              * 显示错误的视觉效果

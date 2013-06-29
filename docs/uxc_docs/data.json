@@ -115,7 +115,8 @@
             "classes": {
                 "UXC.Dialog": 1,
                 "UXC.Dialog.alert": 1,
-                "UXC.Dialog.confirm": 1
+                "UXC.Dialog.confirm": 1,
+                "UXC.Dialog.mask": 1
             },
             "fors": {
                 "UXC.Dialog": 1
@@ -169,6 +170,19 @@
                 "UXC.Tips": 1
             }
         },
+        "../../uxc/comps/Tree/Tree.js": {
+            "name": "../../uxc/comps/Tree/Tree.js",
+            "modules": {},
+            "classes": {
+                "UXC.Tree": 1,
+                "UXC.Tree.Model": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "UXC": 1,
+                "UXC.Tree": 1
+            }
+        },
         "../../uxc/comps/Valid/Valid.js": {
             "name": "../../uxc/comps/Valid/Valid.js",
             "modules": {},
@@ -180,6 +194,13 @@
                 "UXC": 1
             }
         },
+        "../../uxc/plugins/jquery.form.js": {
+            "name": "../../uxc/plugins/jquery.form.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
         "../../uxc/UXC.js": {
             "name": "../../uxc/UXC.js",
             "modules": {},
@@ -190,6 +211,15 @@
             "namespaces": {
                 "window": 1
             }
+        },
+        "../../uxc/common.js": {
+            "name": "../../uxc/common.js",
+            "modules": {},
+            "classes": {
+                ".window": 1
+            },
+            "fors": {},
+            "namespaces": {}
         },
         "../../uxc/jquery.js": {
             "name": "../../uxc/jquery.js",
@@ -257,7 +287,7 @@
             "namespace": "UXC.LunarCalendar",
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
             "line": 7,
-            "description": "农历日历组件\n<br />全局访问请使用 UXC.LunarCalendar 或 LunarCalendar\n<br />DOM 加载完毕后\n, LunarCalendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签\n<br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用LunarCalendar.init( _selector )\n<br />_selector 可以是 新加载的容器, 也可以是新加载的所有input\n<p>\n     初始化时, 如果日历是添加到某个selector里, 那么selector可以指定一些设置属性\n     <br /><b>hidecontrol</b>: 如果设置该属性, 那么日历将隐藏操作控件\n     <br /><b>minvalue</b>: 设置日历的有效最小选择范围, 格式YYYY-mm-dd\n     <br /><b>maxvalue</b>: 设置日历的有效最大选择范围, 格式YYYY-mm-dd\n     <br /><b>nopreviousfestivals</b>: 不显示上个月的节日\n     <br /><b>nonextfestivals</b>: 不显示下个月的节日\n</p>\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.LunarCalendar.html' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/comps/LunarCalendar/_demo/' target='_blank'>demo link</a></p>",
+            "description": "农历日历组件\n<br />全局访问请使用 UXC.LunarCalendar 或 LunarCalendar\n<br />DOM 加载完毕后\n, LunarCalendar会自动初始化页面所有具体识别符的日历, 目前可识别: div.js_LunarCalendar, td.js_LunarCalendar, li.js_LunarCalendar\n<br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动初始化 var ins = new UXC.LunarCalendar( _selector );\n<p>\n     初始化时, 如果日历是添加到某个selector里, 那么selector可以指定一些设置属性\n     <br /><b>hidecontrol</b>: 如果设置该属性, 那么日历将隐藏操作控件\n     <br /><b>minvalue</b>: 设置日历的有效最小选择范围, 格式YYYY-mm-dd\n     <br /><b>maxvalue</b>: 设置日历的有效最大选择范围, 格式YYYY-mm-dd\n     <br /><b>nopreviousfestivals</b>: 不显示上个月的节日\n     <br /><b>nonextfestivals</b>: 不显示下个月的节日\n</p>\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.LunarCalendar.html' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/comps/LunarCalendar/_demo/' target='_blank'>demo link</a></p>",
             "is_constructor": 1,
             "params": [
                 {
@@ -285,7 +315,7 @@
             "extension_for": [],
             "namespace": "UXC.LunarCalendar",
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 494,
+            "line": 493,
             "description": "LunarCalendar 视图类",
             "is_constructor": 1,
             "params": [
@@ -306,7 +336,7 @@
             "extension_for": [],
             "namespace": "UXC.LunarCalendar",
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 688,
+            "line": 687,
             "description": "LunarCalendar 数据模型类",
             "is_constructor": 1,
             "params": [
@@ -372,7 +402,7 @@
             "extension_for": [],
             "namespace": "UXC.Dialog",
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 43,
+            "line": 57,
             "description": "会话框 alert 提示\n<br /><b>注意, 这是个方法, 写 @class 属性是为了生成文档</b>\n<p>private property see: <a href='UXC.Dialog.html'>UXC.Dialog</a>\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a>, <a href='UXC.Panel.html'>Panel</a>, <a href='UXC.Dialog.html'>Dialog</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Dialog.alert.html' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/comps/Panel/_demo' target='_blank'>demo link</a></p>",
             "static": 1,
             "is_constructor": 1,
@@ -407,7 +437,7 @@
             "extension_for": [],
             "namespace": "UXC.Dialog",
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 72,
+            "line": 86,
             "description": "会话框 confirm 提示\n<br /><b>注意, 这是个方法, 写 @class 属性是为了生成文档</b>\n<p>private property see: <a href='UXC.Dialog.html'>UXC.Dialog</a>\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a>, <a href='UXC.Panel.html'>Panel</a>, <a href='UXC.Dialog.html'>Dialog</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Dialog.confirm.html' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/comps/Panel/_demo' target='_blank'>demo link</a></p>",
             "static": 1,
             "is_constructor": 1,
@@ -431,6 +461,28 @@
             "return": {
                 "description": "<a href='UXC.Panel.html'>UXC.Panel</a>"
             }
+        },
+        "UXC.Dialog.mask": {
+            "name": "UXC.Dialog.mask",
+            "shortname": "UXC.Dialog.mask",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC.Dialog",
+            "file": "../../uxc/comps/Panel/UXC.Dialog.js",
+            "line": 115,
+            "description": "显示或隐藏 蒙板\n<br /><b>注意, 这是个方法, 写 @class 属性是为了生成文档</b>",
+            "static": 1,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "_isHide",
+                    "description": "空/假 显示蒙板, 为真 隐藏蒙板",
+                    "type": "Bool"
+                }
+            ]
         },
         "UXC.Panel": {
             "name": "UXC.Panel",
@@ -484,7 +536,7 @@
             "extension_for": [],
             "namespace": "UXC.Panel",
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 404,
+            "line": 454,
             "description": "存储 Panel 的基础数据类\n<br /><b>这个类为 Panel 的私有类</b>",
             "is_constructor": 1,
             "params": [
@@ -691,6 +743,52 @@
                 }
             ]
         },
+        "UXC.Tree": {
+            "name": "UXC.Tree",
+            "shortname": "UXC.Tree",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC.Tree",
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 4,
+            "description": "树菜单类 UXC.Tree\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a>, \n<a href='.window.html#method_printf'>window.printf</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Tree.html' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/comps/Tree/_demo' target='_blank'>demo link</a></p>",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "树要显示的选择器",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_data",
+                    "description": "树菜单的数据",
+                    "type": "Object"
+                }
+            ],
+            "version": "dev 0.1",
+            "author": "qiushaowei   <suches@btbtd.org> | 75 Team",
+            "date": "2013-06-29",
+            "example": [
+                "\n           <link href='../../../comps/Tree/res/default/style.css' rel='stylesheet' />\n           <script src=\"../../../lib.js\"></script>\n           <script>\n               UXC.use( 'Tree' );\n               $(document).ready( function(){\n                   var treeData = {\n                       data: {\"24\":[[\"25\",\"\\u4e8c\\u7ec4\\u4e00\\u961f\"],[\"26\",\"\\u4e8c\\u7ec4\\u4e8c\\u961f\"],[\"27\",\"\\u4e8c\\u7ec4\\u4e09\\u961f\"]],\"23\":[[\"28\",\"\\u9500\\u552e\\u4e8c\\u7ec4\"],[\"24\",\"\\u552e\\u524d\\u5ba1\\u6838\\u7ec4\"]]},\n                       root: [\"23\",'客户发展部']\n                   };\n                   var _tree = new UXC.Tree( $('#tree_box2'), treeData );\n                       _tree.on('RenderLabel', function( _data ){\n                           var _node = $(this);\n                           _node.html( printf( '<a href=\"javascript:\" dataid=\"{0}\">{1}</a>', _data[0], _data[1] ) );\n                       });\n                       _tree.on('click', function( _evt ){\n                           var _p = $(this);\n                           UXC.log( 'tree click:', _p.html(), _p.attr('dataid'), _p.attr('dataname') );\n                       });\n                       _tree.init();\n                       //_queryNode && _tree.open( _queryNode );\n               });\n           </script>\n           <div id=\"tree_box2\" class=\"tree_container\"></div>"
+            ]
+        },
+        "UXC.Tree.Model": {
+            "name": "UXC.Tree.Model",
+            "shortname": "UXC.Tree.Model",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC.Tree",
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 239,
+            "description": "树的数据模型类",
+            "is_constructor": 1
+        },
         "UXC.Valid": {
             "name": "UXC.Valid",
             "shortname": "UXC.Valid",
@@ -726,6 +824,19 @@
             ],
             "author": "qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team",
             "date": "2013-05-22"
+        },
+        ".window": {
+            "name": ".window",
+            "shortname": ".window",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "",
+            "file": "../../uxc/common.js",
+            "line": 1,
+            "static": 1
         },
         "window.jQuery": {
             "name": "window.jQuery",
@@ -1840,46 +1951,6 @@
             "namespace": "UXC"
         },
         {
-            "file": "../../uxc/comps/Form/UXC.Form.js",
-            "line": 37,
-            "description": "添加URL参数\nx@btbtd.org  2013-06-12",
-            "example": [
-                "\n       var url = add_url_params( location.href, {'key1': 'key1value', 'key2': 'key2value' } );"
-            ],
-            "class": "UXC.Form",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../../uxc/comps/Form/UXC.Form.js",
-            "line": 65,
-            "description": "删除URL参数\nx@btbtd.org  2012/4/24",
-            "example": [
-                "\n       var url = del_url_param( location.href, 'tag' );"
-            ],
-            "class": "UXC.Form",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../../uxc/comps/Form/UXC.Form.js",
-            "line": 109,
-            "description": "取URL参数的值\nx@btbtd.org  2012/4/24",
-            "example": [
-                "\n       var defaultTag = get_url_param(location.href, 'tag');  "
-            ],
-            "class": "UXC.Form",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../../uxc/comps/Form/UXC.Form.js",
-            "line": 139,
-            "description": "判断URL中是否有某个get参数\nx@btbtd.org  2013-06-13",
-            "example": [
-                "\n     var bool = has_url_param( 'getkey' );"
-            ],
-            "class": "UXC.Form",
-            "namespace": "UXC"
-        },
-        {
             "file": "../../uxc/comps/LunarCalendar/LunarCalendar.js",
             "line": 2,
             "description": "取当前脚本标签的 src路径",
@@ -1966,7 +2037,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 42,
+            "line": 41,
             "description": "LunarCalendar 的数据模型对象",
             "itemtype": "property",
             "name": "_model",
@@ -1978,7 +2049,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 49,
+            "line": 48,
             "description": "LunarCalendar 的视图对像",
             "itemtype": "property",
             "name": "_view",
@@ -1990,7 +2061,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 59,
+            "line": 58,
             "description": "自定义日历组件模板\n<p>默认模板为UXC.LunarCalendar.Model#tpl</p>\n<p>如果用户显示定义UXC.LunarCalendar.tpl的话, 将采用用户的模板</p>",
             "itemtype": "property",
             "name": "tpl",
@@ -2002,7 +2073,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 69,
+            "line": 68,
             "description": "设置是否在 dom 加载完毕后, 自动初始化所有日期控件",
             "itemtype": "property",
             "name": "autoinit",
@@ -2014,7 +2085,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 78,
+            "line": 77,
             "description": "设置默认显示的年份数, 该数为前后各多少年 默认为前后各10年",
             "itemtype": "property",
             "name": "defaultYearSpan",
@@ -2026,7 +2097,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 87,
+            "line": 86,
             "description": "从所有的LunarCalendar取得当前选中的日期\n<br /> 如果用户没有显式选中某个日期, 将尝试获取当前日期, 如果两者都没有返回undefined",
             "itemtype": "method",
             "name": "getSelectedItemGlobal",
@@ -2040,7 +2111,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 111,
+            "line": 110,
             "description": "从所有的LunarCalendar取得当前选中日期的日期对象\n<br /> 如果用户没有显式选中某个日期, 将尝试获取当前日期, 如果两者都没有返回undefined",
             "itemtype": "method",
             "name": "getSelectedDateGlobal",
@@ -2054,7 +2125,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 124,
+            "line": 123,
             "description": "从时间截获取选择器对象",
             "itemtype": "method",
             "name": "getItemByTimestamp",
@@ -2075,7 +2146,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 147,
+            "line": 146,
             "description": "添加或者清除工作日样式",
             "itemtype": "method",
             "name": "workday",
@@ -2097,7 +2168,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 163,
+            "line": 162,
             "description": "判断 td 是否为工作日状态",
             "itemtype": "method",
             "name": "isWorkday",
@@ -2118,7 +2189,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 175,
+            "line": 174,
             "description": "添加或者清除假日样式",
             "itemtype": "method",
             "name": "holiday",
@@ -2140,7 +2211,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 191,
+            "line": 190,
             "description": "判断 td 是否为假日状态",
             "itemtype": "method",
             "name": "isHoliday",
@@ -2161,7 +2232,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 203,
+            "line": 202,
             "description": "添加或者清除注释",
             "itemtype": "method",
             "name": "comment",
@@ -2183,7 +2254,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 230,
+            "line": 229,
             "description": "判断 td 是否为注释状态",
             "itemtype": "method",
             "name": "isComment",
@@ -2204,7 +2275,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 242,
+            "line": 241,
             "description": "返回 td 的注释",
             "itemtype": "method",
             "name": "getComment",
@@ -2225,7 +2296,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 257,
+            "line": 256,
             "description": "用于分隔默认title和注释的分隔符",
             "itemtype": "property",
             "name": "commentSeparator",
@@ -2237,7 +2308,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 265,
+            "line": 264,
             "description": "把注释添加到 a title 里",
             "itemtype": "method",
             "name": "commentTitle",
@@ -2259,7 +2330,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 291,
+            "line": 290,
             "description": "从JSON数据更新日历状态( 工作日, 休息日, 注释 )\n<br /> 注意, 该方法更新页面上所有的 LunarCalendar",
             "itemtype": "method",
             "name": "updateStatus",
@@ -2279,7 +2350,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 378,
+            "line": 377,
             "description": "LunarCalendar 内部初始化",
             "itemtype": "method",
             "name": "_init",
@@ -2290,7 +2361,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 389,
+            "line": 388,
             "description": "更新日历视图为自定义的日期",
             "itemtype": "method",
             "name": "update",
@@ -2306,7 +2377,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 399,
+            "line": 398,
             "description": "显示下一个月的日期",
             "itemtype": "method",
             "name": "nextMonth",
@@ -2315,7 +2386,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 409,
+            "line": 408,
             "description": "显示上一个月的日期",
             "itemtype": "method",
             "name": "preMonth",
@@ -2324,7 +2395,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 419,
+            "line": 418,
             "description": "显示下一年的日期",
             "itemtype": "method",
             "name": "nextYear",
@@ -2333,7 +2404,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 429,
+            "line": 428,
             "description": "显示上一年的日期",
             "itemtype": "method",
             "name": "preYear",
@@ -2342,7 +2413,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 439,
+            "line": 438,
             "description": "获取默认时间对象",
             "itemtype": "method",
             "name": "getDate",
@@ -2355,7 +2426,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 445,
+            "line": 444,
             "description": "获取所有的默认时间对象",
             "itemtype": "method",
             "name": "getAllDate",
@@ -2368,7 +2439,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 452,
+            "line": 451,
             "description": "获取当前选中的日期, 如果用户没有显式选择, 将查找当前日期, 如果两者都没有的话返回undefined",
             "itemtype": "method",
             "name": "getSelectedDate",
@@ -2381,7 +2452,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 475,
+            "line": 474,
             "description": "获取初始化日历的选择器对象",
             "itemtype": "method",
             "name": "getContainer",
@@ -2393,7 +2464,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 481,
+            "line": 480,
             "description": "获取日历的主选择器对象",
             "itemtype": "method",
             "name": "getLayout",
@@ -2405,7 +2476,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 487,
+            "line": 486,
             "description": "判断日历是否隐藏操作控件",
             "itemtype": "method",
             "name": "isHideControl",
@@ -2417,7 +2488,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 502,
+            "line": 501,
             "description": "LunarCalendar model 对象",
             "itemtype": "property",
             "name": "_model",
@@ -2429,7 +2500,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 509,
+            "line": 508,
             "description": "LunarCalendar 的主容器",
             "itemtype": "property",
             "name": "layout",
@@ -2439,7 +2510,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 520,
+            "line": 519,
             "description": "初始化 View",
             "itemtype": "method",
             "name": "_init",
@@ -2450,7 +2521,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 532,
+            "line": 531,
             "description": "初始化日历外观",
             "itemtype": "method",
             "name": "initLayout",
@@ -2466,7 +2537,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 547,
+            "line": 546,
             "description": "初始化年份",
             "itemtype": "method",
             "name": "initYear",
@@ -2482,7 +2553,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 556,
+            "line": 555,
             "description": "初始化月份",
             "itemtype": "method",
             "name": "initMonth",
@@ -2498,7 +2569,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 565,
+            "line": 564,
             "description": "初始化月份的所有日期",
             "itemtype": "method",
             "name": "_logic.initMonthDate",
@@ -2514,7 +2585,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 666,
+            "line": 665,
             "description": "把具体的公历和农历日期写进a标签的title里",
             "itemtype": "method",
             "name": "addTitle",
@@ -2530,7 +2601,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 676,
+            "line": 675,
             "description": "检查是否要隐藏操作控件",
             "itemtype": "method",
             "name": "hideControl",
@@ -2539,7 +2610,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 697,
+            "line": 696,
             "description": "LunarCalendar 所要显示的selector",
             "itemtype": "property",
             "name": "container",
@@ -2550,7 +2621,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 704,
+            "line": 703,
             "description": "初始化时的时期",
             "itemtype": "property",
             "name": "date",
@@ -2561,7 +2632,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 711,
+            "line": 710,
             "description": "日历默认模板",
             "itemtype": "property",
             "name": "tpl",
@@ -2572,7 +2643,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 718,
+            "line": 717,
             "description": "显示日历时所需要的所有日期对象",
             "itemtype": "property",
             "name": "dateObj",
@@ -2582,7 +2653,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 724,
+            "line": 723,
             "description": "a 标签 title 的临时存储对象",
             "itemtype": "property",
             "name": "_titleObj",
@@ -2595,7 +2666,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 754,
+            "line": 753,
             "description": "获取初始日期对象",
             "itemtype": "method",
             "name": "getDate",
@@ -2613,7 +2684,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 775,
+            "line": 774,
             "description": "把日期赋值给文本框",
             "itemtype": "method",
             "name": "setDate",
@@ -2631,7 +2702,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 785,
+            "line": 784,
             "description": "给文本框赋值, 日期为控件的当前日期",
             "itemtype": "method",
             "name": "setSelectedDate",
@@ -2646,7 +2717,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 799,
+            "line": 798,
             "description": "解析日期",
             "itemtype": "method",
             "name": "parseDate",
@@ -2668,7 +2739,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 817,
+            "line": 816,
             "description": "克隆日期对象",
             "itemtype": "method",
             "name": "cloneDate",
@@ -2690,7 +2761,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 825,
+            "line": 824,
             "description": "判断两个日期是否为同一天",
             "itemtype": "method",
             "name": "isSameDay",
@@ -2717,7 +2788,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 838,
+            "line": 837,
             "description": "判断两个日期是否为同一月份",
             "itemtype": "method",
             "name": "isSameMonth",
@@ -2744,7 +2815,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 851,
+            "line": 850,
             "description": "取得一个月份中最大的一天",
             "itemtype": "method",
             "name": "maxDayOfMonth",
@@ -2766,7 +2837,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 865,
+            "line": 864,
             "description": "为数字添加前置0",
             "itemtype": "method",
             "name": "intPad",
@@ -2793,77 +2864,77 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 881,
+            "line": 880,
             "description": "监听上一年按钮",
             "class": "UXC.LunarCalendar.Model",
             "namespace": "UXC.LunarCalendar"
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 890,
+            "line": 889,
             "description": "监听上一月按钮",
             "class": "UXC.LunarCalendar.Model",
             "namespace": "UXC.LunarCalendar"
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 899,
+            "line": 898,
             "description": "监听下一月按钮",
             "class": "UXC.LunarCalendar.Model",
             "namespace": "UXC.LunarCalendar"
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 908,
+            "line": 907,
             "description": "监听下一年按钮",
             "class": "UXC.LunarCalendar.Model",
             "namespace": "UXC.LunarCalendar"
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 917,
+            "line": 916,
             "description": "监听年份按钮, 是否要显示年份列表",
             "class": "UXC.LunarCalendar.Model",
             "namespace": "UXC.LunarCalendar"
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 939,
+            "line": 938,
             "description": "监听月份按钮, 是否要显示月份列表",
             "class": "UXC.LunarCalendar.Model",
             "namespace": "UXC.LunarCalendar"
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 953,
+            "line": 952,
             "description": "监听年份列表选择状态",
             "class": "UXC.LunarCalendar.Model",
             "namespace": "UXC.LunarCalendar"
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 963,
+            "line": 962,
             "description": "监听月份列表选择状态",
             "class": "UXC.LunarCalendar.Model",
             "namespace": "UXC.LunarCalendar"
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 973,
+            "line": 972,
             "description": "监听日期单元格点击事件",
             "class": "UXC.LunarCalendar.Model",
             "namespace": "UXC.LunarCalendar"
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 995,
+            "line": 994,
             "description": "监听body点击事件, 点击时隐藏日历控件的年份和月份列表",
             "class": "UXC.LunarCalendar.Model",
             "namespace": "UXC.LunarCalendar"
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 1001,
+            "line": 1000,
             "description": "DOM 加载完毕后, 初始化日历组件",
             "itemtype": "event",
             "name": "dom ready",
@@ -2874,7 +2945,7 @@
         },
         {
             "file": "../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js",
-            "line": 1015,
+            "line": 1014,
             "description": "LunarCalendar 日历默认模板",
             "itemtype": "property",
             "name": "_deftpl",
@@ -2899,22 +2970,22 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 101,
+            "line": 129,
             "description": "从 HTML 属性 自动执行 UXC.Dialog.alert / UXC.Dialog.confirm",
             "attr": "{function}  panelcancelcallback cancel  回调",
-            "class": "UXC.Dialog.confirm",
+            "class": "UXC.Dialog.mask",
             "namespace": "UXC.Dialog"
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 133,
+            "line": 161,
             "description": "响应窗口改变大小和滚动",
-            "class": "UXC.Dialog.confirm",
+            "class": "UXC.Dialog.mask",
             "namespace": "UXC.Dialog"
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 146,
+            "line": 174,
             "description": "会话弹框逻辑处理方法集",
             "itemtype": "property",
             "name": "_logic",
@@ -2925,7 +2996,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 153,
+            "line": 181,
             "description": "延时处理的指针属性",
             "itemtype": "property",
             "name": "_logic.timeout",
@@ -2937,7 +3008,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 161,
+            "line": 189,
             "description": "延时显示弹框\n<br />延时是为了使用户绑定的 show 事件能够被执行",
             "itemtype": "property",
             "name": "_logic.showMs",
@@ -2949,7 +3020,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 170,
+            "line": 198,
             "description": "弹框最小宽度",
             "itemtype": "property",
             "name": "_logic.minWidth",
@@ -2962,7 +3033,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 179,
+            "line": 207,
             "description": "弹框最大宽度",
             "itemtype": "property",
             "name": "_logic.maxWidth",
@@ -2975,7 +3046,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 188,
+            "line": 216,
             "description": "设置会话弹框的唯一性",
             "itemtype": "method",
             "name": "_logic.dialogIdentifier",
@@ -2993,7 +3064,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 205,
+            "line": 233,
             "description": "显示蒙板",
             "itemtype": "method",
             "name": "_logic.showMask",
@@ -3004,7 +3075,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 225,
+            "line": 253,
             "description": "隐藏蒙板",
             "itemtype": "method",
             "name": "_logic.hideMask",
@@ -3015,7 +3086,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 237,
+            "line": 265,
             "description": "窗口改变大小时, 改变蒙板的大小,\n<br />这个方法主要为了兼容 IE6",
             "itemtype": "method",
             "name": "_logic.setMaskSizeForIe6",
@@ -3026,7 +3097,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 260,
+            "line": 288,
             "description": "获取弹框的显示状态, 默认为0(成功)",
             "itemtype": "method",
             "name": "_logic.fixWidth",
@@ -3048,7 +3119,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 278,
+            "line": 306,
             "description": "修正弹框的默认显示宽度",
             "itemtype": "method",
             "name": "_logic.fixWidth",
@@ -3071,7 +3142,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 294,
+            "line": 322,
             "description": "保存会话弹框的所有默认模板",
             "itemtype": "property",
             "name": "_logic.tpls",
@@ -3083,7 +3154,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 302,
+            "line": 330,
             "description": "alert 会话弹框的默认模板",
             "itemtype": "property",
             "name": "_logic.tpls.alert",
@@ -3095,7 +3166,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 325,
+            "line": 353,
             "description": "confirm 会话弹框的默认模板",
             "itemtype": "property",
             "name": "_logic.tpls.confirm",
@@ -3107,7 +3178,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Dialog.js",
-            "line": 349,
+            "line": 377,
             "description": "会话弹框的蒙板模板",
             "itemtype": "property",
             "name": "_logic.tpls.mask",
@@ -3119,7 +3190,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 41,
+            "line": 42,
             "description": "存放数据的model层, see <a href='UXC.Panel.Model.html'>Panel.Model</a>",
             "itemtype": "property",
             "name": "_model",
@@ -3130,7 +3201,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 47,
+            "line": 48,
             "description": "控制视图的view层, see <a href='UXC.Panel.View.html'>Panel.View</a>",
             "itemtype": "property",
             "name": "_view",
@@ -3141,7 +3212,28 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 56,
+            "line": 57,
+            "description": "从 selector 获取 Panel 的实例\n<br /><b>如果从DOM初始化, 不进行判断的话, 会重复初始化多次</b>",
+            "itemtype": "method",
+            "name": "getInstance",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "static": 1,
+            "return": {
+                "description": "",
+                "type": "Panel instance"
+            },
+            "class": "UXC.Panel",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Panel.js",
+            "line": 72,
             "description": "监听Panel的所有点击事件\n<br />如果事件源有 eventtype 属性, 则会触发eventtype的事件类型",
             "itemtype": "event",
             "name": "Panel click",
@@ -3152,7 +3244,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 72,
+            "line": 88,
             "description": "初始化Panel",
             "itemtype": "method",
             "name": "_init",
@@ -3163,7 +3255,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 82,
+            "line": 98,
             "description": "初始化Panel 默认事件",
             "access": "private",
             "tagname": "",
@@ -3172,7 +3264,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 103,
+            "line": 119,
             "description": "为Panel绑定事件\n<br /> 内置事件类型有 show, hide, close, center, confirm, cancel\n, beforeshow, beforehide, beforeclose, beforecenter\n<br /> 用户可通过 HTML eventtype 属性自定义事件类型",
             "itemtype": "method",
             "name": "on",
@@ -3196,7 +3288,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 128,
+            "line": 145,
             "description": "显示 Panel\n<br /> Panel初始后, 默认是隐藏状态, 显示 Panel 需要显式调用 show 方法",
             "itemtype": "method",
             "name": "show",
@@ -3215,7 +3307,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 179,
+            "line": 198,
             "description": "设置Panel的显示位置基于 _src 的左右上下",
             "itemtype": "method",
             "name": "positionWith",
@@ -3231,7 +3323,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 189,
+            "line": 209,
             "description": "隐藏 Panel\n<br /> 隐藏 Panel 设置 css display:none, 不会从DOM 删除 Panel",
             "itemtype": "method",
             "name": "hide",
@@ -3240,7 +3332,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 199,
+            "line": 220,
             "description": "关闭 Panel\n<br /> <b>关闭 Panel 是直接从 DOM 中删除 Panel</b>",
             "itemtype": "method",
             "name": "close",
@@ -3249,7 +3341,16 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 210,
+            "line": 232,
+            "description": "从DOM清除Panel\n<br /> <b>close 方法清除 Panel可以被用户阻止, 该方法不会被用户阻止</b>",
+            "itemtype": "method",
+            "name": "dispose",
+            "class": "UXC.Panel",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Panel.js",
+            "line": 243,
             "description": "把 Panel 位置设为屏幕居中",
             "itemtype": "method",
             "name": "center",
@@ -3258,8 +3359,8 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 220,
-            "description": "返回 Panel 的 jquery dom选择器对象",
+            "line": 254,
+            "description": "返回 Panel 的 jquery dom选择器对象\n<br />这个方法以后将会清除, 请使用 layout 方法",
             "itemtype": "method",
             "name": "selector",
             "return": {
@@ -3271,7 +3372,39 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 226,
+            "line": 261,
+            "description": "返回 Panel 的 jquery dom选择器对象",
+            "itemtype": "method",
+            "name": "layout",
+            "return": {
+                "description": "",
+                "type": "Selector"
+            },
+            "class": "UXC.Panel",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Panel.js",
+            "line": 267,
+            "description": "从 Panel 选择器中查找内容\n<br />添加这个方法是为了方便jquery 使用者的习惯",
+            "itemtype": "method",
+            "name": "find",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "selector"
+            },
+            "class": "UXC.Panel",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Panel/UXC.Panel.js",
+            "line": 275,
             "description": "触发 Panel 已绑定的事件\n<br />用户可以使用该方法主动触发绑定的事件",
             "itemtype": "method",
             "name": "trigger",
@@ -3295,7 +3428,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 261,
+            "line": 311,
             "description": "获取或者设置 Panel Header 的HTML内容\n<br />如果 Panel默认没有 Header的话, 使用该方法 _html 非空可动态创建一个Header",
             "itemtype": "method",
             "name": "header",
@@ -3315,7 +3448,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 275,
+            "line": 325,
             "description": "获取或者设置 Panel body 的HTML内容",
             "itemtype": "method",
             "name": "body",
@@ -3335,7 +3468,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 288,
+            "line": 338,
             "description": "获取或者设置 Panel footer 的HTML内容\n<br />如果 Panel默认没有 footer的话, 使用该方法 _html 非空可动态创建一个footer",
             "itemtype": "method",
             "name": "footer",
@@ -3355,7 +3488,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 302,
+            "line": 352,
             "description": "获取或者设置 Panel 的HTML内容",
             "itemtype": "method",
             "name": "panel",
@@ -3375,7 +3508,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 316,
+            "line": 366,
             "description": "Panel 显示前会触发的事件<br/>\n这个事件在用户调用 _panelInstance.show() 时触发",
             "itemtype": "event",
             "name": "beforeshow",
@@ -3388,7 +3521,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 324,
+            "line": 374,
             "description": "显示Panel时会触发的事件",
             "itemtype": "event",
             "name": "show",
@@ -3401,7 +3534,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 331,
+            "line": 381,
             "description": "Panel 隐藏前会触发的事件<br/>\n<br />这个事件在用户调用 _panelInstance.hide() 时触发",
             "itemtype": "event",
             "name": "beforehide",
@@ -3414,7 +3547,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 339,
+            "line": 389,
             "description": "Panel 隐藏时会触发的事件<br/>\n<br />这个事件在用户调用 _panelInstance.hide() 时触发",
             "itemtype": "event",
             "name": "hide",
@@ -3427,7 +3560,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 347,
+            "line": 397,
             "description": "Panel 关闭前会触发的事件<br/>\n这个事件在用户调用 _panelInstance.close() 时触发",
             "itemtype": "event",
             "name": "beforeclose",
@@ -3440,7 +3573,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 358,
+            "line": 408,
             "description": "关闭事件",
             "itemtype": "event",
             "name": "close",
@@ -3453,7 +3586,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 368,
+            "line": 418,
             "description": "Panel 居中显示前会触发的事件<br/>\n这个事件在用户调用 _panelInstance.center() 时触发",
             "itemtype": "event",
             "name": "beforecenter",
@@ -3466,7 +3599,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 376,
+            "line": 426,
             "description": "Panel 居中后会触发的事件",
             "itemtype": "event",
             "name": "center",
@@ -3479,7 +3612,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 383,
+            "line": 433,
             "description": "Panel 点击确认按钮触发的事件",
             "itemtype": "event",
             "name": "confirm",
@@ -3492,7 +3625,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 393,
+            "line": 443,
             "description": "Panel 点击确取消按钮触发的事件",
             "itemtype": "event",
             "name": "cancel",
@@ -3505,7 +3638,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 416,
+            "line": 466,
             "description": "panel 的 HTML 对象或者字符串\n<br /> 这是初始化时的原始数据",
             "itemtype": "property",
             "name": "selector",
@@ -3515,7 +3648,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 423,
+            "line": 473,
             "description": "header 内容 \n<br /> 这是初始化时的原始数据",
             "itemtype": "property",
             "name": "headers",
@@ -3525,7 +3658,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 430,
+            "line": 480,
             "description": "body 内容\n<br /> 这是初始化时的原始数据",
             "itemtype": "property",
             "name": "bodys",
@@ -3535,7 +3668,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 437,
+            "line": 487,
             "description": "footers 内容\n<br /> 这是初始化时的原始数据",
             "itemtype": "property",
             "name": "footers",
@@ -3545,7 +3678,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 444,
+            "line": 494,
             "description": "panel 初始化后的 selector 对象",
             "itemtype": "property",
             "name": "panel",
@@ -3555,7 +3688,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 450,
+            "line": 500,
             "description": "存储用户事件和默认事件的对象",
             "itemtype": "property",
             "name": "_events",
@@ -3567,7 +3700,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 461,
+            "line": 511,
             "description": "Model 初始化方法",
             "itemtype": "method",
             "name": "_init",
@@ -3582,7 +3715,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 484,
+            "line": 534,
             "description": "添加事件方法",
             "itemtype": "method",
             "name": "addEvent",
@@ -3603,7 +3736,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 500,
+            "line": 550,
             "description": "获取事件方法",
             "itemtype": "method",
             "name": "getEvent",
@@ -3623,7 +3756,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 521,
+            "line": 571,
             "description": "Panel的基础数据类, see <a href='UXC.Panel.Model.html'>Panel.Model</a>",
             "itemtype": "property",
             "name": "_model",
@@ -3635,7 +3768,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 528,
+            "line": 578,
             "description": "默认模板",
             "prototype": "_tpl",
             "type": "string",
@@ -3646,7 +3779,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 540,
+            "line": 590,
             "description": "View 的初始方法",
             "itemtype": "method",
             "name": "_init",
@@ -3656,7 +3789,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 563,
+            "line": 613,
             "description": "设置Panel的显示位置基于 _src 的左右上下",
             "itemtype": "method",
             "name": "positionWith",
@@ -3671,7 +3804,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 589,
+            "line": 639,
             "description": "显示 Panel",
             "itemtype": "method",
             "name": "show",
@@ -3679,7 +3812,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 597,
+            "line": 647,
             "description": "隐藏 Panel",
             "itemtype": "method",
             "name": "hide",
@@ -3687,7 +3820,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 605,
+            "line": 655,
             "description": "关闭 Panel",
             "itemtype": "method",
             "name": "close",
@@ -3695,7 +3828,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 614,
+            "line": 664,
             "description": "获取 Panel 的 selector 对象",
             "itemtype": "method",
             "name": "getPanel",
@@ -3706,7 +3839,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 626,
+            "line": 676,
             "description": "获取或设置Panel的 header 内容, see <a href='UXC.Panel.html#method_header'>Panel.header</a>",
             "itemtype": "method",
             "name": "getHeader",
@@ -3724,7 +3857,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 646,
+            "line": 696,
             "description": "获取或设置Panel的 body 内容, see <a href='UXC.Panel.html#method_body'>Panel.body</a>",
             "itemtype": "method",
             "name": "getBody",
@@ -3742,7 +3875,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 662,
+            "line": 712,
             "description": "获取或设置Panel的 footer 内容, see <a href='UXC.Panel.html#method_footer'>Panel.footer</a>",
             "itemtype": "method",
             "name": "getFooter",
@@ -3760,7 +3893,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 682,
+            "line": 732,
             "description": "居中显示 Panel",
             "itemtype": "method",
             "name": "center",
@@ -3768,7 +3901,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Panel.js",
-            "line": 714,
+            "line": 764,
             "description": "Panel 的默认模板",
             "access": "private",
             "tagname": "",
@@ -3913,7 +4046,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 221,
+            "line": 222,
             "description": "隐藏弹框缓动效果",
             "itemtype": "method",
             "name": "_logic.hideEffect",
@@ -3941,7 +4074,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 264,
+            "line": 265,
             "description": "隐藏弹框缓动效果",
             "itemtype": "method",
             "name": "_logic.showEffect",
@@ -3964,7 +4097,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 316,
+            "line": 317,
             "description": "设置 Panel 的默认X,Y轴",
             "itemtype": "method",
             "name": "_logic.onresize",
@@ -3982,7 +4115,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 352,
+            "line": 353,
             "description": "取得弹框最要显示的 y 轴",
             "itemtype": "method",
             "name": "_logic.getTop",
@@ -4019,7 +4152,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 373,
+            "line": 374,
             "description": "取得弹框最要显示的 x 轴",
             "itemtype": "method",
             "name": "_logic.getLeft",
@@ -4056,7 +4189,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 396,
+            "line": 397,
             "description": "修正弹框的默认显示宽度",
             "itemtype": "method",
             "name": "_logic.fixWidth",
@@ -4079,7 +4212,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 413,
+            "line": 414,
             "description": "获取弹框的显示状态, 默认为0(成功)",
             "itemtype": "method",
             "name": "_logic.fixWidth",
@@ -4101,7 +4234,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 431,
+            "line": 432,
             "description": "缓动函数, 动画效果为按时间缓动",
             "itemtype": "method",
             "name": "_logic.easyEffect",
@@ -4134,7 +4267,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 460,
+            "line": 461,
             "description": "保存弹框的所有默认模板",
             "itemtype": "property",
             "name": "_logic.tpls",
@@ -4146,7 +4279,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 468,
+            "line": 469,
             "description": "alert 弹框的默认模板",
             "itemtype": "property",
             "name": "_logic.tpls.alert",
@@ -4158,7 +4291,7 @@
         },
         {
             "file": "../../uxc/comps/Panel/UXC.Popup.js",
-            "line": 491,
+            "line": 492,
             "description": "confirm 弹框的默认模板",
             "itemtype": "property",
             "name": "_logic.tpls.confirm",
@@ -4560,6 +4693,742 @@
             "namespace": "UXC.Tips"
         },
         {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 51,
+            "description": "树的数据模型引用",
+            "itemtype": "property",
+            "name": "_model",
+            "type": "UXC.Tree.Model",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tree",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 58,
+            "description": "树的视图模型引用",
+            "itemtype": "property",
+            "name": "_view",
+            "type": "UXC.Tree.View",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tree",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 66,
+            "description": "从选择器获取 树的 实例, 如果实例有限, 加以判断可避免重复初始化",
+            "itemtype": "method",
+            "name": "getInstance",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "static": 1,
+            "return": {
+                "description": "",
+                "type": "UXC.Tree Instance|undefined"
+            },
+            "class": "UXC.Tree",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 78,
+            "description": "树的数据过滤函数\n<br /> 如果树的初始数据格式不符合要求, 可通过该属性定义函数进行数据修正",
+            "itemtype": "property",
+            "name": "dataFilter",
+            "type": "function",
+            "default": "undefined",
+            "static": 1,
+            "example": [
+                "\n           UXC.Tree.dataFilter =\n           function( _data ){\n               var _r = {};\n\n               if( _data ){\n                   if( _data.root.length > 2 ){\n                       _data.root.shift();\n                       _r.root = _data.root;\n                    }\n                   _r.data = {};\n                   for( var k in _data.data ){\n                       _r.data[ k ] = [];\n                       for( var i = 0, j = _data.data[k].length; i < j; i++ ){\n                           if( _data.data[k][i].length < 3 ) continue;\n                           _data.data[k][i].shift();\n                           _r.data[k].push( _data.data[k][i] );\n                       }\n                   }\n               }\n               return _r;\n           };"
+            ],
+            "class": "UXC.Tree",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 111,
+            "description": "初始化树\n<br /> 实例化树后, 需要显式调用该方法初始化树的可视状态",
+            "itemtype": "method",
+            "name": "init",
+            "example": [
+                "\n               var _tree = new UXC.Tree( $('#tree_box'), treeData );\n               _tree.init();"
+            ],
+            "class": "UXC.Tree",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 125,
+            "description": "展开树到某个具体节点, 或者展开树的所有节点",
+            "itemtype": "method",
+            "name": "open",
+            "params": [
+                {
+                    "name": "_nodeId",
+                    "description": "如果_nodeId='undefined', 将会展开树的所有节点\n                                     <br />_nodeId 不为空, 将展开树到 _nodeId 所在的节点",
+                    "type": "String|int"
+                }
+            ],
+            "class": "UXC.Tree",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 140,
+            "description": "关闭某个节点, 或者关闭整个树",
+            "itemtype": "method",
+            "name": "close",
+            "params": [
+                {
+                    "name": "_nodeId",
+                    "description": "如果_nodeId='undefined', 将会关闭树的所有节点\n                                     <br />_nodeId 不为空, 将关闭树 _nodeId 所在的节点",
+                    "type": "String|int"
+                }
+            ],
+            "class": "UXC.Tree",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 155,
+            "description": "获取树的 ID 前缀\n<br />每个树都会有自己的随机ID前缀",
+            "itemtype": "method",
+            "name": "idPrefix",
+            "return": {
+                "description": "树的ID前缀",
+                "type": "String"
+            },
+            "class": "UXC.Tree",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 162,
+            "description": "获取树的节点 label",
+            "itemtype": "method",
+            "name": "getItem",
+            "params": [
+                {
+                    "name": "_nodeId",
+                    "description": "",
+                    "type": "String|int"
+                }
+            ],
+            "class": "UXC.Tree",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 173,
+            "description": "绑定树内部事件\n<br /><b>注意:</b> 所有事件名最终会被转换成小写",
+            "itemtype": "method",
+            "name": "on",
+            "params": [
+                {
+                    "name": "_evtName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "_cb",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "UXC.Tree",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 186,
+            "description": "获取树的某类事件类型的所有回调",
+            "itemtype": "method",
+            "name": "event",
+            "params": [
+                {
+                    "name": "_evtName",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Array"
+            },
+            "class": "UXC.Tree",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 193,
+            "description": "获取或设置树的高亮节点\n<br /><b>注意:</b> 这个只是数据层面的设置, 不会影响视觉效果",
+            "itemtype": "method",
+            "name": "highlight",
+            "params": [
+                {
+                    "name": "_item",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "selector"
+            },
+            "class": "UXC.Tree",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 205,
+            "description": "树节点的点击事件",
+            "itemtype": "event",
+            "name": "click",
+            "params": [
+                {
+                    "name": "_evt",
+                    "description": "",
+                    "type": "Event"
+                }
+            ],
+            "example": [
+                "\n           _tree.on('click', function( _evt ){\n               var _p = $(this);\n               UXC.log( 'tree click:', _p.html(), _p.attr('dataid'), _p.attr('dataname') );\n           });"
+            ],
+            "class": "UXC.Tree",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 216,
+            "description": "树节点的展现事件",
+            "itemtype": "event",
+            "name": "RenderLabel",
+            "params": [
+                {
+                    "name": "_data",
+                    "description": "",
+                    "type": "Array"
+                },
+                {
+                    "name": "_item",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "example": [
+                "\n           _tree.on('RenderLabel', function( _data ){\n               var _node = $(this);\n               _node.html( printf( '<a href=\"javascript:\" dataid=\"{0}\">{1}</a>', _data[0], _data[1] ) );\n           });"
+            ],
+            "class": "UXC.Tree",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 228,
+            "description": "树文件夹的点击事件",
+            "itemtype": "event",
+            "name": "FolderClick",
+            "params": [
+                {
+                    "name": "_evt",
+                    "description": "",
+                    "type": "Event"
+                }
+            ],
+            "example": [
+                "\n           _tree.on('FolderClick', function( _evt ){\n               var _p = $(this);\n               alert( 'folder click' );\n           });"
+            ],
+            "class": "UXC.Tree",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 246,
+            "description": "树要展示的容器",
+            "itemtype": "property",
+            "name": "_container",
+            "type": "selector",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 253,
+            "description": "展现树需要的数据",
+            "itemtype": "property",
+            "name": "_data",
+            "type": "object",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 260,
+            "description": "树的随机ID前缀",
+            "itemtype": "property",
+            "name": "_id",
+            "type": "string",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 267,
+            "description": "树当前的高亮节点",
+            "itemtype": "property",
+            "name": "_highlight",
+            "type": "selector",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 274,
+            "description": "保存树的所有绑定事件",
+            "itemtype": "property",
+            "name": "_events",
+            "type": "object",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 286,
+            "description": "树模型类内部初始化方法",
+            "itemtype": "method",
+            "name": "_init",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 296,
+            "description": "获取树所要展示的容器",
+            "itemtype": "method",
+            "name": "container",
+            "return": {
+                "description": "selector"
+            },
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 302,
+            "description": "获取节点将要显示的ID",
+            "itemtype": "method",
+            "name": "id",
+            "params": [
+                {
+                    "name": "_id",
+                    "description": "节点的原始ID",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "string  节点的最终ID"
+            },
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 309,
+            "description": "获取树的随机ID前缀",
+            "itemtype": "method",
+            "name": "idPrefix",
+            "return": {
+                "description": "string"
+            },
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 315,
+            "description": "获取树的原始数据",
+            "itemtype": "method",
+            "name": "data",
+            "return": {
+                "description": "object"
+            },
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 321,
+            "description": "获取树生成后的根节点",
+            "itemtype": "method",
+            "name": "root",
+            "return": {
+                "description": "selector"
+            },
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 327,
+            "description": "获取ID的具体节点",
+            "itemtype": "method",
+            "name": "child",
+            "params": [
+                {
+                    "name": "_id",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "selector"
+            },
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 334,
+            "description": "判断原始数据的某个ID是否有子级节点",
+            "itemtype": "method",
+            "name": "hasChild",
+            "params": [
+                {
+                    "name": "_id",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "bool"
+            },
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 341,
+            "description": "获取树的某类绑定事件的所有回调",
+            "itemtype": "method",
+            "name": "event",
+            "params": [
+                {
+                    "name": "_evtName",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Array|undefined"
+            },
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 352,
+            "description": "添加树内部事件",
+            "itemtype": "method",
+            "name": "addEvent",
+            "params": [
+                {
+                    "name": "_evtName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "_cb",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 364,
+            "description": "获取或设置树的高亮节点\n<br /><b>注意:</b> 这个只是数据层面的设置, 不会影响视觉效果",
+            "itemtype": "method",
+            "name": "highlight",
+            "params": [
+                {
+                    "name": "_item",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "selector"
+            },
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 377,
+            "description": "树的视图模型类",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 381,
+            "description": "树的数据模型引用",
+            "itemtype": "property",
+            "name": "_model",
+            "type": "UXC.Tree.Model",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 388,
+            "description": "树生成后的根节点",
+            "itemtype": "property",
+            "name": "_treeRoot",
+            "type": "selector",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 398,
+            "description": "初始化树的可视状态",
+            "itemtype": "method",
+            "name": "init",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 408,
+            "description": "获取或设置树生成后的根节点",
+            "itemtype": "method",
+            "name": "treeRoot",
+            "params": [
+                {
+                    "name": "_setter",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "selector"
+            },
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 419,
+            "description": "处理树的展现效果",
+            "itemtype": "method",
+            "name": "_process",
+            "params": [
+                {
+                    "name": "_data",
+                    "description": "节点数据",
+                    "type": "Array"
+                },
+                {
+                    "name": "_parentNode",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 440,
+            "description": "初始化树根节点",
+            "itemtype": "method",
+            "name": "_initRoot",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 470,
+            "description": "初始化树的文件夹节点",
+            "itemtype": "method",
+            "name": "_initFolder",
+            "params": [
+                {
+                    "name": "_parentNode",
+                    "description": "",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_data",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "_isLast",
+                    "description": "",
+                    "type": "Bool"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 495,
+            "description": "初始化树的文件节点",
+            "itemtype": "method",
+            "name": "_initFile",
+            "params": [
+                {
+                    "name": "_parentNode",
+                    "description": "",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_data",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "_isLast",
+                    "description": "",
+                    "type": "Bool"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 516,
+            "description": "初始化树的节点标签",
+            "itemtype": "method",
+            "name": "_initLabel",
+            "access": "private",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "_data",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "selector"
+            },
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 540,
+            "description": "展开树的所有节点",
+            "itemtype": "method",
+            "name": "openAll",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 551,
+            "description": "关闭树的所有节点",
+            "itemtype": "method",
+            "name": "closeAll",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 563,
+            "description": "展开树到具体节点",
+            "itemtype": "method",
+            "name": "open",
+            "params": [
+                {
+                    "name": "_nodeId",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 588,
+            "description": "关闭树的具体节点",
+            "itemtype": "method",
+            "name": "close",
+            "params": [
+                {
+                    "name": "_nodeId",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 607,
+            "description": "树的最后的 hover 节点\n<br />树的 hover 是全局属性, 页面上的所有树只会有一个当前 hover",
+            "itemtype": "property",
+            "name": "lastHover",
+            "type": "selector",
+            "default": "null",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 623,
+            "description": "捕获树文件标签的点击事件",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
+            "file": "../../uxc/comps/Tree/Tree.js",
+            "line": 644,
+            "description": "捕获树文件夹图标的点击事件",
+            "class": "UXC.Tree.Model",
+            "namespace": "UXC.Tree"
+        },
+        {
             "file": "../../uxc/comps/Valid/Valid.js",
             "line": 19,
             "description": "验证一个表单项, 如 文本框, 下拉框, 复选框, 单选框, 文本域, 隐藏域",
@@ -4713,7 +5582,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 196,
+            "line": 197,
             "description": "显示错误的视觉效果",
             "itemtype": "method",
             "name": "_logic.error",
@@ -4732,7 +5601,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 224,
+            "line": 225,
             "description": "获取 _selector 对象\n<br />这个方法的存在是为了向后兼容qwrap, qwrap DOM参数都为ID",
             "itemtype": "method",
             "name": "_logic.getElement",
@@ -4751,7 +5620,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 237,
+            "line": 238,
             "description": "获取 _item 的检查类型, 所有可用的检查类型位于 _logic.datatype 对象",
             "itemtype": "method",
             "name": "_logic.getDatatype",
@@ -4770,7 +5639,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 248,
+            "line": 249,
             "description": "获取 _item 的检查子类型, 所有可用的检查子类型位于 _logic.subdatatype 对象",
             "itemtype": "method",
             "name": "_logic.getSubdatatype",
@@ -4789,7 +5658,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 259,
+            "line": 260,
             "description": "获取对应的错误信息, 默认的错误信息有 reqmsg, errmsg, <br />\n注意: 错误信息第一个字符如果为空格的话, 将完全使用用户定义的错误信息, 将不会动态添加 请上传/选择/填写",
             "itemtype": "method",
             "name": "_logic.getMsg",
@@ -4818,7 +5687,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 293,
+            "line": 294,
             "description": "计算字符串的字节长度, 非 ASCII 0-255的字符视为两个字节",
             "itemtype": "method",
             "name": "_logic.bytelen",
@@ -4837,7 +5706,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 304,
+            "line": 305,
             "description": "获取日期字符串的 timestamp, 字符串格式为 YYYY[^\\d]*?MM[^\\d]*?DD",
             "itemtype": "method",
             "name": "_logic.getTimestamp",
@@ -4856,7 +5725,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 316,
+            "line": 317,
             "description": "此对象存储可供检查的子类型",
             "itemtype": "property",
             "name": "_logic.subdatatype",
@@ -4869,7 +5738,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 324,
+            "line": 325,
             "description": "此类型检查 2|N个对象必须至少有一个是有输入内容的, \n<br> 常用于 手机/电话 二填一",
             "itemtype": "method",
             "name": "_logic.subdatatype.alternative",
@@ -4891,7 +5760,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 377,
+            "line": 378,
             "description": "此类型检查 2|N 个对象填写的值必须一致\n常用于注意时密码验证/重置密码",
             "itemtype": "method",
             "name": "_logic.subdatatype.reconfirm",
@@ -4913,7 +5782,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 425,
+            "line": 426,
             "description": "此对象存储可供检查的类型",
             "itemtype": "property",
             "name": "_logic.datatype",
@@ -4926,7 +5795,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 433,
+            "line": 434,
             "description": "检查是否为正确的数字<br />\n<br>默认范围 0 - Math.pow(10, 10)",
             "itemtype": "method",
             "name": "_logic.datatype.n",
@@ -4949,7 +5818,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 483,
+            "line": 484,
             "description": "检查两个输入框的数值\n<br /> 数字格式为 0-pow(10,10)\n<br /> 带小数点使用 nrange-int.float, 例: nrange-1.2  nrange-2.2\n<br /> <b>注意:</b> 如果不显示指定 fromNEl, toNEl, \n             将会从父级查找 datatype=nrange属性的input, 如果数量等于2, 则会进行验证, 不等2将忽略",
             "itemtype": "method",
             "name": "_logic.datatype.nrange",
@@ -4972,7 +5841,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 564,
+            "line": 565,
             "description": "检查是否为合法的日期,\n<br />日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD",
             "itemtype": "method",
             "name": "_logic.datatype.d",
@@ -4995,7 +5864,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 602,
+            "line": 603,
             "description": "检查两个输入框的日期\n<br />日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD\n<br /> <b>注意:</b> 如果不显示指定 fromDateEl, toDateEl, \n             将会从父级查找 datatype=datarange属性的input, 如果数量等于2, 则会进行验证, 不等2将忽略",
             "itemtype": "method",
             "name": "_logic.datatype.daterange",
@@ -5018,7 +5887,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 670,
+            "line": 671,
             "description": "检查时间格式, 格式为 mm:dd:ss",
             "itemtype": "method",
             "name": "_logic.datatype.time",
@@ -5040,7 +5909,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 687,
+            "line": 688,
             "description": "检查时间格式, 格式为 mm:dd:ss",
             "itemtype": "method",
             "name": "_logic.datatype.minute",
@@ -5062,7 +5931,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 704,
+            "line": 705,
             "description": "检查银行卡号码\n<br />格式为 d{19} | d{16} | 1111 1111 1111 1111 111 | 1111 1111 1111 1111111",
             "itemtype": "method",
             "name": "_logic.datatype.bankcard",
@@ -5084,7 +5953,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 723,
+            "line": 724,
             "description": "检查中文姓名\n<br>格式: 汉字和大小写字母\n<br>规则: 长度 2-32个字节, 非 ASCII 算2个字节",
             "itemtype": "method",
             "name": "_logic.datatype.cnname",
@@ -5106,7 +5975,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 743,
+            "line": 744,
             "description": "检查注册用户名\n<br>格式: a-zA-Z0-9_-\n<br>规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 29",
             "itemtype": "method",
             "name": "_logic.datatype.username",
@@ -5128,7 +5997,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 763,
+            "line": 764,
             "description": "检查身份证号码<br />\n目前只使用最简单的位数判断~ 有待完善",
             "itemtype": "method",
             "name": "_logic.datatype.idnumber",
@@ -5150,7 +6019,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 782,
+            "line": 783,
             "description": "检查手机号码<br />",
             "itemtype": "method",
             "name": "_logic.datatype.mobilecode",
@@ -5172,7 +6041,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 801,
+            "line": 802,
             "description": "检查手机号码加强方法\n<br>格式: [+国家代码] [零]11位数字",
             "itemtype": "method",
             "name": "_logic.datatype.mobilezonecode",
@@ -5194,7 +6063,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 821,
+            "line": 822,
             "description": "检查电话号码\n<br>格式: [区号]7/8位电话号码",
             "itemtype": "method",
             "name": "_logic.datatype.phone",
@@ -5216,7 +6085,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 841,
+            "line": 842,
             "description": "检查电话号码\n<br>格式: [+国家代码][ ][电话区号][ ]7/8位电话号码[#分机号]",
             "itemtype": "method",
             "name": "_logic.datatype.phoneall",
@@ -5238,7 +6107,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 861,
+            "line": 862,
             "description": "检查电话区号",
             "itemtype": "method",
             "name": "_logic.datatype.phonezone",
@@ -5260,7 +6129,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 879,
+            "line": 880,
             "description": "检查电话号码\n<br>格式: 7/8位数字",
             "itemtype": "method",
             "name": "_logic.datatype.phonecode",
@@ -5282,7 +6151,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 898,
+            "line": 899,
             "description": "检查电话分机号码",
             "itemtype": "method",
             "name": "_logic.datatype.phoneext",
@@ -5304,7 +6173,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 916,
+            "line": 917,
             "description": "检查内容的长度",
             "itemtype": "method",
             "name": "_logic.datatype.length",
@@ -5327,14 +6196,14 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 944,
+            "line": 945,
             "description": "根据特殊的 datatype 实现不同的计算方法",
             "class": "UXC.Valid",
             "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 970,
+            "line": 971,
             "description": "检查内容是否为空,\n<br>如果声明了该属性, 那么 value 须不为空",
             "itemtype": "method",
             "name": "_logic.datatype.reqmsg",
@@ -5356,7 +6225,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 996,
+            "line": 997,
             "description": "自定义正则校验",
             "itemtype": "method",
             "name": "_logic.datatype.reg",
@@ -5379,7 +6248,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 1022,
+            "line": 1023,
             "description": "检查验证码<br />\n格式: 为 0-9a-zA-Z, 长度 默认为4",
             "itemtype": "method",
             "name": "_logic.datatype.vcode",
@@ -5402,7 +6271,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 1048,
+            "line": 1049,
             "description": "检查文本长度",
             "itemtype": "method",
             "name": "_logic.datatype.text",
@@ -5418,7 +6287,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 1057,
+            "line": 1058,
             "description": "检查文本的字节长度",
             "itemtype": "method",
             "name": "_logic.datatype.bytetext",
@@ -5434,7 +6303,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 1066,
+            "line": 1067,
             "description": "检查富文本的字节",
             "itemtype": "method",
             "name": "_logic.datatype.richtext",
@@ -5450,7 +6319,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 1075,
+            "line": 1076,
             "description": "检查URL",
             "itemtype": "method",
             "name": "_logic.datatype.url",
@@ -5472,7 +6341,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 1092,
+            "line": 1093,
             "description": "检查域名",
             "itemtype": "method",
             "name": "_logic.datatype.domain",
@@ -5491,7 +6360,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 1109,
+            "line": 1110,
             "description": "检查电子邮件",
             "itemtype": "method",
             "name": "_logic.datatype.email",
@@ -5513,7 +6382,7 @@
         },
         {
             "file": "../../uxc/comps/Valid/Valid.js",
-            "line": 1126,
+            "line": 1127,
             "description": "检查邮政编码",
             "itemtype": "method",
             "name": "_logic.datatype.zipcode",
@@ -5531,6 +6400,97 @@
                 "\n                       <div class=\"f-l\">\n                           <input type=\"TEXT\" name=\"company_zipcode\" datatype=\"zipcode\" errmsg=\"请填写正确的邮编\">\n                       </div>"
             ],
             "class": "UXC.Valid",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/plugins/jquery.form.js",
+            "line": 52,
+            "description": "Feature detection",
+            "class": "window.UXC",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/plugins/jquery.form.js",
+            "line": 74,
+            "description": "ajaxSubmit() provides a mechanism for immediately submitting\nan HTML form using AJAX.",
+            "class": "window.UXC",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/plugins/jquery.form.js",
+            "line": 771,
+            "description": "ajaxForm() provides a mechanism for fully automating form submission.\n\nThe advantages of using this method instead of ajaxSubmit() are:\n\n1: This method will include coordinates for <input type=\"image\" /> elements (if the element\n   is used to submit the form).\n2. This method will include the submit element's name/value data (for the element that was\n   used to submit the form).\n3. This method binds the submit() method to the form for you.\n\nThe options argument for ajaxForm works exactly as it does for ajaxSubmit.  ajaxForm merely\npasses the options argument along after properly binding events for submit elements and\nthe form itself.",
+            "class": "window.UXC",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/plugins/jquery.form.js",
+            "line": 866,
+            "description": "formToArray() gathers form element data into an array of objects that can\nbe passed to any of the following ajax functions: $.get, $.post, or load.\nEach object in the array has both a 'name' and 'value' property.  An example of\nan array for a simple login form might be:\n\n[ { name: 'username', value: 'jresig' }, { name: 'password', value: 'secret' } ]\n\nIt is this array that is passed to pre-submit callback functions provided to the\najaxSubmit() and ajaxForm() methods.",
+            "class": "window.UXC",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/plugins/jquery.form.js",
+            "line": 947,
+            "description": "Serializes form data into a 'submittable' string. This method will return a string\nin the format: name1=value1&amp;name2=value2",
+            "class": "window.UXC",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/plugins/jquery.form.js",
+            "line": 956,
+            "description": "Serializes all field elements in the jQuery object into a query string.\nThis method will return a string in the format: name1=value1&amp;name2=value2",
+            "class": "window.UXC",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/plugins/jquery.form.js",
+            "line": 981,
+            "description": "Returns the value(s) of the element in the matched set.  For example, consider the following form:\n\n <form><fieldset>\n     <input name=\"A\" type=\"text\" />\n     <input name=\"A\" type=\"text\" />\n     <input name=\"B\" type=\"checkbox\" value=\"B1\" />\n     <input name=\"B\" type=\"checkbox\" value=\"B2\"/>\n     <input name=\"C\" type=\"radio\" value=\"C1\" />\n     <input name=\"C\" type=\"radio\" value=\"C2\" />\n </fieldset></form>\n\n var v = $('input[type=text]').fieldValue();\n // if no values are entered into the text inputs\n v == ['','']\n // if values entered into the text inputs are 'foo' and 'bar'\n v == ['foo','bar']\n\n var v = $('input[type=checkbox]').fieldValue();\n // if neither checkbox is checked\n v === undefined\n // if both checkboxes are checked\n v == ['B1', 'B2']\n\n var v = $('input[type=radio]').fieldValue();\n // if neither radio is checked\n v === undefined\n // if first radio is checked\n v == ['C1']\n\nThe successful argument controls whether or not the field element must be 'successful'\n(per http://www.w3.org/TR/html4/interact/forms.html#successful-controls).\nThe default value of the successful argument is true.  If this value is false the value(s)\nfor each element is returned.\n\nNote: This method *always* returns an array.  If no valid value can be determined the\n   array will be empty, otherwise it will contain one or more values.",
+            "class": "window.UXC",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/plugins/jquery.form.js",
+            "line": 1034,
+            "description": "Returns the value of the field element.",
+            "class": "window.UXC",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/plugins/jquery.form.js",
+            "line": 1076,
+            "description": "Clears the form data.  Takes the following actions on the form's input fields:\n - input text fields will have their 'value' property set to the empty string\n - select elements will have their 'selectedIndex' property set to -1\n - checkbox and radio inputs will have their 'checked' property set to false\n - inputs of type submit, button, reset, and hidden will *not* be effected\n - button elements will *not* be effected",
+            "class": "window.UXC",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/plugins/jquery.form.js",
+            "line": 1090,
+            "description": "Clears the selected form elements.",
+            "class": "window.UXC",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/plugins/jquery.form.js",
+            "line": 1125,
+            "description": "Resets the form data.  Causes all form elements to be reset to their original value.",
+            "class": "window.UXC",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/plugins/jquery.form.js",
+            "line": 1138,
+            "description": "Enables or disables any matching elements.",
+            "class": "window.UXC",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/plugins/jquery.form.js",
+            "line": 1150,
+            "description": "Checks/unchecks any matching checkboxes or radio buttons and\nselects/deselects and matching option elements.",
+            "class": "window.UXC",
             "namespace": "UXC"
         },
         {
@@ -5580,7 +6540,7 @@
                 }
             ],
             "example": [
-                "\n               UXC.use( 'SomeClass' );                              //导入类 SomeClass\n               UXC.use( 'SomeClass, AnotherClass' );                //导入类 SomeClass, AnotherClass\n               //\n               ///  导入类 SomeClass, SomeClass目录下的file1.js, \n               ///  AnotherClass, AnotherClass 下的file2.js\n               //\n               UXC.use( 'SomeClass, SomeClass/file1.js, AnotherClass/file2.js' );   \n               UXC.use( '/js/Test/Test1.js' );                      //导入文件  /js/Test/Test1.js, 如果起始处为 \"/\", 将视为文件的绝对路径\n               //\n               /// nginx style 的文件加载方式, 如 /js/??file1.js,file2.js,file3.js\n               //\n               UXC.use( 'Test1.js, Test2.js ', '/js/??', true );\n               //\n               /// 导入 URL 资源\n               //\n               UXC.use( 'http://test.com/file1.js', 'https://another.com/file2.js' );"
+                "\n               UXC.use( 'SomeClass' );                              //导入类 SomeClass\n               UXC.use( 'SomeClass, AnotherClass' );                //导入类 SomeClass, AnotherClass\n               //\n               ///  导入类 SomeClass, SomeClass目录下的file1.js, \n               ///  AnotherClass, AnotherClass 下的file2.js\n               //\n               UXC.use( 'SomeClass, comps/SomeClass/file1.js, comps/AnotherClass/file2.js' );   \n               UXC.use( '/js/Test/Test1.js' );                      //导入文件  /js/Test/Test1.js, 如果起始处为 \"/\", 将视为文件的绝对路径\n               //\n               /// nginx style 的文件加载方式, 如 /js/??file1.js,file2.js,file3.js\n               //\n               UXC.use( 'Test1.js, Test2.js ', '/js/??', true );\n               //\n               /// 导入 URL 资源\n               //\n               UXC.use( 'http://test.com/file1.js', 'https://another.com/file2.js' );"
             ],
             "class": "window.UXC",
             "namespace": "window"
@@ -5639,6 +6599,138 @@
             "description": "自动识别组件库所在路径",
             "class": "window.UXC",
             "namespace": "window"
+        },
+        {
+            "file": "../../uxc/common.js",
+            "line": 6,
+            "description": "按格式输出字符串",
+            "itemtype": "method",
+            "name": "printf",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_str",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n     printf( 'asdfasdf{0}sdfasdf{1}', '000', 1111 );\n     //return asdfasdf000sdfasdf1111"
+            ],
+            "class": ".window"
+        },
+        {
+            "file": "../../uxc/common.js",
+            "line": 21,
+            "description": "判断URL中是否有某个get参数",
+            "itemtype": "method",
+            "name": "has_url_param",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_url",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "_key",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n     var bool = has_url_param( 'getkey' );"
+            ],
+            "class": ".window"
+        },
+        {
+            "file": "../../uxc/common.js",
+            "line": 42,
+            "description": "添加URL参数",
+            "itemtype": "method",
+            "name": "add_url_params",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_url",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "$params",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "example": [
+                "\n       var url = add_url_params( location.href, {'key1': 'key1value', 'key2': 'key2value' } );"
+            ],
+            "class": ".window"
+        },
+        {
+            "file": "../../uxc/common.js",
+            "line": 66,
+            "description": "取URL参数的值",
+            "itemtype": "method",
+            "name": "get_url_param",
+            "static": 1,
+            "params": [
+                {
+                    "name": "$url",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "$key",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "require": "del_url_param",
+            "example": [
+                "\n       var defaultTag = get_url_param(location.href, 'tag');  "
+            ],
+            "class": ".window"
+        },
+        {
+            "file": "../../uxc/common.js",
+            "line": 94,
+            "description": "删除URL参数",
+            "itemtype": "method",
+            "name": "del_url_param",
+            "static": 1,
+            "params": [
+                {
+                    "name": "$url",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "$key",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "example": [
+                "\n       var url = del_url_param( location.href, 'tag' );"
+            ],
+            "class": ".window"
+        },
+        {
+            "file": "../../uxc/common.js",
+            "line": 121,
+            "description": "提示需要 HTTP 环境",
+            "itemtype": "method",
+            "name": "httpRequire",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_msg",
+                    "description": "要提示的文字, 默认 \"本示例需要HTTP环境'",
+                    "type": "String"
+                }
+            ],
+            "class": ".window"
         },
         {
             "file": "../../uxc/jquery.js",
@@ -5804,23 +6896,23 @@
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Panel/UXC.Dialog.js:101"
+            "line": " ../../uxc/comps/Panel/UXC.Dialog.js:129"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Panel/UXC.Dialog.js:101"
+            "line": " ../../uxc/comps/Panel/UXC.Dialog.js:129"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Panel/UXC.Dialog.js:101"
+            "line": " ../../uxc/comps/Panel/UXC.Dialog.js:129"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Panel/UXC.Dialog.js:101"
+            "line": " ../../uxc/comps/Panel/UXC.Dialog.js:129"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Panel/UXC.Dialog.js:101"
+            "line": " ../../uxc/comps/Panel/UXC.Dialog.js:129"
         },
         {
             "message": "unknown tag: version",
@@ -5832,7 +6924,7 @@
         },
         {
             "message": "unknown tag: prototype",
-            "line": " ../../uxc/comps/Panel/UXC.Panel.js:528"
+            "line": " ../../uxc/comps/Panel/UXC.Panel.js:578"
         },
         {
             "message": "unknown tag: attr",
@@ -5864,6 +6956,14 @@
         },
         {
             "message": "unknown tag: version",
+            "line": " ../../uxc/comps/Tree/Tree.js:4"
+        },
+        {
+            "message": "unknown tag: date",
+            "line": " ../../uxc/comps/Tree/Tree.js:4"
+        },
+        {
+            "message": "unknown tag: version",
             "line": " ../../uxc/comps/Valid/Valid.js:3"
         },
         {
@@ -5872,103 +6972,107 @@
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:433"
+            "line": " ../../uxc/comps/Valid/Valid.js:434"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:433"
+            "line": " ../../uxc/comps/Valid/Valid.js:434"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:433"
+            "line": " ../../uxc/comps/Valid/Valid.js:434"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:483"
+            "line": " ../../uxc/comps/Valid/Valid.js:484"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:483"
+            "line": " ../../uxc/comps/Valid/Valid.js:484"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:483"
+            "line": " ../../uxc/comps/Valid/Valid.js:484"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:483"
+            "line": " ../../uxc/comps/Valid/Valid.js:484"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:483"
+            "line": " ../../uxc/comps/Valid/Valid.js:484"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:564"
+            "line": " ../../uxc/comps/Valid/Valid.js:565"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:564"
+            "line": " ../../uxc/comps/Valid/Valid.js:565"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:564"
+            "line": " ../../uxc/comps/Valid/Valid.js:565"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:602"
+            "line": " ../../uxc/comps/Valid/Valid.js:603"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:602"
+            "line": " ../../uxc/comps/Valid/Valid.js:603"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:602"
+            "line": " ../../uxc/comps/Valid/Valid.js:603"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:602"
+            "line": " ../../uxc/comps/Valid/Valid.js:603"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:602"
+            "line": " ../../uxc/comps/Valid/Valid.js:603"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:916"
+            "line": " ../../uxc/comps/Valid/Valid.js:917"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:916"
+            "line": " ../../uxc/comps/Valid/Valid.js:917"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:916"
+            "line": " ../../uxc/comps/Valid/Valid.js:917"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:996"
+            "line": " ../../uxc/comps/Valid/Valid.js:997"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:1022"
+            "line": " ../../uxc/comps/Valid/Valid.js:1023"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:1048"
+            "line": " ../../uxc/comps/Valid/Valid.js:1049"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:1057"
+            "line": " ../../uxc/comps/Valid/Valid.js:1058"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../../uxc/comps/Valid/Valid.js:1066"
+            "line": " ../../uxc/comps/Valid/Valid.js:1067"
         },
         {
             "message": "unknown tag: date",
             "line": " ../../uxc/UXC.js:2"
+        },
+        {
+            "message": "unknown tag: require",
+            "line": " ../../uxc/common.js:66"
         },
         {
             "message": "replacing incorrect tag: returns with return",
@@ -6007,64 +7111,48 @@
             "line": " ../../uxc/comps/Form/UXC.Form.initCheckAll.js:121"
         },
         {
-            "message": "Missing item type\n添加URL参数\nx@btbtd.org  2013-06-12",
-            "line": " ../../uxc/comps/Form/UXC.Form.js:37"
-        },
-        {
-            "message": "Missing item type\n删除URL参数\nx@btbtd.org  2012/4/24",
-            "line": " ../../uxc/comps/Form/UXC.Form.js:65"
-        },
-        {
-            "message": "Missing item type\n取URL参数的值\nx@btbtd.org  2012/4/24",
-            "line": " ../../uxc/comps/Form/UXC.Form.js:109"
-        },
-        {
-            "message": "Missing item type\n判断URL中是否有某个get参数\nx@btbtd.org  2013-06-13",
-            "line": " ../../uxc/comps/Form/UXC.Form.js:139"
-        },
-        {
             "message": "Missing item type\n取当前脚本标签的 src路径",
             "line": " ../../uxc/comps/LunarCalendar/LunarCalendar.js:2"
         },
         {
             "message": "Missing item type\n监听上一年按钮",
-            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:881"
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:880"
         },
         {
             "message": "Missing item type\n监听上一月按钮",
-            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:890"
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:889"
         },
         {
             "message": "Missing item type\n监听下一月按钮",
-            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:899"
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:898"
         },
         {
             "message": "Missing item type\n监听下一年按钮",
-            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:908"
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:907"
         },
         {
             "message": "Missing item type\n监听年份按钮, 是否要显示年份列表",
-            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:917"
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:916"
         },
         {
             "message": "Missing item type\n监听月份按钮, 是否要显示月份列表",
-            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:939"
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:938"
         },
         {
             "message": "Missing item type\n监听年份列表选择状态",
-            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:953"
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:952"
         },
         {
             "message": "Missing item type\n监听月份列表选择状态",
-            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:963"
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:962"
         },
         {
             "message": "Missing item type\n监听日期单元格点击事件",
-            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:973"
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:972"
         },
         {
             "message": "Missing item type\n监听body点击事件, 点击时隐藏日历控件的年份和月份列表",
-            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:995"
+            "line": " ../../uxc/comps/LunarCalendar/UXC.LunarCalendar.js:994"
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",
@@ -6072,23 +7160,23 @@
         },
         {
             "message": "Missing item type\n从 HTML 属性 自动执行 UXC.Dialog.alert / UXC.Dialog.confirm",
-            "line": " ../../uxc/comps/Panel/UXC.Dialog.js:101"
+            "line": " ../../uxc/comps/Panel/UXC.Dialog.js:129"
         },
         {
             "message": "Missing item type\n响应窗口改变大小和滚动",
-            "line": " ../../uxc/comps/Panel/UXC.Dialog.js:133"
+            "line": " ../../uxc/comps/Panel/UXC.Dialog.js:161"
         },
         {
             "message": "Missing item type\n初始化Panel 默认事件",
-            "line": " ../../uxc/comps/Panel/UXC.Panel.js:82"
+            "line": " ../../uxc/comps/Panel/UXC.Panel.js:98"
         },
         {
             "message": "Missing item type\n默认模板",
-            "line": " ../../uxc/comps/Panel/UXC.Panel.js:528"
+            "line": " ../../uxc/comps/Panel/UXC.Panel.js:578"
         },
         {
             "message": "Missing item type\nPanel 的默认模板",
-            "line": " ../../uxc/comps/Panel/UXC.Panel.js:714"
+            "line": " ../../uxc/comps/Panel/UXC.Panel.js:764"
         },
         {
             "message": "Missing item type\n从 HTML 属性 自动执行 UXC.alert / UXC.confirm",
@@ -6103,6 +7191,18 @@
             "line": " ../../uxc/comps/Tips/Tips.js:383"
         },
         {
+            "message": "Missing item type\n树的视图模型类",
+            "line": " ../../uxc/comps/Tree/Tree.js:377"
+        },
+        {
+            "message": "Missing item type\n捕获树文件标签的点击事件",
+            "line": " ../../uxc/comps/Tree/Tree.js:623"
+        },
+        {
+            "message": "Missing item type\n捕获树文件夹图标的点击事件",
+            "line": " ../../uxc/comps/Tree/Tree.js:644"
+        },
+        {
             "message": "Missing item type\n响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果",
             "line": " ../../uxc/comps/Valid/Valid.js:85"
         },
@@ -6112,7 +7212,59 @@
         },
         {
             "message": "Missing item type\n根据特殊的 datatype 实现不同的计算方法",
-            "line": " ../../uxc/comps/Valid/Valid.js:944"
+            "line": " ../../uxc/comps/Valid/Valid.js:945"
+        },
+        {
+            "message": "Missing item type\nFeature detection",
+            "line": " ../../uxc/plugins/jquery.form.js:52"
+        },
+        {
+            "message": "Missing item type\najaxSubmit() provides a mechanism for immediately submitting\nan HTML form using AJAX.",
+            "line": " ../../uxc/plugins/jquery.form.js:74"
+        },
+        {
+            "message": "Missing item type\najaxForm() provides a mechanism for fully automating form submission.\n\nThe advantages of using this method instead of ajaxSubmit() are:\n\n1: This method will include coordinates for <input type=\"image\" /> elements (if the element\n   is used to submit the form).\n2. This method will include the submit element's name/value data (for the element that was\n   used to submit the form).\n3. This method binds the submit() method to the form for you.\n\nThe options argument for ajaxForm works exactly as it does for ajaxSubmit.  ajaxForm merely\npasses the options argument along after properly binding events for submit elements and\nthe form itself.",
+            "line": " ../../uxc/plugins/jquery.form.js:771"
+        },
+        {
+            "message": "Missing item type\nformToArray() gathers form element data into an array of objects that can\nbe passed to any of the following ajax functions: $.get, $.post, or load.\nEach object in the array has both a 'name' and 'value' property.  An example of\nan array for a simple login form might be:\n\n[ { name: 'username', value: 'jresig' }, { name: 'password', value: 'secret' } ]\n\nIt is this array that is passed to pre-submit callback functions provided to the\najaxSubmit() and ajaxForm() methods.",
+            "line": " ../../uxc/plugins/jquery.form.js:866"
+        },
+        {
+            "message": "Missing item type\nSerializes form data into a 'submittable' string. This method will return a string\nin the format: name1=value1&amp;name2=value2",
+            "line": " ../../uxc/plugins/jquery.form.js:947"
+        },
+        {
+            "message": "Missing item type\nSerializes all field elements in the jQuery object into a query string.\nThis method will return a string in the format: name1=value1&amp;name2=value2",
+            "line": " ../../uxc/plugins/jquery.form.js:956"
+        },
+        {
+            "message": "Missing item type\nReturns the value(s) of the element in the matched set.  For example, consider the following form:\n\n <form><fieldset>\n     <input name=\"A\" type=\"text\" />\n     <input name=\"A\" type=\"text\" />\n     <input name=\"B\" type=\"checkbox\" value=\"B1\" />\n     <input name=\"B\" type=\"checkbox\" value=\"B2\"/>\n     <input name=\"C\" type=\"radio\" value=\"C1\" />\n     <input name=\"C\" type=\"radio\" value=\"C2\" />\n </fieldset></form>\n\n var v = $('input[type=text]').fieldValue();\n // if no values are entered into the text inputs\n v == ['','']\n // if values entered into the text inputs are 'foo' and 'bar'\n v == ['foo','bar']\n\n var v = $('input[type=checkbox]').fieldValue();\n // if neither checkbox is checked\n v === undefined\n // if both checkboxes are checked\n v == ['B1', 'B2']\n\n var v = $('input[type=radio]').fieldValue();\n // if neither radio is checked\n v === undefined\n // if first radio is checked\n v == ['C1']\n\nThe successful argument controls whether or not the field element must be 'successful'\n(per http://www.w3.org/TR/html4/interact/forms.html#successful-controls).\nThe default value of the successful argument is true.  If this value is false the value(s)\nfor each element is returned.\n\nNote: This method *always* returns an array.  If no valid value can be determined the\n   array will be empty, otherwise it will contain one or more values.",
+            "line": " ../../uxc/plugins/jquery.form.js:981"
+        },
+        {
+            "message": "Missing item type\nReturns the value of the field element.",
+            "line": " ../../uxc/plugins/jquery.form.js:1034"
+        },
+        {
+            "message": "Missing item type\nClears the form data.  Takes the following actions on the form's input fields:\n - input text fields will have their 'value' property set to the empty string\n - select elements will have their 'selectedIndex' property set to -1\n - checkbox and radio inputs will have their 'checked' property set to false\n - inputs of type submit, button, reset, and hidden will *not* be effected\n - button elements will *not* be effected",
+            "line": " ../../uxc/plugins/jquery.form.js:1076"
+        },
+        {
+            "message": "Missing item type\nClears the selected form elements.",
+            "line": " ../../uxc/plugins/jquery.form.js:1090"
+        },
+        {
+            "message": "Missing item type\nResets the form data.  Causes all form elements to be reset to their original value.",
+            "line": " ../../uxc/plugins/jquery.form.js:1125"
+        },
+        {
+            "message": "Missing item type\nEnables or disables any matching elements.",
+            "line": " ../../uxc/plugins/jquery.form.js:1138"
+        },
+        {
+            "message": "Missing item type\nChecks/unchecks any matching checkboxes or radio buttons and\nselects/deselects and matching option elements.",
+            "line": " ../../uxc/plugins/jquery.form.js:1150"
         },
         {
             "message": "Missing item type\n去除多余的 正叙扛或反叙扛",

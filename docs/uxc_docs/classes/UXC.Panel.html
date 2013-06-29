@@ -34,17 +34,20 @@
         </div>
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
+                <li><a href="../classes/.window.html">.window</a></li>
                 <li><a href="../classes/UXC.alert.html">UXC.alert</a></li>
                 <li><a href="../classes/UXC.Calendar.html">UXC.Calendar</a></li>
                 <li><a href="../classes/UXC.confirm.html">UXC.confirm</a></li>
                 <li><a href="../classes/UXC.Dialog.html">UXC.Dialog</a></li>
                 <li><a href="../classes/UXC.Dialog.alert.html">UXC.Dialog.alert</a></li>
                 <li><a href="../classes/UXC.Dialog.confirm.html">UXC.Dialog.confirm</a></li>
+                <li><a href="../classes/UXC.Dialog.mask.html">UXC.Dialog.mask</a></li>
                 <li><a href="../classes/UXC.Form.html">UXC.Form</a></li>
                 <li><a href="../classes/UXC.hideAllPopup.html">UXC.hideAllPopup</a></li>
                 <li><a href="../classes/UXC.LunarCalendar.html">UXC.LunarCalendar</a></li>
                 <li><a href="../classes/UXC.Panel.html">UXC.Panel</a></li>
                 <li><a href="../classes/UXC.Tips.html">UXC.Tips</a></li>
+                <li><a href="../classes/UXC.Tree.html">UXC.Tree</a></li>
                 <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
                 <li><a href="../classes/window.jQuery.html">window.jQuery</a></li>
                 <li><a href="../classes/window.UXC.html">window.UXC</a></li>
@@ -204,13 +207,26 @@
                                 <a href="#method_close">close</a>
                             </li>
                             <li class="index-item method">
+                                <a href="#method_dispose">dispose</a>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_find">find</a>
+                            </li>
+                            <li class="index-item method">
                                 <a href="#method_footer">footer</a>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getInstance">getInstance</a>
+                                    <span class="flag static">static</span>
                             </li>
                             <li class="index-item method">
                                 <a href="#method_header">header</a>
                             </li>
                             <li class="index-item method">
                                 <a href="#method_hide">hide</a>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_layout">layout</a>
                             </li>
                             <li class="index-item method">
                                 <a href="#method_on">on</a>
@@ -291,7 +307,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l72"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:72</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l88"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:88</code></a>
         </p>
     </div>
     <div class="description">
@@ -313,7 +329,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l275"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:275</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l325"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:325</code></a>
         </p>
     </div>
     <div class="description">
@@ -344,7 +360,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l210"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:210</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l243"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:243</code></a>
         </p>
     </div>
     <div class="description">
@@ -357,13 +373,67 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l199"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:199</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l220"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:220</code></a>
         </p>
     </div>
     <div class="description">
         <p>关闭 Panel
 <br /> <b>关闭 Panel 是直接从 DOM 中删除 Panel</b></p>
     </div>
+</div>
+                    <div id="method_dispose" class="method item">
+    <h3 class="name"><code>dispose</code></h3>
+        <span class="paren">()</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l232"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:232</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>从DOM清除Panel
+<br /> <b>close 方法清除 Panel可以被用户阻止, 该方法不会被用户阻止</b></p>
+    </div>
+</div>
+                    <div id="method_find" class="method item">
+    <h3 class="name"><code>find</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l267"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:267</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>从 Panel 选择器中查找内容
+<br />添加这个方法是为了方便jquery 使用者的习惯</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    selector
+            </div>
+        </div>
 </div>
                     <div id="method_footer" class="method item">
     <h3 class="name"><code>footer</code></h3>
@@ -380,7 +450,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l288"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:288</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l338"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:338</code></a>
         </p>
     </div>
     <div class="description">
@@ -406,6 +476,47 @@
             </div>
         </div>
 </div>
+                    <div id="method_getInstance" class="method item">
+    <h3 class="name"><code>getInstance</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type">Panel instance</span>
+        </span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l57"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:57</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>从 selector 获取 Panel 的实例
+<br /><b>如果从DOM初始化, 不进行判断的话, 会重复初始化多次</b></p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                        <span class="type">Panel instance</span>:
+            </div>
+        </div>
+</div>
                     <div id="method_header" class="method item">
     <h3 class="name"><code>header</code></h3>
         <div class="args">
@@ -421,7 +532,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l261"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:261</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l311"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:311</code></a>
         </p>
     </div>
     <div class="description">
@@ -453,13 +564,35 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l189"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:189</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l209"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:209</code></a>
         </p>
     </div>
     <div class="description">
         <p>隐藏 Panel
 <br /> 隐藏 Panel 设置 css display:none, 不会从DOM 删除 Panel</p>
     </div>
+</div>
+                    <div id="method_layout" class="method item">
+    <h3 class="name"><code>layout</code></h3>
+        <span class="paren">()</span>
+        <span class="returns-inline">
+            <span class="type">Selector</span>
+        </span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l261"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:261</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>返回 Panel 的 jquery dom选择器对象</p>
+    </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                        <span class="type">Selector</span>:
+            </div>
+        </div>
 </div>
                     <div id="method_on" class="method item">
     <h3 class="name"><code>on</code></h3>
@@ -476,7 +609,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l103"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:103</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l119"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:119</code></a>
         </p>
     </div>
     <div class="description">
@@ -536,7 +669,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l302"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:302</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l352"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:352</code></a>
         </p>
     </div>
     <div class="description">
@@ -573,7 +706,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l179"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:179</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l198"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:198</code></a>
         </p>
     </div>
     <div class="description">
@@ -600,11 +733,12 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l220"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:220</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l254"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:254</code></a>
         </p>
     </div>
     <div class="description">
-        <p>返回 Panel 的 jquery dom选择器对象</p>
+        <p>返回 Panel 的 jquery dom选择器对象
+<br />这个方法以后将会清除, 请使用 layout 方法</p>
     </div>
         <div class="returns">
             <h4>Returns:</h4>
@@ -625,7 +759,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l128"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:128</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l145"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:145</code></a>
         </p>
     </div>
     <div class="description">
@@ -671,7 +805,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l226"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:226</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l275"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:275</code></a>
         </p>
     </div>
     <div class="description">
@@ -716,7 +850,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l41"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:41</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l42"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:42</code></a>
         </p>
     </div>
     <div class="description">
@@ -729,7 +863,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l47"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:47</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l48"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:48</code></a>
         </p>
     </div>
     <div class="description">
@@ -744,7 +878,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l368"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:368</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l418"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:418</code></a>
         </p>
     </div>
     <div class="description">
@@ -765,7 +899,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l347"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:347</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l397"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:397</code></a>
         </p>
     </div>
     <div class="description">
@@ -789,7 +923,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l331"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:331</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l381"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:381</code></a>
         </p>
     </div>
     <div class="description">
@@ -810,7 +944,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l316"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:316</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l366"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:366</code></a>
         </p>
     </div>
     <div class="description">
@@ -831,7 +965,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l393"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:393</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l443"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:443</code></a>
         </p>
     </div>
     <div class="description">
@@ -854,7 +988,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l376"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:376</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l426"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:426</code></a>
         </p>
     </div>
     <div class="description">
@@ -874,7 +1008,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l358"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:358</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l408"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:408</code></a>
         </p>
     </div>
     <div class="description">
@@ -897,7 +1031,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l383"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:383</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l433"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:433</code></a>
         </p>
     </div>
     <div class="description">
@@ -920,7 +1054,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l339"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:339</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l389"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:389</code></a>
         </p>
     </div>
     <div class="description">
@@ -942,7 +1076,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l56"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:56</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l72"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:72</code></a>
         </p>
     </div>
     <div class="description">
@@ -956,7 +1090,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l324"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:324</code></a>
+        <a href="../files/.._.._uxc_comps_Panel_UXC.Panel.js.html#l374"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:374</code></a>
         </p>
     </div>
     <div class="description">

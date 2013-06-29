@@ -41,6 +41,8 @@
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
             
+                <li><a href="../classes/.window.html">.window</a></li>
+            
                 <li><a href="../classes/UXC.alert.html">UXC.alert</a></li>
             
                 <li><a href="../classes/UXC.Calendar.html">UXC.Calendar</a></li>
@@ -52,6 +54,8 @@
                 <li><a href="../classes/UXC.Dialog.alert.html">UXC.Dialog.alert</a></li>
             
                 <li><a href="../classes/UXC.Dialog.confirm.html">UXC.Dialog.confirm</a></li>
+            
+                <li><a href="../classes/UXC.Dialog.mask.html">UXC.Dialog.mask</a></li>
             
                 <li><a href="../classes/UXC.Form.html">UXC.Form</a></li>
             
@@ -74,6 +78,10 @@
                 <li><a href="../classes/UXC.Tips.Model.html">UXC.Tips.Model</a></li>
             
                 <li><a href="../classes/UXC.Tips.View.html">UXC.Tips.View</a></li>
+            
+                <li><a href="../classes/UXC.Tree.html">UXC.Tree</a></li>
+            
+                <li><a href="../classes/UXC.Tree.Model.html">UXC.Tree.Model</a></li>
             
                 <li><a href="../classes/UXC.Valid.html">UXC.Valid</a></li>
             
@@ -134,9 +142,8 @@
      * 农历日历组件
      * &lt;br /&gt;全局访问请使用 UXC.LunarCalendar 或 LunarCalendar
      * &lt;br /&gt;DOM 加载完毕后
-     * , LunarCalendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签
-     * &lt;br /&gt;Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用LunarCalendar.init( _selector )
-     * &lt;br /&gt;_selector 可以是 新加载的容器, 也可以是新加载的所有input
+     * , LunarCalendar会自动初始化页面所有具体识别符的日历, 目前可识别: div.js_LunarCalendar, td.js_LunarCalendar, li.js_LunarCalendar
+     * &lt;br /&gt;Ajax 加载内容后, 如果有日历组件需求的话, 需要手动初始化 var ins = new UXC.LunarCalendar( _selector );
      * &lt;p&gt;
      *      初始化时, 如果日历是添加到某个selector里, 那么selector可以指定一些设置属性
      *      &lt;br /&gt;&lt;b&gt;hidecontrol&lt;/b&gt;: 如果设置该属性, 那么日历将隐藏操作控件
