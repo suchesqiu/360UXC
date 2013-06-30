@@ -29,6 +29,9 @@
         , onConfirm:
             function(){
                 UXC.log( 'Calendar.pickWeek, onConfirm' );
+                var _cur = _logic.getLayout().find('td.cur');
+                if( !_cur.length ) _logic.getLayout().find('td.today');
+                if( _cur.length ) _cur.find('a').trigger('click');
             }
         , updateYear:
             function( _val ){
@@ -189,6 +192,7 @@
     $(document).delegate('#UXCCalendar_week table a', 'click', function( _evt ){
         var p = $(this), dstart = new Date(), dend = new Date();
         if( !UXC.Calendar.lastIpt ) return;
+        if( p.parent('td').hasClass( 'unable' ) ) return;
         dstart.setTime( p.attr('dstart') );
         dend.setTime( p.attr('dend') );
         UXC.Calendar.lastIpt.val( printf( '{0} 至 {1}', formatISODate( dstart ), formatISODate( dend ) ) );
