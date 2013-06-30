@@ -8,6 +8,18 @@
     body{ width: 600px; margin: 20px auto 20px; background:#ececec; }
     dl dd{ margin: 10px 0; }
 </style>
+<link href='../../../comps/Calendar/res/default/style.css' rel='stylesheet' />
+<script src="../../../lib.js"></script>
+<script>
+    UXC.debug = true; UXC.use( 'Calendar' );
+    /**
+     * 注意: 如果 input 已经声明了 datatype=date, 那就不需要执行下面的语法
+     * 带 datatype=date 的 input 页面加载完毕后都会自动初始化
+     */
+    $(document).delegate('input.manualPickDate', 'focus', function($evt){
+        UXC.Calendar.pickDate( this );
+    });
+</script>
 </head>    
 <body>
     <br /><br /><br /><br /><br /><br />
@@ -53,15 +65,6 @@
     </form>
     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
     <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
-    <script src="../../../lib.js"></script>
-    <link href='../../../comps/Calendar/res/default/style.css' rel='stylesheet' />
-    <script> UXC.debug = true; UXC.use( 'Calendar' ); </script>
-    <script>
-        $(document).delegate('input.manualPickDate', 'focus', function($evt){
-            UXC.Calendar.pickDate( this );
-        });
-    </script>
 </body>
 </html>
 

@@ -326,7 +326,7 @@
                     _item.removeClass(&#x27;error&#x27;);
                     _item.find(&#x27;~ em&#x27;).show();
                     _item.find(&#x27;~ em.error&#x27;).hide();
-                    _item.attr(&#x27;emel&#x27;) &amp;&amp; $( &#x27;#&#x27; + _item.attr(&#x27;emel&#x27;).replace( /[\#]+/, &#x27;#&#x27; ) ).hide();
+                    _item.attr(&#x27;emel&#x27;) &amp;&amp; $( (&#x27;#&#x27; + _item.attr(&#x27;emel&#x27;)).replace( /[\#]+/, &#x27;#&#x27; ) ).hide();
                 }
             /**
              * 显示错误的视觉效果

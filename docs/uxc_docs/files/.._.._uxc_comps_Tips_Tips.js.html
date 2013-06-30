@@ -219,6 +219,15 @@
             return _r;
         };
     /**
+     * 隐藏 Tips 
+     * @method  hide
+     * @static
+     */
+    Tips.hide =
+        function(){
+            $(&#x27;body &gt; div.UTips&#x27;).hide();
+        }
+    /**
      * 页面加载完毕后, 是否自动初始化
      * @property    autoInit
      * @type        bool
@@ -330,6 +339,12 @@
          * @return  selector
          */
         , layout: function( _update ){ return this._view.layout( _update ); }
+        /**
+         * 获取 tips 显示的内容
+         * @method  data
+         * @return  string
+         */
+        , data: function(){ return this._model.data() }
     }
     /**
      * Tips 数据模型类
@@ -544,12 +559,18 @@
     function tipMouseenter( _evt ){
         var _sp = $(this), _p = _sp.data(&#x27;tipIns&#x27;);
         _p.layout( 1 ).css( &#x27;z-index&#x27;, ZINDEX_COUNT++ );
+        if( !_p.data() ) return;
         _p.show( _evt );
 
         $(document).on(&#x27;mousemove&#x27;, tipMousemove );
         _sp.on(&#x27;mouseleave&#x27;, tipMouseleave );
 
         function tipMousemove( _wevt ){
+            if( !_p.layout().is(&#x27;:visible&#x27;) ){
+                $(document).unbind( &#x27;mousemove&#x27;, tipMousemove );
+                $(_sp).unbind( &#x27;mouseleave&#x27;, tipMouseleave );
+                return;
+            }
             _p.show( _wevt );
         }
 

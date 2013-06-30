@@ -56,6 +56,7 @@ $(document).ready( function(){
                     _node.html( printf( '<a href="javascript:" dataid="{0}">{1}</a>', _data[0], _data[1] ) );
                 });
                 _tree.init();
+                _tree.open();
 
                 var _defSelected = _p.find( '> input[type=hidden]' ).val();
                 _defSelected && _tree.open( _defSelected );

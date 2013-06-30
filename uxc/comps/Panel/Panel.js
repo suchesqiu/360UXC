@@ -767,12 +767,12 @@
      */
     var _deftpl =
         [
-        '<div class="UPanel" style="width: 600px;">\n'
-        ,'    <div class="UPContent">\n'
-        ,'        <div class="bd"></div>\n'
-        ,'        <span class="close" eventtype="close"></span>\n'
-        ,'    </div><!--end UPContent-->\n'
-        ,'</div><!--end UPanel-->\n'
+        '<div class="UPanel" style="width: 600px;">'
+        ,'    <div class="UPContent">'
+        ,'        <div class="bd"></div>'
+        ,'        <span class="close" eventtype="close"></span>'
+        ,'    </div><!--end UPContent-->'
+        ,'</div><!--end UPanel-->'
         ].join('')
 
 }(jQuery));
@@ -1253,20 +1253,20 @@
              */
             alert:
                 [
-                '<div class="UPanel UPanelPopup {status}" >\n'
-                ,'    <div class="UPContent">\n'
-                ,'        <div class="bd">\n'
-                ,'            <dl>\n'
-                ,'                <dd class="UPopupContent">\n'
-                ,'                <button class="UIcon" align="absMiddle" ></button><div class="UText"><button type="button" class="UPlaceholder"></button>{msg}</div>\n'
-                ,'                </dd>\n'
-                ,'                <dd class="UButton">\n'
-                ,'                    <button type="button" eventtype="confirm">确定</button>\n'
-                ,'                </dd>\n'
-                ,'            </dl>\n'
-                ,'        </div>\n'
-                ,'    </div><!--end UPContent-->\n'
-                ,'</div><!--end UPanel-->\n'
+                '<div class="UPanel UPanelPopup {status}" >'
+                ,'    <div class="UPContent">'
+                ,'        <div class="bd">'
+                ,'            <dl>'
+                ,'                <dd class="UPopupContent">'
+                ,'                <button class="UIcon" align="absMiddle" ></button><div class="UText"><button type="button" class="UPlaceholder"></button>{msg}</div>'
+                ,'                </dd>'
+                ,'                <dd class="UButton">'
+                ,'                    <button type="button" eventtype="confirm">确定</button>'
+                ,'                </dd>'
+                ,'            </dl>'
+                ,'        </div>'
+                ,'    </div><!--end UPContent-->'
+                ,'</div><!--end UPanel-->'
                 ].join('')
             /**
              *  confirm 弹框的默认模板
@@ -1276,21 +1276,21 @@
              */
             , confirm:
                 [
-                '<div class="UPanel UPanelPopup {status}" >\n'
-                ,'    <div class="UPContent">\n'
-                ,'        <div class="bd">\n'
-                ,'            <dl>\n'
-                ,'                <dd class="UPopupContent">\n'
-                ,'                <button class="UIcon" align="absMiddle" ></button><div class="UText"><button type="button" class="UPlaceholder"></button>{msg}</div>\n'
-                ,'                </dd>\n'
-                ,'                <dd class="UButton">\n'
+                '<div class="UPanel UPanelPopup {status}" >'
+                ,'    <div class="UPContent">'
+                ,'        <div class="bd">'
+                ,'            <dl>'
+                ,'                <dd class="UPopupContent">'
+                ,'                <button class="UIcon" align="absMiddle" ></button><div class="UText"><button type="button" class="UPlaceholder"></button>{msg}</div>'
+                ,'                </dd>'
+                ,'                <dd class="UButton">'
                 ,'                    <button type="button" eventtype="confirm">确定</button>'
-                ,'                    <button type="button" eventtype="cancel">取消</button>\n'
-                ,'                </dd>\n'
-                ,'            </dl>\n'
-                ,'        </div>\n'
-                ,'    </div><!--end UPContent-->\n'
-                ,'</div><!--end UPanel-->\n'
+                ,'                    <button type="button" eventtype="cancel">取消</button>'
+                ,'                </dd>'
+                ,'            </dl>'
+                ,'        </div>'
+                ,'    </div><!--end UPContent-->'
+                ,'</div><!--end UPanel-->'
                 ].join('')
         }
     };
@@ -1634,20 +1634,20 @@
              */
             alert:
                 [
-                '<div class="UPanel UPanelPopup {status}" >\n'
-                ,'    <div class="UPContent">\n'
-                ,'        <div class="bd">\n'
-                ,'            <dl>\n'
-                ,'                <dd class="UPopupContent">\n'
-                ,'                <button class="UIcon" align="absMiddle" ></button><div class="UText"><button type="button" class="UPlaceholder"></button>{msg}</div>\n'
-                ,'                </dd>\n'
-                ,'                <dd class="UButton">\n'
-                ,'                    <button type="button" eventtype="confirm">确定</button>\n'
-                ,'                </dd>\n'
-                ,'            </dl>\n'
-                ,'        </div>\n'
-                ,'    </div><!--end UPContent-->\n'
-                ,'</div><!--end UPanel-->\n'
+                '<div class="UPanel UPanelPopup {status}" >'
+                ,'    <div class="UPContent">'
+                ,'        <div class="bd">'
+                ,'            <dl>'
+                ,'                <dd class="UPopupContent">'
+                ,'                <button class="UIcon" align="absMiddle" ></button><div class="UText"><button type="button" class="UPlaceholder"></button>{msg}</div>'
+                ,'                </dd>'
+                ,'                <dd class="UButton">'
+                ,'                    <button type="button" eventtype="confirm">确定</button>'
+                ,'                </dd>'
+                ,'            </dl>'
+                ,'        </div>'
+                ,'    </div><!--end UPContent-->'
+                ,'</div><!--end UPanel-->'
                 ].join('')
             /**
              *  confirm 会话弹框的默认模板
@@ -1657,21 +1657,21 @@
              */
             , confirm:
                 [
-                '<div class="UPanel UPanelPopup {status}" >\n'
-                ,'    <div class="UPContent">\n'
-                ,'        <div class="bd">\n'
-                ,'            <dl>\n'
-                ,'                <dd class="UPopupContent">\n'
-                ,'                <button class="UIcon" align="absMiddle" ></button><div class="UText"><button type="button" class="UPlaceholder"></button>{msg}</div>\n'
-                ,'                </dd>\n'
-                ,'                <dd class="UButton">\n'
+                '<div class="UPanel UPanelPopup {status}" >'
+                ,'    <div class="UPContent">'
+                ,'        <div class="bd">'
+                ,'            <dl>'
+                ,'                <dd class="UPopupContent">'
+                ,'                <button class="UIcon" align="absMiddle" ></button><div class="UText"><button type="button" class="UPlaceholder"></button>{msg}</div>'
+                ,'                </dd>'
+                ,'                <dd class="UButton">'
                 ,'                    <button type="button" eventtype="confirm">确定</button>'
-                ,'                    <button type="button" eventtype="cancel">取消</button>\n'
-                ,'                </dd>\n'
-                ,'            </dl>\n'
-                ,'        </div>\n'
-                ,'    </div><!--end UPContent-->\n'
-                ,'</div><!--end UPanel-->\n'
+                ,'                    <button type="button" eventtype="cancel">取消</button>'
+                ,'                </dd>'
+                ,'            </dl>'
+                ,'        </div>'
+                ,'    </div><!--end UPContent-->'
+                ,'</div><!--end UPanel-->'
                 ].join('')
             /**
              *  会话弹框的蒙板模板

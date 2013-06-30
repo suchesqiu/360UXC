@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>../../uxc/comps/Calendar/Calendar.js - UXC jquery components</title>
+    <title>../../uxc/comps/Calendar/UXC.Calendar.js - UXC jquery components</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -128,7 +128,7 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: ../../uxc/comps/Calendar/Calendar.js</h1>
+                        <h1 class="file-heading">File: ../../uxc/comps/Calendar/UXC.Calendar.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
@@ -142,7 +142,14 @@
      * , Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签
      * &lt;br /&gt;Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用Calendar.init( _selector )
      * &lt;br /&gt;_selector 可以是 新加载的容器, 也可以是新加载的所有input
-     * &lt;p&gt;&lt;b&gt;requires&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;&lt;/p&gt;
+     * &lt;p&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;
+     * &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;.window.html#method_cloneDate&#x27;&gt;window.cloneDate&lt;/a&gt;
+     * &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;.window.html#method_parseISODate&#x27;&gt;window.parseISODate&lt;/a&gt;
+     * &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;.window.html#method_formatISODate&#x27;&gt;window.formatISODate&lt;/a&gt;
+     * &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;.window.html#method_maxDayOfMonth&#x27;&gt;window.maxDayOfMonth&lt;/a&gt;
+     * &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;.window.html#method_isSameDay&#x27;&gt;window.isSameDay&lt;/a&gt;
+     * &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;.window.html#method_isSameMonth&#x27;&gt;window.isSameMonth&lt;/a&gt;
+     * &lt;/p&gt;
      * &lt;p&gt;&lt;a href=&#x27;https://github.com/suchesqiu/360UXC.git&#x27; target=&#x27;_blank&#x27;&gt;UXC Project Site&lt;/a&gt;
      * | &lt;a href=&#x27;http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Calendar.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
      * | &lt;a href=&#x27;http://uxc.btbtd.org/uxc/comps/Calendar/_demo/&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;&lt;/p&gt;
@@ -152,6 +159,9 @@
      * @version dev 0.1
      * @author  qiushaowei   &lt;suches@btbtd.org&gt; | 360 UXC-FE Team
      * @date    2013-06-04
+     */
+    /**
+     * //TODO 添加事件响应机制
      */
     var Calendar = UXC.Calendar = window.Calendar = 
     {
@@ -177,7 +187,23 @@
                     });
                 &lt;/script&gt;
          */
-        pickDate: function( _selector ){ _logic.pickDate( _selector ); } 
+        pickDate: 
+            function( _selector ){ 
+                _selector = $( _selector );
+                if( !(_selector &amp;&amp; _selector.length) ) return;
+                $(&#x27;body &gt; div.UXCCalendar&#x27;).hide();
+                Calendar.lastIpt = _selector;
+                _selector = $(_selector);
+                var _type = $.trim(_selector.attr(&#x27;multidate&#x27;) || &#x27;&#x27;).toLowerCase();
+                switch( _type ){
+                    case &#x27;week&#x27;: Calendar.pickWeek &amp;&amp; Calendar.pickWeek( _selector ); break;
+                    case &#x27;month&#x27;: Calendar.pickMonth &amp;&amp; Calendar.pickMonth( _selector ); break;
+                    case &#x27;season&#x27;: Calendar.pickSeason &amp;&amp; Calendar.pickSeason( _selector ); break;
+                    default: _logic.pickDate( _selector );
+                }
+
+                Calendar.layoutInitedCallback &amp;&amp; Calendar.layoutInitedCallback( $(&#x27;body &gt; div.UXCCalendar:visible&#x27;) );
+            } 
         /**
          * 初始化 _selector 中的所有日历组件
          * @method  init
@@ -193,14 +219,6 @@
                 &lt;/script&gt;
          */
         , init: function( _selector ){ _logic.initTrigger( _selector ); }
-        /**
-         * 隐藏日历组件
-         * @method  hide
-         * @static
-         * @example
-                &lt;script&gt;UXC.Calendar.hide();&lt;/script&gt;
-         */
-        , hide: function(){ _logic.hide(); }
         /**
          * 设置是否在 DOM 加载完毕后, 自动初始化所有日期控件
          * @property    autoInit
@@ -220,6 +238,135 @@
          */
         , defaultDateSpan: 20
         /**
+         * 最后一个显示日历组件的文本框
+         * @property  Calendar.lastIpt
+         * @type    selector
+         * @static
+         */
+        , lastIpt: null
+        /**
+         * 设置日历组件的显示位置
+         * @method  Calendar.setPosition
+         * @static
+         * @param   {selector}  _ipt    需要显示日历组件的文本框
+         */
+        , setPosition:
+            function( _ipt, _layout ){
+                if( !( _ipt &amp;&amp; _layout ) ) return;
+                _layout.css( {&#x27;left&#x27;: &#x27;-9999px&#x27;, &#x27;top&#x27;: &#x27;-9999px&#x27;, &#x27;z-index&#x27;: ZINDEX_COUNT++ } ).show();
+                var _lw = _layout.width(), _lh = _layout.height()
+                    , _iw = _ipt.width(), _ih = _ipt.height(), _ioset = _ipt.offset()
+                    , _x, _y, _winw = $(window).width(), _winh = $(window).height()
+                    , _scrtop = $(document).scrollTop()
+                    ;
+
+                _x = _ioset.left; _y = _ioset.top + _ih + 5;
+
+                if( ( _y + _lh - _scrtop ) &gt; _winh ){
+                    UXC.log(&#x27;y overflow&#x27;);
+                    _y = _ioset.top - _lh - 3;
+
+                    if( _y &lt; _scrtop ) _y = _scrtop;
+                }
+
+                _layout.css( {left: _x+&#x27;px&#x27;, top: _y+&#x27;px&#x27;} );
+
+                UXC.log( _lw, _lh, _iw, _ih, _ioset.left, _ioset.top, _winw, _winh );
+                UXC.log( _scrtop, _x, _y );
+            }
+        /** 
+         * 判断选择器是否为日历组件的对象
+         * @method  Calendar.isCalendarElement
+         * @static
+         * @param   {selector}  _selector
+         * return   bool
+         */
+        , isCalendarElement:
+            function( _selector ){
+                _selector = $(_selector);
+                var _r = 0;
+
+                if( _selector.length ){
+                    if( _selector.hasClass(&#x27;UXCCalendar_btn&#x27;) ) _r = 1;
+                    if( _selector.prop(&#x27;nodeName&#x27;) 
+                            &amp;&amp; _selector.attr(&#x27;datatype&#x27;)
+                            &amp;&amp; _selector.prop(&#x27;nodeName&#x27;).toLowerCase()==&#x27;input&#x27; 
+                            &amp;&amp; _selector.attr(&#x27;datatype&#x27;).toLowerCase()==&#x27;date&#x27;) _r = 1;
+                    if( _selector.prop(&#x27;nodeName&#x27;) 
+                            &amp;&amp; _selector.attr(&#x27;multidate&#x27;)
+                            &amp;&amp; _selector.prop(&#x27;nodeName&#x27;).toLowerCase()==&#x27;input&#x27;) _r = 1;
+                }
+
+                return _r;
+            }
+        /**
+         * 初始化外观后的回调函数
+         * @property layoutInitedCallback
+         * @type    function
+         * @static
+         * @default null
+         */
+        , layoutInitedCallback: null
+        /**
+         * 日历隐藏后的回调函数
+         * @property layoutHideCallback
+         * @type    function
+         * @static
+         * @default null
+         */
+        , layoutHideCallback: null
+        /**
+         * 隐藏日历组件
+         * @method  hide
+         * @static
+         * @example
+                &lt;script&gt;UXC.Calendar.hide();&lt;/script&gt;
+         */
+        , hide:
+            function(){
+                $(&#x27;body &gt; div.UXCCalendar&#x27;).hide();
+                Calendar.layoutHideCallback &amp;&amp; Calendar.layoutHideCallback( Calendar.lastIpt );
+            }
+        /**
+         * 获取初始日期对象
+         * @method  Calendar.getDate
+         * @param   {selector}  _selector   显示日历组件的input
+         * return   Object  { date: 0, minvalue: 0, maxvalue: 0, initMinvalue: 0, initMaxvalue: 0 }
+         */
+        , getDate:
+            function( _selector ){
+                var _r = { date: 0, minvalue: 0, maxvalue: 0, initMinvalue: 0, initMaxvalue: 0 }, _tmp;
+
+                if( _tmp = parseISODate( _selector.val() ) ) _r.date = _tmp;
+                else{
+                    if( _selector.val() &amp;&amp; (_tmp = _selector.val().replace( /[^\d]/g, &#x27;&#x27; ) ).length == 16 ){
+                        _r.date = parseISODate( _tmp.slice( 0, 8 ) );
+                        _r.rangeStart = cloneDate( _r.date );
+                        _r.rangeEnd = parseISODate( _tmp.slice( 8 ) );
+                        UXC.log( 111 );
+                    }else{
+                        UXC.log( 222 );
+                        _r.date = new Date();
+                    }
+                }
+
+                _r.minvalue = parseISODate( _selector.attr(&#x27;minvalue&#x27;) );
+                _r.maxvalue = parseISODate( _selector.attr(&#x27;maxvalue&#x27;) );
+                
+                //_r.minvalue &amp;&amp; ( _r.initMinvalue = cloneDate( _r.minvalue ) );
+                //_r.maxvalue &amp;&amp; ( _r.initMaxvalue = cloneDate( _r.maxvalue ) );
+                Calendar.updateInitYearList( _r );
+                return _r;
+            }
+        , updateInitYearList:
+            function( _dateObj ){
+                _dateObj.initMinvalue = cloneDate( _dateObj.date );
+                _dateObj.initMinvalue.setFullYear( _dateObj.initMinvalue.getFullYear() - Calendar.defaultDateSpan );
+
+                _dateObj.initMaxvalue = cloneDate( _dateObj.date );
+                _dateObj.initMaxvalue.setFullYear( _dateObj.initMaxvalue.getFullYear() + Calendar.defaultDateSpan );
+            }
+        /**
          * 自定义日历组件模板
          * &lt;p&gt;默认模板为_logic.tpl&lt;/p&gt;
          * &lt;p&gt;如果用户显示定义UXC.Calendar.tpl的话, 将采用用户的模板&lt;/p&gt;
@@ -230,180 +377,6 @@
          */
         , tpl: &#x27;&#x27;
     };
-    /**
-     * DOM 加载完毕后, 初始化日历组件相关事件
-     * @event   dom ready
-     * @private
-     */
-    $(document).ready( function($evt){
-        /**
-         * 延迟200毫秒初始化页面的所有日历控件
-         * 之所以要延迟是可以让用户自己设置是否需要自动初始化
-         */
-        setTimeout( function( $evt ){
-            if( !Calendar.autoInit ) return;
-            Calendar.init( $(&#x27;input[type=text]&#x27;) );
-        }, 200 );
-        /**
-         * 捕获用户更改年份 
-         * &lt;p&gt;监听 年份下拉框&lt;/p&gt;
-         * @event year change
-         * @private
-         */
-        $(document).delegate( &#x27;#UXCCalendar select.UYear&#x27;, &#x27;change&#x27;, function( $evt ){
-            _logic.setNewYear( $(this).val() );
-        });
-        /**
-         * 捕获用户更改月份
-         * &lt;p&gt;监听 月份下拉框&lt;/p&gt;
-         * @event   month change
-         * @private
-         */
-        $(document).delegate( &#x27;#UXCCalendar select.UMonth&#x27;, &#x27;change&#x27;, function( $evt ){
-            _logic.setNewMonth( $(this).val() );
-        });
-        /**
-         * 选择当前日期
-         * &lt;p&gt;监听确定按钮&lt;/p&gt;
-         * @event   confirm click
-         * @private
-         */
-        $(document).delegate( &#x27;#UXCCalendar button.UConfirm&#x27;, &#x27;click&#x27;, function( $evt ){
-            if( !_logic.setSelectedDate() ) return;
-            _logic.hide();
-        });
-        /**
-         * 增加或者减少一年
-         * &lt;p&gt;监听 年份map&lt;/p&gt;
-         * @event   year map click
-         * @private
-         */
-        $(document).delegate( &quot;map[name=UXCCalendar_Year] area&quot; , &#x27;click&#x27;, function( $evt ){
-            $evt.preventDefault();
-            var _p = $(this), _do = _logic.lastDateObj;
-            if( !(_do &amp;&amp; _p.attr(&quot;action&quot;) ) ) return;
-            if( _p.attr(&quot;action&quot;).toLowerCase() == &#x27;up&#x27; ){
-                _do.date.setFullYear( _do.date.getFullYear() + 1 );
-                _do.initMinvalue.setFullYear( _do.initMinvalue.getFullYear() + 1 );
-                _do.initMaxvalue.setFullYear( _do.initMaxvalue.getFullYear() + 1 );
-            }else if( _p.attr(&quot;action&quot;).toLowerCase() == &#x27;down&#x27; ){
-                _do.date.setFullYear( _do.date.getFullYear() - 1 );
-                _do.initMinvalue.setFullYear( _do.initMinvalue.getFullYear() - 1 );
-                _do.initMaxvalue.setFullYear( _do.initMaxvalue.getFullYear() - 1 );
-            }
-            _logic.initDateLayout( _do );
-            UXC.log( _p.attr(&quot;action&quot;) );
-        });
-        /**
-         * 增加或者减少一个月
-         * &lt;p&gt;监听 月份map&lt;/p&gt;
-         * @event   month map click
-         * @private
-         */
-        $(document).delegate( &quot;map[name=UXCCalendar_Month] area&quot; , &#x27;click&#x27;, function( $evt ){
-            $evt.preventDefault();
-            var _p = $(this), _do = _logic.lastDateObj;
-            if( !(_do &amp;&amp; _p.attr(&quot;action&quot;) ) ) return;
-            if( _p.attr(&quot;action&quot;).toLowerCase() == &#x27;up&#x27; ){
-                _do.date.setMonth( _do.date.getMonth() + 1 );
-                _do.initMinvalue.setMonth( _do.initMinvalue.getMonth() + 1 );
-                _do.initMaxvalue.setMonth( _do.initMaxvalue.getMonth() + 1 );
-            }else if( _p.attr(&quot;action&quot;).toLowerCase() == &#x27;down&#x27; ){
-                _do.date.setMonth( _do.date.getMonth() - 1 );
-                _do.initMinvalue.setMonth( _do.initMinvalue.getMonth() - 1 );
-                _do.initMaxvalue.setMonth( _do.initMaxvalue.getMonth() - 1 );
-            }
-            _logic.initDateLayout( _do );
-            UXC.log( _p.attr(&quot;action&quot;) );
-        });
-        /**
-         * 清除文本框内容
-         * &lt;p&gt;监听 清空按钮&lt;/p&gt;
-         * @event   clear click
-         * @private
-         */
-        $(document).delegate( &#x27;#UXCCalendar button.UClear&#x27;, &#x27;click&#x27;, function( $evt ){
-            _logic.lastIpt &amp;&amp; _logic.lastIpt.length &amp;&amp; _logic.lastIpt.val(&#x27;&#x27;);
-        });
-        /**
-         * 取消日历组件, 相当于隐藏
-         * &lt;p&gt;监听 取消按钮&lt;/p&gt;
-         * @event cancel click
-         * @private
-         */
-        $(document).delegate( &#x27;#UXCCalendar button.UCancel&#x27;, &#x27;click&#x27;, function( $evt ){
-            _logic.hide();
-        });
-        /**
-         * dom 点击时, 检查事件源是否为日历组件对象, 如果不是则会隐藏日历组件
-         * @event dom click
-         * @private
-         */
-        $(document).on(&#x27;click&#x27;, function($evt){
-            if( _logic.isCalendarElement($evt.target||$evt.targetElement) ) return;
-            var _src = $evt.target || $evt.srcElement;
-
-            if( _src &amp;&amp; _src.nodeName.toLowerCase() != &#x27;input&#x27; ){
-                _logic.hide(); return;
-            }
-
-            setTimeout( function(){
-                if( _logic.lastIpt &amp;&amp; _logic.lastIpt.length &amp;&amp; _src == _logic.lastIpt[0] ) return;
-                _logic.hide();
-            }, 100);
-        });
-        /**
-         * 日历组件按钮点击事件
-         * @event calendar button click
-         * @private
-         */
-        $(document).delegate( &#x27;input.UXCCalendar_btn&#x27;, &#x27;click&#x27;, function($evt){
-            if( this.forCalendar ) _logic.pickDate( this.forCalendar );
-        });
-        /**
-         * 日历组件文本框获得焦点
-         * @event input focus
-         * @private
-         */
-        $(document).delegate( &#x27;input[datatype=date], input[datatype=daterange]&#x27;, &#x27;focus&#x27;, function($evt){
-            _logic.pickDate( this );
-        });
-        /**
-         * 日历组件点击事件, 阻止冒泡, 防止被 document click事件隐藏
-         * @event UXCCalendar click
-         * @private
-         */
-        $(document).delegate( &#x27;#UXCCalendar&#x27;, &#x27;click&#x27;, function( $evt ){
-            $evt.stopPropagation();
-        });
-        /**
-         * 日期点击事件
-         * @event date click
-         * @private
-         */
-        $(document).delegate( &#x27;#UXCCalendar table a&#x27;, &#x27;click&#x27;, function( $evt ){
-            $evt.preventDefault();
-            var _p = $(this), _tm = _p.attr(&#x27;date&#x27;)||&#x27;&#x27;;
-            if( !_tm ) return;
-            if( _p.parent(&#x27;td&#x27;).hasClass(&#x27;unable&#x27;) ) return;
-
-            UXC.log( _tm );
-
-            _logic.setDate( _tm );
-            _logic.hide();
-        });
-        /**
-         * 监听窗口滚动和改变大小, 实时变更日历组件显示位置
-         * @event  window scroll, window resize
-         * @private
-         */
-        $(window).on(&#x27;scroll resize&#x27;, function($evt){
-            var _layout = _logic.getLayout();
-            if( !( _layout.is(&#x27;:visible&#x27;) &amp;&amp; _logic.lastIpt ) ) return;
-            _logic.setPosition( _logic.lastIpt );
-        });
-    });
-
     /**
      * 私有逻辑处理对象, 基本上所有逻辑方法都存放于此对象
      * @property _logic
@@ -430,6 +403,7 @@
                         return; 
                     }
                     if( !($.trim( _p.attr(&#x27;datatype&#x27;) || &#x27;&#x27;).toLowerCase() == &#x27;date&#x27; 
+                            || $.trim( _p.attr(&#x27;multidate&#x27;) || &#x27;&#x27;)
                             || $.trim( _p.attr(&#x27;datatype&#x27;) || &#x27;&#x27;).toLowerCase() == &#x27;daterange&#x27;) ) return;
 
                     UXC.log( &#x27;find Calendar item:&#x27;, _p.attr(&#x27;name&#x27;), _p.attr(&#x27;id&#x27;), _p.attr(&#x27;datatype&#x27;) );
@@ -442,40 +416,12 @@
                 });
             }
         /**
-         * 最后一个显示日历组件的文本框
-         * @property  _logic.lastIpt
-         * @type    selector
-         * @private
-         */
-        , lastIpt: null
-        /**
          * 最后一个显示日历组件的日期对象
          * @property    _logic.lastDateObj
          * @type        Object
          * @private
          */
         , lastDateObj: null
-        /** 
-         * 判断选择器是否为日历组件的对象
-         * @method  _logic.isCalendarElement
-         * @param   {selector}  _selector
-         * @private
-         */
-        , isCalendarElement:
-            function( _selector ){
-                _selector = $(_selector);
-                var _r = 0;
-
-                if( _selector.length ){
-                    if( _selector.hasClass(&#x27;UXCCalendar_btn&#x27;) ) _r = 1;
-                    if( _selector.prop(&#x27;nodeName&#x27;) 
-                            &amp;&amp; _selector.attr(&#x27;datatype&#x27;)
-                            &amp;&amp; _selector.prop(&#x27;nodeName&#x27;).toLowerCase()==&#x27;input&#x27; 
-                            &amp;&amp; _selector.attr(&#x27;datatype&#x27;).toLowerCase()==&#x27;date&#x27;) _r = 1;
-                }
-
-                return _r;
-            }
         /**
          * 显示日历组件
          * @method  _logic.pickDate
@@ -487,15 +433,13 @@
                 UXC.log( &#x27;Calendar.pickDate&#x27;, new Date().getTime() );
 
                 _selector = $(_selector);
-                if( !(_selector &amp;&amp; _selector.length) ) return;
-                _logic.lastIpt = _selector;
 
-                var _dateObj = _logic.lastDateObj = _logic.getDate( _selector );
+                var _dateObj = _logic.lastDateObj = Calendar.getDate( _selector );
 
                 UXC.log( _dateObj.date.getFullYear(), _dateObj.date.getMonth()+1, _dateObj.date.getDate() );
 
                 _logic.initDateLayout( _dateObj );
-                _logic.setPosition( _selector );
+                Calendar.setPosition( _selector, _logic.getLayout() );
 
                 _selector.blur();
             }
@@ -508,6 +452,8 @@
          */
         , initDateLayout:
             function( _dateObj ){
+                Calendar.updateInitYearList( _dateObj );
+
                 _logic.initYear( _dateObj );
                 _logic.initMonth( _dateObj );
                 _logic.initMonthDate( _dateObj );
@@ -521,11 +467,11 @@
         , initMonthDate:
             function( _dateObj ){
                 var _layout = _logic.getLayout();
-                var _maxday = _logic.maxDayOfMonth( _dateObj.date ), _weekday = _dateObj.date.getDay() || 7
+                var _maxday = maxDayOfMonth( _dateObj.date ), _weekday = _dateObj.date.getDay() || 7
                     , _sumday = _weekday + _maxday, _row = 6, _ls = [], _premaxday, _prebegin
                     , _tmp, i, _class;
 
-                var _beginDate = _logic.cloneDate( _dateObj.date );
+                var _beginDate = cloneDate( _dateObj.date );
                     _beginDate.setDate( 1 );
                 var _beginWeekday = _beginDate.getDay() || 7;
                 if( _beginWeekday &lt; 2 ){
@@ -533,20 +479,23 @@
                 }else{
                     _beginDate.setDate( -(_beginWeekday-2) );
                 }
+                var today = new Date();
 
                 _ls.push(&#x27;&lt;tr&gt;&#x27;);
                 for( i = 1; i &lt;= 42; i++ ){
                     _class = [];
                     if( _beginDate.getDay() === 0 || _beginDate.getDay() == 6 ) _class.push(&#x27;weekend&#x27;);
-                    if( !_logic.isSameMonth( _dateObj.date, _beginDate ) ) _class.push( &#x27;other&#x27; );
+                    if( !isSameMonth( _dateObj.date, _beginDate ) ) _class.push( &#x27;other&#x27; );
                     if( _dateObj.minvalue &amp;&amp; _beginDate.getTime() &lt; _dateObj.minvalue.getTime() ) 
                         _class.push( &#x27;unable&#x27; );
                     if( _dateObj.maxvalue &amp;&amp; _beginDate.getTime() &gt; _dateObj.maxvalue.getTime() ) 
                         _class.push( &#x27;unable&#x27; );
 
-                    if( _logic.isSameDay( _dateObj.date, _beginDate ) ) _class.push( &#x27;cur&#x27; );
+                    if( isSameDay( _beginDate, today ) ) _class.push( &#x27;today&#x27; );
+                    if( isSameDay( _dateObj.date, _beginDate ) ) _class.push( &#x27;cur&#x27; );
+
                     _ls.push( &#x27;&lt;td class=&quot;&#x27;, _class.join(&#x27; &#x27;),&#x27;&quot;&gt;&#x27;
-                            ,&#x27;&lt;a href=&quot;javascript:&quot; date=&quot;&#x27;, _beginDate.getTime(),&#x27;&quot;&gt;&#x27;
+                            ,&#x27;&lt;a href=&quot;javascript:&quot; date=&quot;&#x27;, _beginDate.getTime(),&#x27;&quot; title=&quot;&#x27;+formatISODate(_beginDate)+&#x27;&quot; &gt;&#x27;
                             , _beginDate.getDate(), &#x27;&lt;/a&gt;&lt;/td&gt;&#x27; );
                     _beginDate.setDate( _beginDate.getDate() + 1 );
                     if( i % 7 === 0 &amp;&amp; i != 42 ) _ls.push( &#x27;&lt;/tr&gt;&lt;tr&gt;&#x27; );
@@ -594,24 +543,23 @@
             }
         /**
          * 按年份更改日期
-         * @method  _logic.setNewYear
+         * @method  _logic.updateYear
          * @param   {int}   _year   新的年份, YYYY
          * @private
          */
-        , setNewYear:
+        , updateYear:
             function( _year ){
                 UXC.log( _year );
                 if ( !_logic.lastDateObj ) return;
-                var _premaxday = _logic.maxDayOfMonth( _logic.lastDateObj.date )
+                var _premaxday = maxDayOfMonth( _logic.lastDateObj.date )
                     , _d = new Date( _year, _logic.lastDateObj.date.getMonth(), 1 )
-                    , _nextmaxday = _logic.maxDayOfMonth( _d );
+                    , _nextmaxday = maxDayOfMonth( _d );
                 if( _premaxday &gt; _nextmaxday ) _d.setDate( _nextmaxday );
                 else _d.setDate( _logic.lastDateObj.date.getDate() );
 
                 _logic.lastDateObj.date = _d;
 
-                _logic.initMonth( _logic.lastDateObj );
-                _logic.initMonthDate( _logic.lastDateObj );
+                _logic.initDateLayout( _logic.lastDateObj );
             }
         /**
          * 按月份更改日期
@@ -623,9 +571,9 @@
             function( _month ){
                 UXC.log( _month );
                 if ( !_logic.lastDateObj ) return;
-                var _premaxday = _logic.maxDayOfMonth( _logic.lastDateObj.date )
+                var _premaxday = maxDayOfMonth( _logic.lastDateObj.date )
                     , _d = new Date( _logic.lastDateObj.date.getFullYear(), _month, 1 )
-                    , _nextmaxday = _logic.maxDayOfMonth( _d );
+                    , _nextmaxday = maxDayOfMonth( _d );
                 if( _premaxday &gt; _nextmaxday ) _d.setDate( _nextmaxday );
                 else _d.setDate( _logic.lastDateObj.date.getDate() );
 
@@ -633,45 +581,6 @@
 
                 _logic.initMonth( _logic.lastDateObj );
                 _logic.initMonthDate( _logic.lastDateObj );
-            }
-        /**
-         * 设置日历组件的显示位置
-         * @method  _logic.setPosition
-         * @param   {selector}  _ipt    需要显示日历组件的文本框
-         * @private
-         */
-        , setPosition:
-            function( _ipt ){
-                var _layout = _logic.getLayout();
-                _layout.css( {&#x27;left&#x27;: &#x27;-9999px&#x27;, &#x27;top&#x27;: &#x27;-9999px&#x27;, &#x27;z-index&#x27;: ZINDEX_COUNT++ } ).show();
-                var _lw = _layout.width(), _lh = _layout.height()
-                    , _iw = _ipt.width(), _ih = _ipt.height(), _ioset = _ipt.offset()
-                    , _x, _y, _winw = $(window).width(), _winh = $(window).height()
-                    , _scrtop = $(document).scrollTop()
-                    ;
-
-                _x = _ioset.left; _y = _ioset.top + _ih + 5;
-
-                if( ( _y + _lh - _scrtop ) &gt; _winh ){
-                    UXC.log(&#x27;y overflow&#x27;);
-                    _y = _ioset.top - _lh - 3;
-
-                    if( _y &lt; _scrtop ) _y = _scrtop;
-                }
-
-                _layout.css( {left: _x+&#x27;px&#x27;, top: _y+&#x27;px&#x27;} );
-
-                UXC.log( _lw, _lh, _iw, _ih, _ioset.left, _ioset.top, _winw, _winh );
-                UXC.log( _scrtop, _x, _y );
-            }
-        /**
-         * 隐藏日历组件
-         * @method _logic.hide
-         * @private
-         */
-        , hide:
-            function(){
-                _logic.getLayout().hide();
             }
         /**
          * 获取日历组件的外观
@@ -701,38 +610,9 @@
                                 , &#x27;&lt;option value=&quot;11&quot;&gt;十二月&lt;/option&gt;&#x27;
                             ].join(&#x27;&#x27;) ).appendTo( _r.find(&#x27;select.UMonth&#x27; ) );
                     _r.hide();
+                    _r.data(&#x27;confirmMethod&#x27;, _logic.onConfirm );
+                    _r.data(&#x27;updateYearMethod&#x27;, _logic.updateYear );
                  }
-
-                return _r;
-            }
-        /**
-         * 获取初始日期对象
-         * @method  _logic.getDate
-         * @param   {selector}  _selector   显示日历组件的input
-         * @private
-         */
-        , getDate:
-            function( _selector ){
-                var _r = { date: 0, minvalue: 0, maxvalue: 0, initMinvalue: 0, initMaxvalue: 0 }, _tmp;
-
-                if( _tmp = _logic.parseDate( _selector.val() ) ) _r.date = _tmp;
-                else _r.date = new Date();
-
-                _r.minvalue = _logic.parseDate( _selector.attr(&#x27;minvalue&#x27;) );
-                _r.maxvalue = _logic.parseDate( _selector.attr(&#x27;maxvalue&#x27;) );
-                
-                _r.minvalue &amp;&amp; ( _r.initMinvalue = _logic.cloneDate( _r.minvalue ) );
-                _r.maxvalue &amp;&amp; ( _r.initMaxvalue = _logic.cloneDate( _r.maxvalue ) );
-
-                if( !_r.initMinvalue ){
-                    _r.initMinvalue = _logic.cloneDate( _r.date );
-                    _r.initMinvalue.setFullYear( _r.initMinvalue.getFullYear() - Calendar.defaultDateSpan );
-                }
-
-                if( !_r.initMaxvalue ){
-                    _r.initMaxvalue = _logic.cloneDate( _r.date );
-                    _r.initMaxvalue.setFullYear( _r.initMaxvalue.getFullYear() + Calendar.defaultDateSpan );
-                }
 
                 return _r;
             }
@@ -744,115 +624,30 @@
          */
         , setDate:
             function( _timestamp ){
-                if( !(_timestamp &amp;&amp; _logic.lastIpt &amp;&amp; _logic.lastIpt.length ) ) return;
+                if( !(_timestamp &amp;&amp; Calendar.lastIpt &amp;&amp; Calendar.lastIpt.length ) ) return;
                 var _d = new Date(), _symbol = &#x27;-&#x27;; _d.setTime( _timestamp );
-                var _df = _logic.lastIpt.attr(&#x27;dateFormat&#x27;);
+                var _df = Calendar.lastIpt.attr(&#x27;dateFormat&#x27;);
                 if( _df ){
                     _df = _df.replace(/[\da-zA-Z]/g, &#x27;&#x27;);
                     if( _df.length ) _df = _df.slice(0, 1);
                     _symbol = _df;
                 }
-                var _dStr = 
-                    [ 
-                        _d.getFullYear()
-                        , _logic.intPad( _d.getMonth() + 1 )
-                        , _logic.intPad( _d.getDate() ) 
-                     ].join(_symbol);
-                _logic.lastIpt.val( _dStr ).focus();
+                var _dStr = formatISODate( _d, _symbol );
+                Calendar.lastIpt.val( _dStr ).focus();
             }
         /**
          * 给文本框赋值, 日期为控件的当前日期
-         * @method  _logic.setSelectedDate
+         * @method  _logic.onConfirm
          * @return  {int}   0/1
          * @private
          */
-        , setSelectedDate:
+        , onConfirm:
             function(){
                 var _cur;
                 _cur = _logic.getLayout().find(&#x27;table td.cur a&#x27;);
                 if( _cur.parent(&#x27;td&#x27;).hasClass(&#x27;unable&#x27;) ) return 0;
                 _cur &amp;&amp; _cur.length &amp;&amp; _cur.attr(&#x27;date&#x27;) &amp;&amp; _logic.setDate( _cur.attr(&#x27;date&#x27;) );
                 return 1;
-            }
-        /**
-         * 解析日期
-         * @method  _logic.parseDate
-         * @param   {string}    _dateStr
-         * @return  {Date}  返回解析得到的日期/或者当前日期
-         * @private
-         */
-        , parseDate:
-            function( _dateStr ){
-                var _re = /[^\d]/g, _r, _dateStr = _dateStr || &#x27;&#x27;;
-                _dateStr &amp;&amp; ( _dateStr = _dateStr.replace(_re, &#x27;&#x27;) );
-                if( _dateStr &amp;&amp; _dateStr.length == 8 ){
-                    _r = new Date( parseInt( _dateStr.slice(0,4), 10 )
-                                    , parseInt( _dateStr.slice(4,6), 10 ) - 1
-                                    , parseInt( _dateStr.slice(6,8), 10 ) );
-                }
-                return _r;
-            }
-        /**
-         * 克隆日期对象
-         * @method  _logic.cloneDate
-         * @param   {Date}  _date   需要克隆的日期
-         * @return  {Date}  需要克隆的日期对象
-         * @private
-         */
-        , cloneDate: function( _date ){ var d = new Date(); d.setTime( _date.getTime() ); return d; }
-        /**
-         * 判断两个日期是否为同一天
-         * @method  _logic.isSameDay
-         * @param   {Date}  _d1     需要判断的日期1
-         * @param   {Date}  _d2     需要判断的日期2
-         * @return {bool}
-         * @private
-         */
-        , isSameDay:
-            function( _d1, _d2 ){
-                return [_d1.getFullYear(), _d1.getMonth(), _d1.getDate()].join() === [
-                        _d2.getFullYear(), _d2.getMonth(), _d2.getDate()].join()
-            }
-        /**
-         * 判断两个日期是否为同一月份
-         * @method  _logic.isSameMonth
-         * @param   {Date}  _d1     需要判断的日期1
-         * @param   {Date}  _d2     需要判断的日期2
-         * @return {bool}
-         * @private
-         */
-        , isSameMonth:
-            function( _d1, _d2 ){
-                return [_d1.getFullYear(), _d1.getMonth()].join() === [
-                        _d2.getFullYear(), _d2.getMonth()].join()
-            }
-        /**
-         * 取得一个月份中最大的一天
-         * @method  _logic.maxDayOfMonth
-         * @param   {Date}  _date
-         * @return {int} 月份中最大的一天
-         * @private
-         */
-        , maxDayOfMonth:
-            function( _date ){
-                var _r, _d = new Date( _date.getFullYear(), _date.getMonth() + 1 );
-                    _d.setDate( _d.getDate() - 1 );
-                    _r = _d.getDate();
-                return _r;
-            }
-        /**
-         * 为数字添加前置0
-         * @method  _logic.intPad
-         * @param   {int}   _n      需要添加前置0的数字
-         * @param   {int}   _len    需要添加_len个0, 默认为2
-         * @return  {string}
-         * @private
-         */
-        , intPad: 
-            function( _n, _len ){
-                if( typeof _len == &#x27;undefined&#x27; ) _len = 2;
-                _n = new Array( _len + 1 ).join(&#x27;0&#x27;) + _n;
-                return _n.slice( _n.length - _len );
             }
         /**
          * 日历组件模板
@@ -905,7 +700,197 @@
         ,&#x27;&lt;/div&gt;\n&#x27;
         ].join(&#x27;&#x27;)
     };
+    /**
+     * DOM 加载完毕后, 初始化日历组件相关事件
+     * @event   dom ready
+     * @private
+     */
+    $(document).ready( function($evt){
+        /**
+         * 延迟200毫秒初始化页面的所有日历控件
+         * 之所以要延迟是可以让用户自己设置是否需要自动初始化
+         */
+        setTimeout( function( $evt ){
+            if( !Calendar.autoInit ) return;
+            Calendar.init( $(&#x27;input[type=text]&#x27;) );
+        }, 200 );
+        /**
+         * 捕获用户更改年份 
+         * &lt;p&gt;监听 年份下拉框&lt;/p&gt;
+         * @event year change
+         * @private
+         */
+        $(document).delegate( &#x27;body &gt; div.UXCCalendar select.UYear&#x27;, &#x27;change&#x27;, function( $evt ){
+            var box = $(this).parents( &#x27;div.UXCCalendar&#x27; );
+            box.length &amp;&amp; box.data(&#x27;updateYearMethod&#x27;) &amp;&amp; box.data(&#x27;updateYearMethod&#x27;)( $(this).val()  );
+        });
+        /**
+         * 捕获用户更改年份 
+         * &lt;p&gt;监听 下一年按钮&lt;/p&gt;
+         * @event next year
+         * @private
+         */
+        $(document).delegate( &#x27;body &gt; div.UXCCalendar button.UNextYear&#x27;, &#x27;click&#x27;, function( $evt ){
+            var box = $(this).parents( &#x27;div.UXCCalendar&#x27; );
+            box.length &amp;&amp; box.data(&#x27;nextYearMethod&#x27;) &amp;&amp; box.data(&#x27;nextYearMethod&#x27;)();
+        });
+        /**
+         * 捕获用户更改年份 
+         * &lt;p&gt;监听 上一年按钮&lt;/p&gt;
+         * @event previous year
+         * @private
+         */
+        $(document).delegate( &#x27;body &gt; div.UXCCalendar button.UPreYear&#x27;, &#x27;click&#x27;, function( $evt ){
+            var box = $(this).parents( &#x27;div.UXCCalendar&#x27; );
+            box.length &amp;&amp; box.data(&#x27;preYearMethod&#x27;) &amp;&amp; box.data(&#x27;preYearMethod&#x27;)();
+        });
+        /**
+         * 捕获用户更改月份
+         * &lt;p&gt;监听 月份下拉框&lt;/p&gt;
+         * @event   month change
+         * @private
+         */
+        $(document).delegate( &#x27;#UXCCalendar select.UMonth&#x27;, &#x27;change&#x27;, function( $evt ){
+            _logic.setNewMonth( $(this).val() );
+        });
+        /**
+         * 选择当前日期
+         * &lt;p&gt;监听确定按钮&lt;/p&gt;
+         * @event   confirm click
+         * @private
+         */
+        $(document).delegate( &#x27;body &gt; div.UXCCalendar button.UConfirm&#x27;, &#x27;click&#x27;, function( $evt ){
+            var box = $(this).parents( &#x27;div.UXCCalendar&#x27; );
+            box.length &amp;&amp; box.data(&#x27;confirmMethod&#x27;) &amp;&amp; box.data(&#x27;confirmMethod&#x27;)( this );
+            Calendar.hide();
+        });
+        /**
+         * 增加或者减少一年
+         * &lt;p&gt;监听 年份map&lt;/p&gt;
+         * @event   year map click
+         * @private
+         */
+        $(document).delegate( &quot;map[name=UXCCalendar_Year] area&quot; , &#x27;click&#x27;, function( $evt ){
+            $evt.preventDefault();
+            var _p = $(this), _do = _logic.lastDateObj;
+            if( !(_do &amp;&amp; _p.attr(&quot;action&quot;) ) ) return;
+            if( _p.attr(&quot;action&quot;).toLowerCase() == &#x27;up&#x27; ){
+                _do.date.setFullYear( _do.date.getFullYear() + 1 );
+            }else if( _p.attr(&quot;action&quot;).toLowerCase() == &#x27;down&#x27; ){
+                _do.date.setFullYear( _do.date.getFullYear() - 1 );
+            }
+            _logic.initDateLayout( _do );
+            UXC.log( _p.attr(&quot;action&quot;) );
+        });
+        /**
+         * 增加或者减少一个月
+         * &lt;p&gt;监听 月份map&lt;/p&gt;
+         * @event   month map click
+         * @private
+         */
+        $(document).delegate( &quot;map[name=UXCCalendar_Month] area&quot; , &#x27;click&#x27;, function( $evt ){
+            $evt.preventDefault();
+            var _p = $(this), _do = _logic.lastDateObj;
+            if( !(_do &amp;&amp; _p.attr(&quot;action&quot;) ) ) return;
+            if( _p.attr(&quot;action&quot;).toLowerCase() == &#x27;up&#x27; ){
+                _do.date.setMonth( _do.date.getMonth() + 1 );
+                _do.initMinvalue.setMonth( _do.initMinvalue.getMonth() + 1 );
+                _do.initMaxvalue.setMonth( _do.initMaxvalue.getMonth() + 1 );
+            }else if( _p.attr(&quot;action&quot;).toLowerCase() == &#x27;down&#x27; ){
+                _do.date.setMonth( _do.date.getMonth() - 1 );
+                _do.initMinvalue.setMonth( _do.initMinvalue.getMonth() - 1 );
+                _do.initMaxvalue.setMonth( _do.initMaxvalue.getMonth() - 1 );
+            }
+            _logic.initDateLayout( _do );
+            UXC.log( _p.attr(&quot;action&quot;) );
+        });
+        /**
+         * 清除文本框内容
+         * &lt;p&gt;监听 清空按钮&lt;/p&gt;
+         * @event   clear click
+         * @private
+         */
+        $(document).delegate( &#x27;body &gt; div.UXCCalendar button.UClear&#x27;, &#x27;click&#x27;, function( $evt ){
+            Calendar.lastIpt &amp;&amp; Calendar.lastIpt.length &amp;&amp; Calendar.lastIpt.val(&#x27;&#x27;);
+        });
+        /**
+         * 取消日历组件, 相当于隐藏
+         * &lt;p&gt;监听 取消按钮&lt;/p&gt;
+         * @event cancel click
+         * @private
+         */
+        $(document).delegate( &#x27;body &gt; div.UXCCalendar button.UCancel&#x27;, &#x27;click&#x27;, function( $evt ){
+            Calendar.hide();
+        });
+        /**
+         * dom 点击时, 检查事件源是否为日历组件对象, 如果不是则会隐藏日历组件
+         * @event dom click
+         * @private
+         */
+        $(document).on(&#x27;click&#x27;, function($evt){
+            if( Calendar.isCalendarElement($evt.target||$evt.targetElement) ) return;
+            var _src = $evt.target || $evt.srcElement;
 
+            if( _src &amp;&amp; _src.nodeName.toLowerCase() != &#x27;input&#x27; ){
+                Calendar.hide(); return;
+            }
+
+            setTimeout( function(){
+                if( Calendar.lastIpt &amp;&amp; Calendar.lastIpt.length &amp;&amp; _src == Calendar.lastIpt[0] ) return;
+                Calendar.hide();
+            }, 100);
+        });
+        /**
+         * 日历组件按钮点击事件
+         * @event calendar button click
+         * @private
+         */
+        $(document).delegate( &#x27;input.UXCCalendar_btn&#x27;, &#x27;click&#x27;, function($evt){
+            if( this.forCalendar ) Calendar.pickDate( this.forCalendar );
+        });
+        /**
+         * 日历组件文本框获得焦点
+         * @event input focus
+         * @private
+         */
+        $(document).delegate( &#x27;input[datatype=date], input[datatype=daterange], input[multidate]&#x27;, &#x27;focus&#x27;, function($evt){
+            Calendar.pickDate( this );
+        });
+        /**
+         * 日历组件点击事件, 阻止冒泡, 防止被 document click事件隐藏
+         * @event UXCCalendar click
+         * @private
+         */
+        $(document).delegate( &#x27;body &gt; div.UXCCalendar&#x27;, &#x27;click&#x27;, function( $evt ){
+            $evt.stopPropagation();
+        });
+        /**
+         * 日期点击事件
+         * @event date click
+         * @private
+         */
+        $(document).delegate( &#x27;#UXCCalendar table a&#x27;, &#x27;click&#x27;, function( $evt ){
+            $evt.preventDefault();
+            var _p = $(this), _tm = _p.attr(&#x27;date&#x27;)||&#x27;&#x27;;
+            if( !_tm ) return;
+            if( _p.parent(&#x27;td&#x27;).hasClass(&#x27;unable&#x27;) ) return;
+
+            UXC.log( _tm );
+
+            _logic.setDate( _tm );
+            Calendar.hide();
+        });
+        /**
+         * 监听窗口滚动和改变大小, 实时变更日历组件显示位置
+         * @event  window scroll, window resize
+         * @private
+         */
+        $(window).on(&#x27;scroll resize&#x27;, function($evt){
+            var _layout = $(&#x27;body &gt; div.UXCCalendar:visible&#x27;);
+            if( !( _layout.length &amp;&amp; Calendar.lastIpt ) ) return;
+            Calendar.setPosition( Calendar.lastIpt, _layout );
+        });
+    });
 }(jQuery));
 
 

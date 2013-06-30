@@ -85,6 +85,15 @@
             return _r;
         };
     /**
+     * 隐藏 Tips 
+     * @method  hide
+     * @static
+     */
+    Tips.hide =
+        function(){
+            $('body > div.UTips').hide();
+        }
+    /**
      * 页面加载完毕后, 是否自动初始化
      * @property    autoInit
      * @type        bool
@@ -196,6 +205,12 @@
          * @return  selector
          */
         , layout: function( _update ){ return this._view.layout( _update ); }
+        /**
+         * 获取 tips 显示的内容
+         * @method  data
+         * @return  string
+         */
+        , data: function(){ return this._model.data() }
     }
     /**
      * Tips 数据模型类
@@ -410,12 +425,18 @@
     function tipMouseenter( _evt ){
         var _sp = $(this), _p = _sp.data('tipIns');
         _p.layout( 1 ).css( 'z-index', ZINDEX_COUNT++ );
+        if( !_p.data() ) return;
         _p.show( _evt );
 
         $(document).on('mousemove', tipMousemove );
         _sp.on('mouseleave', tipMouseleave );
 
         function tipMousemove( _wevt ){
+            if( !_p.layout().is(':visible') ){
+                $(document).unbind( 'mousemove', tipMousemove );
+                $(_sp).unbind( 'mouseleave', tipMouseleave );
+                return;
+            }
             _p.show( _wevt );
         }
 

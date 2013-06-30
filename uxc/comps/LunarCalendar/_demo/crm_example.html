@@ -113,18 +113,6 @@
         UXC.LunarCalendar.isWorkday( item.td ) && _btn.html('取消工作日');
         !UXC.LunarCalendar.isWorkday( item.td ) && _btn.html('设为工作日');
     }
-        /**
-     * 提示需要 HTTP 环境
-     * suches@btbtd.org     2013-06-18
-     */
-    function httpRequire( _msg ){
-        _msg = _msg || '本示例需要HTTP环境';
-        if( /file\:|\\/.test( location.href ) ){
-            alert( _msg );
-            return false;
-        }
-        return true;
-    }
 
     $(document).delegate('button.js_setHoliday', 'click', function(){
         if( !httpRequire() ) return;
@@ -201,11 +189,6 @@
         var _ptm = toPostTimestamp( _d ), _comment = _a.attr('comment');
         commentDialog( '编辑注释 '+formatISODate(_d), './data/dataspan.php', _ptm, _comment, commentEditTpl );
     });
-
-    function formatISODate( _date ){
-        _date = _date || new Date();
-        return [ _date.getFullYear(), _date.getMonth() + 1, _date.getDate() ].join('-');
-    }
 
     function commentDialog( _header, _url, _tm, _comment, _tpl ){
         var _ins = UXC.Dialog( _header, _tpl ), _selector = _ins.selector();
@@ -335,17 +318,6 @@
     function actionDelay( _btn ){
         _btn = $('button.js_userpremonth, button.js_usernextmonth, button.js_setWorkday, button.js_setHoliday, button.js_setComment');
         UXC.Form.disableButton( _btn, 1000 );
-    }
-    /**
-     * js 附加字串函数 pad_char_f
-     * x@btbtd.org 2013-06-14
-     */
-    function pad_char_f( _str, _len, _char ){
-        _len  = _len || 2; _char = _char || "0"; 
-        _str += '';
-        if( _str.length >_str ) return _str;
-        _str = new Array( _len + 1 ).join( _char ) + _str
-        return _str.slice( _str.length - _len );
     }
 
     var commentAddTpl =

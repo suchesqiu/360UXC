@@ -9641,6 +9641,7 @@ function has_url_param( _url, _key ){
 }
 /**
  * 添加URL参数
+ * <br /><b>require:</b> del\_url\_param 
  * @method  add_url_params
  * @static
  * @param   {string}    _url
@@ -9665,11 +9666,11 @@ function add_url_params( $url, $params ){
  
 /**
  * 取URL参数的值
+ * <br /><b>require:</b> del\_url\_param 
  * @method  get_url_param
  * @static
  * @param   {string}    $url
  * @param   {string}    $key
- * @require del_url_param 
  * @example
         var defaultTag = get_url_param(location.href, 'tag');  
  */ 
@@ -9723,6 +9724,7 @@ function del_url_param( $url, $key ){
  * @method  httpRequire
  * @static
  * @param  {string}  _msg   要提示的文字, 默认 "本示例需要HTTP环境'
+ * @return  bool     如果是HTTP环境返回true, 否则返回false
  */
 function httpRequire( _msg ){
     _msg = _msg || '本示例需要HTTP环境';
@@ -9732,6 +9734,160 @@ function httpRequire( _msg ){
     }
     return true;
 }
+/**
+ * 删除 URL 的锚点
+ * <br /><b>require:</b> add\_url\_params
+ * @method removeUrlSharp
+ * @static
+ * @param   {string}    $url
+ * @param   {bool}      $nornd      是否不添加随机参数
+ * @return  string
+ */
+function removeUrlSharp($url, $nornd){   
+    var url = $url.replace(/\#[\s\S]*/, '');
+    !$nornd && (url = add_url_params( url, { "rnd": new Date().getTime() } ) );
+    return url;
+}
+/**
+ * 重载页面
+ * <br /><b>require:</b> removeUrlSharp
+ * <br /><b>require:</b> add\_url\_params
+ * @method reload_page
+ * @static
+ * @param   {string}    $url
+ * @param   {bool}      $nornd
+ * @param   {int}       $delayms
+ */ 
+function reload_page( $url, $nornd, $delayms ){
+    $delayms = $delayms || 0;
+    setTimeout( function(){
+        $url = removeUrlSharp( $url || location.href, $nornd );
+        !$nornd && ( $url = add_url_params( $url, { 'rnd': new Date().getTime() } ) );
+        location.href = $url;
+    }, $delayms);
+}
+/**
+ * 取小数点的N位，
+ * <br />JS 解析 浮点数的时候，经常出现各种不可预知情况，这个函数就是为了解决这个问题
+ * @method  parse_finance_num
+ * @static
+ * @param   {number}    $i
+ * @param   {int}       $dot
+ * @return  number
+ */
+function parse_finance_num( $i, $dot ){
+    $i = parseFloat( $i ) || 0;
+    if( $i && $dot ) {
+        $i = Math.floor( $i * Math.pow( 10, $dot ) ) / Math.pow( 10, $dot );
+    }
+    return $i;
+}
+/**
+ * js 附加字串函数 pad_char_f
+ * @method  pad_char_f
+ * @static
+ * @param   {string}    _str
+ * @param   {intl}      _len
+ * @param   {string}    _char
+ * @return  string
+ */
+function pad_char_f( _str, _len, _char ){
+	_len  = _len || 2; _char = _char || "0"; 
+	_str += '';
+	if( _str.length >_str ) return _str;
+	_str = new Array( _len + 1 ).join( _char ) + _str
+	return _str.slice( _str.length - _len );
+}
+/**
+ * 格式化日期为 YYYY-mm-dd 格式
+ * <br /><b>require</b>: pad\_char\_f
+ * @method  formatISODate
+ * @static
+ * @param   {date}                  _date       要格式化日期的日期对象
+ * @param   {string|undefined}      _split      定义年月日的分隔符, 默认为 '-'
+ * @return  string
+ *
+ */
+function formatISODate( _date, _split ){
+	_date = _date || new Date(); typeof _split == 'undefined' && ( _split = '-' );
+	return [ _date.getFullYear(), pad_char_f( _date.getMonth() + 1 ), pad_char_f( _date.getDate() ) ].join(_split);
+}
+/**
+ * 从 ISODate 字符串解析日期对象
+ * @method  parseISODate
+ * @static
+ * @param   {string}    _datestr
+ * @return  date
+ */
+function parseISODate( _datestr ){
+    if( !_datestr ) return;
+    _datestr = _datestr.replace( /[^\d]+/g, '');
+    var _r;
+    if( _datestr.length === 8 ){
+        _r = new Date( _datestr.slice( 0, 4 )
+                        , parseInt( _datestr.slice( 4, 6 ), 10 ) - 1
+                        , parseInt( _datestr.slice( 6 ), 10 ) );
+    }
+    return _r;
+}
+/**
+* 克隆日期对象
+* @method  cloneDate
+* @static
+* @param   {Date}  _date   需要克隆的日期
+* @return  {Date}  需要克隆的日期对象
+*/
+function cloneDate( _date ){ var d = new Date(); d.setTime( _date.getTime() ); return d; }
+/**
+ * 判断两个日期是否为同一天
+ * @method  isSameDay
+ * @static
+ * @param   {Date}  _d1     需要判断的日期1
+ * @param   {Date}  _d2     需要判断的日期2
+ * @return {bool}
+ */
+function isSameDay( _d1, _d2 ){
+    return [_d1.getFullYear(), _d1.getMonth(), _d1.getDate()].join() === [
+            _d2.getFullYear(), _d2.getMonth(), _d2.getDate()].join()
+}
+/**
+ * 判断两个日期是否为同一月份
+ * @method  isSameMonth
+ * @static
+ * @param   {Date}  _d1     需要判断的日期1
+ * @param   {Date}  _d2     需要判断的日期2
+ * @return {bool}
+ */
+function isSameMonth( _d1, _d2 ){
+    return [_d1.getFullYear(), _d1.getMonth()].join() === [
+            _d2.getFullYear(), _d2.getMonth()].join()
+}
+/**
+ * 取得一个月份中最大的一天
+ * @method  maxDayOfMonth
+ * @static
+ * @param   {Date}  _date
+ * @return {int} 月份中最大的一天
+ */
+function maxDayOfMonth( _date ){
+    var _r, _d = new Date( _date.getFullYear(), _date.getMonth() + 1 );
+        _d.setDate( _d.getDate() - 1 );
+        _r = _d.getDate();
+    return _r;
+}
+/**
+ * 取当前脚本标签的 src路径 
+ * @method  script_path_f
+ * @static
+ * @return  {string} 脚本所在目录的完整路径
+ */
+function script_path_f(){
+    var _sc = document.getElementsByTagName('script'), _sc = _sc[ _sc.length - 1 ], _path = _sc.getAttribute('src');
+    if( /\//.test( _path ) ){ _path = _path.split('/'); _path.pop(); _path = _path.join('/') + '/'; }
+    else if( /\\/.test( _path ) ){ _path = _path.split('\\'); _path.pop(); _path = _path.join('\\') + '/'; }
+    return _path;
+}
+
 
 ;(function( $ ){
     /**
@@ -9749,8 +9905,7 @@ function httpRequire( _msg ){
      * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
      * @date    2013-05-22
      */
-    window.UXC = 
-    {
+    window.UXC = {
         /**
          * UXC组件库所在路径
          * @property    PATH
@@ -9843,20 +9998,6 @@ function httpRequire( _msg ){
 
                 _p.log( _paths );
             },
-        /**
-         * 获取组件库所在路径
-         * @method
-         * @private
-         * @return     {string}    组件库所在路径(带comps)
-         */
-        _getPath: 
-            function(){
-                var _sc = $('script').last(), _path = _sc.attr('src');
-                if( /\//.test( _path ) ){ _path = _path.split('/'); _path.pop(); _path = _path.join('/') + '/'; }
-                else if( /\\/.test( _path ) ){ _path = _path.split('\\'); _path.pop(); _path = _path.join('\\') + '/'; }
-                this.PATH = _path;
-            },
-
        /**
         * 输出调试信息, 可通过 UXC.debug 指定是否显示调试信息
         * @param    {[string[,string]]}  任意参数任意长度的字符串内容
@@ -9878,7 +10019,6 @@ function httpRequire( _msg ){
     /**
      * 自动识别组件库所在路径
      */
-    UXC._getPath();
-
+    UXC.PATH = script_path_f();
 }(jQuery));
 
