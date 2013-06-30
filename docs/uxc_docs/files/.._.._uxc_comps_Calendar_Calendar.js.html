@@ -142,7 +142,14 @@
      * , Calendar会自动初始化页面所有日历组件, input[type=text][datatype=date]标签
      * &lt;br /&gt;Ajax 加载内容后, 如果有日历组件需求的话, 需要手动使用Calendar.init( _selector )
      * &lt;br /&gt;_selector 可以是 新加载的容器, 也可以是新加载的所有input
-     * &lt;p&gt;&lt;b&gt;requires&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;&lt;/p&gt;
+     * &lt;p&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;
+     * &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;.window.html#method_cloneDate&#x27;&gt;window.cloneDate&lt;/a&gt;
+     * &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;.window.html#method_parseISODate&#x27;&gt;window.parseISODate&lt;/a&gt;
+     * &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;.window.html#method_formatISODate&#x27;&gt;window.formatISODate&lt;/a&gt;
+     * &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;.window.html#method_maxDayOfMonth&#x27;&gt;window.maxDayOfMonth&lt;/a&gt;
+     * &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;.window.html#method_isSameDay&#x27;&gt;window.isSameDay&lt;/a&gt;
+     * &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;.window.html#method_isSameMonth&#x27;&gt;window.isSameMonth&lt;/a&gt;
+     * &lt;/p&gt;
      * &lt;p&gt;&lt;a href=&#x27;https://github.com/suchesqiu/360UXC.git&#x27; target=&#x27;_blank&#x27;&gt;UXC Project Site&lt;/a&gt;
      * | &lt;a href=&#x27;http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.Calendar.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
      * | &lt;a href=&#x27;http://uxc.btbtd.org/uxc/comps/Calendar/_demo/&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;&lt;/p&gt;
@@ -521,11 +528,11 @@
         , initMonthDate:
             function( _dateObj ){
                 var _layout = _logic.getLayout();
-                var _maxday = _logic.maxDayOfMonth( _dateObj.date ), _weekday = _dateObj.date.getDay() || 7
+                var _maxday = maxDayOfMonth( _dateObj.date ), _weekday = _dateObj.date.getDay() || 7
                     , _sumday = _weekday + _maxday, _row = 6, _ls = [], _premaxday, _prebegin
                     , _tmp, i, _class;
 
-                var _beginDate = _logic.cloneDate( _dateObj.date );
+                var _beginDate = cloneDate( _dateObj.date );
                     _beginDate.setDate( 1 );
                 var _beginWeekday = _beginDate.getDay() || 7;
                 if( _beginWeekday &lt; 2 ){
@@ -538,13 +545,13 @@
                 for( i = 1; i &lt;= 42; i++ ){
                     _class = [];
                     if( _beginDate.getDay() === 0 || _beginDate.getDay() == 6 ) _class.push(&#x27;weekend&#x27;);
-                    if( !_logic.isSameMonth( _dateObj.date, _beginDate ) ) _class.push( &#x27;other&#x27; );
+                    if( !isSameMonth( _dateObj.date, _beginDate ) ) _class.push( &#x27;other&#x27; );
                     if( _dateObj.minvalue &amp;&amp; _beginDate.getTime() &lt; _dateObj.minvalue.getTime() ) 
                         _class.push( &#x27;unable&#x27; );
                     if( _dateObj.maxvalue &amp;&amp; _beginDate.getTime() &gt; _dateObj.maxvalue.getTime() ) 
                         _class.push( &#x27;unable&#x27; );
 
-                    if( _logic.isSameDay( _dateObj.date, _beginDate ) ) _class.push( &#x27;cur&#x27; );
+                    if( isSameDay( _dateObj.date, _beginDate ) ) _class.push( &#x27;cur&#x27; );
                     _ls.push( &#x27;&lt;td class=&quot;&#x27;, _class.join(&#x27; &#x27;),&#x27;&quot;&gt;&#x27;
                             ,&#x27;&lt;a href=&quot;javascript:&quot; date=&quot;&#x27;, _beginDate.getTime(),&#x27;&quot;&gt;&#x27;
                             , _beginDate.getDate(), &#x27;&lt;/a&gt;&lt;/td&gt;&#x27; );
@@ -602,9 +609,9 @@
             function( _year ){
                 UXC.log( _year );
                 if ( !_logic.lastDateObj ) return;
-                var _premaxday = _logic.maxDayOfMonth( _logic.lastDateObj.date )
+                var _premaxday = maxDayOfMonth( _logic.lastDateObj.date )
                     , _d = new Date( _year, _logic.lastDateObj.date.getMonth(), 1 )
-                    , _nextmaxday = _logic.maxDayOfMonth( _d );
+                    , _nextmaxday = maxDayOfMonth( _d );
                 if( _premaxday &gt; _nextmaxday ) _d.setDate( _nextmaxday );
                 else _d.setDate( _logic.lastDateObj.date.getDate() );
 
@@ -623,9 +630,9 @@
             function( _month ){
                 UXC.log( _month );
                 if ( !_logic.lastDateObj ) return;
-                var _premaxday = _logic.maxDayOfMonth( _logic.lastDateObj.date )
+                var _premaxday = maxDayOfMonth( _logic.lastDateObj.date )
                     , _d = new Date( _logic.lastDateObj.date.getFullYear(), _month, 1 )
-                    , _nextmaxday = _logic.maxDayOfMonth( _d );
+                    , _nextmaxday = maxDayOfMonth( _d );
                 if( _premaxday &gt; _nextmaxday ) _d.setDate( _nextmaxday );
                 else _d.setDate( _logic.lastDateObj.date.getDate() );
 
@@ -715,22 +722,22 @@
             function( _selector ){
                 var _r = { date: 0, minvalue: 0, maxvalue: 0, initMinvalue: 0, initMaxvalue: 0 }, _tmp;
 
-                if( _tmp = _logic.parseDate( _selector.val() ) ) _r.date = _tmp;
+                if( _tmp = parseISODate( _selector.val() ) ) _r.date = _tmp;
                 else _r.date = new Date();
 
-                _r.minvalue = _logic.parseDate( _selector.attr(&#x27;minvalue&#x27;) );
-                _r.maxvalue = _logic.parseDate( _selector.attr(&#x27;maxvalue&#x27;) );
+                _r.minvalue = parseISODate( _selector.attr(&#x27;minvalue&#x27;) );
+                _r.maxvalue = parseISODate( _selector.attr(&#x27;maxvalue&#x27;) );
                 
-                _r.minvalue &amp;&amp; ( _r.initMinvalue = _logic.cloneDate( _r.minvalue ) );
-                _r.maxvalue &amp;&amp; ( _r.initMaxvalue = _logic.cloneDate( _r.maxvalue ) );
+                _r.minvalue &amp;&amp; ( _r.initMinvalue = cloneDate( _r.minvalue ) );
+                _r.maxvalue &amp;&amp; ( _r.initMaxvalue = cloneDate( _r.maxvalue ) );
 
                 if( !_r.initMinvalue ){
-                    _r.initMinvalue = _logic.cloneDate( _r.date );
+                    _r.initMinvalue = cloneDate( _r.date );
                     _r.initMinvalue.setFullYear( _r.initMinvalue.getFullYear() - Calendar.defaultDateSpan );
                 }
 
                 if( !_r.initMaxvalue ){
-                    _r.initMaxvalue = _logic.cloneDate( _r.date );
+                    _r.initMaxvalue = cloneDate( _r.date );
                     _r.initMaxvalue.setFullYear( _r.initMaxvalue.getFullYear() + Calendar.defaultDateSpan );
                 }
 
@@ -752,12 +759,7 @@
                     if( _df.length ) _df = _df.slice(0, 1);
                     _symbol = _df;
                 }
-                var _dStr = 
-                    [ 
-                        _d.getFullYear()
-                        , _logic.intPad( _d.getMonth() + 1 )
-                        , _logic.intPad( _d.getDate() ) 
-                     ].join(_symbol);
+                var _dStr = formatISODate( _d, _symbol );
                 _logic.lastIpt.val( _dStr ).focus();
             }
         /**
@@ -773,86 +775,6 @@
                 if( _cur.parent(&#x27;td&#x27;).hasClass(&#x27;unable&#x27;) ) return 0;
                 _cur &amp;&amp; _cur.length &amp;&amp; _cur.attr(&#x27;date&#x27;) &amp;&amp; _logic.setDate( _cur.attr(&#x27;date&#x27;) );
                 return 1;
-            }
-        /**
-         * 解析日期
-         * @method  _logic.parseDate
-         * @param   {string}    _dateStr
-         * @return  {Date}  返回解析得到的日期/或者当前日期
-         * @private
-         */
-        , parseDate:
-            function( _dateStr ){
-                var _re = /[^\d]/g, _r, _dateStr = _dateStr || &#x27;&#x27;;
-                _dateStr &amp;&amp; ( _dateStr = _dateStr.replace(_re, &#x27;&#x27;) );
-                if( _dateStr &amp;&amp; _dateStr.length == 8 ){
-                    _r = new Date( parseInt( _dateStr.slice(0,4), 10 )
-                                    , parseInt( _dateStr.slice(4,6), 10 ) - 1
-                                    , parseInt( _dateStr.slice(6,8), 10 ) );
-                }
-                return _r;
-            }
-        /**
-         * 克隆日期对象
-         * @method  _logic.cloneDate
-         * @param   {Date}  _date   需要克隆的日期
-         * @return  {Date}  需要克隆的日期对象
-         * @private
-         */
-        , cloneDate: function( _date ){ var d = new Date(); d.setTime( _date.getTime() ); return d; }
-        /**
-         * 判断两个日期是否为同一天
-         * @method  _logic.isSameDay
-         * @param   {Date}  _d1     需要判断的日期1
-         * @param   {Date}  _d2     需要判断的日期2
-         * @return {bool}
-         * @private
-         */
-        , isSameDay:
-            function( _d1, _d2 ){
-                return [_d1.getFullYear(), _d1.getMonth(), _d1.getDate()].join() === [
-                        _d2.getFullYear(), _d2.getMonth(), _d2.getDate()].join()
-            }
-        /**
-         * 判断两个日期是否为同一月份
-         * @method  _logic.isSameMonth
-         * @param   {Date}  _d1     需要判断的日期1
-         * @param   {Date}  _d2     需要判断的日期2
-         * @return {bool}
-         * @private
-         */
-        , isSameMonth:
-            function( _d1, _d2 ){
-                return [_d1.getFullYear(), _d1.getMonth()].join() === [
-                        _d2.getFullYear(), _d2.getMonth()].join()
-            }
-        /**
-         * 取得一个月份中最大的一天
-         * @method  _logic.maxDayOfMonth
-         * @param   {Date}  _date
-         * @return {int} 月份中最大的一天
-         * @private
-         */
-        , maxDayOfMonth:
-            function( _date ){
-                var _r, _d = new Date( _date.getFullYear(), _date.getMonth() + 1 );
-                    _d.setDate( _d.getDate() - 1 );
-                    _r = _d.getDate();
-                return _r;
-            }
-        /**
-         * 为数字添加前置0
-         * @method  _logic.intPad
-         * @param   {int}   _n      需要添加前置0的数字
-         * @param   {int}   _len    需要添加_len个0, 默认为2
-         * @return  {string}
-         * @private
-         */
-        , intPad: 
-            function( _n, _len ){
-                if( typeof _len == &#x27;undefined&#x27; ) _len = 2;
-                _n = new Array( _len + 1 ).join(&#x27;0&#x27;) + _n;
-                return _n.slice( _n.length - _len );
             }
         /**
          * 日历组件模板

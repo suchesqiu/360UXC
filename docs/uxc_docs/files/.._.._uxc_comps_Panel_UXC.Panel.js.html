@@ -338,6 +338,7 @@
             function( _src ){ 
                 _src = $(_src ); 
                 _src &amp;&amp; _src.length &amp;&amp; this._view.positionWith( _src ); 
+                return this;
             }
         /**
          * 隐藏 Panel
@@ -348,6 +349,7 @@
             function(){
                 this.trigger(&#x27;beforehide&#x27;, this._view.getPanel() );
                 this.trigger(&#x27;hide&#x27;, this._view.getPanel() );
+                return this;
             }
         /**
          * 关闭 Panel
@@ -359,6 +361,7 @@
                 UXC.log(&#x27;Panel.close&#x27;);
                 this.trigger(&#x27;beforeclose&#x27;, this._view.getPanel() );
                 this.trigger(&#x27;close&#x27;, this._view.getPanel() );
+                return this;
             }
         /**
          * 从DOM清除Panel
@@ -369,8 +372,8 @@
             function(){
                 UXC.log(&#x27;Panel.dispose&#x27;);
                 this._view.close();
+                return this;
             }
-
         /**
          * 把 Panel 位置设为屏幕居中
          * @method  center
@@ -380,13 +383,29 @@
                 this.trigger(&#x27;beforecenter&#x27;, this._view.getPanel() );
                 this._view.center();
                 this.trigger(&#x27;center&#x27;, this._view.getPanel() );
+                return this;
             }
         /**
          * 返回 Panel 的 jquery dom选择器对象
+         * &lt;br /&gt;这个方法以后将会清除, 请使用 layout 方法
          * @method  selector
          * @return  {selector}
          */
         , selector: function(){ return this._view.getPanel(); }
+        /**
+         * 返回 Panel 的 jquery dom选择器对象
+         * @method  layout
+         * @return  {selector}
+         */
+        , layout: function(){ return this._view.getPanel(); }
+        /**
+         * 从 Panel 选择器中查找内容
+         * &lt;br /&gt;添加这个方法是为了方便jquery 使用者的习惯
+         * @method  find
+         * @param   {selector}  _selector
+         * @return  selector
+         */
+        , find: function( _selector ){ return this.layout().find( _selector ); }
         /**
          * 触发 Panel 已绑定的事件
          * &lt;br /&gt;用户可以使用该方法主动触发绑定的事件
@@ -421,6 +440,7 @@
                         });
                     }
                 }
+                return this;
             }
         /**
          * 获取或者设置 Panel Header 的HTML内容

@@ -767,12 +767,12 @@
      */
     var _deftpl =
         [
-        '<div class="UPanel" style="width: 600px;">\n'
-        ,'    <div class="UPContent">\n'
-        ,'        <div class="bd"></div>\n'
-        ,'        <span class="close" eventtype="close"></span>\n'
-        ,'    </div><!--end UPContent-->\n'
-        ,'</div><!--end UPanel-->\n'
+        '<div class="UPanel" style="width: 600px;">'
+        ,'    <div class="UPContent">'
+        ,'        <div class="bd"></div>'
+        ,'        <span class="close" eventtype="close"></span>'
+        ,'    </div><!--end UPContent-->'
+        ,'</div><!--end UPanel-->'
         ].join('')
 
 }(jQuery));

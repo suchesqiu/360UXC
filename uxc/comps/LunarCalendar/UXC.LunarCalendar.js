@@ -18,7 +18,13 @@
      *      <br /><b>nopreviousfestivals</b>: 不显示上个月的节日
      *      <br /><b>nonextfestivals</b>: 不显示下个月的节日
      * </p>
-     * <p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>
+     * <p><b>require</b>: <a href='window.jQuery.html'>jQuery</a>
+     * <br /><b>require</b>: <a href='.window.html#method_cloneDate'>window.cloneDate</a>
+     * <br /><b>require</b>: <a href='.window.html#method_parseISODate'>window.parseISODate</a>
+     * <br /><b>require</b>: <a href='.window.html#method_maxDayOfMonth'>window.maxDayOfMonth</a>
+     * <br /><b>require</b>: <a href='.window.html#method_isSameDay'>window.isSameDay</a>
+     * <br /><b>require</b>: <a href='.window.html#method_isSameMonth'>window.isSameMonth</a>
+     * </p>
      * <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
      * | <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.LunarCalendar.html' target='_blank'>API docs</a>
      * | <a href='http://uxc.btbtd.org/uxc/comps/LunarCalendar/_demo/' target='_blank'>demo link</a></p>
@@ -569,11 +575,11 @@
         , initMonthDate:
             function( _dateObj ){
                 var _p = this, _layout = this.layout;
-                var _maxday = this._model.maxDayOfMonth( _dateObj.date ), _weekday = _dateObj.date.getDay() || 7
+                var _maxday = maxDayOfMonth( _dateObj.date ), _weekday = _dateObj.date.getDay() || 7
                     , _sumday = _weekday + _maxday, _row = 6, _ls = [], _premaxday, _prebegin
                     , _tmp, i, _class;
 
-                var _beginDate = this._model.cloneDate( _dateObj.date );
+                var _beginDate = cloneDate( _dateObj.date );
                     _beginDate.setDate( 1 );
                 var _beginWeekday = _beginDate.getDay() || 7;
                 if( _beginWeekday < 2 ){
@@ -582,7 +588,7 @@
                     _beginDate.setDate( -(_beginWeekday-2) );
                 }
 
-                _dateObj.beginDate = this._model.cloneDate( _beginDate );
+                _dateObj.beginDate = cloneDate( _beginDate );
 
                 var today = new Date();
 
@@ -592,7 +598,7 @@
                 for( i = 1; i <= 42; i++ ){
                     _class = [];
                     if( _beginDate.getDay() === 0 || _beginDate.getDay() == 6 ) _class.push('weekend');
-                    if( !this._model.isSameMonth( _dateObj.date, _beginDate ) ) _class.push( 'other' );
+                    if( !isSameMonth( _dateObj.date, _beginDate ) ) _class.push( 'other' );
                     if( _dateObj.minvalue && _beginDate.getTime() < _dateObj.minvalue.getTime() ) 
                         _class.push( 'unable' );
                     if( _dateObj.maxvalue && _beginDate.getTime() > _dateObj.maxvalue.getTime() ) 
@@ -641,7 +647,7 @@
 
                     this._model.title( _beginDate.getTime(), _title.join('') );
 
-                    if( this._model.isSameDay( today, _beginDate ) ) _class.push( 'today' );
+                    if( isSameDay( today, _beginDate ) ) _class.push( 'today' );
                     _ls.push( '<td class="', _class.join(' '),'">'
                             ,'<a href="javascript:" date="', _beginDate.getTime(),'">'
                             ,'<b>', _beginDate.getDate(), '</b>'
@@ -651,7 +657,7 @@
                 }
                 _ls.push('</tr>');
                 _beginDate.setDate( _beginDate.getDate() - 1 );
-                _dateObj.endDate = this._model.cloneDate( _beginDate );
+                _dateObj.endDate = cloneDate( _beginDate );
 
                 _layout.find('table.UTableBorder tbody' ).html( $( _ls.join('') ) )
                     .find('td').each( function(){
@@ -762,12 +768,12 @@
                 var _selector = this.container;
                 var _r = { date: 0, minvalue: 0, maxvalue: 0 }, _tmp;
 
-                if( _tmp = this.parseDate( _selector.attr('defaultdate') )) _r.date = _tmp;
+                if( _tmp = parseISODate( _selector.attr('defaultdate') )) _r.date = _tmp;
                 else _r.date = new Date();
 
 
-                _r.minvalue = this.parseDate( _selector.attr('minvalue') );
-                _r.maxvalue = this.parseDate( _selector.attr('maxvalue') );
+                _r.minvalue = parseISODate( _selector.attr('minvalue') );
+                _r.maxvalue = parseISODate( _selector.attr('maxvalue') );
                 
                 return this.dateObj = _r;
             }
@@ -794,86 +800,6 @@
                 if( _cur.parent('td').hasClass('unable') ) return 0;
                 _cur && _cur.length && _cur.attr('date') && this.setDate( _cur.attr('date') );
                 return 1;
-            }
-        /**
-         * 解析日期
-         * @method  parseDate
-         * @param   {string}    _dateStr
-         * @return  {Date}  返回解析得到的日期/或者当前日期
-         * @private
-         */
-        , parseDate:
-            function( _dateStr ){
-                var _re = /[^\d]/g, _r, _dateStr = _dateStr || '';
-                _dateStr && ( _dateStr = _dateStr.replace(_re, '') );
-                if( _dateStr && _dateStr.length == 8 ){
-                    _r = new Date( parseInt( _dateStr.slice(0,4), 10 )
-                                    , parseInt( _dateStr.slice(4,6), 10 ) - 1
-                                    , parseInt( _dateStr.slice(6,8), 10 ) );
-                }
-                return _r;
-            }
-        /**
-         * 克隆日期对象
-         * @method  cloneDate
-         * @param   {Date}  _date   需要克隆的日期
-         * @return  {Date}  需要克隆的日期对象
-         * @private
-         */
-        , cloneDate: function( _date ){ var d = new Date(); d.setTime( _date.getTime() ); return d; }
-        /**
-         * 判断两个日期是否为同一天
-         * @method  isSameDay
-         * @param   {Date}  _d1     需要判断的日期1
-         * @param   {Date}  _d2     需要判断的日期2
-         * @return {bool}
-         * @private
-         */
-        , isSameDay:
-            function( _d1, _d2 ){
-                return [_d1.getFullYear(), _d1.getMonth(), _d1.getDate()].join() === [
-                        _d2.getFullYear(), _d2.getMonth(), _d2.getDate()].join()
-            }
-        /**
-         * 判断两个日期是否为同一月份
-         * @method  isSameMonth
-         * @param   {Date}  _d1     需要判断的日期1
-         * @param   {Date}  _d2     需要判断的日期2
-         * @return {bool}
-         * @private
-         */
-        , isSameMonth:
-            function( _d1, _d2 ){
-                return [_d1.getFullYear(), _d1.getMonth()].join() === [
-                        _d2.getFullYear(), _d2.getMonth()].join()
-            }
-        /**
-         * 取得一个月份中最大的一天
-         * @method  maxDayOfMonth
-         * @param   {Date}  _date
-         * @return {int} 月份中最大的一天
-         * @private
-         */
-        , maxDayOfMonth:
-            function( _date ){
-                var _r, _d = new Date( _date.getFullYear(), _date.getMonth() + 1 );
-                    _d.setDate( _d.getDate() - 1 );
-                    _r = _d.getDate();
-                return _r;
-            }
-        /**
-         * 为数字添加前置0
-         * @method  intPad
-         * @param   {int}   _n      需要添加前置0的数字
-         * @param   {int}   _len    需要添加_len个0, 默认为2
-         * @return  {string}
-         * @private
-         */
-        , intPad: 
-            function( _n, _len ){
-                if( typeof _len == 'undefined' ) _len = 2;
-                _n = new Array( _len + 1 ).join('0') + _n;
-                return _n.slice( _n.length - _len );
             }
 
     };

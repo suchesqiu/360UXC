@@ -158,7 +158,7 @@
             if( _logic.timeout ) clearTimeout( _logic.timeout );
 
             if( UXC.Panel.getInstance( _selector ) ){
-                UXC.Panel.getInstance( _selector ).show();
+                UXC.Panel.getInstance( _selector ).center().show();
                 return UXC.Panel.getInstance( _selector );
             }
 

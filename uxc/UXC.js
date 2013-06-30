@@ -14,8 +14,7 @@
      * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
      * @date    2013-05-22
      */
-    window.UXC = 
-    {
+    window.UXC = {
         /**
          * UXC组件库所在路径
          * @property    PATH
@@ -108,20 +107,6 @@
 
                 _p.log( _paths );
             },
-        /**
-         * 获取组件库所在路径
-         * @method
-         * @private
-         * @return     {string}    组件库所在路径(带comps)
-         */
-        _getPath: 
-            function(){
-                var _sc = $('script').last(), _path = _sc.attr('src');
-                if( /\//.test( _path ) ){ _path = _path.split('/'); _path.pop(); _path = _path.join('/') + '/'; }
-                else if( /\\/.test( _path ) ){ _path = _path.split('\\'); _path.pop(); _path = _path.join('\\') + '/'; }
-                this.PATH = _path;
-            },
-
        /**
         * 输出调试信息, 可通过 UXC.debug 指定是否显示调试信息
         * @param    {[string[,string]]}  任意参数任意长度的字符串内容
@@ -143,7 +128,6 @@
     /**
      * 自动识别组件库所在路径
      */
-    UXC._getPath();
-
+    UXC.PATH = script_path_f();
 }(jQuery));
 

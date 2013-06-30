@@ -152,7 +152,13 @@
      *      &lt;br /&gt;&lt;b&gt;nopreviousfestivals&lt;/b&gt;: 不显示上个月的节日
      *      &lt;br /&gt;&lt;b&gt;nonextfestivals&lt;/b&gt;: 不显示下个月的节日
      * &lt;/p&gt;
-     * &lt;p&gt;&lt;b&gt;requires&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;&lt;/p&gt;
+     * &lt;p&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;
+     * &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;.window.html#method_cloneDate&#x27;&gt;window.cloneDate&lt;/a&gt;
+     * &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;.window.html#method_parseISODate&#x27;&gt;window.parseISODate&lt;/a&gt;
+     * &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;.window.html#method_maxDayOfMonth&#x27;&gt;window.maxDayOfMonth&lt;/a&gt;
+     * &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;.window.html#method_isSameDay&#x27;&gt;window.isSameDay&lt;/a&gt;
+     * &lt;br /&gt;&lt;b&gt;require&lt;/b&gt;: &lt;a href=&#x27;.window.html#method_isSameMonth&#x27;&gt;window.isSameMonth&lt;/a&gt;
+     * &lt;/p&gt;
      * &lt;p&gt;&lt;a href=&#x27;https://github.com/suchesqiu/360UXC.git&#x27; target=&#x27;_blank&#x27;&gt;UXC Project Site&lt;/a&gt;
      * | &lt;a href=&#x27;http://uxc.btbtd.org/docs/uxc_docs/classes/UXC.LunarCalendar.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
      * | &lt;a href=&#x27;http://uxc.btbtd.org/uxc/comps/LunarCalendar/_demo/&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;&lt;/p&gt;
@@ -703,11 +709,11 @@
         , initMonthDate:
             function( _dateObj ){
                 var _p = this, _layout = this.layout;
-                var _maxday = this._model.maxDayOfMonth( _dateObj.date ), _weekday = _dateObj.date.getDay() || 7
+                var _maxday = maxDayOfMonth( _dateObj.date ), _weekday = _dateObj.date.getDay() || 7
                     , _sumday = _weekday + _maxday, _row = 6, _ls = [], _premaxday, _prebegin
                     , _tmp, i, _class;
 
-                var _beginDate = this._model.cloneDate( _dateObj.date );
+                var _beginDate = cloneDate( _dateObj.date );
                     _beginDate.setDate( 1 );
                 var _beginWeekday = _beginDate.getDay() || 7;
                 if( _beginWeekday &lt; 2 ){
@@ -716,7 +722,7 @@
                     _beginDate.setDate( -(_beginWeekday-2) );
                 }
 
-                _dateObj.beginDate = this._model.cloneDate( _beginDate );
+                _dateObj.beginDate = cloneDate( _beginDate );
 
                 var today = new Date();
 
@@ -726,7 +732,7 @@
                 for( i = 1; i &lt;= 42; i++ ){
                     _class = [];
                     if( _beginDate.getDay() === 0 || _beginDate.getDay() == 6 ) _class.push(&#x27;weekend&#x27;);
-                    if( !this._model.isSameMonth( _dateObj.date, _beginDate ) ) _class.push( &#x27;other&#x27; );
+                    if( !isSameMonth( _dateObj.date, _beginDate ) ) _class.push( &#x27;other&#x27; );
                     if( _dateObj.minvalue &amp;&amp; _beginDate.getTime() &lt; _dateObj.minvalue.getTime() ) 
                         _class.push( &#x27;unable&#x27; );
                     if( _dateObj.maxvalue &amp;&amp; _beginDate.getTime() &gt; _dateObj.maxvalue.getTime() ) 
@@ -775,7 +781,7 @@
 
                     this._model.title( _beginDate.getTime(), _title.join(&#x27;&#x27;) );
 
-                    if( this._model.isSameDay( today, _beginDate ) ) _class.push( &#x27;today&#x27; );
+                    if( isSameDay( today, _beginDate ) ) _class.push( &#x27;today&#x27; );
                     _ls.push( &#x27;&lt;td class=&quot;&#x27;, _class.join(&#x27; &#x27;),&#x27;&quot;&gt;&#x27;
                             ,&#x27;&lt;a href=&quot;javascript:&quot; date=&quot;&#x27;, _beginDate.getTime(),&#x27;&quot;&gt;&#x27;
                             ,&#x27;&lt;b&gt;&#x27;, _beginDate.getDate(), &#x27;&lt;/b&gt;&#x27;
@@ -785,7 +791,7 @@
                 }
                 _ls.push(&#x27;&lt;/tr&gt;&#x27;);
                 _beginDate.setDate( _beginDate.getDate() - 1 );
-                _dateObj.endDate = this._model.cloneDate( _beginDate );
+                _dateObj.endDate = cloneDate( _beginDate );
 
                 _layout.find(&#x27;table.UTableBorder tbody&#x27; ).html( $( _ls.join(&#x27;&#x27;) ) )
                     .find(&#x27;td&#x27;).each( function(){
@@ -896,12 +902,12 @@
                 var _selector = this.container;
                 var _r = { date: 0, minvalue: 0, maxvalue: 0 }, _tmp;
 
-                if( _tmp = this.parseDate( _selector.attr(&#x27;defaultdate&#x27;) )) _r.date = _tmp;
+                if( _tmp = parseISODate( _selector.attr(&#x27;defaultdate&#x27;) )) _r.date = _tmp;
                 else _r.date = new Date();
 
 
-                _r.minvalue = this.parseDate( _selector.attr(&#x27;minvalue&#x27;) );
-                _r.maxvalue = this.parseDate( _selector.attr(&#x27;maxvalue&#x27;) );
+                _r.minvalue = parseISODate( _selector.attr(&#x27;minvalue&#x27;) );
+                _r.maxvalue = parseISODate( _selector.attr(&#x27;maxvalue&#x27;) );
                 
                 return this.dateObj = _r;
             }
@@ -928,86 +934,6 @@
                 if( _cur.parent(&#x27;td&#x27;).hasClass(&#x27;unable&#x27;) ) return 0;
                 _cur &amp;&amp; _cur.length &amp;&amp; _cur.attr(&#x27;date&#x27;) &amp;&amp; this.setDate( _cur.attr(&#x27;date&#x27;) );
                 return 1;
-            }
-        /**
-         * 解析日期
-         * @method  parseDate
-         * @param   {string}    _dateStr
-         * @return  {Date}  返回解析得到的日期/或者当前日期
-         * @private
-         */
-        , parseDate:
-            function( _dateStr ){
-                var _re = /[^\d]/g, _r, _dateStr = _dateStr || &#x27;&#x27;;
-                _dateStr &amp;&amp; ( _dateStr = _dateStr.replace(_re, &#x27;&#x27;) );
-                if( _dateStr &amp;&amp; _dateStr.length == 8 ){
-                    _r = new Date( parseInt( _dateStr.slice(0,4), 10 )
-                                    , parseInt( _dateStr.slice(4,6), 10 ) - 1
-                                    , parseInt( _dateStr.slice(6,8), 10 ) );
-                }
-                return _r;
-            }
-        /**
-         * 克隆日期对象
-         * @method  cloneDate
-         * @param   {Date}  _date   需要克隆的日期
-         * @return  {Date}  需要克隆的日期对象
-         * @private
-         */
-        , cloneDate: function( _date ){ var d = new Date(); d.setTime( _date.getTime() ); return d; }
-        /**
-         * 判断两个日期是否为同一天
-         * @method  isSameDay
-         * @param   {Date}  _d1     需要判断的日期1
-         * @param   {Date}  _d2     需要判断的日期2
-         * @return {bool}
-         * @private
-         */
-        , isSameDay:
-            function( _d1, _d2 ){
-                return [_d1.getFullYear(), _d1.getMonth(), _d1.getDate()].join() === [
-                        _d2.getFullYear(), _d2.getMonth(), _d2.getDate()].join()
-            }
-        /**
-         * 判断两个日期是否为同一月份
-         * @method  isSameMonth
-         * @param   {Date}  _d1     需要判断的日期1
-         * @param   {Date}  _d2     需要判断的日期2
-         * @return {bool}
-         * @private
-         */
-        , isSameMonth:
-            function( _d1, _d2 ){
-                return [_d1.getFullYear(), _d1.getMonth()].join() === [
-                        _d2.getFullYear(), _d2.getMonth()].join()
-            }
-        /**
-         * 取得一个月份中最大的一天
-         * @method  maxDayOfMonth
-         * @param   {Date}  _date
-         * @return {int} 月份中最大的一天
-         * @private
-         */
-        , maxDayOfMonth:
-            function( _date ){
-                var _r, _d = new Date( _date.getFullYear(), _date.getMonth() + 1 );
-                    _d.setDate( _d.getDate() - 1 );
-                    _r = _d.getDate();
-                return _r;
-            }
-        /**
-         * 为数字添加前置0
-         * @method  intPad
-         * @param   {int}   _n      需要添加前置0的数字
-         * @param   {int}   _len    需要添加_len个0, 默认为2
-         * @return  {string}
-         * @private
-         */
-        , intPad: 
-            function( _n, _len ){
-                if( typeof _len == &#x27;undefined&#x27; ) _len = 2;
-                _n = new Array( _len + 1 ).join(&#x27;0&#x27;) + _n;
-                return _n.slice( _n.length - _len );
             }
 
     };
