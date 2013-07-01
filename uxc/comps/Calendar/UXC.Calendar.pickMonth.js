@@ -84,19 +84,23 @@
                     _layout.find('button.UYearButton').html( _date.getFullYear() );
 
                 var today = new Date( new Date().getFullYear(), new Date().getMonth(), new Date().getDate() ).getTime();
-                var _ls = [], _class, _data, _title, _sdate, _edate, _cnNum
+                var _ls = [], _class, _data, _title, _sdate, _edate, _cnUnit
                     , _year = _date.getFullYear();
 
                 _ls.push('<tr>');
                 for( i = 1, j = 12; i <= j; i++ ){
-                    _sdate = new Date( _year, i - 1, 1 ); _edate = new Date( _year, i - 1, maxDayOfMonth( _sdate ) );
+                    _sdate = new Date( _year, i - 1, 1 ); 
+                    _edate = new Date( _year, i - 1, maxDayOfMonth( _sdate ) );
 
-                    _title = printf( "{0}年 {1}月<br/>开始日期: {2}<br />结束日期: {3}"
+                    _title = printf( "{0}年 {1}月<br/>开始日期: {2} (周{4})<br />结束日期: {3} (周{5})"
                                 , _year
-                                , i 
+                                , UXC.Calendar.getCnNum( i )
                                 , formatISODate( _sdate )
                                 , formatISODate( _edate )
+                                , UXC.Calendar.cnWeek.charAt( _sdate.getDay() % 7 )
+                                , UXC.Calendar.cnWeek.charAt( _edate.getDay() % 7 )
                                 );
+
                     _class = [];
 
                     if( _dateObj.minvalue && _sdate.getTime() < _dateObj.minvalue.getTime() ) 
@@ -108,14 +112,14 @@
                     if( _date.getTime() >= _sdate.getTime() && _date.getTime() <= _edate.getTime() ) _class.push( 'cur' );
                     if( today >= _sdate.getTime() && today <= _edate.getTime() ) _class.push( 'today' );
 
-                    _cnNum = cnNum.charAt( i % 10 );
-                    i > 10 && ( _cnNum = "十" + _cnNum );
+                    _cnUnit = UXC.Calendar.cnUnit.charAt( i % 10 );
+                    i > 10 && ( _cnUnit = "十" + _cnUnit );
 
                     _ls.push( printf( '<td class="{0}"><a href="javascript:" title="{1}"'+
                                     ' dstart="{3}" dend="{4}" month="{5}" >{2}月</a></td>'
                                 , _class.join(' ')
                                 , _title
-                                , _cnNum
+                                , _cnUnit
                                 , _sdate.getTime()
                                 , _edate.getTime()
                                 , i
@@ -153,8 +157,6 @@
             ,'</div>'
             ].join('')
     };
-
-    var cnNum = "十一二三四五六七八九";
 
     $(document).delegate('#UXCCalendar_month table a', 'click', function( _evt ){
         var p = $(this), dstart = new Date(), dend = new Date();

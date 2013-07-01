@@ -182,6 +182,16 @@
          */
         , layoutHideCallback: null
         /**
+         * DOM 点击的过滤函数
+         * <br />默认 dom 点击时, 判断事件源不为 input[datatype=date|daterange] 会隐藏 Calendar
+         * <br /> 通过该回调可自定义过滤, 返回 false 不执行隐藏操作
+         * @property domClickFilter
+         * @type    function
+         * @static
+         * @default null
+         */
+        , domClickFilter: null
+        /**
          * 隐藏日历组件
          * @method  hide
          * @static
@@ -209,9 +219,7 @@
                         _r.date = parseISODate( _tmp.slice( 0, 8 ) );
                         _r.rangeStart = cloneDate( _r.date );
                         _r.rangeEnd = parseISODate( _tmp.slice( 8 ) );
-                        UXC.log( 111 );
                     }else{
-                        UXC.log( 222 );
                         _r.date = new Date();
                     }
                 }
@@ -231,6 +239,36 @@
 
                 _dateObj.initMaxvalue = cloneDate( _dateObj.date );
                 _dateObj.initMaxvalue.setFullYear( _dateObj.initMaxvalue.getFullYear() + Calendar.defaultDateSpan );
+            }
+        /**
+         * 每周的中文对应数字
+         * @property    cnWeek
+         * @type    string
+         * @static
+         * @default 日一二三四五六 
+         */
+        , cnWeek: "日一二三四五六"
+        /**
+         * 100以内的中文对应数字
+         * @property    cnUnit
+         * @type    string
+         * @static
+         * @default 十一二三四五六七八九    
+         */
+        , cnUnit: "十一二三四五六七八九"
+        /**
+         * 转换 100 以内的数字为中文数字
+         * @method  getCnNum
+         * @static
+         * @param   {int}   _num
+         * @return  string
+         */
+        , getCnNum:
+            function ( _num ){
+                var _r = Calendar.cnUnit.charAt( _num % 10 );
+                _num > 10 && ( _r = (_num % 10 !== 0 ? Calendar.cnUnit.charAt(0) : '') + _r );
+                _num > 19 && ( _r = Calendar.cnUnit.charAt( Math.floor( _num / 10 ) ) + _r );
+                return _r;
             }
         /**
          * 自定义日历组件模板
@@ -337,8 +375,7 @@
                     , _sumday = _weekday + _maxday, _row = 6, _ls = [], _premaxday, _prebegin
                     , _tmp, i, _class;
 
-                var _beginDate = cloneDate( _dateObj.date );
-                    _beginDate.setDate( 1 );
+                var _beginDate = new Date( _dateObj.date.getFullYear(), _dateObj.date.getMonth(), 1 );
                 var _beginWeekday = _beginDate.getDay() || 7;
                 if( _beginWeekday < 2 ){
                     _beginDate.setDate( -(_beginWeekday-1+6) );
@@ -694,8 +731,11 @@
          * @private
          */
         $(document).on('click', function($evt){
-            if( Calendar.isCalendarElement($evt.target||$evt.targetElement) ) return;
             var _src = $evt.target || $evt.srcElement;
+
+            if( Calendar.domClickFilter ) if( Calendar.domClickFilter( $(_src) ) === false ) return;
+
+            if( Calendar.isCalendarElement($evt.target||$evt.targetElement) ) return;
 
             if( _src && _src.nodeName.toLowerCase() != 'input' ){
                 Calendar.hide(); return;

@@ -10,6 +10,7 @@
         };
 
     UXC.Calendar.pickWeek.tpl = '';
+    UXC.Calendar.pickWeek.dayOffset = 1;
 
     var _logic = {
         getLayout:
@@ -84,8 +85,8 @@
                     _layout.find('button.UYearButton').html( _date.getFullYear() );
 
                 var today = new Date( new Date().getFullYear(), new Date().getMonth(), new Date().getDate() ).getTime();
-                var weeks = weekOfYear( _date.getFullYear() );
-                var nextYearWeeks = weekOfYear( _date.getFullYear() + 1 );
+                var weeks = weekOfYear( _date.getFullYear(), UXC.Calendar.pickWeek.dayOffset );
+                var nextYearWeeks = weekOfYear( _date.getFullYear() + 1, UXC.Calendar.pickWeek.dayOffset );
                 var nextCount = 0;
                 var _ls = [], _class, _data, _title, _sdate, _edate, _year = _date.getFullYear()
                     , _rows = Math.ceil( weeks.length / 8 );
@@ -99,12 +100,16 @@
                     }
                     _sdate = new Date(); _edate = new Date();
                     _sdate.setTime( _data.start ); _edate.setTime( _data.end );
-                    _title = printf( "{0}年 第{1}周<br/>开始日期: {2}<br />结束日期: {3}"
+
+                    _title = printf( "{0}年 第{1}周<br/>开始日期: {2} (周{4})<br />结束日期: {3} (周{5})"
                                 , _year
-                                , _data.week 
+                                , UXC.Calendar.getCnNum( _data.week )
                                 , formatISODate( _sdate )
                                 , formatISODate( _edate )
+                                , UXC.Calendar.cnWeek.charAt( _sdate.getDay() % 7 )
+                                , UXC.Calendar.cnWeek.charAt( _edate.getDay() % 7 )
                                 );
+
                     _class = [];
 
                     if( _dateObj.minvalue && _sdate.getTime() < _dateObj.minvalue.getTime() ) 
@@ -162,10 +167,11 @@
      * @method  weekOfYear
      * @static
      * @param   {int}   _year
+     * @param   {int}   _dayOffset  每周的默认开始为周几, 默认0(周日)
      * @return  Array
      */
-    function weekOfYear( _year ){
-        var _r = [], _tmp, _count = 1
+    function weekOfYear( _year, _dayOffset ){
+        var _r = [], _tmp, _count = 1, _dayOffset = _dayOffset || 0
             , _year = parseInt( _year, 10 )
             , _d = new Date( _year, 0, 1 );
         /**
@@ -173,11 +179,13 @@
          */
          _d.getDay() > 1 && _d.setDate( _d.getDate() - _d.getDay() + 7 );
 
+         _dayOffset > 0 && ( _dayOffset = (new Date( 2000, 1, 2 ) - new Date( 2000, 1, 1 )) * _dayOffset );
+
         while( _d.getFullYear() <= _year ){
             _tmp = { 'week': _count++, 'start': null, 'end': null };
-            _tmp.start = _d.getTime();
+            _tmp.start = _d.getTime() + _dayOffset;
             _d.setDate( _d.getDate() + 6 );
-            _tmp.end = _d.getTime();
+            _tmp.end = _d.getTime() + _dayOffset;
             _d.setDate( _d.getDate() + 1 );
             if( _d.getFullYear() > _year ) {
                 _d = new Date( _d.getFullYear(), 0, 1 );

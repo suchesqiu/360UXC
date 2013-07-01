@@ -16,6 +16,15 @@
 
     $(document).ready( function(){
 
+        $('input.multidate').val( formatISODate( new Date() ) );
+        $('input.multidate').attr( 'maxvalue', formatISODate( new Date() ) );
+
+        UXC.Calendar.domClickFilter =
+            function( _src ){
+                if( !( _src && _src.length ) ) return;
+                if( _src.hasClass( 'dataspan' ) ) return false;
+            };
+
         UXC.Calendar.layoutInitedCallback = 
             function( _layout ){
                 UXC.Tips.init( _layout.find('[title]') );
@@ -25,19 +34,37 @@
             function( _lastIpt ){
                 UXC.Tips.hide();
             };
-    });
 
-    $(document).delegate( 'select.dataspan', 'change', function( _evt ){
-        var p = $(this), v = p.val(), t = $('input.multidate');
-        switch( v ){
-            case "2":   t.attr('multidate', 'week'); break;
-            case "3":   t.attr('multidate', 'month'); break;
-            case "4":   t.attr('multidate', 'season'); break;
-            default:   t.attr('multidate', 'date'); break;
+
+        $(document).delegate( 'select.dataspan', 'change', function( _evt ){
+            var p = $(this), v = p.val(), t = $('input.multidate');
+            t.attr( 'multidate', numToDatetype( v ) );
+            UXC.Calendar.pickDate( t );
+            t.val( '' );
+        });
+        $('select.dataspan').val( datetypeToNum( $('input.multidate').attr('multidate') ) );
+
+        function numToDatetype( v ){
+            var r;
+            switch( v ){
+                case "2": r = 'week'; break;
+                case "3": r = 'month'; break;
+                case "4": r = 'season'; break;
+                default:  r = 'date'; break;
+            }
+            return r
         }
-        UXC.log( 'select.dataspan', v );
+        function datetypeToNum( v ){
+            var r;
+            switch( v ){
+                case "week": r = '2'; break;
+                case "month": r = '3'; break;
+                case "season": r = '4'; break;
+                default:  r = '1'; break;
+            }
+            return r
+        }
 
-        UXC.Calendar.pickDate( t );
     });
 </script>
 </head>    
