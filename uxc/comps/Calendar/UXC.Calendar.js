@@ -68,7 +68,7 @@
                     default: _logic.pickDate( _selector );
                 }
 
-                Calendar.layoutInitedCallback && Calendar.layoutInitedCallback( $('body > div.UXCCalendar:visible') );
+                Calendar.layoutInitedCallback && Calendar.layoutInitedCallback( $('body > div.UXCCalendar:visible'), _selector );
             } 
         /**
          * 初始化 _selector 中的所有日历组件

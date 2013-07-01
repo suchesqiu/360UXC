@@ -13,7 +13,7 @@
 <body>
 
     <dl>
-        <dt>UXC Calendar 默认模板 1234567890</dt>
+        <dt>UXC Calendar pickDate 认模板 1234567890</dt>
         <dd>
             <input type="button" class="UXCCalendar_btn"  />
         </dd>
@@ -116,23 +116,23 @@
     </dl>
 
     <dl>
-        <dt>UXC Calendar week 默认模板 1234567890</dt>
+        <dt>UXC Calendar pickWeek 模板 1234567890</dt>
         <dd>
             <div id="UXCCalendar_week" class="UXCCalendar UXCCalendar_week" style="position:static!important;" >
                 <div class="UHeader">
                     <button type="button" class="UButton UNextYear">&nbsp;&gt;&gt;&nbsp;</button>
+                    <button type="button" class="UButton UPreYear">&nbsp;&lt;&lt;&nbsp;</button>
                     <select class="UYear">
                         <OPTION>2013</OPTION>
                         <OPTION>8888</OPTION>
                         <OPTION>8888</OPTION>
                     </select>
-                    <button type="button" class="UButton UPreYear">&nbsp;&lt;&lt;&nbsp;</button>
                 </div>
-                <div class="UHeader">
+                <!--<div class="UHeader">
                     <button type="button" class="UButton UNextYear">&nbsp;&gt;&gt;&nbsp;</button>
                     <button type="button" class="UButton UYearButton">2013</button>
                     <button type="button" class="UButton UPreYear">&nbsp;&lt;&lt;&nbsp;</button>
-                </div>
+                </div>-->
                <table class="UTable UTableBorder">
                     <tbody>
                         <tr>
@@ -204,6 +204,89 @@
                             <td class="other"><a href="#">54</a></td>
                             <td class="weekend other"><a href="#">55</a></td>
                             <td class="weekend other"><a href="#">56</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="UFooter">
+                    <button type="button" class="UConfirm">确定</button>
+                    <button type="button" class="UClear">清空</button>
+                    <button type="button" class="UCancel">取消</button>
+                </div>
+            </div>
+        </dd>
+    </dl>
+
+
+    <dl>
+        <dt>UXC Calendar pickMonth 模板 1234567890</dt>
+        <dd>
+            <div id="UXCCalendar_month" class="UXCCalendar UXCCalendar_week UXCCalendar_month " style="position:static!important;" >
+                <div class="UHeader">
+                    <button type="button" class="UButton UNextYear">&nbsp;&gt;&gt;&nbsp;</button>
+                    <button type="button" class="UButton UPreYear">&nbsp;&lt;&lt;&nbsp;</button>
+                    <select class="UYear">
+                        <OPTION>2013</OPTION>
+                        <OPTION>8888</OPTION>
+                        <OPTION>8888</OPTION>
+                    </select>
+                </div>
+               <table class="UTable UTableBorder">
+                    <tbody>
+                        <tr>
+                            <td><a href="#">一月</a></td>
+                            <td class="cur"><a href="#">二月</a></td>
+                            <td class="unable"><a href="#">三月</a></td>
+                         </tr>
+                        <tr>
+                            <td class="unable"><a href="#">四月</a></td>
+                            <td class="unable"><a href="#">五月</a></td>
+                            <td class="weekend cur"><a href="#">六月</a></td>
+                        </tr>
+                        <tr>
+                            <td class="weekend"><a href="#">七月</a></td>
+                            <td><a href="#">八月</a></td>
+                            <td><a href="#">九月</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#">十月</a></td>
+                            <td><a href="#">十一月</a></td>
+                            <td><a href="#">十二月</a></td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <div class="UFooter">
+                    <button type="button" class="UConfirm">确定</button>
+                    <button type="button" class="UClear">清空</button>
+                    <button type="button" class="UCancel">取消</button>
+                </div>
+            </div>
+        </dd>
+    </dl>
+
+
+    <dl>
+        <dt>UXC Calendar pickSeason 模板 1234567890</dt>
+        <dd>
+            <div id="UXCCalendar_season" class="UXCCalendar UXCCalendar_week UXCCalendar_season " style="position:static!important;" >
+                <div class="UHeader">
+                    <button type="button" class="UButton UPreYear">&nbsp;&lt;&lt;&nbsp;</button>
+                    <button type="button" class="UButton UNextYear">&nbsp;&gt;&gt;&nbsp;</button>
+                    <select class="UYear">
+                        <OPTION>2013</OPTION>
+                        <OPTION>8888</OPTION>
+                        <OPTION>8888</OPTION>
+                    </select>
+                </div>
+               <table class="UTable UTableBorder">
+                    <tbody>
+                        <tr>
+                            <td class="unable"><a href="#">一季度</a></td>
+                            <td class="cur"><a href="#">二季度</a></td>
+                        </tr>
+                        <tr>
+                            <td><a href="#">三季度</a></td>
+                            <td class="today"><a href="#">四季度</a></td>
                         </tr>
                     </tbody>
                 </table>

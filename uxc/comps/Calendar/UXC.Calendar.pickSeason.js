@@ -2,21 +2,21 @@
     !window.UXC && (window.UXC = { log:function(){} });
     !UXC.Calendar && ( UXC.Calendar = {} );
 
-    UXC.Calendar.pickWeek =
+    UXC.Calendar.pickSeason =
         function( _selector ){
             _logic.lastDateObj = UXC.Calendar.getDate( _selector );
             UXC.Calendar.lastIpt = _selector;
             UXC.Calendar.setPosition( _selector, _logic.update( _logic.lastDateObj ) );
         };
 
-    UXC.Calendar.pickWeek.tpl = '';
+    UXC.Calendar.pickSeason.tpl = '';
 
     var _logic = {
         getLayout:
             function(){
                 var _box
-                if( !( _box = $('#UXCCalendar_week') ).length ){
-                    _box = $( UXC.Calendar.pickWeek.tpl || _logic.tpl ); 
+                if( !( _box = $('#UXCCalendar_season') ).length ){
+                    _box = $( UXC.Calendar.pickSeason.tpl || _logic.tpl ); 
                     _box.appendTo( document.body );
                     _box.data('confirmMethod', _logic.onConfirm );
                     _box.data('updateYearMethod', _logic.updateYear );
@@ -28,7 +28,7 @@
 
         , onConfirm:
             function(){
-                UXC.log( 'Calendar.pickWeek, onConfirm' );
+                UXC.log( 'Calendar.pickSeason, onConfirm' );
                 var _cur = _logic.getLayout().find('td.cur');
                 if( !_cur.length ) _logic.getLayout().find('td.today');
                 if( _cur.length ) _cur.find('a').trigger('click');
@@ -84,24 +84,20 @@
                     _layout.find('button.UYearButton').html( _date.getFullYear() );
 
                 var today = new Date( new Date().getFullYear(), new Date().getMonth(), new Date().getDate() ).getTime();
-                var weeks = weekOfYear( _date.getFullYear() );
-                var nextYearWeeks = weekOfYear( _date.getFullYear() + 1 );
-                var nextCount = 0;
-                var _ls = [], _class, _data, _title, _sdate, _edate, _year = _date.getFullYear()
-                    , _rows = Math.ceil( weeks.length / 8 );
+                var _ls = [], _class, _data, _title, _sdate, _edate, _cnNum
+                    , _year = _date.getFullYear();
 
                 _ls.push('<tr>');
-                for( i = 1, j = _rows * 8; i <= j; i++ ){
-                    _data = weeks[ i - 1];
-                    if( !_data ) {
-                        _data = nextYearWeeks[ nextCount++ ];
-                        _year = _date.getFullYear() + 1;
-                    }
-                    _sdate = new Date(); _edate = new Date();
-                    _sdate.setTime( _data.start ); _edate.setTime( _data.end );
-                    _title = printf( "{0}年 第{1}周<br/>开始日期: {2}<br />结束日期: {3}"
+                for( i = 1, j = 4; i <= j; i++ ){
+                    _sdate = new Date( _year, i * 3 - 3, 1 ); 
+                    _edate = new Date( _year, i * 3 - 1, maxDayOfMonth( _sdate ) );
+
+                    _cnNum = cnNum.charAt( i % 10 );
+                    i > 10 && ( _cnNum = "十" + _cnNum );
+
+                    _title = printf( "{0}年 {1}季度\n开始日期: {2}<br />结束日期: {3}"
                                 , _year
-                                , _data.week 
+                                , _cnNum
                                 , formatISODate( _sdate )
                                 , formatISODate( _edate )
                                 );
@@ -116,15 +112,17 @@
                     if( _date.getTime() >= _sdate.getTime() && _date.getTime() <= _edate.getTime() ) _class.push( 'cur' );
                     if( today >= _sdate.getTime() && today <= _edate.getTime() ) _class.push( 'today' );
 
-                    _ls.push( printf( '<td class="{0}"><a href="javascript:" title="{2}"'+
-                                    ' dstart="{3}" dend="{4}" week="{1}" >{1}</a></td>'
+
+                    _ls.push( printf( '<td class="{0}"><a href="javascript:" title="{1}"'+
+                                    ' dstart="{3}" dend="{4}" month="{5}" >{2}季度</a></td>'
                                 , _class.join(' ')
-                                , _data.week 
                                 , _title
+                                , _cnNum
                                 , _sdate.getTime()
                                 , _edate.getTime()
+                                , i
                             ));
-                    if( i % 8 === 0 && i != j ) _ls.push( '</tr><tr>' );
+                    if( i % 2 === 0 && i != j ) _ls.push( '</tr><tr>' );
                 }
                 _ls.push('</tr>'); 
  
@@ -140,7 +138,7 @@
         , lastDateObj: null
         , tpl:
             [
-            '<div id="UXCCalendar_week" class="UXCCalendar UXCCalendar_week" >'
+            '<div id="UXCCalendar_season" class="UXCCalendar UXCCalendar_week UXCCalendar_season" >'
             ,'    <div class="UHeader">'
             ,'        <button type="button" class="UButton UNextYear">&nbsp;&gt;&gt;&nbsp;</button>'
             ,'        <button type="button" class="UButton UPreYear">&nbsp;&lt;&lt;&nbsp;</button>'
@@ -157,38 +155,10 @@
             ,'</div>'
             ].join('')
     };
-    /**
-     * 取一年中所有的星期, 及其开始结束日期
-     * @method  weekOfYear
-     * @static
-     * @param   {int}   _year
-     * @return  Array
-     */
-    function weekOfYear( _year ){
-        var _r = [], _tmp, _count = 1
-            , _year = parseInt( _year, 10 )
-            , _d = new Date( _year, 0, 1 );
-        /**
-         * 元旦开始的第一个星期一开始的一周为政治经济上的第一周
-         */
-         _d.getDay() > 1 && _d.setDate( _d.getDate() - _d.getDay() + 7 );
 
-        while( _d.getFullYear() <= _year ){
-            _tmp = { 'week': _count++, 'start': null, 'end': null };
-            _tmp.start = _d.getTime();
-            _d.setDate( _d.getDate() + 6 );
-            _tmp.end = _d.getTime();
-            _d.setDate( _d.getDate() + 1 );
-            if( _d.getFullYear() > _year ) {
-                _d = new Date( _d.getFullYear(), 0, 1 );
-                if( _d.getDay() < 2 ) break;
-             }
-            _r.push( _tmp );
-        }
-        return _r;
-    }
+    var cnNum = "十一二三四五六七八九";
 
-    $(document).delegate('#UXCCalendar_week table a', 'click', function( _evt ){
+    $(document).delegate('#UXCCalendar_season table a', 'click', function( _evt ){
         var p = $(this), dstart = new Date(), dend = new Date();
         if( !UXC.Calendar.lastIpt ) return;
         if( p.parent('td').hasClass( 'unable' ) ) return;

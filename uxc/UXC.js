@@ -5,7 +5,6 @@
      * <p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>
      * <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
      * | <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/window.UXC.html' target='_blank'>API docs</a>
-     * | <a href='http://uxc.btbtd.org/uxc/' target='_blank'>demo link</a></p>
      * @class UXC
      * @namespace   window
      * @static
