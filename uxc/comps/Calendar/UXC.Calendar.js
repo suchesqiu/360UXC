@@ -206,6 +206,7 @@
         /**
          * 获取初始日期对象
          * @method  Calendar.getDate
+         * @static
          * @param   {selector}  _selector   显示日历组件的input
          * return   Object  { date: 0, minvalue: 0, maxvalue: 0, initMinvalue: 0, initMaxvalue: 0 }
          */

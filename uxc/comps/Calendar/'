@@ -1,33 +1,41 @@
 (function($){
     /**
-     * 弹出一年中所有季度的选择框
-     * @method  pickSeason
+     * 弹出一年中所有周的选择框
+     * @method  pickWeek
      * @for     UXC.Calendar
      * @static
      * @param   {selector}  _selector
      */
-    UXC.Calendar.pickSeason =
+    UXC.Calendar.pickWeek =
         function( _selector ){
             _logic.lastDateObj = UXC.Calendar.getDate( _selector );
             UXC.Calendar.lastIpt = _selector;
             UXC.Calendar.setPosition( _selector, _logic.update( _logic.lastDateObj ) );
         };
     /**
-     * 自定义周弹框的模板HTML
+     * 自定义周的模板样式
      * @for         UXC.Calendar
-     * @property    pickSeason.tpl
-     * @type        string
-     * @default     empty
-     * @static
+     * @property    pickWeek.tpl
+     * @
      */
-    UXC.Calendar.pickSeason.tpl = '';
+    UXC.Calendar.pickWeek.tpl = '';
+    /**
+     * 自定义周日历每周的起始日期 
+     * <br /> 0 - 6, 0=周日, 1=周一
+     * @for         UXC.Calendar
+     * @property    pickWeek.dayOffset
+     * @static
+     * @type    int
+     * @default 1
+     */
+    UXC.Calendar.pickWeek.dayOffset = 1;
 
     var _logic = {
         getLayout:
             function(){
                 var _box
-                if( !( _box = $('#UXCCalendar_season') ).length ){
-                    _box = $( UXC.Calendar.pickSeason.tpl || _logic.tpl ); 
+                if( !( _box = $('#UXCCalendar_week') ).length ){
+                    _box = $( UXC.Calendar.pickWeek.tpl || _logic.tpl ); 
                     _box.appendTo( document.body );
                     _box.data('confirmMethod', _logic.onConfirm );
                     _box.data('updateYearMethod', _logic.updateYear );
@@ -39,7 +47,7 @@
 
         , onConfirm:
             function(){
-                UXC.log( 'Calendar.pickSeason, onConfirm' );
+                UXC.log( 'Calendar.pickWeek, onConfirm' );
                 var _cur = _logic.getLayout().find('td.cur');
                 if( !_cur.length ) _logic.getLayout().find('td.today');
                 if( _cur.length ) _cur.find('a').trigger('click');
@@ -95,21 +103,25 @@
                     _layout.find('button.UYearButton').html( _date.getFullYear() );
 
                 var today = new Date( new Date().getFullYear(), new Date().getMonth(), new Date().getDate() ).getTime();
-                var _ls = [], _class, _data, _title, _sdate, _edate, _cnUnit
-                    , _year = _date.getFullYear();
+                var weeks = weekOfYear( _date.getFullYear(), UXC.Calendar.pickWeek.dayOffset );
+                var nextYearWeeks = weekOfYear( _date.getFullYear() + 1, UXC.Calendar.pickWeek.dayOffset );
+                var nextCount = 0;
+                var _ls = [], _class, _data, _title, _sdate, _edate, _year = _date.getFullYear()
+                    , _rows = Math.ceil( weeks.length / 8 );
 
                 _ls.push('<tr>');
-                for( i = 1, j = 4; i <= j; i++ ){
-                    _sdate = new Date( _year, i * 3 - 3, 1 ); 
-                    _edate = new Date( _year, i * 3 - 1, 1 );
-                    _edate.setDate( maxDayOfMonth( _edate ) );
+                for( i = 1, j = _rows * 8; i <= j; i++ ){
+                    _data = weeks[ i - 1];
+                    if( !_data ) {
+                        _data = nextYearWeeks[ nextCount++ ];
+                        _year = _date.getFullYear() + 1;
+                    }
+                    _sdate = new Date(); _edate = new Date();
+                    _sdate.setTime( _data.start ); _edate.setTime( _data.end );
 
-                    _cnUnit = UXC.Calendar.cnUnit.charAt( i % 10 );
-                    i > 10 && ( _cnUnit = "十" + _cnUnit );
-
-                    _title = printf( "{0}年 第{1}季度<br/>开始日期: {2} (周{4})<br />结束日期: {3} (周{5})"
+                    _title = printf( "{0}年 第{1}周<br/>开始日期: {2} (周{4})<br />结束日期: {3} (周{5})"
                                 , _year
-                                , UXC.Calendar.getCnNum( i )
+                                , UXC.Calendar.getCnNum( _data.week )
                                 , formatISODate( _sdate )
                                 , formatISODate( _edate )
                                 , UXC.Calendar.cnWeek.charAt( _sdate.getDay() % 7 )
@@ -127,17 +139,15 @@
                     if( _date.getTime() >= _sdate.getTime() && _date.getTime() <= _edate.getTime() ) _class.push( 'cur' );
                     if( today >= _sdate.getTime() && today <= _edate.getTime() ) _class.push( 'today' );
 
-
-                    _ls.push( printf( '<td class="{0}"><a href="javascript:" title="{1}"'+
-                                    ' dstart="{3}" dend="{4}" month="{5}" >{2}季度</a></td>'
+                    _ls.push( printf( '<td class="{0}"><a href="javascript:" title="{2}"'+
+                                    ' dstart="{3}" dend="{4}" week="{1}" >{1}</a></td>'
                                 , _class.join(' ')
+                                , _data.week 
                                 , _title
-                                , _cnUnit
                                 , _sdate.getTime()
                                 , _edate.getTime()
-                                , i
                             ));
-                    if( i % 2 === 0 && i != j ) _ls.push( '</tr><tr>' );
+                    if( i % 8 === 0 && i != j ) _ls.push( '</tr><tr>' );
                 }
                 _ls.push('</tr>'); 
  
@@ -153,7 +163,7 @@
         , lastDateObj: null
         , tpl:
             [
-            '<div id="UXCCalendar_season" class="UXCCalendar UXCCalendar_week UXCCalendar_season" >'
+            '<div id="UXCCalendar_week" class="UXCCalendar UXCCalendar_week" >'
             ,'    <div class="UHeader">'
             ,'        <button type="button" class="UButton UNextYear">&nbsp;&gt;&gt;&nbsp;</button>'
             ,'        <button type="button" class="UButton UPreYear">&nbsp;&lt;&lt;&nbsp;</button>'
@@ -170,8 +180,41 @@
             ,'</div>'
             ].join('')
     };
+    /**
+     * 取一年中所有的星期, 及其开始结束日期
+     * @method  weekOfYear
+     * @static
+     * @param   {int}   _year
+     * @param   {int}   _dayOffset  每周的默认开始为周几, 默认0(周日)
+     * @return  Array
+     */
+    function weekOfYear( _year, _dayOffset ){
+        var _r = [], _tmp, _count = 1, _dayOffset = _dayOffset || 0
+            , _year = parseInt( _year, 10 )
+            , _d = new Date( _year, 0, 1 );
+        /**
+         * 元旦开始的第一个星期一开始的一周为政治经济上的第一周
+         */
+         _d.getDay() > 1 && _d.setDate( _d.getDate() - _d.getDay() + 7 );
 
-    $(document).delegate('#UXCCalendar_season table a', 'click', function( _evt ){
+         _dayOffset > 0 && ( _dayOffset = (new Date( 2000, 1, 2 ) - new Date( 2000, 1, 1 )) * _dayOffset );
+
+        while( _d.getFullYear() <= _year ){
+            _tmp = { 'week': _count++, 'start': null, 'end': null };
+            _tmp.start = _d.getTime() + _dayOffset;
+            _d.setDate( _d.getDate() + 6 );
+            _tmp.end = _d.getTime() + _dayOffset;
+            _d.setDate( _d.getDate() + 1 );
+            if( _d.getFullYear() > _year ) {
+                _d = new Date( _d.getFullYear(), 0, 1 );
+                if( _d.getDay() < 2 ) break;
+             }
+            _r.push( _tmp );
+        }
+        return _r;
+    }
+
+    $(document).delegate('#UXCCalendar_week table a', 'click', function( _evt ){
         var p = $(this), dstart = new Date(), dend = new Date();
         if( !UXC.Calendar.lastIpt ) return;
         if( p.parent('td').hasClass( 'unable' ) ) return;

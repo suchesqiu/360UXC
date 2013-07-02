@@ -15,9 +15,10 @@
     UXC.debug = true; UXC.use( 'Tips, Calendar' );
 
     $(document).ready( function(){
-
-        $('input.multidate').val( formatISODate( new Date() ) );
-        $('input.multidate').attr( 'maxvalue', formatISODate( new Date() ) );
+        var defISODate = formatISODate( new Date() );
+        $('input.multidate').val( defISODate );
+        $('input.multidate').attr( 'maxvalue', defISODate );
+        updateHiddenDate();
 
         UXC.Calendar.domClickFilter =
             function( _src ){
@@ -33,6 +34,7 @@
         UXC.Calendar.layoutHideCallback = 
             function( _lastIpt ){
                 UXC.Tips.hide();
+                updateHiddenDate();
             };
 
 
@@ -41,8 +43,27 @@
             t.attr( 'multidate', numToDatetype( v ) );
             UXC.Calendar.pickDate( t );
             t.val( '' );
+            updateHiddenDate();
         });
         $('select.dataspan').val( datetypeToNum( $('input.multidate').attr('multidate') ) );
+
+        function updateHiddenDate(){
+            var _date = $.trim( $('input.multidate').val() );
+            if( !_date ){
+                $('input.startdate').val('');
+                $('input.enddate').val('');
+                return;
+            }
+            _date = _date.replace( /[^\d]+/g, '' );
+            if( _date.length == 8 ){
+                $('input.startdate').val( _date );
+                $('input.enddate').val( _date );
+            }
+            if( _date.length == 16 ){
+                $('input.startdate').val( _date.slice(0, 8) );
+                $('input.enddate').val( _date.slice(8) );
+            }
+        }
 
         function numToDatetype( v ){
             var r;
@@ -54,6 +75,7 @@
             }
             return r
         }
+
         function datetypeToNum( v ){
             var r;
             switch( v ){
@@ -80,7 +102,9 @@
                     <option value="3">月数据</option>
                     <option value="4">季数据</option>
                 </select>
-                <input type="text" name="multidate" class="multidate" multidate="date" />
+                <input type="text" class="multidate" multidate="date" readonly />
+                <input type="hidden" name="startdate" class="startdate" value="" />
+                <input type="hidden" name="enddate" class="enddate" value="" />
             </dd>
         </dl>
     </form>

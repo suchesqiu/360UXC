@@ -148,7 +148,7 @@
  */
 function printf( _str ){
     for(var i = 1, _len = arguments.length; i &lt; _len; i++){
-        _str = _str.replace( new RegExp(&#x27;\\{&#x27;+( i - 1 )+&#x27;\\}&#x27;), arguments[i] );
+        _str = _str.replace( new RegExp(&#x27;\\{&#x27;+( i - 1 )+&#x27;\\}&#x27;, &#x27;g&#x27;), arguments[i] );
     }
     return _str;
 }
@@ -356,7 +356,7 @@ function formatISODate( _date, _split ){
 function parseISODate( _datestr ){
     if( !_datestr ) return;
     _datestr = _datestr.replace( /[^\d]+/g, &#x27;&#x27;);
-    var _r = new Date();
+    var _r;
     if( _datestr.length === 8 ){
         _r = new Date( _datestr.slice( 0, 4 )
                         , parseInt( _datestr.slice( 4, 6 ), 10 ) - 1
@@ -408,6 +408,18 @@ function maxDayOfMonth( _date ){
         _d.setDate( _d.getDate() - 1 );
         _r = _d.getDate();
     return _r;
+}
+/**
+ * 取当前脚本标签的 src路径 
+ * @method  script_path_f
+ * @static
+ * @return  {string} 脚本所在目录的完整路径
+ */
+function script_path_f(){
+    var _sc = document.getElementsByTagName(&#x27;script&#x27;), _sc = _sc[ _sc.length - 1 ], _path = _sc.getAttribute(&#x27;src&#x27;);
+    if( /\//.test( _path ) ){ _path = _path.split(&#x27;/&#x27;); _path.pop(); _path = _path.join(&#x27;/&#x27;) + &#x27;/&#x27;; }
+    else if( /\\/.test( _path ) ){ _path = _path.split(&#x27;\\&#x27;); _path.pop(); _path = _path.join(&#x27;\\&#x27;) + &#x27;/&#x27;; }
+    return _path;
 }
 
 

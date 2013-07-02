@@ -1,14 +1,25 @@
 (function($){
-    !window.UXC && (window.UXC = { log:function(){} });
-    !UXC.Calendar && ( UXC.Calendar = {} );
-
+    /**
+     * 弹出一年中所有月份的选择框
+     * @method  pickMonth
+     * @for     UXC.Calendar
+     * @static
+     * @param   {selector}  _selector
+     */
     UXC.Calendar.pickMonth =
         function( _selector ){
             _logic.lastDateObj = UXC.Calendar.getDate( _selector );
             UXC.Calendar.lastIpt = _selector;
             UXC.Calendar.setPosition( _selector, _logic.update( _logic.lastDateObj ) );
         };
-
+    /**
+     * 自定义月份弹框的模板HTML
+     * @for         UXC.Calendar
+     * @property    pickMonth.tpl
+     * @type        string
+     * @default     empty
+     * @static
+     */
     UXC.Calendar.pickMonth.tpl = '';
 
     var _logic = {

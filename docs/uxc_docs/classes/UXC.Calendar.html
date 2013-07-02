@@ -85,7 +85,7 @@
                         <h1>UXC.Calendar Class</h1>
 <div class="box meta">
         <div class="foundat">
-            Defined in: <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l4"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:4</code></a>
+            Defined in: <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l4"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:4</code></a>
         </div>
 </div>
 <div class="box intro">
@@ -121,13 +121,7 @@
                     <h3>Methods</h3>
                     <ul class="index-list methods">
                             <li class="index-item method private">
-                                <a href="#method__logic.getDate">_logic.getDate</a>
-                            </li>
-                            <li class="index-item method private">
                                 <a href="#method__logic.getLayout">_logic.getLayout</a>
-                            </li>
-                            <li class="index-item method private">
-                                <a href="#method__logic.hide">_logic.hide</a>
                             </li>
                             <li class="index-item method private">
                                 <a href="#method__logic.initDateLayout">_logic.initDateLayout</a>
@@ -145,7 +139,7 @@
                                 <a href="#method__logic.initYear">_logic.initYear</a>
                             </li>
                             <li class="index-item method private">
-                                <a href="#method__logic.isCalendarElement">_logic.isCalendarElement</a>
+                                <a href="#method__logic.onConfirm">_logic.onConfirm</a>
                             </li>
                             <li class="index-item method private">
                                 <a href="#method__logic.pickDate">_logic.pickDate</a>
@@ -157,13 +151,23 @@
                                 <a href="#method__logic.setNewMonth">_logic.setNewMonth</a>
                             </li>
                             <li class="index-item method private">
-                                <a href="#method__logic.setNewYear">_logic.setNewYear</a>
+                                <a href="#method__logic.updateYear">_logic.updateYear</a>
                             </li>
-                            <li class="index-item method private">
-                                <a href="#method__logic.setPosition">_logic.setPosition</a>
+                            <li class="index-item method">
+                                <a href="#method_Calendar.getDate">Calendar.getDate</a>
+                                    <span class="flag static">static</span>
                             </li>
-                            <li class="index-item method private">
-                                <a href="#method__logic.setSelectedDate">_logic.setSelectedDate</a>
+                            <li class="index-item method">
+                                <a href="#method_Calendar.isCalendarElement">Calendar.isCalendarElement</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_Calendar.setPosition">Calendar.setPosition</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getCnNum">getCnNum</a>
+                                    <span class="flag static">static</span>
                             </li>
                             <li class="index-item method">
                                 <a href="#method_hide">hide</a>
@@ -175,6 +179,22 @@
                             </li>
                             <li class="index-item method">
                                 <a href="#method_pickDate">pickDate</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_pickMonth">pickMonth</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_pickSeason">pickSeason</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_pickWeek">pickWeek</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_weekOfYear">weekOfYear</a>
                                     <span class="flag static">static</span>
                             </li>
                     </ul>
@@ -190,7 +210,13 @@
                                 <a href="#property__logic.lastDateObj">_logic.lastDateObj</a>
                             </li>
                             <li class="index-item property private">
-                                <a href="#property__logic.lastIpt">_logic.lastIpt</a>
+                                <a href="#property__logic.lastDateObj">_logic.lastDateObj</a>
+                            </li>
+                            <li class="index-item property private">
+                                <a href="#property__logic.lastDateObj">_logic.lastDateObj</a>
+                            </li>
+                            <li class="index-item property private">
+                                <a href="#property__logic.lastDateObj">_logic.lastDateObj</a>
                             </li>
                             <li class="index-item property private">
                                 <a href="#property__logic.tpl">_logic.tpl</a>
@@ -200,7 +226,47 @@
                                     <span class="flag static">static</span>
                             </li>
                             <li class="index-item property">
+                                <a href="#property_Calendar.lastIpt">Calendar.lastIpt</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_cnUnit">cnUnit</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_cnWeek">cnWeek</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
                                 <a href="#property_defaultDateSpan">defaultDateSpan</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_domClickFilter">domClickFilter</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_layoutHideCallback">layoutHideCallback</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_layoutInitedCallback">layoutInitedCallback</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_pickMonth.tpl">pickMonth.tpl</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_pickSeason.tpl">pickSeason.tpl</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_pickWeek.dayOffset">pickWeek.dayOffset</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_pickWeek.tpl">pickWeek.tpl</a>
                                     <span class="flag static">static</span>
                             </li>
                             <li class="index-item property">
@@ -243,6 +309,12 @@
                                 <a href="#event_month map click">month map click</a>
                             </li>
                             <li class="index-item event private">
+                                <a href="#event_next year">next year</a>
+                            </li>
+                            <li class="index-item event private">
+                                <a href="#event_previous year">previous year</a>
+                            </li>
+                            <li class="index-item event private">
                                 <a href="#event_UXCCalendar click">UXCCalendar click</a>
                             </li>
                             <li class="index-item event private">
@@ -259,38 +331,6 @@
         </div>
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
-                    <div id="method__logic.getDate" class="method item private">
-    <h3 class="name"><code>_logic.getDate</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_selector</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-        <span class="flag private">private</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l581"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:581</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>获取初始日期对象</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_selector</code>
-                        <span class="type">Selector</span>
-                    <div class="param-description">
-                        <p>显示日历组件的input</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
                     <div id="method__logic.getLayout" class="method item private">
     <h3 class="name"><code>_logic.getLayout</code></h3>
         <span class="paren">()</span>
@@ -301,7 +341,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l549"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:549</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l489"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:489</code></a>
         </p>
     </div>
     <div class="description">
@@ -314,20 +354,6 @@
                     日历组件的selector
             </div>
         </div>
-</div>
-                    <div id="method__logic.hide" class="method item private">
-    <h3 class="name"><code>_logic.hide</code></h3>
-        <span class="paren">()</span>
-        <span class="flag private">private</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l540"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:540</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>隐藏日历组件</p>
-    </div>
 </div>
                     <div id="method__logic.initDateLayout" class="method item private">
     <h3 class="name"><code>_logic.initDateLayout</code></h3>
@@ -342,7 +368,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l375"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:375</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l351"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:351</code></a>
         </p>
     </div>
     <div class="description">
@@ -375,7 +401,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l433"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:433</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l413"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:413</code></a>
         </p>
     </div>
     <div class="description">
@@ -407,7 +433,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l388"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:388</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l366"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:366</code></a>
         </p>
     </div>
     <div class="description">
@@ -439,7 +465,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l289"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:289</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l294"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:294</code></a>
         </p>
     </div>
     <div class="description">
@@ -470,7 +496,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l444"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:444</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l424"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:424</code></a>
         </p>
     </div>
     <div class="description">
@@ -489,35 +515,28 @@
             </ul>
         </div>
 </div>
-                    <div id="method__logic.isCalendarElement" class="method item private">
-    <h3 class="name"><code>_logic.isCalendarElement</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_selector</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
+                    <div id="method__logic.onConfirm" class="method item private">
+    <h3 class="name"><code>_logic.onConfirm</code></h3>
+        <span class="paren">()</span>
+        <span class="returns-inline">
+            <span class="type">Int</span>
+        </span>
         <span class="flag private">private</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l331"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:331</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l542"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:542</code></a>
         </p>
     </div>
     <div class="description">
-        <p>判断选择器是否为日历组件的对象</p>
+        <p>给文本框赋值, 日期为控件的当前日期</p>
     </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_selector</code>
-                        <span class="type">Selector</span>
-                    <div class="param-description">
-                    </div>
-                </li>
-            </ul>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                        <span class="type">Int</span>:
+                    0/1
+            </div>
         </div>
 </div>
                     <div id="method__logic.pickDate" class="method item private">
@@ -533,7 +552,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l352"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:352</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l330"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:330</code></a>
         </p>
     </div>
     <div class="description">
@@ -565,7 +584,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l612"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:612</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l523"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:523</code></a>
         </p>
     </div>
     <div class="description">
@@ -597,7 +616,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l489"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:489</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l468"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:468</code></a>
         </p>
     </div>
     <div class="description">
@@ -616,8 +635,8 @@
             </ul>
         </div>
 </div>
-                    <div id="method__logic.setNewYear" class="method item private">
-    <h3 class="name"><code>_logic.setNewYear</code></h3>
+                    <div id="method__logic.updateYear" class="method item private">
+    <h3 class="name"><code>_logic.updateYear</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
@@ -629,7 +648,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l468"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:468</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l448"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:448</code></a>
         </p>
     </div>
     <div class="description">
@@ -648,8 +667,73 @@
             </ul>
         </div>
 </div>
-                    <div id="method__logic.setPosition" class="method item private">
-    <h3 class="name"><code>_logic.setPosition</code></h3>
+                    <div id="method_Calendar.getDate" class="method item">
+    <h3 class="name"><code>Calendar.getDate</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l206"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:206</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>获取初始日期对象</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                        <p>显示日历组件的input
+return   Object  { date: 0, minvalue: 0, maxvalue: 0, initMinvalue: 0, initMaxvalue: 0 }</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+</div>
+                    <div id="method_Calendar.isCalendarElement" class="method item">
+    <h3 class="name"><code>Calendar.isCalendarElement</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector!~YUIDOC_LINE~!return</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l143"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:143</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>判断选择器是否为日历组件的对象</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector!~YUIDOC_LINE~!return</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                        <p>bool</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+</div>
+                    <div id="method_Calendar.setPosition" class="method item">
+    <h3 class="name"><code>Calendar.setPosition</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
@@ -657,11 +741,11 @@
                 </li>
             </ul><span class="paren">)</span>
         </div>
-        <span class="flag private">private</span>
+        <span class="flag static">static</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l510"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:510</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l113"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:113</code></a>
         </p>
     </div>
     <div class="description">
@@ -680,27 +764,43 @@
             </ul>
         </div>
 </div>
-                    <div id="method__logic.setSelectedDate" class="method item private">
-    <h3 class="name"><code>_logic.setSelectedDate</code></h3>
-        <span class="paren">()</span>
+                    <div id="method_getCnNum" class="method item">
+    <h3 class="name"><code>getCnNum</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_num</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
         <span class="returns-inline">
-            <span class="type">Int</span>
+            <span class="type"></span>
         </span>
-        <span class="flag private">private</span>
+        <span class="flag static">static</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l631"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:631</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l260"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:260</code></a>
         </p>
     </div>
     <div class="description">
-        <p>给文本框赋值, 日期为控件的当前日期</p>
+        <p>转换 100 以内的数字为中文数字</p>
     </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_num</code>
+                        <span class="type">Int</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
         <div class="returns">
             <h4>Returns:</h4>
             <div class="returns-description">
-                        <span class="type">Int</span>:
-                    0/1
+                    string
             </div>
         </div>
 </div>
@@ -711,7 +811,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l69"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:69</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l194"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:194</code></a>
         </p>
     </div>
     <div class="description">
@@ -738,7 +838,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l54"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:54</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l73"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:73</code></a>
         </p>
     </div>
     <div class="description">
@@ -783,7 +883,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l31"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:31</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l34"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:34</code></a>
         </p>
     </div>
     <div class="description">
@@ -823,6 +923,149 @@
             </div>
         </div>
 </div>
+                    <div id="method_pickMonth" class="method item">
+    <h3 class="name"><code>pickMonth</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.pickMonth.js.html#l2"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.pickMonth.js:2</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>弹出一年中所有月份的选择框</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+</div>
+                    <div id="method_pickSeason" class="method item">
+    <h3 class="name"><code>pickSeason</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.pickSeason.js.html#l2"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.pickSeason.js:2</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>弹出一年中所有季度的选择框</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+</div>
+                    <div id="method_pickWeek" class="method item">
+    <h3 class="name"><code>pickWeek</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.pickWeek.js.html#l2"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.pickWeek.js:2</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>弹出一年中所有周的选择框</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+</div>
+                    <div id="method_weekOfYear" class="method item">
+    <h3 class="name"><code>weekOfYear</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_year</code>
+                </li>
+                <li class="arg">
+                        <code>_dayOffset</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.pickWeek.js.html#l185"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.pickWeek.js:185</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>取一年中所有的星期, 及其开始结束日期</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_year</code>
+                        <span class="type">Int</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_dayOffset</code>
+                        <span class="type">Int</span>
+                    <div class="param-description">
+                        <p>每周的默认开始为周几, 默认0(周日)</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    Array
+            </div>
+        </div>
+</div>
             </div>
             <div id="properties" class="api-class-tabpanel">
                 <h2 class="off-left">Properties</h2>
@@ -834,7 +1077,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l280"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:280</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l285"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:285</code></a>
         </p>
     </div>
     <div class="description">
@@ -848,25 +1091,53 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l324"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:324</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.pickWeek.js.html#l159"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.pickWeek.js:159</code></a>
         </p>
     </div>
     <div class="description">
         <p>最后一个显示日历组件的日期对象</p>
     </div>
 </div>
-                    <div id="property__logic.lastIpt" class="property item private">
-    <h3 class="name"><code>_logic.lastIpt</code></h3>
-    <span class="type">Selector</span>
+                    <div id="property__logic.lastDateObj" class="property item private">
+    <h3 class="name"><code>_logic.lastDateObj</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
         <span class="flag private">private</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l317"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:317</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.pickSeason.js.html#l147"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.pickSeason.js:147</code></a>
         </p>
     </div>
     <div class="description">
-        <p>最后一个显示日历组件的文本框</p>
+        <p>最后一个显示日历组件的日期对象</p>
+    </div>
+</div>
+                    <div id="property__logic.lastDateObj" class="property item private">
+    <h3 class="name"><code>_logic.lastDateObj</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        <span class="flag private">private</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.pickMonth.js.html#l145"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.pickMonth.js:145</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>最后一个显示日历组件的日期对象</p>
+    </div>
+</div>
+                    <div id="property__logic.lastDateObj" class="property item private">
+    <h3 class="name"><code>_logic.lastDateObj</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        <span class="flag private">private</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l323"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:323</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>最后一个显示日历组件的日期对象</p>
     </div>
 </div>
                     <div id="property__logic.tpl" class="property item private">
@@ -876,7 +1147,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l645"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:645</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l556"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:556</code></a>
         </p>
     </div>
     <div class="description">
@@ -891,13 +1162,57 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l77"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:77</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l88"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:88</code></a>
         </p>
     </div>
     <div class="description">
         <p>设置是否在 DOM 加载完毕后, 自动初始化所有日期控件</p>
     </div>
         <p><strong>Default:</strong> true</p>
+</div>
+                    <div id="property_Calendar.lastIpt" class="property item">
+    <h3 class="name"><code>Calendar.lastIpt</code></h3>
+    <span class="type">Selector</span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l106"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:106</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>最后一个显示日历组件的文本框</p>
+    </div>
+</div>
+                    <div id="property_cnUnit" class="property item">
+    <h3 class="name"><code>cnUnit</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l252"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:252</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>100以内的中文对应数字</p>
+    </div>
+        <p><strong>Default:</strong> 十一二三四五六七八九</p>
+</div>
+                    <div id="property_cnWeek" class="property item">
+    <h3 class="name"><code>cnWeek</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l244"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:244</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>每周的中文对应数字</p>
+    </div>
+        <p><strong>Default:</strong> 日一二三四五六</p>
 </div>
                     <div id="property_defaultDateSpan" class="property item">
     <h3 class="name"><code>defaultDateSpan</code></h3>
@@ -906,13 +1221,121 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l86"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:86</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l97"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:97</code></a>
         </p>
     </div>
     <div class="description">
         <p>设置默认显示的年份数, 该数为前后各多少年 默认为前后各10年</p>
     </div>
         <p><strong>Default:</strong> 20</p>
+</div>
+                    <div id="property_domClickFilter" class="property item">
+    <h3 class="name"><code>domClickFilter</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l184"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:184</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>DOM 点击的过滤函数
+<br />默认 dom 点击时, 判断事件源不为 input[datatype=date|daterange] 会隐藏 Calendar
+<br /> 通过该回调可自定义过滤, 返回 false 不执行隐藏操作</p>
+    </div>
+        <p><strong>Default:</strong> null</p>
+</div>
+                    <div id="property_layoutHideCallback" class="property item">
+    <h3 class="name"><code>layoutHideCallback</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l176"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:176</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>日历隐藏后的回调函数</p>
+    </div>
+        <p><strong>Default:</strong> null</p>
+</div>
+                    <div id="property_layoutInitedCallback" class="property item">
+    <h3 class="name"><code>layoutInitedCallback</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l168"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:168</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>初始化外观后的回调函数</p>
+    </div>
+        <p><strong>Default:</strong> null</p>
+</div>
+                    <div id="property_pickMonth.tpl" class="property item">
+    <h3 class="name"><code>pickMonth.tpl</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.pickMonth.js.html#l15"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.pickMonth.js:15</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>自定义月份弹框的模板HTML</p>
+    </div>
+        <p><strong>Default:</strong> empty</p>
+</div>
+                    <div id="property_pickSeason.tpl" class="property item">
+    <h3 class="name"><code>pickSeason.tpl</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.pickSeason.js.html#l15"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.pickSeason.js:15</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>自定义周弹框的模板HTML</p>
+    </div>
+        <p><strong>Default:</strong> empty</p>
+</div>
+                    <div id="property_pickWeek.dayOffset" class="property item">
+    <h3 class="name"><code>pickWeek.dayOffset</code></h3>
+    <span class="type">Int</span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.pickWeek.js.html#l24"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.pickWeek.js:24</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>自定义周日历每周的起始日期 
+<br /> 0 - 6, 0=周日, 1=周一</p>
+    </div>
+        <p><strong>Default:</strong> 1</p>
+</div>
+                    <div id="property_pickWeek.tpl" class="property item">
+    <h3 class="name"><code>pickWeek.tpl</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.pickWeek.js.html#l15"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.pickWeek.js:15</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>自定义周弹框的模板HTML</p>
+    </div>
+        <p><strong>Default:</strong> empty</p>
 </div>
                     <div id="property_tpl" class="property item">
     <h3 class="name"><code>tpl</code></h3>
@@ -921,7 +1344,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l95"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:95</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l274"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:274</code></a>
         </p>
     </div>
     <div class="description">
@@ -941,7 +1364,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l228"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:228</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l750"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:750</code></a>
         </p>
     </div>
     <div class="description">
@@ -955,7 +1378,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l201"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:201</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l720"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:720</code></a>
         </p>
     </div>
     <div class="description">
@@ -970,7 +1393,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l192"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:192</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l711"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:711</code></a>
         </p>
     </div>
     <div class="description">
@@ -985,7 +1408,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l138"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:138</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l660"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:660</code></a>
         </p>
     </div>
     <div class="description">
@@ -1000,7 +1423,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l252"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:252</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l774"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:774</code></a>
         </p>
     </div>
     <div class="description">
@@ -1014,7 +1437,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l210"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:210</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l729"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:729</code></a>
         </p>
     </div>
     <div class="description">
@@ -1028,7 +1451,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l106"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:106</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l607"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:607</code></a>
         </p>
     </div>
     <div class="description">
@@ -1042,7 +1465,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l236"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:236</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l758"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:758</code></a>
         </p>
     </div>
     <div class="description">
@@ -1056,7 +1479,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l129"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:129</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l651"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:651</code></a>
         </p>
     </div>
     <div class="description">
@@ -1071,12 +1494,42 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l170"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:170</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l689"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:689</code></a>
         </p>
     </div>
     <div class="description">
         <p>增加或者减少一个月</p>
 <p>监听 月份map</p>
+    </div>
+</div>
+                    <div id="event_next year" class="events item private">
+    <h3 class="name"><code>next year</code></h3>
+    <span class="type"></span>
+        <span class="flag private">private</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l631"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:631</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>捕获用户更改年份 </p>
+<p>监听 下一年按钮</p>
+    </div>
+</div>
+                    <div id="event_previous year" class="events item private">
+    <h3 class="name"><code>previous year</code></h3>
+    <span class="type"></span>
+        <span class="flag private">private</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l641"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:641</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>捕获用户更改年份 </p>
+<p>监听 上一年按钮</p>
     </div>
 </div>
                     <div id="event_UXCCalendar click" class="events item private">
@@ -1086,7 +1539,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l244"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:244</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l766"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:766</code></a>
         </p>
     </div>
     <div class="description">
@@ -1100,7 +1553,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l268"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:268</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l790"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:790</code></a>
         </p>
     </div>
     <div class="description">
@@ -1114,7 +1567,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l120"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:120</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l621"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:621</code></a>
         </p>
     </div>
     <div class="description">
@@ -1129,7 +1582,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._.._uxc_comps_Calendar_Calendar.js.html#l148"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;Calendar.js:148</code></a>
+        <a href="../files/.._.._uxc_comps_Calendar_UXC.Calendar.js.html#l671"><code>..&#x2F;..&#x2F;uxc&#x2F;comps&#x2F;Calendar&#x2F;UXC.Calendar.js:671</code></a>
         </p>
     </div>
     <div class="description">

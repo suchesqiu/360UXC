@@ -1,15 +1,35 @@
 (function($){
-    !window.UXC && (window.UXC = { log:function(){} });
-    !UXC.Calendar && ( UXC.Calendar = {} );
-
+    /**
+     * 弹出一年中所有周的选择框
+     * @method  pickWeek
+     * @for     UXC.Calendar
+     * @static
+     * @param   {selector}  _selector
+     */
     UXC.Calendar.pickWeek =
         function( _selector ){
             _logic.lastDateObj = UXC.Calendar.getDate( _selector );
             UXC.Calendar.lastIpt = _selector;
             UXC.Calendar.setPosition( _selector, _logic.update( _logic.lastDateObj ) );
         };
-
+    /**
+     * 自定义周弹框的模板HTML
+     * @for         UXC.Calendar
+     * @property    pickWeek.tpl
+     * @type        string
+     * @default     empty
+     * @static
+     */
     UXC.Calendar.pickWeek.tpl = '';
+    /**
+     * 自定义周日历每周的起始日期 
+     * <br /> 0 - 6, 0=周日, 1=周一
+     * @for         UXC.Calendar
+     * @property    pickWeek.dayOffset
+     * @static
+     * @type    int
+     * @default 1
+     */
     UXC.Calendar.pickWeek.dayOffset = 1;
 
     var _logic = {
