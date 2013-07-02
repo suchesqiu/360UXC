@@ -148,7 +148,7 @@
  */
 function printf( _str ){
     for(var i = 1, _len = arguments.length; i &lt; _len; i++){
-        _str = _str.replace( new RegExp(&#x27;\\{&#x27;+( i - 1 )+&#x27;\\}&#x27;), arguments[i] );
+        _str = _str.replace( new RegExp(&#x27;\\{&#x27;+( i - 1 )+&#x27;\\}&#x27;, &#x27;g&#x27;), arguments[i] );
     }
     return _str;
 }

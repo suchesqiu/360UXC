@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>../../uxc/comps/Calendar/UXC.Calendar.pickWeek.js - UXC jquery components</title>
+    <title>../../uxc/comps/Calendar/UXC.Calendar.pickMonth.js - UXC jquery components</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -128,50 +128,40 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: ../../uxc/comps/Calendar/UXC.Calendar.pickWeek.js</h1>
+                        <h1 class="file-heading">File: ../../uxc/comps/Calendar/UXC.Calendar.pickMonth.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 (function($){
     /**
-     * 弹出一年中所有周的选择框
-     * @method  pickWeek
+     * 弹出一年中所有月份的选择框
+     * @method  pickMonth
      * @for     UXC.Calendar
      * @static
      * @param   {selector}  _selector
      */
-    UXC.Calendar.pickWeek =
+    UXC.Calendar.pickMonth =
         function( _selector ){
             _logic.lastDateObj = UXC.Calendar.getDate( _selector );
             UXC.Calendar.lastIpt = _selector;
             UXC.Calendar.setPosition( _selector, _logic.update( _logic.lastDateObj ) );
         };
     /**
-     * 自定义周弹框的模板HTML
+     * 自定义月份弹框的模板HTML
      * @for         UXC.Calendar
-     * @property    pickWeek.tpl
+     * @property    pickMonth.tpl
      * @type        string
      * @default     empty
      * @static
      */
-    UXC.Calendar.pickWeek.tpl = &#x27;&#x27;;
-    /**
-     * 自定义周日历每周的起始日期 
-     * &lt;br /&gt; 0 - 6, 0=周日, 1=周一
-     * @for         UXC.Calendar
-     * @property    pickWeek.dayOffset
-     * @static
-     * @type    int
-     * @default 1
-     */
-    UXC.Calendar.pickWeek.dayOffset = 1;
+    UXC.Calendar.pickMonth.tpl = &#x27;&#x27;;
 
     var _logic = {
         getLayout:
             function(){
                 var _box
-                if( !( _box = $(&#x27;#UXCCalendar_week&#x27;) ).length ){
-                    _box = $( UXC.Calendar.pickWeek.tpl || _logic.tpl ); 
+                if( !( _box = $(&#x27;#UXCCalendar_month&#x27;) ).length ){
+                    _box = $( UXC.Calendar.pickMonth.tpl || _logic.tpl ); 
                     _box.appendTo( document.body );
                     _box.data(&#x27;confirmMethod&#x27;, _logic.onConfirm );
                     _box.data(&#x27;updateYearMethod&#x27;, _logic.updateYear );
@@ -183,7 +173,7 @@
 
         , onConfirm:
             function(){
-                UXC.log( &#x27;Calendar.pickWeek, onConfirm&#x27; );
+                UXC.log( &#x27;Calendar.pickMonth, onConfirm&#x27; );
                 var _cur = _logic.getLayout().find(&#x27;td.cur&#x27;);
                 if( !_cur.length ) _logic.getLayout().find(&#x27;td.today&#x27;);
                 if( _cur.length ) _cur.find(&#x27;a&#x27;).trigger(&#x27;click&#x27;);
@@ -239,25 +229,17 @@
                     _layout.find(&#x27;button.UYearButton&#x27;).html( _date.getFullYear() );
 
                 var today = new Date( new Date().getFullYear(), new Date().getMonth(), new Date().getDate() ).getTime();
-                var weeks = weekOfYear( _date.getFullYear(), UXC.Calendar.pickWeek.dayOffset );
-                var nextYearWeeks = weekOfYear( _date.getFullYear() + 1, UXC.Calendar.pickWeek.dayOffset );
-                var nextCount = 0;
-                var _ls = [], _class, _data, _title, _sdate, _edate, _year = _date.getFullYear()
-                    , _rows = Math.ceil( weeks.length / 8 );
+                var _ls = [], _class, _data, _title, _sdate, _edate, _cnUnit
+                    , _year = _date.getFullYear();
 
                 _ls.push(&#x27;&lt;tr&gt;&#x27;);
-                for( i = 1, j = _rows * 8; i &lt;= j; i++ ){
-                    _data = weeks[ i - 1];
-                    if( !_data ) {
-                        _data = nextYearWeeks[ nextCount++ ];
-                        _year = _date.getFullYear() + 1;
-                    }
-                    _sdate = new Date(); _edate = new Date();
-                    _sdate.setTime( _data.start ); _edate.setTime( _data.end );
+                for( i = 1, j = 12; i &lt;= j; i++ ){
+                    _sdate = new Date( _year, i - 1, 1 ); 
+                    _edate = new Date( _year, i - 1, maxDayOfMonth( _sdate ) );
 
-                    _title = printf( &quot;{0}年 第{1}周&lt;br/&gt;开始日期: {2} (周{4})&lt;br /&gt;结束日期: {3} (周{5})&quot;
+                    _title = printf( &quot;{0}年 {1}月&lt;br/&gt;开始日期: {2} (周{4})&lt;br /&gt;结束日期: {3} (周{5})&quot;
                                 , _year
-                                , UXC.Calendar.getCnNum( _data.week )
+                                , UXC.Calendar.getCnNum( i )
                                 , formatISODate( _sdate )
                                 , formatISODate( _edate )
                                 , UXC.Calendar.cnWeek.charAt( _sdate.getDay() % 7 )
@@ -275,15 +257,19 @@
                     if( _date.getTime() &gt;= _sdate.getTime() &amp;&amp; _date.getTime() &lt;= _edate.getTime() ) _class.push( &#x27;cur&#x27; );
                     if( today &gt;= _sdate.getTime() &amp;&amp; today &lt;= _edate.getTime() ) _class.push( &#x27;today&#x27; );
 
-                    _ls.push( printf( &#x27;&lt;td class=&quot;{0}&quot;&gt;&lt;a href=&quot;javascript:&quot; title=&quot;{2}&quot;&#x27;+
-                                    &#x27; dstart=&quot;{3}&quot; dend=&quot;{4}&quot; week=&quot;{1}&quot; &gt;{1}&lt;/a&gt;&lt;/td&gt;&#x27;
+                    _cnUnit = UXC.Calendar.cnUnit.charAt( i % 10 );
+                    i &gt; 10 &amp;&amp; ( _cnUnit = &quot;十&quot; + _cnUnit );
+
+                    _ls.push( printf( &#x27;&lt;td class=&quot;{0}&quot;&gt;&lt;a href=&quot;javascript:&quot; title=&quot;{1}&quot;&#x27;+
+                                    &#x27; dstart=&quot;{3}&quot; dend=&quot;{4}&quot; month=&quot;{5}&quot; &gt;{2}月&lt;/a&gt;&lt;/td&gt;&#x27;
                                 , _class.join(&#x27; &#x27;)
-                                , _data.week 
                                 , _title
+                                , _cnUnit
                                 , _sdate.getTime()
                                 , _edate.getTime()
+                                , i
                             ));
-                    if( i % 8 === 0 &amp;&amp; i != j ) _ls.push( &#x27;&lt;/tr&gt;&lt;tr&gt;&#x27; );
+                    if( i % 3 === 0 &amp;&amp; i != j ) _ls.push( &#x27;&lt;/tr&gt;&lt;tr&gt;&#x27; );
                 }
                 _ls.push(&#x27;&lt;/tr&gt;&#x27;); 
  
@@ -299,7 +285,7 @@
         , lastDateObj: null
         , tpl:
             [
-            &#x27;&lt;div id=&quot;UXCCalendar_week&quot; class=&quot;UXCCalendar UXCCalendar_week&quot; &gt;&#x27;
+            &#x27;&lt;div id=&quot;UXCCalendar_month&quot; class=&quot;UXCCalendar UXCCalendar_week UXCCalendar_month&quot; &gt;&#x27;
             ,&#x27;    &lt;div class=&quot;UHeader&quot;&gt;&#x27;
             ,&#x27;        &lt;button type=&quot;button&quot; class=&quot;UButton UNextYear&quot;&gt;&amp;nbsp;&amp;gt;&amp;gt;&amp;nbsp;&lt;/button&gt;&#x27;
             ,&#x27;        &lt;button type=&quot;button&quot; class=&quot;UButton UPreYear&quot;&gt;&amp;nbsp;&amp;lt;&amp;lt;&amp;nbsp;&lt;/button&gt;&#x27;
@@ -316,41 +302,8 @@
             ,&#x27;&lt;/div&gt;&#x27;
             ].join(&#x27;&#x27;)
     };
-    /**
-     * 取一年中所有的星期, 及其开始结束日期
-     * @method  weekOfYear
-     * @static
-     * @param   {int}   _year
-     * @param   {int}   _dayOffset  每周的默认开始为周几, 默认0(周日)
-     * @return  Array
-     */
-    function weekOfYear( _year, _dayOffset ){
-        var _r = [], _tmp, _count = 1, _dayOffset = _dayOffset || 0
-            , _year = parseInt( _year, 10 )
-            , _d = new Date( _year, 0, 1 );
-        /**
-         * 元旦开始的第一个星期一开始的一周为政治经济上的第一周
-         */
-         _d.getDay() &gt; 1 &amp;&amp; _d.setDate( _d.getDate() - _d.getDay() + 7 );
 
-         _dayOffset &gt; 0 &amp;&amp; ( _dayOffset = (new Date( 2000, 1, 2 ) - new Date( 2000, 1, 1 )) * _dayOffset );
-
-        while( _d.getFullYear() &lt;= _year ){
-            _tmp = { &#x27;week&#x27;: _count++, &#x27;start&#x27;: null, &#x27;end&#x27;: null };
-            _tmp.start = _d.getTime() + _dayOffset;
-            _d.setDate( _d.getDate() + 6 );
-            _tmp.end = _d.getTime() + _dayOffset;
-            _d.setDate( _d.getDate() + 1 );
-            if( _d.getFullYear() &gt; _year ) {
-                _d = new Date( _d.getFullYear(), 0, 1 );
-                if( _d.getDay() &lt; 2 ) break;
-             }
-            _r.push( _tmp );
-        }
-        return _r;
-    }
-
-    $(document).delegate(&#x27;#UXCCalendar_week table a&#x27;, &#x27;click&#x27;, function( _evt ){
+    $(document).delegate(&#x27;#UXCCalendar_month table a&#x27;, &#x27;click&#x27;, function( _evt ){
         var p = $(this), dstart = new Date(), dend = new Date();
         if( !UXC.Calendar.lastIpt ) return;
         if( p.parent(&#x27;td&#x27;).hasClass( &#x27;unable&#x27; ) ) return;

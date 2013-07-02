@@ -18,11 +18,31 @@
                 "UXC": 1
             }
         },
+        "../../uxc/comps/Calendar/UXC.Calendar.pickMonth.js": {
+            "name": "../../uxc/comps/Calendar/UXC.Calendar.pickMonth.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "UXC.Calendar": 1
+            },
+            "namespaces": {}
+        },
+        "../../uxc/comps/Calendar/UXC.Calendar.pickSeason.js": {
+            "name": "../../uxc/comps/Calendar/UXC.Calendar.pickSeason.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "UXC.Calendar": 1
+            },
+            "namespaces": {}
+        },
         "../../uxc/comps/Calendar/UXC.Calendar.pickWeek.js": {
             "name": "../../uxc/comps/Calendar/UXC.Calendar.pickWeek.js",
             "modules": {},
             "classes": {},
-            "fors": {},
+            "fors": {
+                "UXC.Calendar": 1
+            },
             "namespaces": {}
         },
         "../../uxc/comps/Form/Form.js": {
@@ -824,7 +844,7 @@
             "namespace": "window",
             "file": "../../uxc/UXC.js",
             "line": 2,
-            "description": "UXC jquery 组件库 资源调用控制类\n<br />这是一个单例模式, 全局访问使用 UXC 或 window.UXC\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/window.UXC.html' target='_blank'>API docs</a>\n| <a href='http://uxc.btbtd.org/uxc/' target='_blank'>demo link</a></p>",
+            "description": "UXC jquery 组件库 资源调用控制类\n<br />这是一个单例模式, 全局访问使用 UXC 或 window.UXC\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/docs/uxc_docs/classes/window.UXC.html' target='_blank'>API docs</a>",
             "static": 1,
             "example": [
                 " \n     UXC.use( 组件名[,组件名] );"
@@ -1004,6 +1024,18 @@
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
             "line": 184,
+            "description": "DOM 点击的过滤函数\n<br />默认 dom 点击时, 判断事件源不为 input[datatype=date|daterange] 会隐藏 Calendar\n<br /> 通过该回调可自定义过滤, 返回 false 不执行隐藏操作",
+            "itemtype": "property",
+            "name": "domClickFilter",
+            "type": "function",
+            "static": 1,
+            "default": "null",
+            "class": "UXC.Calendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
+            "line": 194,
             "description": "隐藏日历组件",
             "itemtype": "method",
             "name": "hide",
@@ -1016,10 +1048,11 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 196,
+            "line": 206,
             "description": "获取初始日期对象",
             "itemtype": "method",
             "name": "Calendar.getDate",
+            "static": 1,
             "params": [
                 {
                     "name": "_selector",
@@ -1032,7 +1065,51 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 235,
+            "line": 244,
+            "description": "每周的中文对应数字",
+            "itemtype": "property",
+            "name": "cnWeek",
+            "type": "string",
+            "static": 1,
+            "default": "日一二三四五六",
+            "class": "UXC.Calendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
+            "line": 252,
+            "description": "100以内的中文对应数字",
+            "itemtype": "property",
+            "name": "cnUnit",
+            "type": "string",
+            "static": 1,
+            "default": "十一二三四五六七八九",
+            "class": "UXC.Calendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
+            "line": 260,
+            "description": "转换 100 以内的数字为中文数字",
+            "itemtype": "method",
+            "name": "getCnNum",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_num",
+                    "description": "",
+                    "type": "Int"
+                }
+            ],
+            "return": {
+                "description": "string"
+            },
+            "class": "UXC.Calendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
+            "line": 274,
             "description": "自定义日历组件模板\n<p>默认模板为_logic.tpl</p>\n<p>如果用户显示定义UXC.Calendar.tpl的话, 将采用用户的模板</p>",
             "itemtype": "property",
             "name": "tpl",
@@ -1044,7 +1121,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 246,
+            "line": 285,
             "description": "私有逻辑处理对象, 基本上所有逻辑方法都存放于此对象",
             "itemtype": "property",
             "name": "_logic",
@@ -1057,7 +1134,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 255,
+            "line": 294,
             "description": "初始化日历组件的触发按钮",
             "itemtype": "method",
             "name": "_logic.initTrigger",
@@ -1075,7 +1152,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 284,
+            "line": 323,
             "description": "最后一个显示日历组件的日期对象",
             "itemtype": "property",
             "name": "_logic.lastDateObj",
@@ -1087,7 +1164,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 291,
+            "line": 330,
             "description": "显示日历组件",
             "itemtype": "method",
             "name": "_logic.pickDate",
@@ -1105,7 +1182,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 312,
+            "line": 351,
             "description": "初始化日历组件的所有日期\n     _dateObj = { date: date, minvalue: date, maxvalue: date, initMinvalue: date, initMaxvalue: date };",
             "itemtype": "method",
             "name": "_logic.initDateLayout",
@@ -1123,7 +1200,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 327,
+            "line": 366,
             "description": "初始化月份的所有日期",
             "itemtype": "method",
             "name": "_logic.initMonthDate",
@@ -1141,7 +1218,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 375,
+            "line": 413,
             "description": "初始化月份",
             "itemtype": "method",
             "name": "_logic.initMonth",
@@ -1159,7 +1236,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 386,
+            "line": 424,
             "description": "初始化年份",
             "itemtype": "method",
             "name": "_logic.initYear",
@@ -1177,7 +1254,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 410,
+            "line": 448,
             "description": "按年份更改日期",
             "itemtype": "method",
             "name": "_logic.updateYear",
@@ -1195,7 +1272,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 430,
+            "line": 468,
             "description": "按月份更改日期",
             "itemtype": "method",
             "name": "_logic.setNewMonth",
@@ -1213,7 +1290,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 451,
+            "line": 489,
             "description": "获取日历组件的外观",
             "itemtype": "method",
             "name": "_logic.getLayout",
@@ -1228,7 +1305,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 485,
+            "line": 523,
             "description": "把日期赋值给文本框",
             "itemtype": "method",
             "name": "_logic.setDate",
@@ -1246,7 +1323,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 504,
+            "line": 542,
             "description": "给文本框赋值, 日期为控件的当前日期",
             "itemtype": "method",
             "name": "_logic.onConfirm",
@@ -1261,7 +1338,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 518,
+            "line": 556,
             "description": "日历组件模板\n<p>这是默认模板, 用户可以给 UXC.Calendar.tpl 赋值, 更改为自己的模板</p>",
             "itemtype": "property",
             "name": "_logic.tpl",
@@ -1273,7 +1350,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 569,
+            "line": 607,
             "description": "DOM 加载完毕后, 初始化日历组件相关事件",
             "itemtype": "event",
             "name": "dom ready",
@@ -1284,14 +1361,14 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 575,
+            "line": 613,
             "description": "延迟200毫秒初始化页面的所有日历控件\n之所以要延迟是可以让用户自己设置是否需要自动初始化",
             "class": "UXC.Calendar",
             "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 583,
+            "line": 621,
             "description": "捕获用户更改年份 \n<p>监听 年份下拉框</p>",
             "itemtype": "event",
             "name": "year change",
@@ -1302,7 +1379,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 593,
+            "line": 631,
             "description": "捕获用户更改年份 \n<p>监听 下一年按钮</p>",
             "itemtype": "event",
             "name": "next year",
@@ -1313,7 +1390,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 603,
+            "line": 641,
             "description": "捕获用户更改年份 \n<p>监听 上一年按钮</p>",
             "itemtype": "event",
             "name": "previous year",
@@ -1324,7 +1401,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 613,
+            "line": 651,
             "description": "捕获用户更改月份\n<p>监听 月份下拉框</p>",
             "itemtype": "event",
             "name": "month change",
@@ -1335,7 +1412,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 622,
+            "line": 660,
             "description": "选择当前日期\n<p>监听确定按钮</p>",
             "itemtype": "event",
             "name": "confirm click",
@@ -1346,7 +1423,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 633,
+            "line": 671,
             "description": "增加或者减少一年\n<p>监听 年份map</p>",
             "itemtype": "event",
             "name": "year map click",
@@ -1357,7 +1434,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 651,
+            "line": 689,
             "description": "增加或者减少一个月\n<p>监听 月份map</p>",
             "itemtype": "event",
             "name": "month map click",
@@ -1368,7 +1445,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 673,
+            "line": 711,
             "description": "清除文本框内容\n<p>监听 清空按钮</p>",
             "itemtype": "event",
             "name": "clear click",
@@ -1379,7 +1456,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 682,
+            "line": 720,
             "description": "取消日历组件, 相当于隐藏\n<p>监听 取消按钮</p>",
             "itemtype": "event",
             "name": "cancel click",
@@ -1390,7 +1467,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 691,
+            "line": 729,
             "description": "dom 点击时, 检查事件源是否为日历组件对象, 如果不是则会隐藏日历组件",
             "itemtype": "event",
             "name": "dom click",
@@ -1401,7 +1478,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 709,
+            "line": 750,
             "description": "日历组件按钮点击事件",
             "itemtype": "event",
             "name": "calendar button click",
@@ -1412,7 +1489,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 717,
+            "line": 758,
             "description": "日历组件文本框获得焦点",
             "itemtype": "event",
             "name": "input focus",
@@ -1423,7 +1500,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 725,
+            "line": 766,
             "description": "日历组件点击事件, 阻止冒泡, 防止被 document click事件隐藏",
             "itemtype": "event",
             "name": "UXCCalendar click",
@@ -1434,7 +1511,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 733,
+            "line": 774,
             "description": "日期点击事件",
             "itemtype": "event",
             "name": "date click",
@@ -1445,7 +1522,7 @@
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.js",
-            "line": 749,
+            "line": 790,
             "description": "监听窗口滚动和改变大小, 实时变更日历组件显示位置",
             "itemtype": "event",
             "name": "window scroll, window resize",
@@ -1455,20 +1532,143 @@
             "namespace": "UXC"
         },
         {
-            "file": "../../uxc/comps/Calendar/UXC.Calendar.pickWeek.js",
-            "line": 132,
+            "file": "../../uxc/comps/Calendar/UXC.Calendar.pickMonth.js",
+            "line": 2,
+            "description": "弹出一年中所有月份的选择框",
+            "itemtype": "method",
+            "name": "pickMonth",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "class": "UXC.Calendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Calendar/UXC.Calendar.pickMonth.js",
+            "line": 15,
+            "description": "自定义月份弹框的模板HTML",
+            "itemtype": "property",
+            "name": "pickMonth.tpl",
+            "type": "string",
+            "default": "empty",
+            "static": 1,
+            "class": "UXC.Calendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Calendar/UXC.Calendar.pickMonth.js",
+            "line": 145,
             "description": "最后一个显示日历组件的日期对象",
             "itemtype": "property",
             "name": "_logic.lastDateObj",
             "type": "Object",
             "access": "private",
             "tagname": "",
-            "class": "UXC.Form",
+            "class": "UXC.Calendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Calendar/UXC.Calendar.pickSeason.js",
+            "line": 2,
+            "description": "弹出一年中所有季度的选择框",
+            "itemtype": "method",
+            "name": "pickSeason",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "class": "UXC.Calendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Calendar/UXC.Calendar.pickSeason.js",
+            "line": 15,
+            "description": "自定义周弹框的模板HTML",
+            "itemtype": "property",
+            "name": "pickSeason.tpl",
+            "type": "string",
+            "default": "empty",
+            "static": 1,
+            "class": "UXC.Calendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Calendar/UXC.Calendar.pickSeason.js",
+            "line": 147,
+            "description": "最后一个显示日历组件的日期对象",
+            "itemtype": "property",
+            "name": "_logic.lastDateObj",
+            "type": "Object",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Calendar",
             "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.pickWeek.js",
-            "line": 158,
+            "line": 2,
+            "description": "弹出一年中所有周的选择框",
+            "itemtype": "method",
+            "name": "pickWeek",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "class": "UXC.Calendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Calendar/UXC.Calendar.pickWeek.js",
+            "line": 15,
+            "description": "自定义周弹框的模板HTML",
+            "itemtype": "property",
+            "name": "pickWeek.tpl",
+            "type": "string",
+            "default": "empty",
+            "static": 1,
+            "class": "UXC.Calendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Calendar/UXC.Calendar.pickWeek.js",
+            "line": 24,
+            "description": "自定义周日历每周的起始日期 \n<br /> 0 - 6, 0=周日, 1=周一",
+            "itemtype": "property",
+            "name": "pickWeek.dayOffset",
+            "static": 1,
+            "type": "int",
+            "default": "1",
+            "class": "UXC.Calendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Calendar/UXC.Calendar.pickWeek.js",
+            "line": 159,
+            "description": "最后一个显示日历组件的日期对象",
+            "itemtype": "property",
+            "name": "_logic.lastDateObj",
+            "type": "Object",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Calendar",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../../uxc/comps/Calendar/UXC.Calendar.pickWeek.js",
+            "line": 185,
             "description": "取一年中所有的星期, 及其开始结束日期",
             "itemtype": "method",
             "name": "weekOfYear",
@@ -1478,19 +1678,24 @@
                     "name": "_year",
                     "description": "",
                     "type": "Int"
+                },
+                {
+                    "name": "_dayOffset",
+                    "description": "每周的默认开始为周几, 默认0(周日)",
+                    "type": "Int"
                 }
             ],
             "return": {
                 "description": "Array"
             },
-            "class": "UXC.Form",
+            "class": "UXC.Calendar",
             "namespace": "UXC"
         },
         {
             "file": "../../uxc/comps/Calendar/UXC.Calendar.pickWeek.js",
-            "line": 169,
+            "line": 197,
             "description": "元旦开始的第一个星期一开始的一周为政治经济上的第一周",
-            "class": "UXC.Form",
+            "class": "UXC.Calendar",
             "namespace": "UXC"
         },
         {
@@ -6306,7 +6511,7 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 18,
+            "line": 17,
             "description": "UXC组件库所在路径",
             "itemtype": "property",
             "name": "PATH",
@@ -6317,7 +6522,7 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 26,
+            "line": 25,
             "description": "是否显示调试信息",
             "itemtype": "property",
             "name": "debug",
@@ -6328,7 +6533,7 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 33,
+            "line": 32,
             "description": "导入UXC组件",
             "itemtype": "method",
             "name": "use",
@@ -6358,7 +6563,7 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 85,
+            "line": 84,
             "description": "去除多余的 正叙扛或反叙扛",
             "access": "private",
             "tagname": "",
@@ -6367,7 +6572,7 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 110,
+            "line": 109,
             "description": "输出调试信息, 可通过 UXC.debug 指定是否显示调试信息",
             "params": [
                 {
@@ -6384,14 +6589,14 @@
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 122,
+            "line": 121,
             "description": "如果 console 不可用, 则生成一个模拟的 console 对象",
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../../uxc/UXC.js",
-            "line": 128,
+            "line": 127,
             "description": "自动识别组件库所在路径",
             "class": "window.UXC",
             "namespace": "window"
@@ -7131,11 +7336,11 @@
         },
         {
             "message": "Missing item type\n延迟200毫秒初始化页面的所有日历控件\n之所以要延迟是可以让用户自己设置是否需要自动初始化",
-            "line": " ../../uxc/comps/Calendar/UXC.Calendar.js:575"
+            "line": " ../../uxc/comps/Calendar/UXC.Calendar.js:613"
         },
         {
             "message": "Missing item type\n元旦开始的第一个星期一开始的一周为政治经济上的第一周",
-            "line": " ../../uxc/comps/Calendar/UXC.Calendar.pickWeek.js:169"
+            "line": " ../../uxc/comps/Calendar/UXC.Calendar.pickWeek.js:197"
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",
@@ -7319,15 +7524,15 @@
         },
         {
             "message": "Missing item type\n去除多余的 正叙扛或反叙扛",
-            "line": " ../../uxc/UXC.js:85"
+            "line": " ../../uxc/UXC.js:84"
         },
         {
             "message": "Missing item type\n如果 console 不可用, 则生成一个模拟的 console 对象",
-            "line": " ../../uxc/UXC.js:122"
+            "line": " ../../uxc/UXC.js:121"
         },
         {
             "message": "Missing item type\n自动识别组件库所在路径",
-            "line": " ../../uxc/UXC.js:128"
+            "line": " ../../uxc/UXC.js:127"
         },
         {
             "message": "Missing item type\nFor feature detection",

@@ -49,8 +49,8 @@ div.UXCCalendar td.other a{
 }
 
 div.UXCCalendar td.unable a{
-    color: #B5B5B5!important;
     text-decoration: line-through!important;
+    color: #B5B5B5!important;
     cursor: default!important;
 }
 
@@ -72,10 +72,9 @@ div.UXCCalendar td.cur a{
     color:#fff!important;
 }
 
-
 div.UXCCalendar td a:hover {
     background:#ddd!important;
-    color:#fff!important;
+    color:#000!important;
 }
 
 div.UXCCalendar table a, div.UXCCalendar th{
@@ -162,6 +161,7 @@ div.UXCCalendar_week table{
 }
 div.UXCCalendar_week .UHeader {
     padding: 2px 2px!important;
+    padding-bottom: 4px!important;
 }
 div.UXCCalendar_week .UHeader button, div.UXCCalendar_week .UHeader select{
     font-size: 14px!important;
@@ -183,5 +183,29 @@ div.UXCCalendar_week .UNextYear{
 
 div.UXCCalendar_week .UPreYear{
     float: left!important;
+}
+/**
+ * 日历按月展现
+ */
+div.UXCCalendar_month{
+    width: 232px!important;
+}
+div.UXCCalendar_month table{
+    width: 218px!important;
+}
+div.UXCCalendar_month table td a{
+    line-height: 30px!important;
+}
+/**
+ * 日历按季度展现
+ */
+div.UXCCalendar_season{
+    width: 232px!important;
+}
+div.UXCCalendar_season table{
+    width: 218px!important;
+}
+div.UXCCalendar_season table td a{
+    line-height: 55px!important;
 }
 
