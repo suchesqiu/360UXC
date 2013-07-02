@@ -19,6 +19,7 @@
         $('input.multidate').val( defISODate );
         $('input.multidate').attr( 'maxvalue', defISODate );
         updateHiddenDate();
+        $('select.dataspan').val( datetypeToNum( $('input.multidate').attr('multidate') ) );
 
         UXC.Calendar.domClickFilter =
             function( _src ){
@@ -45,7 +46,6 @@
             t.val( '' );
             updateHiddenDate();
         });
-        $('select.dataspan').val( datetypeToNum( $('input.multidate').attr('multidate') ) );
 
         function updateHiddenDate(){
             var _date = $.trim( $('input.multidate').val() );
