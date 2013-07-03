@@ -11,6 +11,8 @@ var tmp = [];
 
 fs.writeFileSync( dir + 'lib.js', tmp.join('\n') );
 
+/*
 fs.unlinkSync( dir + 'jquery.js' );
 fs.unlinkSync( dir + 'common.js' );
 fs.unlinkSync( dir + 'UXC.js' );
+*/
