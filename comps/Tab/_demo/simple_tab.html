@@ -28,13 +28,25 @@
 <script>
     UXC.debug = 1;
     UXC.use( 'Tab' );
+
+    function tabclick( _tabIns ){
+        var _a = $(this);
+        UXC.log( 'tab click', new Date().getTime() );
+    }
+
+    function tabchange( _tabIns ){
+        var _a = $(this);
+        UXC.log( 'tab change', new Date().getTime() );
+    }
 </script>
 </head>    
 <body>
     <dl class="def">
-        <dt>UXC.Tab 示例</dt>
+        <dt>UXC.Tab 示例 - 静态内容</dt>
         <dd>
-        <div class="le-tabview js_autoTab" tablabel="ul.js_tabLabel > li" tabcontent="div.js_tabContent > div" >
+        <div class="le-tabview js_autoTab" tablabels="ul.js_tabLabel > li > a" tabcontents="div.js_tabContent > div" 
+                                            tabactiveclass="active" tablabelparent="li" 
+                                            tabchangecallback="tbchange" tabclickcallback="tabclick" >
                 <ul class="le-tabs js_tabLabel">
                     <li class="active"><a href="javascript:">电视剧</a></li>
                     <li><a href="javascript:">电影</a></li>
