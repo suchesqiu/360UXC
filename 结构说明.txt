@@ -1,11 +1,4 @@
-├── docs                                # 文档目录
-│   ├── readme.txt
-│   ├── uxc_docs                        # 组件库的 API 文档
-│   ├── 编码规范.txt
-│   ├── 结构说明.txt
-│   └── 组件需求.txt
-├── docs.txt                            # 本说明文档
-└── uxc                                 # 组件库所在路径
+    ├── uxc_docs                        # 组件库的 API 文档
     ├── comps
     │   ├── readme.txt
     │   ├── Test                        # 用于测试的类

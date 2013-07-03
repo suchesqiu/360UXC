@@ -3,8 +3,8 @@ var fs = require('fs');
 
 var dir = __dirname;
 if( /\\/.test( dir ) ){
-    dir = 'uxc';
-}else dir += '/uxc';
+    dir = './';
+}else dir += '';
 
 recursive_compress( dir, dir, fs);
 
@@ -38,6 +38,7 @@ function recursive_compress( $sourceRoot, $outputRoot, $fs ){
         var fstat = $fs.statSync( cspath )  
 
         if( fstat.isDirectory() ){
+            if( fl[i] == ".git" || fl[i] == 'uxc_docs' || fl[i] == 'tools' ) continue;
             /*console.log('directory');*/
         }else if( fstat.isFile ){
             /*console.log('file');*/

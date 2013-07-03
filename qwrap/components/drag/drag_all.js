@@ -1,1 +1,0 @@
-(function(){var e=document.getElementsByTagName("script"),g="";for(var f=0;f<e.length;f++){var h=e[f].src.split(/components[\\\/]/g);if(h[1]){g=h[0];break}}document.write('<script type="text/javascript" src="'+g+'components/drag/drag.js"><\/script>','<script type="text/javascript" src="'+g+'components/drag/dualslider.js"><\/script>')})();
