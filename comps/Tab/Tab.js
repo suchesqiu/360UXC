@@ -17,16 +17,25 @@
 
     Tab.autoInit = true;
     Tab.activeClass = 'cur';
+    Tab.activeEvent = 'click';
+    Tab.ajaxCallback = null;
 
     Tab.getInstance = 
         function( _selector, _setter ){
             var _r;
             _selector && ( _selector = $(_selector) ).length && (
-                typeof _setter != 'undefined' && _selector.data('TabgetInstance', _setter)
-                , _r =  _selector.data('TabgetInstance')
+                typeof _setter != 'undefined' && _selector.data('TabInstance', _setter)
+                , _r =  _selector.data('TabInstance')
             );
             return _r;
         };
+
+    Tab.resetAjaxContainer =
+        function( _container ){
+            _container && ( _container = $( _container ) );
+            _container && _container.length && _container.data('TabAjax', 0 );
+        };
+
 
     Tab.prototype = {
         _init:
@@ -37,7 +46,7 @@
 
                 var _triggerTarget = $(this._model.triggerTarget());
                 _triggerTarget && _triggerTarget.length 
-                && _triggerTarget.data( 'TabLabel' ) && _triggerTarget.trigger('click');
+                && this._model.tablabel( _triggerTarget ) && _triggerTarget.trigger('click');
 
                 return this;
             }    
@@ -47,7 +56,7 @@
                 var _ix;
                 if( typeof _label == 'number' ) _ix = _label;
                 else{
-                    _label && $(_label).length && ( _ix = $(_label).data( 'TabIndex' ) );
+                    _label && $(_label).length && ( _ix = this._model.tabindex( _label ) );
                 }
 
                 typeof _ix != 'undefined' && ( this._view.active( _ix ) );
@@ -58,8 +67,8 @@
         this._layout = _selector;
         this._triggerTarget = _triggerTarget;
 
-        this._tabLabels;
-        this._tabContents;
+        this._tablabels;
+        this._tabcontainers;
 
         this.currentIndex;
         
@@ -70,29 +79,63 @@
         _init:
             function(){
                 if( !this.layoutIsTab() ) return;
-                this._tabLabels = $( this.layout().attr('tablabels') );
-                this._tabContents = $( this.layout().attr('tabcontents') );
+                var _p = this;
+                this._tablabels = $( this.layout().attr('tablabels') );
+                this._tabcontainers = $( this.layout().attr('tabcontainers') );
 
-                this._tabLabels.each( function(){ $(this).data('TabLabel', 1 ); } );
-                this._tabContents.each( function(){ $(this).data('TabContent', 1 ) } );
-
-                this._tabLabels.each( function( _ix ){ $(this).data( 'TabIndex', _ix ); });
+                this._tablabels.each( function(){ _p.tablabel( this, 1 ); } );
+                this._tabcontainers.each( function(){ _p.tabcontent( this, 1 ); } );
+                this._tablabels.each( function( _ix ){ _p.tabindex( this, _ix ); });
 
                 return this;
             }
 
         , layout: function(){ return this._layout; }
-        , tabLabels: function( _ix ){ 
-            if( typeof _ix != 'undefined' ) return $( this._tabLabels[_ix] );
-            return this._tabLabels; 
+        , tablabels: function( _ix ){ 
+            if( typeof _ix != 'undefined' ) return $( this._tablabels[_ix] );
+            return this._tablabels; 
         }
-        , tabContents: function( _ix ){ 
-            if( typeof _ix != 'undefined' ) return $( this._tabContents[_ix] );
-            return this._tabContents; 
+        , tabcontainers: function( _ix ){ 
+            if( typeof _ix != 'undefined' ) return $( this._tabcontainers[_ix] );
+            return this._tabcontainers; 
         }
         , triggerTarget: function(){ return this._triggerTarget; }
-        , layoutIsTab: function(){ return this.layout().attr('tablabels') && this.layout().attr('tabcontents'); }
+        , layoutIsTab: function(){ return this.layout().attr('tablabels') && this.layout().attr('tabcontainers'); }
         , activeClass: function(){ return this.layout().attr('tabactiveclass') || Tab.activeClass; }
+        , activeEvent: function(){ return this.layout().attr('tabactiveevent') || Tab.activeEvent; }
+        , tablabel: 
+            function( _label, _setter ){
+                _label && ( _label = $( _label ) );
+                if( !( _label && _label.length ) ) return;
+                typeof _setter != 'undefined' && _label.data( 'TabLabel', _setter );
+                return _label.data( 'TabLabel' );
+            }
+        , tabcontent: 
+            function( _content, _setter ){
+                _content && ( _content = $( _content ) );
+                if( !( _content && _content.length ) ) return;
+                typeof _setter != 'undefined' && _content.data( 'TabContent', _setter );
+                return _content.data( 'TabContent' );
+            }
+        , tabindex: 
+            function( _label, _setter ){
+                _label && ( _label = $( _label ) );
+                if( !( _label && _label.length ) ) return;
+                typeof _setter != 'undefined' && _label.data( 'TabIndex', _setter );
+                return _label.data( 'TabIndex' );
+            }
+        , tabactivecallback:
+            function(){
+                var _r;
+                this.layout().attr('tabactivecallback') && ( _r = window[ this.layout().attr('tabactivecallback') ] );
+                return _r;
+            }
+        , tabchangecallback:
+            function(){
+                var _r;
+                this.layout().attr('tabchangecallback') && ( _r = window[ this.layout().attr('tabchangecallback') ] );
+                return _r;
+            }
     };
     
     function View( _model ){
@@ -104,14 +147,15 @@
             function() {
                 UXC.log( 'Tab.View:', new Date().getTime() );
                 var _p = this;
-                this._model.tabLabels().on( 'click', function( _evt ){
+                this._model.tablabels().on( this._model.activeEvent(), function( _evt ){
                     var _sp = $(this);
-                    if( typeof _p._model.currentIndex !== 'undefined' && _p._model.currentIndex === _sp.data('TabIndex') ) return;
-                        _p._model.currentIndex = _sp.data('TabIndex');
-                    UXC.log( 'Tab label click',  _sp.data('TabIndex'), new Date().getTime() );
-                    _p._model.layout().is('[tabclcikcallback]') && window[ _p._model.layout().attr('tabclickcallback') ]
-                        && window[ _p._model.layout().attr('tabclickcallback') ].call( _p._model.tabLabels( _ix ), this );
-                    _p.active( _sp.data('TabIndex') );
+                    if( typeof _p._model.currentIndex !== 'undefined' 
+                        && _p._model.currentIndex === _p._model.tabindex( _sp ) ) return;
+                    _p._model.currentIndex = _p._model.tabindex( _sp );
+
+                    _p._model.tabactivecallback() 
+                        && _p._model.tabactivecallback().call( this, _evt, _p._model.tabindex( _sp ), _p );
+                    _p.active( _p._model.tabindex( _sp ) );
                 });
 
                 return this;
@@ -120,8 +164,8 @@
         , active:
             function( _ix ){
                 if( typeof _ix == 'undefined' ) return;
-                var _p = this, _activeClass = this._model.activeClass(), _activeItem = this._model.tabLabels( _ix );
-                this._model.tabLabels().each( function(){
+                var _p = this, _activeClass = this._model.activeClass(), _activeItem = this._model.tablabels( _ix );
+                this._model.tablabels().each( function(){
                     var _sp = $(this);
                     _p._model.layout().is('[tablabelparent]') && ( _sp = _sp.parent( _p._model.layout().attr('tablabelparent') ) );
                     _sp && _sp.length && _sp.removeClass( _activeClass );
@@ -129,19 +173,20 @@
                 _p._model.layout().is('[tablabelparent]') && ( _activeItem = _activeItem.parent( _p._model.layout().attr('tablabelparent') ) );
                 _activeItem && _activeItem.length && _activeItem.addClass( _activeClass );
 
-                _p._model.tabContents().hide();
-                _p._model.tabContents( _ix ).show();
+                _p._model.tabcontainers().hide();
+                _p._model.tabcontainers( _ix ).show();
 
-                _p._model.layout().is('[tabchangecallback]') && window[ _p._model.layout().attr('tabchangecallback') ]
-                    && window[ _p._model.layout().attr('tabchangecallback') ].call( _p._model.tabLabels( _ix ), this );
+                _p._model.tabchangecallback() 
+                    && _p._model.tabchangecallback().call( _p._model.tablabels( _ix ), _ix, this );
             }
     };
 
-    $(document).delegate( '.js_autoTab', 'click', function( _evt ){
+    $(document).delegate( '.js_autoTab', 'mouseover', function( _evt ){
         if( !Tab.autoInit ) return;
         var _p = $(this), _tab, _src = _evt.target || _evt.srcElement;
         if( Tab.getInstance( _p ) ) return;
-        _src && ( _src = $(_src) );     UXC.log( new Date().getTime(), _src.prop('nodeName') );
+        _src && ( _src = $(_src) );
+        UXC.log( new Date().getTime(), _src.prop('nodeName') );
         _tab = new Tab( _p, _src );
     });
 
