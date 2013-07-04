@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>UXC.hideAllPopup - UXC jquery components</title>
+    <title>UXC.hideAllPanel - UXC jquery components</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -84,20 +84,21 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1>UXC.hideAllPopup Class</h1>
+                        <h1>UXC.hideAllPanel Class</h1>
 <div class="box meta">
         <div class="foundat">
-            Defined in: <a href="../files/.._comps_Panel_UXC.Popup.js.html#l47"><code>..&#x2F;comps&#x2F;Panel&#x2F;UXC.Popup.js:47</code></a>
+            Defined in: <a href="../files/.._comps_Panel_UXC.Panel.js.html#l778"><code>..&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:778</code></a>
         </div>
 </div>
 <div class="box intro">
-    <p>隐藏 或 从DOM清除所有 UXC.alert/UXC.confirm
-<br /><b>注意, 这是个方法, 写 @class 属性是为了生成文档</b></p>
+    <p>隐藏或者清除所有 Panel</p>
+<h2>使用这个方法应当谨慎, 容易为DOM造成垃圾Panel</h2>
+<p><br /><b>注意</b>: 这是个方法, 写成class是为了方便生成文档</p>
 </div>
     <div class="constructor">
         <h2>Constructor</h2>
-        <div id="method_UXC.hideAllPopup" class="method item">
-    <h3 class="name"><code>UXC.hideAllPopup</code></h3>
+        <div id="method_UXC.hideAllPanel" class="method item">
+    <h3 class="name"><code>UXC.hideAllPanel</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
@@ -109,7 +110,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Panel_UXC.Popup.js.html#l47"><code>..&#x2F;comps&#x2F;Panel&#x2F;UXC.Popup.js:47</code></a>
+        <a href="../files/.._comps_Panel_UXC.Panel.js.html#l778"><code>..&#x2F;comps&#x2F;Panel&#x2F;UXC.Panel.js:778</code></a>
         </p>
     </div>
     <div class="description">
@@ -121,7 +122,8 @@
                         <code class="param-name">_isClose</code>
                         <span class="type">Bool</span>
                     <div class="param-description">
-                        <p>为真从DOM清除UXC.alert/UXC.confirm, 为假隐藏, 默认为false</p>
+                        <p>从DOM清除/隐藏所有Panel(包刮 UXC.alert, UXC.confirm, UXC.Panel, UXC.Dialog)
+                                    <br />, true = 从DOM 清除, false = 隐藏, 默认 = false( 隐藏 )</p>
                     </div>
                 </li>
             </ul>
@@ -129,8 +131,8 @@
         <div class="example">
             <h4>Example:</h4>
             <div class="example-content">
-                <pre class="code prettyprint"><code> UXC.hideAllPopup();         //隐藏所有UXC.alert, UXC.confirm
- UXC.hideAllPopup( true );   //从 DOM 清除所有 UXC.alert, UXC.confirm
+                <pre class="code prettyprint"><code>UXC.hideAllPanel();         //隐藏所有Panel
+UXC.hideAllPanel( true );   //从DOM 清除所有Panel
 </code></pre>
             </div>
         </div>
