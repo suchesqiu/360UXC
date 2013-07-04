@@ -29,9 +29,12 @@
         <link href='../../../comps/Calendar/res/default/style.css' rel='stylesheet' />
 
         <script src="../../../lib.js"></script>
-        <script> UXC.debug = true; UXC.use( 'Valid, Calendar' ); </script>
         <script>
+            UXC.debug = true; UXC.use( 'Valid, Calendar' );
+
             $(document).ready( function($evt){
+                UXC.Valid.errorAbort = true;
+
                 $(document).delegate( 'button.js-clear-error', 'click', function( $evt ){
                     window.console && console.clear && console.clear();
                     UXC.Valid.clearError( 'form.js-valid' );
@@ -57,7 +60,7 @@
                 <button type="button" class="js-clear-error">清空错误信息</button>
             </div>
             <dl class="fm-items">
-                <dt>UXC.Valid 示例</dt>
+                <dt>UXC.Valid 示例 - 表单发生错误时停止继续验证</dt>
                 <dd>
                 <div class="f-l label">
                     <label>(reqmsg)公司名称:</label>

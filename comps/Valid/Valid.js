@@ -14,8 +14,7 @@
      * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
      * @date    2013-05-22
      */
-    var Valid = UXC.Valid = window.Valid =
-    {
+    var Valid = UXC.Valid = window.Valid = {
         /**
          * 验证一个表单项, 如 文本框, 下拉框, 复选框, 单选框, 文本域, 隐藏域
          * @method check
@@ -38,6 +37,7 @@
                     if( _type == 'form' ){
                         for( var i = 0, j = _item[0].length; i < j; i++ ){
                             !_logic.parse( $(_item[0][i]) ) && ( _r = false );
+                            if( Valid.errorAbort && !_r ) break;
                         }
                     } else _r = _logic.parse( _item );
                 }
@@ -53,24 +53,32 @@
          *          UXC.Valid.clearError( 'input.some' );
          */
         , clearError:
-        function( _selector ){
-            $( _selector ).each( function(){
-                var _item = $(this);
-                UXC.log( 'clearError: ' + _item.prop('nodeName') );
-                switch( _item.prop('nodeName').toLowerCase() ){
-                    case 'form': 
-                        {
-                            for( var i = 0, j = _item[0].length; i < j; i++ ){
-                                var tmp = $(_item[0][i]);
-                                if( tmp.is('[disabled]') ) return;
-                                _logic.valid( tmp );
+            function( _selector ){
+                $( _selector ).each( function(){
+                    var _item = $(this);
+                    UXC.log( 'clearError: ' + _item.prop('nodeName') );
+                    switch( _item.prop('nodeName').toLowerCase() ){
+                        case 'form': 
+                            {
+                                for( var i = 0, j = _item[0].length; i < j; i++ ){
+                                    var tmp = $(_item[0][i]);
+                                    if( tmp.is('[disabled]') ) return;
+                                    _logic.valid( tmp );
+                                }
+                                break;
                             }
-                            break;
-                        }
-                    default: _logic.valid( $(this) ); break;
-                }
-            });
-        }
+                        default: _logic.valid( $(this) ); break;
+                    }
+                });
+            }
+        /**
+         * 验证发生错误时, 是否终止继续验证
+         * <br /> 为真终止继续验证, 为假将验证表单的所有项, 默认为 false
+         * @property    errorAbort
+         * @type        bool
+         * @default     false
+         */
+        , errorAbort: false
 
     };
     /**
