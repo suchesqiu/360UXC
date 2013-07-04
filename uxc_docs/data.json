@@ -183,6 +183,17 @@
                 "UXC": 1
             }
         },
+        "../comps/Tab/Tab.js": {
+            "name": "../comps/Tab/Tab.js",
+            "modules": {},
+            "classes": {
+                "UXC.Tab": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "UXC": 1
+            }
+        },
         "../comps/Tips/Tips.js": {
             "name": "../comps/Tips/Tips.js",
             "modules": {},
@@ -314,7 +325,7 @@
             "namespace": "UXC.LunarCalendar",
             "file": "../comps/LunarCalendar/UXC.LunarCalendar.js",
             "line": 7,
-            "description": "农历日历组件\n<br />全局访问请使用 UXC.LunarCalendar 或 LunarCalendar\n<br />DOM 加载完毕后\n, LunarCalendar会自动初始化页面所有具体识别符的日历, 目前可识别: div.js_LunarCalendar, td.js_LunarCalendar, li.js_LunarCalendar\n<br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动初始化 var ins = new UXC.LunarCalendar( _selector );\n<p>\n     初始化时, 如果日历是添加到某个selector里, 那么selector可以指定一些设置属性\n     <br /><b>hidecontrol</b>: 如果设置该属性, 那么日历将隐藏操作控件\n     <br /><b>minvalue</b>: 设置日历的有效最小选择范围, 格式YYYY-mm-dd\n     <br /><b>maxvalue</b>: 设置日历的有效最大选择范围, 格式YYYY-mm-dd\n     <br /><b>nopreviousfestivals</b>: 不显示上个月的节日\n     <br /><b>nonextfestivals</b>: 不显示下个月的节日\n</p>\n<p><b>require</b>: <a href='window.jQuery.html'>jQuery</a>\n<br /><b>require</b>: <a href='.window.html#method_cloneDate'>window.cloneDate</a>\n<br /><b>require</b>: <a href='.window.html#method_parseISODate'>window.parseISODate</a>\n<br /><b>require</b>: <a href='.window.html#method_maxDayOfMonth'>window.maxDayOfMonth</a>\n<br /><b>require</b>: <a href='.window.html#method_isSameDay'>window.isSameDay</a>\n<br /><b>require</b>: <a href='.window.html#method_isSameMonth'>window.isSameMonth</a>\n</p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/uxc_docs/classes/UXC.LunarCalendar.html' target='_blank'>API docs</a>\n| <a href='../../comps/LunarCalendar/_demo/' target='_blank'>demo link</a></p>",
+            "description": "农历日历组件\n<br />全局访问请使用 UXC.LunarCalendar 或 LunarCalendar\n<br />DOM 加载完毕后\n, LunarCalendar会自动初始化页面所有具备识别符的日历, 目前可识别: div.js_LunarCalendar, td.js_LunarCalendar, li.js_LunarCalendar\n<br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动初始化 var ins = new UXC.LunarCalendar( _selector );\n<p>\n     初始化时, 如果日历是添加到某个selector里, 那么selector可以指定一些设置属性\n     <br /><b>hidecontrol</b>: 如果设置该属性, 那么日历将隐藏操作控件\n     <br /><b>minvalue</b>: 设置日历的有效最小选择范围, 格式YYYY-mm-dd\n     <br /><b>maxvalue</b>: 设置日历的有效最大选择范围, 格式YYYY-mm-dd\n     <br /><b>nopreviousfestivals</b>: 不显示上个月的节日\n     <br /><b>nonextfestivals</b>: 不显示下个月的节日\n</p>\n<p><b>require</b>: <a href='window.jQuery.html'>jQuery</a>\n<br /><b>require</b>: <a href='.window.html#method_cloneDate'>window.cloneDate</a>\n<br /><b>require</b>: <a href='.window.html#method_parseISODate'>window.parseISODate</a>\n<br /><b>require</b>: <a href='.window.html#method_maxDayOfMonth'>window.maxDayOfMonth</a>\n<br /><b>require</b>: <a href='.window.html#method_isSameDay'>window.isSameDay</a>\n<br /><b>require</b>: <a href='.window.html#method_isSameMonth'>window.isSameMonth</a>\n</p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/uxc_docs/classes/UXC.LunarCalendar.html' target='_blank'>API docs</a>\n| <a href='../../comps/LunarCalendar/_demo/' target='_blank'>demo link</a></p>",
             "is_constructor": 1,
             "params": [
                 {
@@ -699,6 +710,38 @@
                     "description": "为真从DOM清除UXC.alert/UXC.confirm, 为假隐藏, 默认为false",
                     "type": "Bool"
                 }
+            ]
+        },
+        "UXC.Tab": {
+            "name": "UXC.Tab",
+            "shortname": "UXC.Tab",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC",
+            "file": "../comps/Tab/Tab.js",
+            "line": 5,
+            "description": "Tab 菜单类\n<br />DOM 加载完毕后\n, 只要鼠标移动到具有识别符的Tab上面, Tab就会自动初始化, 目前可识别: <b>.js_autoTab</b>( CSS class )\n<br />需要手动初始化, 请使用: var ins = new UXC.Tab( _tabSelector );\n<p>\n     <b> Tab 容器的HTML属性 </b>\n     <br /><b>tablabels</b>: 声明 tab 标签的选择器语法\n     <br /><b>tabcontainers</b>: 声明 tab 容器的选择器语法\n     <br /><b>tabactiveclass</b>: 声明 tab当前标签的显示样式名, 默认为 cur\n     <br /><b>tablabelparent</b>: 声明 tab的当前显示样式是在父节点, 默认为 tab label 节点\n     <br /><b>tabactivecallback</b>: 当 tab label 被触发时的回调\n     <br /><b>tabchangecallback</b>: 当 tab label 变更时的回调\n</p>\n<p>\n     <b> Label(标签) 容器的HTML属性(AJAX) </b>\n     <br /><b>tabajaxurl</b>: ajax 请求的 URL 地址\n     <br /><b>tabajaxmethod</b>: ajax 请求的方法( get|post ), 默认 get\n     <br /><b>tabajaxdata</b>: ajax 请求的 数据, json\n     <br /><b>tabajaxcallback</b>: ajax 请求的回调\n</p>\n<p><b>require</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/uxc_docs/classes/UXC.Tab.html' target='_blank'>API docs</a>\n| <a href='../../comps/Tab/_demo/' target='_blank'>demo link</a></p>",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "要初始化的 Tab 选择器",
+                    "type": "Selector|string"
+                },
+                {
+                    "name": "_triggerTarget",
+                    "description": "初始完毕后要触发的 label",
+                    "type": "Selector|string"
+                }
+            ],
+            "version": "dev 0.1",
+            "author": "qiushaowei   <suches@btbtd.org> | 360 75 Team",
+            "date": "2013-07-04",
+            "example": [
+                "\n           <link href='../../../comps/Tab/res/default/style.css' rel='stylesheet' />\n           <script src=\"../../../lib.js\"></script>\n           <script>\n               UXC.debug = 1;\n               UXC.use( 'Tab' );\n\n               httpRequire();\n\n               function tabactive( _evt, _container, _tabIns ){\n                   var _label = $(this);\n                   UXC.log( 'tab ', _evt.type, _label.html(), new Date().getTime() );\n                   if( UXC.Tab.isAjax( _label ) && ! UXC.Tab.isAjaxInited( _label ) ){\n                       _container.html( '<h2>内容加载中...</h2>' );\n                   }\n               }\n\n               function tabchange( _container, _tabIns ){\n                   var _label = $(this);\n                   UXC.log( 'tab change: ', _label.html(), new Date().getTime() );\n               }\n\n               $(document).ready( function(){\n                   UXC.Tab.ajaxCallback =\n                       function( _data, _label, _container ){\n                           _data && ( _data = $.parseJSON( _data ) );\n                           if( _data && _data.errorno === 0 ){\n                               _container.html( printf( '<h2>UXC.Tab.ajaxCallback</h2>{0}', _data.data ) );\n                           }else{\n                               Tab.isAjaxInited( _label, 0 );\n                               _container.html( '<h2>内容加载失败!</h2>' );\n                           }\n                       };\n               });\n\n               function ajaxcallback( _data, _label, _container ){\n                   _data && ( _data = $.parseJSON( _data ) );\n                   if( _data && _data.errorno === 0 ){\n                       _container.html( printf( '<h2>label attr ajaxcallback</h2>{0}', _data.data ) );\n                   }else{\n                       Tab.isAjaxInited( _label, 0 );\n                       _container.html( '<h2>内容加载失败!</h2>' );\n                   }\n               };\n           </script>\n\n           <dl class=\"def\">\n               <dt>UXC.Tab 示例 - 静态内容</dt>\n               <dd>\n               <div class=\"le-tabview js_autoTab\" tablabels=\"ul.js_tabLabel > li > a\" tabcontainers=\"div.js_tabContent > div\" \n                                                   tabactiveclass=\"active\" tablabelparent=\"li\" \n                                                   tabactivecallback=\"tabactive\" tabchangecallback=\"tabchange\"\n                                                   >\n                       <ul class=\"le-tabs js_tabLabel\">\n                           <li class=\"active\"><a href=\"javascript:\">电视剧</a></li>\n                           <li><a href=\"javascript:\">电影</a></li>\n                           <li><a href=\"javascript:\">综艺</a></li>\n                           <li><a href=\"javascript:\">热点</a></li>\n                       </ul>\n                       <div class=\"views js_tabContent\">\n                           <div class=\"view-item active\">1. 集地议送能拿距还杨雷火，永鲜提只风超洋轻绿动视落清各只江执口。</div>\n                           <div class=\"view-item\">2. 相送黄血富打万念却烟会华它表本雷烟形烟消卷效难标否标滑固小实。</div>\n                           <div class=\"view-item\">3. 理往局背剧养认被站推简沉形括於穿短，精白自没路绿往优八益是入。</div>\n                           <div class=\"view-item\">4. 鲁杆格滑那双来班五材实死听顶脱本续克修先课丝另乡型茶父报孔图。</div>\n                       </div>\n                   </div>\n               </dd>\n           </dl>\n\n           <dl class=\"def\">\n               <dt>UXC.Tab 示例 - 动态内容 - AJAX</dt>\n               <dd>\n               <div class=\"le-tabview js_autoTab\" tablabels=\"ul.js_tabLabel2 > li > a\" tabcontainers=\"div.js_tabContent2 > div\" \n                                                   tabactiveclass=\"active\" tablabelparent=\"li\" \n                                                   tabactivecallback=\"tabactive\" tabchangecallback=\"tabchange\"\n                                                   >\n                       <ul class=\"le-tabs js_tabLabel2\">\n                           <li class=\"active\"><a href=\"javascript:\">电视剧</a></li>\n                           <li><a href=\"javascript:\" tabajaxurl=\"data/test.php\" tabajaxmethod=\"post\" \n                                                     tabajaxdata=\"{a:1,b:2}\" tabajaxcallback=\"ajaxcallback\" >电影</a></li>\n                           <li><a href=\"javascript:\" tabajaxurl=\"data/test.php\" tabajaxcallback=\"ajaxcallback\" >综艺</a></li>\n                           <li><a href=\"javascript:\" tabajaxurl=\"data/test.php\" >热点</a></li>\n                       </ul>\n                       <div class=\"views js_tabContent2\">\n                           <div class=\"view-item active\">1. 集地议送能拿距还杨雷火，永鲜提只风超洋轻绿动视落清各只江执口。</div>\n                           <div class=\"view-item\"></div>\n                           <div class=\"view-item\"></div>\n                           <div class=\"view-item\"></div>\n                       </div>\n                   </div>\n               </dd>\n           </dl>"
             ]
         },
         "UXC.Tips": {
@@ -4296,6 +4339,197 @@
             "namespace": "UXC"
         },
         {
+            "file": "../comps/Tab/Tab.js",
+            "line": 135,
+            "description": "Tab 模型类的实例",
+            "itemtype": "property",
+            "name": "_model",
+            "type": "UXC.Tab.Model",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 142,
+            "description": "Tab 视图类的实例",
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 150,
+            "description": "页面加载完毕后, 是否要添加自动初始化事件\n<br /> 自动初始化是 鼠标移动到 Tab 容器时去执行的, 不是页面加载完毕后就开始自动初始化",
+            "itemtype": "property",
+            "name": "autoInit",
+            "type": "bool",
+            "default": "true",
+            "static": 1,
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 159,
+            "description": "label 当前状态的样式",
+            "itemtype": "property",
+            "name": "activeClass",
+            "type": "string",
+            "default": "cur",
+            "static": 1,
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 167,
+            "description": "label 的触发事件",
+            "itemtype": "property",
+            "name": "activeEvent",
+            "type": "string",
+            "default": "click",
+            "static": 1,
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 175,
+            "description": "获取或设置 Tab 容器的 Tab 实例属性",
+            "itemtype": "method",
+            "name": "getInstance",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_setter",
+                    "description": "_setter 不为空是设置",
+                    "type": "UXC.Tab"
+                }
+            ],
+            "static": 1,
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 191,
+            "description": "全局的 ajax 处理回调",
+            "itemtype": "property",
+            "name": "ajaxCallback",
+            "type": "function",
+            "default": "null",
+            "static": 1,
+            "example": [
+                "\n           $(document).ready( function(){\n               UXC.Tab.ajaxCallback =\n                   function( _data, _label, _container, _textStatus, _jqXHR ){\n                       _data && ( _data = $.parseJSON( _data ) );\n                       if( _data && _data.errorno === 0 ){\n                           _container.html( printf( '<h2>UXC.Tab.ajaxCallback</h2>{0}', _data.data ) );\n                       }else{\n                           Tab.isAjaxInited( _label, 0 );\n                           _container.html( '<h2>内容加载失败!</h2>' );\n                       }\n                   };\n           });"
+            ],
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 212,
+            "description": "ajax 请求是否添加随机参数 rnd, 以防止页面缓存的结果差异",
+            "itemtype": "property",
+            "name": "ajaxRandom",
+            "type": "bool",
+            "default": "true",
+            "static": 1,
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 220,
+            "description": "判断一个 label 是否为 ajax",
+            "itemtype": "method",
+            "name": "isAjax",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_label",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String|undefined"
+            },
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 231,
+            "description": "判断一个 ajax label 是否已经初始化过\n<br /> 这个方法需要跟 Tab.isAjax 结合判断才更为准确",
+            "itemtype": "method",
+            "name": "isAjaxInited",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_label",
+                    "description": "",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_setter",
+                    "description": "如果 _setter 不为空, 则进行赋值",
+                    "type": "Bool"
+                }
+            ],
+            "example": [
+                "\n       function tabactive( _evt, _container, _tabIns ){\n           var _label = $(this);\n           UXC.log( 'tab ', _evt.type, _label.html(), new Date().getTime() );\n           if( UXC.Tab.isAjax( _label ) && ! UXC.Tab.isAjaxInited( _label ) ){\n               _container.html( '<h2>内容加载中...</h2>' );\n           }\n       }"
+            ],
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 254,
+            "description": "Tab 内部初始化方法",
+            "itemtype": "method",
+            "name": "_init",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 271,
+            "description": "把 _label 设置为活动状态",
+            "itemtype": "method",
+            "name": "active",
+            "params": [
+                {
+                    "name": "_label",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 288,
+            "description": "TODO 添加注释",
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 389,
+            "description": "TODO 添加注释",
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
             "file": "../comps/Tips/Tips.js",
             "line": 42,
             "description": "数据模型类实例引用",
@@ -7200,6 +7434,14 @@
         },
         {
             "message": "unknown tag: version",
+            "line": " ../comps/Tab/Tab.js:5"
+        },
+        {
+            "message": "unknown tag: date",
+            "line": " ../comps/Tab/Tab.js:5"
+        },
+        {
+            "message": "unknown tag: version",
             "line": " ../comps/Tips/Tips.js:6"
         },
         {
@@ -7441,6 +7683,18 @@
         {
             "message": "Missing item type\n响应窗口改变大小",
             "line": " ../comps/Panel/UXC.Popup.js:93"
+        },
+        {
+            "message": "Missing item type\nTab 视图类的实例",
+            "line": " ../comps/Tab/Tab.js:142"
+        },
+        {
+            "message": "Missing item type\nTODO 添加注释",
+            "line": " ../comps/Tab/Tab.js:288"
+        },
+        {
+            "message": "Missing item type\nTODO 添加注释",
+            "line": " ../comps/Tab/Tab.js:389"
         },
         {
             "message": "Missing item type\n页面加载完毕后, 是否自动初始化 Tips",

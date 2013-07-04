@@ -8,7 +8,7 @@
      * 农历日历组件
      * <br />全局访问请使用 UXC.LunarCalendar 或 LunarCalendar
      * <br />DOM 加载完毕后
-     * , LunarCalendar会自动初始化页面所有具体识别符的日历, 目前可识别: div.js_LunarCalendar, td.js_LunarCalendar, li.js_LunarCalendar
+     * , LunarCalendar会自动初始化页面所有具备识别符的日历, 目前可识别: div.js_LunarCalendar, td.js_LunarCalendar, li.js_LunarCalendar
      * <br />Ajax 加载内容后, 如果有日历组件需求的话, 需要手动初始化 var ins = new UXC.LunarCalendar( _selector );
      * <p>
      *      初始化时, 如果日历是添加到某个selector里, 那么selector可以指定一些设置属性

@@ -3,7 +3,7 @@
 }
 .le-tabview li{ list-style-type: none; }
 .le-tabview {width: 500px; border: 1px solid #08c;}
-.le-tabview .views .view-item {display: none; padding: 10px;}
+.le-tabview .views .view-item {display: none; padding: 10px; word-wrap: break-word; word-break: break-all; }
 .le-tabview .views .active {display: block;}
 .le-tabs {height: 24px; background: #08c;}
 .le-tabs li {float: left; width: auto;}

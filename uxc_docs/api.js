@@ -14,6 +14,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "UXC.Panel",
         "UXC.Panel.Model",
         "UXC.Panel.View",
+        "UXC.Tab",
         "UXC.Tips",
         "UXC.Tips.Model",
         "UXC.Tips.View",
