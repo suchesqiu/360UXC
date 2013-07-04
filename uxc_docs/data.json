@@ -723,12 +723,17 @@
             "namespace": "UXC",
             "file": "../comps/Tab/Tab.js",
             "line": 5,
-            "description": "Tab 菜单类\n<br />DOM 加载完毕后\n, 只要鼠标移动到具有识别符的Tab上面, Tab就会自动初始化, 目前可识别: <b>.js_autoTab</b>( CSS class )\n<br />需要手动初始化, 请使用: var ins = new UXC.Tab( _tabSelector );\n<p>\n     <h2> Tab 容器的HTML属性 </h2>\n     <br /><b>tablabels</b>: 声明 tab 标签的选择器语法\n     <br /><b>tabcontainers</b>: 声明 tab 容器的选择器语法\n     <br /><b>tabactiveclass</b>: 声明 tab当前标签的显示样式名, 默认为 cur\n     <br /><b>tablabelparent</b>: 声明 tab的当前显示样式是在父节点, 默认为 tab label 节点\n     <br /><b>tabactivecallback</b>: 当 tab label 被触发时的回调\n     <br /><b>tabchangecallback</b>: 当 tab label 变更时的回调\n</p>\n<p><b>require</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/uxc_docs/classes/UXC.Tab.html' target='_blank'>API docs</a>\n| <a href='../../comps/Tab/_demo/' target='_blank'>demo link</a></p>",
+            "description": "Tab 菜单类\n<br />DOM 加载完毕后\n, 只要鼠标移动到具有识别符的Tab上面, Tab就会自动初始化, 目前可识别: <b>.js_autoTab</b>( CSS class )\n<br />需要手动初始化, 请使用: var ins = new UXC.Tab( _tabSelector );\n<p>\n     <b> Tab 容器的HTML属性 </b>\n     <br /><b>tablabels</b>: 声明 tab 标签的选择器语法\n     <br /><b>tabcontainers</b>: 声明 tab 容器的选择器语法\n     <br /><b>tabactiveclass</b>: 声明 tab当前标签的显示样式名, 默认为 cur\n     <br /><b>tablabelparent</b>: 声明 tab的当前显示样式是在父节点, 默认为 tab label 节点\n     <br /><b>tabactivecallback</b>: 当 tab label 被触发时的回调\n     <br /><b>tabchangecallback</b>: 当 tab label 变更时的回调\n</p>\n<p>\n     <b> Label(标签) 容器的HTML属性(AJAX) </b>\n     <br /><b>tabajaxurl</b>: ajax 请求的 URL 地址\n     <br /><b>tabajaxmethod</b>: ajax 请求的方法( get|post ), 默认 get\n     <br /><b>tabajaxdata</b>: ajax 请求的 数据, json\n     <br /><b>tabajaxcallback</b>: ajax 请求的回调\n</p>\n<p><b>require</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/uxc_docs/classes/UXC.Tab.html' target='_blank'>API docs</a>\n| <a href='../../comps/Tab/_demo/' target='_blank'>demo link</a></p>",
             "is_constructor": 1,
             "params": [
                 {
                     "name": "_selector",
                     "description": "要初始化的 Tab 选择器",
+                    "type": "Selector|string"
+                },
+                {
+                    "name": "_triggerTarget",
+                    "description": "初始完毕后要触发的 label",
                     "type": "Selector|string"
                 }
             ],
@@ -4334,6 +4339,197 @@
             "namespace": "UXC"
         },
         {
+            "file": "../comps/Tab/Tab.js",
+            "line": 135,
+            "description": "Tab 模型类的实例",
+            "itemtype": "property",
+            "name": "_model",
+            "type": "UXC.Tab.Model",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 142,
+            "description": "Tab 视图类的实例",
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 150,
+            "description": "页面加载完毕后, 是否要添加自动初始化事件\n<br /> 自动初始化是 鼠标移动到 Tab 容器时去执行的, 不是页面加载完毕后就开始自动初始化",
+            "itemtype": "property",
+            "name": "autoInit",
+            "type": "bool",
+            "default": "true",
+            "static": 1,
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 159,
+            "description": "label 当前状态的样式",
+            "itemtype": "property",
+            "name": "activeClass",
+            "type": "string",
+            "default": "cur",
+            "static": 1,
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 167,
+            "description": "label 的触发事件",
+            "itemtype": "property",
+            "name": "activeEvent",
+            "type": "string",
+            "default": "click",
+            "static": 1,
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 175,
+            "description": "获取或设置 Tab 容器的 Tab 实例属性",
+            "itemtype": "method",
+            "name": "getInstance",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_setter",
+                    "description": "_setter 不为空是设置",
+                    "type": "UXC.Tab"
+                }
+            ],
+            "static": 1,
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 191,
+            "description": "全局的 ajax 处理回调",
+            "itemtype": "property",
+            "name": "ajaxCallback",
+            "type": "function",
+            "default": "null",
+            "static": 1,
+            "example": [
+                "\n           $(document).ready( function(){\n               UXC.Tab.ajaxCallback =\n                   function( _data, _label, _container, _textStatus, _jqXHR ){\n                       _data && ( _data = $.parseJSON( _data ) );\n                       if( _data && _data.errorno === 0 ){\n                           _container.html( printf( '<h2>UXC.Tab.ajaxCallback</h2>{0}', _data.data ) );\n                       }else{\n                           Tab.isAjaxInited( _label, 0 );\n                           _container.html( '<h2>内容加载失败!</h2>' );\n                       }\n                   };\n           });"
+            ],
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 212,
+            "description": "ajax 请求是否添加随机参数 rnd, 以防止页面缓存的结果差异",
+            "itemtype": "property",
+            "name": "ajaxRandom",
+            "type": "bool",
+            "default": "true",
+            "static": 1,
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 220,
+            "description": "判断一个 label 是否为 ajax",
+            "itemtype": "method",
+            "name": "isAjax",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_label",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "String|undefined"
+            },
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 231,
+            "description": "判断一个 ajax label 是否已经初始化过\n<br /> 这个方法需要跟 Tab.isAjax 结合判断才更为准确",
+            "itemtype": "method",
+            "name": "isAjaxInited",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_label",
+                    "description": "",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_setter",
+                    "description": "如果 _setter 不为空, 则进行赋值",
+                    "type": "Bool"
+                }
+            ],
+            "example": [
+                "\n       function tabactive( _evt, _container, _tabIns ){\n           var _label = $(this);\n           UXC.log( 'tab ', _evt.type, _label.html(), new Date().getTime() );\n           if( UXC.Tab.isAjax( _label ) && ! UXC.Tab.isAjaxInited( _label ) ){\n               _container.html( '<h2>内容加载中...</h2>' );\n           }\n       }"
+            ],
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 254,
+            "description": "Tab 内部初始化方法",
+            "itemtype": "method",
+            "name": "_init",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 271,
+            "description": "把 _label 设置为活动状态",
+            "itemtype": "method",
+            "name": "active",
+            "params": [
+                {
+                    "name": "_label",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 288,
+            "description": "TODO 添加注释",
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 389,
+            "description": "TODO 添加注释",
+            "class": "UXC.Tab",
+            "namespace": "UXC"
+        },
+        {
             "file": "../comps/Tips/Tips.js",
             "line": 42,
             "description": "数据模型类实例引用",
@@ -7487,6 +7683,18 @@
         {
             "message": "Missing item type\n响应窗口改变大小",
             "line": " ../comps/Panel/UXC.Popup.js:93"
+        },
+        {
+            "message": "Missing item type\nTab 视图类的实例",
+            "line": " ../comps/Tab/Tab.js:142"
+        },
+        {
+            "message": "Missing item type\nTODO 添加注释",
+            "line": " ../comps/Tab/Tab.js:288"
+        },
+        {
+            "message": "Missing item type\nTODO 添加注释",
+            "line": " ../comps/Tab/Tab.js:389"
         },
         {
             "message": "Missing item type\n页面加载完毕后, 是否自动初始化 Tips",

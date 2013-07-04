@@ -8,13 +8,20 @@
      * , 只要鼠标移动到具有识别符的Tab上面, Tab就会自动初始化, 目前可识别: <b>.js_autoTab</b>( CSS class )
      * <br />需要手动初始化, 请使用: var ins = new UXC.Tab( _tabSelector );
      * <p>
-     *      <h2> Tab 容器的HTML属性 </h2>
+     *      <b> Tab 容器的HTML属性 </b>
      *      <br /><b>tablabels</b>: 声明 tab 标签的选择器语法
      *      <br /><b>tabcontainers</b>: 声明 tab 容器的选择器语法
      *      <br /><b>tabactiveclass</b>: 声明 tab当前标签的显示样式名, 默认为 cur
      *      <br /><b>tablabelparent</b>: 声明 tab的当前显示样式是在父节点, 默认为 tab label 节点
      *      <br /><b>tabactivecallback</b>: 当 tab label 被触发时的回调
      *      <br /><b>tabchangecallback</b>: 当 tab label 变更时的回调
+     * </p>
+     * <p>
+     *      <b> Label(标签) 容器的HTML属性(AJAX) </b>
+     *      <br /><b>tabajaxurl</b>: ajax 请求的 URL 地址
+     *      <br /><b>tabajaxmethod</b>: ajax 请求的方法( get|post ), 默认 get
+     *      <br /><b>tabajaxdata</b>: ajax 请求的 数据, json
+     *      <br /><b>tabajaxcallback</b>: ajax 请求的回调
      * </p>
      * <p><b>require</b>: <a href='window.jQuery.html'>jQuery</a></p>
      * <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
@@ -23,7 +30,8 @@
      * @namespace UXC
      * @class Tab
      * @constructor
-     * @param   {selector|string}   _selector   要初始化的 Tab 选择器
+     * @param   {selector|string}   _selector       要初始化的 Tab 选择器
+     * @param   {selector|string}   _triggerTarget  初始完毕后要触发的 label
      * @version dev 0.1
      * @author  qiushaowei   <suches@btbtd.org> | 360 75 Team
      * @date    2013-07-04
@@ -124,18 +132,53 @@
         _selector && ( _selector = $( _selector ) );
         _triggerTarget && ( _triggerTarget = $( _triggerTarget) );
         if( Tab.getInstance( _selector ) ) return Tab.getInstance( _selector );
-
+        /**
+         * Tab 模型类的实例
+         * @property    _model
+         * @type    UXC.Tab.Model
+         * @private
+         */
         this._model = new Model( _selector, _triggerTarget );
+        /**
+         * Tab 视图类的实例
+         */
         this._view = new View( this._model );
 
         UXC.log( 'initing tab' );
         this._init();
     }
-
+    /**
+     * 页面加载完毕后, 是否要添加自动初始化事件
+     * <br /> 自动初始化是 鼠标移动到 Tab 容器时去执行的, 不是页面加载完毕后就开始自动初始化
+     * @property    autoInit
+     * @type        bool
+     * @default     true
+     * @static
+     */
     Tab.autoInit = true;
+    /**
+     * label 当前状态的样式
+     * @property    activeClass
+     * @type        string
+     * @default     cur
+     * @static      
+     */
     Tab.activeClass = 'cur';
+    /**
+     * label 的触发事件
+     * @property    activeEvent
+     * @type        string
+     * @default     click
+     * @static
+     */
     Tab.activeEvent = 'click';
-
+    /**
+     * 获取或设置 Tab 容器的 Tab 实例属性
+     * @method  getInstance
+     * @param   {selector}  _selector
+     * @param   {UXC.Tab}   _setter     _setter 不为空是设置
+     * @static
+     */
     Tab.getInstance = 
         function( _selector, _setter ){
             var _r;
@@ -145,13 +188,62 @@
             );
             return _r;
         };
-
+    /**
+     * 全局的 ajax 处理回调
+     * @property    ajaxCallback
+     * @type    function
+     * @default null
+     * @static
+     * @example
+            $(document).ready( function(){
+                UXC.Tab.ajaxCallback =
+                    function( _data, _label, _container, _textStatus, _jqXHR ){
+                        _data && ( _data = $.parseJSON( _data ) );
+                        if( _data && _data.errorno === 0 ){
+                            _container.html( printf( '<h2>UXC.Tab.ajaxCallback</h2>{0}', _data.data ) );
+                        }else{
+                            Tab.isAjaxInited( _label, 0 );
+                            _container.html( '<h2>内容加载失败!</h2>' );
+                        }
+                    };
+            });
+     */
     Tab.ajaxCallback = null;
+    /**
+     * ajax 请求是否添加随机参数 rnd, 以防止页面缓存的结果差异
+     * @property    ajaxRandom
+     * @type    bool
+     * @default true
+     * @static
+     */
     Tab.ajaxRandom = true;
+    /**
+     * 判断一个 label 是否为 ajax
+     * @method  isAjax
+     * @static
+     * @param   {selector}  _label
+     * @return  {string|undefined}
+     */
     Tab.isAjax =
         function( _label ){
             return $(_label).attr('tabajaxurl');
         };
+    /**
+     * 判断一个 ajax label 是否已经初始化过
+     * <br /> 这个方法需要跟 Tab.isAjax 结合判断才更为准确
+     * @method  isAjaxInited
+     * @static
+     * @param   {selector}  _label
+     * @param   {bool}      _setter     如果 _setter 不为空, 则进行赋值
+     * @example
+        function tabactive( _evt, _container, _tabIns ){
+            var _label = $(this);
+            UXC.log( 'tab ', _evt.type, _label.html(), new Date().getTime() );
+            if( UXC.Tab.isAjax( _label ) && ! UXC.Tab.isAjaxInited( _label ) ){
+                _container.html( '<h2>内容加载中...</h2>' );
+            }
+        }
+     */
     Tab.isAjaxInited =
         function( _label, _setter ){
             _setter != 'undefined' && ( $(_label).data('TabAjaxInited', _setter ) );
@@ -159,6 +251,11 @@
         }
 
     Tab.prototype = {
+        /**
+         * Tab 内部初始化方法
+         * @method  _init
+         * @private
+         */
         _init:
             function(){
                 if( !this._model.layoutIsTab() ) return this;
@@ -171,7 +268,11 @@
 
                 return this;
             }    
-
+        /**
+         * 把 _label 设置为活动状态
+         * @method active
+         * @param   {selector}  _label
+         */
         , active:
             function( _label ){
                 var _ix;
@@ -181,9 +282,12 @@
                 }
 
                 typeof _ix != 'undefined' && ( this._view.active( _ix ) );
+                return this;
             }
     }
-    
+    /**
+     * TODO 添加注释
+     */
     function Model( _selector, _triggerTarget ){
         this._layout = _selector;
         this._triggerTarget = _triggerTarget;
@@ -282,7 +386,9 @@
                 return _r;
             }
     };
-    
+    /**
+     * TODO 添加注释
+     */
     function View( _model ){
         this._model = _model;
     }

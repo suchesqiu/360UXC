@@ -95,13 +95,20 @@
 , 只要鼠标移动到具有识别符的Tab上面, Tab就会自动初始化, 目前可识别: <b>.js_autoTab</b>( CSS class )
 <br />需要手动初始化, 请使用: var ins = new UXC.Tab( _tabSelector );</p>
 <p>
-     <h2> Tab 容器的HTML属性 </h2>
+     <b> Tab 容器的HTML属性 </b>
      <br /><b>tablabels</b>: 声明 tab 标签的选择器语法
      <br /><b>tabcontainers</b>: 声明 tab 容器的选择器语法
      <br /><b>tabactiveclass</b>: 声明 tab当前标签的显示样式名, 默认为 cur
      <br /><b>tablabelparent</b>: 声明 tab的当前显示样式是在父节点, 默认为 tab label 节点
      <br /><b>tabactivecallback</b>: 当 tab label 被触发时的回调
      <br /><b>tabchangecallback</b>: 当 tab label 变更时的回调
+</p>
+<p>
+     <b> Label(标签) 容器的HTML属性(AJAX) </b>
+     <br /><b>tabajaxurl</b>: ajax 请求的 URL 地址
+     <br /><b>tabajaxmethod</b>: ajax 请求的方法( get|post ), 默认 get
+     <br /><b>tabajaxdata</b>: ajax 请求的 数据, json
+     <br /><b>tabajaxcallback</b>: ajax 请求的回调
 </p>
 <p><b>require</b>: <a href='window.jQuery.html'>jQuery</a></p>
 <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
@@ -116,6 +123,9 @@
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
                         <code>_selector</code>
+                </li>
+                <li class="arg">
+                        <code>_triggerTarget</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
@@ -135,6 +145,13 @@
                         <span class="type">Selector | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     <div class="param-description">
                         <p>要初始化的 Tab 选择器</p>
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_triggerTarget</code>
+                        <span class="type">Selector | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                        <p>初始完毕后要触发的 label</p>
                     </div>
                 </li>
             </ul>
@@ -234,11 +251,357 @@
 <div id="classdocs" class="tabview">
     <ul class="api-class-tabs">
         <li class="api-class-tab index"><a href="#index">Index</a></li>
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
     </ul>
     <div>
         <div id="index" class="api-class-tabpanel index">
             <h2 class="off-left">Item Index</h2>
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+                    <ul class="index-list methods">
+                            <li class="index-item method private">
+                                <a href="#method__init">_init</a>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_active">active</a>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getInstance">getInstance</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_isAjax">isAjax</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_isAjaxInited">isAjaxInited</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                    </ul>
+                </div>
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+                    <ul class="index-list properties">
+                            <li class="index-item property private">
+                                <a href="#property__model">_model</a>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_activeClass">activeClass</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_activeEvent">activeEvent</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_ajaxCallback">ajaxCallback</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_ajaxRandom">ajaxRandom</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_autoInit">autoInit</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                    </ul>
+                </div>
         </div>
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+                    <div id="method__init" class="method item private">
+    <h3 class="name"><code>_init</code></h3>
+        <span class="paren">()</span>
+        <span class="flag private">private</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Tab_Tab.js.html#l254"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:254</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>Tab 内部初始化方法</p>
+    </div>
+</div>
+                    <div id="method_active" class="method item">
+    <h3 class="name"><code>active</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_label</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Tab_Tab.js.html#l271"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:271</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>把 _label 设置为活动状态</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_label</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+</div>
+                    <div id="method_getInstance" class="method item">
+    <h3 class="name"><code>getInstance</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+                <li class="arg">
+                        <code>_setter</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Tab_Tab.js.html#l175"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:175</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>获取或设置 Tab 容器的 Tab 实例属性</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_setter</code>
+                        <span class="type"><a href="../classes/UXC.Tab.html" class="crosslink">UXC.Tab</a></span>
+                    <div class="param-description">
+                        <p>_setter 不为空是设置</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+</div>
+                    <div id="method_isAjax" class="method item">
+    <h3 class="name"><code>isAjax</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_label</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | Undefined</span>
+        </span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Tab_Tab.js.html#l220"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:220</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>判断一个 label 是否为 ajax</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_label</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a> | Undefined</span>:
+            </div>
+        </div>
+</div>
+                    <div id="method_isAjaxInited" class="method item">
+    <h3 class="name"><code>isAjaxInited</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_label</code>
+                </li>
+                <li class="arg">
+                        <code>_setter</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Tab_Tab.js.html#l231"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:231</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>判断一个 ajax label 是否已经初始化过
+<br /> 这个方法需要跟 Tab.isAjax 结合判断才更为准确</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_label</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_setter</code>
+                        <span class="type">Bool</span>
+                    <div class="param-description">
+                        <p>如果 _setter 不为空, 则进行赋值</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="example">
+            <h4>Example:</h4>
+            <div class="example-content">
+                <pre class="code prettyprint"><code>   function tabactive( _evt, _container, _tabIns ){
+       var _label = $(this);
+       UXC.log( 'tab ', _evt.type, _label.html(), new Date().getTime() );
+       if( UXC.Tab.isAjax( _label ) &amp;&amp; ! UXC.Tab.isAjaxInited( _label ) ){
+           _container.html( '&lt;h2&gt;内容加载中...&lt;/h2&gt;' );
+       }
+   }
+</code></pre>
+            </div>
+        </div>
+</div>
+            </div>
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+                    <div id="property__model" class="property item private">
+    <h3 class="name"><code>_model</code></h3>
+        <span class="flag private">private</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Tab_Tab.js.html#l135"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:135</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>Tab 模型类的实例</p>
+    </div>
+</div>
+                    <div id="property_activeClass" class="property item">
+    <h3 class="name"><code>activeClass</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Tab_Tab.js.html#l159"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:159</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>label 当前状态的样式</p>
+    </div>
+        <p><strong>Default:</strong> cur</p>
+</div>
+                    <div id="property_activeEvent" class="property item">
+    <h3 class="name"><code>activeEvent</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Tab_Tab.js.html#l167"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:167</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>label 的触发事件</p>
+    </div>
+        <p><strong>Default:</strong> click</p>
+</div>
+                    <div id="property_ajaxCallback" class="property item">
+    <h3 class="name"><code>ajaxCallback</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Tab_Tab.js.html#l191"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:191</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>全局的 ajax 处理回调</p>
+    </div>
+        <p><strong>Default:</strong> null</p>
+        <div class="example">
+            <h4>Example:</h4>
+            <div class="example-content">
+                <pre class="code prettyprint"><code>       $(document).ready( function(){
+           UXC.Tab.ajaxCallback =
+               function( _data, _label, _container, _textStatus, _jqXHR ){
+                   _data &amp;&amp; ( _data = $.parseJSON( _data ) );
+                   if( _data &amp;&amp; _data.errorno === 0 ){
+                       _container.html( printf( '&lt;h2&gt;UXC.Tab.ajaxCallback&lt;/h2&gt;{0}', _data.data ) );
+                   }else{
+                       Tab.isAjaxInited( _label, 0 );
+                       _container.html( '&lt;h2&gt;内容加载失败!&lt;/h2&gt;' );
+                   }
+               };
+       });
+</code></pre>
+            </div>
+        </div>
+</div>
+                    <div id="property_ajaxRandom" class="property item">
+    <h3 class="name"><code>ajaxRandom</code></h3>
+    <span class="type">Bool</span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Tab_Tab.js.html#l212"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:212</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>ajax 请求是否添加随机参数 rnd, 以防止页面缓存的结果差异</p>
+    </div>
+        <p><strong>Default:</strong> true</p>
+</div>
+                    <div id="property_autoInit" class="property item">
+    <h3 class="name"><code>autoInit</code></h3>
+    <span class="type">Bool</span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Tab_Tab.js.html#l150"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:150</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>页面加载完毕后, 是否要添加自动初始化事件
+<br /> 自动初始化是 鼠标移动到 Tab 容器时去执行的, 不是页面加载完毕后就开始自动初始化</p>
+    </div>
+        <p><strong>Default:</strong> true</p>
+</div>
+            </div>
     </div>
 </div>
                     </div>
