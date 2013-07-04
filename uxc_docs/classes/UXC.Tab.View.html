@@ -85,25 +85,25 @@
                     <div class="content">
 <div class="box meta">
         <div class="foundat">
-            Defined in: <a href="../files/.._comps_Tips_Tips.js.html#l215"><code>..&#x2F;comps&#x2F;Tips&#x2F;Tips.js:215</code></a>
+            Defined in: <a href="../files/.._comps_Tab_Tab.js.html#l522"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:522</code></a>
         </div>
 </div>
 <div class="box intro">
-    <p>Tips 数据模型类</p>
+    <p>Tab 视图模型类</p>
 </div>
     <div class="constructor">
         <h2>Constructor</h2>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>_selector</code>
+                        <code>_model</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Tips_Tips.js.html#l215"><code>..&#x2F;comps&#x2F;Tips&#x2F;Tips.js:215</code></a>
+        <a href="../files/.._comps_Tab_Tab.js.html#l522"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:522</code></a>
         </p>
     </div>
     <div class="description">
@@ -112,8 +112,7 @@
             <h4>Parameters:</h4>
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">_selector</code>
-                        <span class="type">Selector</span>
+                        <code class="param-name">_model</code>
                     <div class="param-description">
                     </div>
                 </li>
@@ -133,18 +132,14 @@
                 <div class="index-section methods">
                     <h3>Methods</h3>
                     <ul class="index-list methods">
-                            <li class="index-item method private">
-                                <a href="#method__init">_init</a>
-                                    <span class="flag static">static</span>
+                            <li class="index-item method">
+                                <a href="#method_active">active</a>
                             </li>
                             <li class="index-item method">
-                                <a href="#method_data">data</a>
+                                <a href="#method_activeAjax">activeAjax</a>
                             </li>
                             <li class="index-item method">
-                                <a href="#method_selector">selector</a>
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_update">update</a>
+                                <a href="#method_init">init</a>
                             </li>
                     </ul>
                 </div>
@@ -152,154 +147,101 @@
                     <h3>Properties</h3>
                     <ul class="index-list properties">
                             <li class="index-item property private">
-                                <a href="#property__data">_data</a>
-                            </li>
-                            <li class="index-item property private">
-                                <a href="#property__selector">_selector</a>
-                            </li>
-                            <li class="index-item property">
-                                <a href="#property_tpl">tpl</a>
+                                <a href="#property__model">_model</a>
                             </li>
                     </ul>
                 </div>
         </div>
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
-                    <div id="method__init" class="method item private">
-    <h3 class="name"><code>_init</code></h3>
-        <span class="paren">()</span>
-        <span class="flag private">private</span>
-        <span class="flag static">static</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Tips_Tips.js.html#l249"><code>..&#x2F;comps&#x2F;Tips&#x2F;Tips.js:249</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>初始化 tips 模型类</p>
-    </div>
-</div>
-                    <div id="method_data" class="method item">
-    <h3 class="name"><code>data</code></h3>
+                    <div id="method_active" class="method item">
+    <h3 class="name"><code>active</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>_update</code>
+                        <code>_ix</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Tips_Tips.js.html#l261"><code>..&#x2F;comps&#x2F;Tips&#x2F;Tips.js:261</code></a>
+        <a href="../files/.._comps_Tab_Tab.js.html#l562"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:562</code></a>
         </p>
     </div>
     <div class="description">
-        <p>获取/更新 tips 显示内容</p>
+        <p>设置特定索引位置的 label 为活动状态</p>
     </div>
         <div class="params">
             <h4>Parameters:</h4>
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">_update</code>
-                        <span class="type">Bool</span>
+                        <code class="param-name">_ix</code>
+                        <span class="type">Int</span>
                     <div class="param-description">
-                        <p>是否更新 tips 数据</p>
                     </div>
                 </li>
             </ul>
         </div>
-        <div class="returns">
-            <h4>Returns:</h4>
-            <div class="returns-description">
-                    string
-            </div>
-        </div>
 </div>
-                    <div id="method_selector" class="method item">
-    <h3 class="name"><code>selector</code></h3>
-        <span class="paren">()</span>
-        <span class="returns-inline">
-            <span class="type"></span>
-        </span>
+                    <div id="method_activeAjax" class="method item">
+    <h3 class="name"><code>activeAjax</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_ix</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Tips_Tips.js.html#l285"><code>..&#x2F;comps&#x2F;Tips&#x2F;Tips.js:285</code></a>
+        <a href="../files/.._comps_Tab_Tab.js.html#l586"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:586</code></a>
         </p>
     </div>
     <div class="description">
-        <p>获取 tips 触发源选择器</p>
+        <p>请求特定索引位置的 ajax tab 数据</p>
     </div>
-        <div class="returns">
-            <h4>Returns:</h4>
-            <div class="returns-description">
-                    selector
-            </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_ix</code>
+                        <span class="type">Int</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
         </div>
 </div>
-                    <div id="method_update" class="method item">
-    <h3 class="name"><code>update</code></h3>
+                    <div id="method_init" class="method item">
+    <h3 class="name"><code>init</code></h3>
         <span class="paren">()</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Tips_Tips.js.html#l272"><code>..&#x2F;comps&#x2F;Tips&#x2F;Tips.js:272</code></a>
+        <a href="../files/.._comps_Tab_Tab.js.html#l540"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:540</code></a>
         </p>
     </div>
     <div class="description">
-        <p>更新 tips 数据</p>
+        <p>Tab 视图类初始化方法</p>
     </div>
 </div>
             </div>
             <div id="properties" class="api-class-tabpanel">
                 <h2 class="off-left">Properties</h2>
-                    <div id="property__data" class="property item private">
-    <h3 class="name"><code>_data</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div id="property__model" class="property item private">
+    <h3 class="name"><code>_model</code></h3>
         <span class="flag private">private</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Tips_Tips.js.html#l237"><code>..&#x2F;comps&#x2F;Tips&#x2F;Tips.js:237</code></a>
+        <a href="../files/.._comps_Tab_Tab.js.html#l530"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:530</code></a>
         </p>
     </div>
     <div class="description">
-        <p>tips 的显示内容
-<br />标签的 title/tipsData 会保存在这个属性, 然后 title/tipsData 会被清除掉</p>
+        <p>Tab 数据模型类实例引用</p>
     </div>
-</div>
-                    <div id="property__selector" class="property item private">
-    <h3 class="name"><code>_selector</code></h3>
-    <span class="type">Selector</span>
-        <span class="flag private">private</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Tips_Tips.js.html#l230"><code>..&#x2F;comps&#x2F;Tips&#x2F;Tips.js:230</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>保存 tips 的触发源选择器</p>
-    </div>
-</div>
-                    <div id="property_tpl" class="property item">
-    <h3 class="name"><code>tpl</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Tips_Tips.js.html#l223"><code>..&#x2F;comps&#x2F;Tips&#x2F;Tips.js:223</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>tips 默认模板</p>
-    </div>
-        <p><strong>Default:</strong> &lt;div class=&quot;UTips&quot;&gt;&lt;/div&gt;</p>
 </div>
             </div>
     </div>

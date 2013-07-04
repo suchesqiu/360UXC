@@ -286,21 +286,58 @@
             }
     }
     /**
-     * TODO 添加注释
+     * Tab 数据模型类
+     * @namespace UXC.Tab
+     * @class Model
+     * @constructor
+     * @param   {selector|string}   _selector       要初始化的 Tab 选择器
+     * @param   {selector|string}   _triggerTarget  初始完毕后要触发的 label
      */
     function Model( _selector, _triggerTarget ){
+        /**
+         * Tab 的主容器
+         * @property    _layout
+         * @type    selector
+         * @private
+         */
         this._layout = _selector;
+        /**
+         * Tab 初始完毕后要触发的label, 可选
+         * @property    _triggerTarget
+         * @type    selector
+         * @private
+         */
         this._triggerTarget = _triggerTarget;
-
+        /**
+         * Tab 的标签列表选择器
+         * @property    _tablabels
+         * @type    selector
+         * @private
+         */
         this._tablabels;
+        /**
+         * Tab 的内容列表选择器
+         * @property    _tabcontainers
+         * @type    selector
+         * @private
+         */
         this._tabcontainers;
-
+        /**
+         * 当前标签的所在索引位置
+         * @property    currentIndex
+         * @type    int
+         */
         this.currentIndex;
         
         this._init();
     }
     
     Model.prototype = {
+        /**
+         * Tab Model 内部初始化方法
+         * @method  _init
+         * @private
+         */
         _init:
             function(){
                 if( !this.layoutIsTab() ) return;
@@ -314,20 +351,62 @@
 
                 return this;
             }
-
+        /**
+         * 获取 Tab 的主容器
+         * @method  layout
+         * @return  selector
+         */
         , layout: function(){ return this._layout; }
+        /**
+         * 获取 Tab 所有 label 或 特定索引的 label
+         * @method  tablabels
+         * @param   {int}   _ix
+         * @return  selector
+         */
         , tablabels: function( _ix ){ 
             if( typeof _ix != 'undefined' ) return $( this._tablabels[_ix] );
             return this._tablabels; 
         }
+        /**
+         * 获取 Tab 所有内容container 或 特定索引的 container
+         * @method  tabcontainers
+         * @param   {int}   _ix
+         * @return  selector
+         */
         , tabcontainers: function( _ix ){ 
             if( typeof _ix != 'undefined' ) return $( this._tabcontainers[_ix] );
             return this._tabcontainers; 
         }
+        /**
+         * 获取初始化要触发的 label
+         * @method  triggerTarget
+         * @return  selector
+         */
         , triggerTarget: function(){ return this._triggerTarget; }
+        /**
+         * 判断一个容器是否 符合 Tab 数据要求
+         * @method  layoutIsTab
+         * @return  bool
+         */
         , layoutIsTab: function(){ return this.layout().attr('tablabels') && this.layout().attr('tabcontainers'); }
+        /**
+         * 获取 Tab 活动状态的 class
+         * @method  activeClass
+         * @return  string
+         */
         , activeClass: function(){ return this.layout().attr('tabactiveclass') || Tab.activeClass; }
+        /**
+         * 获取 Tab label 的触发事件名称
+         * @method  activeEvent
+         * @return  string
+         */
         , activeEvent: function(){ return this.layout().attr('tabactiveevent') || Tab.activeEvent; }
+        /**
+         * 判断 label 是否符合要求, 或者设置一个 label为符合要求
+         * @method  tablabel
+         * @param   {bool}  _setter
+         * @return  bool
+         */
         , tablabel: 
             function( _label, _setter ){
                 _label && ( _label = $( _label ) );
@@ -335,6 +414,13 @@
                 typeof _setter != 'undefined' && _label.data( 'TabLabel', _setter );
                 return _label.data( 'TabLabel' );
             }
+        /**
+         * 判断 container 是否符合要求, 或者设置一个 container为符合要求
+         * @method  tabcontent
+         * @param   {selector}  _content
+         * @param   {bool}      _setter
+         * @return  bool
+         */
         , tabcontent: 
             function( _content, _setter ){
                 _content && ( _content = $( _content ) );
@@ -342,6 +428,13 @@
                 typeof _setter != 'undefined' && _content.data( 'TabContent', _setter );
                 return _content.data( 'TabContent' );
             }
+        /**
+         * 获取或设置 label 的索引位置
+         * @method  tabindex
+         * @param   {selector}  _label
+         * @param   {int}       _setter
+         * @return  int
+         */
         , tabindex: 
             function( _label, _setter ){
                 _label && ( _label = $( _label ) );
@@ -349,18 +442,34 @@
                 typeof _setter != 'undefined' && _label.data( 'TabIndex', _setter );
                 return _label.data( 'TabIndex' );
             }
+        /**
+         * 获取Tab label 触发事件后的回调
+         * @method  tabactivecallback
+         * @return  function
+         */
         , tabactivecallback:
             function(){
                 var _r;
                 this.layout().attr('tabactivecallback') && ( _r = window[ this.layout().attr('tabactivecallback') ] );
                 return _r;
             }
+        /**
+         * 获取 Tab label 变更后的回调
+         * @method  tabchangecallback
+         * @return  function
+         */
         , tabchangecallback:
             function(){
                 var _r;
                 this.layout().attr('tabchangecallback') && ( _r = window[ this.layout().attr('tabchangecallback') ] );
                 return _r;
             }
+        /**
+         * 获取 Tab label 活动状态显示样式的标签
+         * @method  tablabelparent
+         * @param   {selector}  _label
+         * @return  selector
+         */
         , tablabelparent:
             function( _label ){
                 var _tmp;
@@ -369,8 +478,26 @@
                     && _tmp.length && ( _label = _tmp );
                 return _label;
             }
+        /**
+         * 获取 ajax label 的 URL
+         * @method  tabajaxurl
+         * @param   {selector}  _label
+         * @return  string
+         */
         , tabajaxurl: function( _label ){ return _label.attr('tabajaxurl'); }
+        /**
+         * 获取 ajax label 的请求方法 get/post
+         * @method  tabajaxmethod
+         * @param   {selector}  _label
+         * @return  string
+         */
         , tabajaxmethod: function( _label ){ return (_label.attr('tabajaxmethod') || 'get').toLowerCase(); }
+        /**
+         * 获取 ajax label 的请求数据
+         * @method  tabajaxdata
+         * @param   {selector}  _label
+         * @return  object
+         */
         , tabajaxdata: 
             function( _label ){ 
                 var _r;
@@ -379,6 +506,12 @@
                 Tab.ajaxRandom && ( _r.rnd = new Date().getTime() );
                 return _r;
             }
+        /**
+         * 获取 ajax label 请求URL后的回调
+         * @method  tabajaxcallback
+         * @param   {selector}  _label
+         * @return  function
+         */
         , tabajaxcallback: 
             function( _label ){ 
                 var _r = Tab.ajaxCallback, _tmp;
@@ -387,13 +520,27 @@
             }
     };
     /**
-     * TODO 添加注释
+     * Tab 视图模型类
+     * @namespace UXC.Tab
+     * @class View
+     * @constructor
+     * @param   {UXC.Tab.Model}   _model   
      */
     function View( _model ){
+        /**
+         * Tab 数据模型类实例引用 
+         * @property    _model
+         * @type {UXC.Tab.Model} 
+         * @private
+         */
         this._model = _model;
     }
     
     View.prototype = {
+        /**
+         * Tab 视图类初始化方法
+         * @method  init
+         */
         init:
             function() {
                 UXC.log( 'Tab.View:', new Date().getTime() );
@@ -412,7 +559,11 @@
 
                 return this;
             }
-
+        /**
+         * 设置特定索引位置的 label 为活动状态
+         * @method  active
+         * @param   {int}   _ix
+         */
         , active:
             function( _ix ){
                 if( typeof _ix == 'undefined' ) return;
@@ -432,7 +583,11 @@
 
                 _p.activeAjax( _ix );
             }
-
+        /**
+         * 请求特定索引位置的 ajax tab 数据
+         * @method  activeAjax
+         * @param   {int}   _ix
+         */
         , activeAjax:
             function( _ix ){
                 var _p = this, _label = _p._model.tablabels( _ix );
@@ -456,7 +611,10 @@
                 });
             }
     };
-
+    /**
+     * 自动化初始 Tab 实例
+     * 如果 Tab.autoInit = true, 鼠标移至 Tab 后会自动初始化 Tab
+     */
     $(document).delegate( '.js_autoTab', 'mouseover', function( _evt ){
         if( !Tab.autoInit ) return;
         var _p = $(this), _tab, _src = _evt.target || _evt.srcElement;

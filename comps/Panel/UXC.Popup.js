@@ -52,6 +52,9 @@
      * @static
      * @constructor
      * @param   {bool}  _isClose    为真从DOM清除UXC.alert/UXC.confirm, 为假隐藏, 默认为false
+     * @example
+     *      UXC.hideAllPopup();         //隐藏所有UXC.alert, UXC.confirm
+     *      UXC.hideAllPopup( true );   //从 DOM 清除所有 UXC.alert, UXC.confirm
      */
     UXC.hideAllPopup =
         function( _isClose ){

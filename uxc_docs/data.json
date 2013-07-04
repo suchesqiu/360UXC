@@ -158,7 +158,8 @@
             "modules": {},
             "classes": {
                 "UXC.Panel": 1,
-                "UXC.Panel.Model": 1
+                "UXC.Panel.Model": 1,
+                "UXC.hideAllPanel": 1
             },
             "fors": {
                 "View": 1
@@ -187,11 +188,14 @@
             "name": "../comps/Tab/Tab.js",
             "modules": {},
             "classes": {
-                "UXC.Tab": 1
+                "UXC.Tab": 1,
+                "UXC.Tab.Model": 1,
+                "UXC.Tab.View": 1
             },
             "fors": {},
             "namespaces": {
-                "UXC": 1
+                "UXC": 1,
+                "UXC.Tab": 1
             }
         },
         "../comps/Tips/Tips.js": {
@@ -608,7 +612,32 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "namespace": "UXC.Panel"
+            "namespace": "UXC"
+        },
+        "UXC.hideAllPanel": {
+            "name": "UXC.hideAllPanel",
+            "shortname": "UXC.hideAllPanel",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC",
+            "file": "../comps/Panel/UXC.Panel.js",
+            "line": 778,
+            "description": "隐藏或者清除所有 Panel\n<h2>使用这个方法应当谨慎, 容易为DOM造成垃圾Panel</h2>\n<br /><b>注意</b>: 这是个方法, 写成class是为了方便生成文档",
+            "is_constructor": 1,
+            "static": 1,
+            "params": [
+                {
+                    "name": "_isClose",
+                    "description": "从DOM清除/隐藏所有Panel(包刮 UXC.alert, UXC.confirm, UXC.Panel, UXC.Dialog)\n                                    <br />, true = 从DOM 清除, false = 隐藏, 默认 = false( 隐藏 )",
+                    "type": "Bool"
+                }
+            ],
+            "example": [
+                "\n    UXC.hideAllPanel();         //隐藏所有Panel\n    UXC.hideAllPanel( true );   //从DOM 清除所有Panel"
+            ]
         },
         "UXC.alert": {
             "name": "UXC.alert",
@@ -710,6 +739,9 @@
                     "description": "为真从DOM清除UXC.alert/UXC.confirm, 为假隐藏, 默认为false",
                     "type": "Bool"
                 }
+            ],
+            "example": [
+                "\n     UXC.hideAllPopup();         //隐藏所有UXC.alert, UXC.confirm\n     UXC.hideAllPopup( true );   //从 DOM 清除所有 UXC.alert, UXC.confirm"
             ]
         },
         "UXC.Tab": {
@@ -720,7 +752,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "namespace": "UXC",
+            "namespace": "UXC.Tab",
             "file": "../comps/Tab/Tab.js",
             "line": 5,
             "description": "Tab 菜单类\n<br />DOM 加载完毕后\n, 只要鼠标移动到具有识别符的Tab上面, Tab就会自动初始化, 目前可识别: <b>.js_autoTab</b>( CSS class )\n<br />需要手动初始化, 请使用: var ins = new UXC.Tab( _tabSelector );\n<p>\n     <b> Tab 容器的HTML属性 </b>\n     <br /><b>tablabels</b>: 声明 tab 标签的选择器语法\n     <br /><b>tabcontainers</b>: 声明 tab 容器的选择器语法\n     <br /><b>tabactiveclass</b>: 声明 tab当前标签的显示样式名, 默认为 cur\n     <br /><b>tablabelparent</b>: 声明 tab的当前显示样式是在父节点, 默认为 tab label 节点\n     <br /><b>tabactivecallback</b>: 当 tab label 被触发时的回调\n     <br /><b>tabchangecallback</b>: 当 tab label 变更时的回调\n</p>\n<p>\n     <b> Label(标签) 容器的HTML属性(AJAX) </b>\n     <br /><b>tabajaxurl</b>: ajax 请求的 URL 地址\n     <br /><b>tabajaxmethod</b>: ajax 请求的方法( get|post ), 默认 get\n     <br /><b>tabajaxdata</b>: ajax 请求的 数据, json\n     <br /><b>tabajaxcallback</b>: ajax 请求的回调\n</p>\n<p><b>require</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/uxc_docs/classes/UXC.Tab.html' target='_blank'>API docs</a>\n| <a href='../../comps/Tab/_demo/' target='_blank'>demo link</a></p>",
@@ -742,6 +774,53 @@
             "date": "2013-07-04",
             "example": [
                 "\n           <link href='../../../comps/Tab/res/default/style.css' rel='stylesheet' />\n           <script src=\"../../../lib.js\"></script>\n           <script>\n               UXC.debug = 1;\n               UXC.use( 'Tab' );\n\n               httpRequire();\n\n               function tabactive( _evt, _container, _tabIns ){\n                   var _label = $(this);\n                   UXC.log( 'tab ', _evt.type, _label.html(), new Date().getTime() );\n                   if( UXC.Tab.isAjax( _label ) && ! UXC.Tab.isAjaxInited( _label ) ){\n                       _container.html( '<h2>内容加载中...</h2>' );\n                   }\n               }\n\n               function tabchange( _container, _tabIns ){\n                   var _label = $(this);\n                   UXC.log( 'tab change: ', _label.html(), new Date().getTime() );\n               }\n\n               $(document).ready( function(){\n                   UXC.Tab.ajaxCallback =\n                       function( _data, _label, _container ){\n                           _data && ( _data = $.parseJSON( _data ) );\n                           if( _data && _data.errorno === 0 ){\n                               _container.html( printf( '<h2>UXC.Tab.ajaxCallback</h2>{0}', _data.data ) );\n                           }else{\n                               Tab.isAjaxInited( _label, 0 );\n                               _container.html( '<h2>内容加载失败!</h2>' );\n                           }\n                       };\n               });\n\n               function ajaxcallback( _data, _label, _container ){\n                   _data && ( _data = $.parseJSON( _data ) );\n                   if( _data && _data.errorno === 0 ){\n                       _container.html( printf( '<h2>label attr ajaxcallback</h2>{0}', _data.data ) );\n                   }else{\n                       Tab.isAjaxInited( _label, 0 );\n                       _container.html( '<h2>内容加载失败!</h2>' );\n                   }\n               };\n           </script>\n\n           <dl class=\"def\">\n               <dt>UXC.Tab 示例 - 静态内容</dt>\n               <dd>\n               <div class=\"le-tabview js_autoTab\" tablabels=\"ul.js_tabLabel > li > a\" tabcontainers=\"div.js_tabContent > div\" \n                                                   tabactiveclass=\"active\" tablabelparent=\"li\" \n                                                   tabactivecallback=\"tabactive\" tabchangecallback=\"tabchange\"\n                                                   >\n                       <ul class=\"le-tabs js_tabLabel\">\n                           <li class=\"active\"><a href=\"javascript:\">电视剧</a></li>\n                           <li><a href=\"javascript:\">电影</a></li>\n                           <li><a href=\"javascript:\">综艺</a></li>\n                           <li><a href=\"javascript:\">热点</a></li>\n                       </ul>\n                       <div class=\"views js_tabContent\">\n                           <div class=\"view-item active\">1. 集地议送能拿距还杨雷火，永鲜提只风超洋轻绿动视落清各只江执口。</div>\n                           <div class=\"view-item\">2. 相送黄血富打万念却烟会华它表本雷烟形烟消卷效难标否标滑固小实。</div>\n                           <div class=\"view-item\">3. 理往局背剧养认被站推简沉形括於穿短，精白自没路绿往优八益是入。</div>\n                           <div class=\"view-item\">4. 鲁杆格滑那双来班五材实死听顶脱本续克修先课丝另乡型茶父报孔图。</div>\n                       </div>\n                   </div>\n               </dd>\n           </dl>\n\n           <dl class=\"def\">\n               <dt>UXC.Tab 示例 - 动态内容 - AJAX</dt>\n               <dd>\n               <div class=\"le-tabview js_autoTab\" tablabels=\"ul.js_tabLabel2 > li > a\" tabcontainers=\"div.js_tabContent2 > div\" \n                                                   tabactiveclass=\"active\" tablabelparent=\"li\" \n                                                   tabactivecallback=\"tabactive\" tabchangecallback=\"tabchange\"\n                                                   >\n                       <ul class=\"le-tabs js_tabLabel2\">\n                           <li class=\"active\"><a href=\"javascript:\">电视剧</a></li>\n                           <li><a href=\"javascript:\" tabajaxurl=\"data/test.php\" tabajaxmethod=\"post\" \n                                                     tabajaxdata=\"{a:1,b:2}\" tabajaxcallback=\"ajaxcallback\" >电影</a></li>\n                           <li><a href=\"javascript:\" tabajaxurl=\"data/test.php\" tabajaxcallback=\"ajaxcallback\" >综艺</a></li>\n                           <li><a href=\"javascript:\" tabajaxurl=\"data/test.php\" >热点</a></li>\n                       </ul>\n                       <div class=\"views js_tabContent2\">\n                           <div class=\"view-item active\">1. 集地议送能拿距还杨雷火，永鲜提只风超洋轻绿动视落清各只江执口。</div>\n                           <div class=\"view-item\"></div>\n                           <div class=\"view-item\"></div>\n                           <div class=\"view-item\"></div>\n                       </div>\n                   </div>\n               </dd>\n           </dl>"
+            ]
+        },
+        "UXC.Tab.Model": {
+            "name": "UXC.Tab.Model",
+            "shortname": "UXC.Tab.Model",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC.Tab",
+            "file": "../comps/Tab/Tab.js",
+            "line": 288,
+            "description": "Tab 数据模型类",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "要初始化的 Tab 选择器",
+                    "type": "Selector|string"
+                },
+                {
+                    "name": "_triggerTarget",
+                    "description": "初始完毕后要触发的 label",
+                    "type": "Selector|string"
+                }
+            ]
+        },
+        "UXC.Tab.View": {
+            "name": "UXC.Tab.View",
+            "shortname": "UXC.Tab.View",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC.Tab",
+            "file": "../comps/Tab/Tab.js",
+            "line": 522,
+            "description": "Tab 视图模型类",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "_model",
+                    "description": "",
+                    "type": "UXC.Tab.Model"
+                }
             ]
         },
         "UXC.Tips": {
@@ -3946,7 +4025,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 64,
+            "line": 67,
             "description": "从 HTML 属性 自动执行 UXC.alert / UXC.confirm",
             "attr": "{function}  panelcancelcallback cancel  回调",
             "class": "UXC.hideAllPopup",
@@ -3954,14 +4033,14 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 93,
+            "line": 96,
             "description": "响应窗口改变大小",
             "class": "UXC.hideAllPopup",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 102,
+            "line": 105,
             "description": "弹框逻辑处理方法集",
             "itemtype": "property",
             "name": "_logic",
@@ -3972,7 +4051,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 109,
+            "line": 112,
             "description": "弹框最小宽度",
             "itemtype": "property",
             "name": "_logic.minWidth",
@@ -3985,7 +4064,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 118,
+            "line": 121,
             "description": "弹框最大宽度",
             "itemtype": "property",
             "name": "_logic.maxWidth",
@@ -3998,7 +4077,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 127,
+            "line": 130,
             "description": "显示时 X轴的偏移值",
             "itemtype": "property",
             "name": "_logic.xoffset",
@@ -4011,7 +4090,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 136,
+            "line": 139,
             "description": "显示时 Y轴的偏移值",
             "itemtype": "property",
             "name": "_logic.yoffset",
@@ -4024,7 +4103,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 145,
+            "line": 148,
             "description": "设置弹框的唯一性",
             "itemtype": "method",
             "name": "_logic.popupIdentifier",
@@ -4042,7 +4121,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 161,
+            "line": 164,
             "description": "弹框通用处理方法",
             "itemtype": "method",
             "name": "_logic.popup",
@@ -4083,7 +4162,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 222,
+            "line": 225,
             "description": "隐藏弹框缓动效果",
             "itemtype": "method",
             "name": "_logic.hideEffect",
@@ -4111,7 +4190,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 265,
+            "line": 268,
             "description": "隐藏弹框缓动效果",
             "itemtype": "method",
             "name": "_logic.showEffect",
@@ -4134,7 +4213,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 317,
+            "line": 320,
             "description": "设置 Panel 的默认X,Y轴",
             "itemtype": "method",
             "name": "_logic.onresize",
@@ -4152,7 +4231,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 353,
+            "line": 356,
             "description": "取得弹框最要显示的 y 轴",
             "itemtype": "method",
             "name": "_logic.getTop",
@@ -4189,7 +4268,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 374,
+            "line": 377,
             "description": "取得弹框最要显示的 x 轴",
             "itemtype": "method",
             "name": "_logic.getLeft",
@@ -4226,7 +4305,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 397,
+            "line": 400,
             "description": "修正弹框的默认显示宽度",
             "itemtype": "method",
             "name": "_logic.fixWidth",
@@ -4249,7 +4328,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 414,
+            "line": 417,
             "description": "获取弹框的显示状态, 默认为0(成功)",
             "itemtype": "method",
             "name": "_logic.fixWidth",
@@ -4271,7 +4350,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 432,
+            "line": 435,
             "description": "缓动函数, 动画效果为按时间缓动",
             "itemtype": "method",
             "name": "_logic.easyEffect",
@@ -4304,7 +4383,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 461,
+            "line": 464,
             "description": "保存弹框的所有默认模板",
             "itemtype": "property",
             "name": "_logic.tpls",
@@ -4316,7 +4395,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 469,
+            "line": 472,
             "description": "alert 弹框的默认模板",
             "itemtype": "property",
             "name": "_logic.tpls.alert",
@@ -4328,7 +4407,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 492,
+            "line": 495,
             "description": "confirm 弹框的默认模板",
             "itemtype": "property",
             "name": "_logic.tpls.confirm",
@@ -4517,17 +4596,416 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 288,
-            "description": "TODO 添加注释",
-            "class": "UXC.Tab",
-            "namespace": "UXC"
+            "line": 297,
+            "description": "Tab 的主容器",
+            "itemtype": "property",
+            "name": "_layout",
+            "type": "selector",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 389,
-            "description": "TODO 添加注释",
-            "class": "UXC.Tab",
-            "namespace": "UXC"
+            "line": 304,
+            "description": "Tab 初始完毕后要触发的label, 可选",
+            "itemtype": "property",
+            "name": "_triggerTarget",
+            "type": "selector",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 311,
+            "description": "Tab 的标签列表选择器",
+            "itemtype": "property",
+            "name": "_tablabels",
+            "type": "selector",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 318,
+            "description": "Tab 的内容列表选择器",
+            "itemtype": "property",
+            "name": "_tabcontainers",
+            "type": "selector",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 325,
+            "description": "当前标签的所在索引位置",
+            "itemtype": "property",
+            "name": "currentIndex",
+            "type": "int",
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 336,
+            "description": "Tab Model 内部初始化方法",
+            "itemtype": "method",
+            "name": "_init",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 354,
+            "description": "获取 Tab 的主容器",
+            "itemtype": "method",
+            "name": "layout",
+            "return": {
+                "description": "selector"
+            },
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 360,
+            "description": "获取 Tab 所有 label 或 特定索引的 label",
+            "itemtype": "method",
+            "name": "tablabels",
+            "params": [
+                {
+                    "name": "_ix",
+                    "description": "",
+                    "type": "Int"
+                }
+            ],
+            "return": {
+                "description": "selector"
+            },
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 370,
+            "description": "获取 Tab 所有内容container 或 特定索引的 container",
+            "itemtype": "method",
+            "name": "tabcontainers",
+            "params": [
+                {
+                    "name": "_ix",
+                    "description": "",
+                    "type": "Int"
+                }
+            ],
+            "return": {
+                "description": "selector"
+            },
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 380,
+            "description": "获取初始化要触发的 label",
+            "itemtype": "method",
+            "name": "triggerTarget",
+            "return": {
+                "description": "selector"
+            },
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 386,
+            "description": "判断一个容器是否 符合 Tab 数据要求",
+            "itemtype": "method",
+            "name": "layoutIsTab",
+            "return": {
+                "description": "bool"
+            },
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 392,
+            "description": "获取 Tab 活动状态的 class",
+            "itemtype": "method",
+            "name": "activeClass",
+            "return": {
+                "description": "string"
+            },
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 398,
+            "description": "获取 Tab label 的触发事件名称",
+            "itemtype": "method",
+            "name": "activeEvent",
+            "return": {
+                "description": "string"
+            },
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 404,
+            "description": "判断 label 是否符合要求, 或者设置一个 label为符合要求",
+            "itemtype": "method",
+            "name": "tablabel",
+            "params": [
+                {
+                    "name": "_setter",
+                    "description": "",
+                    "type": "Bool"
+                }
+            ],
+            "return": {
+                "description": "bool"
+            },
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 417,
+            "description": "判断 container 是否符合要求, 或者设置一个 container为符合要求",
+            "itemtype": "method",
+            "name": "tabcontent",
+            "params": [
+                {
+                    "name": "_content",
+                    "description": "",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_setter",
+                    "description": "",
+                    "type": "Bool"
+                }
+            ],
+            "return": {
+                "description": "bool"
+            },
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 431,
+            "description": "获取或设置 label 的索引位置",
+            "itemtype": "method",
+            "name": "tabindex",
+            "params": [
+                {
+                    "name": "_label",
+                    "description": "",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_setter",
+                    "description": "",
+                    "type": "Int"
+                }
+            ],
+            "return": {
+                "description": "int"
+            },
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 445,
+            "description": "获取Tab label 触发事件后的回调",
+            "itemtype": "method",
+            "name": "tabactivecallback",
+            "return": {
+                "description": "function"
+            },
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 456,
+            "description": "获取 Tab label 变更后的回调",
+            "itemtype": "method",
+            "name": "tabchangecallback",
+            "return": {
+                "description": "function"
+            },
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 467,
+            "description": "获取 Tab label 活动状态显示样式的标签",
+            "itemtype": "method",
+            "name": "tablabelparent",
+            "params": [
+                {
+                    "name": "_label",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "selector"
+            },
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 481,
+            "description": "获取 ajax label 的 URL",
+            "itemtype": "method",
+            "name": "tabajaxurl",
+            "params": [
+                {
+                    "name": "_label",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "string"
+            },
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 488,
+            "description": "获取 ajax label 的请求方法 get/post",
+            "itemtype": "method",
+            "name": "tabajaxmethod",
+            "params": [
+                {
+                    "name": "_label",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "string"
+            },
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 495,
+            "description": "获取 ajax label 的请求数据",
+            "itemtype": "method",
+            "name": "tabajaxdata",
+            "params": [
+                {
+                    "name": "_label",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "object"
+            },
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 509,
+            "description": "获取 ajax label 请求URL后的回调",
+            "itemtype": "method",
+            "name": "tabajaxcallback",
+            "params": [
+                {
+                    "name": "_label",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "function"
+            },
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 530,
+            "description": "Tab 数据模型类实例引用",
+            "itemtype": "property",
+            "name": "_model",
+            "type": "{UXC.Tab.Model}",
+            "access": "private",
+            "tagname": "",
+            "class": "UXC.Tab.View",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 540,
+            "description": "Tab 视图类初始化方法",
+            "itemtype": "method",
+            "name": "init",
+            "class": "UXC.Tab.View",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 562,
+            "description": "设置特定索引位置的 label 为活动状态",
+            "itemtype": "method",
+            "name": "active",
+            "params": [
+                {
+                    "name": "_ix",
+                    "description": "",
+                    "type": "Int"
+                }
+            ],
+            "class": "UXC.Tab.View",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 586,
+            "description": "请求特定索引位置的 ajax tab 数据",
+            "itemtype": "method",
+            "name": "activeAjax",
+            "params": [
+                {
+                    "name": "_ix",
+                    "description": "",
+                    "type": "Int"
+                }
+            ],
+            "class": "UXC.Tab.View",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 614,
+            "description": "自动化初始 Tab 实例\n如果 Tab.autoInit = true, 鼠标移至 Tab 后会自动初始化 Tab",
+            "class": "UXC.Tab.View",
+            "namespace": "UXC.Tab"
         },
         {
             "file": "../comps/Tips/Tips.js",
@@ -7428,23 +7906,23 @@
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Panel/UXC.Popup.js:64"
+            "line": " ../comps/Panel/UXC.Popup.js:67"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Panel/UXC.Popup.js:64"
+            "line": " ../comps/Panel/UXC.Popup.js:67"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Panel/UXC.Popup.js:64"
+            "line": " ../comps/Panel/UXC.Popup.js:67"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Panel/UXC.Popup.js:64"
+            "line": " ../comps/Panel/UXC.Popup.js:67"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Panel/UXC.Popup.js:64"
+            "line": " ../comps/Panel/UXC.Popup.js:67"
         },
         {
             "message": "unknown tag: version",
@@ -7692,23 +8170,19 @@
         },
         {
             "message": "Missing item type\n从 HTML 属性 自动执行 UXC.alert / UXC.confirm",
-            "line": " ../comps/Panel/UXC.Popup.js:64"
+            "line": " ../comps/Panel/UXC.Popup.js:67"
         },
         {
             "message": "Missing item type\n响应窗口改变大小",
-            "line": " ../comps/Panel/UXC.Popup.js:93"
+            "line": " ../comps/Panel/UXC.Popup.js:96"
         },
         {
             "message": "Missing item type\nTab 视图类的实例",
             "line": " ../comps/Tab/Tab.js:142"
         },
         {
-            "message": "Missing item type\nTODO 添加注释",
-            "line": " ../comps/Tab/Tab.js:288"
-        },
-        {
-            "message": "Missing item type\nTODO 添加注释",
-            "line": " ../comps/Tab/Tab.js:389"
+            "message": "Missing item type\n自动化初始 Tab 实例\n如果 Tab.autoInit = true, 鼠标移至 Tab 后会自动初始化 Tab",
+            "line": " ../comps/Tab/Tab.js:614"
         },
         {
             "message": "Missing item type\n页面加载完毕后, 是否自动初始化 Tips",

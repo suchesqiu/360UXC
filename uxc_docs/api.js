@@ -15,6 +15,8 @@ YUI.add("yuidoc-meta", function(Y) {
         "UXC.Panel.Model",
         "UXC.Panel.View",
         "UXC.Tab",
+        "UXC.Tab.Model",
+        "UXC.Tab.View",
         "UXC.Tips",
         "UXC.Tips.Model",
         "UXC.Tips.View",
@@ -23,6 +25,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "UXC.Valid",
         "UXC.alert",
         "UXC.confirm",
+        "UXC.hideAllPanel",
         "UXC.hideAllPopup",
         "window.UXC",
         "window.jQuery"

@@ -775,4 +775,27 @@
         ,'</div><!--end UPanel-->'
         ].join('')
 
+     /**
+      * 隐藏或者清除所有 Panel
+      * <h2>使用这个方法应当谨慎, 容易为DOM造成垃圾Panel</h2>
+      * <br /><b>注意</b>: 这是个方法, 写成class是为了方便生成文档
+      * @namespace  UXC
+      * @class      hideAllPanel
+      * @constructor
+      * @static
+      * @param      {bool}      _isClose    从DOM清除/隐藏所有Panel(包刮 UXC.alert, UXC.confirm, UXC.Panel, UXC.Dialog)
+      *                                     <br />, true = 从DOM 清除, false = 隐藏, 默认 = false( 隐藏 )
+      * @example
+      *     UXC.hideAllPanel();         //隐藏所有Panel
+      *     UXC.hideAllPanel( true );   //从DOM 清除所有Panel
+      */
+     UXC.hideAllPanel = 
+         function( _isClose ){
+            if( _isClose ){
+                $('body > div.UPanel').remove();
+            }else{
+                $('body > div.UPanel').hide();
+            }
+         };
+
 }(jQuery));
