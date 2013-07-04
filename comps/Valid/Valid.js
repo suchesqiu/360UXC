@@ -77,6 +77,10 @@
          * @property    errorAbort
          * @type        bool
          * @default     false
+         * @example
+                $(document).ready( function($evt){
+                    UXC.Valid.errorAbort = true;
+                });
          */
         , errorAbort: false
 
