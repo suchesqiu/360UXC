@@ -31,6 +31,7 @@
 
     $(document).ready( function(_evt){
         $('button.dom_panel').on( 'click', function( _evt ){
+            hideAllPanel();
             /**
              * 注意, 如果是从DOM读取模板的话, 
              * 需要做个判断, 是否之前初始化过, 否则会导致重复初始化
@@ -56,6 +57,8 @@
         });
 
         $('button.string_panel').on( 'click', function( _evt ){
+            hideAllPanel();
+
             var panel = new UXC.Panel( str_panel_content ); 
                 panel.center();
                 panel.show();
@@ -74,6 +77,8 @@
         });
 
         $('button.string_panel_with_src').on( 'click', function( _evt ){
+            hideAllPanel();
+
             var panel = new UXC.Panel( str_panel_content, 'string_panel_with_src panel' ); 
                 panel.show( this );
 
@@ -92,9 +97,14 @@
 
     });
 
+    function hideAllPanel(){
+        UXC.hideAllPanel();
+        $('div.UPanelString').remove();
+    }
+
     var str_panel_content =
     [
-    '<div class="UPanel" style="display:none; width: 400px;" >\n'
+    '<div class="UPanel UPanelString" style="display:none; width: 400px;" >\n'
     ,'    <div class="UPContent">\n'
     ,'        <div class="hd">string panel</div>\n'
     ,'        <div class="bd">\n'

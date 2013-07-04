@@ -46,13 +46,14 @@
         tmpPanel.show( $('button.custom_position') );
 
         $(document).delegate( 'button.js_panel', 'click', function(_evt){
+            hideAllPanel();
             tmpPanel = new UXC.Panel( '默认panel ' + count, 'body ' + count + btnstr, 'footer ' + count);
             tmpPanel.show( this );
             count++;
         });
 
         $(document).delegate( 'button.js_panel_alert', 'click', function(_evt){
-
+            hideAllPanel();
             tmpPanel = UXC.alert( 'user manual UXC.alert ' + count, this );
             tmpPanel.on('confirm', function( _evt, _panel ){ 
                 UXC.log('another uaer callback'); 
@@ -62,6 +63,7 @@
         });
 
         $(document).delegate( 'button.js_panel_confirm', 'click', function(_evt){
+            hideAllPanel();
 
             tmpPanel = UXC.confirm( 'user manual UXC.confirm ' + count, this );
 
@@ -83,6 +85,11 @@
 
     function userCallback2( _evt, _panel ){
         UXC.log( 'userCallback2 ' + (count++) );
+    }
+
+    function hideAllPanel(){
+        UXC.hideAllPanel();
+        $('div.UPanelString').remove();
     }
 
 </script>
