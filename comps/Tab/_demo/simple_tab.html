@@ -29,31 +29,15 @@
     UXC.debug = 1;
     UXC.use( 'Tab' );
 
-    function tabactive( _evt, _index, _tabIns ){
-        var _a = $(this);
-        UXC.log( 'tab ', _evt.type, _a.html(), _index,  new Date().getTime() );
+    function tabactive( _evt, _container, _tabIns ){
+        var _label = $(this);
+        UXC.log( 'tab ', _evt.type, _label.html(), _container,  new Date().getTime() );
     }
 
-    function tabchange( _index, _tabIns ){
-        var _a = $(this);
-        UXC.log( 'tab change: ', _a.html(), _index, new Date().getTime() );
+    function tabchange( _container, _tabIns ){
+        var _label = $(this);
+        UXC.log( 'tab change: ', _label.html(), new Date().getTime() );
     }
-
-    $(document).ready( function(){
-        UXC.Tab.ajaxCallback =
-            function( _data, _container ){
-                _data && ( _data = $.parseJSON( _data ) );
-                _data && _data.errorno === 0 
-                    && _container.html( printf( '<h2>UXC.Tab.ajaxCallback<h2>{0}', _data.data ) );
-            };
-    });
-
-    function ajaxcallback( _data, _container ){
-        _data && ( _data = $.parseJSON( _data ) );
-        _data && _data.errorno === 0
-                    && _container.html( printf( '<h2>ajaxcallback<h2>{0}', _data.data ) );
-    };
-
 </script>
 </head>    
 <body>
@@ -103,34 +87,6 @@
             </div>
         </dd>
     </dl>
-
-    <dl class="def">
-        <dt>UXC.Tab 示例 - 动态内容 - AJAX</dt>
-        <dd>
-        <div class="le-tabview js_autoTab" tablabels="ul.js_tabLabel2 > li > a" tabcontainers="div.js_tabContent2 > div" 
-                                            tabactiveclass="active" tablabelparent="li" 
-                                            tabactivecallback="tabactive" tabchangecallback="tabchange"
-                                            >
-                <ul class="le-tabs js_tabLabel2">
-                    <li class="active"><a href="javascript:">电视剧</a></li>
-                    <li><a href="javascript:">电影</a></li>
-                    <li><a href="javascript:">综艺</a></li>
-                    <li><a href="javascript:">热点</a></li>
-                </ul>
-                <div class="views js_tabContent2">
-                    <div class="view-item active">1. 集地议送能拿距还杨雷火，永鲜提只风超洋轻绿动视落清各只江执口。</div>
-                    <div class="view-item" tabajaxurl="data/test.php" tabajaxmethod="post" 
-                                            tabajaxdata="{a:1,b:2}" tabajaxcallback="ajaxcallback" ></div>
-                    <div class="view-item" tabajaxurl="data/test.php"
-                                            tabajaxcallback="ajaxcallback" ></div>
-                    <div class="view-item" tabajaxurl="data/test.php"
-                                            ></div>
-                </div>
-            </div>
-        </dd>
-    </dl>
-
-
 
 </body>
 </html>
