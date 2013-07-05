@@ -490,7 +490,7 @@
                 ,'            </dl>'
                 ,'        </div>'
                 ,'    </div><!--end UPContent-->'
-                ,'</div><!--end UPanel-->'
+                ,'</div>'
                 ].join('')
             /**
              *  confirm 弹框的默认模板
@@ -514,7 +514,7 @@
                 ,'            </dl>'
                 ,'        </div>'
                 ,'    </div><!--end UPContent-->'
-                ,'</div><!--end UPanel-->'
+                ,'</div>'
                 ].join('')
         }
     };

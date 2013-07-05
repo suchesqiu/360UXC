@@ -348,7 +348,7 @@
                 ,'            </dl>'
                 ,'        </div>'
                 ,'    </div><!--end UPContent-->'
-                ,'</div><!--end UPanel-->'
+                ,'</div>'
                 ].join('')
             /**
              *  confirm 会话弹框的默认模板
@@ -372,7 +372,7 @@
                 ,'            </dl>'
                 ,'        </div>'
                 ,'    </div><!--end UPContent-->'
-                ,'</div><!--end UPanel-->'
+                ,'</div>'
                 ].join('')
             /**
              *  会话弹框的蒙板模板

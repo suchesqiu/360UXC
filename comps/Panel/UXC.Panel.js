@@ -772,7 +772,7 @@
         ,'        <div class="bd"></div>'
         ,'        <span class="close" eventtype="close"></span>'
         ,'    </div><!--end UPContent-->'
-        ,'</div><!--end UPanel-->'
+        ,'</div>'
         ].join('')
 
      /**
