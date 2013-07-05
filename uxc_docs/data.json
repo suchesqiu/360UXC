@@ -7276,29 +7276,20 @@
                     "type": "String"
                 },
                 {
-                    "name": "_nginxStyle",
+                    "name": "_enableNginxStyle",
                     "description": "-       指定是否需要使用 nginx 路径输出脚本资源",
                     "type": "Bool"
                 }
             ],
             "example": [
-                "\n               UXC.use( 'SomeClass' );                              //导入类 SomeClass\n               UXC.use( 'SomeClass, AnotherClass' );                //导入类 SomeClass, AnotherClass\n               //\n               ///  导入类 SomeClass, SomeClass目录下的file1.js, \n               ///  AnotherClass, AnotherClass 下的file2.js\n               //\n               UXC.use( 'SomeClass, comps/SomeClass/file1.js, comps/AnotherClass/file2.js' );   \n               UXC.use( '/js/Test/Test1.js' );                      //导入文件  /js/Test/Test1.js, 如果起始处为 \"/\", 将视为文件的绝对路径\n               //\n               /// nginx style 的文件加载方式, 如 /js/??file1.js,file2.js,file3.js\n               //\n               UXC.use( 'Test1.js, Test2.js ', '/js/??', true );\n               //\n               /// 导入 URL 资源\n               //\n               UXC.use( 'http://test.com/file1.js', 'https://another.com/file2.js' );"
+                "\n               UXC.use( 'SomeClass' );                              //导入类 SomeClass\n               UXC.use( 'SomeClass, AnotherClass' );                //导入类 SomeClass, AnotherClass\n               //\n               ///  导入类 SomeClass, SomeClass目录下的file1.js, \n               ///  AnotherClass, AnotherClass 下的file2.js\n               //\n               UXC.use( 'SomeClass, comps/SomeClass/file1.js, comps/AnotherClass/file2.js' );   \n               UXC.use( 'SomeClass, plugins/swfobject.js., plugins/json2.js' );   \n               UXC.use( '/js/Test/Test1.js' );     //导入文件  /js/Test/Test1.js, 如果起始处为 \"/\", 将视为文件的绝对路径\n               //\n               /// 导入 URL 资源 // UXC.use( 'http://test.com/file1.js', 'https://another.com/file2.js' ); "
             ],
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../UXC.js",
-            "line": 84,
-            "description": "去除多余的 正叙扛或反叙扛",
-            "access": "private",
-            "tagname": "",
-            "class": "window.UXC",
-            "namespace": "window"
-        },
-        {
-            "file": "../UXC.js",
-            "line": 109,
+            "line": 77,
             "description": "输出调试信息, 可通过 UXC.debug 指定是否显示调试信息",
             "params": [
                 {
@@ -7315,14 +7306,83 @@
         },
         {
             "file": "../UXC.js",
-            "line": 121,
+            "line": 88,
+            "description": "定义输出路径的 v 参数, 以便控制缓存",
+            "itemtype": "property",
+            "name": "pathPostfix",
+            "type": "string",
+            "default": "empty",
+            "class": "window.UXC",
+            "namespace": "window"
+        },
+        {
+            "file": "../UXC.js",
+            "line": 95,
+            "description": "是否启用nginx concat 模块的路径格式",
+            "itemtype": "property",
+            "name": "enableNginxStyle",
+            "type": "bool",
+            "default": "false",
+            "class": "window.UXC",
+            "namespace": "window"
+        },
+        {
+            "file": "../UXC.js",
+            "line": 102,
+            "description": "定义 nginx style 的基础路径\n<br /><b>注意:</b> 如果这个属性为空, 即使 enableNginxStyle = true, 也是直接输出默认路径",
+            "itemtype": "property",
+            "name": "nginxBasePath",
+            "type": "string",
+            "default": "empty",
+            "class": "window.UXC",
+            "namespace": "window"
+        },
+        {
+            "file": "../UXC.js",
+            "line": 110,
+            "description": "输出 nginx concat 模块的脚本路径格式",
+            "itemtype": "method",
+            "name": "_writeNginxScript",
+            "params": [
+                {
+                    "name": "_paths",
+                    "description": "",
+                    "type": "Array"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "window.UXC",
+            "namespace": "window"
+        },
+        {
+            "file": "../UXC.js",
+            "line": 136,
+            "description": "输出的脚本路径格式",
+            "itemtype": "method",
+            "name": "_writeNormalScript",
+            "params": [
+                {
+                    "name": "_paths",
+                    "description": "",
+                    "type": "Array"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "window.UXC",
+            "namespace": "window"
+        },
+        {
+            "file": "../UXC.js",
+            "line": 153,
             "description": "如果 console 不可用, 则生成一个模拟的 console 对象",
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../UXC.js",
-            "line": 127,
+            "line": 159,
             "description": "自动识别组件库所在路径",
             "class": "window.UXC",
             "namespace": "window"
@@ -8265,16 +8325,12 @@
             "line": " ../plugins/jquery.form.js:1150"
         },
         {
-            "message": "Missing item type\n去除多余的 正叙扛或反叙扛",
-            "line": " ../UXC.js:84"
-        },
-        {
             "message": "Missing item type\n如果 console 不可用, 则生成一个模拟的 console 对象",
-            "line": " ../UXC.js:121"
+            "line": " ../UXC.js:153"
         },
         {
             "message": "Missing item type\n自动识别组件库所在路径",
-            "line": " ../UXC.js:127"
+            "line": " ../UXC.js:159"
         },
         {
             "message": "Missing item type\nFor feature detection",
