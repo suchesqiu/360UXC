@@ -79,6 +79,15 @@
             },
             "namespaces": {}
         },
+        "../comps/Form/UXC.Form.initNumericStepper.js": {
+            "name": "../comps/Form/UXC.Form.initNumericStepper.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "UXC.Form": 1
+            },
+            "namespaces": {}
+        },
         "../comps/Form/UXC.Form.js": {
             "name": "../comps/Form/UXC.Form.js",
             "modules": {},
@@ -2188,6 +2197,40 @@
             "file": "../comps/Form/UXC.Form.initCheckAll.js",
             "line": 121,
             "description": "input 改变状态时, 全选按钮也改为正确的状态",
+            "class": "UXC.Form",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Form/UXC.Form.initNumericStepper.js",
+            "line": 2,
+            "description": "文本框 值增减 应用\n<br />只要引用本脚本, 页面加载完毕时就会自动初始化 NumericStepper\n<br />所有带 class js_NStepperPlus, js_NStepperMinus 视为值加减按钮\n<br /><br />目标文本框可以添加一些HTML属性自己的规则, \n<br />nsminvalue=最小值(默认=0), nsmaxvalue=最大值(默认=100), nsstep=步长(默认=1), nsfixed=小数点位数(默认=0)\n<br />nschangecallback=值变改后的回调",
+            "itemtype": "method",
+            "name": "initNumericStepper",
+            "static": 1,
+            "version": "dev 0.1",
+            "author": "qiushaowei   <suches@btbtd.org> | 360 75 Team",
+            "date": "2013-07-05",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "要初始化的全选反选的父级节点",
+                    "type": "Selector"
+                }
+            ],
+            "example": [
+                "\n            <dl class=\"def example1\">\n               <dt>UXC.Form.initNumericStepper 默认值 0 - 100, step 1, fixed 0</dt>\n               <dd>\n                   <button class=\"NS_icon NS_minus js_NStepperMinus\" nstarget=\"input.js_ipt1\" ></button>\n                   <input type=\"text\" value=\"0\" class=\"js_ipt1\" />\n                   <button class=\"NS_icon NS_plus js_NStepperPlus\" nstarget=\"input.js_ipt1\" ></button>\n               </dd>\n           </dl>\n\n           <dl class=\"def example1\">\n               <dt>UXC.Form.initNumericStepper -10 ~ 10, step 2, fixed 2</dt>\n               <dd>\n                   <button class=\"NS_icon NS_minus js_NStepperMinus\" nstarget=\"input.js_ipt2\" ></button>\n                   <input type=\"text\" value=\"4\" class=\"js_ipt2\" nsminvalue=\"-10\" nsmaxvalue=\"10\" nsstep=\"2\" nsfixed=\"2\" />\n                   <button class=\"NS_icon NS_plus js_NStepperPlus\" nstarget=\"input.js_ipt2\" ></button>\n               </dd>\n           </dl>"
+            ],
+            "class": "UXC.Form",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Form/UXC.Form.initNumericStepper.js",
+            "line": 61,
+            "description": "文本框 值增减 值变改后的回调\n<br />这个是定义全局的回调函数, 要定义局部回调请在目标文本框上添加 nschangecallback=回调 HTML属性",
+            "itemtype": "property",
+            "name": "initNumericStepper.onchange",
+            "type": "function",
+            "static": 1,
             "class": "UXC.Form",
             "namespace": "UXC"
         },
@@ -7276,29 +7319,20 @@
                     "type": "String"
                 },
                 {
-                    "name": "_nginxStyle",
+                    "name": "_enableNginxStyle",
                     "description": "-       指定是否需要使用 nginx 路径输出脚本资源",
                     "type": "Bool"
                 }
             ],
             "example": [
-                "\n               UXC.use( 'SomeClass' );                              //导入类 SomeClass\n               UXC.use( 'SomeClass, AnotherClass' );                //导入类 SomeClass, AnotherClass\n               //\n               ///  导入类 SomeClass, SomeClass目录下的file1.js, \n               ///  AnotherClass, AnotherClass 下的file2.js\n               //\n               UXC.use( 'SomeClass, comps/SomeClass/file1.js, comps/AnotherClass/file2.js' );   \n               UXC.use( '/js/Test/Test1.js' );                      //导入文件  /js/Test/Test1.js, 如果起始处为 \"/\", 将视为文件的绝对路径\n               //\n               /// nginx style 的文件加载方式, 如 /js/??file1.js,file2.js,file3.js\n               //\n               UXC.use( 'Test1.js, Test2.js ', '/js/??', true );\n               //\n               /// 导入 URL 资源\n               //\n               UXC.use( 'http://test.com/file1.js', 'https://another.com/file2.js' );"
+                "\n               UXC.use( 'SomeClass' );                              //导入类 SomeClass\n               UXC.use( 'SomeClass, AnotherClass' );                //导入类 SomeClass, AnotherClass\n               //\n               ///  导入类 SomeClass, SomeClass目录下的file1.js, \n               ///  AnotherClass, AnotherClass 下的file2.js\n               //\n               UXC.use( 'SomeClass, comps/SomeClass/file1.js, comps/AnotherClass/file2.js' );   \n               UXC.use( 'SomeClass, plugins/swfobject.js., plugins/json2.js' );   \n               UXC.use( '/js/Test/Test1.js' );     //导入文件  /js/Test/Test1.js, 如果起始处为 \"/\", 将视为文件的绝对路径\n               //\n               /// 导入 URL 资源 // UXC.use( 'http://test.com/file1.js', 'https://another.com/file2.js' ); "
             ],
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../UXC.js",
-            "line": 84,
-            "description": "去除多余的 正叙扛或反叙扛",
-            "access": "private",
-            "tagname": "",
-            "class": "window.UXC",
-            "namespace": "window"
-        },
-        {
-            "file": "../UXC.js",
-            "line": 109,
+            "line": 77,
             "description": "输出调试信息, 可通过 UXC.debug 指定是否显示调试信息",
             "params": [
                 {
@@ -7315,14 +7349,83 @@
         },
         {
             "file": "../UXC.js",
-            "line": 121,
+            "line": 88,
+            "description": "定义输出路径的 v 参数, 以便控制缓存",
+            "itemtype": "property",
+            "name": "pathPostfix",
+            "type": "string",
+            "default": "empty",
+            "class": "window.UXC",
+            "namespace": "window"
+        },
+        {
+            "file": "../UXC.js",
+            "line": 95,
+            "description": "是否启用nginx concat 模块的路径格式",
+            "itemtype": "property",
+            "name": "enableNginxStyle",
+            "type": "bool",
+            "default": "false",
+            "class": "window.UXC",
+            "namespace": "window"
+        },
+        {
+            "file": "../UXC.js",
+            "line": 102,
+            "description": "定义 nginx style 的基础路径\n<br /><b>注意:</b> 如果这个属性为空, 即使 enableNginxStyle = true, 也是直接输出默认路径",
+            "itemtype": "property",
+            "name": "nginxBasePath",
+            "type": "string",
+            "default": "empty",
+            "class": "window.UXC",
+            "namespace": "window"
+        },
+        {
+            "file": "../UXC.js",
+            "line": 110,
+            "description": "输出 nginx concat 模块的脚本路径格式",
+            "itemtype": "method",
+            "name": "_writeNginxScript",
+            "params": [
+                {
+                    "name": "_paths",
+                    "description": "",
+                    "type": "Array"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "window.UXC",
+            "namespace": "window"
+        },
+        {
+            "file": "../UXC.js",
+            "line": 136,
+            "description": "输出的脚本路径格式",
+            "itemtype": "method",
+            "name": "_writeNormalScript",
+            "params": [
+                {
+                    "name": "_paths",
+                    "description": "",
+                    "type": "Array"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "window.UXC",
+            "namespace": "window"
+        },
+        {
+            "file": "../UXC.js",
+            "line": 153,
             "description": "如果 console 不可用, 则生成一个模拟的 console 对象",
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../UXC.js",
-            "line": 127,
+            "line": 159,
             "description": "自动识别组件库所在路径",
             "class": "window.UXC",
             "namespace": "window"
@@ -7858,6 +7961,14 @@
         },
         {
             "message": "unknown tag: version",
+            "line": " ../comps/Form/UXC.Form.initNumericStepper.js:2"
+        },
+        {
+            "message": "unknown tag: date",
+            "line": " ../comps/Form/UXC.Form.initNumericStepper.js:2"
+        },
+        {
+            "message": "unknown tag: version",
             "line": " ../comps/Form/UXC.Form.js:3"
         },
         {
@@ -8265,16 +8376,12 @@
             "line": " ../plugins/jquery.form.js:1150"
         },
         {
-            "message": "Missing item type\n去除多余的 正叙扛或反叙扛",
-            "line": " ../UXC.js:84"
-        },
-        {
             "message": "Missing item type\n如果 console 不可用, 则生成一个模拟的 console 对象",
-            "line": " ../UXC.js:121"
+            "line": " ../UXC.js:153"
         },
         {
             "message": "Missing item type\n自动识别组件库所在路径",
-            "line": " ../UXC.js:127"
+            "line": " ../UXC.js:159"
         },
         {
             "message": "Missing item type\nFor feature detection",

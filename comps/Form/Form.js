@@ -15,4 +15,5 @@
     document.write( '<script src="'+_path+'UXC.Form.initCheckAll.js" ><\/script>' );
     document.write( '<script src="'+_path+'UXC.Form.initAutoFill.js" ><\/script>' );
     document.write( '<script src="'+_path+'UXC.Form.initAutoSelect.js" ><\/script>' ); 
+    document.write( '<script src="'+_path+'UXC.Form.initNumericStepper.js" ><\/script>' ); 
 }();

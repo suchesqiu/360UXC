@@ -180,7 +180,7 @@
         *                                           或者一个绝对路径的js文件, 路径前面带 &quot;/&quot;
         *
         * @param    {string}    _basePath -         指定要导入资源所在的主目录, 这个主要应用于 nginx 路径输出
-        * @param    {bool}      _nginxStyle -       指定是否需要使用 nginx 路径输出脚本资源
+        * @param    {bool}      _enableNginxStyle -       指定是否需要使用 nginx 路径输出脚本资源
         *
         * @example
                 UXC.use( &#x27;SomeClass&#x27; );                              //导入类 SomeClass
@@ -190,74 +190,106 @@
                 ///  AnotherClass, AnotherClass 下的file2.js
                 //
                 UXC.use( &#x27;SomeClass, comps/SomeClass/file1.js, comps/AnotherClass/file2.js&#x27; );   
-                UXC.use( &#x27;/js/Test/Test1.js&#x27; );                      //导入文件  /js/Test/Test1.js, 如果起始处为 &quot;/&quot;, 将视为文件的绝对路径
+                UXC.use( &#x27;SomeClass, plugins/swfobject.js., plugins/json2.js&#x27; );   
+                UXC.use( &#x27;/js/Test/Test1.js&#x27; );     //导入文件  /js/Test/Test1.js, 如果起始处为 &quot;/&quot;, 将视为文件的绝对路径
                 //
-                /// nginx style 的文件加载方式, 如 /js/??file1.js,file2.js,file3.js
-                //
-                UXC.use( &#x27;Test1.js, Test2.js &#x27;, &#x27;/js/??&#x27;, true );
-                //
-                /// 导入 URL 资源
-                //
-                UXC.use( &#x27;http://test.com/file1.js&#x27;, &#x27;https://another.com/file2.js&#x27; );
-        */
-        , use: 
-            function( _names, _basePath, _nginxStyle ){
-                if( ! _names ) return;
-                var _p = this, _urlRe = /\:\/\//;
+                /// 导入 URL 资源 // UXC.use( &#x27;http://test.com/file1.js&#x27;, &#x27;https://another.com/file2.js&#x27; ); 
+        */ 
+        , use: function( _items ){
+                if( ! _items ) return;
+                var _p = this, _paths = [], _parts = $.trim( _items ).split(/[\s]*?,[\s]*/)
+                   , _pathRe = /[\/\\]/, _urlRe = /\:\/\//;
 
-                var _paths = [];
+                $.each( _parts, function( _ix, _part ){
+                    var _isComps = !_pathRe.test( _part ), _path, _isFullpath = /^\//.test( _part );
+                    if( _isComps &amp;&amp; window.UXC[ _part ] ) return;
 
-                $.each( _names.split(/[\s]*?,[\s]*/), function( _ix, _val ){
+                    _path = _part;
+                    _isComps &amp;&amp; ( _path = printf( &#x27;{0}{1}{2}/{2}.js&#x27;, UXC.PATH, UXC.compsDir, _part ) );
+                    !_isComps &amp;&amp; !_isFullpath &amp;&amp; ( _path = printf( &#x27;{0}/{1}&#x27;, UXC.PATH, _part ) );
 
-                    var _isCustomPath = _urlRe.test(_val) || /\//.test( _val ) || !!_basePath;
-
-                    if( !/\.js$/i.test( _val ) &amp; !_basePath ){
-                        if( window.UXC[ _val ] ) return;
-                        _val =  [ _val, &#x27;/&#x27;, _val, &#x27;.js&#x27; ].join(&#x27;&#x27;);
-                    }
-
-                    if( _isCustomPath ){
-                        if( _urlRe.test( _val ) ){} 
-                        else if( _basePath &amp;&amp; !_nginxStyle ) _val = _basePath + _val;
-                        else if( !/[\/\\]/.test( _val.slice( 0, 1 ) ) &amp;&amp; !_nginxStyle ) _val = _p.PATH + _val;
-                    }else{
-                        _val = _p.PATH + _p.compsDir + _val;
-                    }
-                    /**
-                     * 去除多余的 正叙扛或反叙扛
-                     * @private
-                     */
-                    !_urlRe.test( _val ) &amp;&amp; ( _val = _val.replace( /(\\)\1|(\/)\2/g, &#x27;$1$2&#x27; ) ); 
-                    _val = $.trim( _val );
-
-                    if( !_nginxStyle ){
-                        _paths.push( &#x27;&lt;script src=&quot;&#x27;+_val+&#x27;&quot;&gt;&lt;\/script&gt;&#x27; );
-                    }else{
-                        _paths.push( _val );
-                    }
-
-                    _p.log( _val );
+                    _paths.push( $.trim( _path.replace( /(\\)\1|(\/)\2/g, &#x27;$1$2&#x27; ) ) );
                 });
 
-                if( _nginxStyle ){
-                    _basePath += _paths.join();
-                    document.write( &#x27;&lt;script src=&quot;&#x27;+_basePath+&#x27;&quot;&gt;&lt;\/script&gt;&#x27; );
-                }else{
-                    document.write( _paths.join(&#x27;&#x27;) );
-                }
+                UXC.log( _paths );
 
-                _p.log( _paths );
-            },
+                !UXC.enableNginxStyle &amp;&amp; UXC._writeNormalScript( _paths );
+                UXC.enableNginxStyle &amp;&amp; UXC._writeNginxScript( _paths );
+            }
        /**
         * 输出调试信息, 可通过 UXC.debug 指定是否显示调试信息
         * @param    {[string[,string]]}  任意参数任意长度的字符串内容
         * @method log
         * @static
         */
-       log: 
+       , log: 
            function(){
                 if( !this.debug ) return;
                 console.log( [].slice.apply( arguments ).join(&#x27; &#x27;) );
+            }
+       /**
+        * 定义输出路径的 v 参数, 以便控制缓存
+        * @property     pathPostfix
+        * @type     string
+        * @default  empty
+        */
+       , pathPostfix: &#x27;&#x27;
+       /**
+        * 是否启用nginx concat 模块的路径格式  
+        * @property     enableNginxStyle
+        * @type bool
+        * @default  false
+        */
+       , enableNginxStyle: false
+       /**
+        * 定义 nginx style 的基础路径
+        * &lt;br /&gt;&lt;b&gt;注意:&lt;/b&gt; 如果这个属性为空, 即使 enableNginxStyle = true, 也是直接输出默认路径 
+        * @property     nginxBasePath
+        * @type string
+        * @default  empty
+        */
+       , nginxBasePath: &#x27;&#x27;
+       /**
+        * 输出 nginx concat 模块的脚本路径格式
+        * @method   _writeNginxScript
+        * @param    {array} _paths
+        * @private
+        */
+       , _writeNginxScript:
+            function( _paths ){
+                if( !UXC.enableNginxStyle ) return;
+                for( var i = 0, j = _paths.length, _ngpath = [], _npath = []; i &lt; j; i++ ){
+                    if(  
+                         _paths[i].slice( 0, UXC.nginxBasePath.length ).toLowerCase() 
+                        == UXC.nginxBasePath.toLowerCase() )
+                    {
+                        _ngpath.push( _paths[i].slice( UXC.nginxBasePath.length ) );
+                    }else{
+                        _npath.push( _paths[i] );
+                    }
+                }
+
+                var _postfix = UXC.pathPostfix ? &#x27;?v=&#x27; + UXC.pathPostfix : &#x27;&#x27;;
+
+                _ngpath.length &amp;&amp; document.write( printf( &#x27;&lt;script src=&quot;{0}??{1}{2}&quot;&gt;&lt;\/script&gt;&#x27;
+                                                    , UXC.nginxBasePath, _ngpath.join(&#x27;,&#x27;), _postfix ) );
+                _npath.length &amp;&amp; UXC._writeNormalScript( _npath );
+            }
+       /**
+        * 输出的脚本路径格式
+        * @method   _writeNormalScript
+        * @param    {array} _paths
+        * @private
+        */
+       , _writeNormalScript:
+            function( _paths ){
+                var _postfix = UXC.pathPostfix ? &#x27;?v=&#x27; + UXC.pathPostfix : &#x27;&#x27;;
+                for( var i = 0, j = _paths.length, _path; i &lt; j; i++ ){
+                    _path = _paths[i];
+                    UXC.pathPostfix &amp;&amp; ( _path = add_url_params( _path, { &#x27;v&#x27;: UXC.pathPostfix } ) );
+                    _paths[i] = printf( &#x27;&lt;script src=&quot;{0}&quot;&gt;&lt;\/script&gt;&#x27;, _path );
+                }
+                _paths.length &amp;&amp; document.write( _paths.join(&#x27;&#x27;) );
             }
     };
     /**
