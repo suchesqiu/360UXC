@@ -193,26 +193,32 @@
 
             _ins.on('show_default', function(){
                 UXC.log('user show_default');
-                _logic.showEffect( _ins, _popupSrc, function(){
-                });
-                return false;
+                if( _popupSrc && _popupSrc.length ){
+                    _logic.showEffect( _ins, _popupSrc, function(){
+                    });
+                    return false;
+                }
             });
 
             _ins.on('close_default', function(){
                 UXC.log('user close_default');
-                _logic.hideEffect( _ins, _popupSrc, function(){
-                    _ins.selector().remove();
-                    _ins = null;
-                });
+                if( _popupSrc && _popupSrc.length ){
+                    _logic.hideEffect( _ins, _popupSrc, function(){
+                        _ins.selector().remove();
+                        _ins = null;
+                    });
+                }
                 return false;
             });
 
             _ins.on('hide_default', function(){
                 UXC.log('user hide_default');
-                _logic.hideEffect( _ins, _popupSrc, function(){
-                    _ins.selector().hide();
-                });
-                return false;
+                if( _popupSrc && _popupSrc.length ){
+                    _logic.hideEffect( _ins, _popupSrc, function(){
+                        _ins.selector().hide();
+                    });
+                    return false;
+                }
             });
 
             if( _popupSrc && _popupSrc.length )_ins.selector().css( { 'left': '-9999px', 'top': '-9999px' } );
