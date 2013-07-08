@@ -2,6 +2,7 @@ var fs = require('fs');
 var dir = '../uxc_docs/classes';
 
 removeIgnoreItem( '../uxc_docs/index.html' );
+removeIgnoreItem( '../uxc_docs/api.js' );
 
 var dirs = fs.readdirSync( dir );
 
