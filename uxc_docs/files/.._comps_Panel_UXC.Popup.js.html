@@ -335,26 +335,32 @@
 
             _ins.on(&#x27;show_default&#x27;, function(){
                 UXC.log(&#x27;user show_default&#x27;);
-                _logic.showEffect( _ins, _popupSrc, function(){
-                });
-                return false;
+                if( _popupSrc &amp;&amp; _popupSrc.length ){
+                    _logic.showEffect( _ins, _popupSrc, function(){
+                    });
+                    return false;
+                }
             });
 
             _ins.on(&#x27;close_default&#x27;, function(){
                 UXC.log(&#x27;user close_default&#x27;);
-                _logic.hideEffect( _ins, _popupSrc, function(){
-                    _ins.selector().remove();
-                    _ins = null;
-                });
+                if( _popupSrc &amp;&amp; _popupSrc.length ){
+                    _logic.hideEffect( _ins, _popupSrc, function(){
+                        _ins.selector().remove();
+                        _ins = null;
+                    });
+                }
                 return false;
             });
 
             _ins.on(&#x27;hide_default&#x27;, function(){
                 UXC.log(&#x27;user hide_default&#x27;);
-                _logic.hideEffect( _ins, _popupSrc, function(){
-                    _ins.selector().hide();
-                });
-                return false;
+                if( _popupSrc &amp;&amp; _popupSrc.length ){
+                    _logic.hideEffect( _ins, _popupSrc, function(){
+                        _ins.selector().hide();
+                    });
+                    return false;
+                }
             });
 
             if( _popupSrc &amp;&amp; _popupSrc.length )_ins.selector().css( { &#x27;left&#x27;: &#x27;-9999px&#x27;, &#x27;top&#x27;: &#x27;-9999px&#x27; } );
@@ -632,7 +638,7 @@
                 ,&#x27;            &lt;/dl&gt;&#x27;
                 ,&#x27;        &lt;/div&gt;&#x27;
                 ,&#x27;    &lt;/div&gt;&lt;!--end UPContent--&gt;&#x27;
-                ,&#x27;&lt;/div&gt;&lt;!--end UPanel--&gt;&#x27;
+                ,&#x27;&lt;/div&gt;&#x27;
                 ].join(&#x27;&#x27;)
             /**
              *  confirm 弹框的默认模板
@@ -656,7 +662,7 @@
                 ,&#x27;            &lt;/dl&gt;&#x27;
                 ,&#x27;        &lt;/div&gt;&#x27;
                 ,&#x27;    &lt;/div&gt;&lt;!--end UPContent--&gt;&#x27;
-                ,&#x27;&lt;/div&gt;&lt;!--end UPanel--&gt;&#x27;
+                ,&#x27;&lt;/div&gt;&#x27;
                 ].join(&#x27;&#x27;)
         }
     };

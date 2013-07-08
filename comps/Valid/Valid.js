@@ -943,7 +943,8 @@
                  */
                 , 'length': 
                     function( _item ){
-                        var _r = true, _dt = _logic.getDatatype( _item ), _min, _max, _val = _item.val(), _len;
+                        var _r = true, _dt = _logic.getDatatype( _item ), _min, _max, _val = $.trim( _item.val() ), _len;
+                        if( !_val ) return _r;
 
                         if( _item.is( '[minlength]' ) ){
                             UXC.log( 'minlength' );

@@ -79,6 +79,15 @@
             },
             "namespaces": {}
         },
+        "../comps/Form/UXC.Form.initNumericStepper.js": {
+            "name": "../comps/Form/UXC.Form.initNumericStepper.js",
+            "modules": {},
+            "classes": {},
+            "fors": {
+                "UXC.Form": 1
+            },
+            "namespaces": {}
+        },
         "../comps/Form/UXC.Form.js": {
             "name": "../comps/Form/UXC.Form.js",
             "modules": {},
@@ -2192,6 +2201,40 @@
             "namespace": "UXC"
         },
         {
+            "file": "../comps/Form/UXC.Form.initNumericStepper.js",
+            "line": 2,
+            "description": "文本框 值增减 应用\n<br />只要引用本脚本, 页面加载完毕时就会自动初始化 NumericStepper\n<br />所有带 class js_NStepperPlus, js_NStepperMinus 视为值加减按钮\n<br /><br />目标文本框可以添加一些HTML属性自己的规则, \n<br />nsminvalue=最小值(默认=0), nsmaxvalue=最大值(默认=100), nsstep=步长(默认=1), nsfixed=小数点位数(默认=0)\n<br />nschangecallback=值变改后的回调",
+            "itemtype": "method",
+            "name": "initNumericStepper",
+            "static": 1,
+            "version": "dev 0.1",
+            "author": "qiushaowei   <suches@btbtd.org> | 360 75 Team",
+            "date": "2013-07-05",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "要初始化的全选反选的父级节点",
+                    "type": "Selector"
+                }
+            ],
+            "example": [
+                "\n            <dl class=\"def example1\">\n               <dt>UXC.Form.initNumericStepper 默认值 0 - 100, step 1, fixed 0</dt>\n               <dd>\n                   <button class=\"NS_icon NS_minus js_NStepperMinus\" nstarget=\"input.js_ipt1\" ></button>\n                   <input type=\"text\" value=\"0\" class=\"js_ipt1\" />\n                   <button class=\"NS_icon NS_plus js_NStepperPlus\" nstarget=\"input.js_ipt1\" ></button>\n               </dd>\n           </dl>\n\n           <dl class=\"def example1\">\n               <dt>UXC.Form.initNumericStepper -10 ~ 10, step 2, fixed 2</dt>\n               <dd>\n                   <button class=\"NS_icon NS_minus js_NStepperMinus\" nstarget=\"input.js_ipt2\" ></button>\n                   <input type=\"text\" value=\"4\" class=\"js_ipt2\" nsminvalue=\"-10\" nsmaxvalue=\"10\" nsstep=\"2\" nsfixed=\"2\" />\n                   <button class=\"NS_icon NS_plus js_NStepperPlus\" nstarget=\"input.js_ipt2\" ></button>\n               </dd>\n           </dl>"
+            ],
+            "class": "UXC.Form",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Form/UXC.Form.initNumericStepper.js",
+            "line": 61,
+            "description": "文本框 值增减 值变改后的回调\n<br />这个是定义全局的回调函数, 要定义局部回调请在目标文本框上添加 nschangecallback=回调 HTML属性",
+            "itemtype": "property",
+            "name": "initNumericStepper.onchange",
+            "type": "function",
+            "static": 1,
+            "class": "UXC.Form",
+            "namespace": "UXC"
+        },
+        {
             "file": "../comps/Form/UXC.Form.js",
             "line": 17,
             "description": "禁用按钮一定时间, 默认为1秒",
@@ -4162,7 +4205,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 225,
+            "line": 231,
             "description": "隐藏弹框缓动效果",
             "itemtype": "method",
             "name": "_logic.hideEffect",
@@ -4190,7 +4233,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 268,
+            "line": 274,
             "description": "隐藏弹框缓动效果",
             "itemtype": "method",
             "name": "_logic.showEffect",
@@ -4213,7 +4256,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 320,
+            "line": 326,
             "description": "设置 Panel 的默认X,Y轴",
             "itemtype": "method",
             "name": "_logic.onresize",
@@ -4231,7 +4274,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 356,
+            "line": 362,
             "description": "取得弹框最要显示的 y 轴",
             "itemtype": "method",
             "name": "_logic.getTop",
@@ -4268,7 +4311,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 377,
+            "line": 383,
             "description": "取得弹框最要显示的 x 轴",
             "itemtype": "method",
             "name": "_logic.getLeft",
@@ -4305,7 +4348,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 400,
+            "line": 406,
             "description": "修正弹框的默认显示宽度",
             "itemtype": "method",
             "name": "_logic.fixWidth",
@@ -4328,7 +4371,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 417,
+            "line": 423,
             "description": "获取弹框的显示状态, 默认为0(成功)",
             "itemtype": "method",
             "name": "_logic.fixWidth",
@@ -4350,7 +4393,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 435,
+            "line": 441,
             "description": "缓动函数, 动画效果为按时间缓动",
             "itemtype": "method",
             "name": "_logic.easyEffect",
@@ -4383,7 +4426,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 464,
+            "line": 470,
             "description": "保存弹框的所有默认模板",
             "itemtype": "property",
             "name": "_logic.tpls",
@@ -4395,7 +4438,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 472,
+            "line": 478,
             "description": "alert 弹框的默认模板",
             "itemtype": "property",
             "name": "_logic.tpls.alert",
@@ -4407,7 +4450,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 495,
+            "line": 501,
             "description": "confirm 弹框的默认模板",
             "itemtype": "property",
             "name": "_logic.tpls.confirm",
@@ -6938,14 +6981,14 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 957,
+            "line": 958,
             "description": "根据特殊的 datatype 实现不同的计算方法",
             "class": "UXC.Valid",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 983,
+            "line": 984,
             "description": "检查内容是否为空,\n<br>如果声明了该属性, 那么 value 须不为空",
             "itemtype": "method",
             "name": "_logic.datatype.reqmsg",
@@ -6967,7 +7010,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1009,
+            "line": 1010,
             "description": "自定义正则校验",
             "itemtype": "method",
             "name": "_logic.datatype.reg",
@@ -6990,7 +7033,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1035,
+            "line": 1036,
             "description": "检查验证码<br />\n格式: 为 0-9a-zA-Z, 长度 默认为4",
             "itemtype": "method",
             "name": "_logic.datatype.vcode",
@@ -7013,7 +7056,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1061,
+            "line": 1062,
             "description": "检查文本长度",
             "itemtype": "method",
             "name": "_logic.datatype.text",
@@ -7029,7 +7072,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1070,
+            "line": 1071,
             "description": "检查文本的字节长度",
             "itemtype": "method",
             "name": "_logic.datatype.bytetext",
@@ -7045,7 +7088,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1079,
+            "line": 1080,
             "description": "检查富文本的字节",
             "itemtype": "method",
             "name": "_logic.datatype.richtext",
@@ -7061,7 +7104,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1088,
+            "line": 1089,
             "description": "检查URL",
             "itemtype": "method",
             "name": "_logic.datatype.url",
@@ -7083,7 +7126,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1105,
+            "line": 1106,
             "description": "检查域名",
             "itemtype": "method",
             "name": "_logic.datatype.domain",
@@ -7102,7 +7145,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1122,
+            "line": 1123,
             "description": "检查电子邮件",
             "itemtype": "method",
             "name": "_logic.datatype.email",
@@ -7124,7 +7167,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1139,
+            "line": 1140,
             "description": "检查邮政编码",
             "itemtype": "method",
             "name": "_logic.datatype.zipcode",
@@ -7918,6 +7961,14 @@
         },
         {
             "message": "unknown tag: version",
+            "line": " ../comps/Form/UXC.Form.initNumericStepper.js:2"
+        },
+        {
+            "message": "unknown tag: date",
+            "line": " ../comps/Form/UXC.Form.initNumericStepper.js:2"
+        },
+        {
+            "message": "unknown tag: version",
             "line": " ../comps/Form/UXC.Form.js:3"
         },
         {
@@ -8094,23 +8145,23 @@
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1009"
+            "line": " ../comps/Valid/Valid.js:1010"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1035"
+            "line": " ../comps/Valid/Valid.js:1036"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1061"
+            "line": " ../comps/Valid/Valid.js:1062"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1070"
+            "line": " ../comps/Valid/Valid.js:1071"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1079"
+            "line": " ../comps/Valid/Valid.js:1080"
         },
         {
             "message": "unknown tag: date",
@@ -8270,7 +8321,7 @@
         },
         {
             "message": "Missing item type\n根据特殊的 datatype 实现不同的计算方法",
-            "line": " ../comps/Valid/Valid.js:957"
+            "line": " ../comps/Valid/Valid.js:958"
         },
         {
             "message": "Missing item type\nFeature detection",

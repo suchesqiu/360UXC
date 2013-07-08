@@ -165,6 +165,10 @@
                                 <a href="#method_initCheckAll">initCheckAll</a>
                                     <span class="flag static">static</span>
                             </li>
+                            <li class="index-item method">
+                                <a href="#method_initNumericStepper">initNumericStepper</a>
+                                    <span class="flag static">static</span>
+                            </li>
                     </ul>
                 </div>
                 <div class="index-section properties">
@@ -176,6 +180,10 @@
                             </li>
                             <li class="index-item property">
                                 <a href="#property_initAutoSelect.hideEmpty">initAutoSelect.hideEmpty</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_initNumericStepper.onchange">initNumericStepper.onchange</a>
                                     <span class="flag static">static</span>
                             </li>
                     </ul>
@@ -821,6 +829,65 @@
             </div>
         </div>
 </div>
+                    <div id="method_initNumericStepper" class="method item">
+    <h3 class="name"><code>initNumericStepper</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Form_UXC.Form.initNumericStepper.js.html#l2"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initNumericStepper.js:2</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>文本框 值增减 应用
+<br />只要引用本脚本, 页面加载完毕时就会自动初始化 NumericStepper
+<br />所有带 class js<em>NStepperPlus, js</em>NStepperMinus 视为值加减按钮
+<br /><br />目标文本框可以添加一些HTML属性自己的规则, 
+<br />nsminvalue=最小值(默认=0), nsmaxvalue=最大值(默认=100), nsstep=步长(默认=1), nsfixed=小数点位数(默认=0)
+<br />nschangecallback=值变改后的回调</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                        <p>要初始化的全选反选的父级节点</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="example">
+            <h4>Example:</h4>
+            <div class="example-content">
+                <pre class="code prettyprint"><code>        &lt;dl class="def example1"&gt;
+           &lt;dt&gt;UXC.Form.initNumericStepper 默认值 0 - 100, step 1, fixed 0&lt;/dt&gt;
+           &lt;dd&gt;
+               &lt;button class="NS_icon NS_minus js_NStepperMinus" nstarget="input.js_ipt1" &gt;&lt;/button&gt;
+               &lt;input type="text" value="0" class="js_ipt1" /&gt;
+               &lt;button class="NS_icon NS_plus js_NStepperPlus" nstarget="input.js_ipt1" &gt;&lt;/button&gt;
+           &lt;/dd&gt;
+       &lt;/dl&gt;
+       &lt;dl class="def example1"&gt;
+           &lt;dt&gt;UXC.Form.initNumericStepper -10 ~ 10, step 2, fixed 2&lt;/dt&gt;
+           &lt;dd&gt;
+               &lt;button class="NS_icon NS_minus js_NStepperMinus" nstarget="input.js_ipt2" &gt;&lt;/button&gt;
+               &lt;input type="text" value="4" class="js_ipt2" nsminvalue="-10" nsmaxvalue="10" nsstep="2" nsfixed="2" /&gt;
+               &lt;button class="NS_icon NS_plus js_NStepperPlus" nstarget="input.js_ipt2" &gt;&lt;/button&gt;
+           &lt;/dd&gt;
+       &lt;/dl&gt;
+</code></pre>
+            </div>
+        </div>
+</div>
             </div>
             <div id="properties" class="api-class-tabpanel">
                 <h2 class="off-left">Properties</h2>
@@ -877,6 +944,21 @@
 </code></pre>
             </div>
         </div>
+</div>
+                    <div id="property_initNumericStepper.onchange" class="property item">
+    <h3 class="name"><code>initNumericStepper.onchange</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Form_UXC.Form.initNumericStepper.js.html#l61"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initNumericStepper.js:61</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>文本框 值增减 值变改后的回调
+<br />这个是定义全局的回调函数, 要定义局部回调请在目标文本框上添加 nschangecallback=回调 HTML属性</p>
+    </div>
 </div>
             </div>
     </div>

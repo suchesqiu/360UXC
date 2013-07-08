@@ -546,7 +546,7 @@
 
             Tips.titleToTipsdata( $(&#x27;[title]&#x27;) );
 
-            $(document).delegate(&#x27;*&#x27;, &#x27;mouseenter&#x27;, function( _evt ){
+            $(document).delegate(&#x27;*&#x27;, &#x27;mouseover&#x27;, function( _evt ){
                 var _p = $(this);
                 if( _p.data(&#x27;initedTips&#x27;) ) return;
                 if( !( _p.attr(&#x27;title&#x27;) || _p.attr(&#x27;tipsData&#x27;) ) ) return;
