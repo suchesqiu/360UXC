@@ -304,7 +304,7 @@
                     UXC.log( '\nCalendar.init: ', _nodeName );
 
                     if( _nodeName != 'input' ){ 
-                        arguments.callee( _selector.query( $('input[type=text]') ) ); 
+                        _logic.initTrigger( _selector.find( $('input[type=text]') ) ); 
                         return; 
                     }
                     if( !($.trim( _p.attr('datatype') || '').toLowerCase() == 'date' 
