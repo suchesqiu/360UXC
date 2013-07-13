@@ -792,9 +792,9 @@
      UXC.hideAllPanel = 
          function( _isClose ){
             if( _isClose ){
-                $('body > div.UPanel').remove();
+                $('div.UPanel').remove();
             }else{
-                $('body > div.UPanel').hide();
+                $('div.UPanel').hide();
             }
          };
 

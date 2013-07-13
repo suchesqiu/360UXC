@@ -171,12 +171,12 @@
                 _p.find( &#x27;input[type=text][name],input[type=password][name],textarea[name]&#x27; ).each( function(){
                     var _sp = $(this);
                     if( has_url_param( _url, _sp.attr(&#x27;name&#x27;) ) ){
-                        _sp.val( get_url_param( _url, _sp.attr(&#x27;name&#x27;) ) );
+                        _sp.val( decode( get_url_param( _url, _sp.attr(&#x27;name&#x27;) ) ) );
                     }
                 });
 
                 _p.find( &#x27;select[name]&#x27; ).each( function(){
-                    var _sp = $(this), _uval = get_url_param( _url, _sp.attr(&#x27;name&#x27;) ) ;
+                    var _sp = $(this), _uval = decode( get_url_param( _url, _sp.attr(&#x27;name&#x27;) ) ) ;
                     if( has_url_param( _url, _sp.attr(&#x27;name&#x27;) ) ){
                         if( selectHasVal( _sp, _uval ) ){
                             _sp.val( get_url_param( _url, _sp.attr(&#x27;name&#x27;) ) );
@@ -191,6 +191,22 @@
 
     $(document).ready( function( _evt ){ UXC.Form.initAutoFill(); });
 
+    /**
+     * 自定义 URI decode 函数
+     * @property    initAutoFill.decodeFunc
+     * @static
+     * @for UXC.Form
+     * @type    function
+     * @default null
+     */
+    UXC.Form.initAutoFill.decodeFunc;
+
+    function decode( _val ){
+        try{
+            _val = (UXC.Form.initAutoFill.decodeFunc || decodeURIComponent)( _val );
+        }catch(ex){}
+        return _val;
+    }
     /**
      * 判断下拉框的option里是否有给定的值
      * @method  initAutoFill.selectHasVal

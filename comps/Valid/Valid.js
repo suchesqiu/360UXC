@@ -134,6 +134,7 @@
                         if( !_logic.isValidItem(this) ) return;
                         var _sitem = $(this), _dt = _logic.getDatatype( _sitem ), _subdt = _logic.getSubdatatype( _sitem );
 
+                        if( !_sitem.is(':visible') ) return;
                         if( _sitem.is('[disabled]') ) return;
 
                         UXC.log( _dt, _subdt );
@@ -204,7 +205,7 @@
                     _item.removeClass('error');
                     _item.find('~ em').show();
                     _item.find('~ em.error').hide();
-                    _item.attr('emel') && $( ('#' + _item.attr('emel')).replace( /[\#]+/, '#' ) ).hide();
+                    _item.attr('emel') && _logic.getElement( _item.attr('emel'), _item ).hide();
                 }
             /**
              * 显示错误的视觉效果
@@ -223,7 +224,7 @@
                     _item.find('~ em:not(.error)').hide();
 
                     if( _item.is( '[emEl]' ) ){
-                        ( _errEm = _logic.getElement( _item.attr( 'emEl' ) ) ) && _errEm.length && _errEm.addClass('error');
+                        ( _errEm = _logic.getElement( _item.attr( 'emEl' ) , _item) ) && _errEm.length && _errEm.addClass('error');
                     }
                     !( _errEm && _errEm.length ) && ( _errEm = _item.find('~ em.error') );
                     if( !_errEm.length ){
@@ -240,12 +241,16 @@
              * @method  _logic.getElement
              * @private
              * @static
-             * @param   {selector}  _item
+             * @param   {selector}  _selector
              */
             , getElement: 
-                function( _item ){
-                    if( /^[\w-]+$/.test( _item ) ) _item = '#' + _item;
-                    return $(_item );
+                function( _selector, _item ){
+                    if( /^\^$/.test( _selector ) ){
+                        _selector = $( _item.parent().find('~ em.error') );
+                    }else if( /^[\w-]+$/.test( _selector ) ) {
+                        _selector = '#' + _selector;
+                    }
+                    return $(_selector );
                 }
             /**
              * 获取 _item 的检查类型, 所有可用的检查类型位于 _logic.datatype 对象

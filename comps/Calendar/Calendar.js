@@ -304,7 +304,7 @@
                     UXC.log( '\nCalendar.init: ', _nodeName );
 
                     if( _nodeName != 'input' ){ 
-                        arguments.callee( _selector.query( $('input[type=text]') ) ); 
+                        _logic.initTrigger( _selector.find( $('input[type=text]') ) ); 
                         return; 
                     }
                     if( !($.trim( _p.attr('datatype') || '').toLowerCase() == 'date' 
@@ -664,7 +664,10 @@
          * @private
          */
         $(document).delegate( 'body > div.UXCCalendar button.UConfirm', 'click', function( $evt ){
-            var box = $(this).parents( 'div.UXCCalendar' );
+            var box = $(this).parents( 'div.UXCCalendar' ), _tmp;
+            if( box.length && ( _tmp = box.find('td.cur') ).length ){
+                if( _tmp.hasClass( 'unable' ) ) return;
+            }
             box.length && box.data('confirmMethod') && box.data('confirmMethod')( this );
             Calendar.hide();
         });

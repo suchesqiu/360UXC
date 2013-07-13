@@ -276,6 +276,7 @@
                         if( !_logic.isValidItem(this) ) return;
                         var _sitem = $(this), _dt = _logic.getDatatype( _sitem ), _subdt = _logic.getSubdatatype( _sitem );
 
+                        if( !_sitem.is(&#x27;:visible&#x27;) ) return;
                         if( _sitem.is(&#x27;[disabled]&#x27;) ) return;
 
                         UXC.log( _dt, _subdt );
@@ -346,7 +347,7 @@
                     _item.removeClass(&#x27;error&#x27;);
                     _item.find(&#x27;~ em&#x27;).show();
                     _item.find(&#x27;~ em.error&#x27;).hide();
-                    _item.attr(&#x27;emel&#x27;) &amp;&amp; $( (&#x27;#&#x27; + _item.attr(&#x27;emel&#x27;)).replace( /[\#]+/, &#x27;#&#x27; ) ).hide();
+                    _item.attr(&#x27;emel&#x27;) &amp;&amp; _logic.getElement( _item.attr(&#x27;emel&#x27;), _item ).hide();
                 }
             /**
              * 显示错误的视觉效果
@@ -365,7 +366,7 @@
                     _item.find(&#x27;~ em:not(.error)&#x27;).hide();
 
                     if( _item.is( &#x27;[emEl]&#x27; ) ){
-                        ( _errEm = _logic.getElement( _item.attr( &#x27;emEl&#x27; ) ) ) &amp;&amp; _errEm.length &amp;&amp; _errEm.addClass(&#x27;error&#x27;);
+                        ( _errEm = _logic.getElement( _item.attr( &#x27;emEl&#x27; ) , _item) ) &amp;&amp; _errEm.length &amp;&amp; _errEm.addClass(&#x27;error&#x27;);
                     }
                     !( _errEm &amp;&amp; _errEm.length ) &amp;&amp; ( _errEm = _item.find(&#x27;~ em.error&#x27;) );
                     if( !_errEm.length ){
@@ -382,12 +383,16 @@
              * @method  _logic.getElement
              * @private
              * @static
-             * @param   {selector}  _item
+             * @param   {selector}  _selector
              */
             , getElement: 
-                function( _item ){
-                    if( /^[\w-]+$/.test( _item ) ) _item = &#x27;#&#x27; + _item;
-                    return $(_item );
+                function( _selector, _item ){
+                    if( /^\^$/.test( _selector ) ){
+                        _selector = $( _item.parent().find(&#x27;~ em.error&#x27;) );
+                    }else if( /^[\w-]+$/.test( _selector ) ) {
+                        _selector = &#x27;#&#x27; + _selector;
+                    }
+                    return $(_selector );
                 }
             /**
              * 获取 _item 的检查类型, 所有可用的检查类型位于 _logic.datatype 对象
