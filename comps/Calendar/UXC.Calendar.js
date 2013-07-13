@@ -664,7 +664,10 @@
          * @private
          */
         $(document).delegate( 'body > div.UXCCalendar button.UConfirm', 'click', function( $evt ){
-            var box = $(this).parents( 'div.UXCCalendar' );
+            var box = $(this).parents( 'div.UXCCalendar' ), _tmp;
+            if( box.length && ( _tmp = box.find('td.cur') ).length ){
+                if( _tmp.hasClass( 'unable' ) ) return;
+            }
             box.length && box.data('confirmMethod') && box.data('confirmMethod')( this );
             Calendar.hide();
         });
