@@ -35,9 +35,11 @@
                 var _r = true, _item = $(_item), _type = _item.length ? _item.prop('nodeName').toLowerCase() : '';
                 if( _item.length ){
                     if( _type == 'form' ){
+                        var _errorabort = Valid.errorAbort, tmp;
+                        _item.is('[errorabort]') && ( _errorabort = ( _tmp = _item.attr('errorabort').toLowerCase() ) == 'false' || _tmp == "0" || (!_tmp) ? false : true );
                         for( var i = 0, j = _item[0].length; i < j; i++ ){
                             !_logic.parse( $(_item[0][i]) ) && ( _r = false );
-                            if( Valid.errorAbort && !_r ) break;
+                            if( _errorabort && !_r ) break;
                         }
                     } else _r = _logic.parse( _item );
                 }
@@ -803,6 +805,7 @@
                  * @private
                  * @static
                  * @param   {selector}  _item
+                 * @param   {bool}      _noError
                  * @example
                     <div class="f-l">
                         <input type="TEXT" name="company_mobile" 
@@ -811,10 +814,23 @@
                     </div>
                  */
                 , mobilecode: 
-                    function( _item ){
+                    function( _item, _noError ){
                         var _r =  /^(?:13|14|15|16|18|19)\d{9}$/.test( _item.val() );
-                        !_r && _logic.error( _item );
+                        !_noError && !_r && _logic.error( _item );
                         return _r;
+                    }
+                /**
+                 * 检查手机号码
+                 * <br />这个方法是 _logic.datatype.mobilecode 的别名
+                 * @method  _logic.datatype.mobile
+                 * @private
+                 * @static
+                 * @param   {selector}  _item
+                 * @param   {bool}      _noError
+                 */
+                , mobile:
+                    function( _item, _noError ){
+                        return _logic.datatype.mobilecode( _item, _noError );
                     }
                 /**
                  * 检查手机号码加强方法
@@ -823,6 +839,7 @@
                  * @private
                  * @static
                  * @param   {selector}  _item
+                 * @param   {bool}      _noError
                  * @example
                         <div class="f-l">
                             <input type="TEXT" name="company_mobilezone" 
@@ -831,8 +848,54 @@
                         </div>
                  */
                 , mobilezonecode: 
-                    function( _item ){
+                    function( _item, _noError ){
                         var _r = /^(?:\+[0-9]{1,6} |)(?:0|)(?:13|14|15|16|18|19)\d{9}$/.test( _item.val() );
+                        !_noError && !_r && _logic.error( _item );
+                        return _r;
+                    }
+                /**
+                 * 检查手机号码/电话号码
+                 * <br />这个方法是原有方法的混合验证 _logic.datatype.mobilecode + _logic.datatype.phone
+                 * @method  _logic.datatype.mobilephone
+                 * @private
+                 * @static
+                 * @param   {selector}  _item
+                 * @example
+                        <div class="f-l label">
+                            <label>(datatype mobilephone, phone + mobilecode)手机号码或电话号码:</label>
+                        </div>
+                        <div class="f-l">
+                            <input type="text" name="company_mobilephone" 
+                                datatype="mobilephone"
+                                errmsg="请填写正确的手机/电话号码">
+                        </div>
+                 */
+                , mobilephone:
+                    function( _item ){
+                        var _r = _logic.datatype.mobilecode( _item, true ) || _logic.datatype.phone( _item, true );
+                        !_r && _logic.error( _item );
+                        return _r;
+                    }
+                /**
+                 * 检查手机号码/电话号码, 泛匹配
+                 * <br />这个方法是原有方法的混合验证 _logic.datatype.mobilezonecode + _logic.datatype.phoneall
+                 * @method  _logic.datatype.mobilephoneall
+                 * @private
+                 * @static
+                 * @param   {selector}  _item
+                 * @example
+                        <div class="f-l label">
+                            <label>(datatype mobilephoneall, phoneall + mobilezonecode)手机号码或电话号码:</label>
+                        </div>
+                        <div class="f-l">
+                            <input type="text" name="company_mobilephoneall" 
+                                datatype="mobilephoneall"
+                                errmsg="请填写正确的手机/电话号码">
+                        </div>
+                 */
+                , mobilephoneall:
+                    function( _item ){
+                        var _r = _logic.datatype.mobilezonecode( _item, true ) || _logic.datatype.phoneall( _item, true );
                         !_r && _logic.error( _item );
                         return _r;
                     }
@@ -843,6 +906,7 @@
                  * @private
                  * @static
                  * @param   {selector}  _item
+                 * @param   {bool}      _noError
                  * @example
                         <div class="f-l">
                             <input type="TEXT" name="company_phone" 
@@ -851,9 +915,9 @@
                         </div>
                  */
                 , phone:
-                    function( _item ){
+                    function( _item, _noError ){
                         var _r = /^(?:0(?:10|2\d|[3-9]\d\d)(?: |\-|)|)[1-9]\d{6,7}$/.test( _item.val() );
-                        !_r && _logic.error( _item );
+                        !_noError && !_r && _logic.error( _item );
                         return _r;
                     }
                 /**
@@ -863,6 +927,7 @@
                  * @private
                  * @static
                  * @param   {selector}  _item
+                 * @param   {bool}      _noError
                  * @example
                         <div class="f-l">
                             <input type="TEXT" name="company_mobilezone" 
@@ -871,9 +936,9 @@
                         </div>
                  */
                 , phoneall:
-                    function( _item ){
+                    function( _item, _noError ){
                         var _r = /^(?:\+[\d]{1,6}(?: |\-)|)(?:0[\d]{2,3}(?:\-| |)|)[1-9][\d]{6,7}(?:(?: |)\#[\d]{1,6}|)$/.test( _item.val() );
-                        !_r && _logic.error( _item );
+                        !_noError && !_r && _logic.error( _item );
                         return _r;
                     }
                 /**

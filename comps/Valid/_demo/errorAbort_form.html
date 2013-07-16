@@ -33,7 +33,12 @@
             UXC.debug = true; UXC.use( 'Valid, Calendar' );
 
             $(document).ready( function($evt){
-                UXC.Valid.errorAbort = true;
+                /**
+                 * 发生错误是否停止验证, 这是全局控制.
+                 * 如果要控制具体表单的话, 在 form 标签里添加 errorabort 属性即可, 解析时这个属性优先级比 UXC.Valid.errorAbort 高
+                 *
+                 */
+                UXC.Valid.errorAbort = false;
 
                 $(document).delegate( 'button.js-clear-error', 'click', function( $evt ){
                     window.console && console.clear && console.clear();
@@ -54,7 +59,7 @@
     </head>    
     <body>
 
-        <form action='' method='get' class="js-valid">
+        <form action='' method='get' class="js-valid" errorabort="true">
             <div>
                 <button type="submit">Save</button>
                 <button type="button" class="js-clear-error">清空错误信息</button>

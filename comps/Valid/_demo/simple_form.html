@@ -51,7 +51,7 @@
     </head>    
     <body>
 
-        <form action='' method='get' class="js-valid">
+        <form action='' method='get' class="js-valid" >
             <div>
                 <button type="submit">Save</button>
                 <button type="button" class="js-clear-error">清空错误信息</button>
@@ -313,6 +313,28 @@
                     <input type="text" name="company_mobilezone" 
                         datatype="mobilezonecode" 
                         errmsg="请填写正确的手机号码">
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype mobilephone, phone + mobilecode)手机号码或电话号码:</label>
+                </div>
+                <div class="f-l">
+                    <input type="text" name="company_mobilephone" 
+                        datatype="mobilephone"
+                        errmsg="请填写正确的手机/电话号码">
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype mobilephoneall, phoneall + mobilezonecode)手机号码或电话号码:</label>
+                </div>
+                <div class="f-l">
+                    <input type="text" name="company_mobilephoneall" 
+                        datatype="mobilephoneall"
+                        errmsg="请填写正确的手机/电话号码">
                 </div>
                 </dd>
 
