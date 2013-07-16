@@ -128,9 +128,13 @@
                         _selectval = _target.attr('selectvalue');
                         _target.removeAttr('selectvalue');
                     }
-                    if( _target.is( '[selecturl]' ) ){
-                        var  _reqval = _val
-                            , _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
+                    var  _reqval = _val, _url;
+                    if( _target.attr('selectdatacb') ){
+                        window[ _target.attr('selectdatacb') ] 
+                            && processData( _target, _url, _reqval, triggerChange
+                                    , window[ _target.attr('selectdatacb') ]( getSelectId( _target ) ) );
+                    }else if( _target.attr('selecturl') ){
+                        _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
                         if( _target.data('parentSelect') ){
                             _reqval = _target.data('parentSelect').val();
                         }
@@ -141,33 +145,46 @@
                 }
             }else{
                 UXC.log( 1, 2 );
-                if( _p.is( '[selecturl]' ) ){
-                    var  _reqval = _val
-                        , _url = add_url_params( _p.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
+                var _reqval = _val, _url;
+                    _p.data('parentSelect') && ( _reqval = _p.data('parentSelect').val() );
+
+                if( _p.attr('selectdatacb') ){
+                    window[ _p.attr('selectdatacb') ] 
+                        && processData( _p, _url, _reqval, cb_1_2
+                                , window[ _p.attr('selectdatacb') ]( getSelectId( _p ) ) );
+                }else if( _p.attr('selecturl') ){
+                    _url = add_url_params( _p.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
                     if( _p.data('parentSelect') ){
                         _reqval = _p.data('parentSelect').val();
                     }
-                _url = _url.replace( /\{0\}/g, _reqval );
+                    _url = _url.replace( /\{0\}/g, _reqval );
 
-                getData( _p, _url, _val, function( _select ){
-                    if( _select.is( '[selecttarget]' ) ){
-                        var _target = $(_select.attr('selecttarget'));
-                        if( _target.is( '[selectvalue]' ) ){
-                            _val = _target.attr('selectvalue');
-                            _target.removeAttr('selectvalue');
-                        }
-                        if( _target.is( '[selecturl]' ) ){
-                            var  _reqval = _val
-                                , _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
-                            if( _target.data('parentSelect') ){
-                                _reqval = _target.data('parentSelect').val();
+                    getData( _p, _url, _val, cb_1_2 );
+
+                    function cb_1_2( _select ){
+                        if( _select.is( '[selecttarget]' ) ){
+                            var _target = $(_select.attr('selecttarget'));
+                            if( _target.is( '[selectvalue]' ) ){
+                                _val = _target.attr('selectvalue');
+                                _target.removeAttr('selectvalue');
+                            }else _val = '';
+                            var _reqval = _val, _url;
+
+                            if( _target.attr('selectdatacb') ){
+                                window[ _target.attr('selectdatacb') ] 
+                                    && processData( _target, _url, _reqval, triggerChange, 
+                                            window[ _target.attr('selectdatacb') ]( getSelectId( _target ) ) );
+                            }else if( _target.is( '[selecturl]' ) ){
+                                _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
+                                if( _target.data('parentSelect') ){
+                                    _reqval = _target.data('parentSelect').val();
+                                }
+                                _url = _url.replace( /\{0\}/g, _reqval );
+
+                                getData( _target, _url, _val, triggerChange);
                             }
-                            _url = _url.replace( /\{0\}/g, _reqval );
-
-                            getData( _target, _url, _val, triggerChange);
                         }
                     }
-                });
                 }
             }
         }else{
@@ -183,11 +200,15 @@
                         _selectval = _target.attr('selectvalue');
                         _target.removeAttr('selectvalue');
                     }
+                    var _reqval = _val, _url;
 
-                    if( _target.is( '[selecturl]' ) ){
+                    if( _target.attr('selectdatacb') ){
+                        window[ _target.attr('selectdatacb') ] 
+                            && processData( _target, _url, _reqval, triggerChange, 
+                                    window[ _target.attr('selectdatacb') ]( getSelectId( _target ) ) );
+                    }else if( _target.is( '[selecturl]' ) ){
                         UXC.log( 2, 1, 1, 1, _selectval );
-                        var  _reqval = _val
-                            , _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
+                        _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
 
                         if( _target.data('parentSelect') ){
                             _reqval = _target.data('parentSelect').val();
@@ -198,43 +219,64 @@
                     }
                 }else{
                     UXC.log( 2, 1, 2 );
-                    var _target = _p;
-                    if( _target.is( '[selecturl]' ) ){
-                        var  _reqval = _val
-                            , _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
+                    var _target = _p, _reqval = _val, _url;
+                    /**
+                     * 如果是最后一个SELECT, 那么取消数据请求
+                     */
+                    if( _target.data('isLastSelect') ){
+                        if( ( parseInt( _reqval ) || 0 ) < 1 ){
+                            removeOption( _target );
+                            UXC.Form.initAutoSelect.hideEmpty && _target.hide();
+                        }
+                       return;
+                    }
+
+                    if( _target.attr('selectdatacb') ){
+                        window[ _target.attr('selectdatacb') ] 
+                            && processData( _target, _url, _reqval, triggerChange, 
+                                    window[ _target.attr('selectdatacb') ]( getSelectId( _target ) ) );
+                    }else if( _target.is( '[selecturl]' ) ){
+                        _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
                         if( _target.data('parentSelect') ){
                             _reqval = _target.data('parentSelect').val();
                         }
                         UXC.log( _reqval );
                         _url = _url.replace( /\{0\}/g, _reqval );
-                        /**
-                         * 如果是最后一个SELECT, 那么取消数据请求
-                         */
-                        if( _target.data('isLastSelect') ){
-                            if( ( parseInt( _reqval ) || 0 ) < 1 ){
-                                removeOption( _target );
-                                UXC.Form.initAutoSelect.hideEmpty && _target.hide();
-                            }
-                           return;
-                        }
                         getData( _target, _url, _val, triggerChange);
                     }
-
                 }
             }else{
                 UXC.log( 2, 2 );
-                var _val = '', _url = add_url_params( _p.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
-                _p.data('parentSelect') && ( _val = _p.data('parentSelect').val() );
-                _url = _url.replace( /\{0\}/g, _val );
+                var _val = '', _url;
+                    _p.data('parentSelect') && ( _val = _p.data('parentSelect').val() );
 
-                if( !_p.data('isFirstSelect') && ( (parseInt( _val, 10 ) || 0) < 1 ) ){
-                    removeOption( _p );
-                    triggerChange( _p );
-                    UXC.Form.initAutoSelect.hideEmpty && _p.hide();
-                }else getData( _p, _url, _val, triggerChange );
+                if( _p.attr('selectdatacb') ){
+                    window[ _p.attr('selectdatacb') ] 
+                        && processData( _p, _url, _val, triggerChange
+                                , window[ _p.attr('selectdatacb') ]( getSelectId( _p ) ) );
+                }else if( _p.attr('selecturl') ){
+                    _url = add_url_params( _p.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
+                    _url = _url.replace( /\{0\}/g, _val );
+
+                    if( !_p.data('isFirstSelect') && ( (parseInt( _val, 10 ) || 0) < 1 ) ){
+                        removeOption( _p );
+                        triggerChange( _p );
+                        UXC.Form.initAutoSelect.hideEmpty && _p.hide();
+                    }else getData( _p, _url, _val, triggerChange );
+                }
+
             }
         }
     }//end changeEvent
+    function getSelectId( _select ){
+        var _r = '';
+        if( _select.attr('defaultvalue') ){
+            _r = _select.attr('defaultvalue');
+        }else if( _select.data('parentSelect') ) {
+            _r = _select.data('parentSelect').val();
+        }
+        return _r;
+    }
     /** 
      * 触发下一级下拉框的change事件
      * @method  initAutoSelect.triggerChange
@@ -259,27 +301,29 @@
      */
     function getData( _select, _url, _selectval, _callback ){
         $.getJSON( _url, function( _r ){
-            //TODO: 这里应该添加返回数据处理回调
-            if( UXC.Form.initAutoSelect.dataFilter ){
-                _r = UXC.Form.initAutoSelect.dataFilter( _r, _select );
-            }
-            if( !_r ) return;
-            removeOption( _select );
-
-            if( UXC.Form.initAutoSelect.hideEmpty ){
-                !_r.length && _select.hide();
-                _r.length && _select.show();
-            }
-
-            var _optls = [];
-            for( var i = 0, j = _r.length; i < j; i++ )
-                _optls.push( '<option value="'+_r[i][0]+'">'+ _r[i][1] +'</option>' );
-
-            $( _optls.join('') ).appendTo( _select );
-            hasVal( _select, _selectval ) ? _select.val( _selectval ) : selectFirst( _select );
-            _callback && _callback( _select );
+            processData( _select, _url, _selectval, _callback, _r );
         });
     }//end getData
+    function processData( _select, _url, _selectval, _callback, _r ){
+        if( UXC.Form.initAutoSelect.dataFilter ){
+            _r = UXC.Form.initAutoSelect.dataFilter( _r, _select );
+        }
+        if( !_r ) return;
+        removeOption( _select );
+
+        if( UXC.Form.initAutoSelect.hideEmpty ){
+            !_r.length && _select.hide();
+            _r.length && _select.show();
+        }
+
+        var _optls = [];
+        for( var i = 0, j = _r.length; i < j; i++ )
+            _optls.push( '<option value="'+_r[i][0]+'">'+ _r[i][1] +'</option>' );
+
+        $( _optls.join('') ).appendTo( _select );
+        hasVal( _select, _selectval ) ? _select.val( _selectval ) : selectFirst( _select );
+        _callback && _callback( _select );
+    }
     /**
      * 判断下拉框是否为空
      * <br />带 defaultoption 属性的 option 判断时被忽略
