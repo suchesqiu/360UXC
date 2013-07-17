@@ -96,7 +96,63 @@
                 });
          */
         , autoTrim: true
+        /**
+         * 检查一个表单是否有内容
+         * @method  formHasValue
+         * @param   {selector}      _fm
+         * @return  bool
+         * @example
+                 $('form.js-valid').on('submit', function( $evt ){
+                    var _p = $(this);
 
+                    if( !UXC.Valid.formHasValue( _p ) ){
+                        $evt.preventDefault();
+                        UXC.alert( '表单内容为空, 不能提交!', _p.find('button[type=submit]'), 1 );
+                        return false;
+                    }
+
+                    if( !UXC.Valid.check( _p ) ){
+                        $evt.preventDefault();
+                        return false;
+                    }
+                });
+         */
+        , formHasValue:
+            function( _fm ){
+                var _r = false, _item, _nt;
+                _fm && ( _fm = $( _fm ) );
+
+                if( _fm && _fm.length ){
+                    for( var i = 0, j = _fm[0].length; i < j; i++ ){
+                        _item = $(_fm[0][i]);
+                        if( _item.is('[disabled]') ) return;
+                        _nt = _item.prop('nodeName').toLowerCase();
+                                        
+                        switch( _item.prop('type').toLowerCase() ){
+
+                            case 'select-multiple':
+                            case 'select-one':
+                            case 'select':
+                            case 'file': 
+                            case 'textarea':
+                            case 'password':
+                            case 'text': 
+                                {
+                                    if( $.trim( _item.val() ).length ) return true;
+                                    break;
+                                }
+
+                           case 'checkbox':
+                            case 'radio':
+                                {
+                                    if( _item.prop('checked') ) return true;
+                                    break;
+                                }
+                        }
+                    }
+                }
+                return _r;
+            }
     };
     /**
      * 这个方法是 <a href='UXC.Valid.html#method_check'>Valid.check</a> 的别名
