@@ -238,7 +238,63 @@
                 });
          */
         , autoTrim: true
+        /**
+         * 检查一个表单是否有内容
+         * @method  formHasValue
+         * @param   {selector}      _fm
+         * @return  bool
+         * @example
+                 $(&#x27;form.js-valid&#x27;).on(&#x27;submit&#x27;, function( $evt ){
+                    var _p = $(this);
 
+                    if( !UXC.Valid.formHasValue( _p ) ){
+                        $evt.preventDefault();
+                        UXC.alert( &#x27;表单内容为空, 不能提交!&#x27;, _p.find(&#x27;button[type=submit]&#x27;), 1 );
+                        return false;
+                    }
+
+                    if( !UXC.Valid.check( _p ) ){
+                        $evt.preventDefault();
+                        return false;
+                    }
+                });
+         */
+        , formHasValue:
+            function( _fm ){
+                var _r = false, _item, _nt;
+                _fm &amp;&amp; ( _fm = $( _fm ) );
+
+                if( _fm &amp;&amp; _fm.length ){
+                    for( var i = 0, j = _fm[0].length; i &lt; j; i++ ){
+                        _item = $(_fm[0][i]);
+                        if( _item.is(&#x27;[disabled]&#x27;) ) return;
+                        _nt = _item.prop(&#x27;nodeName&#x27;).toLowerCase();
+                                        
+                        switch( _item.prop(&#x27;type&#x27;).toLowerCase() ){
+
+                            case &#x27;select-multiple&#x27;:
+                            case &#x27;select-one&#x27;:
+                            case &#x27;select&#x27;:
+                            case &#x27;file&#x27;: 
+                            case &#x27;textarea&#x27;:
+                            case &#x27;password&#x27;:
+                            case &#x27;text&#x27;: 
+                                {
+                                    if( $.trim( _item.val() ).length ) return true;
+                                    break;
+                                }
+
+                           case &#x27;checkbox&#x27;:
+                            case &#x27;radio&#x27;:
+                                {
+                                    if( _item.prop(&#x27;checked&#x27;) ) return true;
+                                    break;
+                                }
+                        }
+                    }
+                }
+                return _r;
+            }
     };
     /**
      * 这个方法是 &lt;a href=&#x27;UXC.Valid.html#method_check&#x27;&gt;Valid.check&lt;/a&gt; 的别名
