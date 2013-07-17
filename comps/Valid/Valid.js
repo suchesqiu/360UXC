@@ -130,6 +130,7 @@
                         _nt = _item.prop('nodeName').toLowerCase();
 
                         if( _ignoreSelector ){
+                            alert( _ignoreSelector );
                             if( _item.is( _ignoreSelector ) ) continue;
                         }
                                         
@@ -285,11 +286,13 @@
              */
             , valid:
                 function( _item ){
-                    if( !_logic.isValidItem( _item ) ) return;
-                    _item.removeClass('error');
-                    _item.find('~ em').show();
-                    _item.find('~ em.error').hide();
-                    _item.attr('emel') && _logic.getElement( _item.attr('emel'), _item ).hide();
+                    if( !_logic.isValidItem( _item ) ) return false;
+                    setTimeout(function(){
+                        _item.removeClass('error');
+                        _item.find('~ em').show();
+                        _item.find('~ em.error').hide();
+                        _item.attr('emel') && _logic.getElement( _item.attr('emel'), _item ).hide();
+                    }, 150);
                 }
             /**
              * 显示错误的视觉效果
@@ -300,22 +303,26 @@
              */
             , error: 
                 function( _item, _msgAttr, _fullMsg ){
-                    if( !_logic.isValidItem( _item ) ) return;
+                    if( !_logic.isValidItem( _item ) ) return false;
 
-                    var _msg = _logic.getMsg.apply( null, [].slice.call( arguments ) ), _errEm;
+                    var arg = arguments;
 
-                    _item.addClass( 'error' );
-                    _item.find('~ em:not(.error)').hide();
+                    setTimeout(function(){
+                        var _msg = _logic.getMsg.apply( null, [].slice.call( arg ) ), _errEm;
 
-                    if( _item.is( '[emEl]' ) ){
-                        ( _errEm = _logic.getElement( _item.attr( 'emEl' ) , _item) ) && _errEm.length && _errEm.addClass('error');
-                    }
-                    !( _errEm && _errEm.length ) && ( _errEm = _item.find('~ em.error') );
-                    if( !_errEm.length ){
-                        ( _errEm = $('<em class="error"></em>') ).insertAfter( _item );
-                    }
-                    UXC.log( 'error: ' + _msg );
-                    _errEm.html( _msg ).show() 
+                        _item.addClass( 'error' );
+                        _item.find('~ em:not(.error)').hide();
+
+                        if( _item.is( '[emEl]' ) ){
+                            ( _errEm = _logic.getElement( _item.attr( 'emEl' ) , _item) ) && _errEm.length && _errEm.addClass('error');
+                        }
+                        !( _errEm && _errEm.length ) && ( _errEm = _item.find('~ em.error') );
+                        if( !_errEm.length ){
+                            ( _errEm = $('<em class="error"></em>') ).insertAfter( _item );
+                        }
+                        UXC.log( 'error: ' + _msg );
+                        _errEm.html( _msg ).show() 
+                    }, 150);
 
                     return false;
                 }
