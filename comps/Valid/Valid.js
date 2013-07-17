@@ -130,7 +130,6 @@
                         _nt = _item.prop('nodeName').toLowerCase();
 
                         if( _ignoreSelector ){
-                            alert( _ignoreSelector );
                             if( _item.is( _ignoreSelector ) ) continue;
                         }
                                         
