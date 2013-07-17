@@ -65,11 +65,11 @@
                                 for( var i = 0, j = _item[0].length; i < j; i++ ){
                                     var tmp = $(_item[0][i]);
                                     if( tmp.is('[disabled]') ) return;
-                                    _logic.valid( tmp );
+                                    _logic.valid( tmp, 1 );
                                 }
                                 break;
                             }
-                        default: _logic.valid( $(this) ); break;
+                        default: _logic.valid( $(this), 1 ); break;
                     }
                 });
             }
@@ -285,14 +285,14 @@
              * @param   {selector}  _item
              */
             , valid:
-                function( _item ){
+                function( _item, _tm ){
                     if( !_logic.isValidItem( _item ) ) return false;
                     setTimeout(function(){
                         _item.removeClass('error');
                         _item.find('~ em').show();
                         _item.find('~ em.error').hide();
                         _item.attr('emel') && _logic.getElement( _item.attr('emel'), _item ).hide();
-                    }, 150);
+                    }, _tm || 150);
                 }
             /**
              * 显示错误的视觉效果
