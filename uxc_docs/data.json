@@ -1986,14 +1986,14 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 210,
+            "line": 226,
             "description": "如果是最后一个SELECT, 那么取消数据请求",
             "class": "UXC.Form",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 238,
+            "line": 280,
             "description": "触发下一级下拉框的change事件",
             "itemtype": "method",
             "name": "initAutoSelect.triggerChange",
@@ -2012,7 +2012,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 250,
+            "line": 292,
             "description": "AJAX请求数据, 并处理结果",
             "itemtype": "method",
             "name": "initAutoSelect.getData",
@@ -2046,7 +2046,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 283,
+            "line": 327,
             "description": "判断下拉框是否为空\n<br />带 defaultoption 属性的 option 判断时被忽略",
             "itemtype": "method",
             "name": "initAutoSelect.isEmpty",
@@ -2065,7 +2065,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 301,
+            "line": 345,
             "description": "选中下拉框的第一个option",
             "itemtype": "method",
             "name": "initAutoSelect.selectFirst",
@@ -2084,7 +2084,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 314,
+            "line": 358,
             "description": "清空下拉框的内容\n<br />带 defaultoption 属性的 option 判断时被忽略",
             "itemtype": "method",
             "name": "initAutoSelect.removeOption",
@@ -2103,7 +2103,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 330,
+            "line": 374,
             "description": "判断下拉框的option里是否有给定的值",
             "itemtype": "method",
             "name": "initAutoSelect.hasVal",
@@ -2127,7 +2127,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 349,
+            "line": 393,
             "description": "判断下拉框是否有数据项\n<br />带 defaultoption 属性的 option 判断时被忽略",
             "itemtype": "method",
             "name": "initAutoSelect.hasItem",
@@ -2146,7 +2146,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 367,
+            "line": 411,
             "description": "取得某一类级联下拉框的所有下拉框",
             "itemtype": "method",
             "name": "initAutoSelect.getSelectList",
@@ -8297,7 +8297,7 @@
         },
         {
             "message": "Missing item type\n如果是最后一个SELECT, 那么取消数据请求",
-            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:210"
+            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:226"
         },
         {
             "message": "Missing item type\n监听 全选/反选 按钮的点击事件",

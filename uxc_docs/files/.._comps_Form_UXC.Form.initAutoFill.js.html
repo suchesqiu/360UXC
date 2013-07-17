@@ -171,12 +171,12 @@
                 _p.find( &#x27;input[type=text][name],input[type=password][name],textarea[name]&#x27; ).each( function(){
                     var _sp = $(this);
                     if( has_url_param( _url, _sp.attr(&#x27;name&#x27;) ) ){
-                        _sp.val( decode( get_url_param( _url, _sp.attr(&#x27;name&#x27;) ) ) );
+                        _sp.val( decode( get_url_param( _url, _sp.attr(&#x27;name&#x27;) ).replace(/[\+]/g, &#x27; &#x27; ) ) );
                     }
                 });
 
                 _p.find( &#x27;select[name]&#x27; ).each( function(){
-                    var _sp = $(this), _uval = decode( get_url_param( _url, _sp.attr(&#x27;name&#x27;) ) ) ;
+                    var _sp = $(this), _uval = decode( get_url_param( _url, _sp.attr(&#x27;name&#x27;) ).replace(/[\+]/g, &#x27; &#x27; ) ) ;
                     if( has_url_param( _url, _sp.attr(&#x27;name&#x27;) ) ){
                         if( selectHasVal( _sp, _uval ) ){
                             _sp.val( get_url_param( _url, _sp.attr(&#x27;name&#x27;) ) );
