@@ -131,7 +131,7 @@
                     var  _reqval = _val, _url;
                     if( _target.attr('selectdatacb') ){
                         window[ _target.attr('selectdatacb') ] 
-                            && processData( _target, _url, _reqval, triggerChange
+                            && processData( _target, _url, _selectval, triggerChange
                                     , window[ _target.attr('selectdatacb') ]( getSelectId( _target ) ) );
                     }else if( _target.attr('selecturl') ){
                         _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
@@ -150,7 +150,7 @@
 
                 if( _p.attr('selectdatacb') ){
                     window[ _p.attr('selectdatacb') ] 
-                        && processData( _p, _url, _reqval, cb_1_2
+                        && processData( _p, _url, _val, cb_1_2
                                 , window[ _p.attr('selectdatacb') ]( getSelectId( _p ) ) );
                 }else if( _p.attr('selecturl') ){
                     _url = add_url_params( _p.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
@@ -172,7 +172,7 @@
 
                             if( _target.attr('selectdatacb') ){
                                 window[ _target.attr('selectdatacb') ] 
-                                    && processData( _target, _url, _reqval, triggerChange, 
+                                    && processData( _target, _url, _val, triggerChange, 
                                             window[ _target.attr('selectdatacb') ]( getSelectId( _target ) ) );
                             }else if( _target.is( '[selecturl]' ) ){
                                 _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
@@ -204,7 +204,7 @@
 
                     if( _target.attr('selectdatacb') ){
                         window[ _target.attr('selectdatacb') ] 
-                            && processData( _target, _url, _reqval, triggerChange, 
+                            && processData( _target, _url, _selectval, triggerChange, 
                                     window[ _target.attr('selectdatacb') ]( getSelectId( _target ) ) );
                     }else if( _target.is( '[selecturl]' ) ){
                         UXC.log( 2, 1, 1, 1, _selectval );
@@ -220,6 +220,9 @@
                 }else{
                     UXC.log( 2, 1, 2 );
                     var _target = _p, _reqval = _val, _url;
+                    if( _target.data('parentSelect') ){
+                        _reqval = _target.data('parentSelect').val();
+                    }
                     /**
                      * 如果是最后一个SELECT, 那么取消数据请求
                      */
@@ -233,13 +236,10 @@
 
                     if( _target.attr('selectdatacb') ){
                         window[ _target.attr('selectdatacb') ] 
-                            && processData( _target, _url, _reqval, triggerChange, 
+                            && processData( _target, _url, _val, triggerChange, 
                                     window[ _target.attr('selectdatacb') ]( getSelectId( _target ) ) );
                     }else if( _target.is( '[selecturl]' ) ){
                         _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
-                        if( _target.data('parentSelect') ){
-                            _reqval = _target.data('parentSelect').val();
-                        }
                         UXC.log( _reqval );
                         _url = _url.replace( /\{0\}/g, _reqval );
                         getData( _target, _url, _val, triggerChange);
@@ -270,8 +270,8 @@
     }//end changeEvent
     function getSelectId( _select ){
         var _r = '';
-        if( _select.attr('defaultvalue') ){
-            _r = _select.attr('defaultvalue');
+        if( _select.attr('selectparentid') ){
+            _r = _select.attr('selectparentid');
         }else if( _select.data('parentSelect') ) {
             _r = _select.data('parentSelect').val();
         }
@@ -287,7 +287,7 @@
     function triggerChange( _select ){
         if( _select.is( '[selecttarget]' )  ){
             $( _select.attr('selecttarget') ).trigger('change');
-        }
+        } 
     }
     /**
      * AJAX请求数据, 并处理结果

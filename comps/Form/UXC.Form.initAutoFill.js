@@ -29,12 +29,12 @@
                 _p.find( 'input[type=text][name],input[type=password][name],textarea[name]' ).each( function(){
                     var _sp = $(this);
                     if( has_url_param( _url, _sp.attr('name') ) ){
-                        _sp.val( decode( get_url_param( _url, _sp.attr('name') ) ) );
+                        _sp.val( decode( get_url_param( _url, _sp.attr('name') ).replace(/[\+]/g, ' ' ) ) );
                     }
                 });
 
                 _p.find( 'select[name]' ).each( function(){
-                    var _sp = $(this), _uval = decode( get_url_param( _url, _sp.attr('name') ) ) ;
+                    var _sp = $(this), _uval = decode( get_url_param( _url, _sp.attr('name') ).replace(/[\+]/g, ' ' ) ) ;
                     if( has_url_param( _url, _sp.attr('name') ) ){
                         if( selectHasVal( _sp, _uval ) ){
                             _sp.val( get_url_param( _url, _sp.attr('name') ) );
