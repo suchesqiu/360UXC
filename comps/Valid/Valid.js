@@ -100,6 +100,7 @@
          * 检查一个表单是否有内容
          * @method  formHasValue
          * @param   {selector}      _fm
+         * @param   {selector}      _ignoreSelector
          * @return  bool
          * @example
                  $('form.js-valid').on('submit', function( $evt ){
@@ -118,7 +119,7 @@
                 });
          */
         , formHasValue:
-            function( _fm ){
+            function( _fm, _ignoreSelector ){
                 var _r = false, _item, _nt;
                 _fm && ( _fm = $( _fm ) );
 
@@ -127,6 +128,10 @@
                         _item = $(_fm[0][i]);
                         if( _item.is('[disabled]') ) return;
                         _nt = _item.prop('nodeName').toLowerCase();
+
+                        if( _ignoreSelector ){
+                            if( _item.is( _ignoreSelector ) ) continue;
+                        }
                                         
                         switch( _item.prop('type').toLowerCase() ){
 
