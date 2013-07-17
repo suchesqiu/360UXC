@@ -79,6 +79,7 @@
          * @property    errorAbort
          * @type        bool
          * @default     false
+         * @static
          * @example
                 $(document).ready( function($evt){
                     UXC.Valid.errorAbort = true;
@@ -90,6 +91,7 @@
          * @property    autoTrim
          * @type        bool
          * @default     true
+         * @static
          * @example
                 $(document).ready( function($evt){
                     UXC.Valid.autoTrim = false;
@@ -102,6 +104,7 @@
          * @param   {selector}      _fm
          * @param   {selector}      _ignoreSelector
          * @return  bool
+         * @static
          * @example
                  $('form.js-valid').on('submit', function( $evt ){
                     var _p = $(this);
