@@ -131,8 +131,8 @@
                     var  _reqval = _val, _url;
                     if( _target.attr('selectdatacb') ){
                         window[ _target.attr('selectdatacb') ] 
-                            && processData( _target, _url, _selectval, triggerChange
-                                    , window[ _target.attr('selectdatacb') ]( getSelectId( _target ) ) );
+                            && processData( _target, _selectval, triggerChange
+                                    , window[ _target.attr('selectdatacb') ]( getParentId( _target ) ) );
                     }else if( _target.attr('selecturl') ){
                         _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
                         if( _target.data('parentSelect') ){
@@ -150,8 +150,8 @@
 
                 if( _p.attr('selectdatacb') ){
                     window[ _p.attr('selectdatacb') ] 
-                        && processData( _p, _url, _val, cb_1_2
-                                , window[ _p.attr('selectdatacb') ]( getSelectId( _p ) ) );
+                        && processData( _p, _val, cb_1_2
+                                , window[ _p.attr('selectdatacb') ]( getParentId( _p ) ) );
                 }else if( _p.attr('selecturl') ){
                     _url = add_url_params( _p.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
                     if( _p.data('parentSelect') ){
@@ -172,8 +172,8 @@
 
                             if( _target.attr('selectdatacb') ){
                                 window[ _target.attr('selectdatacb') ] 
-                                    && processData( _target, _url, _val, triggerChange, 
-                                            window[ _target.attr('selectdatacb') ]( getSelectId( _target ) ) );
+                                    && processData( _target, _val, triggerChange, 
+                                            window[ _target.attr('selectdatacb') ]( getParentId( _target ) ) );
                             }else if( _target.is( '[selecturl]' ) ){
                                 _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
                                 if( _target.data('parentSelect') ){
@@ -204,8 +204,8 @@
 
                     if( _target.attr('selectdatacb') ){
                         window[ _target.attr('selectdatacb') ] 
-                            && processData( _target, _url, _selectval, triggerChange, 
-                                    window[ _target.attr('selectdatacb') ]( getSelectId( _target ) ) );
+                            && processData( _target, _selectval, triggerChange, 
+                                    window[ _target.attr('selectdatacb') ]( getParentId( _target ) ) );
                     }else if( _target.is( '[selecturl]' ) ){
                         UXC.log( 2, 1, 1, 1, _selectval );
                         _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
@@ -236,8 +236,8 @@
 
                     if( _target.attr('selectdatacb') ){
                         window[ _target.attr('selectdatacb') ] 
-                            && processData( _target, _url, _val, triggerChange, 
-                                    window[ _target.attr('selectdatacb') ]( getSelectId( _target ) ) );
+                            && processData( _target, _val, triggerChange, 
+                                    window[ _target.attr('selectdatacb') ]( getParentId( _target ) ) );
                     }else if( _target.is( '[selecturl]' ) ){
                         _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
                         UXC.log( _reqval );
@@ -252,8 +252,8 @@
 
                 if( _p.attr('selectdatacb') ){
                     window[ _p.attr('selectdatacb') ] 
-                        && processData( _p, _url, _val, triggerChange
-                                , window[ _p.attr('selectdatacb') ]( getSelectId( _p ) ) );
+                        && processData( _p, _val, triggerChange
+                                , window[ _p.attr('selectdatacb') ]( getParentId( _p ) ) );
                 }else if( _p.attr('selecturl') ){
                     _url = add_url_params( _p.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
                     _url = _url.replace( /\{0\}/g, _val );
@@ -268,7 +268,14 @@
             }
         }
     }//end changeEvent
-    function getSelectId( _select ){
+    /**
+     * 获取 select 的父ID, 这个方便就用于静态数据的联动框
+     * @method  initAutoSelect.getParentId
+     * @private 
+     * @static
+     * @param   {selector}  _select     下拉框的选择器对象
+     */
+    function getParentId( _select ){
         var _r = '';
         if( _select.attr('selectparentid') ){
             _r = _select.attr('selectparentid');
@@ -301,10 +308,20 @@
      */
     function getData( _select, _url, _selectval, _callback ){
         $.getJSON( _url, function( _r ){
-            processData( _select, _url, _selectval, _callback, _r );
+            processData( _select, _selectval, _callback, _r );
         });
-    }//end getData
-    function processData( _select, _url, _selectval, _callback, _r ){
+    }
+    /**
+     * 处理数据结果
+     * @method      initAutoSelect.processData
+     * @private
+     * @static
+     * @param   {selector}  _select     下拉框的选择器对象
+     * @param   {string}    _selectval  默认选中值
+     * @param   {function}  _callback   结果处理完毕后的回调函数
+     * @param   {array}     _r          select 数据
+     */
+    function processData( _select, _selectval, _callback, _r ){
         if( UXC.Form.initAutoSelect.dataFilter ){
             _r = UXC.Form.initAutoSelect.dataFilter( _r, _select );
         }

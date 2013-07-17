@@ -85,6 +85,17 @@
                 });
          */
         , errorAbort: false
+        /**
+         * 是否自动清除两边的空格
+         * @property    autoTrim
+         * @type        bool
+         * @default     true
+         * @example
+                $(document).ready( function($evt){
+                    UXC.Valid.autoTrim = false;
+                });
+         */
+        , autoTrim: true
 
     };
     /**
@@ -134,12 +145,22 @@
                     _item.each( function(){
 
                         if( !_logic.isValidItem(this) ) return;
-                        var _sitem = $(this), _dt = _logic.getDatatype( _sitem ), _subdt = _logic.getSubdatatype( _sitem );
+                        var _sitem = $(this), _dt = _logic.getDatatype( _sitem ), _subdt = _logic.getSubdatatype( _sitem )
+                            , _nm = _sitem.prop('nodeName').toLowerCase();
 
                         if( !_sitem.is(':visible') ) return;
                         if( _sitem.is('[disabled]') ) return;
 
                         UXC.log( _dt, _subdt );
+
+                        switch( _nm ){
+                            case 'input':
+                            case 'textarea':
+                                {
+                                    _sitem.val( $.trim( _sitem.val()||'' ) );
+                                    break;
+                                }
+                        }
 
                         if( _sitem.is('[reqmsg]') ){
                             if( ! _logic.datatype['reqmsg']( _sitem ) ) {
