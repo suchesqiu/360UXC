@@ -252,13 +252,6 @@
             "fors": {},
             "namespaces": {}
         },
-        "../plugins/jquery.form.js": {
-            "name": "../plugins/jquery.form.js",
-            "modules": {},
-            "classes": {},
-            "fors": {},
-            "namespaces": {}
-        },
         "../UXC.js": {
             "name": "../UXC.js",
             "modules": {},
@@ -8588,84 +8581,6 @@
             "class": "window.UXC"
         },
         {
-            "file": "../plugins/jquery.form.js",
-            "line": 52,
-            "description": "Feature detection",
-            "class": "window.UXC"
-        },
-        {
-            "file": "../plugins/jquery.form.js",
-            "line": 74,
-            "description": "ajaxSubmit() provides a mechanism for immediately submitting\nan HTML form using AJAX.",
-            "class": "window.UXC"
-        },
-        {
-            "file": "../plugins/jquery.form.js",
-            "line": 771,
-            "description": "ajaxForm() provides a mechanism for fully automating form submission.\n\nThe advantages of using this method instead of ajaxSubmit() are:\n\n1: This method will include coordinates for <input type=\"image\" /> elements (if the element\n   is used to submit the form).\n2. This method will include the submit element's name/value data (for the element that was\n   used to submit the form).\n3. This method binds the submit() method to the form for you.\n\nThe options argument for ajaxForm works exactly as it does for ajaxSubmit.  ajaxForm merely\npasses the options argument along after properly binding events for submit elements and\nthe form itself.",
-            "class": "window.UXC"
-        },
-        {
-            "file": "../plugins/jquery.form.js",
-            "line": 866,
-            "description": "formToArray() gathers form element data into an array of objects that can\nbe passed to any of the following ajax functions: $.get, $.post, or load.\nEach object in the array has both a 'name' and 'value' property.  An example of\nan array for a simple login form might be:\n\n[ { name: 'username', value: 'jresig' }, { name: 'password', value: 'secret' } ]\n\nIt is this array that is passed to pre-submit callback functions provided to the\najaxSubmit() and ajaxForm() methods.",
-            "class": "window.UXC"
-        },
-        {
-            "file": "../plugins/jquery.form.js",
-            "line": 947,
-            "description": "Serializes form data into a 'submittable' string. This method will return a string\nin the format: name1=value1&amp;name2=value2",
-            "class": "window.UXC"
-        },
-        {
-            "file": "../plugins/jquery.form.js",
-            "line": 956,
-            "description": "Serializes all field elements in the jQuery object into a query string.\nThis method will return a string in the format: name1=value1&amp;name2=value2",
-            "class": "window.UXC"
-        },
-        {
-            "file": "../plugins/jquery.form.js",
-            "line": 981,
-            "description": "Returns the value(s) of the element in the matched set.  For example, consider the following form:\n\n <form><fieldset>\n     <input name=\"A\" type=\"text\" />\n     <input name=\"A\" type=\"text\" />\n     <input name=\"B\" type=\"checkbox\" value=\"B1\" />\n     <input name=\"B\" type=\"checkbox\" value=\"B2\"/>\n     <input name=\"C\" type=\"radio\" value=\"C1\" />\n     <input name=\"C\" type=\"radio\" value=\"C2\" />\n </fieldset></form>\n\n var v = $('input[type=text]').fieldValue();\n // if no values are entered into the text inputs\n v == ['','']\n // if values entered into the text inputs are 'foo' and 'bar'\n v == ['foo','bar']\n\n var v = $('input[type=checkbox]').fieldValue();\n // if neither checkbox is checked\n v === undefined\n // if both checkboxes are checked\n v == ['B1', 'B2']\n\n var v = $('input[type=radio]').fieldValue();\n // if neither radio is checked\n v === undefined\n // if first radio is checked\n v == ['C1']\n\nThe successful argument controls whether or not the field element must be 'successful'\n(per http://www.w3.org/TR/html4/interact/forms.html#successful-controls).\nThe default value of the successful argument is true.  If this value is false the value(s)\nfor each element is returned.\n\nNote: This method *always* returns an array.  If no valid value can be determined the\n   array will be empty, otherwise it will contain one or more values.",
-            "class": "window.UXC"
-        },
-        {
-            "file": "../plugins/jquery.form.js",
-            "line": 1034,
-            "description": "Returns the value of the field element.",
-            "class": "window.UXC"
-        },
-        {
-            "file": "../plugins/jquery.form.js",
-            "line": 1076,
-            "description": "Clears the form data.  Takes the following actions on the form's input fields:\n - input text fields will have their 'value' property set to the empty string\n - select elements will have their 'selectedIndex' property set to -1\n - checkbox and radio inputs will have their 'checked' property set to false\n - inputs of type submit, button, reset, and hidden will *not* be effected\n - button elements will *not* be effected",
-            "class": "window.UXC"
-        },
-        {
-            "file": "../plugins/jquery.form.js",
-            "line": 1090,
-            "description": "Clears the selected form elements.",
-            "class": "window.UXC"
-        },
-        {
-            "file": "../plugins/jquery.form.js",
-            "line": 1125,
-            "description": "Resets the form data.  Causes all form elements to be reset to their original value.",
-            "class": "window.UXC"
-        },
-        {
-            "file": "../plugins/jquery.form.js",
-            "line": 1138,
-            "description": "Enables or disables any matching elements.",
-            "class": "window.UXC"
-        },
-        {
-            "file": "../plugins/jquery.form.js",
-            "line": 1150,
-            "description": "Checks/unchecks any matching checkboxes or radio buttons and\nselects/deselects and matching option elements.",
-            "class": "window.UXC"
-        },
-        {
             "file": "../UXC.js",
             "line": 18,
             "description": "UXC组件库所在路径",
@@ -8719,7 +8634,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 78,
+            "line": 85,
             "description": "输出调试信息, 可通过 UXC.debug 指定是否显示调试信息",
             "params": [
                 {
@@ -8736,7 +8651,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 89,
+            "line": 96,
             "description": "定义输出路径的 v 参数, 以便控制缓存",
             "itemtype": "property",
             "name": "pathPostfix",
@@ -8747,7 +8662,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 96,
+            "line": 103,
             "description": "是否启用nginx concat 模块的路径格式",
             "itemtype": "property",
             "name": "enableNginxStyle",
@@ -8758,7 +8673,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 103,
+            "line": 110,
             "description": "定义 nginx style 的基础路径\n<br /><b>注意:</b> 如果这个属性为空, 即使 enableNginxStyle = true, 也是直接输出默认路径",
             "itemtype": "property",
             "name": "nginxBasePath",
@@ -8769,7 +8684,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 111,
+            "line": 118,
             "description": "输出 nginx concat 模块的脚本路径格式",
             "itemtype": "method",
             "name": "_writeNginxScript",
@@ -8787,7 +8702,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 137,
+            "line": 145,
             "description": "输出的脚本路径格式",
             "itemtype": "method",
             "name": "_writeNormalScript",
@@ -8805,14 +8720,14 @@
         },
         {
             "file": "../UXC.js",
-            "line": 154,
+            "line": 162,
             "description": "如果 console 不可用, 则生成一个模拟的 console 对象",
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../UXC.js",
-            "line": 160,
+            "line": 168,
             "description": "自动识别组件库所在路径",
             "class": "window.UXC",
             "namespace": "window"
@@ -10187,64 +10102,12 @@
             "line": " ../plugins/rate/spec/lib/jasmine.js:2469"
         },
         {
-            "message": "Missing item type\nFeature detection",
-            "line": " ../plugins/jquery.form.js:52"
-        },
-        {
-            "message": "Missing item type\najaxSubmit() provides a mechanism for immediately submitting\nan HTML form using AJAX.",
-            "line": " ../plugins/jquery.form.js:74"
-        },
-        {
-            "message": "Missing item type\najaxForm() provides a mechanism for fully automating form submission.\n\nThe advantages of using this method instead of ajaxSubmit() are:\n\n1: This method will include coordinates for <input type=\"image\" /> elements (if the element\n   is used to submit the form).\n2. This method will include the submit element's name/value data (for the element that was\n   used to submit the form).\n3. This method binds the submit() method to the form for you.\n\nThe options argument for ajaxForm works exactly as it does for ajaxSubmit.  ajaxForm merely\npasses the options argument along after properly binding events for submit elements and\nthe form itself.",
-            "line": " ../plugins/jquery.form.js:771"
-        },
-        {
-            "message": "Missing item type\nformToArray() gathers form element data into an array of objects that can\nbe passed to any of the following ajax functions: $.get, $.post, or load.\nEach object in the array has both a 'name' and 'value' property.  An example of\nan array for a simple login form might be:\n\n[ { name: 'username', value: 'jresig' }, { name: 'password', value: 'secret' } ]\n\nIt is this array that is passed to pre-submit callback functions provided to the\najaxSubmit() and ajaxForm() methods.",
-            "line": " ../plugins/jquery.form.js:866"
-        },
-        {
-            "message": "Missing item type\nSerializes form data into a 'submittable' string. This method will return a string\nin the format: name1=value1&amp;name2=value2",
-            "line": " ../plugins/jquery.form.js:947"
-        },
-        {
-            "message": "Missing item type\nSerializes all field elements in the jQuery object into a query string.\nThis method will return a string in the format: name1=value1&amp;name2=value2",
-            "line": " ../plugins/jquery.form.js:956"
-        },
-        {
-            "message": "Missing item type\nReturns the value(s) of the element in the matched set.  For example, consider the following form:\n\n <form><fieldset>\n     <input name=\"A\" type=\"text\" />\n     <input name=\"A\" type=\"text\" />\n     <input name=\"B\" type=\"checkbox\" value=\"B1\" />\n     <input name=\"B\" type=\"checkbox\" value=\"B2\"/>\n     <input name=\"C\" type=\"radio\" value=\"C1\" />\n     <input name=\"C\" type=\"radio\" value=\"C2\" />\n </fieldset></form>\n\n var v = $('input[type=text]').fieldValue();\n // if no values are entered into the text inputs\n v == ['','']\n // if values entered into the text inputs are 'foo' and 'bar'\n v == ['foo','bar']\n\n var v = $('input[type=checkbox]').fieldValue();\n // if neither checkbox is checked\n v === undefined\n // if both checkboxes are checked\n v == ['B1', 'B2']\n\n var v = $('input[type=radio]').fieldValue();\n // if neither radio is checked\n v === undefined\n // if first radio is checked\n v == ['C1']\n\nThe successful argument controls whether or not the field element must be 'successful'\n(per http://www.w3.org/TR/html4/interact/forms.html#successful-controls).\nThe default value of the successful argument is true.  If this value is false the value(s)\nfor each element is returned.\n\nNote: This method *always* returns an array.  If no valid value can be determined the\n   array will be empty, otherwise it will contain one or more values.",
-            "line": " ../plugins/jquery.form.js:981"
-        },
-        {
-            "message": "Missing item type\nReturns the value of the field element.",
-            "line": " ../plugins/jquery.form.js:1034"
-        },
-        {
-            "message": "Missing item type\nClears the form data.  Takes the following actions on the form's input fields:\n - input text fields will have their 'value' property set to the empty string\n - select elements will have their 'selectedIndex' property set to -1\n - checkbox and radio inputs will have their 'checked' property set to false\n - inputs of type submit, button, reset, and hidden will *not* be effected\n - button elements will *not* be effected",
-            "line": " ../plugins/jquery.form.js:1076"
-        },
-        {
-            "message": "Missing item type\nClears the selected form elements.",
-            "line": " ../plugins/jquery.form.js:1090"
-        },
-        {
-            "message": "Missing item type\nResets the form data.  Causes all form elements to be reset to their original value.",
-            "line": " ../plugins/jquery.form.js:1125"
-        },
-        {
-            "message": "Missing item type\nEnables or disables any matching elements.",
-            "line": " ../plugins/jquery.form.js:1138"
-        },
-        {
-            "message": "Missing item type\nChecks/unchecks any matching checkboxes or radio buttons and\nselects/deselects and matching option elements.",
-            "line": " ../plugins/jquery.form.js:1150"
-        },
-        {
             "message": "Missing item type\n如果 console 不可用, 则生成一个模拟的 console 对象",
-            "line": " ../UXC.js:154"
+            "line": " ../UXC.js:162"
         },
         {
             "message": "Missing item type\n自动识别组件库所在路径",
-            "line": " ../UXC.js:160"
+            "line": " ../UXC.js:168"
         },
         {
             "message": "Missing item type\nFor feature detection",

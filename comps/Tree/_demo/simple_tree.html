@@ -22,7 +22,7 @@
         var _tree = new UXC.Tree( $('#tree_box'), treeData );
             _tree.init();
             _queryNode && _tree.open( _queryNode );
-            _tree.on('click', function( _evt ){
+            _tree.on('change', function( _evt ){
                 var _p = $(this);
                 UXC.log( 'tree click:', _p.html(), _p.attr('dataid'), _p.attr('dataname') );
             });
@@ -50,7 +50,7 @@
                 var _node = $(this);
                 _node.html( printf( '<a href="javascript:" dataid="{0}">{1}</a>', _data[0], _data[1] ) );
             });
-            _tree.on('click', function( _evt ){
+            _tree.on('change', function( _evt ){
                 var _p = $(this);
                 UXC.log( 'tree click:', _p.html(), _p.attr('dataid'), _p.attr('dataname') );
             });

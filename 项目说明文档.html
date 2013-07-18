@@ -2,11 +2,32 @@
 <html>
 <head>
 <meta charset=utf-8 />
-<title>项目说明文档 - UXC Project - JQuery Components</title>
+<title>UXC Project - JQuery Components Library - 项目说明文档 - suches</title>
 <style>
     body{
-        margin: 20px auto;
         width: 980px;
+        margin: 20px 20px;
+    }
+
+    .cclear{zoom:1;}
+    .cclear:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
+
+    .xwrap{
+    }
+
+    .xleft{
+        float: left;
+        overflow: auto;
+        margin-right: 40px;
+        min-width: 240px;
+        width: auto!important;
+        width: 240px;
+    }
+
+    .xright{
+        float: left;
+        text-align: left;
+        width: auto;
     }
 
     dt {
@@ -21,15 +42,123 @@
         display: block;
     }
 </style>
-<link href='../comps/Panel/res/default/style.css' rel='stylesheet' />
-<link href='../comps/Tips/res/default/style.css' rel='stylesheet' />
-<script src="../lib.js"></script>
+<link href='comps/Panel/res/default/style.css' rel='stylesheet' />
+<link href='comps/Tips/res/default/style.css' rel='stylesheet' />
+<link href='comps/Tree/res/default/style.css' rel='stylesheet' />
+<script src="./lib.js"></script>
+<script>
+    UXC.debug = true;
+    UXC.use( 'Tree' );
+
+    $(document).ready(function(){
+        var treeData = {
+            data: 
+                {
+                    "1":[
+                        ["111","项目愿景"]
+                        ,["555","文档和资源链接"]
+                        ,["555","如何获取最新发布版本"]
+                        ,["222","如何使用"]
+                        ,["333","结构说明"]
+                        ,["444","面向开发者的结构说明"]
+                        ,["666","开发需求"]
+                        ,["777","如何协作开发"]
+                        ,["888","如何发布资源"]
+                        ,["999","讨论沟通"]
+                    ]
+                }
+		    , root: ["1",'UXC Project 项目说明文档']
+		};
+        var _tree = new UXC.Tree( $('#treeBox'), treeData );
+            _tree.on('change', function( _evt ){
+                var _p = $(this);
+                UXC.log( 'tree click:', _p.html(), _p.attr('dataid'), _p.attr('dataname') );
+            });
+            _tree.on('RenderLabel', function( _data ){
+                var _p = $(this);
+                _p.html( printf('<a href="#part_{0}">{1}</a>', _data[0], _data[1] ) );
+            });
+            _tree.init();
+            _tree.open();
+    });
+</script>
 </head>    
 <body>
 
-    <dl>
-        <dt>项目说明文档</dt>
-    </dl>
+    <div class='xwrap cclear'>
+        <div class='xleft'>
+            <div id='treeBox'></div>
+        </div>
+
+        <div class='xright'>
+            <dl>
+                <dt><h1>UXC Project - JQuery Components Library<a name='part_1'></a></h1></dt>
+                <dd>
+                    <dl>
+                        <dt><h2>项目愿景</h2></dt>
+                        <dd>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><h2>文档和资源链接</h2></dt>
+                        <dd>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><h2>获取最新发布版本</h2></dt>
+                        <dd>
+                        </dd>
+                    </dl>
+                    
+                    <dl>
+                        <dt><h2>如何使用</h2></dt>
+                        <dd>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><h2>结构说明</h2></dt>
+                        <dd>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><h2>面向开发者的结构说明</h2></dt>
+                        <dd>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><h2>开发需求</h2></dt>
+                        <dd>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><h2>如何协作开发</h2></dt>
+                        <dd>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><h2>如何发布资源</h2></dt>
+                        <dd>
+                        </dd>
+                    </dl>
+
+                    <dl>
+                        <dt><h2>讨论沟通</h2></dt>
+                        <dd>
+                        </dd>
+                    </dl>
+
+                </dd>
+            </dl>
+        </div>
+    </div>
+
     
 </body>
 </html>
