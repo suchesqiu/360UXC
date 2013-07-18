@@ -147,6 +147,7 @@
      * &lt;p&gt;&lt;b&gt;requires&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;&lt;/p&gt;
      * &lt;p&gt;&lt;a href=&#x27;https://github.com/suchesqiu/360UXC.git&#x27; target=&#x27;_blank&#x27;&gt;UXC Project Site&lt;/a&gt;
      * | &lt;a href=&#x27;http://uxc.btbtd.org/uxc_docs/classes/window.UXC.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
+     * | &lt;a href=&#x27;../../_demo&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;&lt;/p&gt;
      * @class UXC
      * @namespace   window
      * @static
@@ -198,7 +199,7 @@
         , use: function( _items ){
                 if( ! _items ) return;
                 var _p = this, _paths = [], _parts = $.trim( _items ).split(/[\s]*?,[\s]*/)
-                   , _pathRe = /[\/\\]/, _urlRe = /\:\/\//;
+                   , _pathRe = /[\/\\]/, _urlRe = /\:\/\//, _pathRplRe = /(\\)\1|(\/)\2/g;
 
                 $.each( _parts, function( _ix, _part ){
                     var _isComps = !_pathRe.test( _part ), _path, _isFullpath = /^\//.test( _part );
@@ -208,7 +209,14 @@
                     _isComps &amp;&amp; ( _path = printf( &#x27;{0}{1}{2}/{2}.js&#x27;, UXC.PATH, UXC.compsDir, _part ) );
                     !_isComps &amp;&amp; !_isFullpath &amp;&amp; ( _path = printf( &#x27;{0}/{1}&#x27;, UXC.PATH, _part ) );
 
-                    _paths.push( $.trim( _path.replace( /(\\)\1|(\/)\2/g, &#x27;$1$2&#x27; ) ) );
+                    if( /\:\/\//.test( _path ) ){
+                        _path = _path.split(&#x27;://&#x27;);
+                        _path[1] = $.trim( _path[1].replace( _pathRplRe, &#x27;$1$2&#x27; ) );
+                        _path = _path.join(&#x27;://&#x27;);
+                    }else{
+                        _path = $.trim( _path.replace( _pathRplRe, &#x27;$1$2&#x27; ) );
+                    }
+                    _paths.push( _path );
                 });
 
                 UXC.log( _paths );
@@ -259,6 +267,7 @@
             function( _paths ){
                 if( !UXC.enableNginxStyle ) return;
                 for( var i = 0, j = _paths.length, _ngpath = [], _npath = []; i &lt; j; i++ ){
+                    UXC.log( _paths[i].slice( 0, UXC.nginxBasePath.length ).toLowerCase(), UXC.nginxBasePath.toLowerCase() );
                     if(  
                          _paths[i].slice( 0, UXC.nginxBasePath.length ).toLowerCase() 
                         == UXC.nginxBasePath.toLowerCase() )
