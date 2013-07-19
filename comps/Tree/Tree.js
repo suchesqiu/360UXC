@@ -640,6 +640,13 @@
         if( _treeIns.highlight() ) _treeIns.highlight().removeClass('highlight');
         _p.addClass('highlight');
         _treeIns.highlight( _p );
+
+        var _events = _treeIns.event( 'change' );
+        if( _events && _events.length ){
+            $.each( _events, function( _ix, _cb ){
+                if( _cb.call( _p, _evt ) === false ) return false; 
+            });
+        }
     });
     /**
      * 捕获树文件夹图标的点击事件

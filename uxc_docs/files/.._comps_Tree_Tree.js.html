@@ -782,6 +782,13 @@
         if( _treeIns.highlight() ) _treeIns.highlight().removeClass(&#x27;highlight&#x27;);
         _p.addClass(&#x27;highlight&#x27;);
         _treeIns.highlight( _p );
+
+        var _events = _treeIns.event( &#x27;change&#x27; );
+        if( _events &amp;&amp; _events.length ){
+            $.each( _events, function( _ix, _cb ){
+                if( _cb.call( _p, _evt ) === false ) return false; 
+            });
+        }
     });
     /**
      * 捕获树文件夹图标的点击事件

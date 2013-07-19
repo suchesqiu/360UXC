@@ -6259,7 +6259,7 @@
         },
         {
             "file": "../comps/Tree/Tree.js",
-            "line": 644,
+            "line": 651,
             "description": "捕获树文件夹图标的点击事件",
             "class": "UXC.Tree.Model",
             "namespace": "UXC.Tree"
@@ -9695,7 +9695,7 @@
         },
         {
             "message": "Missing item type\n捕获树文件夹图标的点击事件",
-            "line": " ../comps/Tree/Tree.js:644"
+            "line": " ../comps/Tree/Tree.js:651"
         },
         {
             "message": "Missing item type\n响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果",
