@@ -98,6 +98,7 @@
         * @property     pathPostfix
         * @type     string
         * @default  empty
+        * @static
         */
        , pathPostfix: ''
        /**
@@ -105,6 +106,7 @@
         * @property     enableNginxStyle
         * @type bool
         * @default  false
+        * @static
         */
        , enableNginxStyle: false
        /**
@@ -113,6 +115,7 @@
         * @property     nginxBasePath
         * @type string
         * @default  empty
+        * @static
         */
        , nginxBasePath: ''
        /**
@@ -120,6 +123,7 @@
         * @method   _writeNginxScript
         * @param    {array} _paths
         * @private
+        * @static
         */
        , _writeNginxScript:
             function( _paths ){
@@ -147,6 +151,7 @@
         * @method   _writeNormalScript
         * @param    {array} _paths
         * @private
+        * @static
         */
        , _writeNormalScript:
             function( _paths ){

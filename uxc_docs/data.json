@@ -6259,7 +6259,7 @@
         },
         {
             "file": "../comps/Tree/Tree.js",
-            "line": 644,
+            "line": 651,
             "description": "捕获树文件夹图标的点击事件",
             "class": "UXC.Tree.Model",
             "namespace": "UXC.Tree"
@@ -8657,34 +8657,37 @@
             "name": "pathPostfix",
             "type": "string",
             "default": "empty",
+            "static": 1,
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../UXC.js",
-            "line": 103,
+            "line": 104,
             "description": "是否启用nginx concat 模块的路径格式",
             "itemtype": "property",
             "name": "enableNginxStyle",
             "type": "bool",
             "default": "false",
+            "static": 1,
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../UXC.js",
-            "line": 110,
+            "line": 112,
             "description": "定义 nginx style 的基础路径\n<br /><b>注意:</b> 如果这个属性为空, 即使 enableNginxStyle = true, 也是直接输出默认路径",
             "itemtype": "property",
             "name": "nginxBasePath",
             "type": "string",
             "default": "empty",
+            "static": 1,
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../UXC.js",
-            "line": 118,
+            "line": 121,
             "description": "输出 nginx concat 模块的脚本路径格式",
             "itemtype": "method",
             "name": "_writeNginxScript",
@@ -8697,12 +8700,13 @@
             ],
             "access": "private",
             "tagname": "",
+            "static": 1,
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../UXC.js",
-            "line": 145,
+            "line": 149,
             "description": "输出的脚本路径格式",
             "itemtype": "method",
             "name": "_writeNormalScript",
@@ -8715,19 +8719,20 @@
             ],
             "access": "private",
             "tagname": "",
+            "static": 1,
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../UXC.js",
-            "line": 162,
+            "line": 167,
             "description": "如果 console 不可用, 则生成一个模拟的 console 对象",
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../UXC.js",
-            "line": 168,
+            "line": 173,
             "description": "自动识别组件库所在路径",
             "class": "window.UXC",
             "namespace": "window"
@@ -9695,7 +9700,7 @@
         },
         {
             "message": "Missing item type\n捕获树文件夹图标的点击事件",
-            "line": " ../comps/Tree/Tree.js:644"
+            "line": " ../comps/Tree/Tree.js:651"
         },
         {
             "message": "Missing item type\n响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果",
@@ -10103,11 +10108,11 @@
         },
         {
             "message": "Missing item type\n如果 console 不可用, 则生成一个模拟的 console 对象",
-            "line": " ../UXC.js:162"
+            "line": " ../UXC.js:167"
         },
         {
             "message": "Missing item type\n自动识别组件库所在路径",
-            "line": " ../UXC.js:168"
+            "line": " ../UXC.js:173"
         },
         {
             "message": "Missing item type\nFor feature detection",
