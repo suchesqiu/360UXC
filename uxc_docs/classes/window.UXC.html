@@ -133,15 +133,15 @@
                     <h3>Properties</h3>
                     <ul class="index-list properties">
                             <li class="index-item property">
-                                <a href="#property_DATA_MAP">DATA_MAP</a>
-                                    <span class="flag static">static</span>
-                            </li>
-                            <li class="index-item property">
                                 <a href="#property_debug">debug</a>
                                     <span class="flag static">static</span>
                             </li>
                             <li class="index-item property">
                                 <a href="#property_enableNginxStyle">enableNginxStyle</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_FILE_MAP">FILE_MAP</a>
                                     <span class="flag static">static</span>
                             </li>
                             <li class="index-item property">
@@ -336,53 +336,6 @@
             </div>
             <div id="properties" class="api-class-tabpanel">
                 <h2 class="off-left">Properties</h2>
-                    <div id="property_DATA_MAP" class="property item">
-    <h3 class="name"><code>DATA_MAP</code></h3>
-    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
-        <span class="flag static">static</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._UXC.js.html#l171"><code>..&#x2F;UXC.js:171</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>资源路径映射对象
-<br />设置 UXC.use 逗号(',') 分隔项的 对应URL路径</p>
-    </div>
-        <p><strong>Default:</strong> null</p>
-        <div class="example">
-            <h4>Example:</h4>
-            <div class="example-content">
-                <pre class="code prettyprint"><code>           以下例子假定 libpath = http://git.me.btbtd.org/ignore/360UXC_dev/
-           &lt;script&gt;
-               UXC.DATA_MAP = {
-                   'Calendar': 'http://uxc.btbtd.org/comps/Calendar/Calendar.js'
-                   , 'Form': 'http://uxc.btbtd.org/comps/Form/Form.js'
-                   , 'LunarCalendar': 'http://uxc.btbtd.org/comps/LunarCalendar/LunarCalendar.js'
-                   , 'Panel': 'http://uxc.btbtd.org/comps/Panel/Panel.js' 
-                   , 'Tab': 'http://uxc.btbtd.org/comps/Tab/Tab.js'
-                   , 'Tips': 'http://uxc.btbtd.org/comps/Tips/Tips.js' 
-                   , 'Tree': 'http://uxc.btbtd.org/comps/Tree/Tree.js'
-                   , 'Valid': 'http://uxc.btbtd.org/comps/Valid/Valid.js'
-                   , 'plugins/jquery.form.js': 'http://uxc.btbtd.org/plugins/jquery.form.js'
-                   , 'plugins/json2.js': 'http://uxc.btbtd.org/plugins/json2.js'
-               };
-               UXC.use( 'Panel, Tips, Valid, plugins/jquery.form.js' );
-               $(document).ready(function(){
-                   //UXC.Dialog( 'UXC.use example', 'test issue' );
-               });
-           &lt;/script&gt;
-           output should be:
-               http://git.me.btbtd.org/ignore/360UXC_dev/lib.js
-               http://uxc.btbtd.org/comps/Panel/Panel.js
-               http://uxc.btbtd.org/comps/Tips/Tips.js
-               http://uxc.btbtd.org/comps/Valid/Valid.js
-               http://uxc.btbtd.org/plugins/jquery.form.js
-</code></pre>
-            </div>
-        </div>
-</div>
                     <div id="property_debug" class="property item">
     <h3 class="name"><code>debug</code></h3>
     <span class="type">Bool</span>
@@ -411,6 +364,53 @@
         <p>是否启用nginx concat 模块的路径格式</p>
     </div>
         <p><strong>Default:</strong> false</p>
+</div>
+                    <div id="property_FILE_MAP" class="property item">
+    <h3 class="name"><code>FILE_MAP</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._UXC.js.html#l171"><code>..&#x2F;UXC.js:171</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>资源路径映射对象
+<br />设置 UXC.use 逗号(',') 分隔项的 对应URL路径</p>
+    </div>
+        <p><strong>Default:</strong> null</p>
+        <div class="example">
+            <h4>Example:</h4>
+            <div class="example-content">
+                <pre class="code prettyprint"><code>           以下例子假定 libpath = http://git.me.btbtd.org/ignore/360UXC_dev/
+           &lt;script&gt;
+               UXC.FILE_MAP = {
+                   'Calendar': 'http://uxc.btbtd.org/comps/Calendar/Calendar.js'
+                   , 'Form': 'http://uxc.btbtd.org/comps/Form/Form.js'
+                   , 'LunarCalendar': 'http://uxc.btbtd.org/comps/LunarCalendar/LunarCalendar.js'
+                   , 'Panel': 'http://uxc.btbtd.org/comps/Panel/Panel.js' 
+                   , 'Tab': 'http://uxc.btbtd.org/comps/Tab/Tab.js'
+                   , 'Tips': 'http://uxc.btbtd.org/comps/Tips/Tips.js' 
+                   , 'Tree': 'http://uxc.btbtd.org/comps/Tree/Tree.js'
+                   , 'Valid': 'http://uxc.btbtd.org/comps/Valid/Valid.js'
+                   , 'plugins/jquery.form.js': 'http://uxc.btbtd.org/plugins/jquery.form.js'
+                   , 'plugins/json2.js': 'http://uxc.btbtd.org/plugins/json2.js'
+               };
+               UXC.use( 'Panel, Tips, Valid, plugins/jquery.form.js' );
+               $(document).ready(function(){
+                   //UXC.Dialog( 'UXC.use example', 'test issue' );
+               });
+           &lt;/script&gt;
+           output should be:
+               http://git.me.btbtd.org/ignore/360UXC_dev/lib.js
+               http://uxc.btbtd.org/comps/Panel/Panel.js
+               http://uxc.btbtd.org/comps/Tips/Tips.js
+               http://uxc.btbtd.org/comps/Valid/Valid.js
+               http://uxc.btbtd.org/plugins/jquery.form.js
+</code></pre>
+            </div>
+        </div>
 </div>
                     <div id="property_nginxBasePath" class="property item">
     <h3 class="name"><code>nginxBasePath</code></h3>

@@ -9955,8 +9955,8 @@ function script_path_f(){
                     var _isComps = !_pathRe.test( _part ), _path, _isFullpath = /^\//.test( _part );
                     if( _isComps && window.UXC[ _part ] ) return;
 
-                    if( UXC.DATA_MAP && UXC.DATA_MAP[ _part ] ){
-                        _paths.push( UXC.DATA_MAP[ _part ] );
+                    if( UXC.FILE_MAP && UXC.FILE_MAP[ _part ] ){
+                        _paths.push( UXC.FILE_MAP[ _part ] );
                         return;
                     }
 
@@ -10063,14 +10063,14 @@ function script_path_f(){
        /**
         * 资源路径映射对象
         * <br />设置 UXC.use 逗号(',') 分隔项的 对应URL路径
-        * @property DATA_MAP
+        * @property FILE_MAP
         * @type object
         * @default null
         * @static
         * @example
                 以下例子假定 libpath = http://git.me.btbtd.org/ignore/360UXC_dev/
                 <script>
-                    UXC.DATA_MAP = {
+                    UXC.FILE_MAP = {
                         'Calendar': 'http://uxc.btbtd.org/comps/Calendar/Calendar.js'
                         , 'Form': 'http://uxc.btbtd.org/comps/Form/Form.js'
                         , 'LunarCalendar': 'http://uxc.btbtd.org/comps/LunarCalendar/LunarCalendar.js'
