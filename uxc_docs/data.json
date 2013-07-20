@@ -865,7 +865,7 @@
             ],
             "version": "dev 0.1",
             "author": "qiushaowei   <suches@btbtd.org> | 75 Team",
-            "date": "2013-06-23",
+            "date": "2013-07-20",
             "example": [
                 ""
             ]
@@ -8672,7 +8672,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 85,
+            "line": 90,
             "description": "输出调试信息, 可通过 UXC.debug 指定是否显示调试信息",
             "params": [
                 {
@@ -8689,7 +8689,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 96,
+            "line": 101,
             "description": "定义输出路径的 v 参数, 以便控制缓存",
             "itemtype": "property",
             "name": "pathPostfix",
@@ -8701,7 +8701,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 104,
+            "line": 109,
             "description": "是否启用nginx concat 模块的路径格式",
             "itemtype": "property",
             "name": "enableNginxStyle",
@@ -8713,7 +8713,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 112,
+            "line": 117,
             "description": "定义 nginx style 的基础路径\n<br /><b>注意:</b> 如果这个属性为空, 即使 enableNginxStyle = true, 也是直接输出默认路径",
             "itemtype": "property",
             "name": "nginxBasePath",
@@ -8725,7 +8725,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 121,
+            "line": 126,
             "description": "输出 nginx concat 模块的脚本路径格式",
             "itemtype": "method",
             "name": "_writeNginxScript",
@@ -8744,7 +8744,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 149,
+            "line": 154,
             "description": "输出的脚本路径格式",
             "itemtype": "method",
             "name": "_writeNormalScript",
@@ -8763,14 +8763,29 @@
         },
         {
             "file": "../UXC.js",
-            "line": 167,
+            "line": 171,
+            "description": "资源路径映射对象\n<br />设置 UXC.use 逗号(',') 分隔项的 对应URL路径",
+            "itemtype": "property",
+            "name": "DATA_MAP",
+            "type": "object",
+            "default": "null",
+            "static": 1,
+            "example": [
+                "\n               以下例子假定 libpath = http://git.me.btbtd.org/ignore/360UXC_dev/\n               <script>\n                   UXC.DATA_MAP = {\n                       'Calendar': 'http://uxc.btbtd.org/comps/Calendar/Calendar.js'\n                       , 'Form': 'http://uxc.btbtd.org/comps/Form/Form.js'\n                       , 'LunarCalendar': 'http://uxc.btbtd.org/comps/LunarCalendar/LunarCalendar.js'\n                       , 'Panel': 'http://uxc.btbtd.org/comps/Panel/Panel.js' \n                       , 'Tab': 'http://uxc.btbtd.org/comps/Tab/Tab.js'\n                       , 'Tips': 'http://uxc.btbtd.org/comps/Tips/Tips.js' \n                       , 'Tree': 'http://uxc.btbtd.org/comps/Tree/Tree.js'\n                       , 'Valid': 'http://uxc.btbtd.org/comps/Valid/Valid.js'\n                       , 'plugins/jquery.form.js': 'http://uxc.btbtd.org/plugins/jquery.form.js'\n                       , 'plugins/json2.js': 'http://uxc.btbtd.org/plugins/json2.js'\n                   };\n\n                   UXC.use( 'Panel, Tips, Valid, plugins/jquery.form.js' );\n\n                   $(document).ready(function(){\n                       //UXC.Dialog( 'UXC.use example', 'test issue' );\n                   });\n               </script>\n\n               output should be:\n                   http://git.me.btbtd.org/ignore/360UXC_dev/lib.js\n                   http://uxc.btbtd.org/comps/Panel/Panel.js\n                   http://uxc.btbtd.org/comps/Tips/Tips.js\n                   http://uxc.btbtd.org/comps/Valid/Valid.js\n                   http://uxc.btbtd.org/plugins/jquery.form.js"
+            ],
+            "class": "window.UXC",
+            "namespace": "window"
+        },
+        {
+            "file": "../UXC.js",
+            "line": 210,
             "description": "如果 console 不可用, 则生成一个模拟的 console 对象",
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../UXC.js",
-            "line": 173,
+            "line": 216,
             "description": "自动识别组件库所在路径",
             "class": "window.UXC",
             "namespace": "window"
@@ -10154,11 +10169,11 @@
         },
         {
             "message": "Missing item type\n如果 console 不可用, 则生成一个模拟的 console 对象",
-            "line": " ../UXC.js:167"
+            "line": " ../UXC.js:210"
         },
         {
             "message": "Missing item type\n自动识别组件库所在路径",
-            "line": " ../UXC.js:173"
+            "line": " ../UXC.js:216"
         },
         {
             "message": "Missing item type\nFor feature detection",
