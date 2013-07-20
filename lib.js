@@ -9990,6 +9990,7 @@ function script_path_f(){
         * @property     pathPostfix
         * @type     string
         * @default  empty
+        * @static
         */
        , pathPostfix: ''
        /**
@@ -9997,6 +9998,7 @@ function script_path_f(){
         * @property     enableNginxStyle
         * @type bool
         * @default  false
+        * @static
         */
        , enableNginxStyle: false
        /**
@@ -10005,6 +10007,7 @@ function script_path_f(){
         * @property     nginxBasePath
         * @type string
         * @default  empty
+        * @static
         */
        , nginxBasePath: ''
        /**
@@ -10012,6 +10015,7 @@ function script_path_f(){
         * @method   _writeNginxScript
         * @param    {array} _paths
         * @private
+        * @static
         */
        , _writeNginxScript:
             function( _paths ){
@@ -10039,6 +10043,7 @@ function script_path_f(){
         * @method   _writeNormalScript
         * @param    {array} _paths
         * @private
+        * @static
         */
        , _writeNormalScript:
             function( _paths ){

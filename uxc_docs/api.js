@@ -11,6 +11,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "UXC.LunarCalendar",
         "UXC.Panel",
         "UXC.Tab",
+        "UXC.Test",
         "UXC.Tips",
         "UXC.Tree",
         "UXC.Valid",

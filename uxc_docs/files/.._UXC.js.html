@@ -81,6 +81,8 @@
             
                 <li><a href="../classes/UXC.Tab.View.html">UXC.Tab.View</a></li>
             
+                <li><a href="../classes/UXC.Test.html">UXC.Test</a></li>
+            
                 <li><a href="../classes/UXC.Tips.html">UXC.Tips</a></li>
             
                 <li><a href="../classes/UXC.Tips.Model.html">UXC.Tips.Model</a></li>
@@ -240,6 +242,7 @@
         * @property     pathPostfix
         * @type     string
         * @default  empty
+        * @static
         */
        , pathPostfix: &#x27;&#x27;
        /**
@@ -247,6 +250,7 @@
         * @property     enableNginxStyle
         * @type bool
         * @default  false
+        * @static
         */
        , enableNginxStyle: false
        /**
@@ -255,6 +259,7 @@
         * @property     nginxBasePath
         * @type string
         * @default  empty
+        * @static
         */
        , nginxBasePath: &#x27;&#x27;
        /**
@@ -262,6 +267,7 @@
         * @method   _writeNginxScript
         * @param    {array} _paths
         * @private
+        * @static
         */
        , _writeNginxScript:
             function( _paths ){
@@ -289,6 +295,7 @@
         * @method   _writeNormalScript
         * @param    {array} _paths
         * @private
+        * @static
         */
        , _writeNormalScript:
             function( _paths ){
