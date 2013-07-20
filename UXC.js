@@ -205,7 +205,7 @@
                     http://uxc.btbtd.org/comps/Valid/Valid.js
                     http://uxc.btbtd.org/plugins/jquery.form.js
         */
-       , DATA_MAP: null
+       , FILE_MAP: null
     };
     /**
      * 如果 console 不可用, 则生成一个模拟的 console 对象
