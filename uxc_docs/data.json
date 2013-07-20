@@ -207,6 +207,17 @@
                 "UXC.Tab": 1
             }
         },
+        "../comps/Test/Test.js": {
+            "name": "../comps/Test/Test.js",
+            "modules": {},
+            "classes": {
+                "UXC.Test": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "UXC": 1
+            }
+        },
         "../comps/Tips/Tips.js": {
             "name": "../comps/Tips/Tips.js",
             "modules": {},
@@ -830,6 +841,33 @@
                     "description": "",
                     "type": "UXC.Tab.Model"
                 }
+            ]
+        },
+        "UXC.Test": {
+            "name": "UXC.Test",
+            "shortname": "UXC.Test",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC",
+            "file": "../comps/Test/Test.js",
+            "line": 6,
+            "description": "Test 模板类\n<br />要新建一个组件时, 直接 copy Test 组件改一下命名就可以开始编码了\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/uxc_docs/classes/UXC.Test.html' target='_blank'>API docs</a>\n| <a href='../../comps/Test/_demo' target='_blank'>demo link</a></p>",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector|string"
+                }
+            ],
+            "version": "dev 0.1",
+            "author": "qiushaowei   <suches@btbtd.org> | 75 Team",
+            "date": "2013-06-23",
+            "example": [
+                ""
             ]
         },
         "UXC.Tips": {
@@ -9349,6 +9387,14 @@
         {
             "message": "unknown tag: date",
             "line": " ../comps/Tab/Tab.js:5"
+        },
+        {
+            "message": "unknown tag: version",
+            "line": " ../comps/Test/Test.js:6"
+        },
+        {
+            "message": "unknown tag: date",
+            "line": " ../comps/Test/Test.js:6"
         },
         {
             "message": "unknown tag: version",

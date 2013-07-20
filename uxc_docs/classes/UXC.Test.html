@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <title>UXC.Test - UXC jquery components</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -84,27 +85,35 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
+                        <h1>UXC.Test Class</h1>
 <div class="box meta">
         <div class="foundat">
-            Defined in: <a href="../files/.._comps_Tab_Tab.js.html#l522"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:522</code></a>
+            Defined in: <a href="../files/.._comps_Test_Test.js.html#l6"><code>..&#x2F;comps&#x2F;Test&#x2F;Test.js:6</code></a>
         </div>
 </div>
 <div class="box intro">
-    <p>Tab 视图模型类</p>
+    <p>Test 模板类
+<br />要新建一个组件时, 直接 copy Test 组件改一下命名就可以开始编码了</p>
+<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>
+<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
+| <a href='http://uxc.btbtd.org/uxc_docs/classes/UXC.Test.html' target='_blank'>API docs</a>
+| <a href='../../comps/Test/_demo' target='_blank'>demo link</a></p>
 </div>
     <div class="constructor">
         <h2>Constructor</h2>
+        <div id="method_UXC.Test" class="method item">
+    <h3 class="name"><code>UXC.Test</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>_model</code>
+                        <code>_selector</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Tab_Tab.js.html#l522"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:522</code></a>
+        <a href="../files/.._comps_Test_Test.js.html#l6"><code>..&#x2F;comps&#x2F;Test&#x2F;Test.js:6</code></a>
         </p>
     </div>
     <div class="description">
@@ -113,138 +122,28 @@
             <h4>Parameters:</h4>
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">_model</code>
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector | <a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
                     <div class="param-description">
                     </div>
                 </li>
             </ul>
+        </div>
+        <div class="example">
+            <h4>Example:</h4>
+            <div class="example-content">
+            </div>
         </div>
 </div>
     </div>
 <div id="classdocs" class="tabview">
     <ul class="api-class-tabs">
         <li class="api-class-tab index"><a href="#index">Index</a></li>
-            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
-            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
     </ul>
     <div>
         <div id="index" class="api-class-tabpanel index">
             <h2 class="off-left">Item Index</h2>
-                <div class="index-section methods">
-                    <h3>Methods</h3>
-                    <ul class="index-list methods">
-                            <li class="index-item method">
-                                <a href="#method_active">active</a>
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_activeAjax">activeAjax</a>
-                            </li>
-                            <li class="index-item method">
-                                <a href="#method_init">init</a>
-                            </li>
-                    </ul>
-                </div>
-                <div class="index-section properties">
-                    <h3>Properties</h3>
-                    <ul class="index-list properties">
-                            <li class="index-item property private">
-                                <a href="#property__model">_model</a>
-                            </li>
-                    </ul>
-                </div>
         </div>
-            <div id="methods" class="api-class-tabpanel">
-                <h2 class="off-left">Methods</h2>
-                    <div id="method_active" class="method item">
-    <h3 class="name"><code>active</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_ix</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Tab_Tab.js.html#l562"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:562</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>设置特定索引位置的 label 为活动状态</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_ix</code>
-                        <span class="type">Int</span>
-                    <div class="param-description">
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
-                    <div id="method_activeAjax" class="method item">
-    <h3 class="name"><code>activeAjax</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_ix</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Tab_Tab.js.html#l586"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:586</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>请求特定索引位置的 ajax tab 数据</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_ix</code>
-                        <span class="type">Int</span>
-                    <div class="param-description">
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
-                    <div id="method_init" class="method item">
-    <h3 class="name"><code>init</code></h3>
-        <span class="paren">()</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Tab_Tab.js.html#l540"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:540</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>Tab 视图类初始化方法</p>
-    </div>
-</div>
-            </div>
-            <div id="properties" class="api-class-tabpanel">
-                <h2 class="off-left">Properties</h2>
-                    <div id="property__model" class="property item private">
-    <h3 class="name"><code>_model</code></h3>
-        <span class="flag private">private</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Tab_Tab.js.html#l530"><code>..&#x2F;comps&#x2F;Tab&#x2F;Tab.js:530</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>Tab 数据模型类实例引用</p>
-    </div>
-</div>
-            </div>
     </div>
 </div>
                     </div>

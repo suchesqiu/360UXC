@@ -45,8 +45,12 @@
         word-break: break-all;
     }
 
-    xmp {
+    xmp, code {
         display: block;
+    }
+
+    code{
+        margin: 5px 5px 5px 40px;
     }
 
     ol > li{
@@ -119,12 +123,14 @@
                         <dt><h2><a name='part_222'></a>文档和资源链接</h2></dt>
                         <dd>
                             <p><label>项目主页(git):</label> <a href="https://github.com/suchesqiu/360UXC" target="_blank">https://github.com/suchesqiu/360UXC</a></p>
-                            <p><label>公网演示网站:</label> <a href="http://uxc.btbtd.org/" target="_blank">http://uxc.btbtd.org/</a></p>
-                            <p><label>公网API文档:</label> <a href="http://uxc.btbtd.org/uxc_docs/classes/window.UXC.html" target="_blank">http://uxc.btbtd.org/uxc_docs/classes/window.UXC.html</a></p>
-                            <p><label>本地API文档:</label> <a href="uxc_docs/classes/window.UXC.html" target="_blank">uxc_docs/classes/window.UXC.html</a></p>
-                            <p><label>内网演示网站:</label> </p>
-                            <p><label>内网API文档:</label> </p>
-                            <p><label>内网SVN地址:</label> <a href="https://portal.src.corp.qihoo.net/svn/AppDevFe/trunk/jquery" target="_blank">https://portal.src.corp.qihoo.net/svn/AppDevFe/trunk/jquery</a> </p>
+                            <p><label>演示网站(公网):</label> <a href="http://uxc.btbtd.org/" target="_blank">http://uxc.btbtd.org/</a></p>
+                            <p><label>API文档(公网):</label> <a href="http://uxc.btbtd.org/uxc_docs/classes/window.UXC.html" target="_blank">http://uxc.btbtd.org/uxc_docs/classes/window.UXC.html</a></p>
+                            <p><label>项目文档(公网):</label> <a href="http://uxc.btbtd.org/document.html" target="_blank">http://uxc.btbtd.org/document.html</a></p><br />
+                            <p><label>API文档(本地):</label> <a href="uxc_docs/classes/window.UXC.html" target="_blank">uxc_docs/classes/window.UXC.html</a></p>
+                            <p><label>演示网站(内网):</label> </p>
+                            <p><label>API文档(内网):</label> </p>
+                            <p><label>项目文档(内网):</label> </p>
+                            <p><label>SVN地址(内网):</label> <a href="https://portal.src.corp.qihoo.net/svn/AppDevFe/trunk/jquery" target="_blank">https://portal.src.corp.qihoo.net/svn/AppDevFe/trunk/jquery</a> </p>
                         </dd>
                     </dl>
 
@@ -135,6 +141,8 @@
                                 <li>
                                     <label>使用 git 客户端获取:</label>
                                     <code>git clone https://github.com/suchesqiu/360UXC.git</code>
+                                    <b>如果发现 https clone 比较慢的话, 可以尝试一下 http</b>
+                                    <code>git clone http://github.com/suchesqiu/360UXC.git</code>
                                 </li>
                                 <li>
                                     <label>下载最新 zip 包:</label>
@@ -295,7 +303,7 @@ library root                        //组件库所在目录
                                     </ol>
                                 </li>
                                 <li>
-                                    <p>从开发人员列表中找到 <a href="#qiushaowei">qiushaowei</a> 的联系方式~ 告知您自己的github用户名</p>
+                                    <p>从开发人员列表中找到 <a href="#qiushaowei">qiushaowei</a> 的联系方式~ 告知你的github用户名</p>
                                     <p>然后 <a href="#qiushaowei">qiushaowei</a> 会把你加入到开发人员列表中</p>
                                     <p>在没有加入到开发人员名单之前, 你可以 clone 项目, 但是没有提交更改的权限</p>
                                 </li>
@@ -303,8 +311,100 @@ library root                        //组件库所在目录
                                     <dl>
                                         <dt>建立属于你自己的开发分支进行开发</dt>
                                         <dd>
+                                            <ol>
+                                                <li>
+                                                    <label>命令行方式建立分支:</label> 
+                                                    <br /><a target="_blank" href="https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches">https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches</a>
+                                                </li>
+                                                <li>
+                                                    <label>TortoiseGit建立分支:</label> 
+                                                    <br /><a target="_blank" href="http://joelabrahamsson.com/remote-branches-with-tortoisegit/">http://joelabrahamsson.com/remote-branches-with-tortoisegit/</a>
+                                                </li>
+                                            </ol>
+                                            <p>
+                                                <b>注意:</b> 你建立的分支应该是 master 的一个 copy, 不是 dev 的 copy
+                                            </p>
                                         </dd>
                                     </dl>
+                                </li>
+                                <li>
+                                    <h3>关于开发分类: 组件(comps), jquery 插件(plugins), 小部件(widgets)</h3>
+                                    <ol>
+                                        <li>
+                                            <dl>
+                                                <dt>如何开发组件(comps)</dt>
+                                                <dd><pre>
+什么是组件?
+    组件在UXC项目里是指那些需要 使用 new 关键字初始化的 应用.
+
+组件应该存放在那个目录?
+    目前组件的存放目录规划位于 libpath/comps 目录
+
+组件的基础结构?
+    每个组件都有自己的独立文件夹, 并且脚本名称大小写与文件夹保持一致
+
+开始开发组件
+    请查看 libpath/comps/Test 目录, 这是个示例组件, 
+    开发组件时可以直接copy Test组件然后改一下文件和内容命名
+    Library/comsp/Test          示例组件
+    ├── _demo                   效果演示
+    │   ├── index.php           列目录资源的PHP
+    │   └── simple_demo.html    演示默认例子
+    ├── index.php               列目录资源的PHP
+    ├── res                     资源目录, 这个目录规划是可以各种themes, 每个 themes有自己对象的目录
+    │   └── default             默认 themes
+    │       ├── style.css
+    │       └── style.html
+    └── Test.js                 组件的js脚本, 命名应该与组件目录大小写保持一致
+
+</pre>
+                                                </dd>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <dl>
+                                                <dt>如何开发jquery插件(plugins)</dt>
+                                                <dd><pre>
+什么是jquery插件?
+    jquery插件在UXC项目里是指那些 扩展 jquery 对象的应用
+
+jquery插件应该存放在那个目录?
+    目前jquery插件的存放目录规划位于 libpath/plugins
+
+jquery插件的基础结构? 
+    jquery 插件可以是独立的一个脚本, 或者是带有自己的文件夹
+    
+    example:
+        libpath/plugins/json2.js
+        libpath/plugins/rate/rate.js
+
+jquery插件的开发规范请见官方文档:
+    <a target="_blank" href="http://learn.jquery.com/plugins/basic-plugin-creation/">http://learn.jquery.com/plugins/basic-plugin-creation/</a>
+</pre>
+                                                </dd>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <dl>
+                                                <dt>如何开发小部件(widgets)</dt>
+                                                <dd><pre>
+什么是小部件?
+    小部件在UXC项目里是指那些不是 jquery组件 也不是 jquery插件的应用
+    比如目前小部件里的 IframeUpload
+
+    BaiduEditor, FCKEditor, swfupload 也可以归类到 小部件里
+
+    那到底什么是小部件? 
+    简单的说法就是用 javascript写的小工具, 但不限于 javascript小工具~
+    也可以是其他语言写的小工具~ 比如 as, java~
+
+小部件应该存放在那个目录?
+    目前小部件的存放目录规划位于 libpath/widgets
+</pre>
+                                                </dd>
+                                            </dl>
+                                        </li>
+                                    </ol>
                                 </li>
                             </ol>
                         </dd>
@@ -313,58 +413,75 @@ library root                        //组件库所在目录
                     <dl>
                         <dt><h2><a name='part_999'></a>如何发布资源</h2></dt>
                         <dd>
+                            <h3>当你写了一个组件想发布的时候应该怎么办?</h3>
+                            <ol>
+                                <li>
+                                    为了保证项目的质量, 要发布组件的时候请对组件进行一次全面的review, 测试一下各种应用场景看看有没有不可预知的bug~
+                                    <br />通常测试的场景越多总会发现各种奇怪的bug~
+                                </li>
+                                <li>
+                                    注释也是必不可少的~
+                                    <br />目前 API 文档是使用 YUIDoc 从注释里生成的
+                                    <br />所以<b>注释务必写详细点</b>
+                                </li>
+                                <li>
+                                    在你自己的专属分支里生成 API 文档, 看看文档效果是否符合预期
+                                    <p>生成文档需要的运行环境: nodejs, yuidocjs(nodejs plugin)</p>
+                                    <ol>
+                                        <li>
+                                            <dl>
+                                                <dt>linux 系统</dt>
+                                                <dd><pre>
+cd libpath/tools
+sh generate_yuidoc_for_uxc.sh
+                                                </pre></dd>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            <dl>
+                                                <dt>windows 系统</dt>
+                                                <dd><pre>
+cd libpath/tools
+generate_yuidoc_for_uxc.sh
+                                                </pre></dd>
+                                            </dl>
+                                        </li>
+                                        <li>
+                                            生成文档的默认识别路径是 libpath/*
+                                            <p>生成后的文档存放在 libpath/uxc_docs</p>
+                                        </li>
+                                    </ol>
+                                </li>
+                                <li><pre>
+确保一切无误后, 把要发布的组件 copy到master分支里
+    当前的开发分支不是master分支, 怎么 copy到master分支里?
+    最简单的方法就是用 git clone 获取一个新的 master分支
+
+如果你已经获取过一个 master分支, 记得先 git pull origin master 更新一下 master分支
+
+然后在master分支里运行一下 文档生成脚本~
+
+再次检查一下文档和代码是否正常
+没有问题当然就是提交更改了~
+                                </pre></li>
+                            </ol>
+                            <h3>注意: 开发组件的时候应该在自己的专属分支里进行, 发布的时候再单独合并到 master 主干</h3>
                         </dd>
                     </dl>
 
                     <dl>
                         <dt><h2><a name='part_777'></a>开发需求</h2></dt>
                         <dd> 
-                        <p><b>标***的为已经开发完成的组件</b></p>
-                        <pre>
-(左静)问答所用组件：
-# 图片轮播 （现用qwrap&nbsp; tabview）
-# 编辑器 &nbsp;(现用 baidu editor)
-# 浮层 (qwrap pannel)       ***
-# 日历(qwrap calendar)      ***
-# Cookie(qwrap cache)
-# 上传文件 (swfupload + html5upload)
-# Suggest (导航)
-# 文字翻滚(原生)
-# Scrollbar（原生）
-
-(文辉)助手所用组件：
-# 图片轮播 （现用我自己写的jq插件）
-# Css:hover伪选择扩展 （原生）
-# Scrollbar （Jq scrollbar）
-# 图片翻滚 （jcarousellite）
-
-(吴燕)工作中用到的jquery组件
-# 图片轮播&nbsp;&nbsp; slides
-# 图片滚动&nbsp;&nbsp; jCarousel Lite
-# 图片浏览&nbsp;&nbsp; jquery.lightbox&nbsp; fancyBox
-# 模拟滚动条 scroolbar
-# 日历插件&nbsp;&nbsp; jquery ui                ***
-# 图片延迟加载&nbsp;&nbsp; jquery lazyload
-# 美化表单&nbsp; jquery jNice
-
-(少伟)我这边需要用到的几个组件基本都跟表单有关系
-# 表单验证      ***
-# 级联下拉框    ***
-# 树菜单        ***
-# AJAX 上传文件 ***
-
-（建斌）补充几个
-# flash文本复制
-# 图片批量上传
-# JS图表类似highcharts [http://www.highcharts.com/]
-# inview组件,判断一个dom是否进入可视化区域 [https://github.com/sakabako/scrollMonitor]
-# 瀑布流组件
-# 拖拽组件
-
-（来标）
-# javascript template
-</pre>
-                        <label>内网需求链接:</label> <a target="_blank" href="http://add.corp.qihoo.net/pages/viewpage.action?pageId=8036850">http://add.corp.qihoo.net/pages/viewpage.action?pageId=8036850</a>
+                            <ol>
+                                <li>
+                                    <label>开发需求:</label>
+                                    <a target="_blank" href="./tools/开发需求.txt">./tools/开发需求.txt</a>
+                                </li>
+                                <li>
+                                    <label>内网需求链接:</label> 
+                                    <a target="_blank" href="http://add.corp.qihoo.net/pages/viewpage.action?pageId=8036850">http://add.corp.qihoo.net/pages/viewpage.action?pageId=8036850</a>
+                                </li>
+                            </ol>
                         </dd>
                     </dl>
 
