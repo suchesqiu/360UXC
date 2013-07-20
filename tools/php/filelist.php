@@ -169,6 +169,7 @@ function in_blacklist_file($item) {
 			<?php endforeach; ?>
 
 			<?php foreach($file_list as $item): ?>
+                <?php if( $item == 'index.php' ) continue; ?>
 				<?php $new_path = $path . $item; ?>
 				<?php $new_path_escape = $path . urlencode($item); ?>
 

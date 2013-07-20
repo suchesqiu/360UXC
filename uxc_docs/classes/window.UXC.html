@@ -133,6 +133,10 @@
                     <h3>Properties</h3>
                     <ul class="index-list properties">
                             <li class="index-item property">
+                                <a href="#property_DATA_MAP">DATA_MAP</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
                                 <a href="#property_debug">debug</a>
                                     <span class="flag static">static</span>
                             </li>
@@ -171,7 +175,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._UXC.js.html#l121"><code>..&#x2F;UXC.js:121</code></a>
+        <a href="../files/.._UXC.js.html#l126"><code>..&#x2F;UXC.js:126</code></a>
         </p>
     </div>
     <div class="description">
@@ -203,7 +207,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._UXC.js.html#l149"><code>..&#x2F;UXC.js:149</code></a>
+        <a href="../files/.._UXC.js.html#l154"><code>..&#x2F;UXC.js:154</code></a>
         </p>
     </div>
     <div class="description">
@@ -234,7 +238,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._UXC.js.html#l85"><code>..&#x2F;UXC.js:85</code></a>
+        <a href="../files/.._UXC.js.html#l90"><code>..&#x2F;UXC.js:90</code></a>
         </p>
     </div>
     <div class="description">
@@ -332,6 +336,53 @@
             </div>
             <div id="properties" class="api-class-tabpanel">
                 <h2 class="off-left">Properties</h2>
+                    <div id="property_DATA_MAP" class="property item">
+    <h3 class="name"><code>DATA_MAP</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Object" class="crosslink external" target="_blank">Object</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._UXC.js.html#l171"><code>..&#x2F;UXC.js:171</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>资源路径映射对象
+<br />设置 UXC.use 逗号(',') 分隔项的 对应URL路径</p>
+    </div>
+        <p><strong>Default:</strong> null</p>
+        <div class="example">
+            <h4>Example:</h4>
+            <div class="example-content">
+                <pre class="code prettyprint"><code>           以下例子假定 libpath = http://git.me.btbtd.org/ignore/360UXC_dev/
+           &lt;script&gt;
+               UXC.DATA_MAP = {
+                   'Calendar': 'http://uxc.btbtd.org/comps/Calendar/Calendar.js'
+                   , 'Form': 'http://uxc.btbtd.org/comps/Form/Form.js'
+                   , 'LunarCalendar': 'http://uxc.btbtd.org/comps/LunarCalendar/LunarCalendar.js'
+                   , 'Panel': 'http://uxc.btbtd.org/comps/Panel/Panel.js' 
+                   , 'Tab': 'http://uxc.btbtd.org/comps/Tab/Tab.js'
+                   , 'Tips': 'http://uxc.btbtd.org/comps/Tips/Tips.js' 
+                   , 'Tree': 'http://uxc.btbtd.org/comps/Tree/Tree.js'
+                   , 'Valid': 'http://uxc.btbtd.org/comps/Valid/Valid.js'
+                   , 'plugins/jquery.form.js': 'http://uxc.btbtd.org/plugins/jquery.form.js'
+                   , 'plugins/json2.js': 'http://uxc.btbtd.org/plugins/json2.js'
+               };
+               UXC.use( 'Panel, Tips, Valid, plugins/jquery.form.js' );
+               $(document).ready(function(){
+                   //UXC.Dialog( 'UXC.use example', 'test issue' );
+               });
+           &lt;/script&gt;
+           output should be:
+               http://git.me.btbtd.org/ignore/360UXC_dev/lib.js
+               http://uxc.btbtd.org/comps/Panel/Panel.js
+               http://uxc.btbtd.org/comps/Tips/Tips.js
+               http://uxc.btbtd.org/comps/Valid/Valid.js
+               http://uxc.btbtd.org/plugins/jquery.form.js
+</code></pre>
+            </div>
+        </div>
+</div>
                     <div id="property_debug" class="property item">
     <h3 class="name"><code>debug</code></h3>
     <span class="type">Bool</span>
@@ -353,7 +404,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._UXC.js.html#l104"><code>..&#x2F;UXC.js:104</code></a>
+        <a href="../files/.._UXC.js.html#l109"><code>..&#x2F;UXC.js:109</code></a>
         </p>
     </div>
     <div class="description">
@@ -368,7 +419,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._UXC.js.html#l112"><code>..&#x2F;UXC.js:112</code></a>
+        <a href="../files/.._UXC.js.html#l117"><code>..&#x2F;UXC.js:117</code></a>
         </p>
     </div>
     <div class="description">
@@ -398,7 +449,7 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._UXC.js.html#l96"><code>..&#x2F;UXC.js:96</code></a>
+        <a href="../files/.._UXC.js.html#l101"><code>..&#x2F;UXC.js:101</code></a>
         </p>
     </div>
     <div class="description">

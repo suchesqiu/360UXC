@@ -5,8 +5,8 @@ UXC Project - JQuery Components Library
 
 ##文档和资源链接
 <br>演示网站: [http://uxc.btbtd.org/](http://uxc.btbtd.org/)
-<br>API文档: [http://uxc.btbtd.org/uxc_docs/classes/window.UXC.html](http://uxc.btbtd.org/uxc_docs/classes/window.UXC.html)
 <br>项目文档: [http://uxc.btbtd.org/document.html](http://uxc.btbtd.org/document.html)
+<br>API文档: [http://uxc.btbtd.org/uxc_docs/classes/window.UXC.html](http://uxc.btbtd.org/uxc_docs/classes/window.UXC.html)
 
 ##沟通讨论
     飞信群: 81514206

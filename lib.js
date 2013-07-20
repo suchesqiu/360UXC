@@ -9955,6 +9955,11 @@ function script_path_f(){
                     var _isComps = !_pathRe.test( _part ), _path, _isFullpath = /^\//.test( _part );
                     if( _isComps && window.UXC[ _part ] ) return;
 
+                    if( UXC.DATA_MAP && UXC.DATA_MAP[ _part ] ){
+                        _paths.push( UXC.DATA_MAP[ _part ] );
+                        return;
+                    }
+
                     _path = _part;
                     _isComps && ( _path = printf( '{0}{1}{2}/{2}.js', UXC.PATH, UXC.compsDir, _part ) );
                     !_isComps && !_isFullpath && ( _path = printf( '{0}/{1}', UXC.PATH, _part ) );
@@ -10055,6 +10060,44 @@ function script_path_f(){
                 }
                 _paths.length && document.write( _paths.join('') );
             }
+       /**
+        * 资源路径映射对象
+        * <br />设置 UXC.use 逗号(',') 分隔项的 对应URL路径
+        * @property DATA_MAP
+        * @type object
+        * @default null
+        * @static
+        * @example
+                以下例子假定 libpath = http://git.me.btbtd.org/ignore/360UXC_dev/
+                <script>
+                    UXC.DATA_MAP = {
+                        'Calendar': 'http://uxc.btbtd.org/comps/Calendar/Calendar.js'
+                        , 'Form': 'http://uxc.btbtd.org/comps/Form/Form.js'
+                        , 'LunarCalendar': 'http://uxc.btbtd.org/comps/LunarCalendar/LunarCalendar.js'
+                        , 'Panel': 'http://uxc.btbtd.org/comps/Panel/Panel.js' 
+                        , 'Tab': 'http://uxc.btbtd.org/comps/Tab/Tab.js'
+                        , 'Tips': 'http://uxc.btbtd.org/comps/Tips/Tips.js' 
+                        , 'Tree': 'http://uxc.btbtd.org/comps/Tree/Tree.js'
+                        , 'Valid': 'http://uxc.btbtd.org/comps/Valid/Valid.js'
+                        , 'plugins/jquery.form.js': 'http://uxc.btbtd.org/plugins/jquery.form.js'
+                        , 'plugins/json2.js': 'http://uxc.btbtd.org/plugins/json2.js'
+                    };
+
+                    UXC.use( 'Panel, Tips, Valid, plugins/jquery.form.js' );
+
+                    $(document).ready(function(){
+                        //UXC.Dialog( 'UXC.use example', 'test issue' );
+                    });
+                </script>
+
+                output should be:
+                    http://git.me.btbtd.org/ignore/360UXC_dev/lib.js
+                    http://uxc.btbtd.org/comps/Panel/Panel.js
+                    http://uxc.btbtd.org/comps/Tips/Tips.js
+                    http://uxc.btbtd.org/comps/Valid/Valid.js
+                    http://uxc.btbtd.org/plugins/jquery.form.js
+        */
+       , DATA_MAP: null
     };
     /**
      * 如果 console 不可用, 则生成一个模拟的 console 对象
