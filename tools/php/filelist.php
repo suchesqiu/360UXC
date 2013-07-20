@@ -3,8 +3,14 @@ include_once('aes.php');
 ini_set('display_errors', 0);
 header('Content-type: text/html;charset=utf-8');
 
+$sroot = $_SERVER["SUBDOMAIN_DOCUMENT_ROOT"];
+$sroot = str_replace( '/var/chroot', '', $sroot );
+if( ! $sroot ) $sroot = $_SERVER["DOCUMENT_ROOT"];
+
 $fileDir = dirname( __FILE__ );
-$fileDir = str_replace($_SERVER["DOCUMENT_ROOT"], '', $fileDir); 
+$fileDir = str_replace($sroot, '', $fileDir); 
+
+//echo "$sroot<br /> " . __FILE__  . "<br/> ". $fileDir;
 
 $base_path =  './';
 $key = 'imququin360';
