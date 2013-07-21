@@ -4497,39 +4497,6 @@
         {
             "file": "../comps/Panel/UXC.Popup.js",
             "line": 441,
-            "description": "缓动函数, 动画效果为按时间缓动",
-            "itemtype": "method",
-            "name": "_logic.easyEffect",
-            "access": "private",
-            "tagname": "",
-            "params": [
-                {
-                    "name": "_cb",
-                    "description": "缓动运动时的回调",
-                    "type": "Function"
-                },
-                {
-                    "name": "_maxVal",
-                    "description": "缓动的最大值",
-                    "type": "Number"
-                },
-                {
-                    "name": "_minVal",
-                    "description": "缓动的起始值",
-                    "type": "Number"
-                },
-                {
-                    "name": "_duration",
-                    "description": "缓动的总时间, 单位毫秒",
-                    "type": "Number"
-                }
-            ],
-            "class": "UXC.alert",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../comps/Panel/UXC.Popup.js",
-            "line": 470,
             "description": "保存弹框的所有默认模板",
             "itemtype": "property",
             "name": "_logic.tpls",
@@ -4541,7 +4508,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 478,
+            "line": 449,
             "description": "alert 弹框的默认模板",
             "itemtype": "property",
             "name": "_logic.tpls.alert",
@@ -4553,7 +4520,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 501,
+            "line": 472,
             "description": "confirm 弹框的默认模板",
             "itemtype": "property",
             "name": "_logic.tpls.confirm",
@@ -9171,6 +9138,43 @@
                 "description": "脚本所在目录的完整路径",
                 "type": "String"
             },
+            "class": ".window"
+        },
+        {
+            "file": "../common.js",
+            "line": 291,
+            "description": "缓动函数, 动画效果为按时间缓动 \n<br />这个函数只考虑递增, 你如果需要递减的话, 在回调里用 _maxVal - _stepval",
+            "itemtype": "method",
+            "name": "easyEffect",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_cb",
+                    "description": "缓动运动时的回调",
+                    "type": "Function"
+                },
+                {
+                    "name": "_maxVal",
+                    "description": "缓动的最大值",
+                    "type": "Number"
+                },
+                {
+                    "name": "_startVal",
+                    "description": "缓动的起始值",
+                    "type": "Number"
+                },
+                {
+                    "name": "_duration",
+                    "description": "缓动的总时间, 单位毫秒",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "interval"
+            },
+            "example": [
+                "\n       $(document).ready(function(){\n           window.js_output = $('span.js_output');\n           window.ls = [];\n           window.EFF_INTERVAL = easyEffect( effectcallback, 100);\n       });\n\n       function effectcallback( _stepval, _done ){\n           js_output.html( _stepval );\n           ls.push( _stepval );\n\n           !_done && js_output.html( _stepval );\n           _done && js_output.html( _stepval + '<br />' + ls.join() );\n       }"
+            ],
             "class": ".window"
         },
         {

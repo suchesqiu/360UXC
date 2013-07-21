@@ -405,7 +405,7 @@
                 _selector.css( { &#x27;left&#x27;: _left  + &#x27;px&#x27; } );
 
                 _dom.interval = 
-                    _logic.easyEffect( function( _curVal ){
+                    easyEffect( function( _curVal ){
                         _selector.css( {
                             &#x27;top&#x27;: _top + _curVal + &#x27;px&#x27;
                             , &#x27;height&#x27;: _sh - _curVal + &#x27;px&#x27;
@@ -449,7 +449,7 @@
 
                 if( _top &gt; _poffset.top ){
                     _dom.interval = 
-                        _logic.easyEffect( function( _curVal ){
+                        easyEffect( function( _curVal ){
                             _selector.css( {
                                 &#x27;top&#x27;: _top - _sh - _logic.yoffset + &#x27;px&#x27;
                                 , &#x27;height&#x27;: _curVal + &#x27;px&#x27;
@@ -458,7 +458,7 @@
 
                 }else{
                     _dom.interval = 
-                        _logic.easyEffect( function( _curVal ){
+                        easyEffect( function( _curVal ){
                             _selector.css( {
                                 &#x27;top&#x27;: _top - _curVal - _logic.yoffset + &#x27;px&#x27;
                                 , &#x27;height&#x27;: _curVal + &#x27;px&#x27;
@@ -581,35 +581,6 @@
                     case 2: _r = &#x27;UPanelAlert&#x27;; break;
                 }
                 return _r;
-            }
-        /**
-         * 缓动函数, 动画效果为按时间缓动 
-         * @method  _logic.easyEffect
-         * @for     UXC.alert
-         * @private
-         * @param   {function}  _cb         缓动运动时的回调
-         * @param   {number}    _maxVal     缓动的最大值
-         * @param   {number}    _minVal     缓动的起始值
-         * @param   {number}    _duration   缓动的总时间, 单位毫秒
-         */
-        , easyEffect:
-            function( _cb, _maxVal, _minVal, _duration, _stepMs ){
-                var _beginDate = new Date(), _timepass
-                    , _maxVal = _maxVal || 200, _minVal = _minVal || 0
-                    , _duration = _duration || 200, _stepMs = _stepMs || 2;
-                var _interval = setInterval(
-                    function(){
-                        _timepass = new Date() - _beginDate;
-                        _minVal = _timepass / _duration * _maxVal;
-
-                        if( _minVal &gt; _maxVal ){
-                            _minVal = _maxVal
-                            clearInterval( _interval );
-                        }
-                        _cb &amp;&amp; _cb( _minVal );
-                    }, _stepMs );
-
-                return _interval;
             }
         /**
          * 保存弹框的所有默认模板
