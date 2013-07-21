@@ -75,6 +75,8 @@
             
                 <li><a href="../classes/UXC.Panel.View.html">UXC.Panel.View</a></li>
             
+                <li><a href="../classes/UXC.Slider.html">UXC.Slider</a></li>
+            
                 <li><a href="../classes/UXC.Tab.html">UXC.Tab</a></li>
             
                 <li><a href="../classes/UXC.Tab.Model.html">UXC.Tab.Model</a></li>
@@ -438,9 +440,10 @@ function script_path_f(){
  * @method  easyEffect
  * @static
  * @param   {function}  _cb         缓动运动时的回调
- * @param   {number}    _maxVal     缓动的最大值
- * @param   {number}    _startVal   缓动的起始值
- * @param   {number}    _duration   缓动的总时间, 单位毫秒
+ * @param   {number}    _maxVal     缓动的最大值, default = 200
+ * @param   {number}    _startVal   缓动的起始值, default = 0
+ * @param   {number}    _duration   缓动的总时间, 单位毫秒, default = 200
+ * @param   {number}    _stepMs     缓动的间隔, 单位毫秒, default = 2
  * @return  interval
  * @example
         $(document).ready(function(){

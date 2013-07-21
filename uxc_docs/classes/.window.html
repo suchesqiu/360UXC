@@ -47,6 +47,7 @@
                 <li><a href="../classes/UXC.hideAllPopup.html">UXC.hideAllPopup</a></li>
                 <li><a href="../classes/UXC.LunarCalendar.html">UXC.LunarCalendar</a></li>
                 <li><a href="../classes/UXC.Panel.html">UXC.Panel</a></li>
+                <li><a href="../classes/UXC.Slider.html">UXC.Slider</a></li>
                 <li><a href="../classes/UXC.Tab.html">UXC.Tab</a></li>
                 <li><a href="../classes/UXC.Test.html">UXC.Test</a></li>
                 <li><a href="../classes/UXC.Tips.html">UXC.Tips</a></li>
@@ -334,6 +335,9 @@
                 <li class="arg">
                         <code>_duration</code>
                 </li>
+                <li class="arg">
+                        <code>_stepMs</code>
+                </li>
             </ul><span class="paren">)</span>
         </div>
         <span class="returns-inline">
@@ -364,21 +368,28 @@
                         <code class="param-name">_maxVal</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     <div class="param-description">
-                        <p>缓动的最大值</p>
+                        <p>缓动的最大值, default = 200</p>
                     </div>
                 </li>
                 <li class="param">
                         <code class="param-name">_startVal</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     <div class="param-description">
-                        <p>缓动的起始值</p>
+                        <p>缓动的起始值, default = 0</p>
                     </div>
                 </li>
                 <li class="param">
                         <code class="param-name">_duration</code>
                         <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
                     <div class="param-description">
-                        <p>缓动的总时间, 单位毫秒</p>
+                        <p>缓动的总时间, 单位毫秒, default = 200</p>
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_stepMs</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Number" class="crosslink external" target="_blank">Number</a></span>
+                    <div class="param-description">
+                        <p>缓动的间隔, 单位毫秒, default = 2</p>
                     </div>
                 </li>
             </ul>

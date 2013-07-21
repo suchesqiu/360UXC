@@ -193,6 +193,17 @@
                 "UXC": 1
             }
         },
+        "../comps/Slider/Slider.js": {
+            "name": "../comps/Slider/Slider.js",
+            "modules": {},
+            "classes": {
+                "UXC.Slider": 1
+            },
+            "fors": {},
+            "namespaces": {
+                "UXC": 1
+            }
+        },
         "../comps/Tab/Tab.js": {
             "name": "../comps/Tab/Tab.js",
             "modules": {},
@@ -762,6 +773,33 @@
             ],
             "example": [
                 "\n     UXC.hideAllPopup();         //隐藏所有UXC.alert, UXC.confirm\n     UXC.hideAllPopup( true );   //从 DOM 清除所有 UXC.alert, UXC.confirm"
+            ]
+        },
+        "UXC.Slider": {
+            "name": "UXC.Slider",
+            "shortname": "UXC.Slider",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "namespace": "UXC",
+            "file": "../comps/Slider/Slider.js",
+            "line": 6,
+            "description": "Slider 类\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/uxc_docs/classes/UXC.Slider.html' target='_blank'>API docs</a>\n| <a href='../../comps/Slider/_demo' target='_blank'>demo link</a></p>",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector|string"
+                }
+            ],
+            "version": "dev 0.1",
+            "author": "qiushaowei   <suches@btbtd.org> | 75 Team",
+            "date": "2013-07-20",
+            "example": [
+                ""
             ]
         },
         "UXC.Tab": {
@@ -9155,17 +9193,22 @@
                 },
                 {
                     "name": "_maxVal",
-                    "description": "缓动的最大值",
+                    "description": "缓动的最大值, default = 200",
                     "type": "Number"
                 },
                 {
                     "name": "_startVal",
-                    "description": "缓动的起始值",
+                    "description": "缓动的起始值, default = 0",
                     "type": "Number"
                 },
                 {
                     "name": "_duration",
-                    "description": "缓动的总时间, 单位毫秒",
+                    "description": "缓动的总时间, 单位毫秒, default = 200",
+                    "type": "Number"
+                },
+                {
+                    "name": "_stepMs",
+                    "description": "缓动的间隔, 单位毫秒, default = 2",
                     "type": "Number"
                 }
             ],
@@ -9398,6 +9441,14 @@
         {
             "message": "unknown tag: attr",
             "line": " ../comps/Panel/UXC.Popup.js:67"
+        },
+        {
+            "message": "unknown tag: version",
+            "line": " ../comps/Slider/Slider.js:6"
+        },
+        {
+            "message": "unknown tag: date",
+            "line": " ../comps/Slider/Slider.js:6"
         },
         {
             "message": "unknown tag: version",
