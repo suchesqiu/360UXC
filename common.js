@@ -333,3 +333,21 @@ function easyEffect( _cb, _maxVal, _startVal, _duration, _stepMs ){
 
     return _interval;
 }
+/**
+ * 把输入值转换为布尔值
+ * @method parseBool
+ * @param   {*} _input
+ * @return bool
+ */
+function parseBool( _input ){
+    if( typeof _input == 'string' ){
+        _input = _input.replace( /[\s]/g, '' ).toLowerCase();
+        if( _input && ( _input == 'false' 
+                        || _input == '0' 
+                        || _input == 'null'
+                        || _input == 'undefined'
+       )) _input = false;
+       else if( _input ) _input = true;
+    }
+    return !!_input;
+}

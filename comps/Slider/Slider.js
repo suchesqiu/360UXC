@@ -28,7 +28,7 @@
         this._model = new Model( _layout );
 
         switch( this._model.direction() ){
-            default: this._view = new HorizontalView( this._model ); break;
+            default: this._view = new HorizontalView( this._model, this ); break;
         }
 
         this._init();
@@ -74,18 +74,54 @@
             function(){
                 var _p = this;
 
-                this._model.leftbutton() 
-                    && this._model.leftbutton().on( 'click', function( _evt ){
+                _p._model.leftbutton() 
+                    && _p._model.leftbutton().on( 'click', function( _evt ){
                         _p._view.move( 1 );
                     });
 
-                this._model.rightbutton() 
-                    && this._model.rightbutton().on( 'click', function( _evt ){
+                _p._model.rightbutton() 
+                    && _p._model.rightbutton().on( 'click', function( _evt ){
                         _p._view.move();
                     });
 
+                _p._initAutoMove();
+
+                _p._model.inited() && _p.on('inited', _p._model.inited() );
+                _p.trigger( 'inited' );
+
                 return this;
             }    
+
+        , on: 
+            function( _evtName, _cb ){
+                $(this).on( _evtName, _cb );
+                return this;
+            }
+
+        , trigger: 
+            function( _evtName ){
+                $(this).trigger('inited');
+                return this;
+            }
+
+        , move: function( _backwrad ){ this._view.move( _backwrad ); return this; }
+        , moveTo: function( _newpointer ){ this._view.moveTo( _newpointer ); return this; }
+        , totalpage: function(){ return this._model.totalpage(); }
+        , pointer: function(){ return this._model.pointer(); }
+        , page: function( _ix ){ return this._model.page( _ix ); }
+
+        , _initAutoMove:
+            function(){
+                var _p = this;
+                if( !_p._model.automove() ) return;
+
+                $(_p).on('beforemove', function( _evt, _oldpointer, _newpointer ){
+
+                });
+                $(_p).on('movedone', function( _evt, _oldpointer, _newpointer ){
+
+                });
+            }
     }
     
     function Model( _layout ){
@@ -93,25 +129,25 @@
 
         this._leftbutton = _layout.is( '[sliderleft]' ) ? $( _layout.attr('sliderleft') ) : null;
         this._rightbutton = _layout.is( '[sliderright]' ) ? $( _layout.attr('sliderright') ) : null;
-        this._width = _layout.is( '[sliderwidth]' ) ? parseInt( _layout.attr('sliderwidth'), 10 ) : 0;
-        this._height = _layout.is( '[sliderheight]' ) ? parseInt( _layout.attr('sliderheight'), 10 ) : 0;
-        this._itemwidth = _layout.is( '[slideritemwidth]' ) ? parseInt( _layout.attr('slideritemwidth'), 10 ) : 0;
-        this._itemheight = _layout.is( '[slideritemheight]' ) ? parseInt( _layout.attr('slideritemheight'), 10 ) : 0;
+        this._width = parseInt( _layout.attr('sliderwidth'), 10 ) || 0;
+        this._height = parseInt( _layout.attr('sliderheight'), 10 ) || 0;
+        this._itemwidth = parseInt( _layout.attr('slideritemwidth'), 10 ) || 0;
+        this._itemheight = parseInt( _layout.attr('slideritemheight'), 10 ) || 0;
 
-        this._direction = _layout.is( '[sliderdirection]' ) ? _layout.attr('sliderdirection').toLowerCase() : 'horizontal';
-        this._howmanyitem = _layout.is( '[sliderhowmanyitem]' ) ? parseInt( _layout.attr('sliderhowmanyitem'), 10 ) || 1 : 1;
+        this._direction = _layout.attr('sliderdirection').toLowerCase() || 'horizontal';
+        this._howmanyitem = parseInt( _layout.attr('sliderhowmanyitem'), 10 ) || 1;
 
-        this._defaultpage = _layout.is( '[sliderdefaultpage]' ) ? parseInt( _layout.attr('sliderdefaultpage'), 10 ) || 0 : 0;
-        this._stepms = _layout.is( '[sliderstepms]' ) ? parseInt( _layout.attr('sliderstepms'), 10 ) || 2 : 2;
-        this._durationms = _layout.is( '[sliderdurationms]' ) ? parseInt( _layout.attr('sliderdurationms'), 10 ) || 300 : 300;
+        _layout.is('[sliderinitedcb]') 
+            && window[ _layout.attr('sliderinitedcb') ]
+            && ( this._initedcb = window[ _layout.attr('sliderinitedcb') ] );
 
-        _layout.attr('sliderloop') && _layout.attr( 'sliderloop', _layout.attr('sliderloop').toLowerCase() );
-        this._loop;
-        _layout.attr('sliderloop') 
-            && _layout.attr('sliderloop') != 'false' 
-            && _layout.attr('sliderloop') != '0' 
-            && _layout.attr('sliderloop') != 'null' 
-            && ( this._loop = true );
+        this._defaultpage = parseInt( _layout.attr('sliderdefaultpage'), 10 ) || 0;
+        this._stepms = parseInt( _layout.attr('sliderstepms'), 10 ) || 2;
+        this._durationms = parseInt( _layout.attr('sliderdurationms'), 10 ) || 300;
+
+        this._loop = parseBool( _layout.attr('sliderloop') );
+        this._automove = parseBool( _layout.attr('sliderautomove') );
+        this._automovems = parseInt( _layout.attr('sliderautomovems'), 10 ) || 2000;
 
         this._totalpage;
         this._subitems;
@@ -135,6 +171,7 @@
 
                 return this;
             }
+        , layout: function(){ return this._layout; }
         , leftbutton: function(){ return this._leftbutton; }
         , rightbutton: function(){ return this._rightbutton; }
         , direction: function(){ return this._direction; }
@@ -144,6 +181,9 @@
         , loop: function(){ return this._loop; }
         , stepms: function(){ return this._stepms; }
         , durationms: function(){ return this._durationms; }
+        , inited: function(){ return this._initedcb; }
+        , automove: function(){ return this._automove; }
+        , automovems: function(){ return this._automovems; }
         , totalpage:
             function(){
                 this.subitems();
@@ -204,8 +244,9 @@
             }
     };
     
-    function HorizontalView( _model ){
+    function HorizontalView( _model, _slider ){
         this._model = _model;
+        this._slider = _slider;
 
         this._itemspace = 
                         ( 
@@ -233,19 +274,6 @@
                 _backwrad = !!_backwrad;
                 UXC.log( 'HorizontalView move, is backwrad', _backwrad, this._model.pointer() );
 
-                if( !this._model.loop() ){
-                    if( _backwrad && this._model.pointer() === 0 ){
-                        return;
-                    }
-                    if( !_backwrad && this._model.pointer() >= this._model.totalpage() - 1 ){
-                        return;
-                    }
-                }
-
-                if( this._interval ){
-                    clearInterval( this._interval );
-                    this._setPagePosition( this._model.pointer() );
-                }
                 var _newpointer = this._model.newpointer( _backwrad );
                 UXC.log( printf( 'is backwrad: {0}, pointer:{1}, new pointer:{2}'
                             , _backwrad, this._model.pointer(), _newpointer
@@ -257,9 +285,26 @@
         , moveTo:
             function( _newpointer ){
                 var _p = this;
+
+                if( !this._model.loop() ){
+                    if( _newpointer <= this._model.pointer() && this._model.pointer() === 0 ){
+                        $(this._slider).trigger( 'outmin' );
+                        return;
+                    }
+                    if( _newpointer >= this._model.pointer() && this._model.pointer() >= this._model.totalpage() - 1 ){
+                        $(this._slider).trigger( 'outmax' );
+                        return;
+                    }
+                }
+
                 _newpointer = this._model.fixpointer( _newpointer );
                 var _oldpointer = this._model.pointer();
                 if( _newpointer === _oldpointer ) return;
+
+                if( this._interval ){
+                    clearInterval( this._interval );
+                    this._setPagePosition( this._model.pointer() );
+                }
 
                 _p._model.pointer( _newpointer );
 
@@ -269,8 +314,6 @@
                 var _concat = _opage.concat( _npage );
 
                 this._setNewPagePosition( _opage, _npage, _oldpointer, _newpointer );
-
-
             }
 
         , _setNewPagePosition:
@@ -302,6 +345,7 @@
                     _item.data('TMP_LEFT', _item.prop('offsetLeft') );
                 });
 
+                $( _p._slider ).trigger( 'beforemove', [_oldpointer, _newpointer] );
                 _p.interval = easyEffect( function( _step, _done ){
                     UXC.log( _step );
                     $( _concat ).each(function( _ix, _item ){
@@ -310,6 +354,7 @@
 
                     if( _done ){
                         $( _opage ).each( function( _ix, _item ){ _item.hide(); } );
+                        $( _p._slider ).trigger( 'movedone', [_oldpointer, _newpointer] );
                     }
 
                 }, this._model.width(), 0, this._model.durationms(), this._model.stepms() );
