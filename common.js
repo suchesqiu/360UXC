@@ -288,4 +288,48 @@ function script_path_f(){
     else if( /\\/.test( _path ) ){ _path = _path.split('\\'); _path.pop(); _path = _path.join('\\') + '/'; }
     return _path;
 }
+/**
+ * 缓动函数, 动画效果为按时间缓动 
+ * <br />这个函数只考虑递增, 你如果需要递减的话, 在回调里用 _maxVal - _stepval 
+ * @method  easyEffect
+ * @static
+ * @param   {function}  _cb         缓动运动时的回调
+ * @param   {number}    _maxVal     缓动的最大值, default = 200
+ * @param   {number}    _startVal   缓动的起始值, default = 0
+ * @param   {number}    _duration   缓动的总时间, 单位毫秒, default = 200
+ * @param   {number}    _stepMs     缓动的间隔, 单位毫秒, default = 2
+ * @return  interval
+ * @example
+        $(document).ready(function(){
+            window.js_output = $('span.js_output');
+            window.ls = [];
+            window.EFF_INTERVAL = easyEffect( effectcallback, 100);
+        });
 
+        function effectcallback( _stepval, _done ){
+            js_output.html( _stepval );
+            ls.push( _stepval );
+
+            !_done && js_output.html( _stepval );
+            _done && js_output.html( _stepval + '<br />' + ls.join() );
+        }
+ */
+function easyEffect( _cb, _maxVal, _startVal, _duration, _stepMs ){
+    var _beginDate = new Date(), _timepass
+        , _maxVal = _maxVal || 200, _startVal = _startVal || 0, _tmp = 0, _done
+        , _duration = _duration || 200, _stepMs = _stepMs || 2;
+    var _interval = setInterval(
+        function(){
+            _timepass = new Date() - _beginDate;
+            _tmp = _timepass / _duration * _maxVal;
+            _tmp += _startVal;
+            if( _tmp > _maxVal ){
+                _tmp = _maxVal;
+                _done = true;
+                clearInterval( _interval );
+            }
+            _cb && _cb( _tmp, _done );
+        }, _stepMs );
+
+    return _interval;
+}
