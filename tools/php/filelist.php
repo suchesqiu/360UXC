@@ -12,6 +12,10 @@ $fileDir = str_replace($sroot, '', $fileDir);
 
 //echo "$sroot<br /> " . __FILE__  . "<br/> ". $fileDir;
 
+if( $fileDir == '/home/qiushaowei/htdocs/uxcjs/tools/php' ){
+    $fileDir = '/~qiushaowei/uxcjs/tools/php';
+}
+
 $base_path =  './';
 $key = 'imququin360';
 
