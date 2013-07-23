@@ -76,13 +76,32 @@
 
                 _p._model.leftbutton() 
                     && _p._model.leftbutton().on( 'click', function( _evt ){
+                        _p.trigger('cleartimeout');
+                        _p.trigger('movetoleft');
                         _p._view.move( 1 );
-                    });
+                    })
+                    .on('mouseenter', function(){ _p.trigger('controlover'); } )
+                    .on('mouseleave', function(){ _p.trigger('controlout'); } )
+                ;
 
                 _p._model.rightbutton() 
                     && _p._model.rightbutton().on( 'click', function( _evt ){
+                        _p.trigger('cleartimeout');
+                        _p.trigger('movetoright');
                         _p._view.move();
-                    });
+                    })
+                    .on('mouseenter', function(){ _p.trigger('controlover'); } )
+                    .on('mouseleave', function(){ _p.trigger('controlout'); } )
+                ;
+
+                _p.on('cleartinterval', function(){
+                    _p._model.clearInterval();
+                    _p._view.setPagePosition();
+                });
+
+                _p.on('cleartimeout', function(){
+                    _p._model.clearTimeout();
+                });
 
                 _p._initAutoMove();
 
@@ -100,7 +119,7 @@
 
         , trigger: 
             function( _evtName ){
-                $(this).trigger('inited');
+                $(this).trigger(_evtName);
                 return this;
             }
 
@@ -115,12 +134,49 @@
                 var _p = this;
                 if( !_p._model.automove() ) return;
 
-                $(_p).on('beforemove', function( _evt, _oldpointer, _newpointer ){
-
+                _p.on('beforemove', function( _evt, _oldpointer, _newpointer ){
+                    _p.trigger('cleartimeout');
                 });
-                $(_p).on('movedone', function( _evt, _oldpointer, _newpointer ){
 
+                _p.on('movedone', function( _evt, _oldpointer, _newpointer ){
+                    _p.trigger('automove');
                 });
+
+                _p._model.layout().on( 'mouseenter', function( _evt ){
+                    _p.trigger('cleartimeout');
+                    _p.trigger('mouseenter');
+                });
+
+                _p._model.layout().on( 'mouseleave', function( _evt ){
+                    _p.trigger('cleartimeout');
+                    _p.trigger('mouseleave');
+                    _p._view.setPagePosition();
+                    _p.trigger('automove');
+                });
+
+                _p.on('controlover', function(){
+                    _p.trigger('cleartimeout');
+                });
+
+                _p.on('controlout', function(){
+                    _p.trigger('automove');
+                });
+
+                _p.on('movetoleft', function(){
+                    _p._model.moveDirection( false );
+                });
+
+                _p.on('movetoright', function(){
+                    _p._model.moveDirection( true );
+                });
+
+                $( _p ).on('automove', function(){
+                    _p._model.timeout( setTimeout( function(){
+                        _p._view.moveTo( _p._model.automoveNewPointer() );
+                    }, _p._model.automovems() ));
+                });
+
+                _p.trigger('automove');
             }
     }
     
@@ -152,6 +208,9 @@
         this._totalpage;
         this._subitems;
         this._pointer;
+        this._interval;
+        this._timeout;
+        this._moveDirection = true;
         
         this._init();
     }
@@ -230,6 +289,39 @@
                 _r = this.fixpointer( _r );
                 return _r;
             }
+        , automoveNewPointer:
+            function(){
+                var _r = this.pointer();
+                if( this._moveDirection ){
+                    _r++;
+                }else{
+                    _r--;
+                }
+
+                if( this._loop ){
+                    if( _r >= this.totalpage() ){
+                        _r = 0;
+                    }else if( _r < 0 ){
+                        _r = this.totalpage() - 1;
+                    }
+                }else{
+                    if( _r >= this.totalpage() ){
+                        _r = this.totalpage() - 2;
+                        this._moveDirection = false;
+                    }else if( _r < 0 ){
+                        _r = 1
+                        this._moveDirection = true;
+                    }
+                }
+                return _r;
+            }
+        , moveDirection:
+            function( _setter ){
+                typeof _setter != 'undefined' && ( this._moveDirection = _setter );
+                UXC.log( 'moveDirection', this._moveDirection );
+                return this._moveDirection;
+            }
+
         , fixpointer:
             function( _pointer ){
                 var _r = _pointer;
@@ -241,6 +333,27 @@
                     _r >= this.totalpage() && ( _r = this.totalpage() - 1 );
                 }
                 return _r;
+            }
+        , interval:
+            function( _setter ){
+                typeof _setter != 'undefined' && ( this._interval = _setter );
+                return this._interval;
+            }
+
+        , 'clearInterval':
+            function(){
+                this.interval() && clearInterval( this.interval() );
+            }
+
+        , timeout:
+            function( _setter ){
+                typeof _setter != 'undefined' && ( this._timeout = _setter );
+                return this._timeout;
+            }
+
+        , 'clearTimeout':
+            function(){
+                this.timeout() && clearTimeout( this.timeout() );
             }
     };
     
@@ -254,8 +367,7 @@
                             Math.floor( this._model.width() / this._model.itemwidth() ) * this._model.itemwidth()
                         )
                         / ( this._model.totalpage() - 1 );
-
-        this._interval;
+        this._itemspace = parseInt( this._itemspace );
 
         this._init();
     }
@@ -263,7 +375,7 @@
     HorizontalView.prototype = {
         _init:
             function() {
-                this._setPagePosition( this._model.pointer() );
+                this.setPagePosition( this._model.pointer() );
 
                 return this;
             }
@@ -301,12 +413,6 @@
                 var _oldpointer = this._model.pointer();
                 if( _newpointer === _oldpointer ) return;
 
-                if( this._interval ){
-                    clearInterval( this._interval );
-                    this._setPagePosition( this._model.pointer() );
-                }
-
-                _p._model.pointer( _newpointer );
 
                 var _opage = this._model.page( _oldpointer )
                     , _npage = this._model.page( _newpointer );
@@ -314,40 +420,44 @@
                 var _concat = _opage.concat( _npage );
 
                 this._setNewPagePosition( _opage, _npage, _oldpointer, _newpointer );
+                _p._model.pointer( _newpointer );
             }
 
         , _setNewPagePosition:
             function( _opage, _npage, _oldpointer, _newpointer ){
                 var _p = this, _begin, _concat = _opage.concat( _npage ), _isPlus;
 
+                $( this._slider ).trigger( 'cleartinterval' );
+
                 if( _oldpointer < _newpointer ){
-                    _begin = this._model.width();
+                    _begin = this._model.width() + this._itemspace;
                 }else{
-                    _begin = -this._model.width();
+                    _begin = -( this._model.width() + this._itemspace );
                     _isPlus = true;
                 }
 
                 _oldpointer === (_p._model.totalpage() - 1 ) 
                     && _newpointer === 0 
-                    && ( _begin = this._model.width(), _isPlus = false );
+                    && ( _begin = this._model.width() + this._itemspace, _isPlus = false );
 
                 _oldpointer === 0 
                     && _newpointer === (_p._model.totalpage() - 1 ) 
-                    && ( _begin = -this._model.width(), _isPlus = true );
+                    && ( _begin = -( this._model.width() + this._itemspace ), _isPlus = true );
 
                 $.each( _npage, function( _ix, _item ){
                     var _sp = $(_item);
                         _sp.css( { 'left': _begin + _p._model.itemwidth() * _ix + _p._itemspace * _ix + 'px' } );
                         _sp.show();
                 });
+                $( _p._slider ).trigger( 'beforemove', [_oldpointer, _newpointer] );
 
                 $.each( _concat, function(_ix, _item){
                     _item.data('TMP_LEFT', _item.prop('offsetLeft') );
                 });
 
-                $( _p._slider ).trigger( 'beforemove', [_oldpointer, _newpointer] );
-                _p.interval = easyEffect( function( _step, _done ){
-                    UXC.log( _step );
+                UXC.log( 'zzzzzzzzzz', _begin, this._itemspace, this._model.moveDirection() );
+                _p._model.interval( easyEffect( function( _step, _done ){
+                    //UXC.log( _step );
                     $( _concat ).each(function( _ix, _item ){
                         _item.css( {'left': _item.data('TMP_LEFT') +  (_isPlus? _step : -_step ) + 'px' } );
                     });
@@ -355,14 +465,18 @@
                     if( _done ){
                         $( _opage ).each( function( _ix, _item ){ _item.hide(); } );
                         $( _p._slider ).trigger( 'movedone', [_oldpointer, _newpointer] );
+                        _p._model.pointer( _newpointer );
+                        _p.setPagePosition();
                     }
 
-                }, this._model.width(), 0, this._model.durationms(), this._model.stepms() );
+                   }, this._model.width(), 0, this._model.durationms(), this._model.stepms() )
+               );
             }
 
-        , _setPagePosition:
+        , setPagePosition:
             function( _ix ){
-                UXC.log( 'view _setPagePosition', new Date().getTime() );
+                UXC.log( 'view setPagePosition', new Date().getTime() );
+                typeof _ix == 'undefined' && ( _ix = this._model.pointer() );
                 this._model.subitems().hide();
                 var _page = this._model.page( _ix );
                 for( var i = 0, j = _page.length; i < j; i++ ){
