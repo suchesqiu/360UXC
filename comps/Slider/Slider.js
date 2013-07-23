@@ -139,6 +139,7 @@
                 });
 
                 _p.on('movedone', function( _evt, _oldpointer, _newpointer ){
+                    if( _p._model.controlover() ) return;
                     _p.trigger('automove');
                 });
 
@@ -156,10 +157,12 @@
 
                 _p.on('controlover', function(){
                     _p.trigger('cleartimeout');
+                    _p._model.controlover( true );
                 });
 
                 _p.on('controlout', function(){
                     _p.trigger('automove');
+                    _p._model.controlover( false );
                 });
 
                 _p.on('movetoleft', function(){
@@ -354,6 +357,12 @@
         , 'clearTimeout':
             function(){
                 this.timeout() && clearTimeout( this.timeout() );
+            }
+
+        , controlover:
+            function( _setter ){
+                typeof _setter != 'undefined' && ( this._controlover = _setter );
+                return this._controlover;
             }
     };
     
