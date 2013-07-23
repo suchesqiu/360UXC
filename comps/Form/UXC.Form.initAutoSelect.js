@@ -227,8 +227,8 @@
                      */
                     if( _target.data('isLastSelect') ){
                         if( ( parseInt( _reqval ) || 0 ) < 1 ){
-                            removeOption( _target );
-                            UXC.Form.initAutoSelect.hideEmpty && _target.hide();
+                            //removeOption( _target );
+                            //UXC.Form.initAutoSelect.hideEmpty && _target.hide();
                         }
                        return;
                     }
