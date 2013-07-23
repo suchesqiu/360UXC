@@ -292,6 +292,31 @@
                 var _reqval = _val, _url;
                     _p.data(&#x27;parentSelect&#x27;) &amp;&amp; ( _reqval = _p.data(&#x27;parentSelect&#x27;).val() );
 
+                function cb_1_2( _select ){
+                    if( _select.is( &#x27;[selecttarget]&#x27; ) ){
+                        var _target = $(_select.attr(&#x27;selecttarget&#x27;));
+                        if( _target.is( &#x27;[selectvalue]&#x27; ) ){
+                            _val = _target.attr(&#x27;selectvalue&#x27;);
+                            _target.removeAttr(&#x27;selectvalue&#x27;);
+                        }else _val = &#x27;&#x27;;
+                        var _reqval = _val, _url;
+
+                        if( _target.attr(&#x27;selectdatacb&#x27;) ){
+                            window[ _target.attr(&#x27;selectdatacb&#x27;) ] 
+                                &amp;&amp; processData( _target, _val, triggerChange, 
+                                        window[ _target.attr(&#x27;selectdatacb&#x27;) ]( getParentId( _target ) ) );
+                        }else if( _target.is( &#x27;[selecturl]&#x27; ) ){
+                            _url = add_url_params( _target.attr( &#x27;selecturl&#x27; ), { &#x27;rnd&#x27;: new Date().getTime() } );
+                            if( _target.data(&#x27;parentSelect&#x27;) ){
+                                _reqval = _target.data(&#x27;parentSelect&#x27;).val();
+                            }
+                            _url = _url.replace( /\{0\}/g, _reqval );
+
+                            getData( _target, _url, _val, triggerChange);
+                        }
+                    }
+                }
+
                 if( _p.attr(&#x27;selectdatacb&#x27;) ){
                     window[ _p.attr(&#x27;selectdatacb&#x27;) ] 
                         &amp;&amp; processData( _p, _val, cb_1_2
@@ -302,33 +327,7 @@
                         _reqval = _p.data(&#x27;parentSelect&#x27;).val();
                     }
                     _url = _url.replace( /\{0\}/g, _reqval );
-
                     getData( _p, _url, _val, cb_1_2 );
-
-                    function cb_1_2( _select ){
-                        if( _select.is( &#x27;[selecttarget]&#x27; ) ){
-                            var _target = $(_select.attr(&#x27;selecttarget&#x27;));
-                            if( _target.is( &#x27;[selectvalue]&#x27; ) ){
-                                _val = _target.attr(&#x27;selectvalue&#x27;);
-                                _target.removeAttr(&#x27;selectvalue&#x27;);
-                            }else _val = &#x27;&#x27;;
-                            var _reqval = _val, _url;
-
-                            if( _target.attr(&#x27;selectdatacb&#x27;) ){
-                                window[ _target.attr(&#x27;selectdatacb&#x27;) ] 
-                                    &amp;&amp; processData( _target, _val, triggerChange, 
-                                            window[ _target.attr(&#x27;selectdatacb&#x27;) ]( getParentId( _target ) ) );
-                            }else if( _target.is( &#x27;[selecturl]&#x27; ) ){
-                                _url = add_url_params( _target.attr( &#x27;selecturl&#x27; ), { &#x27;rnd&#x27;: new Date().getTime() } );
-                                if( _target.data(&#x27;parentSelect&#x27;) ){
-                                    _reqval = _target.data(&#x27;parentSelect&#x27;).val();
-                                }
-                                _url = _url.replace( /\{0\}/g, _reqval );
-
-                                getData( _target, _url, _val, triggerChange);
-                            }
-                        }
-                    }
                 }
             }
         }else{
@@ -372,10 +371,10 @@
                      */
                     if( _target.data(&#x27;isLastSelect&#x27;) ){
                         if( ( parseInt( _reqval ) || 0 ) &lt; 1 ){
-                            removeOption( _target );
-                            UXC.Form.initAutoSelect.hideEmpty &amp;&amp; _target.hide();
+                            //removeOption( _target );
+                            //UXC.Form.initAutoSelect.hideEmpty &amp;&amp; _target.hide();
                         }
-                       return;
+                       //return;
                     }
 
                     if( _target.attr(&#x27;selectdatacb&#x27;) ){

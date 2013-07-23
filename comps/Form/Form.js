@@ -319,6 +319,31 @@
                 var _reqval = _val, _url;
                     _p.data('parentSelect') && ( _reqval = _p.data('parentSelect').val() );
 
+                function cb_1_2( _select ){
+                    if( _select.is( '[selecttarget]' ) ){
+                        var _target = $(_select.attr('selecttarget'));
+                        if( _target.is( '[selectvalue]' ) ){
+                            _val = _target.attr('selectvalue');
+                            _target.removeAttr('selectvalue');
+                        }else _val = '';
+                        var _reqval = _val, _url;
+
+                        if( _target.attr('selectdatacb') ){
+                            window[ _target.attr('selectdatacb') ] 
+                                && processData( _target, _val, triggerChange, 
+                                        window[ _target.attr('selectdatacb') ]( getParentId( _target ) ) );
+                        }else if( _target.is( '[selecturl]' ) ){
+                            _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
+                            if( _target.data('parentSelect') ){
+                                _reqval = _target.data('parentSelect').val();
+                            }
+                            _url = _url.replace( /\{0\}/g, _reqval );
+
+                            getData( _target, _url, _val, triggerChange);
+                        }
+                    }
+                }
+
                 if( _p.attr('selectdatacb') ){
                     window[ _p.attr('selectdatacb') ] 
                         && processData( _p, _val, cb_1_2
@@ -329,33 +354,7 @@
                         _reqval = _p.data('parentSelect').val();
                     }
                     _url = _url.replace( /\{0\}/g, _reqval );
-
                     getData( _p, _url, _val, cb_1_2 );
-
-                    function cb_1_2( _select ){
-                        if( _select.is( '[selecttarget]' ) ){
-                            var _target = $(_select.attr('selecttarget'));
-                            if( _target.is( '[selectvalue]' ) ){
-                                _val = _target.attr('selectvalue');
-                                _target.removeAttr('selectvalue');
-                            }else _val = '';
-                            var _reqval = _val, _url;
-
-                            if( _target.attr('selectdatacb') ){
-                                window[ _target.attr('selectdatacb') ] 
-                                    && processData( _target, _val, triggerChange, 
-                                            window[ _target.attr('selectdatacb') ]( getParentId( _target ) ) );
-                            }else if( _target.is( '[selecturl]' ) ){
-                                _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
-                                if( _target.data('parentSelect') ){
-                                    _reqval = _target.data('parentSelect').val();
-                                }
-                                _url = _url.replace( /\{0\}/g, _reqval );
-
-                                getData( _target, _url, _val, triggerChange);
-                            }
-                        }
-                    }
                 }
             }
         }else{
@@ -399,10 +398,10 @@
                      */
                     if( _target.data('isLastSelect') ){
                         if( ( parseInt( _reqval ) || 0 ) < 1 ){
-                            removeOption( _target );
-                            UXC.Form.initAutoSelect.hideEmpty && _target.hide();
+                            //removeOption( _target );
+                            //UXC.Form.initAutoSelect.hideEmpty && _target.hide();
                         }
-                       return;
+                       //return;
                     }
 
                     if( _target.attr('selectdatacb') ){

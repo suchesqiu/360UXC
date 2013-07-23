@@ -1012,7 +1012,7 @@
             "extension_for": [],
             "namespace": "window",
             "file": "../UXC.js",
-            "line": 2,
+            "line": 3,
             "description": "UXC jquery 组件库 资源调用控制类\n<br />这是一个单例模式, 全局访问使用 UXC 或 window.UXC\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/uxc_docs/classes/window.UXC.html' target='_blank'>API docs</a>\n| <a href='../../_demo' target='_blank'>demo link</a></p>",
             "static": 1,
             "example": [
@@ -2024,14 +2024,14 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 226,
+            "line": 225,
             "description": "如果是最后一个SELECT, 那么取消数据请求",
             "class": "UXC.Form",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 271,
+            "line": 270,
             "description": "获取 select 的父ID, 这个方便就用于静态数据的联动框",
             "itemtype": "method",
             "name": "initAutoSelect.getParentId",
@@ -2050,7 +2050,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 287,
+            "line": 286,
             "description": "触发下一级下拉框的change事件",
             "itemtype": "method",
             "name": "initAutoSelect.triggerChange",
@@ -2069,7 +2069,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 299,
+            "line": 298,
             "description": "AJAX请求数据, 并处理结果",
             "itemtype": "method",
             "name": "initAutoSelect.getData",
@@ -2103,7 +2103,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 314,
+            "line": 313,
             "description": "处理数据结果",
             "itemtype": "method",
             "name": "initAutoSelect.processData",
@@ -2137,7 +2137,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 344,
+            "line": 343,
             "description": "判断下拉框是否为空\n<br />带 defaultoption 属性的 option 判断时被忽略",
             "itemtype": "method",
             "name": "initAutoSelect.isEmpty",
@@ -2156,7 +2156,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 362,
+            "line": 361,
             "description": "选中下拉框的第一个option",
             "itemtype": "method",
             "name": "initAutoSelect.selectFirst",
@@ -2175,7 +2175,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 375,
+            "line": 374,
             "description": "清空下拉框的内容\n<br />带 defaultoption 属性的 option 判断时被忽略",
             "itemtype": "method",
             "name": "initAutoSelect.removeOption",
@@ -2194,7 +2194,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 391,
+            "line": 390,
             "description": "判断下拉框的option里是否有给定的值",
             "itemtype": "method",
             "name": "initAutoSelect.hasVal",
@@ -2218,7 +2218,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 410,
+            "line": 409,
             "description": "判断下拉框是否有数据项\n<br />带 defaultoption 属性的 option 判断时被忽略",
             "itemtype": "method",
             "name": "initAutoSelect.hasItem",
@@ -2237,7 +2237,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 428,
+            "line": 427,
             "description": "取得某一类级联下拉框的所有下拉框",
             "itemtype": "method",
             "name": "initAutoSelect.getSelectList",
@@ -8587,7 +8587,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 18,
+            "line": 19,
             "description": "UXC组件库所在路径",
             "itemtype": "property",
             "name": "PATH",
@@ -8598,7 +8598,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 26,
+            "line": 27,
             "description": "是否显示调试信息",
             "itemtype": "property",
             "name": "debug",
@@ -8609,7 +8609,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 33,
+            "line": 34,
             "description": "导入UXC组件",
             "itemtype": "method",
             "name": "use",
@@ -8639,7 +8639,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 90,
+            "line": 91,
             "description": "输出调试信息, 可通过 UXC.debug 指定是否显示调试信息",
             "params": [
                 {
@@ -8656,7 +8656,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 101,
+            "line": 102,
             "description": "定义输出路径的 v 参数, 以便控制缓存",
             "itemtype": "property",
             "name": "pathPostfix",
@@ -8668,7 +8668,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 109,
+            "line": 110,
             "description": "是否启用nginx concat 模块的路径格式",
             "itemtype": "property",
             "name": "enableNginxStyle",
@@ -8680,7 +8680,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 117,
+            "line": 118,
             "description": "定义 nginx style 的基础路径\n<br /><b>注意:</b> 如果这个属性为空, 即使 enableNginxStyle = true, 也是直接输出默认路径",
             "itemtype": "property",
             "name": "nginxBasePath",
@@ -8692,7 +8692,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 126,
+            "line": 127,
             "description": "输出 nginx concat 模块的脚本路径格式",
             "itemtype": "method",
             "name": "_writeNginxScript",
@@ -8711,7 +8711,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 154,
+            "line": 155,
             "description": "输出的脚本路径格式",
             "itemtype": "method",
             "name": "_writeNormalScript",
@@ -8730,7 +8730,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 171,
+            "line": 172,
             "description": "资源路径映射对象\n<br />设置 UXC.use 逗号(',') 分隔项的 对应URL路径",
             "itemtype": "property",
             "name": "FILE_MAP",
@@ -8745,14 +8745,14 @@
         },
         {
             "file": "../UXC.js",
-            "line": 210,
+            "line": 211,
             "description": "如果 console 不可用, 则生成一个模拟的 console 对象",
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../UXC.js",
-            "line": 216,
+            "line": 217,
             "description": "自动识别组件库所在路径",
             "class": "window.UXC",
             "namespace": "window"
@@ -9180,6 +9180,24 @@
             "example": [
                 "\n       $(document).ready(function(){\n           window.js_output = $('span.js_output');\n           window.ls = [];\n           window.EFF_INTERVAL = easyEffect( effectcallback, 100);\n       });\n\n       function effectcallback( _stepval, _done ){\n           js_output.html( _stepval );\n           ls.push( _stepval );\n\n           !_done && js_output.html( _stepval );\n           _done && js_output.html( _stepval + '<br />' + ls.join() );\n       }"
             ],
+            "class": ".window"
+        },
+        {
+            "file": "../common.js",
+            "line": 336,
+            "description": "把输入值转换为布尔值",
+            "itemtype": "method",
+            "name": "parseBool",
+            "params": [
+                {
+                    "name": "_input",
+                    "description": "",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "bool"
+            },
             "class": ".window"
         },
         {
@@ -9626,7 +9644,7 @@
         },
         {
             "message": "unknown tag: date",
-            "line": " ../UXC.js:2"
+            "line": " ../UXC.js:3"
         },
         {
             "message": "replacing incorrect tag: returns with return",
@@ -9658,7 +9676,7 @@
         },
         {
             "message": "Missing item type\n如果是最后一个SELECT, 那么取消数据请求",
-            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:226"
+            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:225"
         },
         {
             "message": "Missing item type\n监听 全选/反选 按钮的点击事件",
@@ -10178,11 +10196,11 @@
         },
         {
             "message": "Missing item type\n如果 console 不可用, 则生成一个模拟的 console 对象",
-            "line": " ../UXC.js:210"
+            "line": " ../UXC.js:211"
         },
         {
             "message": "Missing item type\n自动识别组件库所在路径",
-            "line": " ../UXC.js:216"
+            "line": " ../UXC.js:217"
         },
         {
             "message": "Missing item type\nFor feature detection",

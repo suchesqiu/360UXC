@@ -5,7 +5,7 @@
 <title>iframe upload - suches template</title>
 <style>
     html{ overflow: hidden; }
-    *{ margin: 0; padding: 0; }
+    *{ margin: 0; padding: 0; cursor: pointer!important; }
     body{ width: 100%; margin: 0 auto; visibility: hidden; }
 </style>
 </head>    
@@ -15,7 +15,7 @@
  enctype="multipart/form-data"
  id="upload_form" >
     <button type="button" id="btn" class="btn btn-2">上传文件</button>
-    <input type="file" name="file" id="flBtn" class="upbtn" />
+    <input type="file" name="file" id="flBtn" class="upbtn" style="cursor:pointer!important;" />
     <input type="text" name="info" id="infoBtn" class="info" value="" style="display:none" />
     <input type="submit" value="submit" style="display:none" />
 </form>
@@ -38,7 +38,7 @@ var fm = document.getElementById( 'upload_form' )
 , btn = document.getElementById('btn');
 ;
 
-var infoBtnval = get_url_param( 'infoBtn' ) 
+var infoBtnval = (get_url_param( 'infoBtn' ) || get_url_param( 'info' ) )
 , uploadurl = get_url_param( 'url' )
 , uploadname = get_url_param( 'name' )
 , btntext = get_url_param( 'btntext' )
@@ -57,7 +57,7 @@ if( uploadurl ){ try{ uploadurl = decodeURIComponent( uploadurl ); }catch(ex){} 
 if( uploadname ){ try{ uploadname = decodeURIComponent( uploadname ); }catch(ex){} }
 if( btntext ){ try{ btntext = decodeURIComponent( btntext ); }catch(ex){} }
 
-uploadurl && ( uploadurl = add_url_params( uploadurl, { 'cb': callback } ) );
+uploadurl && ( uploadurl = add_url_params( uploadurl, { 'cb': callback, 'info': infoBtnval } ) );
 
 uploadurl && fm.setAttribute( 'action', uploadurl );
 uploadname && flBtn.setAttribute( 'name', uploadname );
@@ -151,7 +151,7 @@ function del_url_param( $url, $key ){
             if( items[0].toLowerCase() == $key.toLowerCase() ) continue;
             tmpParams.push( items.join('=') )
         }
-        $url += '?' + newParamAr.join('&');
+        $url += '?' + tmpParams.join('&');
     }
     sharp && ( $url += '#' + sharp );
     return $url;

@@ -9933,8 +9933,27 @@ function easyEffect( _cb, _maxVal, _startVal, _duration, _stepMs ){
 
     return _interval;
 }
+/**
+ * 把输入值转换为布尔值
+ * @method parseBool
+ * @param   {*} _input
+ * @return bool
+ */
+function parseBool( _input ){
+    if( typeof _input == 'string' ){
+        _input = _input.replace( /[\s]/g, '' ).toLowerCase();
+        if( _input && ( _input == 'false' 
+                        || _input == '0' 
+                        || _input == 'null'
+                        || _input == 'undefined'
+       )) _input = false;
+       else if( _input ) _input = true;
+    }
+    return !!_input;
+}
 
 ;(function( $ ){
+    if( window.UXC && window.UXC.PATH ) return;
     /**
      * UXC jquery 组件库 资源调用控制类
      * <br />这是一个单例模式, 全局访问使用 UXC 或 window.UXC
