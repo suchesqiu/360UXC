@@ -230,7 +230,7 @@
                             //removeOption( _target );
                             //UXC.Form.initAutoSelect.hideEmpty && _target.hide();
                         }
-                       return;
+                       //return;
                     }
 
                     if( _target.attr('selectdatacb') ){
