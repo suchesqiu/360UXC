@@ -4,11 +4,31 @@
 
     window.Slider = UXC.Slider = Slider;
     /**
-     * Slider 类
+     * Slider 划动菜单类
+     * <br />页面加载完毕后, Slider 会查找那些有 class = js_autoSlider 的标签进行自动初始化
      * <p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>
      * <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
      * | <a href='http://uxc.btbtd.org/uxc_docs/classes/UXC.Slider.html' target='_blank'>API docs</a>
      * | <a href='../../comps/Slider/_demo' target='_blank'>demo link</a></p>
+     * <p>
+     *      Slider 可以指定的一些常用 html 属性, 这个类的属性很多, 想了解得更详细看源码吧~
+     *      <br /><b>slidersubitems</b>: 指定具体子元素是那些, selector ( 子元素默认是 layout的子标签 )
+     *      <br /><b>sliderleft</b>: 左移的触发selector
+     *      <br /><b>sliderright</b>: 右移的触发selector
+     *      <br /><b>sliderwidth</b>: 主容器宽度
+     *      <br /><b>slideritemwidth</b>: 子元素的宽度
+     *      <br /><b>sliderhowmanyitem</b>: 每次滚动多少个子元素, 默认1
+     *      <br /><b>sliderdefaultpage</b>: 默认显示第几页
+     *      <br /><b>sliderstepms</b>: 滚动效果运动的间隔时间(毫秒), 默认 5
+     *      <br /><b>sliderdurationms</b>: 滚动效果的总时间
+     *
+     *      <br /><b>sliderdirection</b>: 滚动的方向, 默认 horizontal, { horizontal, vertical }
+     *      <br /><b>sliderloop</b>: 是否循环滚动
+     *      <br /><b>sliderinitedcb</b>: 初始完毕后的回调函数, 便于进行更详细的声明
+     *
+     *      <br /><b>sliderautomove</b>: 是否自动滚动
+     *      <br /><b>sliderautomovems</b>: 自动滚动的间隔
+     * </p>
      * @namespace UXC
      * @class Slider
      * @constructor
@@ -17,6 +37,67 @@
      * @author  qiushaowei   <suches@btbtd.org> | 75 Team
      * @date    2013-07-20
      * @example
+            <style>
+                .hslide_list dd{ display: none; }
+
+                .hslide_list dd, .hslide_list dd img{
+                    width: 160px;
+                    height: 230px;
+                }
+
+                .slider_one_item dd, .slider_one_item dd img{
+                    width: 820px;
+                    height: 230px;
+                }
+            </style>
+            <link href='../../Slider/res/hslider/style.css' rel='stylesheet' />
+            <script src="../../../lib.js"></script>
+            <script>
+                UXC.debug = true;
+                UXC.use( 'Slider' );
+
+                function sliderinitedcb(){
+                    var _sliderIns = this;
+
+                    UXC.log( 'sliderinitedcb', new Date().getTime() );
+
+                    _sliderIns.on('outmin', function(){
+                        UXC.log( 'slider outmin' );
+                    }).on('outmax', function(){
+                        UXC.log( 'slider outmax' );
+                    }).on('movedone', function( _evt, _oldpointer, _newpointer){
+                        UXC.log( 'slider movedone', _evt, _oldpointer, _newpointer );
+                    }).on('beforemove', function( _evt, _oldpointer, _newpointer ){
+                        UXC.log( 'slider beforemove', _evt, _oldpointer, _newpointer );
+                    });
+                }
+            </script>
+            <table class="hslide_wra">
+                <tr>
+                    <td class="hslide_left">
+                        <a href="javascript:" hidefocus="true" style="outline:none;" class="js_slideleft">左边滚动</a>
+                    </td>
+                    <td class="hslide_mid">
+                        <dl 
+                            style="width:820px; height: 230px; margin:0 5px;"
+                            class="hslide_list clearfix js_slideList js_autoSlider" 
+                            slidersubitems="> dd" sliderleft="a.js_slideleft" sliderright="a.js_slideright" 
+                            sliderwidth="820" slideritemwidth="160"
+                            sliderdirection="horizontal" sliderhowmanyitem="5"
+                            sliderloop="false" sliderdurationms="300"
+                            sliderinitedcb="sliderinitedcb"
+                            >
+                            <dd style="display: block; left: 0; " class="tipsItem">content...</dd>
+                            <dd style="display: block; left: 0; " class="tipsItem">content...</dd>
+                            <dd style="display: block; left: 0; " class="tipsItem">content...</dd>
+                        </dl>
+                    </td>
+                    <td class="hslide_right">
+                        <a href="javascript:" hidefocus="true" style="outline:none;" class="js_slideright">右边滚动</a>
+                    </td>
+                </tr>
+            </table>
+
      */
     function Slider( _layout ){
         _layout && ( _layout = $( _layout ) );
@@ -25,17 +106,35 @@
 
         UXC.log( 'Slider constructor', new Date().getTime() );
 
+        /**
+         * 初始化数据模型
+         */
         this._model = new Model( _layout );
-
+        /**
+         * 初始化视图模型( 根据不同的滚动方向, 初始化不同的视图类 )
+         */
         switch( this._model.direction() ){
+            case 'vertical': this._view = new VerticalView( this._model, this ); break;
             default: this._view = new HorizontalView( this._model, this ); break;
         }
 
         this._init();
     }
-
+    /**
+     * 页面加载完毕后, 是否自动初始化 带有 class=js_autoSlider 的应用
+     * @property   autoInit
+     * @type    bool
+     * @default true
+     * @static
+     */
     Slider.autoInit = true;
-
+    /**
+     * 批量初始化 Slider
+     * @method init
+     * @param   {selector}  _selector
+     * @return array
+     * @static
+     */
     Slider.init =
         function( _selector ){
             var _insls = [];
@@ -43,17 +142,23 @@
 
             if( _selector && _selector.length ){
                 if( Slider.isSlider( _selector ) ){
+                    if( Slider.getInstance( _selector ) ){
+                        return [ Slider.getInstance( _selector ) ];
+                    }
                     _insls.push( new Slider( _selector ) );
                 }else{
                     _selector.find( 'div.js_autoSlider, dl.js_autoSlider'
                                     +', ul.js_autoSlider, ol.js_autoSlider' ).each(function(){
                         if( Slider.isSlider( this ) ){
+                            if( Slider.getInstance( $(this) ) ){
+                                _insls.push( Slider.getInstance( $(this) ) );
+                                return;
+                            }
                             _insls.push( new Slider( $(this) ) );
                         }
                     });
                 }
             }
-
             return _insls;
         };
 
@@ -105,7 +210,7 @@
 
                 _p._initAutoMove();
 
-                _p._model.inited() && _p.on('inited', _p._model.inited() );
+                _p._model.initedcb() && _p.on('inited', _p._model.initedcb() );
                 _p.trigger( 'inited' );
 
                 return this;
@@ -128,6 +233,8 @@
         , totalpage: function(){ return this._model.totalpage(); }
         , pointer: function(){ return this._model.pointer(); }
         , page: function( _ix ){ return this._model.page( _ix ); }
+        , layout: function(){ return this._model.layout(); }
+        , find: function( _selector ){ return this._model.layout().find( _selector ) }
 
         , _initAutoMove:
             function(){
@@ -201,7 +308,7 @@
             && ( this._initedcb = window[ _layout.attr('sliderinitedcb') ] );
 
         this._defaultpage = parseInt( _layout.attr('sliderdefaultpage'), 10 ) || 0;
-        this._stepms = parseInt( _layout.attr('sliderstepms'), 10 ) || 2;
+        this._stepms = parseInt( _layout.attr('sliderstepms'), 10 ) || 10;
         this._durationms = parseInt( _layout.attr('sliderdurationms'), 10 ) || 300;
 
         this._loop = parseBool( _layout.attr('sliderloop') );
@@ -243,7 +350,7 @@
         , loop: function(){ return this._loop; }
         , stepms: function(){ return this._stepms; }
         , durationms: function(){ return this._durationms; }
-        , inited: function(){ return this._initedcb; }
+        , initedcb: function(){ return this._initedcb; }
         , automove: function(){ return this._automove; }
         , automovems: function(){ return this._automovems; }
         , totalpage:
@@ -496,6 +603,75 @@
                 }
                 UXC.log( _page.length );
             }
+    };
+
+    function VerticalView( _model, _slider ){
+        this._model = _model;
+        this._slider = _slider;
+        this._itemspace = 0;
+        this._init();
+    }
+
+    VerticalView.prototype = {
+        _init:
+            function() {
+                this.setPagePosition( this._model.pointer() );
+                return this;
+            }
+
+        , move:
+            function( _backwrad ){
+                var _p = this;
+                _backwrad = !!_backwrad;
+                UXC.log( 'VerticalView move, is backwrad', _backwrad, this._model.pointer() );
+
+                var _newpointer = this._model.newpointer( _backwrad );
+                UXC.log( printf( 'is backwrad: {0}, pointer:{1}, new pointer:{2}'
+                            , _backwrad, this._model.pointer(), _newpointer
+                            ));
+
+                this.moveTo( _newpointer );
+            }
+
+        , moveTo:
+            function( _newpointer ){
+                var _p = this;
+
+                if( !this._model.loop() ){
+                    if( _newpointer <= this._model.pointer() && this._model.pointer() === 0 ){
+                        $(this._slider).trigger( 'outmin' );
+                        return;
+                    }
+                    if( _newpointer >= this._model.pointer() && this._model.pointer() >= this._model.totalpage() - 1 ){
+                        $(this._slider).trigger( 'outmax' );
+                        return;
+                    }
+                }
+
+                _newpointer = this._model.fixpointer( _newpointer );
+                var _oldpointer = this._model.pointer();
+                if( _newpointer === _oldpointer ) return;
+
+
+                var _opage = this._model.page( _oldpointer )
+                    , _npage = this._model.page( _newpointer );
+                ;
+                var _concat = _opage.concat( _npage );
+
+                this._setNewPagePosition( _opage, _npage, _oldpointer, _newpointer );
+                _p._model.pointer( _newpointer );
+            }
+
+        , _setNewPagePosition:
+            function( _opage, _npage, _oldpointer, _newpointer ){
+                var _p = this, _begin, _concat = _opage.concat( _npage ), _isPlus;
+              }
+
+        , setPagePosition:
+            function( _ix ){
+                UXC.log( 'view setPagePosition', new Date().getTime() );
+            }
+
     };
 
     $(document).ready(function(){

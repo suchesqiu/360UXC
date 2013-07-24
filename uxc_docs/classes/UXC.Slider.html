@@ -93,11 +93,29 @@
         </div>
 </div>
 <div class="box intro">
-    <p>Slider 类</p>
+    <p>Slider 划动菜单类
+<br />页面加载完毕后, Slider 会查找那些有 class = js_autoSlider 的标签进行自动初始化</p>
 <p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>
 <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
 | <a href='http://uxc.btbtd.org/uxc_docs/classes/UXC.Slider.html' target='_blank'>API docs</a>
 | <a href='../../comps/Slider/_demo' target='_blank'>demo link</a></p>
+<p>
+     Slider 可以指定的一些常用 html 属性, 这个类的属性很多, 想了解得更详细看源码吧~
+     <br /><b>slidersubitems</b>: 指定具体子元素是那些, selector ( 子元素默认是 layout的子标签 )
+     <br /><b>sliderleft</b>: 左移的触发selector
+     <br /><b>sliderright</b>: 右移的触发selector
+     <br /><b>sliderwidth</b>: 主容器宽度
+     <br /><b>slideritemwidth</b>: 子元素的宽度
+     <br /><b>sliderhowmanyitem</b>: 每次滚动多少个子元素, 默认1
+     <br /><b>sliderdefaultpage</b>: 默认显示第几页
+     <br /><b>sliderstepms</b>: 滚动效果运动的间隔时间(毫秒), 默认 5
+     <br /><b>sliderdurationms</b>: 滚动效果的总时间
+     <br /><b>sliderdirection</b>: 滚动的方向, 默认 horizontal, { horizontal, vertical }
+     <br /><b>sliderloop</b>: 是否循环滚动
+     <br /><b>sliderinitedcb</b>: 初始完毕后的回调函数, 便于进行更详细的声明
+     <br /><b>sliderautomove</b>: 是否自动滚动
+     <br /><b>sliderautomovems</b>: 自动滚动的间隔
+</p>
 </div>
     <div class="constructor">
         <h2>Constructor</h2>
@@ -132,6 +150,62 @@
         <div class="example">
             <h4>Example:</h4>
             <div class="example-content">
+                <pre class="code prettyprint"><code>       &lt;style&gt;
+           .hslide_list dd{ display: none; }
+           .hslide_list dd, .hslide_list dd img{
+               width: 160px;
+               height: 230px;
+           }
+           .slider_one_item dd, .slider_one_item dd img{
+               width: 820px;
+               height: 230px;
+           }
+       &lt;/style&gt;
+       &lt;link href='../../Slider/res/hslider/style.css' rel='stylesheet' /&gt;
+       &lt;script src="../../../lib.js"&gt;&lt;/script&gt;
+       &lt;script&gt;
+           UXC.debug = true;
+           UXC.use( 'Slider' );
+           function sliderinitedcb(){
+               var _sliderIns = this;
+               UXC.log( 'sliderinitedcb', new Date().getTime() );
+               _sliderIns.on('outmin', function(){
+                   UXC.log( 'slider outmin' );
+               }).on('outmax', function(){
+                   UXC.log( 'slider outmax' );
+               }).on('movedone', function( _evt, _oldpointer, _newpointer){
+                   UXC.log( 'slider movedone', _evt, _oldpointer, _newpointer );
+               }).on('beforemove', function( _evt, _oldpointer, _newpointer ){
+                   UXC.log( 'slider beforemove', _evt, _oldpointer, _newpointer );
+               });
+           }
+       &lt;/script&gt;
+       &lt;table class="hslide_wra"&gt;
+           &lt;tr&gt;
+               &lt;td class="hslide_left"&gt;
+                   &lt;a href="javascript:" hidefocus="true" style="outline:none;" class="js_slideleft"&gt;左边滚动&lt;/a&gt;
+               &lt;/td&gt;
+               &lt;td class="hslide_mid"&gt;
+                   &lt;dl 
+                       style="width:820px; height: 230px; margin:0 5px;"
+                       class="hslide_list clearfix js_slideList js_autoSlider" 
+                       slidersubitems="&gt; dd" sliderleft="a.js_slideleft" sliderright="a.js_slideright" 
+                       sliderwidth="820" slideritemwidth="160"
+                       sliderdirection="horizontal" sliderhowmanyitem="5"
+                       sliderloop="false" sliderdurationms="300"
+                       sliderinitedcb="sliderinitedcb"
+                       &gt;
+                       &lt;dd style="display: block; left: 0; " class="tipsItem"&gt;content...&lt;/dd&gt;
+                       &lt;dd style="display: block; left: 0; " class="tipsItem"&gt;content...&lt;/dd&gt;
+                       &lt;dd style="display: block; left: 0; " class="tipsItem"&gt;content...&lt;/dd&gt;
+                   &lt;/dl&gt;
+               &lt;/td&gt;
+               &lt;td class="hslide_right"&gt;
+                   &lt;a href="javascript:" hidefocus="true" style="outline:none;" class="js_slideright"&gt;右边滚动&lt;/a&gt;
+               &lt;/td&gt;
+           &lt;/tr&gt;
+       &lt;/table&gt;
+</code></pre>
             </div>
         </div>
 </div>
@@ -139,11 +213,92 @@
 <div id="classdocs" class="tabview">
     <ul class="api-class-tabs">
         <li class="api-class-tab index"><a href="#index">Index</a></li>
+            <li class="api-class-tab methods"><a href="#methods">Methods</a></li>
+            <li class="api-class-tab properties"><a href="#properties">Properties</a></li>
     </ul>
     <div>
         <div id="index" class="api-class-tabpanel index">
             <h2 class="off-left">Item Index</h2>
+                <div class="index-section methods">
+                    <h3>Methods</h3>
+                    <ul class="index-list methods">
+                            <li class="index-item method">
+                                <a href="#method_init">init</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                    </ul>
+                </div>
+                <div class="index-section properties">
+                    <h3>Properties</h3>
+                    <ul class="index-list properties">
+                            <li class="index-item property">
+                                <a href="#property_autoInit">autoInit</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                    </ul>
+                </div>
         </div>
+            <div id="methods" class="api-class-tabpanel">
+                <h2 class="off-left">Methods</h2>
+                    <div id="method_init" class="method item">
+    <h3 class="name"><code>init</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Slider_Slider.js.html#l131"><code>..&#x2F;comps&#x2F;Slider&#x2F;Slider.js:131</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>批量初始化 Slider</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    array
+            </div>
+        </div>
+</div>
+            </div>
+            <div id="properties" class="api-class-tabpanel">
+                <h2 class="off-left">Properties</h2>
+                    <div id="property_autoInit" class="property item">
+    <h3 class="name"><code>autoInit</code></h3>
+    <span class="type">Bool</span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Slider_Slider.js.html#l123"><code>..&#x2F;comps&#x2F;Slider&#x2F;Slider.js:123</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>页面加载完毕后, 是否自动初始化 带有 class=js_autoSlider 的应用</p>
+    </div>
+        <p><strong>Default:</strong> true</p>
+</div>
+            </div>
     </div>
 </div>
                     </div>

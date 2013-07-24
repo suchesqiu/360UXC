@@ -786,7 +786,7 @@
             "namespace": "UXC",
             "file": "../comps/Slider/Slider.js",
             "line": 6,
-            "description": "Slider 类\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/uxc_docs/classes/UXC.Slider.html' target='_blank'>API docs</a>\n| <a href='../../comps/Slider/_demo' target='_blank'>demo link</a></p>",
+            "description": "Slider 划动菜单类\n<br />页面加载完毕后, Slider 会查找那些有 class = js_autoSlider 的标签进行自动初始化\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/uxc_docs/classes/UXC.Slider.html' target='_blank'>API docs</a>\n| <a href='../../comps/Slider/_demo' target='_blank'>demo link</a></p>\n<p>\n     Slider 可以指定的一些常用 html 属性, 这个类的属性很多, 想了解得更详细看源码吧~\n     <br /><b>slidersubitems</b>: 指定具体子元素是那些, selector ( 子元素默认是 layout的子标签 )\n     <br /><b>sliderleft</b>: 左移的触发selector\n     <br /><b>sliderright</b>: 右移的触发selector\n     <br /><b>sliderwidth</b>: 主容器宽度\n     <br /><b>slideritemwidth</b>: 子元素的宽度\n     <br /><b>sliderhowmanyitem</b>: 每次滚动多少个子元素, 默认1\n     <br /><b>sliderdefaultpage</b>: 默认显示第几页\n     <br /><b>sliderstepms</b>: 滚动效果运动的间隔时间(毫秒), 默认 5\n     <br /><b>sliderdurationms</b>: 滚动效果的总时间\n\n     <br /><b>sliderdirection</b>: 滚动的方向, 默认 horizontal, { horizontal, vertical }\n     <br /><b>sliderloop</b>: 是否循环滚动\n     <br /><b>sliderinitedcb</b>: 初始完毕后的回调函数, 便于进行更详细的声明\n\n     <br /><b>sliderautomove</b>: 是否自动滚动\n     <br /><b>sliderautomovems</b>: 自动滚动的间隔\n</p>",
             "is_constructor": 1,
             "params": [
                 {
@@ -799,7 +799,7 @@
             "author": "qiushaowei   <suches@btbtd.org> | 75 Team",
             "date": "2013-07-20",
             "example": [
-                ""
+                "\n           <style>\n               .hslide_list dd{ display: none; }\n\n               .hslide_list dd, .hslide_list dd img{\n                   width: 160px;\n                   height: 230px;\n               }\n\n               .slider_one_item dd, .slider_one_item dd img{\n                   width: 820px;\n                   height: 230px;\n               }\n           </style>\n           <link href='../../Slider/res/hslider/style.css' rel='stylesheet' />\n           <script src=\"../../../lib.js\"></script>\n           <script>\n               UXC.debug = true;\n               UXC.use( 'Slider' );\n\n               function sliderinitedcb(){\n                   var _sliderIns = this;\n\n                   UXC.log( 'sliderinitedcb', new Date().getTime() );\n\n                   _sliderIns.on('outmin', function(){\n                       UXC.log( 'slider outmin' );\n                   }).on('outmax', function(){\n                       UXC.log( 'slider outmax' );\n                   }).on('movedone', function( _evt, _oldpointer, _newpointer){\n                       UXC.log( 'slider movedone', _evt, _oldpointer, _newpointer );\n                   }).on('beforemove', function( _evt, _oldpointer, _newpointer ){\n                       UXC.log( 'slider beforemove', _evt, _oldpointer, _newpointer );\n                   });\n               }\n           </script>\n           <table class=\"hslide_wra\">\n               <tr>\n                   <td class=\"hslide_left\">\n                       <a href=\"javascript:\" hidefocus=\"true\" style=\"outline:none;\" class=\"js_slideleft\">左边滚动</a>\n                   </td>\n                   <td class=\"hslide_mid\">\n                       <dl \n                           style=\"width:820px; height: 230px; margin:0 5px;\"\n                           class=\"hslide_list clearfix js_slideList js_autoSlider\" \n                           slidersubitems=\"> dd\" sliderleft=\"a.js_slideleft\" sliderright=\"a.js_slideright\" \n                           sliderwidth=\"820\" slideritemwidth=\"160\"\n                           sliderdirection=\"horizontal\" sliderhowmanyitem=\"5\"\n                           sliderloop=\"false\" sliderdurationms=\"300\"\n                           sliderinitedcb=\"sliderinitedcb\"\n                           >\n                           <dd style=\"display: block; left: 0; \" class=\"tipsItem\">content...</dd>\n                           <dd style=\"display: block; left: 0; \" class=\"tipsItem\">content...</dd>\n                           <dd style=\"display: block; left: 0; \" class=\"tipsItem\">content...</dd>\n                       </dl>\n                   </td>\n                   <td class=\"hslide_right\">\n                       <a href=\"javascript:\" hidefocus=\"true\" style=\"outline:none;\" class=\"js_slideright\">右边滚动</a>\n                   </td>\n               </tr>\n           </table>\n"
             ]
         },
         "UXC.Tab": {
@@ -1050,7 +1050,7 @@
             "extension_for": [],
             "namespace": "window",
             "file": "../UXC.js",
-            "line": 2,
+            "line": 3,
             "description": "UXC jquery 组件库 资源调用控制类\n<br />这是一个单例模式, 全局访问使用 UXC 或 window.UXC\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/uxc_docs/classes/window.UXC.html' target='_blank'>API docs</a>\n| <a href='../../_demo' target='_blank'>demo link</a></p>",
             "static": 1,
             "example": [
@@ -2062,14 +2062,14 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 226,
+            "line": 225,
             "description": "如果是最后一个SELECT, 那么取消数据请求",
             "class": "UXC.Form",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 271,
+            "line": 276,
             "description": "获取 select 的父ID, 这个方便就用于静态数据的联动框",
             "itemtype": "method",
             "name": "initAutoSelect.getParentId",
@@ -2088,7 +2088,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 287,
+            "line": 292,
             "description": "触发下一级下拉框的change事件",
             "itemtype": "method",
             "name": "initAutoSelect.triggerChange",
@@ -2107,7 +2107,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 299,
+            "line": 304,
             "description": "AJAX请求数据, 并处理结果",
             "itemtype": "method",
             "name": "initAutoSelect.getData",
@@ -2141,7 +2141,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 314,
+            "line": 319,
             "description": "处理数据结果",
             "itemtype": "method",
             "name": "initAutoSelect.processData",
@@ -2175,7 +2175,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 344,
+            "line": 354,
             "description": "判断下拉框是否为空\n<br />带 defaultoption 属性的 option 判断时被忽略",
             "itemtype": "method",
             "name": "initAutoSelect.isEmpty",
@@ -2194,7 +2194,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 362,
+            "line": 372,
             "description": "选中下拉框的第一个option",
             "itemtype": "method",
             "name": "initAutoSelect.selectFirst",
@@ -2213,7 +2213,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 375,
+            "line": 385,
             "description": "清空下拉框的内容\n<br />带 defaultoption 属性的 option 判断时被忽略",
             "itemtype": "method",
             "name": "initAutoSelect.removeOption",
@@ -2232,7 +2232,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 391,
+            "line": 401,
             "description": "判断下拉框的option里是否有给定的值",
             "itemtype": "method",
             "name": "initAutoSelect.hasVal",
@@ -2256,7 +2256,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 410,
+            "line": 420,
             "description": "判断下拉框是否有数据项\n<br />带 defaultoption 属性的 option 判断时被忽略",
             "itemtype": "method",
             "name": "initAutoSelect.hasItem",
@@ -2275,7 +2275,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 428,
+            "line": 438,
             "description": "取得某一类级联下拉框的所有下拉框",
             "itemtype": "method",
             "name": "initAutoSelect.getSelectList",
@@ -4569,6 +4569,52 @@
             "namespace": "UXC"
         },
         {
+            "file": "../comps/Slider/Slider.js",
+            "line": 109,
+            "description": "初始化数据模型",
+            "class": "UXC.Slider",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 113,
+            "description": "初始化视图模型( 根据不同的滚动方向, 初始化不同的视图类 )",
+            "class": "UXC.Slider",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 123,
+            "description": "页面加载完毕后, 是否自动初始化 带有 class=js_autoSlider 的应用",
+            "itemtype": "property",
+            "name": "autoInit",
+            "type": "bool",
+            "default": "true",
+            "static": 1,
+            "class": "UXC.Slider",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 131,
+            "description": "批量初始化 Slider",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "array"
+            },
+            "static": 1,
+            "class": "UXC.Slider",
+            "namespace": "UXC"
+        },
+        {
             "file": "../comps/Tab/Tab.js",
             "line": 135,
             "description": "Tab 模型类的实例",
@@ -6333,7 +6379,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 48,
+            "line": 49,
             "description": "清除Valid生成的错误样式",
             "itemtype": "method",
             "name": "clearError",
@@ -6353,7 +6399,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 76,
+            "line": 77,
             "description": "验证发生错误时, 是否终止继续验证\n<br /> 为真终止继续验证, 为假将验证表单的所有项, 默认为 false",
             "itemtype": "property",
             "name": "errorAbort",
@@ -6368,7 +6414,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 89,
+            "line": 90,
             "description": "是否自动清除两边的空格",
             "itemtype": "property",
             "name": "autoTrim",
@@ -6383,7 +6429,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 101,
+            "line": 102,
             "description": "检查一个表单是否有内容",
             "itemtype": "method",
             "name": "formHasValue",
@@ -6411,7 +6457,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 165,
+            "line": 168,
             "description": "这个方法是 <a href='UXC.Valid.html#method_check'>Valid.check</a> 的别名",
             "itemtype": "method",
             "name": "checkAll",
@@ -6431,7 +6477,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 174,
+            "line": 177,
             "description": "响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果",
             "access": "private",
             "tagname": "",
@@ -6440,7 +6486,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 181,
+            "line": 184,
             "description": "响应表单子对象的 change 事件, 触发事件时, 检查并显示错误或正确的视觉效果",
             "access": "private",
             "tagname": "",
@@ -6449,7 +6495,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 188,
+            "line": 191,
             "description": "私有逻辑处理对象, 验证所需的所有规则和方法都存放于此对象",
             "itemtype": "property",
             "name": "_logic",
@@ -6462,7 +6508,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 197,
+            "line": 200,
             "description": "分析_item是否附合规则要求",
             "itemtype": "method",
             "name": "_logic.parse",
@@ -6481,7 +6527,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 260,
+            "line": 263,
             "description": "检查 _item 是否为 Valid 的检查对象",
             "itemtype": "method",
             "name": "_logic.isValidItem",
@@ -6500,7 +6546,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 282,
+            "line": 285,
             "description": "显示正确的视觉效果",
             "itemtype": "method",
             "name": "_logic.valid",
@@ -6519,7 +6565,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 299,
+            "line": 302,
             "description": "显示错误的视觉效果",
             "itemtype": "method",
             "name": "_logic.error",
@@ -6538,7 +6584,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 331,
+            "line": 334,
             "description": "获取 _selector 对象\n<br />这个方法的存在是为了向后兼容qwrap, qwrap DOM参数都为ID",
             "itemtype": "method",
             "name": "_logic.getElement",
@@ -6557,7 +6603,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 348,
+            "line": 351,
             "description": "获取 _item 的检查类型, 所有可用的检查类型位于 _logic.datatype 对象",
             "itemtype": "method",
             "name": "_logic.getDatatype",
@@ -6576,7 +6622,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 359,
+            "line": 362,
             "description": "获取 _item 的检查子类型, 所有可用的检查子类型位于 _logic.subdatatype 对象",
             "itemtype": "method",
             "name": "_logic.getSubdatatype",
@@ -6595,7 +6641,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 370,
+            "line": 373,
             "description": "获取对应的错误信息, 默认的错误信息有 reqmsg, errmsg, <br />\n注意: 错误信息第一个字符如果为空格的话, 将完全使用用户定义的错误信息, 将不会动态添加 请上传/选择/填写",
             "itemtype": "method",
             "name": "_logic.getMsg",
@@ -6624,7 +6670,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 404,
+            "line": 407,
             "description": "计算字符串的字节长度, 非 ASCII 0-255的字符视为两个字节",
             "itemtype": "method",
             "name": "_logic.bytelen",
@@ -6643,7 +6689,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 415,
+            "line": 418,
             "description": "获取日期字符串的 timestamp, 字符串格式为 YYYY[^\\d]*?MM[^\\d]*?DD",
             "itemtype": "method",
             "name": "_logic.getTimestamp",
@@ -6662,7 +6708,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 427,
+            "line": 430,
             "description": "此对象存储可供检查的子类型",
             "itemtype": "property",
             "name": "_logic.subdatatype",
@@ -6675,7 +6721,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 435,
+            "line": 438,
             "description": "此类型检查 2|N个对象必须至少有一个是有输入内容的, \n<br> 常用于 手机/电话 二填一",
             "itemtype": "method",
             "name": "_logic.subdatatype.alternative",
@@ -6697,7 +6743,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 488,
+            "line": 491,
             "description": "此类型检查 2|N 个对象填写的值必须一致\n常用于注意时密码验证/重置密码",
             "itemtype": "method",
             "name": "_logic.subdatatype.reconfirm",
@@ -6719,7 +6765,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 536,
+            "line": 539,
             "description": "此对象存储可供检查的类型",
             "itemtype": "property",
             "name": "_logic.datatype",
@@ -6732,7 +6778,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 544,
+            "line": 547,
             "description": "检查是否为正确的数字<br />\n<br>默认范围 0 - Math.pow(10, 10)",
             "itemtype": "method",
             "name": "_logic.datatype.n",
@@ -6755,7 +6801,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 594,
+            "line": 597,
             "description": "检查两个输入框的数值\n<br /> 数字格式为 0-pow(10,10)\n<br /> 带小数点使用 nrange-int.float, 例: nrange-1.2  nrange-2.2\n<br /> <b>注意:</b> 如果不显示指定 fromNEl, toNEl, \n             将会从父级查找 datatype=nrange属性的input, 如果数量等于2, 则会进行验证, 不等2将忽略",
             "itemtype": "method",
             "name": "_logic.datatype.nrange",
@@ -6778,7 +6824,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 675,
+            "line": 678,
             "description": "检查是否为合法的日期,\n<br />日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD",
             "itemtype": "method",
             "name": "_logic.datatype.d",
@@ -6801,7 +6847,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 713,
+            "line": 716,
             "description": "检查两个输入框的日期\n<br />日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD\n<br /> <b>注意:</b> 如果不显示指定 fromDateEl, toDateEl, \n             将会从父级查找 datatype=datarange属性的input, 如果数量等于2, 则会进行验证, 不等2将忽略",
             "itemtype": "method",
             "name": "_logic.datatype.daterange",
@@ -6824,7 +6870,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 781,
+            "line": 784,
             "description": "检查时间格式, 格式为 mm:dd:ss",
             "itemtype": "method",
             "name": "_logic.datatype.time",
@@ -6846,7 +6892,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 798,
+            "line": 801,
             "description": "检查时间格式, 格式为 mm:dd:ss",
             "itemtype": "method",
             "name": "_logic.datatype.minute",
@@ -6868,7 +6914,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 815,
+            "line": 818,
             "description": "检查银行卡号码\n<br />格式为 d{19} | d{16} | 1111 1111 1111 1111 111 | 1111 1111 1111 1111111",
             "itemtype": "method",
             "name": "_logic.datatype.bankcard",
@@ -6890,7 +6936,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 834,
+            "line": 837,
             "description": "检查中文姓名\n<br>格式: 汉字和大小写字母\n<br>规则: 长度 2-32个字节, 非 ASCII 算2个字节",
             "itemtype": "method",
             "name": "_logic.datatype.cnname",
@@ -6912,7 +6958,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 854,
+            "line": 857,
             "description": "检查注册用户名\n<br>格式: a-zA-Z0-9_-\n<br>规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 29",
             "itemtype": "method",
             "name": "_logic.datatype.username",
@@ -6934,7 +6980,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 874,
+            "line": 877,
             "description": "检查身份证号码<br />\n目前只使用最简单的位数判断~ 有待完善",
             "itemtype": "method",
             "name": "_logic.datatype.idnumber",
@@ -6956,7 +7002,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 893,
+            "line": 896,
             "description": "检查手机号码<br />",
             "itemtype": "method",
             "name": "_logic.datatype.mobilecode",
@@ -6983,7 +7029,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 913,
+            "line": 916,
             "description": "检查手机号码\n<br />这个方法是 _logic.datatype.mobilecode 的别名",
             "itemtype": "method",
             "name": "_logic.datatype.mobile",
@@ -7007,7 +7053,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 926,
+            "line": 929,
             "description": "检查手机号码加强方法\n<br>格式: [+国家代码] [零]11位数字",
             "itemtype": "method",
             "name": "_logic.datatype.mobilezonecode",
@@ -7034,7 +7080,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 947,
+            "line": 950,
             "description": "检查手机号码/电话号码\n<br />这个方法是原有方法的混合验证 _logic.datatype.mobilecode + _logic.datatype.phone",
             "itemtype": "method",
             "name": "_logic.datatype.mobilephone",
@@ -7056,7 +7102,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 970,
+            "line": 973,
             "description": "检查手机号码/电话号码, 泛匹配\n<br />这个方法是原有方法的混合验证 _logic.datatype.mobilezonecode + _logic.datatype.phoneall",
             "itemtype": "method",
             "name": "_logic.datatype.mobilephoneall",
@@ -7078,7 +7124,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 993,
+            "line": 996,
             "description": "检查电话号码\n<br>格式: [区号]7/8位电话号码",
             "itemtype": "method",
             "name": "_logic.datatype.phone",
@@ -7105,7 +7151,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1014,
+            "line": 1017,
             "description": "检查电话号码\n<br>格式: [+国家代码][ ][电话区号][ ]7/8位电话号码[#分机号]",
             "itemtype": "method",
             "name": "_logic.datatype.phoneall",
@@ -7132,7 +7178,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1035,
+            "line": 1038,
             "description": "检查电话区号",
             "itemtype": "method",
             "name": "_logic.datatype.phonezone",
@@ -7154,7 +7200,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1053,
+            "line": 1056,
             "description": "检查电话号码\n<br>格式: 7/8位数字",
             "itemtype": "method",
             "name": "_logic.datatype.phonecode",
@@ -7176,7 +7222,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1072,
+            "line": 1075,
             "description": "检查电话分机号码",
             "itemtype": "method",
             "name": "_logic.datatype.phoneext",
@@ -7198,7 +7244,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1090,
+            "line": 1093,
             "description": "检查内容的长度",
             "itemtype": "method",
             "name": "_logic.datatype.length",
@@ -7221,14 +7267,14 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1119,
+            "line": 1122,
             "description": "根据特殊的 datatype 实现不同的计算方法",
             "class": "UXC.Valid",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1145,
+            "line": 1148,
             "description": "检查内容是否为空,\n<br>如果声明了该属性, 那么 value 须不为空",
             "itemtype": "method",
             "name": "_logic.datatype.reqmsg",
@@ -7250,7 +7296,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1171,
+            "line": 1174,
             "description": "自定义正则校验",
             "itemtype": "method",
             "name": "_logic.datatype.reg",
@@ -7273,7 +7319,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1197,
+            "line": 1200,
             "description": "检查验证码<br />\n格式: 为 0-9a-zA-Z, 长度 默认为4",
             "itemtype": "method",
             "name": "_logic.datatype.vcode",
@@ -7296,7 +7342,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1223,
+            "line": 1226,
             "description": "检查文本长度",
             "itemtype": "method",
             "name": "_logic.datatype.text",
@@ -7312,7 +7358,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1232,
+            "line": 1235,
             "description": "检查文本的字节长度",
             "itemtype": "method",
             "name": "_logic.datatype.bytetext",
@@ -7328,7 +7374,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1241,
+            "line": 1244,
             "description": "检查富文本的字节",
             "itemtype": "method",
             "name": "_logic.datatype.richtext",
@@ -7344,7 +7390,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1250,
+            "line": 1253,
             "description": "检查URL",
             "itemtype": "method",
             "name": "_logic.datatype.url",
@@ -7366,7 +7412,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1267,
+            "line": 1270,
             "description": "检查域名",
             "itemtype": "method",
             "name": "_logic.datatype.domain",
@@ -7385,7 +7431,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1284,
+            "line": 1287,
             "description": "检查电子邮件",
             "itemtype": "method",
             "name": "_logic.datatype.email",
@@ -7407,7 +7453,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1301,
+            "line": 1304,
             "description": "检查邮政编码",
             "itemtype": "method",
             "name": "_logic.datatype.zipcode",
@@ -8625,7 +8671,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 18,
+            "line": 19,
             "description": "UXC组件库所在路径",
             "itemtype": "property",
             "name": "PATH",
@@ -8636,7 +8682,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 26,
+            "line": 27,
             "description": "是否显示调试信息",
             "itemtype": "property",
             "name": "debug",
@@ -8647,7 +8693,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 33,
+            "line": 34,
             "description": "导入UXC组件",
             "itemtype": "method",
             "name": "use",
@@ -8677,7 +8723,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 90,
+            "line": 91,
             "description": "输出调试信息, 可通过 UXC.debug 指定是否显示调试信息",
             "params": [
                 {
@@ -8694,7 +8740,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 101,
+            "line": 102,
             "description": "定义输出路径的 v 参数, 以便控制缓存",
             "itemtype": "property",
             "name": "pathPostfix",
@@ -8706,7 +8752,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 109,
+            "line": 110,
             "description": "是否启用nginx concat 模块的路径格式",
             "itemtype": "property",
             "name": "enableNginxStyle",
@@ -8718,7 +8764,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 117,
+            "line": 118,
             "description": "定义 nginx style 的基础路径\n<br /><b>注意:</b> 如果这个属性为空, 即使 enableNginxStyle = true, 也是直接输出默认路径",
             "itemtype": "property",
             "name": "nginxBasePath",
@@ -8730,7 +8776,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 126,
+            "line": 127,
             "description": "输出 nginx concat 模块的脚本路径格式",
             "itemtype": "method",
             "name": "_writeNginxScript",
@@ -8749,7 +8795,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 154,
+            "line": 155,
             "description": "输出的脚本路径格式",
             "itemtype": "method",
             "name": "_writeNormalScript",
@@ -8768,7 +8814,7 @@
         },
         {
             "file": "../UXC.js",
-            "line": 171,
+            "line": 172,
             "description": "资源路径映射对象\n<br />设置 UXC.use 逗号(',') 分隔项的 对应URL路径",
             "itemtype": "property",
             "name": "FILE_MAP",
@@ -8783,14 +8829,14 @@
         },
         {
             "file": "../UXC.js",
-            "line": 210,
+            "line": 211,
             "description": "如果 console 不可用, 则生成一个模拟的 console 对象",
             "class": "window.UXC",
             "namespace": "window"
         },
         {
             "file": "../UXC.js",
-            "line": 216,
+            "line": 217,
             "description": "自动识别组件库所在路径",
             "class": "window.UXC",
             "namespace": "window"
@@ -9221,6 +9267,24 @@
             "class": ".window"
         },
         {
+            "file": "../common.js",
+            "line": 336,
+            "description": "把输入值转换为布尔值",
+            "itemtype": "method",
+            "name": "parseBool",
+            "params": [
+                {
+                    "name": "_input",
+                    "description": "",
+                    "type": "*"
+                }
+            ],
+            "return": {
+                "description": "bool"
+            },
+            "class": ".window"
+        },
+        {
             "file": "../jquery.js",
             "line": 3839,
             "description": "For feature detection",
@@ -9492,99 +9556,99 @@
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:544"
+            "line": " ../comps/Valid/Valid.js:547"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:544"
+            "line": " ../comps/Valid/Valid.js:547"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:544"
+            "line": " ../comps/Valid/Valid.js:547"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:594"
+            "line": " ../comps/Valid/Valid.js:597"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:594"
+            "line": " ../comps/Valid/Valid.js:597"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:594"
+            "line": " ../comps/Valid/Valid.js:597"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:594"
+            "line": " ../comps/Valid/Valid.js:597"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:594"
+            "line": " ../comps/Valid/Valid.js:597"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:675"
+            "line": " ../comps/Valid/Valid.js:678"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:675"
+            "line": " ../comps/Valid/Valid.js:678"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:675"
+            "line": " ../comps/Valid/Valid.js:678"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:713"
+            "line": " ../comps/Valid/Valid.js:716"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:713"
+            "line": " ../comps/Valid/Valid.js:716"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:713"
+            "line": " ../comps/Valid/Valid.js:716"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:713"
+            "line": " ../comps/Valid/Valid.js:716"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:713"
+            "line": " ../comps/Valid/Valid.js:716"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1090"
+            "line": " ../comps/Valid/Valid.js:1093"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1090"
+            "line": " ../comps/Valid/Valid.js:1093"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1090"
+            "line": " ../comps/Valid/Valid.js:1093"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1171"
+            "line": " ../comps/Valid/Valid.js:1174"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1197"
+            "line": " ../comps/Valid/Valid.js:1200"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1223"
+            "line": " ../comps/Valid/Valid.js:1226"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1232"
+            "line": " ../comps/Valid/Valid.js:1235"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1241"
+            "line": " ../comps/Valid/Valid.js:1244"
         },
         {
             "message": "unknown tag: ignore",
@@ -9672,7 +9736,7 @@
         },
         {
             "message": "unknown tag: date",
-            "line": " ../UXC.js:2"
+            "line": " ../UXC.js:3"
         },
         {
             "message": "replacing incorrect tag: returns with return",
@@ -9704,7 +9768,7 @@
         },
         {
             "message": "Missing item type\n如果是最后一个SELECT, 那么取消数据请求",
-            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:226"
+            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:225"
         },
         {
             "message": "Missing item type\n监听 全选/反选 按钮的点击事件",
@@ -9795,6 +9859,14 @@
             "line": " ../comps/Panel/UXC.Popup.js:96"
         },
         {
+            "message": "Missing item type\n初始化数据模型",
+            "line": " ../comps/Slider/Slider.js:109"
+        },
+        {
+            "message": "Missing item type\n初始化视图模型( 根据不同的滚动方向, 初始化不同的视图类 )",
+            "line": " ../comps/Slider/Slider.js:113"
+        },
+        {
             "message": "Missing item type\nTab 视图类的实例",
             "line": " ../comps/Tab/Tab.js:142"
         },
@@ -9820,15 +9892,15 @@
         },
         {
             "message": "Missing item type\n响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果",
-            "line": " ../comps/Valid/Valid.js:174"
+            "line": " ../comps/Valid/Valid.js:177"
         },
         {
             "message": "Missing item type\n响应表单子对象的 change 事件, 触发事件时, 检查并显示错误或正确的视觉效果",
-            "line": " ../comps/Valid/Valid.js:181"
+            "line": " ../comps/Valid/Valid.js:184"
         },
         {
             "message": "Missing item type\n根据特殊的 datatype 实现不同的计算方法",
-            "line": " ../comps/Valid/Valid.js:1119"
+            "line": " ../comps/Valid/Valid.js:1122"
         },
         {
             "message": "Missing item type\nTop level namespace for Jasmine, a lightweight JavaScript BDD/spec/testing framework.",
@@ -10224,11 +10296,11 @@
         },
         {
             "message": "Missing item type\n如果 console 不可用, 则生成一个模拟的 console 对象",
-            "line": " ../UXC.js:210"
+            "line": " ../UXC.js:211"
         },
         {
             "message": "Missing item type\n自动识别组件库所在路径",
-            "line": " ../UXC.js:216"
+            "line": " ../UXC.js:217"
         },
         {
             "message": "Missing item type\nFor feature detection",

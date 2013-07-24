@@ -52,7 +52,7 @@
                 }).on('outmax', function(){
                     UXC.log( 'slider outmax' );
                 }).on('movedone', function( _evt, _oldpointer, _newpointer){
-                    UXC.log( 'slider movedone', _evt, _oldpointer, _newpointer );
+                    UXC.log( 'slider movedone 111', _evt, _oldpointer, _newpointer );
                 }).on('beforemove', function( _evt, _oldpointer, _newpointer ){
                     UXC.log( 'slider beforemove', _evt, _oldpointer, _newpointer );
                 });
@@ -63,20 +63,22 @@
         <dl class="def">
             <dt>水平 Slider 功能演示</dt>
             <dd>
-            <h3>loop</h3>
+            <h3>no loop with auto move</h3>
             <table class="hslide_wra">
                 <tr>
                     <td class="hslide_left">
-                        <a href="javascript:" hidefocus="true" style="outline:none;" class="js_slideleft1">左边滚动</a>
+                        <a href="javascript:" hidefocus="true" style="outline:none;" class="js_slideleft">左边滚动</a>
                     </td>
                     <td class="hslide_mid">
                         <dl 
                             style="width:820px; height: 230px; margin:0 5px;"
                             class="hslide_list clearfix js_slideList js_autoSlider" 
-                            slidersubitems="> dd" sliderleft="a.js_slideleft1" sliderright="a.js_slideright1" 
+                            slidersubitems="> dd" sliderleft="a.js_slideleft" sliderright="a.js_slideright" 
                             sliderwidth="820" slideritemwidth="160"
-                            sliderdirection="horizontal" sliderhowmanyitem="5" sliderloop="true"
+                            sliderdirection="horizontal" sliderhowmanyitem="5" 
                             sliderinitedcb="sliderinitedcb"
+                            sliderloop="true" sliderdurationms="300"
+                            sliderautomove="true" sliderautomovems="1500"
                             >
                             <dd style="display: block; left: 0px; " class="tipsItem">
                             <a href="http://v.ku6.com/film/index_106123.html?from=my" target="_blank"> 
@@ -200,7 +202,7 @@
                         </dl>
                     </td>
                     <td class="hslide_right">
-                        <a href="javascript:" hidefocus="true" style="outline:none;" class="js_slideright1">右边滚动</a>
+                        <a href="javascript:" hidefocus="true" style="outline:none;" class="js_slideright">右边滚动</a>
                     </td>
                 </tr>
             </table>

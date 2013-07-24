@@ -479,6 +479,24 @@ function easyEffect( _cb, _maxVal, _startVal, _duration, _stepMs ){
 
     return _interval;
 }
+/**
+ * 把输入值转换为布尔值
+ * @method parseBool
+ * @param   {*} _input
+ * @return bool
+ */
+function parseBool( _input ){
+    if( typeof _input == &#x27;string&#x27; ){
+        _input = _input.replace( /[\s]/g, &#x27;&#x27; ).toLowerCase();
+        if( _input &amp;&amp; ( _input == &#x27;false&#x27; 
+                        || _input == &#x27;0&#x27; 
+                        || _input == &#x27;null&#x27;
+                        || _input == &#x27;undefined&#x27;
+       )) _input = false;
+       else if( _input ) _input = true;
+    }
+    return !!_input;
+}
 
     </pre>
 </div>
