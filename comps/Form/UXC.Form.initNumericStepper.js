@@ -71,13 +71,23 @@
     var _logic = {
         target:
             function( _src ){
-                return _src.attr( 'nstarget') ? $( _src.attr( 'nstarget' ) ) : undefined;
+                var _r; 
+                if( _src.attr( 'nstarget') ){
+                    if( /^\~/.test( _src.attr('nstarget') ) ){
+                        _r = _src.parent().find( _src.attr('nstarget').replace( /^\~[\s]*/g, '') );
+                        !( _r && _r.length ) && ( _r = $( _src.attr('nstarget') ) );
+                    }else{
+                        _r = $( _src.attr('nstarget') );
+                    }
+                }
+
+                return _r;
             }
 
         , fixed: function( _target ){ return _target.attr('nsfixed'); }
         , step: function( _target ){ return parseFloat( _target.attr( 'nsstep' ) ) || 1; }
-        , minvalue: function( _target ){ return parseFloat( _target.attr( 'nsminvalue' ) ) || 0; }
-        , maxvalue: function( _target ){ return parseFloat( _target.attr( 'nsmaxvalue' ) ) || 100; }
+        , minvalue: function( _target ){ return parseFloat( _target.attr( 'nsminvalue' ) || _target.attr( 'minvalue' ) ) || 0; }
+        , maxvalue: function( _target ){ return parseFloat( _target.attr( 'nsmaxvalue' ) || _target.attr( 'maxvalue' ) ) || 100; }
         , callback: 
             function( _target ){ 
                 var _r = UXC.Form.initNumericStepper.onchange, _tmp;
