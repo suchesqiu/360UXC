@@ -10,6 +10,7 @@ YUI.add("yuidoc-meta", function(Y) {
         "UXC.Form",
         "UXC.LunarCalendar",
         "UXC.Panel",
+        "UXC.Slider",
         "UXC.Tab",
         "UXC.Test",
         "UXC.Tips",

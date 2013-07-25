@@ -365,7 +365,7 @@
                 if( _p.is( '[selecttarget]' ) ){
                     UXC.log( 2, 1, 1 );
                     var _target = $( _p.attr('selecttarget') );
-                    var _selectval = _val;
+                    var _selectval = '';
                     if( _target.is( '[selectvalue]' ) ){
                         _selectval = _target.attr('selectvalue');
                         _target.removeAttr('selectvalue');
@@ -405,6 +405,9 @@
                     }
 
                     if( _target.attr('selectdatacb') ){
+                        if( _target.data('isLastSelect') && _target.data('parentSelect').val() == _reqval ){
+                            return;
+                        }
                         window[ _target.attr('selectdatacb') ] 
                             && processData( _target, _val, triggerChange, 
                                     window[ _target.attr('selectdatacb') ]( getParentId( _target ) ) );
@@ -412,6 +415,9 @@
                         _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
                         UXC.log( _reqval );
                         _url = _url.replace( /\{0\}/g, _reqval );
+                        if( _target.data('isLastSelect') && _target.data('parentSelect').val() == _reqval ){
+                            return;
+                        }
                         getData( _target, _url, _val, triggerChange);
                     }
                 }
@@ -504,8 +510,13 @@
         }
 
         var _optls = [];
-        for( var i = 0, j = _r.length; i < j; i++ )
-            _optls.push( '<option value="'+_r[i][0]+'">'+ _r[i][1] +'</option>' );
+
+        if( _select.attr('selectcustomrendercb') ){
+            _optls = window[ _select.attr('selectcustomrendercb') ].call( _select, _r );
+        }else{
+            for( var i = 0, j = _r.length; i < j; i++ )
+                _optls.push( '<option value="'+_r[i][0]+'">'+ _r[i][1] +'</option>' );
+        }
 
         $( _optls.join('') ).appendTo( _select );
         hasVal( _select, _selectval ) ? _select.val( _selectval ) : selectFirst( _select );
@@ -783,13 +794,23 @@
     var _logic = {
         target:
             function( _src ){
-                return _src.attr( 'nstarget') ? $( _src.attr( 'nstarget' ) ) : undefined;
+                var _r; 
+                if( _src.attr( 'nstarget') ){
+                    if( /^\~/.test( _src.attr('nstarget') ) ){
+                        _r = _src.parent().find( _src.attr('nstarget').replace( /^\~[\s]*/g, '') );
+                        !( _r && _r.length ) && ( _r = $( _src.attr('nstarget') ) );
+                    }else{
+                        _r = $( _src.attr('nstarget') );
+                    }
+                }
+
+                return _r;
             }
 
         , fixed: function( _target ){ return _target.attr('nsfixed'); }
         , step: function( _target ){ return parseFloat( _target.attr( 'nsstep' ) ) || 1; }
-        , minvalue: function( _target ){ return parseFloat( _target.attr( 'nsminvalue' ) ) || 0; }
-        , maxvalue: function( _target ){ return parseFloat( _target.attr( 'nsmaxvalue' ) ) || 100; }
+        , minvalue: function( _target ){ return parseFloat( _target.attr( 'nsminvalue' ) || _target.attr( 'minvalue' ) ) || 0; }
+        , maxvalue: function( _target ){ return parseFloat( _target.attr( 'nsmaxvalue' ) || _target.attr( 'maxvalue' ) ) || 100; }
         , callback: 
             function( _target ){ 
                 var _r = UXC.Form.initNumericStepper.onchange, _tmp;

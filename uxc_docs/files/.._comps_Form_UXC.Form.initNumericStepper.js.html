@@ -75,6 +75,8 @@
             
                 <li><a href="../classes/UXC.Panel.View.html">UXC.Panel.View</a></li>
             
+                <li><a href="../classes/UXC.Slider.html">UXC.Slider</a></li>
+            
                 <li><a href="../classes/UXC.Tab.html">UXC.Tab</a></li>
             
                 <li><a href="../classes/UXC.Tab.Model.html">UXC.Tab.Model</a></li>
@@ -215,13 +217,23 @@
     var _logic = {
         target:
             function( _src ){
-                return _src.attr( &#x27;nstarget&#x27;) ? $( _src.attr( &#x27;nstarget&#x27; ) ) : undefined;
+                var _r; 
+                if( _src.attr( &#x27;nstarget&#x27;) ){
+                    if( /^\~/.test( _src.attr(&#x27;nstarget&#x27;) ) ){
+                        _r = _src.parent().find( _src.attr(&#x27;nstarget&#x27;).replace( /^\~[\s]*/g, &#x27;&#x27;) );
+                        !( _r &amp;&amp; _r.length ) &amp;&amp; ( _r = $( _src.attr(&#x27;nstarget&#x27;) ) );
+                    }else{
+                        _r = $( _src.attr(&#x27;nstarget&#x27;) );
+                    }
+                }
+
+                return _r;
             }
 
         , fixed: function( _target ){ return _target.attr(&#x27;nsfixed&#x27;); }
         , step: function( _target ){ return parseFloat( _target.attr( &#x27;nsstep&#x27; ) ) || 1; }
-        , minvalue: function( _target ){ return parseFloat( _target.attr( &#x27;nsminvalue&#x27; ) ) || 0; }
-        , maxvalue: function( _target ){ return parseFloat( _target.attr( &#x27;nsmaxvalue&#x27; ) ) || 100; }
+        , minvalue: function( _target ){ return parseFloat( _target.attr( &#x27;nsminvalue&#x27; ) || _target.attr( &#x27;minvalue&#x27; ) ) || 0; }
+        , maxvalue: function( _target ){ return parseFloat( _target.attr( &#x27;nsmaxvalue&#x27; ) || _target.attr( &#x27;maxvalue&#x27; ) ) || 100; }
         , callback: 
             function( _target ){ 
                 var _r = UXC.Form.initNumericStepper.onchange, _tmp;

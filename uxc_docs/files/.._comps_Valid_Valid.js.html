@@ -75,6 +75,8 @@
             
                 <li><a href="../classes/UXC.Panel.View.html">UXC.Panel.View</a></li>
             
+                <li><a href="../classes/UXC.Slider.html">UXC.Slider</a></li>
+            
                 <li><a href="../classes/UXC.Tab.html">UXC.Tab</a></li>
             
                 <li><a href="../classes/UXC.Tab.Model.html">UXC.Tab.Model</a></li>
@@ -182,6 +184,7 @@
                         var _errorabort = Valid.errorAbort, tmp;
                         _item.is(&#x27;[errorabort]&#x27;) &amp;&amp; ( _errorabort = ( _tmp = _item.attr(&#x27;errorabort&#x27;).toLowerCase() ) == &#x27;false&#x27; || _tmp == &quot;0&quot; || (!_tmp) ? false : true );
                         for( var i = 0, j = _item[0].length; i &lt; j; i++ ){
+                            if( $(_item[0][i]).is(&#x27;[ignoreprocess]&#x27;) ) continue;
                             !_logic.parse( $(_item[0][i]) ) &amp;&amp; ( _r = false );
                             if( _errorabort &amp;&amp; !_r ) break;
                         }
@@ -305,6 +308,8 @@
                 }
                 return _r;
             }
+        , setValid: function(_item, _tm){ _logic.valid.apply( this, [].slice.apply( arguments) ); }
+        , setError: function(_item, _msgAttr, _fullMsg){ _logic.error.apply( this, [].slice.apply( arguments) );}
     };
     /**
      * 这个方法是 &lt;a href=&#x27;UXC.Valid.html#method_check&#x27;&gt;Valid.check&lt;/a&gt; 的别名

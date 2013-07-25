@@ -38,6 +38,7 @@
                         var _errorabort = Valid.errorAbort, tmp;
                         _item.is('[errorabort]') && ( _errorabort = ( _tmp = _item.attr('errorabort').toLowerCase() ) == 'false' || _tmp == "0" || (!_tmp) ? false : true );
                         for( var i = 0, j = _item[0].length; i < j; i++ ){
+                            if( $(_item[0][i]).is('[ignoreprocess]') ) continue;
                             !_logic.parse( $(_item[0][i]) ) && ( _r = false );
                             if( _errorabort && !_r ) break;
                         }
@@ -161,6 +162,8 @@
                 }
                 return _r;
             }
+        , setValid: function(_item, _tm){ _logic.valid.apply( this, [].slice.apply( arguments) ); }
+        , setError: function(_item, _msgAttr, _fullMsg){ _logic.error.apply( this, [].slice.apply( arguments) );}
     };
     /**
      * 这个方法是 <a href='UXC.Valid.html#method_check'>Valid.check</a> 的别名
