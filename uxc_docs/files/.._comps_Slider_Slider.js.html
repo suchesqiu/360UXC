@@ -77,6 +77,8 @@
             
                 <li><a href="../classes/UXC.Slider.html">UXC.Slider</a></li>
             
+                <li><a href="../classes/UXC.Slider.Model.html">UXC.Slider.Model</a></li>
+            
                 <li><a href="../classes/UXC.Tab.html">UXC.Tab</a></li>
             
                 <li><a href="../classes/UXC.Tab.Model.html">UXC.Tab.Model</a></li>
@@ -307,13 +309,26 @@
             }
             return _insls;
         };
-
+    /**
+     * 从 selector 获得 或 设置 Slider 的实例
+     * @method getInstance
+     * @param   {selector}  _selector
+     * @param   {SliderInstance}   _ins
+     * @return SliderInstance
+     * @static
+     */
     Slider.getInstance =
         function( _selector, _ins ){
             _ins &amp;&amp; _selector &amp;&amp; $(_selector).data( &#x27;SliderIns&#x27;, _ins );
             return _selector ? $(_selector).data(&#x27;SliderIns&#x27;) : null;
         };
-
+    /**
+     * 判断 selector 是否具备 实例化 Slider 的条件
+     * @method  isSlider
+     * @param   {selector}  _selector
+     * @return bool
+     * @static
+     */
     Slider.isSlider =
         function( _selector ){
             _selector &amp;&amp; ( _selector = $(_selector) );
@@ -321,6 +336,12 @@
         };
     
     Slider.prototype = {
+        /**
+         * 内部初始化方法
+         * @method  _init
+         * @private
+         * @return bool
+         */
         _init:
             function(){
                 var _p = this;
@@ -361,27 +382,84 @@
 
                 return this;
             }    
-
+        /**
+         * 自定义事件绑定函数
+         * &lt;br /&gt;使用 jquery on 方法绑定 为 Slider 实例绑定事件
+         * @method on
+         * @param   {string}    _evtName
+         * @param   {function}  _cb
+         * @return SliderInstance
+         */
         , on: 
             function( _evtName, _cb ){
                 $(this).on( _evtName, _cb );
                 return this;
             }
-
+        /**
+         * 自定义事件触发函数
+         * &lt;br /&gt;使用 jquery trigger 方法绑定 为 Slider 实例函数自定义事件
+         * @method  trigger
+         * @param   {string}    _evtName
+         * @return SliderInstance
+         */
         , trigger: 
             function( _evtName ){
                 $(this).trigger(_evtName);
                 return this;
             }
-
+        /**
+         * 控制 Slider 向左或向右划动
+         * @method  move
+         * @param   {bool}    _backwrad     _backwrad = ture(向左), false(向右), 默认false
+         * @return SliderInstance
+         */
         , move: function( _backwrad ){ this._view.move( _backwrad ); return this; }
+        /**
+         * 控制 Slider 划动到指定索引
+         * @method  moveTo
+         * @param   {int}    _newpointer
+         * @return SliderInstance
+         */
         , moveTo: function( _newpointer ){ this._view.moveTo( _newpointer ); return this; }
+        /**
+         * 获取 Slider 的总索引数
+         * @method  totalpage
+         * @return int
+         */
         , totalpage: function(){ return this._model.totalpage(); }
+        /**
+         * 获取 Slider 的当前索引数
+         * @method  pointer
+         * @return int
+         */
         , pointer: function(){ return this._model.pointer(); }
+        /**
+         * 获取指定索引页的 selector 对象
+         * @method  page
+         * @param   {int}    _ix
+         * @return array
+         */
         , page: function( _ix ){ return this._model.page( _ix ); }
+        /**
+         * 获取 Slider 的主外观容器
+         * @method  layout
+         * @return selector
+         */
         , layout: function(){ return this._model.layout(); }
+        /**
+         * 查找 layout 的内容
+         * @method  find
+         * @param   {selector}  _selector
+         * @return selector
+         */
         , find: function( _selector ){ return this._model.layout().find( _selector ) }
-
+        /**
+         * 初始化自动滚动
+         * &lt;br /&gt;如果 layout 的 html属性 sliderautomove=ture, 则会执行本函数
+         * @method  _initAutoMove
+         * @private
+         * @return SliderInstance
+         */
         , _initAutoMove:
             function(){
                 var _p = this;
@@ -433,45 +511,195 @@
                 });
 
                 _p.trigger(&#x27;automove&#x27;);
+                return this;
             }
     }
-    
+    /**
+     * Slider 的通用模型类
+     * @namespace UXC.Slider
+     * @class   Model
+     * @constructor
+     * @param   {selector}  _layout
+     */
     function Model( _layout ){
+        /**
+         * 保存 layout 的引用 
+         * @property    _layout
+         * @type    selector
+         * @private
+         */
         this._layout = _layout;
-
+        /**
+         * 保存左移 selector 的引用
+         * @property    _selector
+         * @type    selector
+         * @private
+         */
         this._leftbutton = _layout.is( &#x27;[sliderleft]&#x27; ) ? $( _layout.attr(&#x27;sliderleft&#x27;) ) : null;
+        /**
+         * 保存右移 selector 的引用
+         * @property    _selector
+         * @type    selector
+         * @private
+         */
         this._rightbutton = _layout.is( &#x27;[sliderright]&#x27; ) ? $( _layout.attr(&#x27;sliderright&#x27;) ) : null;
+        /**
+         * 宽度
+         * @property    _width
+         * @type    int
+         * @private
+         */
         this._width = parseInt( _layout.attr(&#x27;sliderwidth&#x27;), 10 ) || 0;
+        /**
+         * 高度
+         * @property    _height
+         * @type    int
+         * @private
+         */
         this._height = parseInt( _layout.attr(&#x27;sliderheight&#x27;), 10 ) || 0;
+        /**
+         * 每个项的宽度
+         * @property    _itemwidth
+         * @type    int
+         * @private
+         */
         this._itemwidth = parseInt( _layout.attr(&#x27;slideritemwidth&#x27;), 10 ) || 0;
+        /**
+         * 每个项的高度
+         * @property    _itemheight
+         * @type    int
+         * @private
+         */
         this._itemheight = parseInt( _layout.attr(&#x27;slideritemheight&#x27;), 10 ) || 0;
-
-        this._direction = _layout.attr(&#x27;sliderdirection&#x27;).toLowerCase() || &#x27;horizontal&#x27;;
+        /**
+         * 每次滚动多少个项
+         * @property    _howmanyitem
+         * @type    int
+         * @default 1
+         * @private
+         */
         this._howmanyitem = parseInt( _layout.attr(&#x27;sliderhowmanyitem&#x27;), 10 ) || 1;
-
+        /**
+         * 划动的方向
+         * &lt;br /&gt;horizontal, vertical
+         * @property    _direction
+         * @type    string
+         * @default horizontal
+         * @private
+         */
+        this._direction = _layout.attr(&#x27;sliderdirection&#x27;).toLowerCase() || &#x27;horizontal&#x27;;
+        /**
+         * 初始化后的回调
+         * @property    _initedcb
+         * @type    function
+         * @private
+         */
         _layout.is(&#x27;[sliderinitedcb]&#x27;) 
             &amp;&amp; window[ _layout.attr(&#x27;sliderinitedcb&#x27;) ]
             &amp;&amp; ( this._initedcb = window[ _layout.attr(&#x27;sliderinitedcb&#x27;) ] );
-
+        /**
+         * 默认显示的索引
+         * @property    _defaultpage
+         * @type    int
+         * @default 0
+         * @private
+         */
         this._defaultpage = parseInt( _layout.attr(&#x27;sliderdefaultpage&#x27;), 10 ) || 0;
+        /**
+         * 每次移动的间隔, 单位毫秒
+         * @property    _stepms
+         * @type    int
+         * @default 10
+         * @private
+         */
         this._stepms = parseInt( _layout.attr(&#x27;sliderstepms&#x27;), 10 ) || 10;
+        /**
+         * 每次移动的总时间
+         * @property    _durationms
+         * @type    int
+         * @default 300
+         * @private
+         */
         this._durationms = parseInt( _layout.attr(&#x27;sliderdurationms&#x27;), 10 ) || 300;
-
+        /**
+         * 每次移动的总时间, 单位毫秒
+         * @property    _durationms
+         * @type    int
+         * @default 300
+         * @private
+         */
         this._loop = parseBool( _layout.attr(&#x27;sliderloop&#x27;) );
+        /**
+         * 是否自动移动
+         * @property    _automove
+         * @type    bool
+         * @default false
+         * @private
+         */
         this._automove = parseBool( _layout.attr(&#x27;sliderautomove&#x27;) );
+        /**
+         * 自动移动的间隔, 单位毫秒
+         * @property    _automovems
+         * @type    int
+         * @default 2000
+         * @private
+         */
         this._automovems = parseInt( _layout.attr(&#x27;sliderautomovems&#x27;), 10 ) || 2000;
-
-        this._totalpage;
-        this._subitems;
-        this._pointer;
-        this._interval;
-        this._timeout;
+        /**
+         * 自动移动的方向
+         * &lt;br /&gt; true = 向右|向下, false = 向左|向上
+         * @property    _moveDirection
+         * @type    bool
+         * @default true
+         * @private
+         */
         this._moveDirection = true;
+        /**
+         * 总页数
+         * @property    _totalpage
+         * @type    int
+         * @private
+         */
+        this._totalpage;
+        /**
+         * 所有子项
+         * @property    _subitems
+         * @type    selector
+         * @private
+         */
+        this._subitems;
+        /**
+         * 当前索引位置
+         * @property    _pointer
+         * @type    int
+         * @private
+         */
+        this._pointer;
+        /**
+         * 滚动时的 interval 引用
+         * @property    _interval
+         * @type    interval
+         * @private
+         */
+        this._interval;
+        /**
+         * 自动滚动时的 timeout 引用
+         * @property    _timeout
+         * @type    timeout
+         * @private
+         */
+        this._timeout;
         
         this._init();
     }
     
     Model.prototype = {
+        /**
+         * 内部初始化方法
+         * @method _init
+         * @private
+         * @return Slider.Model
+         */
         _init:
             function(){
                 this.subitems();
@@ -486,13 +714,122 @@
 
                 return this;
             }
+        /**
+         * 获取 slider 外观的 selector
+         * @method layout
+         * @return selector
+         */
         , layout: function(){ return this._layout; }
+        /**
+         * 获取 左移的 selector
+         * @method leftbutton
+         * @return selector
+         */
         , leftbutton: function(){ return this._leftbutton; }
+        /**
+         * 获取 右移的 selector
+         * @method rightbutton
+         * @return selector
+         */
         , rightbutton: function(){ return this._rightbutton; }
+        /**
+         * 获取移动方向
+         * &lt;br /&gt;horizontal, vertical
+         * @method direction
+         * @return string
+         */
         , direction: function(){ return this._direction; }
+        /**
+         * 获取每次移动多少项
+         * @method howmanyitem
+         * @return int
+         */
         , howmanyitem: function(){ return this._howmanyitem; }
+        /**
+         * 获取宽度
+         * @method width
+         * @return int
+         */
         , width: function(){ return this._width; }
+        /**
+         * 获取项宽度
+         * @method itemwidth
+         * @return int
+         */
         , itemwidth: function(){ return this._itemwidth; }
+        /**
+         * 获取项高度
+         * @method itemheight
+         * @return int
+         */
+        , itemheight: function(){ return this._itemheight; }
+        /**
+         * 获取是否循环显示
+         * @method itemwidth
+         * @return bool
+         */
+        , loop: function(){ return this._loop; }
+        /**
+         * 获取每次移动间隔的毫秒数
+         * @method stepms
+         * @return int
+         */
+        , stepms: function(){ return this._stepms; }
+        /**
+         * 获取每次移动持续的毫秒数
+         * @method durationms
+         * @return int
+         */
+        , durationms: function(){ return this._durationms; }
+        /**
+         * 获取初始化后的回调函数
+         * @method initedcb
+         * @return function|undefined
+         */
+        , initedcb: function(){ return this._initedcb; }
+        /**
+         * 获取是否自动滚动
+         * @method automove
+         * @return bool
+         */
+        , automove: function(){ return this._automove; }
+        /**
+         * 获取自动滚动的间隔
+         * @method automovems
+         * @return int
+         */
+        , automovems: function(){ return this._automovems; }
+        , totalpage:
+            function(){
+                this.subitems();
+                if( this.howmanyitem() &gt; 1 ){
+                    this._totalpage = Math.ceil( this._subitems.length / this.howmanyitem() );
+                }else{
+                    this._totalpage = this._subitems.length;
+                }
+                return this._totalpage;
+            }
+        , subitems:
+            function(){
+                if( this._layout.is( &#x27;[slidersubitems]&#x27; ) ){
+                    this._subitems = this._layout.find( this._layout.attr(&#x27;slidersubitems&#x27;) );
+                }else{
+                    this._subitems = this._layout.children();
+                }
+                return this._subitems;
+            }
+        , page:
+            function( _index ){
+                !_index &amp;&amp; ( _index = 0 );
+                _index &lt; 0 &amp;&amp; ( _index = 0 );
+                _index &gt;= this._totalpage &amp;&amp; ( _index = this._totalpage - 1 );
+                _index *= this.howmanyitem();
+                var _r = [];
+                for( var i = _index, count = 0; count &lt; this.howmanyitem() &amp;&amp; i &lt; this._subitems.length; i++, count++ ){
+                    _r.push( $(this._subitems[i]) );
+                }
+                return _r;
+            }
         , loop: function(){ return this._loop; }
         , stepms: function(){ return this._stepms; }
         , durationms: function(){ return this._durationms; }

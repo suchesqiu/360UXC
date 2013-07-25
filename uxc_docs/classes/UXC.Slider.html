@@ -222,9 +222,50 @@
                 <div class="index-section methods">
                     <h3>Methods</h3>
                     <ul class="index-list methods">
+                            <li class="index-item method private">
+                                <a href="#method__init">_init</a>
+                            </li>
+                            <li class="index-item method private">
+                                <a href="#method__initAutoMove">_initAutoMove</a>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_find">find</a>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_getInstance">getInstance</a>
+                                    <span class="flag static">static</span>
+                            </li>
                             <li class="index-item method">
                                 <a href="#method_init">init</a>
                                     <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_isSlider">isSlider</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_layout">layout</a>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_move">move</a>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_moveTo">moveTo</a>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_on">on</a>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_page">page</a>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_pointer">pointer</a>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_totalpage">totalpage</a>
+                            </li>
+                            <li class="index-item method">
+                                <a href="#method_trigger">trigger</a>
                             </li>
                     </ul>
                 </div>
@@ -240,6 +281,141 @@
         </div>
             <div id="methods" class="api-class-tabpanel">
                 <h2 class="off-left">Methods</h2>
+                    <div id="method__init" class="method item private">
+    <h3 class="name"><code>_init</code></h3>
+        <span class="paren">()</span>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+        <span class="flag private">private</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Slider_Slider.js.html#l191"><code>..&#x2F;comps&#x2F;Slider&#x2F;Slider.js:191</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>内部初始化方法</p>
+    </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    bool
+            </div>
+        </div>
+</div>
+                    <div id="method__initAutoMove" class="method item private">
+    <h3 class="name"><code>_initAutoMove</code></h3>
+        <span class="paren">()</span>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+        <span class="flag private">private</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Slider_Slider.js.html#l308"><code>..&#x2F;comps&#x2F;Slider&#x2F;Slider.js:308</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>初始化自动滚动
+<br />如果 layout 的 html属性 sliderautomove=ture, 则会执行本函数</p>
+    </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    SliderInstance
+            </div>
+        </div>
+</div>
+                    <div id="method_find" class="method item">
+    <h3 class="name"><code>find</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Slider_Slider.js.html#l301"><code>..&#x2F;comps&#x2F;Slider&#x2F;Slider.js:301</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>查找 layout 的内容</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    selector
+            </div>
+        </div>
+</div>
+                    <div id="method_getInstance" class="method item">
+    <h3 class="name"><code>getInstance</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+                <li class="arg">
+                        <code>_ins</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Slider_Slider.js.html#l164"><code>..&#x2F;comps&#x2F;Slider&#x2F;Slider.js:164</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>从 selector 获得 或 设置 Slider 的实例</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_ins</code>
+                        <span class="type">SliderInstance</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    SliderInstance
+            </div>
+        </div>
+</div>
                     <div id="method_init" class="method item">
     <h3 class="name"><code>init</code></h3>
         <div class="args">
@@ -277,6 +453,319 @@
             <h4>Returns:</h4>
             <div class="returns-description">
                     array
+            </div>
+        </div>
+</div>
+                    <div id="method_isSlider" class="method item">
+    <h3 class="name"><code>isSlider</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_selector</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Slider_Slider.js.html#l177"><code>..&#x2F;comps&#x2F;Slider&#x2F;Slider.js:177</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>判断 selector 是否具备 实例化 Slider 的条件</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_selector</code>
+                        <span class="type">Selector</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    bool
+            </div>
+        </div>
+</div>
+                    <div id="method_layout" class="method item">
+    <h3 class="name"><code>layout</code></h3>
+        <span class="paren">()</span>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Slider_Slider.js.html#l295"><code>..&#x2F;comps&#x2F;Slider&#x2F;Slider.js:295</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>获取 Slider 的主外观容器</p>
+    </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    selector
+            </div>
+        </div>
+</div>
+                    <div id="method_move" class="method item">
+    <h3 class="name"><code>move</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_backwrad</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Slider_Slider.js.html#l262"><code>..&#x2F;comps&#x2F;Slider&#x2F;Slider.js:262</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>控制 Slider 向左或向右划动</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_backwrad</code>
+                        <span class="type">Bool</span>
+                    <div class="param-description">
+                        <p>_backwrad = ture(向左), false(向右), 默认false</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    SliderInstance
+            </div>
+        </div>
+</div>
+                    <div id="method_moveTo" class="method item">
+    <h3 class="name"><code>moveTo</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_newpointer</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Slider_Slider.js.html#l269"><code>..&#x2F;comps&#x2F;Slider&#x2F;Slider.js:269</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>控制 Slider 划动到指定索引</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_newpointer</code>
+                        <span class="type">Int</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    SliderInstance
+            </div>
+        </div>
+</div>
+                    <div id="method_on" class="method item">
+    <h3 class="name"><code>on</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_evtName</code>
+                </li>
+                <li class="arg">
+                        <code>_cb</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Slider_Slider.js.html#l237"><code>..&#x2F;comps&#x2F;Slider&#x2F;Slider.js:237</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>自定义事件绑定函数
+<br />使用 jquery on 方法绑定 为 Slider 实例绑定事件</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_evtName</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                    </div>
+                </li>
+                <li class="param">
+                        <code class="param-name">_cb</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    SliderInstance
+            </div>
+        </div>
+</div>
+                    <div id="method_page" class="method item">
+    <h3 class="name"><code>page</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_ix</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Slider_Slider.js.html#l288"><code>..&#x2F;comps&#x2F;Slider&#x2F;Slider.js:288</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>获取指定索引页的 selector 对象</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_ix</code>
+                        <span class="type">Int</span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    array
+            </div>
+        </div>
+</div>
+                    <div id="method_pointer" class="method item">
+    <h3 class="name"><code>pointer</code></h3>
+        <span class="paren">()</span>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Slider_Slider.js.html#l282"><code>..&#x2F;comps&#x2F;Slider&#x2F;Slider.js:282</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>获取 Slider 的当前索引数</p>
+    </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    int
+            </div>
+        </div>
+</div>
+                    <div id="method_totalpage" class="method item">
+    <h3 class="name"><code>totalpage</code></h3>
+        <span class="paren">()</span>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Slider_Slider.js.html#l276"><code>..&#x2F;comps&#x2F;Slider&#x2F;Slider.js:276</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>获取 Slider 的总索引数</p>
+    </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    int
+            </div>
+        </div>
+</div>
+                    <div id="method_trigger" class="method item">
+    <h3 class="name"><code>trigger</code></h3>
+        <div class="args">
+            <span class="paren">(</span><ul class="args-list inline commas">
+                <li class="arg">
+                        <code>_evtName</code>
+                </li>
+            </ul><span class="paren">)</span>
+        </div>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Slider_Slider.js.html#l250"><code>..&#x2F;comps&#x2F;Slider&#x2F;Slider.js:250</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>自定义事件触发函数
+<br />使用 jquery trigger 方法绑定 为 Slider 实例函数自定义事件</p>
+    </div>
+        <div class="params">
+            <h4>Parameters:</h4>
+            <ul class="params-list">
+                <li class="param">
+                        <code class="param-name">_evtName</code>
+                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                    <div class="param-description">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    SliderInstance
             </div>
         </div>
 </div>
