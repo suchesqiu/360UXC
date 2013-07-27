@@ -17,9 +17,9 @@
      * @method  initAutoSelect
      * @static
      * @for UXC.Form
-     * @version dev 0.1
-     * @author  qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team
-     * @date    2013-06-11
+     * @version dev 0.2
+     * @author  qiushaowei   <suches@btbtd.org> | 360 75 Team
+     * @date    2013-07-28(.2), 2013-06-11(.1)
      * @param   {selector}  _selector   要初始化的级联下拉框父级节点
      * @example
         <h2>AJAX 返回内容</h2>
@@ -267,7 +267,6 @@
             function( _selector, _cb, _pid ){
                 var _p = this, _data, _next = _p._model.next( _selector ), _url;
                 UXC.log( 'ajax select' );
-                //if( !( _next && _next.length ) ) return this;
 
                 if( _p._model.isFirst( _selector ) ){
                     typeof _pid == 'undefined' && ( _pid = _p._model.selectparentid( _selector ) || '' );
@@ -464,6 +463,23 @@
                 _filter && ( _data = _filter( _data ) );
                 return _data;
             }
+        /**
+         * 判断下拉框的option里是否有给定的值
+         * @param   {selector}  _select
+         * @param   {string}    _val    要查找的值
+         */
+        , hasVal: 
+            function ( _selector, _val ){
+                var _r = false, _val = _val.toString();
+                _selector.find('option').each( function(){
+                    var _tmp = $(this);
+                    if( _tmp.val() == _val ){
+                        _r = true;
+                        return false;
+                    }
+                });
+                return _r;
+            }
     };
     
     function View( _model, _control ){
@@ -495,7 +511,7 @@
                 }
                 $( _html.join('') ).appendTo( _selector );
 
-                if( hasVal( _selector, _default ) ){
+                if( this._model.hasVal( _selector, _default ) ){
                     _selector.val( _default );
                 }
             }
@@ -506,364 +522,6 @@
             }
         
     };
-
-    /**
-     * 下拉框改变选项时的响应函数
-     * @method  initAutoSelect.changeEvent
-     * @private
-     * @static
-     * @param   {event}   _evt  dom event
-     */
-    function changeEvent( _evt ){
-        var _p = $(this), _val;
-        UXC.log( _p.prop( 'name' ) );
-
-        if( _p.is('[selectvalue]') ){
-            _val = $.trim( _p.attr('selectvalue') );
-            _p.removeAttr( 'selectvalue' );
-            UXC.log( 1, '_val', _val );
-            if( hasVal( _p, _val ) ){
-                UXC.log( 1, 1 );
-                _p.val( _val );
-                var _selectval = _val;
-                if( _p.is( '[selecttarget]' ) ){
-                    var _target = $(_p.attr('selecttarget'));
-                    if( _target.is( '[selectvalue]' ) ){
-                        _selectval = _target.attr('selectvalue');
-                        _target.removeAttr('selectvalue');
-                    }
-                    var  _reqval = _val, _url;
-                    if( _target.attr('selectdatacb') ){
-                        window[ _target.attr('selectdatacb') ] 
-                            && processData( _target, _selectval, triggerChange
-                                    , window[ _target.attr('selectdatacb') ]( getParentId( _target ) ) );
-                    }else if( _target.attr('selecturl') ){
-                        _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
-                        if( _target.data('parentSelect') ){
-                            _reqval = _target.data('parentSelect').val();
-                        }
-                        _url = _url.replace( /\{0\}/g, _reqval );
-
-                        getData( _target, _url, _selectval, triggerChange);
-                    }
-                }
-            }else{
-                UXC.log( 1, 2 );
-                var _reqval = _val, _url;
-                    _p.data('parentSelect') && ( _reqval = _p.data('parentSelect').val() );
-
-                function cb_1_2( _select ){
-                    if( _select.is( '[selecttarget]' ) ){
-                        var _target = $(_select.attr('selecttarget'));
-                        if( _target.is( '[selectvalue]' ) ){
-                            _val = _target.attr('selectvalue');
-                            _target.removeAttr('selectvalue');
-                        }else _val = '';
-                        var _reqval = _val, _url;
-
-                        if( _target.attr('selectdatacb') ){
-                            window[ _target.attr('selectdatacb') ] 
-                                && processData( _target, _val, triggerChange, 
-                                        window[ _target.attr('selectdatacb') ]( getParentId( _target ) ) );
-                        }else if( _target.is( '[selecturl]' ) ){
-                            _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
-                            if( _target.data('parentSelect') ){
-                                _reqval = _target.data('parentSelect').val();
-                            }
-                            _url = _url.replace( /\{0\}/g, _reqval );
-
-                            getData( _target, _url, _val, triggerChange);
-                        }
-                    }
-                }
-
-                if( _p.attr('selectdatacb') ){
-                    window[ _p.attr('selectdatacb') ] 
-                        && processData( _p, _val, cb_1_2
-                                , window[ _p.attr('selectdatacb') ]( getParentId( _p ) ) );
-                }else if( _p.attr('selecturl') ){
-                    _url = add_url_params( _p.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
-                    if( _p.data('parentSelect') ){
-                        _reqval = _p.data('parentSelect').val();
-                    }
-                    _url = _url.replace( /\{0\}/g, _reqval );
-                    getData( _p, _url, _val, cb_1_2 );
-                }
-            }
-        }else{
-            _val = _p.val();
-            UXC.log( 2, '_val', _val );
-            if( hasItem( _p ) ){
-                UXC.log( 2, 1 );
-                if( _p.is( '[selecttarget]' ) ){
-                    UXC.log( 2, 1, 1 );
-                    var _target = $( _p.attr('selecttarget') );
-                    var _selectval = '';
-                    if( _target.is( '[selectvalue]' ) ){
-                        _selectval = _target.attr('selectvalue');
-                        _target.removeAttr('selectvalue');
-                    }
-                    var _reqval = _val, _url;
-
-                    if( _target.attr('selectdatacb') ){
-                        window[ _target.attr('selectdatacb') ] 
-                            && processData( _target, _selectval, triggerChange, 
-                                    window[ _target.attr('selectdatacb') ]( getParentId( _target ) ) );
-                    }else if( _target.is( '[selecturl]' ) ){
-                        UXC.log( 2, 1, 1, 1, _selectval );
-                        _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
-
-                        if( _target.data('parentSelect') ){
-                            _reqval = _target.data('parentSelect').val();
-                        }
-                        _url = _url.replace( /\{0\}/g, _reqval );
-
-                        getData( _target, _url, _selectval, triggerChange);
-                    }
-                }else{
-                    UXC.log( 2, 1, 2 );
-                    var _target = _p, _reqval = _val, _url;
-                    if( _target.data('parentSelect') ){
-                        _reqval = _target.data('parentSelect').val();
-                    }
-                    /**
-                     * 如果是最后一个SELECT, 那么取消数据请求
-                     */
-                    if( _target.data('isLastSelect') ){
-                        if( ( parseInt( _reqval ) || 0 ) < 1 ){
-                            //removeOption( _target );
-                            //AutoSelect.hideEmpty && _target.hide();
-                        }
-                       //return;
-                    }
-
-                    if( _target.attr('selectdatacb') ){
-                        if( _target.data('isLastSelect') && _target.data('parentSelect').val() == _reqval ){
-                            return;
-                        }
-                        window[ _target.attr('selectdatacb') ] 
-                            && processData( _target, _val, triggerChange, 
-                                    window[ _target.attr('selectdatacb') ]( getParentId( _target ) ) );
-                    }else if( _target.is( '[selecturl]' ) ){
-                        _url = add_url_params( _target.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
-                        UXC.log( _reqval );
-                        _url = _url.replace( /\{0\}/g, _reqval );
-                        if( _target.data('isLastSelect') && _target.data('parentSelect').val() == _reqval ){
-                            return;
-                        }
-                        getData( _target, _url, _val, triggerChange);
-                    }
-                }
-            }else{
-                UXC.log( 2, 2 );
-                var _val = '', _url;
-                    _p.data('parentSelect') && ( _val = _p.data('parentSelect').val() );
-
-                if( _p.attr('selectdatacb') ){
-                    window[ _p.attr('selectdatacb') ] 
-                        && processData( _p, _val, triggerChange
-                                , window[ _p.attr('selectdatacb') ]( getParentId( _p ) ) );
-                }else if( _p.attr('selecturl') ){
-                    _url = add_url_params( _p.attr( 'selecturl' ), { 'rnd': new Date().getTime() } );
-                    _url = _url.replace( /\{0\}/g, _val );
-
-                    if( !_p.data('isFirstSelect') && ( (parseInt( _val, 10 ) || 0) < 1 ) ){
-                        removeOption( _p );
-                        triggerChange( _p );
-                        AutoSelect.hideEmpty && _p.hide();
-                    }else getData( _p, _url, _val, triggerChange );
-                }
-
-            }
-        }
-    }//end changeEvent
-
-
-    /**
-     * 获取 select 的父ID, 这个方便就用于静态数据的联动框
-     * @method  initAutoSelect.getParentId
-     * @private 
-     * @static
-     * @param   {selector}  _select     下拉框的选择器对象
-     */
-    function getParentId( _select ){
-        var _r = '';
-        if( _select.attr('selectparentid') ){
-            _r = _select.attr('selectparentid');
-        }else if( _select.data('parentSelect') ) {
-            _r = _select.data('parentSelect').val();
-        }
-        return _r;
-    }
-    /** 
-     * 触发下一级下拉框的change事件
-     * @method  initAutoSelect.triggerChange
-     * @private 
-     * @static
-     * @param   {selector}  _select     下拉框的选择器对象
-     */
-    function triggerChange( _select ){
-        if( _select.is( '[selecttarget]' )  ){
-            $( _select.attr('selecttarget') ).trigger('change');
-        } 
-    }
-    /**
-     * AJAX请求数据, 并处理结果
-     * @method      initAutoSelect.getData
-     * @private
-     * @static
-     * @param   {selector}  _select     下拉框的选择器对象
-     * @param   {string}    _url        请求数据的URL接口
-     * @param   {string}    _selectval  默认选中值
-     * @param   {function}  _callback   结果处理完毕后的回调函数
-     */
-    function getData( _select, _url, _selectval, _callback ){
-        $.getJSON( _url, function( _r ){
-            processData( _select, _selectval, _callback, _r );
-        });
-    }
-    /**
-     * 处理数据结果
-     * @method      initAutoSelect.processData
-     * @private
-     * @static
-     * @param   {selector}  _select     下拉框的选择器对象
-     * @param   {string}    _selectval  默认选中值
-     * @param   {function}  _callback   结果处理完毕后的回调函数
-     * @param   {array}     _r          select 数据
-     */
-    function processData( _select, _selectval, _callback, _r ){
-        if( AutoSelect.dataFilter ){
-            _r = AutoSelect.dataFilter( _r, _select );
-        }
-        if( !_r ) return;
-        removeOption( _select );
-
-        if( AutoSelect.hideEmpty ){
-            !_r.length && _select.hide();
-            _r.length && _select.show();
-        }
-
-        var _optls = [];
-
-        if( _select.attr('selectcustomrendercb') ){
-            _optls = window[ _select.attr('selectcustomrendercb') ].call( _select, _r );
-        }else{
-            for( var i = 0, j = _r.length; i < j; i++ )
-                _optls.push( '<option value="'+_r[i][0]+'">'+ _r[i][1] +'</option>' );
-        }
-
-        $( _optls.join('') ).appendTo( _select );
-        hasVal( _select, _selectval ) ? _select.val( _selectval ) : selectFirst( _select );
-        _callback && _callback( _select );
-    }
-    /**
-     * 判断下拉框是否为空
-     * <br />带 defaultoption 属性的 option 判断时被忽略
-     * @method  initAutoSelect.isEmpty
-     * @private
-     * @static
-     * @param   {selector}  _select
-     */
-    function isEmpty( _select ){
-        var _r = true;
-        _select.find('option').each( function(){
-            var _tmp = $(this);
-            if( !_tmp.is( '[defaultoption]' ) ){
-                return _r = false;
-            }
-        });
-        return _r;
-    }
-    /**
-     * 选中下拉框的第一个option
-     * @method  initAutoSelect.selectFirst
-     * @private
-     * @static  
-     * @param   {selector}  _select
-     */
-    function selectFirst( _select ){
-        var _ls = _select.find('option');
-        if( _ls.length ){
-            _select.val( _ls.first().val() );
-        }
-    }
-    /**
-     * 清空下拉框的内容
-     * <br />带 defaultoption 属性的 option 判断时被忽略
-     * @method  initAutoSelect.removeOption
-     * @private
-     * @static
-     * @param   {selector}  _select
-     */
-    function removeOption( _select ){
-        var _ls = _select.find('option');
-        for( var i = _ls.length - 1; i >= 0; i-- ){
-            var _item = $(_ls[i]);
-            if( _item.is( '[defaultoption]' ) ) continue;
-            _item.remove();
-        }
-    }
-    /**
-     * 判断下拉框的option里是否有给定的值
-     * @method  initAutoSelect.hasVal
-     * @private
-     * @static
-     * @param   {selector}  _select
-     * @param   {string}    _val    要查找的值
-     */
-    function hasVal( _select, _val ){
-        var _r = false, _val = _val.toString();
-        _select.find('option').each( function(){
-            var _tmp = $(this);
-            if( _tmp.val() == _val ){
-                _r = true;
-                return false;
-            }
-        });
-        return _r;
-    }
-    /**
-     * 判断下拉框是否有数据项
-     * <br />带 defaultoption 属性的 option 判断时被忽略
-     * @method  initAutoSelect.hasItem
-     * @private
-     * @static
-     * @param   {selector}  _select
-     */
-    function hasItem( _select ){
-        var _r = false;
-        _select.find('option').each( function(){
-            var _tmp = $(this);
-            if( _tmp.is( '[defaultoption]' ) ) return;
-            _r = true;
-            return false;
-        });
-        return _r;
-    }
-    /**
-     * 取得某一类级联下拉框的所有下拉框
-     * @method  initAutoSelect.getSelectList
-     * @private
-     * @static
-     * @param   {selector}  _select     调用时, _select 为起始下拉框, 带 defaultselect 属性
-     * @param   {array}     _ar         返回结果, 该参数不需要显示赋予
-     */
-    function getSelectList( _select, _ar ){
-        _select = $(_select);
-        if( !_ar ){
-            _ar =[ _select ];
-            arguments.callee( _select, _ar );
-        }else if( _select.length && _select.is( '[selecttarget]' ) ){
-            var _target = $(_select.attr('selecttarget'));
-            if( _target.length ){
-                _target.data( 'parentSelect', _ar[ _ar.length - 1 ] );
-                _ar.push( _target );
-                arguments.callee( _target, _ar );
-            }
-        }
-        return _ar;
-    }
     /**
      * 页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰
      */
