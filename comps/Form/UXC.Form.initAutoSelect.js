@@ -88,6 +88,7 @@
             }
         /**
          * 是否自动隐藏空值的级联下拉框, 起始下拉框不会被隐藏
+         * <br />这个是全局设置, 如果需要对具体某个select进行处理, 对应的 HTML 属性 selecthideempty
          * @property    initAutoSelect.hideEmpty
          * @type    bool
          * @default false
@@ -163,13 +164,13 @@
          * @default false
          * @static
          */
-        , triggerInitChange: false
+        , triggerInitChange: true
         /**
          * ajax 请求数据时, 是否添加随机参数防止缓存
          * <br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectrandomurl
          * @property    initAutoSelect.randomurl
          * @type    bool
-         * @default false
+         * @default true
          * @static
          */
         , randomurl: false
@@ -296,7 +297,8 @@
                     , _next = _p._model.next( _selector );
                 ;
 
-                _p._model.triggerInitChange() && _selector.trigger('change');
+                _p._model.triggerInitChange() 
+                    && ( UXC.log('triggerInitChange', _selector.attr('name')), _selector.trigger('change') );
 
                 _p.trigger( 'SelectChange', [ _selector ] );
 
@@ -333,10 +335,10 @@
                 if( _p._model.isFirst( _selector ) ){
                     typeof _pid == 'undefined' && ( _pid = _p._model.selectparentid( _selector ) || '' );
                     if( typeof _pid != 'undefined' ){
-                        _data = _p._model.selectdatacb( _selector )( _pid );
+                        _data = _p._model.datacb( _selector )( _pid );
                     }
                 }else{
-                    _data = _p._model.selectdatacb( _selector )( _pid );
+                    _data = _p._model.datacb( _selector )( _pid );
                 }
                 _p._view.update( _selector, _data );
                 _cb && _cb.call( _p, _selector, _data );
@@ -381,7 +383,7 @@
                         return this;
                     }
                 }else{
-                    _data = _p._model.selectdatacb( _selector )( _pid );
+                    _data = _p._model.datacb( _selector )( _pid );
                 }
                 _p._view.update( _selector, _data );
                 _cb && _cb.call( _p, _selector, _data );
@@ -446,7 +448,7 @@
                 return this._isInited;
             }
 
-        , selectdatacb:
+        , datacb:
             function( _selector ){
                 var _r;
                 _selector.attr('selectdatacb') 
@@ -484,7 +486,7 @@
         , triggerInitChange:
             function(){
                 var _r = AutoSelect.triggerInitChange, _selector = this.first();
-                _selector.is('[selectriggerinitchange]')
+                _selector.attr('selecttriggerinitchange')
                     && ( _r = parseBool( _selector.attr('selecttriggerinitchange') ) )
                     ;
                 return _r;
@@ -495,8 +497,8 @@
                 var _r = AutoSelect.hideEmpty;
                 _selector 
                     && _selector.length
-                    && _selector.is('[hideempty]')
-                    && ( _r = parseBool( _selector.attr('hideempty') ) )
+                    && _selector.is('[selecthideempty]')
+                    && ( _r = parseBool( _selector.attr('selecthideempty') ) )
                     ;
                 return _r;
             }

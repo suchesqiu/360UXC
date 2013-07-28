@@ -198,25 +198,7 @@
             function(){
                 var _p = this;
 
-                _p._model.leftbutton() 
-                    && _p._model.leftbutton().on( 'click', function( _evt ){
-                        _p.trigger('cleartimeout');
-                        _p.trigger('movetoleft');
-                        _p._view.move( 1 );
-                    })
-                    .on('mouseenter', function(){ _p.trigger('controlover'); } )
-                    .on('mouseleave', function(){ _p.trigger('controlout'); } )
-                ;
-
-                _p._model.rightbutton() 
-                    && _p._model.rightbutton().on( 'click', function( _evt ){
-                        _p.trigger('cleartimeout');
-                        _p.trigger('movetoright');
-                        _p._view.move();
-                    })
-                    .on('mouseenter', function(){ _p.trigger('controlover'); } )
-                    .on('mouseleave', function(){ _p.trigger('controlout'); } )
-                ;
+                _p._initControl();
 
                 _p.on('cleartinterval', function(){
                     _p._model.clearInterval();
@@ -305,6 +287,40 @@
          * @return selector
          */
         , find: function( _selector ){ return this._model.layout().find( _selector ) }
+        , _initControl:
+            function(){
+                switch( this._model.direction() ){
+                    case 'vertical': this._initVerticalControl(); break;
+                    default: this._initHorizontalControl(); break;
+                }
+            }
+        , _initHorizontalControl:
+            function(){
+                var _p = this;
+                _p._model.leftbutton() 
+                    && _p._model.leftbutton().on( 'click', function( _evt ){
+                        _p.trigger('cleartimeout');
+                        _p.trigger('movetoleft');
+                        _p._view.move( 1 );
+                    })
+                    .on('mouseenter', function(){ _p.trigger('controlover'); } )
+                    .on('mouseleave', function(){ _p.trigger('controlout'); } )
+                ;
+
+                _p._model.rightbutton() 
+                    && _p._model.rightbutton().on( 'click', function( _evt ){
+                        _p.trigger('cleartimeout');
+                        _p.trigger('movetoright');
+                        _p._view.move();
+                    })
+                    .on('mouseenter', function(){ _p.trigger('controlover'); } )
+                    .on('mouseleave', function(){ _p.trigger('controlout'); } )
+                ;
+            }
+        , _initVerticalControl:
+            function(){
+                var _p = this;
+            }
         /**
          * 初始化自动滚动
          * <br />如果 layout 的 html属性 sliderautomove=ture, 则会执行本函数
@@ -382,122 +398,6 @@
          */
         this._layout = _layout;
         /**
-         * 保存左移 selector 的引用
-         * @property    _selector
-         * @type    selector
-         * @private
-         */
-        this._leftbutton = _layout.is( '[sliderleft]' ) ? $( _layout.attr('sliderleft') ) : null;
-        /**
-         * 保存右移 selector 的引用
-         * @property    _selector
-         * @type    selector
-         * @private
-         */
-        this._rightbutton = _layout.is( '[sliderright]' ) ? $( _layout.attr('sliderright') ) : null;
-        /**
-         * 宽度
-         * @property    _width
-         * @type    int
-         * @private
-         */
-        this._width = parseInt( _layout.attr('sliderwidth'), 10 ) || 0;
-        /**
-         * 高度
-         * @property    _height
-         * @type    int
-         * @private
-         */
-        this._height = parseInt( _layout.attr('sliderheight'), 10 ) || 0;
-        /**
-         * 每个项的宽度
-         * @property    _itemwidth
-         * @type    int
-         * @private
-         */
-        this._itemwidth = parseInt( _layout.attr('slideritemwidth'), 10 ) || 0;
-        /**
-         * 每个项的高度
-         * @property    _itemheight
-         * @type    int
-         * @private
-         */
-        this._itemheight = parseInt( _layout.attr('slideritemheight'), 10 ) || 0;
-        /**
-         * 每次滚动多少个项
-         * @property    _howmanyitem
-         * @type    int
-         * @default 1
-         * @private
-         */
-        this._howmanyitem = parseInt( _layout.attr('sliderhowmanyitem'), 10 ) || 1;
-        /**
-         * 划动的方向
-         * <br />horizontal, vertical
-         * @property    _direction
-         * @type    string
-         * @default horizontal
-         * @private
-         */
-        this._direction = _layout.attr('sliderdirection').toLowerCase() || 'horizontal';
-        /**
-         * 初始化后的回调
-         * @property    _initedcb
-         * @type    function
-         * @private
-         */
-        _layout.is('[sliderinitedcb]') 
-            && window[ _layout.attr('sliderinitedcb') ]
-            && ( this._initedcb = window[ _layout.attr('sliderinitedcb') ] );
-        /**
-         * 默认显示的索引
-         * @property    _defaultpage
-         * @type    int
-         * @default 0
-         * @private
-         */
-        this._defaultpage = parseInt( _layout.attr('sliderdefaultpage'), 10 ) || 0;
-        /**
-         * 每次移动的间隔, 单位毫秒
-         * @property    _stepms
-         * @type    int
-         * @default 10
-         * @private
-         */
-        this._stepms = parseInt( _layout.attr('sliderstepms'), 10 ) || 10;
-        /**
-         * 每次移动的总时间
-         * @property    _durationms
-         * @type    int
-         * @default 300
-         * @private
-         */
-        this._durationms = parseInt( _layout.attr('sliderdurationms'), 10 ) || 300;
-        /**
-         * 每次移动的总时间, 单位毫秒
-         * @property    _durationms
-         * @type    int
-         * @default 300
-         * @private
-         */
-        this._loop = parseBool( _layout.attr('sliderloop') );
-        /**
-         * 是否自动移动
-         * @property    _automove
-         * @type    bool
-         * @default false
-         * @private
-         */
-        this._automove = parseBool( _layout.attr('sliderautomove') );
-        /**
-         * 自动移动的间隔, 单位毫秒
-         * @property    _automovems
-         * @type    int
-         * @default 2000
-         * @private
-         */
-        this._automovems = parseInt( _layout.attr('sliderautomovems'), 10 ) || 2000;
-        /**
          * 自动移动的方向
          * <br /> true = 向右|向下, false = 向左|向上
          * @property    _moveDirection
@@ -506,27 +406,6 @@
          * @private
          */
         this._moveDirection = true;
-        /**
-         * 总页数
-         * @property    _totalpage
-         * @type    int
-         * @private
-         */
-        this._totalpage;
-        /**
-         * 所有子项
-         * @property    _subitems
-         * @type    selector
-         * @private
-         */
-        this._subitems;
-        /**
-         * 当前索引位置
-         * @property    _pointer
-         * @type    int
-         * @private
-         */
-        this._pointer;
         /**
          * 滚动时的 interval 引用
          * @property    _interval
@@ -555,12 +434,13 @@
         _init:
             function(){
                 this.subitems();
+                this.totalpage();
 
                 UXC.log( printf('w:{0}, h:{1}, iw:{2}, ih:{3}, dr:{4}, si:{6}, hi:{5}, totalpage:{7}'
-                            , this._width, this._height
-                            , this._itemwidth, this._itemheight
-                            , this._direction, this._howmanyitem
-                            , this._subitems.length
+                            , this.width(), this.height()
+                            , this.itemwidth(), this.itemheight()
+                            , this.direction(), this.howmanyitem()
+                            , this.subitems().length
                             , this.totalpage()
                 ));
 
@@ -577,80 +457,130 @@
          * @method leftbutton
          * @return selector
          */
-        , leftbutton: function(){ return this._leftbutton; }
+        , leftbutton: function(){ return this._layout.is( '[sliderleft]' ) ? $( this._layout.attr('sliderleft') ) : null; }
         /**
          * 获取 右移的 selector
          * @method rightbutton
          * @return selector
          */
-        , rightbutton: function(){ return this._rightbutton; }
+        , rightbutton: function(){ return this._layout.is( '[sliderright]' ) ? $( this._layout.attr('sliderright') ) : null; }
         /**
          * 获取移动方向
          * <br />horizontal, vertical
          * @method direction
+         * @default horizontal
          * @return string
          */
-        , direction: function(){ return this._direction; }
+        , direction: function(){ return this._layout.attr('sliderdirection').toLowerCase() || 'horizontal'; }
+        /**
+         * 获取/设置自动移动的方向
+         * <br /> true = 向右|向下, false = 向左|向上
+         * @method  moveDirection
+         * @param   {string}    _setter
+         * @return string
+         */
+        , moveDirection:
+            function( _setter ){
+                typeof _setter != 'undefined' && ( this._moveDirection = _setter );
+                UXC.log( 'moveDirection', this._moveDirection );
+                return this._moveDirection;
+            }
         /**
          * 获取每次移动多少项
          * @method howmanyitem
          * @return int
          */
-        , howmanyitem: function(){ return this._howmanyitem; }
+        , howmanyitem: function(){ return parseInt( this._layout.attr('sliderhowmanyitem'), 10 ) || 1; }
         /**
          * 获取宽度
          * @method width
+         * @default 800 
          * @return int
          */
-        , width: function(){ return this._width; }
+        , width: function(){ return parseInt( this._layout.attr('sliderwidth'), 10 ) || 800; }
+        /**
+         * 获取高度
+         * @method height
+         * @default 230
+         * @return int
+         */
+        , height: function(){ return parseInt( this._layout.attr('sliderheight'), 10 ) || 230; }
         /**
          * 获取项宽度
          * @method itemwidth
+         * @default 160
          * @return int
          */
-        , itemwidth: function(){ return this._itemwidth; }
+        , itemwidth: function(){ return parseInt( this._layout.attr('slideritemwidth'), 10 ) || 160; }
         /**
          * 获取项高度
          * @method itemheight
+         * @default 230
          * @return int
          */
-        , itemheight: function(){ return this._itemheight; }
+        , itemheight: function(){ return parseInt( this._layout.attr('slideritemheight'), 10 ) || 230; }
         /**
-         * 获取是否循环显示
-         * @method itemwidth
+         * 每次移动的总时间, 单位毫秒
+         * @method      loop
+         * @default false
          * @return bool
          */
-        , loop: function(){ return this._loop; }
+        , loop: function(){ return parseBool( this._layout.attr('sliderloop') ); }
         /**
          * 获取每次移动间隔的毫秒数
          * @method stepms
+         * @default 10
          * @return int
          */
-        , stepms: function(){ return this._stepms; }
+        , stepms: function(){ return parseInt( this._layout.attr('sliderstepms'), 10 ) || 10; }
         /**
          * 获取每次移动持续的毫秒数
          * @method durationms
+         * @default 300
          * @return int
          */
-        , durationms: function(){ return this._durationms; }
-        /**
-         * 获取初始化后的回调函数
-         * @method initedcb
-         * @return function|undefined
-         */
-        , initedcb: function(){ return this._initedcb; }
-        /**
-         * 获取是否自动滚动
-         * @method automove
-         * @return bool
-         */
-        , automove: function(){ return this._automove; }
+        , durationms: function(){ return parseInt( this._layout.attr('sliderdurationms'), 10 ) || 300; }
         /**
          * 获取自动滚动的间隔
          * @method automovems
+         * @default 2000
          * @return int
          */
-        , automovems: function(){ return this._automovems; }
+        , automovems: function(){ return parseInt( this._layout.attr('sliderautomovems'), 10 ) || 2000; }
+        /**
+         * 获取是否自动滚动
+         * @method automove
+         * @default false
+         * @return bool
+         */
+        , automove: function(){ return parseBool( this._layout.attr('sliderautomove') ); }
+        /**
+         * 获取默认显示的索引
+         * @method  defaultpage
+         * @return  int
+         * @default 0
+         */
+        , defaultpage: function(){ return parseInt( this._layout.attr('sliderdefaultpage'), 10 ) || 0; }
+        /**
+         * 获取划动的所有项
+         * @method  subitems
+         * @return  selector
+         */
+        , subitems:
+            function(){
+                if( this._layout.is( '[slidersubitems]' ) ){
+                    this._subitems = this._layout.find( this._layout.attr('slidersubitems') );
+                }else{
+                    this._subitems = this._layout.children();
+                }
+                return this._subitems;
+            }
+        /**
+         * 获取分页总数
+         * <br /> Math.ceil( subitems / howmanyitem )
+         * @method  totalpage
+         * @return  int
+         */
         , totalpage:
             function(){
                 this.subitems();
@@ -661,57 +591,18 @@
                 }
                 return this._totalpage;
             }
-        , subitems:
-            function(){
-                if( this._layout.is( '[slidersubitems]' ) ){
-                    this._subitems = this._layout.find( this._layout.attr('slidersubitems') );
-                }else{
-                    this._subitems = this._layout.children();
-                }
-                return this._subitems;
-            }
+        /**
+         * 获取指定页的所有划动项
+         * @method  page
+         * @param   {int}   _index
+         * @return array
+         */
         , page:
             function( _index ){
-                !_index && ( _index = 0 );
-                _index < 0 && ( _index = 0 );
-                _index >= this._totalpage && ( _index = this._totalpage - 1 );
-                _index *= this.howmanyitem();
-                var _r = [];
-                for( var i = _index, count = 0; count < this.howmanyitem() && i < this._subitems.length; i++, count++ ){
-                    _r.push( $(this._subitems[i]) );
-                }
-                return _r;
-            }
-        , loop: function(){ return this._loop; }
-        , stepms: function(){ return this._stepms; }
-        , durationms: function(){ return this._durationms; }
-        , initedcb: function(){ return this._initedcb; }
-        , automove: function(){ return this._automove; }
-        , automovems: function(){ return this._automovems; }
-        , totalpage:
-            function(){
                 this.subitems();
-                if( this.howmanyitem() > 1 ){
-                    this._totalpage = Math.ceil( this._subitems.length / this.howmanyitem() );
-                }else{
-                    this._totalpage = this._subitems.length;
-                }
-                return this._totalpage;
-            }
-        , subitems:
-            function(){
-                if( this._layout.is( '[slidersubitems]' ) ){
-                    this._subitems = this._layout.find( this._layout.attr('slidersubitems') );
-                }else{
-                    this._subitems = this._layout.children();
-                }
-                return this._subitems;
-            }
-        , page:
-            function( _index ){
                 !_index && ( _index = 0 );
                 _index < 0 && ( _index = 0 );
-                _index >= this._totalpage && ( _index = this._totalpage - 1 );
+                _index >= this.totalpage() && ( _index = this.totalpage() - 1 );
                 _index *= this.howmanyitem();
                 var _r = [];
                 for( var i = _index, count = 0; count < this.howmanyitem() && i < this._subitems.length; i++, count++ ){
@@ -719,12 +610,25 @@
                 }
                 return _r;
             }
+        /**
+         * 获取/设置当前索引位置
+         * @method  pointer
+         * @param   {int}   _setter
+         * @return int
+         */
         , pointer: 
             function( _setter ){ 
-                if( typeof this._pointer == 'undefined' ) this._pointer = this._defaultpage;
+                if( typeof this._pointer == 'undefined' ) this._pointer = this.defaultpage();
                 if( typeof _setter != 'undefined' ) this._pointer = this.fixpointer( _setter );
                 return this._pointer;
             }
+        /**
+         * 获取新的划动位置
+         * <br />根据划向的方向 和 是否循环 
+         * @method  newpointer
+         * @param   {bool}  _isbackward
+         * @return int
+         */
         , newpointer:
             function( _isbackward ){
                 var _r = this.pointer();
@@ -734,39 +638,12 @@
                 _r = this.fixpointer( _r );
                 return _r;
             }
-        , automoveNewPointer:
-            function(){
-                var _r = this.pointer();
-                if( this._moveDirection ){
-                    _r++;
-                }else{
-                    _r--;
-                }
-
-                if( this._loop ){
-                    if( _r >= this.totalpage() ){
-                        _r = 0;
-                    }else if( _r < 0 ){
-                        _r = this.totalpage() - 1;
-                    }
-                }else{
-                    if( _r >= this.totalpage() ){
-                        _r = this.totalpage() - 2;
-                        this._moveDirection = false;
-                    }else if( _r < 0 ){
-                        _r = 1
-                        this._moveDirection = true;
-                    }
-                }
-                return _r;
-            }
-        , moveDirection:
-            function( _setter ){
-                typeof _setter != 'undefined' && ( this._moveDirection = _setter );
-                UXC.log( 'moveDirection', this._moveDirection );
-                return this._moveDirection;
-            }
-
+        /**
+         * 修正指针的索引位置, 防止范围溢出
+         * @method  fixpointer
+         * @param   {int}   _pointer
+         * @return int
+         */
         , fixpointer:
             function( _pointer ){
                 var _r = _pointer;
@@ -779,33 +656,99 @@
                 }
                 return _r;
             }
+        /**
+         * 获取自动萌动的新索引
+         * @method  automoveNewPointer
+         * @return int
+         */
+        , automoveNewPointer:
+            function(){
+                var _r = this.pointer();
+                if( this.moveDirection() ){
+                    _r++;
+                }else{
+                    _r--;
+                }
+
+                if( this.loop() ){
+                    if( _r >= this.totalpage() ){
+                        _r = 0;
+                    }else if( _r < 0 ){
+                        _r = this.totalpage() - 1;
+                    }
+                }else{
+                    if( _r >= this.totalpage() ){
+                        _r = this.totalpage() - 2;
+                        this.moveDirection( false );
+                    }else if( _r < 0 ){
+                        _r = 1
+                        this.moveDirection( true );
+                    }
+                }
+                return _r;
+            }
+        /**
+         * 获取/设置 划动的 interval 对象
+         * @method  interval
+         * @param   {interval}  _setter
+         * @return  interval
+         */
         , interval:
             function( _setter ){
                 typeof _setter != 'undefined' && ( this._interval = _setter );
                 return this._interval;
             }
-
+        /**
+         * 清除划动的 interval
+         * @method clearInterval
+         */
         , 'clearInterval':
             function(){
                 this.interval() && clearInterval( this.interval() );
             }
-
+        /**
+         * 获取/设置 自动划动的 timeout
+         * @method  timeout
+         * @param   {timeout}   _setter
+         * @return  timeout
+         */
         , timeout:
             function( _setter ){
                 typeof _setter != 'undefined' && ( this._timeout = _setter );
                 return this._timeout;
             }
-
+        /**
+         * 清除自动划动的 timeout
+         * @method clearTimeout
+         */
         , 'clearTimeout':
             function(){
                 this.timeout() && clearTimeout( this.timeout() );
             }
-
+        /**
+         * 获取/设置当前鼠标是否位于 slider 及其控件上面
+         * @method  controlover
+         * @param   {bool}  _setter
+         * @return  bool
+         */
         , controlover:
             function( _setter ){
                 typeof _setter != 'undefined' && ( this._controlover = _setter );
                 return this._controlover;
             }
+        /**
+         * 获取初始化后的回调函数
+         * @method initedcb
+         * @return function|undefined
+         */
+        , initedcb: 
+            function(){ 
+                this._layout.is('[sliderinitedcb]') 
+                    && window[ this._layout.attr('sliderinitedcb') ]
+                    && ( this._initedcb = window[ this._layout.attr('sliderinitedcb') ] );
+                return this._initedcb; 
+            }
+
     };
     
     function HorizontalView( _model, _slider ){
@@ -957,62 +900,35 @@
         , move:
             function( _backwrad ){
                 var _p = this;
-                _backwrad = !!_backwrad;
-                UXC.log( 'VerticalView move, is backwrad', _backwrad, this._model.pointer() );
-
-                var _newpointer = this._model.newpointer( _backwrad );
-                UXC.log( printf( 'is backwrad: {0}, pointer:{1}, new pointer:{2}'
-                            , _backwrad, this._model.pointer(), _newpointer
-                            ));
-
-                this.moveTo( _newpointer );
+                return this;
             }
 
         , moveTo:
             function( _newpointer ){
                 var _p = this;
-
-                if( !this._model.loop() ){
-                    if( _newpointer <= this._model.pointer() && this._model.pointer() === 0 ){
-                        $(this._slider).trigger( 'outmin' );
-                        return;
-                    }
-                    if( _newpointer >= this._model.pointer() && this._model.pointer() >= this._model.totalpage() - 1 ){
-                        $(this._slider).trigger( 'outmax' );
-                        return;
-                    }
-                }
-
-                _newpointer = this._model.fixpointer( _newpointer );
-                var _oldpointer = this._model.pointer();
-                if( _newpointer === _oldpointer ) return;
-
-
-                var _opage = this._model.page( _oldpointer )
-                    , _npage = this._model.page( _newpointer );
-                ;
-                var _concat = _opage.concat( _npage );
-
-                this._setNewPagePosition( _opage, _npage, _oldpointer, _newpointer );
-                _p._model.pointer( _newpointer );
+                return this;
             }
 
         , _setNewPagePosition:
             function( _opage, _npage, _oldpointer, _newpointer ){
                 var _p = this, _begin, _concat = _opage.concat( _npage ), _isPlus;
+                return this;
               }
 
         , setPagePosition:
             function( _ix ){
+                var _p = this;
                 UXC.log( 'view setPagePosition', new Date().getTime() );
+                return this;
             }
 
     };
-
+    /** 
+     * 页面加载后, 自动初始化符合 Slider 规则的 Slider
+     */
     $(document).ready(function(){
         if( !Slider.autoInit ) return;
         Slider.init( document.body );
     });
-    
 
 }(jQuery));

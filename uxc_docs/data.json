@@ -814,7 +814,7 @@
             "extension_for": [],
             "namespace": "UXC.Slider",
             "file": "../comps/Slider/Slider.js",
-            "line": 369,
+            "line": 385,
             "description": "Slider 的通用模型类",
             "is_constructor": 1,
             "params": [
@@ -2050,7 +2050,7 @@
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
             "line": 89,
-            "description": "是否自动隐藏空值的级联下拉框, 起始下拉框不会被隐藏",
+            "description": "是否自动隐藏空值的级联下拉框, 起始下拉框不会被隐藏\n<br />这个是全局设置, 如果需要对具体某个select进行处理, 对应的 HTML 属性 selecthideempty",
             "itemtype": "property",
             "name": "initAutoSelect.hideEmpty",
             "type": "bool",
@@ -2064,7 +2064,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 99,
+            "line": 100,
             "description": "级联下拉框的数据过滤函数\n<br />默认数据格式: [ [id, name], [id, name] ... ]\n<br />如果获取到的数据格式非默认格式, 可通过本函数进行数据过滤\n<p>\n <b>注意, 这个是全局过滤, 如果要使用该函数进行数据过滤, 判断逻辑需要比较具体</b>\n <br />如果要对具体 select 进行数据过滤, 可以使用HTML属性 selectdatafilter 指定过滤函数\n</p>",
             "itemtype": "property",
             "name": "initAutoSelect.dataFilter",
@@ -2079,7 +2079,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 122,
+            "line": 123,
             "description": "下拉框初始化功能都是未初始化 数据之前的回调\n<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectbeforeInited",
             "itemtype": "property",
             "name": "initAutoSelect.beforeInited",
@@ -2091,7 +2091,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 131,
+            "line": 132,
             "description": "下拉框第一次初始完所有数据的回调\n<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectinited",
             "itemtype": "property",
             "name": "initAutoSelect.inited",
@@ -2103,7 +2103,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 140,
+            "line": 141,
             "description": "下拉框每个项数据变更后的回调\n<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectchange",
             "itemtype": "property",
             "name": "initAutoSelect.change",
@@ -2115,7 +2115,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 149,
+            "line": 150,
             "description": "下拉框所有项数据变更后的回调\n<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectallchanged",
             "itemtype": "property",
             "name": "initAutoSelect.allChanged",
@@ -2127,7 +2127,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 158,
+            "line": 159,
             "description": "第一次初始化所有联动框时, 是否触发 change 事件\n<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selecttriggerinitchange",
             "itemtype": "property",
             "name": "initAutoSelect.triggerInitChange",
@@ -2139,19 +2139,19 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 167,
+            "line": 168,
             "description": "ajax 请求数据时, 是否添加随机参数防止缓存\n<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectrandomurl",
             "itemtype": "property",
             "name": "initAutoSelect.randomurl",
             "type": "bool",
-            "default": "false",
+            "default": "true",
             "static": 1,
             "class": "UXC.Form",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 176,
+            "line": 177,
             "description": "处理 ajax url 的回调处理函数\n<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectprocessurl",
             "itemtype": "property",
             "name": "initAutoSelect.processUrl",
@@ -2163,7 +2163,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 185,
+            "line": 186,
             "description": "获取或设置 selector 的实例引用",
             "itemtype": "method",
             "name": "initAutoSelect.getInstance",
@@ -2188,7 +2188,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 579,
+            "line": 581,
             "description": "判断下拉框的option里是否有给定的值",
             "params": [
                 {
@@ -2207,7 +2207,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 649,
+            "line": 651,
             "description": "页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰",
             "class": "UXC.Form",
             "namespace": "UXC"
@@ -4590,7 +4590,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 237,
+            "line": 219,
             "description": "自定义事件绑定函数\n<br />使用 jquery on 方法绑定 为 Slider 实例绑定事件",
             "itemtype": "method",
             "name": "on",
@@ -4614,7 +4614,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 250,
+            "line": 232,
             "description": "自定义事件触发函数\n<br />使用 jquery trigger 方法绑定 为 Slider 实例函数自定义事件",
             "itemtype": "method",
             "name": "trigger",
@@ -4633,7 +4633,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 262,
+            "line": 244,
             "description": "控制 Slider 向左或向右划动",
             "itemtype": "method",
             "name": "move",
@@ -4652,7 +4652,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 269,
+            "line": 251,
             "description": "控制 Slider 划动到指定索引",
             "itemtype": "method",
             "name": "moveTo",
@@ -4671,7 +4671,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 276,
+            "line": 258,
             "description": "获取 Slider 的总索引数",
             "itemtype": "method",
             "name": "totalpage",
@@ -4683,7 +4683,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 282,
+            "line": 264,
             "description": "获取 Slider 的当前索引数",
             "itemtype": "method",
             "name": "pointer",
@@ -4695,7 +4695,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 288,
+            "line": 270,
             "description": "获取指定索引页的 selector 对象",
             "itemtype": "method",
             "name": "page",
@@ -4714,7 +4714,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 295,
+            "line": 277,
             "description": "获取 Slider 的主外观容器",
             "itemtype": "method",
             "name": "layout",
@@ -4726,7 +4726,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 301,
+            "line": 283,
             "description": "查找 layout 的内容",
             "itemtype": "method",
             "name": "find",
@@ -4745,7 +4745,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 308,
+            "line": 324,
             "description": "初始化自动滚动\n<br />如果 layout 的 html属性 sliderautomove=ture, 则会执行本函数",
             "itemtype": "method",
             "name": "_initAutoMove",
@@ -4759,7 +4759,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 377,
+            "line": 393,
             "description": "保存 layout 的引用",
             "itemtype": "property",
             "name": "_layout",
@@ -4771,195 +4771,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 384,
-            "description": "保存左移 selector 的引用",
-            "itemtype": "property",
-            "name": "_selector",
-            "type": "selector",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 391,
-            "description": "保存右移 selector 的引用",
-            "itemtype": "property",
-            "name": "_selector",
-            "type": "selector",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 398,
-            "description": "宽度",
-            "itemtype": "property",
-            "name": "_width",
-            "type": "int",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 405,
-            "description": "高度",
-            "itemtype": "property",
-            "name": "_height",
-            "type": "int",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 412,
-            "description": "每个项的宽度",
-            "itemtype": "property",
-            "name": "_itemwidth",
-            "type": "int",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 419,
-            "description": "每个项的高度",
-            "itemtype": "property",
-            "name": "_itemheight",
-            "type": "int",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 426,
-            "description": "每次滚动多少个项",
-            "itemtype": "property",
-            "name": "_howmanyitem",
-            "type": "int",
-            "default": "1",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 434,
-            "description": "划动的方向\n<br />horizontal, vertical",
-            "itemtype": "property",
-            "name": "_direction",
-            "type": "string",
-            "default": "horizontal",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 443,
-            "description": "初始化后的回调",
-            "itemtype": "property",
-            "name": "_initedcb",
-            "type": "function",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 452,
-            "description": "默认显示的索引",
-            "itemtype": "property",
-            "name": "_defaultpage",
-            "type": "int",
-            "default": "0",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 460,
-            "description": "每次移动的间隔, 单位毫秒",
-            "itemtype": "property",
-            "name": "_stepms",
-            "type": "int",
-            "default": "10",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 468,
-            "description": "每次移动的总时间",
-            "itemtype": "property",
-            "name": "_durationms",
-            "type": "int",
-            "default": "300",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 476,
-            "description": "每次移动的总时间, 单位毫秒",
-            "itemtype": "property",
-            "name": "_durationms",
-            "type": "int",
-            "default": "300",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 484,
-            "description": "是否自动移动",
-            "itemtype": "property",
-            "name": "_automove",
-            "type": "bool",
-            "default": "false",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 492,
-            "description": "自动移动的间隔, 单位毫秒",
-            "itemtype": "property",
-            "name": "_automovems",
-            "type": "int",
-            "default": "2000",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 500,
+            "line": 400,
             "description": "自动移动的方向\n<br /> true = 向右|向下, false = 向左|向上",
             "itemtype": "property",
             "name": "_moveDirection",
@@ -4972,43 +4784,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 509,
-            "description": "总页数",
-            "itemtype": "property",
-            "name": "_totalpage",
-            "type": "int",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 516,
-            "description": "所有子项",
-            "itemtype": "property",
-            "name": "_subitems",
-            "type": "selector",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 523,
-            "description": "当前索引位置",
-            "itemtype": "property",
-            "name": "_pointer",
-            "type": "int",
-            "access": "private",
-            "tagname": "",
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 530,
+            "line": 409,
             "description": "滚动时的 interval 引用",
             "itemtype": "property",
             "name": "_interval",
@@ -5020,7 +4796,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 537,
+            "line": 416,
             "description": "自动滚动时的 timeout 引用",
             "itemtype": "property",
             "name": "_timeout",
@@ -5032,7 +4808,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 549,
+            "line": 428,
             "description": "内部初始化方法",
             "itemtype": "method",
             "name": "_init",
@@ -5046,7 +4822,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 569,
+            "line": 449,
             "description": "获取 slider 外观的 selector",
             "itemtype": "method",
             "name": "layout",
@@ -5058,7 +4834,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 575,
+            "line": 455,
             "description": "获取 左移的 selector",
             "itemtype": "method",
             "name": "leftbutton",
@@ -5070,7 +4846,7 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 581,
+            "line": 461,
             "description": "获取 右移的 selector",
             "itemtype": "method",
             "name": "rightbutton",
@@ -5082,10 +4858,11 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 587,
+            "line": 467,
             "description": "获取移动方向\n<br />horizontal, vertical",
             "itemtype": "method",
             "name": "direction",
+            "default": "horizontal",
             "return": {
                 "description": "string"
             },
@@ -5094,7 +4871,26 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 594,
+            "line": 475,
+            "description": "获取/设置自动移动的方向\n<br /> true = 向右|向下, false = 向左|向上",
+            "itemtype": "method",
+            "name": "moveDirection",
+            "params": [
+                {
+                    "name": "_setter",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "string"
+            },
+            "class": "UXC.Slider.Model",
+            "namespace": "UXC.Slider"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 488,
             "description": "获取每次移动多少项",
             "itemtype": "method",
             "name": "howmanyitem",
@@ -5106,10 +4902,11 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 600,
+            "line": 494,
             "description": "获取宽度",
             "itemtype": "method",
             "name": "width",
+            "default": "800",
             "return": {
                 "description": "int"
             },
@@ -5118,10 +4915,24 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 606,
+            "line": 501,
+            "description": "获取高度",
+            "itemtype": "method",
+            "name": "height",
+            "default": "230",
+            "return": {
+                "description": "int"
+            },
+            "class": "UXC.Slider.Model",
+            "namespace": "UXC.Slider"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 508,
             "description": "获取项宽度",
             "itemtype": "method",
             "name": "itemwidth",
+            "default": "160",
             "return": {
                 "description": "int"
             },
@@ -5130,10 +4941,11 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 612,
+            "line": 515,
             "description": "获取项高度",
             "itemtype": "method",
             "name": "itemheight",
+            "default": "230",
             "return": {
                 "description": "int"
             },
@@ -5142,10 +4954,11 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 618,
-            "description": "获取是否循环显示",
+            "line": 522,
+            "description": "每次移动的总时间, 单位毫秒",
             "itemtype": "method",
-            "name": "itemwidth",
+            "name": "loop",
+            "default": "false",
             "return": {
                 "description": "bool"
             },
@@ -5154,10 +4967,11 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 624,
+            "line": 529,
             "description": "获取每次移动间隔的毫秒数",
             "itemtype": "method",
             "name": "stepms",
+            "default": "10",
             "return": {
                 "description": "int"
             },
@@ -5166,10 +4980,11 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 630,
+            "line": 536,
             "description": "获取每次移动持续的毫秒数",
             "itemtype": "method",
             "name": "durationms",
+            "default": "300",
             "return": {
                 "description": "int"
             },
@@ -5178,7 +4993,233 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 636,
+            "line": 543,
+            "description": "获取自动滚动的间隔",
+            "itemtype": "method",
+            "name": "automovems",
+            "default": "2000",
+            "return": {
+                "description": "int"
+            },
+            "class": "UXC.Slider.Model",
+            "namespace": "UXC.Slider"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 550,
+            "description": "获取是否自动滚动",
+            "itemtype": "method",
+            "name": "automove",
+            "default": "false",
+            "return": {
+                "description": "bool"
+            },
+            "class": "UXC.Slider.Model",
+            "namespace": "UXC.Slider"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 557,
+            "description": "获取默认显示的索引",
+            "itemtype": "method",
+            "name": "defaultpage",
+            "return": {
+                "description": "int"
+            },
+            "default": "0",
+            "class": "UXC.Slider.Model",
+            "namespace": "UXC.Slider"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 564,
+            "description": "获取划动的所有项",
+            "itemtype": "method",
+            "name": "subitems",
+            "return": {
+                "description": "selector"
+            },
+            "class": "UXC.Slider.Model",
+            "namespace": "UXC.Slider"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 578,
+            "description": "获取分页总数\n<br /> Math.ceil( subitems / howmanyitem )",
+            "itemtype": "method",
+            "name": "totalpage",
+            "return": {
+                "description": "int"
+            },
+            "class": "UXC.Slider.Model",
+            "namespace": "UXC.Slider"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 594,
+            "description": "获取指定页的所有划动项",
+            "itemtype": "method",
+            "name": "page",
+            "params": [
+                {
+                    "name": "_index",
+                    "description": "",
+                    "type": "Int"
+                }
+            ],
+            "return": {
+                "description": "array"
+            },
+            "class": "UXC.Slider.Model",
+            "namespace": "UXC.Slider"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 613,
+            "description": "获取/设置当前索引位置",
+            "itemtype": "method",
+            "name": "pointer",
+            "params": [
+                {
+                    "name": "_setter",
+                    "description": "",
+                    "type": "Int"
+                }
+            ],
+            "return": {
+                "description": "int"
+            },
+            "class": "UXC.Slider.Model",
+            "namespace": "UXC.Slider"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 625,
+            "description": "获取新的划动位置\n<br />根据划向的方向 和 是否循环",
+            "itemtype": "method",
+            "name": "newpointer",
+            "params": [
+                {
+                    "name": "_isbackward",
+                    "description": "",
+                    "type": "Bool"
+                }
+            ],
+            "return": {
+                "description": "int"
+            },
+            "class": "UXC.Slider.Model",
+            "namespace": "UXC.Slider"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 641,
+            "description": "修正指针的索引位置, 防止范围溢出",
+            "itemtype": "method",
+            "name": "fixpointer",
+            "params": [
+                {
+                    "name": "_pointer",
+                    "description": "",
+                    "type": "Int"
+                }
+            ],
+            "return": {
+                "description": "int"
+            },
+            "class": "UXC.Slider.Model",
+            "namespace": "UXC.Slider"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 659,
+            "description": "获取自动萌动的新索引",
+            "itemtype": "method",
+            "name": "automoveNewPointer",
+            "return": {
+                "description": "int"
+            },
+            "class": "UXC.Slider.Model",
+            "namespace": "UXC.Slider"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 690,
+            "description": "获取/设置 划动的 interval 对象",
+            "itemtype": "method",
+            "name": "interval",
+            "params": [
+                {
+                    "name": "_setter",
+                    "description": "",
+                    "type": "Interval"
+                }
+            ],
+            "return": {
+                "description": "interval"
+            },
+            "class": "UXC.Slider.Model",
+            "namespace": "UXC.Slider"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 701,
+            "description": "清除划动的 interval",
+            "itemtype": "method",
+            "name": "clearInterval",
+            "class": "UXC.Slider.Model",
+            "namespace": "UXC.Slider"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 709,
+            "description": "获取/设置 自动划动的 timeout",
+            "itemtype": "method",
+            "name": "timeout",
+            "params": [
+                {
+                    "name": "_setter",
+                    "description": "",
+                    "type": "Timeout"
+                }
+            ],
+            "return": {
+                "description": "timeout"
+            },
+            "class": "UXC.Slider.Model",
+            "namespace": "UXC.Slider"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 720,
+            "description": "清除自动划动的 timeout",
+            "itemtype": "method",
+            "name": "clearTimeout",
+            "class": "UXC.Slider.Model",
+            "namespace": "UXC.Slider"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 728,
+            "description": "获取/设置当前鼠标是否位于 slider 及其控件上面",
+            "itemtype": "method",
+            "name": "controlover",
+            "params": [
+                {
+                    "name": "_setter",
+                    "description": "",
+                    "type": "Bool"
+                }
+            ],
+            "return": {
+                "description": "bool"
+            },
+            "class": "UXC.Slider.Model",
+            "namespace": "UXC.Slider"
+        },
+        {
+            "file": "../comps/Slider/Slider.js",
+            "line": 739,
             "description": "获取初始化后的回调函数",
             "itemtype": "method",
             "name": "initedcb",
@@ -5190,25 +5231,8 @@
         },
         {
             "file": "../comps/Slider/Slider.js",
-            "line": 642,
-            "description": "获取是否自动滚动",
-            "itemtype": "method",
-            "name": "automove",
-            "return": {
-                "description": "bool"
-            },
-            "class": "UXC.Slider.Model",
-            "namespace": "UXC.Slider"
-        },
-        {
-            "file": "../comps/Slider/Slider.js",
-            "line": 648,
-            "description": "获取自动滚动的间隔",
-            "itemtype": "method",
-            "name": "automovems",
-            "return": {
-                "description": "int"
-            },
+            "line": 926,
+            "description": "页面加载后, 自动初始化符合 Slider 规则的 Slider",
             "class": "UXC.Slider.Model",
             "namespace": "UXC.Slider"
         },
@@ -10362,11 +10386,11 @@
         },
         {
             "message": "Missing item type\n判断下拉框的option里是否有给定的值",
-            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:579"
+            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:581"
         },
         {
             "message": "Missing item type\n页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰",
-            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:649"
+            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:651"
         },
         {
             "message": "Missing item type\n监听 全选/反选 按钮的点击事件",
@@ -10463,6 +10487,10 @@
         {
             "message": "Missing item type\n初始化视图模型( 根据不同的滚动方向, 初始化不同的视图类 )",
             "line": " ../comps/Slider/Slider.js:113"
+        },
+        {
+            "message": "Missing item type\n页面加载后, 自动初始化符合 Slider 规则的 Slider",
+            "line": " ../comps/Slider/Slider.js:926"
         },
         {
             "message": "Missing item type\nTab 视图类的实例",
