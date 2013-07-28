@@ -1,1 +1,251 @@
-YUI.add("api-list",function(d){var e=d.Lang,j=d.Array,r=d.namespace("APIList"),s=d.one("#api-classes"),a=d.one("#api-filter"),c=d.one("#api-modules"),i=d.one("#api-tabview"),t=r.tabs={},n=r.filter=new d.APIFilter({inputNode:a,maxResults:1000,on:{results:b}}),m=r.search=new d.APISearch({inputNode:a,maxResults:100,on:{clear:k,results:u}}),h=r.tabview=new d.TabView({srcNode:i,panelNode:"#api-tabview-panel",render:true,on:{selectionChange:o}}),q=r.focusManager=i.plug(d.Plugin.NodeFocusManager,{circular:true,descendants:"#api-filter, .yui3-tab-panel-selected .api-list-item a, .yui3-tab-panel-selected .result a",keys:{next:"down:40",previous:"down:38"}}).focusManager,l='<li class="api-list-item {typeSingular}"><a href="{rootPath}{typePlural}/{name}.html">{displayName}</a></li>';d.before(function(w,v){if(w.altKey||w.ctrlKey||w.metaKey||w.shiftKey){return new d.Do.Prevent()}},q,"_focusPrevious",q);d.before(function(w,v){if(w.altKey||w.ctrlKey||w.metaKey||w.shiftKey){return new d.Do.Prevent()}},q,"_focusNext",q);h.each(function(x,w){var v=x.get("label").toLowerCase();t[v]={index:w,name:v,tab:x}});i.on("key",f,"down:37,39");d.one(d.config.doc).on("key",g,"down:83");a.on("focus",function(){q.set("activeDescendant",a)});h.get("panelNode").all("a").each(function(v){v.setAttribute("href",v.get("href"))});function p(){return n.get("queryType")==="classes"?s:c}function b(y){var z=d.one(d.config.doc.createDocumentFragment()),v=p(),w=n.get("queryType"),x=w==="classes"?"class":"module";if(y.results.length){j.each(y.results,function(A){z.append(e.sub(l,{rootPath:r.rootPath,displayName:n.getDisplayName(A.highlighted),name:A.text,typePlural:w,typeSingular:x}))})}else{z.append('<li class="message">No '+w+" found.</li>")}v.empty(true);v.append(z);q.refresh()}function k(v){q.refresh()}function g(w){var v=w.target;if(v.test("input,select,textarea")||v.get("isContentEditable")){return}w.preventDefault();a.focus();q.refresh()}function u(v){var w=d.one(d.config.doc.createDocumentFragment());if(v.results.length){j.each(v.results,function(x){w.append(x.display)})}else{w.append('<li class="message">No results found. Maybe you\'ll have better luck with a different query?</li>')}q.refresh()}function o(x){var w=x.newVal,v=w.get("label").toLowerCase();t.selected={index:w.get("index"),name:v,tab:w};switch(v){case"classes":case"modules":n.setAttrs({minQueryLength:0,queryType:v});m.set("minQueryLength",-1);if(x.prevVal){n.sendRequest(n.get("value"))}break;case"everything":n.set("minQueryLength",-1);m.set("minQueryLength",1);if(m.get("value")){m.sendRequest(m.get("value"))}else{a.focus()}break;default:n.set("minQueryLength",-1);m.set("minQueryLength",-1)}if(q){setTimeout(function(){q.refresh()},1)}}function f(w){var v=t.selected.index;if(!(w.ctrlKey||w.metaKey)){return}w.preventDefault();switch(w.keyCode){case 37:if(v>0){h.selectChild(v-1);a.focus()}break;case 39:if(v<(d.Object.size(t)-2)){h.selectChild(v+1);a.focus()}break}}},"3.4.0",{requires:["api-filter","api-search","event-key","node-focusmanager","tabview"]});
+YUI.add('api-list', function (Y) {
+
+var Lang   = Y.Lang,
+    YArray = Y.Array,
+
+    APIList = Y.namespace('APIList'),
+
+    classesNode    = Y.one('#api-classes'),
+    inputNode      = Y.one('#api-filter'),
+    modulesNode    = Y.one('#api-modules'),
+    tabviewNode    = Y.one('#api-tabview'),
+
+    tabs = APIList.tabs = {},
+
+    filter = APIList.filter = new Y.APIFilter({
+        inputNode : inputNode,
+        maxResults: 1000,
+
+        on: {
+            results: onFilterResults
+        }
+    }),
+
+    search = APIList.search = new Y.APISearch({
+        inputNode : inputNode,
+        maxResults: 100,
+
+        on: {
+            clear  : onSearchClear,
+            results: onSearchResults
+        }
+    }),
+
+    tabview = APIList.tabview = new Y.TabView({
+        srcNode  : tabviewNode,
+        panelNode: '#api-tabview-panel',
+        render   : true,
+
+        on: {
+            selectionChange: onTabSelectionChange
+        }
+    }),
+
+    focusManager = APIList.focusManager = tabviewNode.plug(Y.Plugin.NodeFocusManager, {
+        circular   : true,
+        descendants: '#api-filter, .yui3-tab-panel-selected .api-list-item a, .yui3-tab-panel-selected .result a',
+        keys       : {next: 'down:40', previous: 'down:38'}
+    }).focusManager,
+
+    LIST_ITEM_TEMPLATE =
+        '<li class="api-list-item {typeSingular}">' +
+            '<a href="{rootPath}{typePlural}/{name}.html">{displayName}</a>' +
+        '</li>';
+
+// -- Init ---------------------------------------------------------------------
+
+// Duckpunch FocusManager's key event handling to prevent it from handling key
+// events when a modifier is pressed.
+Y.before(function (e, activeDescendant) {
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
+        return new Y.Do.Prevent();
+    }
+}, focusManager, '_focusPrevious', focusManager);
+
+Y.before(function (e, activeDescendant) {
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
+        return new Y.Do.Prevent();
+    }
+}, focusManager, '_focusNext', focusManager);
+
+// Create a mapping of tabs in the tabview so we can refer to them easily later.
+tabview.each(function (tab, index) {
+    var name = tab.get('label').toLowerCase();
+
+    tabs[name] = {
+        index: index,
+        name : name,
+        tab  : tab
+    };
+});
+
+// Switch tabs on Ctrl/Cmd-Left/Right arrows.
+tabviewNode.on('key', onTabSwitchKey, 'down:37,39');
+
+// Focus the filter input when the `/` key is pressed.
+Y.one(Y.config.doc).on('key', onSearchKey, 'down:83');
+
+// Keep the Focus Manager up to date.
+inputNode.on('focus', function () {
+    focusManager.set('activeDescendant', inputNode);
+});
+
+// Update all tabview links to resolved URLs.
+tabview.get('panelNode').all('a').each(function (link) {
+    link.setAttribute('href', link.get('href'));
+});
+
+// -- Private Functions --------------------------------------------------------
+function getFilterResultNode() {
+    return filter.get('queryType') === 'classes' ? classesNode : modulesNode;
+}
+
+// -- Event Handlers -----------------------------------------------------------
+function onFilterResults(e) {
+    var frag         = Y.one(Y.config.doc.createDocumentFragment()),
+        resultNode   = getFilterResultNode(),
+        typePlural   = filter.get('queryType'),
+        typeSingular = typePlural === 'classes' ? 'class' : 'module';
+
+    if (e.results.length) {
+        YArray.each(e.results, function (result) {
+            frag.append(Lang.sub(LIST_ITEM_TEMPLATE, {
+                rootPath    : APIList.rootPath,
+                displayName : filter.getDisplayName(result.highlighted),
+                name        : result.text,
+                typePlural  : typePlural,
+                typeSingular: typeSingular
+            }));
+        });
+    } else {
+        frag.append(
+            '<li class="message">' +
+                'No ' + typePlural + ' found.' +
+            '</li>'
+        );
+    }
+
+    resultNode.empty(true);
+    resultNode.append(frag);
+
+    focusManager.refresh();
+}
+
+function onSearchClear(e) {
+
+    focusManager.refresh();
+}
+
+function onSearchKey(e) {
+    var target = e.target;
+
+    if (target.test('input,select,textarea')
+            || target.get('isContentEditable')) {
+        return;
+    }
+
+    e.preventDefault();
+
+    inputNode.focus();
+    focusManager.refresh();
+}
+
+function onSearchResults(e) {
+    var frag = Y.one(Y.config.doc.createDocumentFragment());
+
+    if (e.results.length) {
+        YArray.each(e.results, function (result) {
+            frag.append(result.display);
+        });
+    } else {
+        frag.append(
+            '<li class="message">' +
+                'No results found. Maybe you\'ll have better luck with a ' +
+                'different query?' +
+            '</li>'
+        );
+    }
+
+
+    focusManager.refresh();
+}
+
+function onTabSelectionChange(e) {
+    var tab  = e.newVal,
+        name = tab.get('label').toLowerCase();
+
+    tabs.selected = {
+        index: tab.get('index'),
+        name : name,
+        tab  : tab
+    };
+
+    switch (name) {
+    case 'classes': // fallthru
+    case 'modules':
+        filter.setAttrs({
+            minQueryLength: 0,
+            queryType     : name
+        });
+
+        search.set('minQueryLength', -1);
+
+        // Only send a request if this isn't the initially-selected tab.
+        if (e.prevVal) {
+            filter.sendRequest(filter.get('value'));
+        }
+        break;
+
+    case 'everything':
+        filter.set('minQueryLength', -1);
+        search.set('minQueryLength', 1);
+
+        if (search.get('value')) {
+            search.sendRequest(search.get('value'));
+        } else {
+            inputNode.focus();
+        }
+        break;
+
+    default:
+        // WTF? We shouldn't be here!
+        filter.set('minQueryLength', -1);
+        search.set('minQueryLength', -1);
+    }
+
+    if (focusManager) {
+        setTimeout(function () {
+            focusManager.refresh();
+        }, 1);
+    }
+}
+
+function onTabSwitchKey(e) {
+    var currentTabIndex = tabs.selected.index;
+
+    if (!(e.ctrlKey || e.metaKey)) {
+        return;
+    }
+
+    e.preventDefault();
+
+    switch (e.keyCode) {
+    case 37: // left arrow
+        if (currentTabIndex > 0) {
+            tabview.selectChild(currentTabIndex - 1);
+            inputNode.focus();
+        }
+        break;
+
+    case 39: // right arrow
+        if (currentTabIndex < (Y.Object.size(tabs) - 2)) {
+            tabview.selectChild(currentTabIndex + 1);
+            inputNode.focus();
+        }
+        break;
+    }
+}
+
+}, '3.4.0', {requires: [
+    'api-filter', 'api-search', 'event-key', 'node-focusmanager', 'tabview'
+]});

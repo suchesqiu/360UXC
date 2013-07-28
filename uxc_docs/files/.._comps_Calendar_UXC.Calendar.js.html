@@ -59,6 +59,8 @@
             
                 <li><a href="../classes/UXC.Form.html">UXC.Form</a></li>
             
+                <li><a href="../classes/UXC.hideAllPanel.html">UXC.hideAllPanel</a></li>
+            
                 <li><a href="../classes/UXC.hideAllPopup.html">UXC.hideAllPopup</a></li>
             
                 <li><a href="../classes/UXC.LunarCalendar.html">UXC.LunarCalendar</a></li>
@@ -72,6 +74,18 @@
                 <li><a href="../classes/UXC.Panel.Model.html">UXC.Panel.Model</a></li>
             
                 <li><a href="../classes/UXC.Panel.View.html">UXC.Panel.View</a></li>
+            
+                <li><a href="../classes/UXC.Slider.html">UXC.Slider</a></li>
+            
+                <li><a href="../classes/UXC.Slider.Model.html">UXC.Slider.Model</a></li>
+            
+                <li><a href="../classes/UXC.Tab.html">UXC.Tab</a></li>
+            
+                <li><a href="../classes/UXC.Tab.Model.html">UXC.Tab.Model</a></li>
+            
+                <li><a href="../classes/UXC.Tab.View.html">UXC.Tab.View</a></li>
+            
+                <li><a href="../classes/UXC.Test.html">UXC.Test</a></li>
             
                 <li><a href="../classes/UXC.Tips.html">UXC.Tips</a></li>
             
@@ -438,7 +452,7 @@
                     UXC.log( &#x27;\nCalendar.init: &#x27;, _nodeName );
 
                     if( _nodeName != &#x27;input&#x27; ){ 
-                        arguments.callee( _selector.query( $(&#x27;input[type=text]&#x27;) ) ); 
+                        _logic.initTrigger( _selector.find( $(&#x27;input[type=text]&#x27;) ) ); 
                         return; 
                     }
                     if( !($.trim( _p.attr(&#x27;datatype&#x27;) || &#x27;&#x27;).toLowerCase() == &#x27;date&#x27; 
@@ -798,7 +812,10 @@
          * @private
          */
         $(document).delegate( &#x27;body &gt; div.UXCCalendar button.UConfirm&#x27;, &#x27;click&#x27;, function( $evt ){
-            var box = $(this).parents( &#x27;div.UXCCalendar&#x27; );
+            var box = $(this).parents( &#x27;div.UXCCalendar&#x27; ), _tmp;
+            if( box.length &amp;&amp; ( _tmp = box.find(&#x27;td.cur&#x27;) ).length ){
+                if( _tmp.hasClass( &#x27;unable&#x27; ) ) return;
+            }
             box.length &amp;&amp; box.data(&#x27;confirmMethod&#x27;) &amp;&amp; box.data(&#x27;confirmMethod&#x27;)( this );
             Calendar.hide();
         });

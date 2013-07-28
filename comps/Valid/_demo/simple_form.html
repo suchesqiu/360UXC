@@ -20,6 +20,7 @@
             dl.fm-items{ margin: 20px 0 20px; }
             dl.fm-items dd { zoom: 1; padding: 5px 0 5px; clear:both; display:block; }
             dl.fm-items dd:after {content:".";display:block;visibility:hidden;height:0;clear:both;}
+            dl.fm-items > dt{ text-align: center; font-weight: bold; margin: 20px 0;}
 
             div.f-l{ float: left; }
             div.label{ width: 320px; text-align: right; padding-right: 20px }
@@ -50,18 +51,28 @@
     </head>    
     <body>
 
-        <form action='' method='get' class="js-valid">
+        <form action='' method='get' class="js-valid" >
             <div>
                 <button type="submit">Save</button>
                 <button type="button" class="js-clear-error">清空错误信息</button>
             </div>
             <dl class="fm-items">
+                <dt>UXC.Valid 示例</dt>
                 <dd>
                 <div class="f-l label">
                     <label>(reqmsg)公司名称:</label>
                 </div>
                 <div class="f-l">
                     <input type="text" name="company_name" minlength="2" maxlength="120" reqmsg="公司名称" errmsg="请检查格式,长度2-120" /> <em>公司名称描述</em>
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(bytetext 8-40字符)公司名称:</label>
+                </div>
+                <div class="f-l">
+                    <input type="text" name="company_name" minlength="8" maxlength="40" reqmsg="公司名称" errmsg="长度8-40个字符, 英文=1字符, 汉字=2字符" datatype="bytetext" /> <em>公司名称描述</em>
                 </div>
                 </dd>
 
@@ -316,6 +327,28 @@
 
                 <dd>
                 <div class="f-l label">
+                    <label>(datatype mobilephone, phone + mobilecode)手机号码或电话号码:</label>
+                </div>
+                <div class="f-l">
+                    <input type="text" name="company_mobilephone" 
+                        datatype="mobilephone"
+                        errmsg="请填写正确的手机/电话号码">
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype mobilephoneall, phoneall + mobilezonecode)手机号码或电话号码:</label>
+                </div>
+                <div class="f-l">
+                    <input type="text" name="company_mobilephoneall" 
+                        datatype="mobilephoneall"
+                        errmsg="请填写正确的手机/电话号码">
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
                     <label>(datatype vcode, 默认4个字符[0-9a-zA-Z])验证码:</label>
                 </div>
                 <div class="f-l">
@@ -415,6 +448,33 @@
                 </div>
                 <div class="f-l">
                     <textarea name="company_desc" datatype="text" reqmsg="简介" errmsg="简介长度2-500" minlength="2" maxlength="500" ></textarea>
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>auto trim test:</label>
+                </div>
+                <div class="f-l">
+                    <input type="text" name="company_name" value=" d" minlength="2" maxlength="120" reqmsg="请输入内容" errmsg="请检查格式,长度2-120" /> <em>公司名称描述</em>
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>auto trim test:</label>
+                </div>
+                <div class="f-l">
+                    <input type="text" name="company_name" value="d " minlength="2" maxlength="120" reqmsg="请输入内容" errmsg="请检查格式,长度2-120" /> <em>公司名称描述</em>
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>auto trim test:</label>
+                </div>
+                <div class="f-l">
+                    <input type="text" name="company_name" value=" d " minlength="2" maxlength="120" reqmsg="请输入内容" errmsg="请检查格式,长度2-120" /> <em>公司名称描述</em>
                 </div>
                 </dd>
 

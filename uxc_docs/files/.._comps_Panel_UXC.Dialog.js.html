@@ -59,6 +59,8 @@
             
                 <li><a href="../classes/UXC.Form.html">UXC.Form</a></li>
             
+                <li><a href="../classes/UXC.hideAllPanel.html">UXC.hideAllPanel</a></li>
+            
                 <li><a href="../classes/UXC.hideAllPopup.html">UXC.hideAllPopup</a></li>
             
                 <li><a href="../classes/UXC.LunarCalendar.html">UXC.LunarCalendar</a></li>
@@ -72,6 +74,18 @@
                 <li><a href="../classes/UXC.Panel.Model.html">UXC.Panel.Model</a></li>
             
                 <li><a href="../classes/UXC.Panel.View.html">UXC.Panel.View</a></li>
+            
+                <li><a href="../classes/UXC.Slider.html">UXC.Slider</a></li>
+            
+                <li><a href="../classes/UXC.Slider.Model.html">UXC.Slider.Model</a></li>
+            
+                <li><a href="../classes/UXC.Tab.html">UXC.Tab</a></li>
+            
+                <li><a href="../classes/UXC.Tab.Model.html">UXC.Tab.Model</a></li>
+            
+                <li><a href="../classes/UXC.Tab.View.html">UXC.Tab.View</a></li>
+            
+                <li><a href="../classes/UXC.Test.html">UXC.Test</a></li>
             
                 <li><a href="../classes/UXC.Tips.html">UXC.Tips</a></li>
             
@@ -477,12 +491,12 @@
                 ,&#x27;                &lt;button class=&quot;UIcon&quot; align=&quot;absMiddle&quot; &gt;&lt;/button&gt;&lt;div class=&quot;UText&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;UPlaceholder&quot;&gt;&lt;/button&gt;{msg}&lt;/div&gt;&#x27;
                 ,&#x27;                &lt;/dd&gt;&#x27;
                 ,&#x27;                &lt;dd class=&quot;UButton&quot;&gt;&#x27;
-                ,&#x27;                    &lt;button type=&quot;button&quot; eventtype=&quot;confirm&quot;&gt;确定&lt;/button&gt;&#x27;
+                ,&#x27;                    &lt;button type=&quot;button&quot; class=&quot;UPanel_confirm&quot; eventtype=&quot;confirm&quot;&gt;确定&lt;/button&gt;&#x27;
                 ,&#x27;                &lt;/dd&gt;&#x27;
                 ,&#x27;            &lt;/dl&gt;&#x27;
                 ,&#x27;        &lt;/div&gt;&#x27;
                 ,&#x27;    &lt;/div&gt;&lt;!--end UPContent--&gt;&#x27;
-                ,&#x27;&lt;/div&gt;&lt;!--end UPanel--&gt;&#x27;
+                ,&#x27;&lt;/div&gt;&#x27;
                 ].join(&#x27;&#x27;)
             /**
              *  confirm 会话弹框的默认模板
@@ -500,13 +514,13 @@
                 ,&#x27;                &lt;button class=&quot;UIcon&quot; align=&quot;absMiddle&quot; &gt;&lt;/button&gt;&lt;div class=&quot;UText&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;UPlaceholder&quot;&gt;&lt;/button&gt;{msg}&lt;/div&gt;&#x27;
                 ,&#x27;                &lt;/dd&gt;&#x27;
                 ,&#x27;                &lt;dd class=&quot;UButton&quot;&gt;&#x27;
-                ,&#x27;                    &lt;button type=&quot;button&quot; eventtype=&quot;confirm&quot;&gt;确定&lt;/button&gt;&#x27;
-                ,&#x27;                    &lt;button type=&quot;button&quot; eventtype=&quot;cancel&quot;&gt;取消&lt;/button&gt;&#x27;
+                ,&#x27;                    &lt;button type=&quot;button&quot; class=&quot;UPanel_confirm&quot; eventtype=&quot;confirm&quot;&gt;确定&lt;/button&gt;&#x27;
+                ,&#x27;                    &lt;button type=&quot;button&quot; class=&quot;UPanel_cancel&quot; eventtype=&quot;cancel&quot;&gt;取消&lt;/button&gt;&#x27;
                 ,&#x27;                &lt;/dd&gt;&#x27;
                 ,&#x27;            &lt;/dl&gt;&#x27;
                 ,&#x27;        &lt;/div&gt;&#x27;
                 ,&#x27;    &lt;/div&gt;&lt;!--end UPContent--&gt;&#x27;
-                ,&#x27;&lt;/div&gt;&lt;!--end UPanel--&gt;&#x27;
+                ,&#x27;&lt;/div&gt;&#x27;
                 ].join(&#x27;&#x27;)
             /**
              *  会话弹框的蒙板模板

@@ -59,6 +59,8 @@
             
                 <li><a href="../classes/UXC.Form.html">UXC.Form</a></li>
             
+                <li><a href="../classes/UXC.hideAllPanel.html">UXC.hideAllPanel</a></li>
+            
                 <li><a href="../classes/UXC.hideAllPopup.html">UXC.hideAllPopup</a></li>
             
                 <li><a href="../classes/UXC.LunarCalendar.html">UXC.LunarCalendar</a></li>
@@ -72,6 +74,18 @@
                 <li><a href="../classes/UXC.Panel.Model.html">UXC.Panel.Model</a></li>
             
                 <li><a href="../classes/UXC.Panel.View.html">UXC.Panel.View</a></li>
+            
+                <li><a href="../classes/UXC.Slider.html">UXC.Slider</a></li>
+            
+                <li><a href="../classes/UXC.Slider.Model.html">UXC.Slider.Model</a></li>
+            
+                <li><a href="../classes/UXC.Tab.html">UXC.Tab</a></li>
+            
+                <li><a href="../classes/UXC.Tab.Model.html">UXC.Tab.Model</a></li>
+            
+                <li><a href="../classes/UXC.Tab.View.html">UXC.Tab.View</a></li>
+            
+                <li><a href="../classes/UXC.Test.html">UXC.Test</a></li>
             
                 <li><a href="../classes/UXC.Tips.html">UXC.Tips</a></li>
             
@@ -774,6 +788,13 @@
         if( _treeIns.highlight() ) _treeIns.highlight().removeClass(&#x27;highlight&#x27;);
         _p.addClass(&#x27;highlight&#x27;);
         _treeIns.highlight( _p );
+
+        var _events = _treeIns.event( &#x27;change&#x27; );
+        if( _events &amp;&amp; _events.length ){
+            $.each( _events, function( _ix, _cb ){
+                if( _cb.call( _p, _evt ) === false ) return false; 
+            });
+        }
     });
     /**
      * 捕获树文件夹图标的点击事件

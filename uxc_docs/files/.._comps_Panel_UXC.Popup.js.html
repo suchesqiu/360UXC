@@ -59,6 +59,8 @@
             
                 <li><a href="../classes/UXC.Form.html">UXC.Form</a></li>
             
+                <li><a href="../classes/UXC.hideAllPanel.html">UXC.hideAllPanel</a></li>
+            
                 <li><a href="../classes/UXC.hideAllPopup.html">UXC.hideAllPopup</a></li>
             
                 <li><a href="../classes/UXC.LunarCalendar.html">UXC.LunarCalendar</a></li>
@@ -72,6 +74,18 @@
                 <li><a href="../classes/UXC.Panel.Model.html">UXC.Panel.Model</a></li>
             
                 <li><a href="../classes/UXC.Panel.View.html">UXC.Panel.View</a></li>
+            
+                <li><a href="../classes/UXC.Slider.html">UXC.Slider</a></li>
+            
+                <li><a href="../classes/UXC.Slider.Model.html">UXC.Slider.Model</a></li>
+            
+                <li><a href="../classes/UXC.Tab.html">UXC.Tab</a></li>
+            
+                <li><a href="../classes/UXC.Tab.Model.html">UXC.Tab.Model</a></li>
+            
+                <li><a href="../classes/UXC.Tab.View.html">UXC.Tab.View</a></li>
+            
+                <li><a href="../classes/UXC.Test.html">UXC.Test</a></li>
             
                 <li><a href="../classes/UXC.Tips.html">UXC.Tips</a></li>
             
@@ -186,6 +200,9 @@
      * @static
      * @constructor
      * @param   {bool}  _isClose    为真从DOM清除UXC.alert/UXC.confirm, 为假隐藏, 默认为false
+     * @example
+     *      UXC.hideAllPopup();         //隐藏所有UXC.alert, UXC.confirm
+     *      UXC.hideAllPopup( true );   //从 DOM 清除所有 UXC.alert, UXC.confirm
      */
     UXC.hideAllPopup =
         function( _isClose ){
@@ -324,26 +341,32 @@
 
             _ins.on(&#x27;show_default&#x27;, function(){
                 UXC.log(&#x27;user show_default&#x27;);
-                _logic.showEffect( _ins, _popupSrc, function(){
-                });
-                return false;
+                if( _popupSrc &amp;&amp; _popupSrc.length ){
+                    _logic.showEffect( _ins, _popupSrc, function(){
+                    });
+                    return false;
+                }
             });
 
             _ins.on(&#x27;close_default&#x27;, function(){
                 UXC.log(&#x27;user close_default&#x27;);
-                _logic.hideEffect( _ins, _popupSrc, function(){
-                    _ins.selector().remove();
-                    _ins = null;
-                });
+                if( _popupSrc &amp;&amp; _popupSrc.length ){
+                    _logic.hideEffect( _ins, _popupSrc, function(){
+                        _ins.selector().remove();
+                        _ins = null;
+                    });
+                }
                 return false;
             });
 
             _ins.on(&#x27;hide_default&#x27;, function(){
                 UXC.log(&#x27;user hide_default&#x27;);
-                _logic.hideEffect( _ins, _popupSrc, function(){
-                    _ins.selector().hide();
-                });
-                return false;
+                if( _popupSrc &amp;&amp; _popupSrc.length ){
+                    _logic.hideEffect( _ins, _popupSrc, function(){
+                        _ins.selector().hide();
+                    });
+                    return false;
+                }
             });
 
             if( _popupSrc &amp;&amp; _popupSrc.length )_ins.selector().css( { &#x27;left&#x27;: &#x27;-9999px&#x27;, &#x27;top&#x27;: &#x27;-9999px&#x27; } );
@@ -386,7 +409,7 @@
                 _selector.css( { &#x27;left&#x27;: _left  + &#x27;px&#x27; } );
 
                 _dom.interval = 
-                    _logic.easyEffect( function( _curVal ){
+                    easyEffect( function( _curVal ){
                         _selector.css( {
                             &#x27;top&#x27;: _top + _curVal + &#x27;px&#x27;
                             , &#x27;height&#x27;: _sh - _curVal + &#x27;px&#x27;
@@ -430,7 +453,7 @@
 
                 if( _top &gt; _poffset.top ){
                     _dom.interval = 
-                        _logic.easyEffect( function( _curVal ){
+                        easyEffect( function( _curVal ){
                             _selector.css( {
                                 &#x27;top&#x27;: _top - _sh - _logic.yoffset + &#x27;px&#x27;
                                 , &#x27;height&#x27;: _curVal + &#x27;px&#x27;
@@ -439,7 +462,7 @@
 
                 }else{
                     _dom.interval = 
-                        _logic.easyEffect( function( _curVal ){
+                        easyEffect( function( _curVal ){
                             _selector.css( {
                                 &#x27;top&#x27;: _top - _curVal - _logic.yoffset + &#x27;px&#x27;
                                 , &#x27;height&#x27;: _curVal + &#x27;px&#x27;
@@ -564,35 +587,6 @@
                 return _r;
             }
         /**
-         * 缓动函数, 动画效果为按时间缓动 
-         * @method  _logic.easyEffect
-         * @for     UXC.alert
-         * @private
-         * @param   {function}  _cb         缓动运动时的回调
-         * @param   {number}    _maxVal     缓动的最大值
-         * @param   {number}    _minVal     缓动的起始值
-         * @param   {number}    _duration   缓动的总时间, 单位毫秒
-         */
-        , easyEffect:
-            function( _cb, _maxVal, _minVal, _duration, _stepMs ){
-                var _beginDate = new Date(), _timepass
-                    , _maxVal = _maxVal || 200, _minVal = _minVal || 0
-                    , _duration = _duration || 200, _stepMs = _stepMs || 2;
-                var _interval = setInterval(
-                    function(){
-                        _timepass = new Date() - _beginDate;
-                        _minVal = _timepass / _duration * _maxVal;
-
-                        if( _minVal &gt; _maxVal ){
-                            _minVal = _maxVal
-                            clearInterval( _interval );
-                        }
-                        _cb &amp;&amp; _cb( _minVal );
-                    }, _stepMs );
-
-                return _interval;
-            }
-        /**
          * 保存弹框的所有默认模板
          * @property    _logic.tpls
          * @type        Object
@@ -616,12 +610,12 @@
                 ,&#x27;                &lt;button class=&quot;UIcon&quot; align=&quot;absMiddle&quot; &gt;&lt;/button&gt;&lt;div class=&quot;UText&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;UPlaceholder&quot;&gt;&lt;/button&gt;{msg}&lt;/div&gt;&#x27;
                 ,&#x27;                &lt;/dd&gt;&#x27;
                 ,&#x27;                &lt;dd class=&quot;UButton&quot;&gt;&#x27;
-                ,&#x27;                    &lt;button type=&quot;button&quot; eventtype=&quot;confirm&quot;&gt;确定&lt;/button&gt;&#x27;
+                ,&#x27;                    &lt;button type=&quot;button&quot; class=&quot;UPanel_confirm&quot; eventtype=&quot;confirm&quot;&gt;确定&lt;/button&gt;&#x27;
                 ,&#x27;                &lt;/dd&gt;&#x27;
                 ,&#x27;            &lt;/dl&gt;&#x27;
                 ,&#x27;        &lt;/div&gt;&#x27;
                 ,&#x27;    &lt;/div&gt;&lt;!--end UPContent--&gt;&#x27;
-                ,&#x27;&lt;/div&gt;&lt;!--end UPanel--&gt;&#x27;
+                ,&#x27;&lt;/div&gt;&#x27;
                 ].join(&#x27;&#x27;)
             /**
              *  confirm 弹框的默认模板
@@ -639,13 +633,13 @@
                 ,&#x27;                &lt;button class=&quot;UIcon&quot; align=&quot;absMiddle&quot; &gt;&lt;/button&gt;&lt;div class=&quot;UText&quot;&gt;&lt;button type=&quot;button&quot; class=&quot;UPlaceholder&quot;&gt;&lt;/button&gt;{msg}&lt;/div&gt;&#x27;
                 ,&#x27;                &lt;/dd&gt;&#x27;
                 ,&#x27;                &lt;dd class=&quot;UButton&quot;&gt;&#x27;
-                ,&#x27;                    &lt;button type=&quot;button&quot; eventtype=&quot;confirm&quot;&gt;确定&lt;/button&gt;&#x27;
-                ,&#x27;                    &lt;button type=&quot;button&quot; eventtype=&quot;cancel&quot;&gt;取消&lt;/button&gt;&#x27;
+                ,&#x27;                    &lt;button type=&quot;button&quot; class=&quot;UPanel_confirm&quot; eventtype=&quot;confirm&quot;&gt;确定&lt;/button&gt;&#x27;
+                ,&#x27;                    &lt;button type=&quot;button&quot; class=&quot;UPanel_cancel&quot; eventtype=&quot;cancel&quot;&gt;取消&lt;/button&gt;&#x27;
                 ,&#x27;                &lt;/dd&gt;&#x27;
                 ,&#x27;            &lt;/dl&gt;&#x27;
                 ,&#x27;        &lt;/div&gt;&#x27;
                 ,&#x27;    &lt;/div&gt;&lt;!--end UPContent--&gt;&#x27;
-                ,&#x27;&lt;/div&gt;&lt;!--end UPanel--&gt;&#x27;
+                ,&#x27;&lt;/div&gt;&#x27;
                 ].join(&#x27;&#x27;)
         }
     };

@@ -59,6 +59,8 @@
             
                 <li><a href="../classes/UXC.Form.html">UXC.Form</a></li>
             
+                <li><a href="../classes/UXC.hideAllPanel.html">UXC.hideAllPanel</a></li>
+            
                 <li><a href="../classes/UXC.hideAllPopup.html">UXC.hideAllPopup</a></li>
             
                 <li><a href="../classes/UXC.LunarCalendar.html">UXC.LunarCalendar</a></li>
@@ -72,6 +74,18 @@
                 <li><a href="../classes/UXC.Panel.Model.html">UXC.Panel.Model</a></li>
             
                 <li><a href="../classes/UXC.Panel.View.html">UXC.Panel.View</a></li>
+            
+                <li><a href="../classes/UXC.Slider.html">UXC.Slider</a></li>
+            
+                <li><a href="../classes/UXC.Slider.Model.html">UXC.Slider.Model</a></li>
+            
+                <li><a href="../classes/UXC.Tab.html">UXC.Tab</a></li>
+            
+                <li><a href="../classes/UXC.Tab.Model.html">UXC.Tab.Model</a></li>
+            
+                <li><a href="../classes/UXC.Tab.View.html">UXC.Tab.View</a></li>
+            
+                <li><a href="../classes/UXC.Test.html">UXC.Test</a></li>
             
                 <li><a href="../classes/UXC.Tips.html">UXC.Tips</a></li>
             
@@ -133,12 +147,14 @@
 <div class="file">
     <pre class="code prettyprint linenums">
 ;(function( $ ){
+    if( window.UXC &amp;&amp; window.UXC.PATH ) return;
     /**
      * UXC jquery 组件库 资源调用控制类
      * &lt;br /&gt;这是一个单例模式, 全局访问使用 UXC 或 window.UXC
      * &lt;p&gt;&lt;b&gt;requires&lt;/b&gt;: &lt;a href=&#x27;window.jQuery.html&#x27;&gt;jQuery&lt;/a&gt;&lt;/p&gt;
      * &lt;p&gt;&lt;a href=&#x27;https://github.com/suchesqiu/360UXC.git&#x27; target=&#x27;_blank&#x27;&gt;UXC Project Site&lt;/a&gt;
      * | &lt;a href=&#x27;http://uxc.btbtd.org/uxc_docs/classes/window.UXC.html&#x27; target=&#x27;_blank&#x27;&gt;API docs&lt;/a&gt;
+     * | &lt;a href=&#x27;../../_demo&#x27; target=&#x27;_blank&#x27;&gt;demo link&lt;/a&gt;&lt;/p&gt;
      * @class UXC
      * @namespace   window
      * @static
@@ -172,7 +188,7 @@
         *                                           或者一个绝对路径的js文件, 路径前面带 &quot;/&quot;
         *
         * @param    {string}    _basePath -         指定要导入资源所在的主目录, 这个主要应用于 nginx 路径输出
-        * @param    {bool}      _nginxStyle -       指定是否需要使用 nginx 路径输出脚本资源
+        * @param    {bool}      _enableNginxStyle -       指定是否需要使用 nginx 路径输出脚本资源
         *
         * @example
                 UXC.use( &#x27;SomeClass&#x27; );                              //导入类 SomeClass
@@ -182,75 +198,163 @@
                 ///  AnotherClass, AnotherClass 下的file2.js
                 //
                 UXC.use( &#x27;SomeClass, comps/SomeClass/file1.js, comps/AnotherClass/file2.js&#x27; );   
-                UXC.use( &#x27;/js/Test/Test1.js&#x27; );                      //导入文件  /js/Test/Test1.js, 如果起始处为 &quot;/&quot;, 将视为文件的绝对路径
+                UXC.use( &#x27;SomeClass, plugins/swfobject.js., plugins/json2.js&#x27; );   
+                UXC.use( &#x27;/js/Test/Test1.js&#x27; );     //导入文件  /js/Test/Test1.js, 如果起始处为 &quot;/&quot;, 将视为文件的绝对路径
                 //
-                /// nginx style 的文件加载方式, 如 /js/??file1.js,file2.js,file3.js
-                //
-                UXC.use( &#x27;Test1.js, Test2.js &#x27;, &#x27;/js/??&#x27;, true );
-                //
-                /// 导入 URL 资源
-                //
-                UXC.use( &#x27;http://test.com/file1.js&#x27;, &#x27;https://another.com/file2.js&#x27; );
-        */
-        , use: 
-            function( _names, _basePath, _nginxStyle ){
-                if( ! _names ) return;
-                var _p = this, _urlRe = /\:\/\//;
+                /// 导入 URL 资源 // UXC.use( &#x27;http://test.com/file1.js&#x27;, &#x27;https://another.com/file2.js&#x27; ); 
+        */ 
+        , use: function( _items ){
+                if( ! _items ) return;
+                var _p = this, _paths = [], _parts = $.trim( _items ).split(/[\s]*?,[\s]*/)
+                   , _pathRe = /[\/\\]/, _urlRe = /\:\/\//, _pathRplRe = /(\\)\1|(\/)\2/g;
 
-                var _paths = [];
+                $.each( _parts, function( _ix, _part ){
+                    var _isComps = !_pathRe.test( _part ), _path, _isFullpath = /^\//.test( _part );
+                    if( _isComps &amp;&amp; window.UXC[ _part ] ) return;
 
-                $.each( _names.split(/[\s]*?,[\s]*/), function( _ix, _val ){
-
-                    var _isCustomPath = _urlRe.test(_val) || /\//.test( _val ) || !!_basePath;
-
-                    if( !/\.js$/i.test( _val ) &amp; !_basePath ){
-                        if( window.UXC[ _val ] ) return;
-                        _val =  [ _val, &#x27;/&#x27;, _val, &#x27;.js&#x27; ].join(&#x27;&#x27;);
+                    if( UXC.FILE_MAP &amp;&amp; UXC.FILE_MAP[ _part ] ){
+                        _paths.push( UXC.FILE_MAP[ _part ] );
+                        return;
                     }
 
-                    if( _isCustomPath ){
-                        if( _urlRe.test( _val ) ){} 
-                        else if( _basePath &amp;&amp; !_nginxStyle ) _val = _basePath + _val;
-                        else if( !/[\/\\]/.test( _val.slice( 0, 1 ) ) &amp;&amp; !_nginxStyle ) _val = _p.PATH + _val;
+                    _path = _part;
+                    _isComps &amp;&amp; ( _path = printf( &#x27;{0}{1}{2}/{2}.js&#x27;, UXC.PATH, UXC.compsDir, _part ) );
+                    !_isComps &amp;&amp; !_isFullpath &amp;&amp; ( _path = printf( &#x27;{0}/{1}&#x27;, UXC.PATH, _part ) );
+
+                    if( /\:\/\//.test( _path ) ){
+                        _path = _path.split(&#x27;://&#x27;);
+                        _path[1] = $.trim( _path[1].replace( _pathRplRe, &#x27;$1$2&#x27; ) );
+                        _path = _path.join(&#x27;://&#x27;);
                     }else{
-                        _val = _p.PATH + _p.compsDir + _val;
+                        _path = $.trim( _path.replace( _pathRplRe, &#x27;$1$2&#x27; ) );
                     }
-                    /**
-                     * 去除多余的 正叙扛或反叙扛
-                     * @private
-                     */
-                    !_urlRe.test( _val ) &amp;&amp; ( _val = _val.replace( /(\\)\1|(\/)\2/g, &#x27;$1$2&#x27; ) ); 
-                    _val = $.trim( _val );
-
-                    if( !_nginxStyle ){
-                        _paths.push( &#x27;&lt;script src=&quot;&#x27;+_val+&#x27;&quot;&gt;&lt;\/script&gt;&#x27; );
-                    }else{
-                        _paths.push( _val );
-                    }
-
-                    _p.log( _val );
+                    _paths.push( _path );
                 });
 
-                if( _nginxStyle ){
-                    _basePath += _paths.join();
-                    document.write( &#x27;&lt;script src=&quot;&#x27;+_basePath+&#x27;&quot;&gt;&lt;\/script&gt;&#x27; );
-                }else{
-                    document.write( _paths.join(&#x27;&#x27;) );
-                }
+                UXC.log( _paths );
 
-                _p.log( _paths );
-            },
+                !UXC.enableNginxStyle &amp;&amp; UXC._writeNormalScript( _paths );
+                UXC.enableNginxStyle &amp;&amp; UXC._writeNginxScript( _paths );
+            }
        /**
         * 输出调试信息, 可通过 UXC.debug 指定是否显示调试信息
         * @param    {[string[,string]]}  任意参数任意长度的字符串内容
         * @method log
         * @static
         */
-       log: 
+       , log: 
            function(){
                 if( !this.debug ) return;
                 console.log( [].slice.apply( arguments ).join(&#x27; &#x27;) );
             }
+       /**
+        * 定义输出路径的 v 参数, 以便控制缓存
+        * @property     pathPostfix
+        * @type     string
+        * @default  empty
+        * @static
+        */
+       , pathPostfix: &#x27;&#x27;
+       /**
+        * 是否启用nginx concat 模块的路径格式  
+        * @property     enableNginxStyle
+        * @type bool
+        * @default  false
+        * @static
+        */
+       , enableNginxStyle: false
+       /**
+        * 定义 nginx style 的基础路径
+        * &lt;br /&gt;&lt;b&gt;注意:&lt;/b&gt; 如果这个属性为空, 即使 enableNginxStyle = true, 也是直接输出默认路径 
+        * @property     nginxBasePath
+        * @type string
+        * @default  empty
+        * @static
+        */
+       , nginxBasePath: &#x27;&#x27;
+       /**
+        * 输出 nginx concat 模块的脚本路径格式
+        * @method   _writeNginxScript
+        * @param    {array} _paths
+        * @private
+        * @static
+        */
+       , _writeNginxScript:
+            function( _paths ){
+                if( !UXC.enableNginxStyle ) return;
+                for( var i = 0, j = _paths.length, _ngpath = [], _npath = []; i &lt; j; i++ ){
+                    UXC.log( _paths[i].slice( 0, UXC.nginxBasePath.length ).toLowerCase(), UXC.nginxBasePath.toLowerCase() );
+                    if(  
+                         _paths[i].slice( 0, UXC.nginxBasePath.length ).toLowerCase() 
+                        == UXC.nginxBasePath.toLowerCase() )
+                    {
+                        _ngpath.push( _paths[i].slice( UXC.nginxBasePath.length ) );
+                    }else{
+                        _npath.push( _paths[i] );
+                    }
+                }
+
+                var _postfix = UXC.pathPostfix ? &#x27;?v=&#x27; + UXC.pathPostfix : &#x27;&#x27;;
+
+                _ngpath.length &amp;&amp; document.write( printf( &#x27;&lt;script src=&quot;{0}??{1}{2}&quot;&gt;&lt;\/script&gt;&#x27;
+                                                    , UXC.nginxBasePath, _ngpath.join(&#x27;,&#x27;), _postfix ) );
+                _npath.length &amp;&amp; UXC._writeNormalScript( _npath );
+            }
+       /**
+        * 输出的脚本路径格式
+        * @method   _writeNormalScript
+        * @param    {array} _paths
+        * @private
+        * @static
+        */
+       , _writeNormalScript:
+            function( _paths ){
+                var _postfix = UXC.pathPostfix ? &#x27;?v=&#x27; + UXC.pathPostfix : &#x27;&#x27;;
+                for( var i = 0, j = _paths.length, _path; i &lt; j; i++ ){
+                    _path = _paths[i];
+                    UXC.pathPostfix &amp;&amp; ( _path = add_url_params( _path, { &#x27;v&#x27;: UXC.pathPostfix } ) );
+                    _paths[i] = printf( &#x27;&lt;script src=&quot;{0}&quot;&gt;&lt;\/script&gt;&#x27;, _path );
+                }
+                _paths.length &amp;&amp; document.write( _paths.join(&#x27;&#x27;) );
+            }
+       /**
+        * 资源路径映射对象
+        * &lt;br /&gt;设置 UXC.use 逗号(&#x27;,&#x27;) 分隔项的 对应URL路径
+        * @property FILE_MAP
+        * @type object
+        * @default null
+        * @static
+        * @example
+                以下例子假定 libpath = http://git.me.btbtd.org/ignore/360UXC_dev/
+                &lt;script&gt;
+                    UXC.FILE_MAP = {
+                        &#x27;Calendar&#x27;: &#x27;http://uxc.btbtd.org/comps/Calendar/Calendar.js&#x27;
+                        , &#x27;Form&#x27;: &#x27;http://uxc.btbtd.org/comps/Form/Form.js&#x27;
+                        , &#x27;LunarCalendar&#x27;: &#x27;http://uxc.btbtd.org/comps/LunarCalendar/LunarCalendar.js&#x27;
+                        , &#x27;Panel&#x27;: &#x27;http://uxc.btbtd.org/comps/Panel/Panel.js&#x27; 
+                        , &#x27;Tab&#x27;: &#x27;http://uxc.btbtd.org/comps/Tab/Tab.js&#x27;
+                        , &#x27;Tips&#x27;: &#x27;http://uxc.btbtd.org/comps/Tips/Tips.js&#x27; 
+                        , &#x27;Tree&#x27;: &#x27;http://uxc.btbtd.org/comps/Tree/Tree.js&#x27;
+                        , &#x27;Valid&#x27;: &#x27;http://uxc.btbtd.org/comps/Valid/Valid.js&#x27;
+                        , &#x27;plugins/jquery.form.js&#x27;: &#x27;http://uxc.btbtd.org/plugins/jquery.form.js&#x27;
+                        , &#x27;plugins/json2.js&#x27;: &#x27;http://uxc.btbtd.org/plugins/json2.js&#x27;
+                    };
+
+                    UXC.use( &#x27;Panel, Tips, Valid, plugins/jquery.form.js&#x27; );
+
+                    $(document).ready(function(){
+                        //UXC.Dialog( &#x27;UXC.use example&#x27;, &#x27;test issue&#x27; );
+                    });
+                &lt;/script&gt;
+
+                output should be:
+                    http://git.me.btbtd.org/ignore/360UXC_dev/lib.js
+                    http://uxc.btbtd.org/comps/Panel/Panel.js
+                    http://uxc.btbtd.org/comps/Tips/Tips.js
+                    http://uxc.btbtd.org/comps/Valid/Valid.js
+                    http://uxc.btbtd.org/plugins/jquery.form.js
+        */
+       , FILE_MAP: null
     };
     /**
      * 如果 console 不可用, 则生成一个模拟的 console 对象

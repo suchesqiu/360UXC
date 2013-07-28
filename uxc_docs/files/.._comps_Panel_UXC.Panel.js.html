@@ -59,6 +59,8 @@
             
                 <li><a href="../classes/UXC.Form.html">UXC.Form</a></li>
             
+                <li><a href="../classes/UXC.hideAllPanel.html">UXC.hideAllPanel</a></li>
+            
                 <li><a href="../classes/UXC.hideAllPopup.html">UXC.hideAllPopup</a></li>
             
                 <li><a href="../classes/UXC.LunarCalendar.html">UXC.LunarCalendar</a></li>
@@ -72,6 +74,18 @@
                 <li><a href="../classes/UXC.Panel.Model.html">UXC.Panel.Model</a></li>
             
                 <li><a href="../classes/UXC.Panel.View.html">UXC.Panel.View</a></li>
+            
+                <li><a href="../classes/UXC.Slider.html">UXC.Slider</a></li>
+            
+                <li><a href="../classes/UXC.Slider.Model.html">UXC.Slider.Model</a></li>
+            
+                <li><a href="../classes/UXC.Tab.html">UXC.Tab</a></li>
+            
+                <li><a href="../classes/UXC.Tab.Model.html">UXC.Tab.Model</a></li>
+            
+                <li><a href="../classes/UXC.Tab.View.html">UXC.Tab.View</a></li>
+            
+                <li><a href="../classes/UXC.Test.html">UXC.Test</a></li>
             
                 <li><a href="../classes/UXC.Tips.html">UXC.Tips</a></li>
             
@@ -906,8 +920,31 @@
         ,&#x27;        &lt;div class=&quot;bd&quot;&gt;&lt;/div&gt;&#x27;
         ,&#x27;        &lt;span class=&quot;close&quot; eventtype=&quot;close&quot;&gt;&lt;/span&gt;&#x27;
         ,&#x27;    &lt;/div&gt;&lt;!--end UPContent--&gt;&#x27;
-        ,&#x27;&lt;/div&gt;&lt;!--end UPanel--&gt;&#x27;
+        ,&#x27;&lt;/div&gt;&#x27;
         ].join(&#x27;&#x27;)
+
+     /**
+      * 隐藏或者清除所有 Panel
+      * &lt;h2&gt;使用这个方法应当谨慎, 容易为DOM造成垃圾Panel&lt;/h2&gt;
+      * &lt;br /&gt;&lt;b&gt;注意&lt;/b&gt;: 这是个方法, 写成class是为了方便生成文档
+      * @namespace  UXC
+      * @class      hideAllPanel
+      * @constructor
+      * @static
+      * @param      {bool}      _isClose    从DOM清除/隐藏所有Panel(包刮 UXC.alert, UXC.confirm, UXC.Panel, UXC.Dialog)
+      *                                     &lt;br /&gt;, true = 从DOM 清除, false = 隐藏, 默认 = false( 隐藏 )
+      * @example
+      *     UXC.hideAllPanel();         //隐藏所有Panel
+      *     UXC.hideAllPanel( true );   //从DOM 清除所有Panel
+      */
+     UXC.hideAllPanel = 
+         function( _isClose ){
+            if( _isClose ){
+                $(&#x27;div.UPanel&#x27;).remove();
+            }else{
+                $(&#x27;div.UPanel&#x27;).hide();
+            }
+         };
 
 }(jQuery));
 

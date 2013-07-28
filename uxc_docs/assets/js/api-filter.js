@@ -1,1 +1,52 @@
-YUI.add("api-filter",function(a){a.APIFilter=a.Base.create("apiFilter",a.Base,[a.AutoCompleteBase],{initializer:function(){this._bindUIACBase();this._syncUIACBase()},getDisplayName:function(b){a.each(a.YUIDoc.meta.allModules,function(c){if(c.name===b&&c.displayName){b=c.displayName}});return b}},{ATTRS:{resultHighlighter:{value:"phraseMatch"},queryType:{value:"classes"},source:{valueFn:function(){var b=this;return function(e){var d=a.YUIDoc.meta[b.get("queryType")],c=[];a.each(d,function(f){if(f.toLowerCase().indexOf(e.toLowerCase())>-1){c.push(f)}});return c}}}}})},"3.4.0",{requires:["autocomplete-base","autocomplete-highlighters","autocomplete-sources"]});
+YUI.add('api-filter', function (Y) {
+
+Y.APIFilter = Y.Base.create('apiFilter', Y.Base, [Y.AutoCompleteBase], {
+    // -- Initializer ----------------------------------------------------------
+    initializer: function () {
+        this._bindUIACBase();
+        this._syncUIACBase();
+    },
+    getDisplayName: function(name) {
+
+        Y.each(Y.YUIDoc.meta.allModules, function(i) {
+            if (i.name === name && i.displayName) {
+                name = i.displayName;
+            }
+        });
+
+        return name;
+    }
+
+}, {
+    // -- Attributes -----------------------------------------------------------
+    ATTRS: {
+        resultHighlighter: {
+            value: 'phraseMatch'
+        },
+
+        // May be set to "classes" or "modules".
+        queryType: {
+            value: 'classes'
+        },
+
+        source: {
+            valueFn: function() {
+                var self = this;
+                return function(q) {
+                    var data = Y.YUIDoc.meta[self.get('queryType')],
+                        out = [];
+                    Y.each(data, function(v) {
+                        if (v.toLowerCase().indexOf(q.toLowerCase()) > -1) {
+                            out.push(v);
+                        }
+                    });
+                    return out;
+                };
+            }
+        }
+    }
+});
+
+}, '3.4.0', {requires: [
+    'autocomplete-base', 'autocomplete-highlighters', 'autocomplete-sources'
+]});

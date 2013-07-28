@@ -1,1 +1,75 @@
-$(document).ready(function(){window.ZINDEX_COUNT=window.ZINDEX_COUNT||50001;UXC.Tree.dataFilter=function(i){var h={};if(i){if(i.root.length>2){i.root.shift();h.root=i.root}h.data={};for(var g in i.data){h.data[g]=[];for(var j=0,f=i.data[g].length;j<f;j++){if(i.data[g][j].length<3){continue}i.data[g][j].shift();h.data[g].push(i.data[g][j])}}}return h};$(document).delegate("div.tree_container","click",function(b){b.stopPropagation()});$(document).on("click",function(){$("div.dpt-select-active").trigger("click")});$(document).delegate("div.dpt-select","click",function(h){h.stopPropagation();var i=$(this),l=$(i.attr("treenode"));var j=l.data("TreeIns");if(!i.hasClass("dpt-select-active")){$("div.dpt-select-active").trigger("click")}if(!j){var n=window[i.attr("treedata")];var k=new UXC.Tree(l,n);k.on("click",function(){var c=$(this),a=c.attr("dataid"),b=c.attr("dataname");i.find("> span.label").html(b);i.find("> input[type=hidden]").val(a);i.trigger("click")});k.on("RenderLabel",function(a){var b=$(this);b.html(printf('<a href="javascript:" dataid="{0}">{1}</a>',a[0],a[1]))});k.init();k.open();var m=i.find("> input[type=hidden]").val();m&&k.open(m)}l.css({"z-index":ZINDEX_COUNT++});if(l.css("display")!="none"){i.removeClass("dpt-select-active");l.hide()}else{l.show();i.addClass("dpt-select-active");l.css({top:i.prop("offsetHeight")-2+"px",left:"-1px"})}})});
+$(document).ready( function(){
+    window.ZINDEX_COUNT = window.ZINDEX_COUNT || 50001;
+
+    UXC.Tree.dataFilter =
+        function( _data ){
+            var _r = {};
+
+            if( _data ){
+                if( _data.root.length > 2 ){
+                    _data.root.shift();
+                    _r.root = _data.root;
+                 }
+                _r.data = {};
+                for( var k in _data.data ){
+                    _r.data[ k ] = [];
+                    for( var i = 0, j = _data.data[k].length; i < j; i++ ){
+                        if( _data.data[k][i].length < 3 ) continue;
+                        _data.data[k][i].shift();
+                        _r.data[k].push( _data.data[k][i] );
+                    }
+                }
+            }
+            return _r;
+        };
+
+    $(document).delegate('div.tree_container', 'click', function( _evt ){
+        _evt.stopPropagation();
+    });
+
+    $(document).on('click', function(){
+        $('div.dpt-select-active').trigger('click');
+    });
+
+    $(document).delegate( 'div.dpt-select', 'click', function( _evt ){
+        _evt.stopPropagation();
+        var _p = $(this), _treeNode = $( _p.attr('treenode') );
+        var _treeIns = _treeNode.data('TreeIns');
+        if( !_p.hasClass( 'dpt-select-active') ){
+            $('div.dpt-select-active').trigger('click');
+        }
+        if( !_treeIns ){
+            var _data = window[ _p.attr( 'treedata' ) ];
+
+            var _tree = new UXC.Tree( _treeNode, _data );
+                _tree.on( 'click', function(){
+                    var _sp = $(this)
+                        , _dataid = _sp.attr('dataid')
+                        , _dataname = _sp.attr('dataname');
+                    
+                    _p.find( '> span.label' ).html( _dataname );
+                    _p.find( '> input[type=hidden]' ).val( _dataid );
+                    _p.trigger( 'click' );
+                 });
+                _tree.on( 'RenderLabel', function( _data ){
+                    var _node = $(this);
+                    _node.html( printf( '<a href="javascript:" dataid="{0}">{1}</a>', _data[0], _data[1] ) );
+                });
+                _tree.init();
+                _tree.open();
+
+                var _defSelected = _p.find( '> input[type=hidden]' ).val();
+                _defSelected && _tree.open( _defSelected );
+        }
+        _treeNode.css( { 'z-index': ZINDEX_COUNT++ } );
+        if( _treeNode.css('display') != 'none' ){
+            _p.removeClass( 'dpt-select-active' );
+            _treeNode.hide();
+        }else{
+            _treeNode.show();
+            _p.addClass( 'dpt-select-active' );
+            _treeNode.css( { 'top': _p.prop( 'offsetHeight' ) -2 + 'px', 'left': '-1px' } );
+        }
+    });
+
+});
