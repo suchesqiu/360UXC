@@ -2007,13 +2007,13 @@
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
             "line": 2,
-            "description": "初始化 级联下拉框\n<br />只要引用本脚本, 页面加载完毕时就会自动初始化级联下拉框功能\n<br /><br />动态添加的 DOM 需要显式调用 UXC.Form.initAutoSelect( domSelector ) 进行初始化\n<br /><br />要使页面上的级联下拉框功能能够自动初始化, 需要在select标签上加入一些HTML 属性\n<br /><b>defaultselect</b>: none, 该属性声明这是级联下拉框的第一个下拉框, <b>这是必填项,初始化时以这个为入口</b>\n<br /><b>selectvalue</b>: string, 下拉框的默认选中值\n<br /><b>selecturl</b>: string, 下拉框的数据请求接口, 符号 {0} 代表下拉框值的占位符\n<br /><b>selecttarget</b>: selector, 下一级下拉框的选择器语法\n<br /><b>defaultoption</b>: none, 声明默认 option 选项, 更新option时, 有该属性的项不会被清除\n<p>\n     数据格式: [ [id, name], [id, name] ... ]\n     <br /> 如果获取到的数据格式不是默认格式,\n     可以通过 <a href='UXC.Form.html#property_initAutoSelect.dataFilter'>UXC.Form.initAutoSelect.dataFilter</a> 属性自定义函数, 进行数据过滤\n</p>",
+            "description": "初始化 级联下拉框\n<br />只要引用本脚本, 页面加载完毕时就会自动初始化级联下拉框功能\n<br /><br />动态添加的 DOM 需要显式调用 AutoSelect( domSelector ) 进行初始化\n<br /><br />要使页面上的级联下拉框功能能够自动初始化, 需要在select标签上加入一些HTML 属性\n<br /><b>defaultselect</b>: none, 该属性声明这是级联下拉框的第一个下拉框, <b>这是必填项,初始化时以这个为入口</b>\n<br /><b>selectvalue</b>: string, 下拉框的默认选中值\n<br /><b>selecturl</b>: string, 下拉框的数据请求接口, 符号 {0} 代表下拉框值的占位符\n<br /><b>selecttarget</b>: selector, 下一级下拉框的选择器语法\n<br /><b>defaultoption</b>: none, 声明默认 option 选项, 更新option时, 有该属性的项不会被清除\n<p>\n     数据格式: [ [id, name], [id, name] ... ]\n     <br /> 如果获取到的数据格式不是默认格式,\n     可以通过 <a href='UXC.Form.html#property_initAutoSelect.dataFilter'>AutoSelect.dataFilter</a> 属性自定义函数, 进行数据过滤\n</p>",
             "itemtype": "method",
             "name": "initAutoSelect",
             "static": 1,
-            "version": "dev 0.1",
-            "author": "qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team",
-            "date": "2013-06-11",
+            "version": "dev 0.2",
+            "author": "qiushaowei   <suches@btbtd.org> | 360 75 Team",
+            "date": "2013-07-28(.2), 2013-06-11(.1)",
             "params": [
                 {
                     "name": "_selector",
@@ -2029,7 +2029,27 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 70,
+            "line": 72,
+            "description": "判断 selector 是否为符合自动初始化联动框的要求",
+            "itemtype": "method",
+            "name": "initAutoSelect.isSelect",
+            "params": [
+                {
+                    "name": "_selector",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "return": {
+                "description": "bool"
+            },
+            "static": 1,
+            "class": "UXC.Form",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Form/UXC.Form.initAutoSelect.js",
+            "line": 89,
             "description": "是否自动隐藏空值的级联下拉框, 起始下拉框不会被隐藏",
             "itemtype": "property",
             "name": "initAutoSelect.hideEmpty",
@@ -2037,231 +2057,139 @@
             "default": "false",
             "static": 1,
             "example": [
-                "\n           UXC.Form.initAutoSelect.hideEmpty = true;"
+                "\n               AutoSelect.hideEmpty = true;"
             ],
             "class": "UXC.Form",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 80,
-            "description": "级联下拉框的数据过滤函数\n<br />默认数据格式: [ [id, name], [id, name] ... ]\n<br />如果获取到的数据格式非默认格式, 可通过本函数进行数据过滤\n<p><b>注意, 这个是全局过滤, 如果要使用该函数进行数据过滤, 判断逻辑需要比较具体</b></p>",
+            "line": 99,
+            "description": "级联下拉框的数据过滤函数\n<br />默认数据格式: [ [id, name], [id, name] ... ]\n<br />如果获取到的数据格式非默认格式, 可通过本函数进行数据过滤\n<p>\n <b>注意, 这个是全局过滤, 如果要使用该函数进行数据过滤, 判断逻辑需要比较具体</b>\n <br />如果要对具体 select 进行数据过滤, 可以使用HTML属性 selectdatafilter 指定过滤函数\n</p>",
             "itemtype": "property",
             "name": "initAutoSelect.dataFilter",
             "type": "function",
-            "default": "undefined",
+            "default": "null",
             "static": 1,
             "example": [
-                "\n            UXC.Form.initAutoSelect.dataFilter = \n               function( _data, _select ){\n                   var _r = _data;\n                   if( _data && !_data.length && _data.data ){\n                       _r = _data.data;\n                   }\n                   return _r;\n               };"
+                "\n                AutoSelect.dataFilter = \n                   function( _data, _select ){\n                       var _r = _data;\n                       if( _data && !_data.length && _data.data ){\n                           _r = _data.data;\n                       }\n                       return _r;\n                   };"
             ],
             "class": "UXC.Form",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 100,
-            "description": "页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰",
+            "line": 122,
+            "description": "下拉框初始化功能都是未初始化 数据之前的回调\n<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectbeforeInited",
+            "itemtype": "property",
+            "name": "initAutoSelect.beforeInited",
+            "type": "function",
+            "default": "null",
+            "static": 1,
             "class": "UXC.Form",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 106,
-            "description": "下拉框改变选项时的响应函数",
-            "itemtype": "method",
-            "name": "initAutoSelect.changeEvent",
-            "access": "private",
-            "tagname": "",
+            "line": 131,
+            "description": "下拉框第一次初始完所有数据的回调\n<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectinited",
+            "itemtype": "property",
+            "name": "initAutoSelect.inited",
+            "type": "function",
+            "default": "null",
             "static": 1,
+            "class": "UXC.Form",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Form/UXC.Form.initAutoSelect.js",
+            "line": 140,
+            "description": "下拉框每个项数据变更后的回调\n<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectchange",
+            "itemtype": "property",
+            "name": "initAutoSelect.change",
+            "type": "function",
+            "default": "null",
+            "static": 1,
+            "class": "UXC.Form",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Form/UXC.Form.initAutoSelect.js",
+            "line": 149,
+            "description": "下拉框所有项数据变更后的回调\n<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectallchanged",
+            "itemtype": "property",
+            "name": "initAutoSelect.allChanged",
+            "type": "function",
+            "default": "null",
+            "static": 1,
+            "class": "UXC.Form",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Form/UXC.Form.initAutoSelect.js",
+            "line": 158,
+            "description": "第一次初始化所有联动框时, 是否触发 change 事件\n<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selecttriggerinitchange",
+            "itemtype": "property",
+            "name": "initAutoSelect.triggerInitChange",
+            "type": "bool",
+            "default": "false",
+            "static": 1,
+            "class": "UXC.Form",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Form/UXC.Form.initAutoSelect.js",
+            "line": 167,
+            "description": "ajax 请求数据时, 是否添加随机参数防止缓存\n<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectrandomurl",
+            "itemtype": "property",
+            "name": "initAutoSelect.randomurl",
+            "type": "bool",
+            "default": "false",
+            "static": 1,
+            "class": "UXC.Form",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Form/UXC.Form.initAutoSelect.js",
+            "line": 176,
+            "description": "处理 ajax url 的回调处理函数\n<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectprocessurl",
+            "itemtype": "property",
+            "name": "initAutoSelect.processUrl",
+            "type": "function",
+            "default": "null",
+            "static": 1,
+            "class": "UXC.Form",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Form/UXC.Form.initAutoSelect.js",
+            "line": 185,
+            "description": "获取或设置 selector 的实例引用",
+            "itemtype": "method",
+            "name": "initAutoSelect.getInstance",
             "params": [
                 {
-                    "name": "_evt",
-                    "description": "dom event",
-                    "type": "Event"
-                }
-            ],
-            "class": "UXC.Form",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 225,
-            "description": "如果是最后一个SELECT, 那么取消数据请求",
-            "class": "UXC.Form",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 276,
-            "description": "获取 select 的父ID, 这个方便就用于静态数据的联动框",
-            "itemtype": "method",
-            "name": "initAutoSelect.getParentId",
-            "access": "private",
-            "tagname": "",
-            "static": 1,
-            "params": [
-                {
-                    "name": "_select",
-                    "description": "下拉框的选择器对象",
-                    "type": "Selector"
-                }
-            ],
-            "class": "UXC.Form",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 292,
-            "description": "触发下一级下拉框的change事件",
-            "itemtype": "method",
-            "name": "initAutoSelect.triggerChange",
-            "access": "private",
-            "tagname": "",
-            "static": 1,
-            "params": [
-                {
-                    "name": "_select",
-                    "description": "下拉框的选择器对象",
-                    "type": "Selector"
-                }
-            ],
-            "class": "UXC.Form",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 304,
-            "description": "AJAX请求数据, 并处理结果",
-            "itemtype": "method",
-            "name": "initAutoSelect.getData",
-            "access": "private",
-            "tagname": "",
-            "static": 1,
-            "params": [
-                {
-                    "name": "_select",
-                    "description": "下拉框的选择器对象",
-                    "type": "Selector"
-                },
-                {
-                    "name": "_url",
-                    "description": "请求数据的URL接口",
-                    "type": "String"
-                },
-                {
-                    "name": "_selectval",
-                    "description": "默认选中值",
-                    "type": "String"
-                },
-                {
-                    "name": "_callback",
-                    "description": "结果处理完毕后的回调函数",
-                    "type": "Function"
-                }
-            ],
-            "class": "UXC.Form",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 319,
-            "description": "处理数据结果",
-            "itemtype": "method",
-            "name": "initAutoSelect.processData",
-            "access": "private",
-            "tagname": "",
-            "static": 1,
-            "params": [
-                {
-                    "name": "_select",
-                    "description": "下拉框的选择器对象",
-                    "type": "Selector"
-                },
-                {
-                    "name": "_selectval",
-                    "description": "默认选中值",
-                    "type": "String"
-                },
-                {
-                    "name": "_callback",
-                    "description": "结果处理完毕后的回调函数",
-                    "type": "Function"
-                },
-                {
-                    "name": "_r",
-                    "description": "select 数据",
-                    "type": "Array"
-                }
-            ],
-            "class": "UXC.Form",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 354,
-            "description": "判断下拉框是否为空\n<br />带 defaultoption 属性的 option 判断时被忽略",
-            "itemtype": "method",
-            "name": "initAutoSelect.isEmpty",
-            "access": "private",
-            "tagname": "",
-            "static": 1,
-            "params": [
-                {
-                    "name": "_select",
+                    "name": "_selector",
                     "description": "",
                     "type": "Selector"
-                }
-            ],
-            "class": "UXC.Form",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 372,
-            "description": "选中下拉框的第一个option",
-            "itemtype": "method",
-            "name": "initAutoSelect.selectFirst",
-            "access": "private",
-            "tagname": "",
-            "static": 1,
-            "params": [
+                },
                 {
-                    "name": "_select",
+                    "name": "_ins",
                     "description": "",
-                    "type": "Selector"
+                    "type": "AutoSelectControlerInstance"
                 }
             ],
-            "class": "UXC.Form",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 385,
-            "description": "清空下拉框的内容\n<br />带 defaultoption 属性的 option 判断时被忽略",
-            "itemtype": "method",
-            "name": "initAutoSelect.removeOption",
-            "access": "private",
-            "tagname": "",
+            "return": {
+                "description": "AutoSelectControlerInstance"
+            },
             "static": 1,
-            "params": [
-                {
-                    "name": "_select",
-                    "description": "",
-                    "type": "Selector"
-                }
-            ],
             "class": "UXC.Form",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 401,
+            "line": 579,
             "description": "判断下拉框的option里是否有给定的值",
-            "itemtype": "method",
-            "name": "initAutoSelect.hasVal",
-            "access": "private",
-            "tagname": "",
-            "static": 1,
             "params": [
                 {
                     "name": "_select",
@@ -2279,44 +2207,8 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 420,
-            "description": "判断下拉框是否有数据项\n<br />带 defaultoption 属性的 option 判断时被忽略",
-            "itemtype": "method",
-            "name": "initAutoSelect.hasItem",
-            "access": "private",
-            "tagname": "",
-            "static": 1,
-            "params": [
-                {
-                    "name": "_select",
-                    "description": "",
-                    "type": "Selector"
-                }
-            ],
-            "class": "UXC.Form",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 438,
-            "description": "取得某一类级联下拉框的所有下拉框",
-            "itemtype": "method",
-            "name": "initAutoSelect.getSelectList",
-            "access": "private",
-            "tagname": "",
-            "static": 1,
-            "params": [
-                {
-                    "name": "_select",
-                    "description": "调用时, _select 为起始下拉框, 带 defaultselect 属性",
-                    "type": "Selector"
-                },
-                {
-                    "name": "_ar",
-                    "description": "返回结果, 该参数不需要显示赋予",
-                    "type": "Array"
-                }
-            ],
+            "line": 649,
+            "description": "页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰",
             "class": "UXC.Form",
             "namespace": "UXC"
         },
@@ -10469,12 +10361,12 @@
             "line": " ../comps/Form/Form.js:2"
         },
         {
-            "message": "Missing item type\n页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰",
-            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:100"
+            "message": "Missing item type\n判断下拉框的option里是否有给定的值",
+            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:579"
         },
         {
-            "message": "Missing item type\n如果是最后一个SELECT, 那么取消数据请求",
-            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:225"
+            "message": "Missing item type\n页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰",
+            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:649"
         },
         {
             "message": "Missing item type\n监听 全选/反选 按钮的点击事件",

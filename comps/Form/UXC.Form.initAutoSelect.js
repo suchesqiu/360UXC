@@ -40,10 +40,10 @@
             $.get( './data/shengshi_html.php?rnd='+new Date().getTime(), function( _r ){
                 var _selector = $(_r);
                 $( 'dl.def > dt' ).after( _selector );
-                AutoSelect( _selector );
+                UXC.Form.initAutoSelect( _selector );
             });
 
-            AutoSelect.dataFilter = 
+            UXC.Form.initAutoSelect.dataFilter = 
                 function( _data, _select ){
                     var _r = _data;
                     if( _data && !_data.length && _data.data ){
@@ -69,6 +69,13 @@
         return _ins;
     }
     var AutoSelectProp = {
+        /**
+         * 判断 selector 是否为符合自动初始化联动框的要求
+         * @method  initAutoSelect.isSelect
+         * @param   {selector}  _selector
+         * @return  bool
+         * @static
+         */
         isSelect: 
             function( _selector ){
                 var _r;
@@ -79,8 +86,7 @@
                     && ( _r = true );
                 return _r;
             }
-
-         /**
+        /**
          * 是否自动隐藏空值的级联下拉框, 起始下拉框不会被隐藏
          * @property    initAutoSelect.hideEmpty
          * @type    bool
@@ -94,10 +100,13 @@
          * 级联下拉框的数据过滤函数
          * <br />默认数据格式: [ [id, name], [id, name] ... ]
          * <br />如果获取到的数据格式非默认格式, 可通过本函数进行数据过滤
-         * <p><b>注意, 这个是全局过滤, 如果要使用该函数进行数据过滤, 判断逻辑需要比较具体</b></p>
+         * <p>
+         *  <b>注意, 这个是全局过滤, 如果要使用该函数进行数据过滤, 判断逻辑需要比较具体</b>
+         *  <br />如果要对具体 select 进行数据过滤, 可以使用HTML属性 selectdatafilter 指定过滤函数
+         * </p>
          * @property    initAutoSelect.dataFilter
          * @type    function
-         * @default undefined
+         * @default null
          * @static
          * @example
                  AutoSelect.dataFilter = 
@@ -110,17 +119,77 @@
                     };
          */
         , dataFilter: null
-
+        /**
+         * 下拉框初始化功能都是未初始化 数据之前的回调
+         * <br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectbeforeInited
+         * @property    initAutoSelect.beforeInited
+         * @type    function
+         * @default null
+         * @static
+         */
         , beforeInited: null
+        /**
+         * 下拉框第一次初始完所有数据的回调
+         * <br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectinited
+         * @property    initAutoSelect.inited
+         * @type    function
+         * @default null
+         * @static
+         */
         , inited: null
+        /**
+         * 下拉框每个项数据变更后的回调
+         * <br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectchange
+         * @property    initAutoSelect.change
+         * @type    function
+         * @default null
+         * @static
+         */
         , change: null
+        /**
+         * 下拉框所有项数据变更后的回调
+         * <br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectallchanged
+         * @property    initAutoSelect.allChanged
+         * @type    function
+         * @default null
+         * @static
+         */
         , allChanged: null
-
+        /**
+         * 第一次初始化所有联动框时, 是否触发 change 事件
+         * <br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selecttriggerinitchange
+         * @property    initAutoSelect.triggerInitChange
+         * @type    bool
+         * @default false
+         * @static
+         */
         , triggerInitChange: false
-
+        /**
+         * ajax 请求数据时, 是否添加随机参数防止缓存
+         * <br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectrandomurl
+         * @property    initAutoSelect.randomurl
+         * @type    bool
+         * @default false
+         * @static
+         */
         , randomurl: false
+        /**
+         * 处理 ajax url 的回调处理函数
+         * <br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectprocessurl
+         * @property    initAutoSelect.processUrl
+         * @type    function
+         * @default null
+         * @static
+         */
         , processUrl: null
-
+        /**
+         * 获取或设置 selector 的实例引用
+         * @method  initAutoSelect.getInstance
+         * @param   {selector}  _selector
+         * @param   {AutoSelectControlerInstance}   _ins
+         * @return AutoSelectControlerInstance
+         * @static
+         */
         , getInstance:
             function( _selector, _ins ){
                 var _r;
@@ -185,6 +254,8 @@
         , isLast: function( _selector ){ return this._model.isLast( _selector ); }
         , isInited: function(){ return this._model.isInited(); }
 
+        , data: function( _selector ){ return this._model.data( _selector ); }
+
         , _responeChange:
             function( _evt ){
                 var _sp = $(this)
@@ -225,7 +296,7 @@
                     , _next = _p._model.next( _selector );
                 ;
 
-                AutoSelect.triggerInitChange && _selector.trigger('change');
+                _p._model.triggerInitChange() && _selector.trigger('change');
 
                 _p.trigger( 'SelectChange', [ _selector ] );
 
@@ -409,6 +480,15 @@
                     ;
                 return _r;
             }
+        
+        , triggerInitChange:
+            function(){
+                var _r = AutoSelect.triggerInitChange, _selector = this.first();
+                _selector.is('[selectriggerinitchange]')
+                    && ( _r = parseBool( _selector.attr('selecttriggerinitchange') ) )
+                    ;
+                return _r;
+            }
 
         , hideempty:
             function( _selector ){
@@ -490,6 +570,12 @@
                 return _cb;
             }
 
+        , data:
+            function( _selector, _setter ){
+                typeof _setter != 'undefined' && ( _selector.data('SelectData', _setter ) );
+                return _selector.data( 'SelectData' );
+            }
+
         /**
          * 判断下拉框的option里是否有给定的值
          * @param   {selector}  _select
@@ -526,7 +612,7 @@
             function( _selector, _data ){
                 var _default = this._model.selectvalue( _selector );
                 _data = this._model.dataFilter( _selector, _data );
-                _selector.data('SelectData', _data );
+                this._model.data( _selector, _data );
                 
                 this._control.trigger( 'SelectItemBeforeUpdate', [ _selector, _data ] );
                 this._removeExists( _selector );
