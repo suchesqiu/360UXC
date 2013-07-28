@@ -23,13 +23,14 @@ function recursive_compress( $sourceRoot, $outputRoot, $fs ){
         return;
     }
 
-    recursive_mkdir( $outputRoot, $fs );
-
     var fl = $fs.readdirSync( $sourceRoot );
 
     for( var i = 0, j = fl.length; i < j; i++ ){
         var cspath = [$sourceRoot, fl[i]].join('/');
         var copath = [$outputRoot, fl[i]].join('/');
+
+        cspath = cspath.replace( /[\/]+/g, '/' );
+        copath = copath.replace( /[\/]+/g, '/' );
 /*
         console.log( cspath, '\n', copath, '\n\n' );
         continue;
@@ -50,9 +51,11 @@ function recursive_compress( $sourceRoot, $outputRoot, $fs ){
         if( /node\_|nodejs\_/i.test( fl[i] ) ) continue;
 
         if( fstat.isDirectory() ){
-            recursive_mkdir( copath, $fs );
             recursive_compress( cspath, copath, $fs );
         }else if( fstat.isFile() ){
+
+            if( !/\.(?:css|js)$/i.test(cspath) ) continue;
+            console.log( 'xxxxxx', cspath, copath );
 
             if( /\.css$/i.test( cspath ) ){
                 new compressor.minify({
@@ -81,32 +84,4 @@ function recursive_compress( $sourceRoot, $outputRoot, $fs ){
 
 
 }
-
-function recursive_mkdir( $path, $fs ){
-    if( !$path ){
-        console.log( '$path is empty!' );
-        return;
-    }
-
-    $path = $path.trim();
-
-    //console.log( 'recursive_mkdir: ' + $path );
-
-    var par = $path.split('/');
-
-    for( var i = 0; i < par.length; i++ ){
-        if( par[i].trim() == '.' || par[i].trim() == '' ){
-            continue;
-        }
-
-        var path = par.slice( 0, i+1 ).join('/');
-
-        //console.log( path );
-
-        if( !$fs.existsSync( path ) ){
-            $fs.mkdirSync( path );
-        }
-    }
-}
-
 
