@@ -14,34 +14,47 @@
             }
         </style>
         <script src="../../../lib.js"></script>
-        <script>UXC.debug = true; UXC.use('Form');</script>
         <script>
             if( /file\:|\\/.test( location.href ) ){
                 alert('本示例需要HTTP环境');
             }
 
-            //UXC.Form.initAutoSelect.hideEmpty = true;
+            UXC.debug = true; UXC.use('Form');
 
-            $(document).delegate( 'button.js_ajaxTest', 'click', function(){
-                var _p = $(this);
-                _p.prop('disabled', true);
-                setTimeout( function(){ _p.prop('disabled', false); }, 1000 );
+            $(document).ready(function(){
 
-                $.get( './data/shengshi_html.php?rnd='+new Date().getTime(), function( _r ){
-                    var _selector = $(_r);
-                    $( 'dl.def > dt' ).after( _selector );
-                    UXC.Form.initAutoSelect( _selector );
+                //UXC.Form.initAutoSelect.hideEmpty = true;
+                $(document).delegate( 'button.js_ajaxTest', 'click', function(){
+                    var _p = $(this);
+                    _p.prop('disabled', true);
+                    setTimeout( function(){ _p.prop('disabled', false); }, 1000 );
+
+                    $.get( './data/shengshi_html.php?rnd='+new Date().getTime(), function( _r ){
+                        var _selector = $(_r);
+                        $( 'dl.def > dt' ).after( _selector );
+                        UXC.Form.initAutoSelect( _selector );
+                    });
                 });
-            });
 
-            UXC.Form.initAutoSelect.dataFilter = 
-                function( _data, _select ){
-                    var _r = _data;
-                    if( _data && !_data.length && _data.data ){
-                        _r = _data.data;
-                    }
-                    return _r;
-                };
+                UXC.Form.initAutoSelect.dataFilter = 
+                    function( _data, _select ){
+                        var _r = _data;
+                        if( _data && !_data.length && _data.data ){
+                            _r = _data.data;
+                        }
+                        return _r;
+                    };
+
+               UXC.Form.initAutoSelect.inited =
+                    function(){
+                        UXC.log( 'user inited' );
+                    };
+
+               UXC.Form.initAutoSelect.allChanged =
+                    function(){
+                        UXC.log( 'user allChanged' );
+                    };
+            });
 
         </script>
     </head>    

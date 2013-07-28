@@ -111,14 +111,15 @@
          */
         , dataFilter: null
 
-        , initedCallback: null
-        , initedDoneCallback: null
-        , AllDoneCallback: null
-
-        , processUrlCallback: null
+        , beforeInited: null
+        , inited: null
+        , change: null
+        , allChanged: null
 
         , triggerInitChange: false
+
         , randomurl: false
+        , processUrl: null
 
         , getInstance:
             function( _selector, _ins ){
@@ -148,22 +149,41 @@
                     AutoSelect.getInstance( $(_item), _p );
                 });
 
-                _p._model.initedcb() && _p.on('SelectInited', _p._model.initedcb() );
-
-                _p.trigger('SelectInited');
-
-                _p.on('SelectInitedDone', function(){
+                _p._model.beforeInited() && _p.on( 'SelectBeforeInited', _p._model.beforeInited() );
+                _p.on('SelectInited', function(){
                     var _tmp = _p._model.first();
                     while( _p._model.next( _tmp ) ){
                         _tmp.on( 'change', _p._responeChange );
                         _tmp = _p._model.next( _tmp );
                     }
+                    _p._model.isInited( true );
+
+                    //alert( _p._model.inited() );
+
+                    _p._model.inited() && _p._model.inited().call( _p );
                 });
+                _p.on('SelectChange', function( _evt, _selector ){
+                    _p._model.change( _selector ) && _p._model.change( _selector ).call( _selector, _evt, _p );
+                });
+                _p._model.allChanged() && _p.on( 'SelectAllChanged', _p._model.allChanged() );
+
+                _p.trigger('SelectBeforeInited');
                 
                 _p._update( _p._model.first(), _p._firstInitCb );
                 
                 return _p;
             }    
+
+        , on: function( _evt, _cb ){ $(this).on( _evt, _cb ); return this; }
+        , trigger: function( _evt, _args ){ $(this).trigger( _evt, _args ); return this; }
+
+        , first: function(){ return this._model.first(); }
+        , last: function(){ return this._model.last(); }
+        , items: function(){ return this._model.items(); }
+
+        , isFirst: function( _selector ){ return this._model.isFirst( _selector ); }
+        , isLast: function( _selector ){ return this._model.isLast( _selector ); }
+        , isInited: function(){ return this._model.isInited(); }
 
         , _responeChange:
             function( _evt ){
@@ -186,10 +206,10 @@
                     , _next = _p._model.next( _selector );
                 ;
 
+                _p.trigger( 'SelectChange', [ _selector ] );
+
                 if( _p._model.isLast( _selector ) ){
-                    _p.trigger( 'SelectAllChange' );
-                }else{
-                    _p.trigger( 'SelectChange' );
+                    _p.trigger( 'SelectAllChanged' );
                 }
 
                 if( _next && _next.length ){
@@ -207,11 +227,11 @@
 
                 AutoSelect.triggerInitChange && _selector.trigger('change');
 
+                _p.trigger( 'SelectChange', [ _selector ] );
+
                 if( _p._model.isLast( _selector ) ){
-                    _p.trigger( 'SelectInitedDone' );
-                    _p.trigger( 'SelectAllChange' );
-                }else{
-                    _p.trigger( 'SelectChange' );
+                    _p.trigger( 'SelectAllChanged' );
+                    _p.trigger( 'SelectInited' );
                 }
 
                 if( _next && _next.length ){
@@ -222,17 +242,6 @@
                 return this;
             }
 
-        , on:
-            function( _evt, _cb ){
-                $(this).on( _evt, _cb );
-                return this;
-            }
-
-        , trigger:
-            function( _evt, _args ){
-                $(this).trigger( _evt, _args );
-                return this;
-            }
 
         , _update:
             function( _selector, _cb, _pid ){
@@ -312,6 +321,7 @@
     function Model( _selector ){
         this._selector = _selector;
         this._items = [];
+        this._isInited = false;
 
         this._init();
     }
@@ -350,54 +360,19 @@
             }
 
         , items: function(){ return this._items; }
+        , first: function(){ return this._items[0]; }
+        , last: function(){ return this._items[ this._items -1 ]; }
+        , next: function( _selector ){ return _selector.data('NextSelect'); }
+        , prev: function( _selector ){ return _selector.data('PrevSelect'); }
+        , isFirst: function( _selector ){ return !!_selector.data('FirstSelect'); }
+        , isLast: function( _selector ){ return !!_selector.data('LastSelect'); }
+        , isStatic: function( _selector ){ return _selector.is('[selectdatacb]'); }
+        , isAjax: function( _selector ){ return _selector.is('[selecturl]'); }
 
-        , first:
-            function(){
-                return this._items[0];
-            }
-
-        , last:
-            function(){
-                return this._items[ this._items -1 ];
-            }
-
-        , next:
-            function( _selector ){
-                return _selector.data('NextSelect');
-            }
-
-        , prev:
-            function( _selector ){
-                return _selector.data('PrevSelect');
-            }
-
-        , isFirst:
-            function( _selector ){
-                return !!_selector.data('FirstSelect');
-            }
-
-        , isLast:
-            function( _selector ){
-                return !!_selector.data('LastSelect');
-            }
-
-        , isStatic:
-            function( _selector ){
-                return _selector.is('[selectdatacb]');
-            }
-
-        , isAjax:
-            function( _selector ){
-                return _selector.is('[selecturl]');
-            }
-
-        , initedcb:
-            function(){
-                var _r;
-                this.first().attr('selectinitedcb') 
-                    && ( _r = window[ this.first().attr('selectinitedcb') ] )
-                    ;
-                return _r;
+        , isInited: 
+            function( _setter ){ 
+                typeof _setter != 'undefined' && ( this._isInited = _setter )
+                return this._isInited;
             }
 
         , selectdatacb:
@@ -435,16 +410,27 @@
                 return _r;
             }
 
+        , hideempty:
+            function( _selector ){
+                var _r = AutoSelect.hideEmpty;
+                _selector 
+                    && _selector.length
+                    && _selector.is('[hideempty]')
+                    && ( _r = parseBool( _selector.attr('hideempty') ) )
+                    ;
+                return _r;
+            }
+
         , selecturl:
             function( _selector, _pid ){
-                var _cb = AutoSelect.processUrlCallback, _r = _selector.attr('selecturl') || '';
-                    _selector.attr('selectprocessurlcb') 
-                        && window[ _selector.attr('selectprocessurlcb' ) ]
-                        && ( _cb = window[ _selector.attr('selectprocessurlcb' ) ] )
+                var _cb = AutoSelect.processUrl, _r = _selector.attr('selecturl') || '';
+                    _selector.attr('selectprocessurl') 
+                        && window[ _selector.attr('selectprocessurl' ) ]
+                        && ( _cb = window[ _selector.attr('selectprocessurl' ) ] )
                         ;
                     _r = printf( _r, _pid );
                     this.randomurl( _selector ) && ( _r = add_url_params( _r, {'rnd': new Date().getTime() } ) );
-                    _cb && ( _r = _cb( _r, _pid ) );
+                    _cb && ( _r = _cb.call( _selector, _r, _pid ) );
                 return _r;
             }
 
@@ -459,10 +445,51 @@
 
         , dataFilter:
             function( _selector, _data ){
-                var _filter = this._userdatafilter( _selector ) || AutoSelect.dataFilter;
-                _filter && ( _data = _filter( _data ) );
+                var _cb = this._userdatafilter( _selector ) || AutoSelect.dataFilter;
+                _cb && ( _data = _cb( _data ) );
                 return _data;
             }
+
+        , beforeInited:
+            function(){
+                var _cb = AutoSelect.beforeInited, _selector = this.first();
+                    _selector.attr('selectbeforeInited') 
+                        && window[ _selector.attr('selectbeforeInited' ) ]
+                        && ( _cb = window[ _selector.attr('selectbeforeinited' ) ] )
+                        ;
+                return _cb;
+            }
+
+        , inited:
+            function(){
+               var _cb = AutoSelect.inited, _selector = this.first();
+                    _selector.attr('selectinited') 
+                        && window[ _selector.attr('selectinited' ) ]
+                        && ( _cb = window[ _selector.attr('selectinited' ) ] )
+                        ;
+                return _cb;
+            }
+
+        , change:
+            function( _selector ){
+               var _cb = AutoSelect.change;
+                    _selector.attr('selectchange') 
+                        && window[ _selector.attr('selectchange' ) ]
+                        && ( _cb = window[ _selector.attr('selectchange' ) ] )
+                        ;
+                return _cb;
+            }
+
+        , allChanged:
+            function(){
+               var _cb = AutoSelect.allChanged, _selector = this.first();
+                    _selector.attr('selectallchanged') 
+                        && window[ _selector.attr('selectallchanged' ) ]
+                        && ( _cb = window[ _selector.attr('selectallchanged' ) ] )
+                        ;
+                return _cb;
+            }
+
         /**
          * 判断下拉框的option里是否有给定的值
          * @param   {selector}  _select
@@ -501,8 +528,18 @@
                 _data = this._model.dataFilter( _selector, _data );
                 _selector.data('SelectData', _data );
                 
-                this._control.trigger( 'beforeupdate', [ _selector, _data ] );
+                this._control.trigger( 'SelectItemBeforeUpdate', [ _selector, _data ] );
                 this._removeExists( _selector );
+
+                if( !_data.length ){
+                    if( this._model.hideempty( _selector ) ){
+                        _selector.hide();
+                        this._control.trigger( 'SelectItemUpdated', [ _selector, _data ] );
+                        return;
+                    }
+                }else{
+                    !_selector.is(':visible') && _selector.show();
+                }
 
                 var _html = [], _tmp, _selected;
                 for( var i = 0, j = _data.length; i < j; i++ ){
@@ -514,6 +551,7 @@
                 if( this._model.hasVal( _selector, _default ) ){
                     _selector.val( _default );
                 }
+                this._control.trigger( 'SelectItemUpdated', [ _selector, _data ] );
             }
 
         , _removeExists:
@@ -526,7 +564,7 @@
      * 页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰
      */
     $(document).ready( function( _evt ){
-        setTimeout( function(){ AutoSelect( document ); }, 100 );
+        setTimeout( function(){ AutoSelect( document.body ); }, 100 );
     });
 
 }(jQuery));
