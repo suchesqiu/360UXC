@@ -127,48 +127,12 @@
                                 <a href="#method_initAutoSelect">initAutoSelect</a>
                                     <span class="flag static">static</span>
                             </li>
-                            <li class="index-item method private">
-                                <a href="#method_initAutoSelect.changeEvent">initAutoSelect.changeEvent</a>
+                            <li class="index-item method">
+                                <a href="#method_initAutoSelect.getInstance">initAutoSelect.getInstance</a>
                                     <span class="flag static">static</span>
                             </li>
-                            <li class="index-item method private">
-                                <a href="#method_initAutoSelect.getData">initAutoSelect.getData</a>
-                                    <span class="flag static">static</span>
-                            </li>
-                            <li class="index-item method private">
-                                <a href="#method_initAutoSelect.getParentId">initAutoSelect.getParentId</a>
-                                    <span class="flag static">static</span>
-                            </li>
-                            <li class="index-item method private">
-                                <a href="#method_initAutoSelect.getSelectList">initAutoSelect.getSelectList</a>
-                                    <span class="flag static">static</span>
-                            </li>
-                            <li class="index-item method private">
-                                <a href="#method_initAutoSelect.hasItem">initAutoSelect.hasItem</a>
-                                    <span class="flag static">static</span>
-                            </li>
-                            <li class="index-item method private">
-                                <a href="#method_initAutoSelect.hasVal">initAutoSelect.hasVal</a>
-                                    <span class="flag static">static</span>
-                            </li>
-                            <li class="index-item method private">
-                                <a href="#method_initAutoSelect.isEmpty">initAutoSelect.isEmpty</a>
-                                    <span class="flag static">static</span>
-                            </li>
-                            <li class="index-item method private">
-                                <a href="#method_initAutoSelect.processData">initAutoSelect.processData</a>
-                                    <span class="flag static">static</span>
-                            </li>
-                            <li class="index-item method private">
-                                <a href="#method_initAutoSelect.removeOption">initAutoSelect.removeOption</a>
-                                    <span class="flag static">static</span>
-                            </li>
-                            <li class="index-item method private">
-                                <a href="#method_initAutoSelect.selectFirst">initAutoSelect.selectFirst</a>
-                                    <span class="flag static">static</span>
-                            </li>
-                            <li class="index-item method private">
-                                <a href="#method_initAutoSelect.triggerChange">initAutoSelect.triggerChange</a>
+                            <li class="index-item method">
+                                <a href="#method_initAutoSelect.isSelect">initAutoSelect.isSelect</a>
                                     <span class="flag static">static</span>
                             </li>
                             <li class="index-item method">
@@ -189,11 +153,39 @@
                                     <span class="flag static">static</span>
                             </li>
                             <li class="index-item property">
+                                <a href="#property_initAutoSelect.allChanged">initAutoSelect.allChanged</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_initAutoSelect.beforeInited">initAutoSelect.beforeInited</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_initAutoSelect.change">initAutoSelect.change</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
                                 <a href="#property_initAutoSelect.dataFilter">initAutoSelect.dataFilter</a>
                                     <span class="flag static">static</span>
                             </li>
                             <li class="index-item property">
                                 <a href="#property_initAutoSelect.hideEmpty">initAutoSelect.hideEmpty</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_initAutoSelect.inited">initAutoSelect.inited</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_initAutoSelect.processUrl">initAutoSelect.processUrl</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_initAutoSelect.randomurl">initAutoSelect.randomurl</a>
+                                    <span class="flag static">static</span>
+                            </li>
+                            <li class="index-item property">
+                                <a href="#property_initAutoSelect.triggerInitChange">initAutoSelect.triggerInitChange</a>
                                     <span class="flag static">static</span>
                             </li>
                             <li class="index-item property">
@@ -361,7 +353,7 @@
     <div class="description">
         <p>初始化 级联下拉框
 <br />只要引用本脚本, 页面加载完毕时就会自动初始化级联下拉框功能
-<br /><br />动态添加的 DOM 需要显式调用 UXC.Form.initAutoSelect( domSelector ) 进行初始化
+<br /><br />动态添加的 DOM 需要显式调用 AutoSelect( domSelector ) 进行初始化
 <br /><br />要使页面上的级联下拉框功能能够自动初始化, 需要在select标签上加入一些HTML 属性
 <br /><b>defaultselect</b>: none, 该属性声明这是级联下拉框的第一个下拉框, <b>这是必填项,初始化时以这个为入口</b>
 <br /><b>selectvalue</b>: string, 下拉框的默认选中值
@@ -371,7 +363,7 @@
 <p>
      数据格式: [ [id, name], [id, name] ... ]
      <br /> 如果获取到的数据格式不是默认格式,
-     可以通过 <a href='UXC.Form.html#property_initAutoSelect.dataFilter'>UXC.Form.initAutoSelect.dataFilter</a> 属性自定义函数, 进行数据过滤
+     可以通过 <a href='UXC.Form.html#property_initAutoSelect.dataFilter'>AutoSelect.dataFilter</a> 属性自定义函数, 进行数据过滤
 </p>
     </div>
         <div class="params">
@@ -422,445 +414,93 @@
             </div>
         </div>
 </div>
-                    <div id="method_initAutoSelect.changeEvent" class="method item private">
-    <h3 class="name"><code>initAutoSelect.changeEvent</code></h3>
+                    <div id="method_initAutoSelect.getInstance" class="method item">
+    <h3 class="name"><code>initAutoSelect.getInstance</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>_evt</code>
+                        <code>_selector</code>
+                </li>
+                <li class="arg">
+                        <code>_ins</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
-        <span class="flag private">private</span>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
         <span class="flag static">static</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l106"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:106</code></a>
+        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l186"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:186</code></a>
         </p>
     </div>
     <div class="description">
-        <p>下拉框改变选项时的响应函数</p>
+        <p>获取或设置 selector 的实例引用</p>
     </div>
         <div class="params">
             <h4>Parameters:</h4>
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">_evt</code>
-                        <span class="type">Event</span>
-                    <div class="param-description">
-                        <p>dom event</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
-                    <div id="method_initAutoSelect.getData" class="method item private">
-    <h3 class="name"><code>initAutoSelect.getData</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_select</code>
-                </li>
-                <li class="arg">
-                        <code>_url</code>
-                </li>
-                <li class="arg">
-                        <code>_selectval</code>
-                </li>
-                <li class="arg">
-                        <code>_callback</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-        <span class="flag private">private</span>
-        <span class="flag static">static</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l304"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:304</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>AJAX请求数据, 并处理结果</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_select</code>
+                        <code class="param-name">_selector</code>
                         <span class="type">Selector</span>
                     <div class="param-description">
-                        <p>下拉框的选择器对象</p>
                     </div>
                 </li>
                 <li class="param">
-                        <code class="param-name">_url</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
+                        <code class="param-name">_ins</code>
+                        <span class="type">AutoSelectControlerInstance</span>
                     <div class="param-description">
-                        <p>请求数据的URL接口</p>
-                    </div>
-                </li>
-                <li class="param">
-                        <code class="param-name">_selectval</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    <div class="param-description">
-                        <p>默认选中值</p>
-                    </div>
-                </li>
-                <li class="param">
-                        <code class="param-name">_callback</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    <div class="param-description">
-                        <p>结果处理完毕后的回调函数</p>
                     </div>
                 </li>
             </ul>
         </div>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    AutoSelectControlerInstance
+            </div>
+        </div>
 </div>
-                    <div id="method_initAutoSelect.getParentId" class="method item private">
-    <h3 class="name"><code>initAutoSelect.getParentId</code></h3>
+                    <div id="method_initAutoSelect.isSelect" class="method item">
+    <h3 class="name"><code>initAutoSelect.isSelect</code></h3>
         <div class="args">
             <span class="paren">(</span><ul class="args-list inline commas">
                 <li class="arg">
-                        <code>_select</code>
+                        <code>_selector</code>
                 </li>
             </ul><span class="paren">)</span>
         </div>
-        <span class="flag private">private</span>
+        <span class="returns-inline">
+            <span class="type"></span>
+        </span>
         <span class="flag static">static</span>
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l276"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:276</code></a>
+        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l72"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:72</code></a>
         </p>
     </div>
     <div class="description">
-        <p>获取 select 的父ID, 这个方便就用于静态数据的联动框</p>
+        <p>判断 selector 是否为符合自动初始化联动框的要求</p>
     </div>
         <div class="params">
             <h4>Parameters:</h4>
             <ul class="params-list">
                 <li class="param">
-                        <code class="param-name">_select</code>
-                        <span class="type">Selector</span>
-                    <div class="param-description">
-                        <p>下拉框的选择器对象</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
-                    <div id="method_initAutoSelect.getSelectList" class="method item private">
-    <h3 class="name"><code>initAutoSelect.getSelectList</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_select</code>
-                </li>
-                <li class="arg">
-                        <code>_ar</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-        <span class="flag private">private</span>
-        <span class="flag static">static</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l438"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:438</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>取得某一类级联下拉框的所有下拉框</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_select</code>
-                        <span class="type">Selector</span>
-                    <div class="param-description">
-                        <p>调用时, _select 为起始下拉框, 带 defaultselect 属性</p>
-                    </div>
-                </li>
-                <li class="param">
-                        <code class="param-name">_ar</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-                    <div class="param-description">
-                        <p>返回结果, 该参数不需要显示赋予</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
-                    <div id="method_initAutoSelect.hasItem" class="method item private">
-    <h3 class="name"><code>initAutoSelect.hasItem</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_select</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-        <span class="flag private">private</span>
-        <span class="flag static">static</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l420"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:420</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>判断下拉框是否有数据项
-<br />带 defaultoption 属性的 option 判断时被忽略</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_select</code>
+                        <code class="param-name">_selector</code>
                         <span class="type">Selector</span>
                     <div class="param-description">
                     </div>
                 </li>
             </ul>
         </div>
-</div>
-                    <div id="method_initAutoSelect.hasVal" class="method item private">
-    <h3 class="name"><code>initAutoSelect.hasVal</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_select</code>
-                </li>
-                <li class="arg">
-                        <code>_val</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-        <span class="flag private">private</span>
-        <span class="flag static">static</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l401"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:401</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>判断下拉框的option里是否有给定的值</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_select</code>
-                        <span class="type">Selector</span>
-                    <div class="param-description">
-                    </div>
-                </li>
-                <li class="param">
-                        <code class="param-name">_val</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    <div class="param-description">
-                        <p>要查找的值</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
-                    <div id="method_initAutoSelect.isEmpty" class="method item private">
-    <h3 class="name"><code>initAutoSelect.isEmpty</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_select</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-        <span class="flag private">private</span>
-        <span class="flag static">static</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l354"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:354</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>判断下拉框是否为空
-<br />带 defaultoption 属性的 option 判断时被忽略</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_select</code>
-                        <span class="type">Selector</span>
-                    <div class="param-description">
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
-                    <div id="method_initAutoSelect.processData" class="method item private">
-    <h3 class="name"><code>initAutoSelect.processData</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_select</code>
-                </li>
-                <li class="arg">
-                        <code>_selectval</code>
-                </li>
-                <li class="arg">
-                        <code>_callback</code>
-                </li>
-                <li class="arg">
-                        <code>_r</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-        <span class="flag private">private</span>
-        <span class="flag static">static</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l319"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:319</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>处理数据结果</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_select</code>
-                        <span class="type">Selector</span>
-                    <div class="param-description">
-                        <p>下拉框的选择器对象</p>
-                    </div>
-                </li>
-                <li class="param">
-                        <code class="param-name">_selectval</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/String" class="crosslink external" target="_blank">String</a></span>
-                    <div class="param-description">
-                        <p>默认选中值</p>
-                    </div>
-                </li>
-                <li class="param">
-                        <code class="param-name">_callback</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
-                    <div class="param-description">
-                        <p>结果处理完毕后的回调函数</p>
-                    </div>
-                </li>
-                <li class="param">
-                        <code class="param-name">_r</code>
-                        <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array" class="crosslink external" target="_blank">Array</a></span>
-                    <div class="param-description">
-                        <p>select 数据</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
-                    <div id="method_initAutoSelect.removeOption" class="method item private">
-    <h3 class="name"><code>initAutoSelect.removeOption</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_select</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-        <span class="flag private">private</span>
-        <span class="flag static">static</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l385"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:385</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>清空下拉框的内容
-<br />带 defaultoption 属性的 option 判断时被忽略</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_select</code>
-                        <span class="type">Selector</span>
-                    <div class="param-description">
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
-                    <div id="method_initAutoSelect.selectFirst" class="method item private">
-    <h3 class="name"><code>initAutoSelect.selectFirst</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_select</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-        <span class="flag private">private</span>
-        <span class="flag static">static</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l372"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:372</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>选中下拉框的第一个option</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_select</code>
-                        <span class="type">Selector</span>
-                    <div class="param-description">
-                    </div>
-                </li>
-            </ul>
-        </div>
-</div>
-                    <div id="method_initAutoSelect.triggerChange" class="method item private">
-    <h3 class="name"><code>initAutoSelect.triggerChange</code></h3>
-        <div class="args">
-            <span class="paren">(</span><ul class="args-list inline commas">
-                <li class="arg">
-                        <code>_select</code>
-                </li>
-            </ul><span class="paren">)</span>
-        </div>
-        <span class="flag private">private</span>
-        <span class="flag static">static</span>
-    <div class="meta">
-                <p>
-                Defined in
-        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l292"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:292</code></a>
-        </p>
-    </div>
-    <div class="description">
-        <p>触发下一级下拉框的change事件</p>
-    </div>
-        <div class="params">
-            <h4>Parameters:</h4>
-            <ul class="params-list">
-                <li class="param">
-                        <code class="param-name">_select</code>
-                        <span class="type">Selector</span>
-                    <div class="param-description">
-                        <p>下拉框的选择器对象</p>
-                    </div>
-                </li>
-            </ul>
+        <div class="returns">
+            <h4>Returns:</h4>
+            <div class="returns-description">
+                    bool
+            </div>
         </div>
 </div>
                     <div id="method_initCheckAll" class="method item">
@@ -1016,6 +656,54 @@
     </div>
         <p><strong>Default:</strong> null</p>
 </div>
+                    <div id="property_initAutoSelect.allChanged" class="property item">
+    <h3 class="name"><code>initAutoSelect.allChanged</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l150"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:150</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>下拉框所有项数据变更后的回调
+<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectallchanged</p>
+    </div>
+        <p><strong>Default:</strong> null</p>
+</div>
+                    <div id="property_initAutoSelect.beforeInited" class="property item">
+    <h3 class="name"><code>initAutoSelect.beforeInited</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l123"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:123</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>下拉框初始化功能都是未初始化 数据之前的回调
+<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectbeforeInited</p>
+    </div>
+        <p><strong>Default:</strong> null</p>
+</div>
+                    <div id="property_initAutoSelect.change" class="property item">
+    <h3 class="name"><code>initAutoSelect.change</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l141"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:141</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>下拉框每个项数据变更后的回调
+<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectchange</p>
+    </div>
+        <p><strong>Default:</strong> null</p>
+</div>
                     <div id="property_initAutoSelect.dataFilter" class="property item">
     <h3 class="name"><code>initAutoSelect.dataFilter</code></h3>
     <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
@@ -1023,27 +711,30 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l80"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:80</code></a>
+        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l100"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:100</code></a>
         </p>
     </div>
     <div class="description">
         <p>级联下拉框的数据过滤函数
 <br />默认数据格式: [ [id, name], [id, name] ... ]
 <br />如果获取到的数据格式非默认格式, 可通过本函数进行数据过滤</p>
-<p><b>注意, 这个是全局过滤, 如果要使用该函数进行数据过滤, 判断逻辑需要比较具体</b></p>
+<p>
+ <b>注意, 这个是全局过滤, 如果要使用该函数进行数据过滤, 判断逻辑需要比较具体</b>
+ <br />如果要对具体 select 进行数据过滤, 可以使用HTML属性 selectdatafilter 指定过滤函数
+</p>
     </div>
-        <p><strong>Default:</strong> undefined</p>
+        <p><strong>Default:</strong> null</p>
         <div class="example">
             <h4>Example:</h4>
             <div class="example-content">
-                <pre class="code prettyprint"><code>        UXC.Form.initAutoSelect.dataFilter = 
-           function( _data, _select ){
-               var _r = _data;
-               if( _data &amp;&amp; !_data.length &amp;&amp; _data.data ){
-                   _r = _data.data;
-               }
-               return _r;
-           };
+                <pre class="code prettyprint"><code>            AutoSelect.dataFilter = 
+               function( _data, _select ){
+                   var _r = _data;
+                   if( _data &amp;&amp; !_data.length &amp;&amp; _data.data ){
+                       _r = _data.data;
+                   }
+                   return _r;
+               };
 </code></pre>
             </div>
         </div>
@@ -1055,20 +746,85 @@
     <div class="meta">
                 <p>
                 Defined in
-        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l70"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:70</code></a>
+        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l89"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:89</code></a>
         </p>
     </div>
     <div class="description">
-        <p>是否自动隐藏空值的级联下拉框, 起始下拉框不会被隐藏</p>
+        <p>是否自动隐藏空值的级联下拉框, 起始下拉框不会被隐藏
+<br />这个是全局设置, 如果需要对具体某个select进行处理, 对应的 HTML 属性 selecthideempty</p>
     </div>
         <p><strong>Default:</strong> false</p>
         <div class="example">
             <h4>Example:</h4>
             <div class="example-content">
-                <pre class="code prettyprint"><code>       UXC.Form.initAutoSelect.hideEmpty = true;
+                <pre class="code prettyprint"><code>           AutoSelect.hideEmpty = true;
 </code></pre>
             </div>
         </div>
+</div>
+                    <div id="property_initAutoSelect.inited" class="property item">
+    <h3 class="name"><code>initAutoSelect.inited</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l132"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:132</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>下拉框第一次初始完所有数据的回调
+<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectinited</p>
+    </div>
+        <p><strong>Default:</strong> null</p>
+</div>
+                    <div id="property_initAutoSelect.processUrl" class="property item">
+    <h3 class="name"><code>initAutoSelect.processUrl</code></h3>
+    <span class="type"><a href="https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Function" class="crosslink external" target="_blank">Function</a></span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l177"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:177</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>处理 ajax url 的回调处理函数
+<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectprocessurl</p>
+    </div>
+        <p><strong>Default:</strong> null</p>
+</div>
+                    <div id="property_initAutoSelect.randomurl" class="property item">
+    <h3 class="name"><code>initAutoSelect.randomurl</code></h3>
+    <span class="type">Bool</span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l168"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:168</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>ajax 请求数据时, 是否添加随机参数防止缓存
+<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selectrandomurl</p>
+    </div>
+        <p><strong>Default:</strong> true</p>
+</div>
+                    <div id="property_initAutoSelect.triggerInitChange" class="property item">
+    <h3 class="name"><code>initAutoSelect.triggerInitChange</code></h3>
+    <span class="type">Bool</span>
+        <span class="flag static">static</span>
+    <div class="meta">
+                <p>
+                Defined in
+        <a href="../files/.._comps_Form_UXC.Form.initAutoSelect.js.html#l159"><code>..&#x2F;comps&#x2F;Form&#x2F;UXC.Form.initAutoSelect.js:159</code></a>
+        </p>
+    </div>
+    <div class="description">
+        <p>第一次初始化所有联动框时, 是否触发 change 事件
+<br />这个是全局回调, 如果需要对具体某一组进行处理, 对应的 HTML 属性 selecttriggerinitchange</p>
+    </div>
+        <p><strong>Default:</strong> false</p>
 </div>
                     <div id="property_initNumericStepper.onchange" class="property item">
     <h3 class="name"><code>initNumericStepper.onchange</code></h3>
