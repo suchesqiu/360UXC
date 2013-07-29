@@ -98,6 +98,12 @@
                 var _ls = [], _class, _data, _title, _sdate, _edate, _cnUnit
                     , _year = _date.getFullYear();
 
+                var ipt = UXC.Calendar.lastIpt, currentcanselect = parseBool( ipt.attr('currentcanselect') );
+
+                if( _dateObj.maxvalue && currentcanselect ){
+                    _dateObj.maxvalue.setDate( maxDayOfMonth( _dateObj.maxvalue ) );
+                }
+
                 _ls.push('<tr>');
                 for( i = 1, j = 12; i <= j; i++ ){
                     _sdate = new Date( _year, i - 1, 1 ); 

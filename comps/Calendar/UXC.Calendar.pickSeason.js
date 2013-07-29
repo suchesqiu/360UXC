@@ -98,6 +98,18 @@
                 var _ls = [], _class, _data, _title, _sdate, _edate, _cnUnit
                     , _year = _date.getFullYear();
 
+                var ipt = UXC.Calendar.lastIpt, currentcanselect = parseBool( ipt.attr('currentcanselect') );
+
+                if( _dateObj.maxvalue && currentcanselect ){
+                    var _m = _dateObj.maxvalue.getMonth() + 1, _md;
+
+                    if( _m % 3 !== 0 ){
+                        _dateObj.maxvalue.setDate( 1 );
+                        _dateObj.maxvalue.setMonth( _m + ( 3 - ( _m % 3 ) - 1 ) );
+                    }
+                    _dateObj.maxvalue.setDate( maxDayOfMonth( _dateObj.maxvalue ) );
+                }
+
                 _ls.push('<tr>');
                 for( i = 1, j = 4; i <= j; i++ ){
                     _sdate = new Date( _year, i * 3 - 3, 1 ); 

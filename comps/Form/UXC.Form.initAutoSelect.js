@@ -427,6 +427,8 @@
                         if( preItem ){
                             item.data('PrevSelect', preItem);
                             preItem.data('NextSelect', item );
+
+                            item.data('parentSelect', preItem); //向后兼容0.1
                         }
                     }
                 }
@@ -528,7 +530,7 @@
         , dataFilter:
             function( _selector, _data ){
                 var _cb = this._userdatafilter( _selector ) || AutoSelect.dataFilter;
-                _cb && ( _data = _cb( _data ) );
+                _cb && ( _data = _cb( _data, _selector ) );
                 return _data;
             }
 
