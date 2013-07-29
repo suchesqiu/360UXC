@@ -2188,7 +2188,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 581,
+            "line": 583,
             "description": "判断下拉框的option里是否有给定的值",
             "params": [
                 {
@@ -2207,7 +2207,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 651,
+            "line": 653,
             "description": "页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰",
             "class": "UXC.Form",
             "namespace": "UXC"
@@ -10386,11 +10386,11 @@
         },
         {
             "message": "Missing item type\n判断下拉框的option里是否有给定的值",
-            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:581"
+            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:583"
         },
         {
             "message": "Missing item type\n页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰",
-            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:651"
+            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:653"
         },
         {
             "message": "Missing item type\n监听 全选/反选 按钮的点击事件",
