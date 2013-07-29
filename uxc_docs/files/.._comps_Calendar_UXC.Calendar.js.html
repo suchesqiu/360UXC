@@ -533,6 +533,13 @@
                 }
                 var today = new Date();
 
+                var ipt = UXC.Calendar.lastIpt, currentcanselect = true;
+                if( ipt.is(&#x27;[currentcanselect]&#x27;) ) currentcanselect = parseBool( ipt.attr(&#x27;currentcanselect&#x27;) );
+
+                if( _dateObj.maxvalue &amp;&amp; !currentcanselect ){
+                    _dateObj.maxvalue.setDate( _dateObj.maxvalue.getDate() - 1 );
+                }
+
                 _ls.push(&#x27;&lt;tr&gt;&#x27;);
                 for( i = 1; i &lt;= 42; i++ ){
                     _class = [];
