@@ -1448,7 +1448,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 413,
+            "line": 420,
             "description": "初始化月份",
             "itemtype": "method",
             "name": "_logic.initMonth",
@@ -1466,7 +1466,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 424,
+            "line": 431,
             "description": "初始化年份",
             "itemtype": "method",
             "name": "_logic.initYear",
@@ -1484,7 +1484,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 448,
+            "line": 455,
             "description": "按年份更改日期",
             "itemtype": "method",
             "name": "_logic.updateYear",
@@ -1502,7 +1502,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 468,
+            "line": 475,
             "description": "按月份更改日期",
             "itemtype": "method",
             "name": "_logic.setNewMonth",
@@ -1520,7 +1520,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 489,
+            "line": 496,
             "description": "获取日历组件的外观",
             "itemtype": "method",
             "name": "_logic.getLayout",
@@ -1535,7 +1535,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 523,
+            "line": 530,
             "description": "把日期赋值给文本框",
             "itemtype": "method",
             "name": "_logic.setDate",
@@ -1553,7 +1553,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 542,
+            "line": 549,
             "description": "给文本框赋值, 日期为控件的当前日期",
             "itemtype": "method",
             "name": "_logic.onConfirm",
@@ -1568,7 +1568,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 556,
+            "line": 563,
             "description": "日历组件模板\n<p>这是默认模板, 用户可以给 UXC.Calendar.tpl 赋值, 更改为自己的模板</p>",
             "itemtype": "property",
             "name": "_logic.tpl",
@@ -1580,7 +1580,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 607,
+            "line": 614,
             "description": "DOM 加载完毕后, 初始化日历组件相关事件",
             "itemtype": "event",
             "name": "dom ready",
@@ -1591,14 +1591,14 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 613,
+            "line": 620,
             "description": "延迟200毫秒初始化页面的所有日历控件\n之所以要延迟是可以让用户自己设置是否需要自动初始化",
             "class": "UXC.Calendar",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 621,
+            "line": 628,
             "description": "捕获用户更改年份 \n<p>监听 年份下拉框</p>",
             "itemtype": "event",
             "name": "year change",
@@ -1609,7 +1609,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 631,
+            "line": 638,
             "description": "捕获用户更改年份 \n<p>监听 下一年按钮</p>",
             "itemtype": "event",
             "name": "next year",
@@ -1620,7 +1620,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 641,
+            "line": 648,
             "description": "捕获用户更改年份 \n<p>监听 上一年按钮</p>",
             "itemtype": "event",
             "name": "previous year",
@@ -1631,7 +1631,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 651,
+            "line": 658,
             "description": "捕获用户更改月份\n<p>监听 月份下拉框</p>",
             "itemtype": "event",
             "name": "month change",
@@ -1642,7 +1642,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 660,
+            "line": 667,
             "description": "选择当前日期\n<p>监听确定按钮</p>",
             "itemtype": "event",
             "name": "confirm click",
@@ -1653,7 +1653,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 674,
+            "line": 681,
             "description": "增加或者减少一年\n<p>监听 年份map</p>",
             "itemtype": "event",
             "name": "year map click",
@@ -1664,7 +1664,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 692,
+            "line": 699,
             "description": "增加或者减少一个月\n<p>监听 月份map</p>",
             "itemtype": "event",
             "name": "month map click",
@@ -1675,7 +1675,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 714,
+            "line": 721,
             "description": "清除文本框内容\n<p>监听 清空按钮</p>",
             "itemtype": "event",
             "name": "clear click",
@@ -1686,7 +1686,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 723,
+            "line": 730,
             "description": "取消日历组件, 相当于隐藏\n<p>监听 取消按钮</p>",
             "itemtype": "event",
             "name": "cancel click",
@@ -1697,7 +1697,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 732,
+            "line": 739,
             "description": "dom 点击时, 检查事件源是否为日历组件对象, 如果不是则会隐藏日历组件",
             "itemtype": "event",
             "name": "dom click",
@@ -1708,7 +1708,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 753,
+            "line": 760,
             "description": "日历组件按钮点击事件",
             "itemtype": "event",
             "name": "calendar button click",
@@ -1719,7 +1719,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 761,
+            "line": 768,
             "description": "日历组件文本框获得焦点",
             "itemtype": "event",
             "name": "input focus",
@@ -1730,7 +1730,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 769,
+            "line": 776,
             "description": "日历组件点击事件, 阻止冒泡, 防止被 document click事件隐藏",
             "itemtype": "event",
             "name": "UXCCalendar click",
@@ -1741,7 +1741,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 777,
+            "line": 784,
             "description": "日期点击事件",
             "itemtype": "event",
             "name": "date click",
@@ -1752,7 +1752,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.js",
-            "line": 793,
+            "line": 800,
             "description": "监听窗口滚动和改变大小, 实时变更日历组件显示位置",
             "itemtype": "event",
             "name": "window scroll, window resize",
@@ -1792,7 +1792,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.pickMonth.js",
-            "line": 145,
+            "line": 151,
             "description": "最后一个显示日历组件的日期对象",
             "itemtype": "property",
             "name": "_logic.lastDateObj",
@@ -1833,7 +1833,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.pickSeason.js",
-            "line": 147,
+            "line": 159,
             "description": "最后一个显示日历组件的日期对象",
             "itemtype": "property",
             "name": "_logic.lastDateObj",
@@ -1886,7 +1886,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.pickWeek.js",
-            "line": 159,
+            "line": 168,
             "description": "最后一个显示日历组件的日期对象",
             "itemtype": "property",
             "name": "_logic.lastDateObj",
@@ -1898,7 +1898,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.pickWeek.js",
-            "line": 185,
+            "line": 194,
             "description": "取一年中所有的星期, 及其开始结束日期",
             "itemtype": "method",
             "name": "weekOfYear",
@@ -1923,7 +1923,7 @@
         },
         {
             "file": "../comps/Calendar/UXC.Calendar.pickWeek.js",
-            "line": 197,
+            "line": 206,
             "description": "元旦开始的第一个星期一开始的一周为政治经济上的第一周",
             "class": "UXC.Calendar",
             "namespace": "UXC"
@@ -10374,11 +10374,11 @@
         },
         {
             "message": "Missing item type\n延迟200毫秒初始化页面的所有日历控件\n之所以要延迟是可以让用户自己设置是否需要自动初始化",
-            "line": " ../comps/Calendar/UXC.Calendar.js:613"
+            "line": " ../comps/Calendar/UXC.Calendar.js:620"
         },
         {
             "message": "Missing item type\n元旦开始的第一个星期一开始的一周为政治经济上的第一周",
-            "line": " ../comps/Calendar/UXC.Calendar.pickWeek.js:197"
+            "line": " ../comps/Calendar/UXC.Calendar.pickWeek.js:206"
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",

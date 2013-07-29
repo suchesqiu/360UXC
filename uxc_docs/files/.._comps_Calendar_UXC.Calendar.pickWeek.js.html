@@ -259,6 +259,15 @@
                 var _ls = [], _class, _data, _title, _sdate, _edate, _year = _date.getFullYear()
                     , _rows = Math.ceil( weeks.length / 8 );
 
+                var ipt = UXC.Calendar.lastIpt, currentcanselecte = parseBool( ipt.attr(&#x27;currentcanselecte&#x27;) );
+
+                if( _dateObj.maxvalue &amp;&amp; currentcanselecte ){
+                    var _wd = _dateObj.maxvalue.getDay();
+                    if( _wd &gt; 0 ) {
+                        _dateObj.maxvalue.setDate( _dateObj.maxvalue.getDate() + ( 7 - _wd ) );
+                    }
+                }
+
                 _ls.push(&#x27;&lt;tr&gt;&#x27;);
                 for( i = 1, j = _rows * 8; i &lt;= j; i++ ){
                     _data = weeks[ i - 1];
