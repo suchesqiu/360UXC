@@ -17,7 +17,7 @@
     $(document).ready( function(){
         var defISODate = formatISODate( new Date() );
         $('input.multidate').val( defISODate );
-        $('input.multidate').attr( 'maxvalue', defISODate );
+        $('input.multidate').attr( 'maxvalue',  defISODate );
         updateHiddenDate();
         $('select.dataspan').val( datetypeToNum( $('input.multidate').attr('multidate') ) );
 
