@@ -156,6 +156,7 @@
             function( _panel ){
                 if( !_panel ){
                     $('body > div.UPanelPopup_identifer').remove();
+                    $('body > div.UPanel_TMP').remove();
                 }else{
                     _panel.selector().addClass('UPanelPopup_identifer');
                     _panel.selector().data('PopupInstance', _panel);
@@ -413,7 +414,7 @@
          */
         , fixWidth:
             function( _msg, _panel ){
-                var _tmp = $('<div style="position:absolute; left:-9999px;top:-9999px;">' + _msg + '</div>').appendTo('body'), _w = _tmp.width() + 80;
+                var _tmp = $('<div class="UPanel_TMP" style="position:absolute; left:-9999px;top:-9999px;">' + _msg + '</div>').appendTo('body'), _w = _tmp.width() + 80;
                     _tmp.remove();
                 _w > _logic.maxWidth && ( _w = _logic.maxWidth );
                 _w < _logic.minWidth && ( _w = _logic.minWidth );

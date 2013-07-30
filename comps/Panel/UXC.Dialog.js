@@ -225,6 +225,7 @@
                 if( !_panel ){
                     _logic.hideMask();
                     $('body > div.UPanelDialog_identifer').hide();
+                    $('body > div.UPanel_TMP').remove();
                 }else{
                     _panel.selector().addClass('UPanelDialog_identifer');
                     _panel.selector().data('DialogInstance', _panel);
@@ -313,7 +314,7 @@
          */
         , fixWidth:
             function( _msg, _panel ){
-                var _tmp = $('<div style="position:absolute; left:-9999px;top:-9999px;">' + _msg + '</div>').appendTo('body'), _w = _tmp.width() + 80;
+                var _tmp = $('<div class="UPanel_TMP" style="position:absolute; left:-9999px;top:-9999px;">' + _msg + '</div>').appendTo('body'), _w = _tmp.width() + 80;
                 _w > _logic.maxWidth && ( _w = _logic.maxWidth );
                 _w < _logic.minWidth && ( _w = _logic.minWidth );
 
