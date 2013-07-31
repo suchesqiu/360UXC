@@ -341,15 +341,32 @@
         _init:
             function(){
                 if( !this.layoutIsTab() ) return;
-                var _p = this;
-                this._tablabels = $( this.layout().attr('tablabels') );
-                this._tabcontainers = $( this.layout().attr('tabcontainers') );
+                var _p = this, _re = /^\~[\s]+/g;
+
+                if( _p.isFromChild( _p.layout().attr('tablabels') ) ){
+                    this._tablabels = _p.layout().find( _p.layout().attr('tablabels').replace( _re, '' ) );
+                }else{
+                    this._tablabels = $( _p.layout().attr('tablabels') );
+                }
+
+                if( _p.isFromChild( _p.layout().attr('tabcontainers') ) ){
+                    this._tabcontainers = _p.layout().find( _p.layout().attr('tabcontainers').replace( _re, '' ) );
+                }else{
+                    this._tabcontainers = $( _p.layout().attr('tabcontainers') );
+                }
 
                 this._tablabels.each( function(){ _p.tablabel( this, 1 ); } );
                 this._tabcontainers.each( function(){ _p.tabcontent( this, 1 ); } );
                 this._tablabels.each( function( _ix ){ _p.tabindex( this, _ix ); });
 
                 return this;
+            }
+        /**
+         * 判断是否从 layout 下查找内容
+         */
+        , isFromChild:
+            function( _selector ){
+                return /^\~/.test( $.trim( _selector ) );
             }
         /**
          * 获取 Tab 的主容器

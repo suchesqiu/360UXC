@@ -893,7 +893,7 @@
             "extension_for": [],
             "namespace": "UXC.Tab",
             "file": "../comps/Tab/Tab.js",
-            "line": 522,
+            "line": 539,
             "description": "Tab 视图模型类",
             "is_constructor": 1,
             "params": [
@@ -2188,7 +2188,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 581,
+            "line": 583,
             "description": "判断下拉框的option里是否有给定的值",
             "params": [
                 {
@@ -2207,7 +2207,7 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initAutoSelect.js",
-            "line": 651,
+            "line": 653,
             "description": "页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰",
             "class": "UXC.Form",
             "namespace": "UXC"
@@ -3279,7 +3279,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Dialog.js",
-            "line": 233,
+            "line": 234,
             "description": "显示蒙板",
             "itemtype": "method",
             "name": "_logic.showMask",
@@ -3290,7 +3290,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Dialog.js",
-            "line": 253,
+            "line": 254,
             "description": "隐藏蒙板",
             "itemtype": "method",
             "name": "_logic.hideMask",
@@ -3301,7 +3301,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Dialog.js",
-            "line": 265,
+            "line": 266,
             "description": "窗口改变大小时, 改变蒙板的大小,\n<br />这个方法主要为了兼容 IE6",
             "itemtype": "method",
             "name": "_logic.setMaskSizeForIe6",
@@ -3312,7 +3312,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Dialog.js",
-            "line": 288,
+            "line": 289,
             "description": "获取弹框的显示状态, 默认为0(成功)",
             "itemtype": "method",
             "name": "_logic.fixWidth",
@@ -3334,7 +3334,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Dialog.js",
-            "line": 306,
+            "line": 307,
             "description": "修正弹框的默认显示宽度",
             "itemtype": "method",
             "name": "_logic.fixWidth",
@@ -3357,7 +3357,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Dialog.js",
-            "line": 322,
+            "line": 323,
             "description": "保存会话弹框的所有默认模板",
             "itemtype": "property",
             "name": "_logic.tpls",
@@ -3369,7 +3369,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Dialog.js",
-            "line": 330,
+            "line": 331,
             "description": "alert 会话弹框的默认模板",
             "itemtype": "property",
             "name": "_logic.tpls.alert",
@@ -3381,7 +3381,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Dialog.js",
-            "line": 353,
+            "line": 354,
             "description": "confirm 会话弹框的默认模板",
             "itemtype": "property",
             "name": "_logic.tpls.confirm",
@@ -3393,7 +3393,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Dialog.js",
-            "line": 377,
+            "line": 378,
             "description": "会话弹框的蒙板模板",
             "itemtype": "property",
             "name": "_logic.tpls.mask",
@@ -4220,7 +4220,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 164,
+            "line": 165,
             "description": "弹框通用处理方法",
             "itemtype": "method",
             "name": "_logic.popup",
@@ -4261,7 +4261,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 231,
+            "line": 232,
             "description": "隐藏弹框缓动效果",
             "itemtype": "method",
             "name": "_logic.hideEffect",
@@ -4289,7 +4289,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 274,
+            "line": 275,
             "description": "隐藏弹框缓动效果",
             "itemtype": "method",
             "name": "_logic.showEffect",
@@ -4312,7 +4312,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 326,
+            "line": 327,
             "description": "设置 Panel 的默认X,Y轴",
             "itemtype": "method",
             "name": "_logic.onresize",
@@ -4330,7 +4330,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 362,
+            "line": 363,
             "description": "取得弹框最要显示的 y 轴",
             "itemtype": "method",
             "name": "_logic.getTop",
@@ -4367,7 +4367,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 383,
+            "line": 384,
             "description": "取得弹框最要显示的 x 轴",
             "itemtype": "method",
             "name": "_logic.getLeft",
@@ -4404,7 +4404,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 406,
+            "line": 407,
             "description": "修正弹框的默认显示宽度",
             "itemtype": "method",
             "name": "_logic.fixWidth",
@@ -4427,7 +4427,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 423,
+            "line": 424,
             "description": "获取弹框的显示状态, 默认为0(成功)",
             "itemtype": "method",
             "name": "_logic.fixWidth",
@@ -4449,7 +4449,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 441,
+            "line": 442,
             "description": "保存弹框的所有默认模板",
             "itemtype": "property",
             "name": "_logic.tpls",
@@ -4461,7 +4461,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 449,
+            "line": 450,
             "description": "alert 弹框的默认模板",
             "itemtype": "property",
             "name": "_logic.tpls.alert",
@@ -4473,7 +4473,7 @@
         },
         {
             "file": "../comps/Panel/UXC.Popup.js",
-            "line": 472,
+            "line": 473,
             "description": "confirm 弹框的默认模板",
             "itemtype": "property",
             "name": "_logic.tpls.confirm",
@@ -5484,7 +5484,14 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 354,
+            "line": 364,
+            "description": "判断是否从 layout 下查找内容",
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 371,
             "description": "获取 Tab 的主容器",
             "itemtype": "method",
             "name": "layout",
@@ -5496,7 +5503,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 360,
+            "line": 377,
             "description": "获取 Tab 所有 label 或 特定索引的 label",
             "itemtype": "method",
             "name": "tablabels",
@@ -5515,7 +5522,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 370,
+            "line": 387,
             "description": "获取 Tab 所有内容container 或 特定索引的 container",
             "itemtype": "method",
             "name": "tabcontainers",
@@ -5534,7 +5541,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 380,
+            "line": 397,
             "description": "获取初始化要触发的 label",
             "itemtype": "method",
             "name": "triggerTarget",
@@ -5546,7 +5553,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 386,
+            "line": 403,
             "description": "判断一个容器是否 符合 Tab 数据要求",
             "itemtype": "method",
             "name": "layoutIsTab",
@@ -5558,7 +5565,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 392,
+            "line": 409,
             "description": "获取 Tab 活动状态的 class",
             "itemtype": "method",
             "name": "activeClass",
@@ -5570,7 +5577,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 398,
+            "line": 415,
             "description": "获取 Tab label 的触发事件名称",
             "itemtype": "method",
             "name": "activeEvent",
@@ -5582,7 +5589,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 404,
+            "line": 421,
             "description": "判断 label 是否符合要求, 或者设置一个 label为符合要求",
             "itemtype": "method",
             "name": "tablabel",
@@ -5601,7 +5608,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 417,
+            "line": 434,
             "description": "判断 container 是否符合要求, 或者设置一个 container为符合要求",
             "itemtype": "method",
             "name": "tabcontent",
@@ -5625,7 +5632,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 431,
+            "line": 448,
             "description": "获取或设置 label 的索引位置",
             "itemtype": "method",
             "name": "tabindex",
@@ -5649,7 +5656,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 445,
+            "line": 462,
             "description": "获取Tab label 触发事件后的回调",
             "itemtype": "method",
             "name": "tabactivecallback",
@@ -5661,7 +5668,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 456,
+            "line": 473,
             "description": "获取 Tab label 变更后的回调",
             "itemtype": "method",
             "name": "tabchangecallback",
@@ -5673,7 +5680,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 467,
+            "line": 484,
             "description": "获取 Tab label 活动状态显示样式的标签",
             "itemtype": "method",
             "name": "tablabelparent",
@@ -5692,7 +5699,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 481,
+            "line": 498,
             "description": "获取 ajax label 的 URL",
             "itemtype": "method",
             "name": "tabajaxurl",
@@ -5711,7 +5718,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 488,
+            "line": 505,
             "description": "获取 ajax label 的请求方法 get/post",
             "itemtype": "method",
             "name": "tabajaxmethod",
@@ -5730,7 +5737,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 495,
+            "line": 512,
             "description": "获取 ajax label 的请求数据",
             "itemtype": "method",
             "name": "tabajaxdata",
@@ -5749,7 +5756,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 509,
+            "line": 526,
             "description": "获取 ajax label 请求URL后的回调",
             "itemtype": "method",
             "name": "tabajaxcallback",
@@ -5768,7 +5775,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 530,
+            "line": 547,
             "description": "Tab 数据模型类实例引用",
             "itemtype": "property",
             "name": "_model",
@@ -5780,7 +5787,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 540,
+            "line": 557,
             "description": "Tab 视图类初始化方法",
             "itemtype": "method",
             "name": "init",
@@ -5789,7 +5796,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 562,
+            "line": 579,
             "description": "设置特定索引位置的 label 为活动状态",
             "itemtype": "method",
             "name": "active",
@@ -5805,7 +5812,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 586,
+            "line": 603,
             "description": "请求特定索引位置的 ajax tab 数据",
             "itemtype": "method",
             "name": "activeAjax",
@@ -5821,7 +5828,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 614,
+            "line": 631,
             "description": "自动化初始 Tab 实例\n如果 Tab.autoInit = true, 鼠标移至 Tab 后会自动初始化 Tab",
             "class": "UXC.Tab.View",
             "namespace": "UXC.Tab"
@@ -7423,7 +7430,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 597,
+            "line": 607,
             "description": "检查两个输入框的数值\n<br /> 数字格式为 0-pow(10,10)\n<br /> 带小数点使用 nrange-int.float, 例: nrange-1.2  nrange-2.2\n<br /> <b>注意:</b> 如果不显示指定 fromNEl, toNEl, \n             将会从父级查找 datatype=nrange属性的input, 如果数量等于2, 则会进行验证, 不等2将忽略",
             "itemtype": "method",
             "name": "_logic.datatype.nrange",
@@ -7446,7 +7453,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 678,
+            "line": 688,
             "description": "检查是否为合法的日期,\n<br />日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD",
             "itemtype": "method",
             "name": "_logic.datatype.d",
@@ -7469,7 +7476,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 716,
+            "line": 726,
             "description": "检查两个输入框的日期\n<br />日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD\n<br /> <b>注意:</b> 如果不显示指定 fromDateEl, toDateEl, \n             将会从父级查找 datatype=datarange属性的input, 如果数量等于2, 则会进行验证, 不等2将忽略",
             "itemtype": "method",
             "name": "_logic.datatype.daterange",
@@ -7492,7 +7499,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 784,
+            "line": 794,
             "description": "检查时间格式, 格式为 mm:dd:ss",
             "itemtype": "method",
             "name": "_logic.datatype.time",
@@ -7514,7 +7521,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 801,
+            "line": 811,
             "description": "检查时间格式, 格式为 mm:dd:ss",
             "itemtype": "method",
             "name": "_logic.datatype.minute",
@@ -7536,7 +7543,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 818,
+            "line": 828,
             "description": "检查银行卡号码\n<br />格式为 d{19} | d{16} | 1111 1111 1111 1111 111 | 1111 1111 1111 1111111",
             "itemtype": "method",
             "name": "_logic.datatype.bankcard",
@@ -7558,7 +7565,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 837,
+            "line": 847,
             "description": "检查中文姓名\n<br>格式: 汉字和大小写字母\n<br>规则: 长度 2-32个字节, 非 ASCII 算2个字节",
             "itemtype": "method",
             "name": "_logic.datatype.cnname",
@@ -7580,7 +7587,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 857,
+            "line": 867,
             "description": "检查注册用户名\n<br>格式: a-zA-Z0-9_-\n<br>规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 29",
             "itemtype": "method",
             "name": "_logic.datatype.username",
@@ -7602,7 +7609,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 877,
+            "line": 887,
             "description": "检查身份证号码<br />\n目前只使用最简单的位数判断~ 有待完善",
             "itemtype": "method",
             "name": "_logic.datatype.idnumber",
@@ -7624,7 +7631,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 896,
+            "line": 906,
             "description": "检查手机号码<br />",
             "itemtype": "method",
             "name": "_logic.datatype.mobilecode",
@@ -7651,7 +7658,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 916,
+            "line": 926,
             "description": "检查手机号码\n<br />这个方法是 _logic.datatype.mobilecode 的别名",
             "itemtype": "method",
             "name": "_logic.datatype.mobile",
@@ -7675,7 +7682,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 929,
+            "line": 939,
             "description": "检查手机号码加强方法\n<br>格式: [+国家代码] [零]11位数字",
             "itemtype": "method",
             "name": "_logic.datatype.mobilezonecode",
@@ -7702,7 +7709,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 950,
+            "line": 960,
             "description": "检查手机号码/电话号码\n<br />这个方法是原有方法的混合验证 _logic.datatype.mobilecode + _logic.datatype.phone",
             "itemtype": "method",
             "name": "_logic.datatype.mobilephone",
@@ -7724,7 +7731,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 973,
+            "line": 983,
             "description": "检查手机号码/电话号码, 泛匹配\n<br />这个方法是原有方法的混合验证 _logic.datatype.mobilezonecode + _logic.datatype.phoneall",
             "itemtype": "method",
             "name": "_logic.datatype.mobilephoneall",
@@ -7746,7 +7753,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 996,
+            "line": 1006,
             "description": "检查电话号码\n<br>格式: [区号]7/8位电话号码",
             "itemtype": "method",
             "name": "_logic.datatype.phone",
@@ -7773,7 +7780,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1017,
+            "line": 1027,
             "description": "检查电话号码\n<br>格式: [+国家代码][ ][电话区号][ ]7/8位电话号码[#分机号]",
             "itemtype": "method",
             "name": "_logic.datatype.phoneall",
@@ -7800,7 +7807,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1038,
+            "line": 1048,
             "description": "检查电话区号",
             "itemtype": "method",
             "name": "_logic.datatype.phonezone",
@@ -7822,7 +7829,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1056,
+            "line": 1066,
             "description": "检查电话号码\n<br>格式: 7/8位数字",
             "itemtype": "method",
             "name": "_logic.datatype.phonecode",
@@ -7844,7 +7851,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1075,
+            "line": 1085,
             "description": "检查电话分机号码",
             "itemtype": "method",
             "name": "_logic.datatype.phoneext",
@@ -7866,7 +7873,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1093,
+            "line": 1103,
             "description": "检查内容的长度",
             "itemtype": "method",
             "name": "_logic.datatype.length",
@@ -7889,14 +7896,14 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1122,
+            "line": 1132,
             "description": "根据特殊的 datatype 实现不同的计算方法",
             "class": "UXC.Valid",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1148,
+            "line": 1158,
             "description": "检查内容是否为空,\n<br>如果声明了该属性, 那么 value 须不为空",
             "itemtype": "method",
             "name": "_logic.datatype.reqmsg",
@@ -7918,7 +7925,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1174,
+            "line": 1184,
             "description": "自定义正则校验",
             "itemtype": "method",
             "name": "_logic.datatype.reg",
@@ -7941,7 +7948,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1200,
+            "line": 1210,
             "description": "检查验证码<br />\n格式: 为 0-9a-zA-Z, 长度 默认为4",
             "itemtype": "method",
             "name": "_logic.datatype.vcode",
@@ -7964,7 +7971,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1226,
+            "line": 1236,
             "description": "检查文本长度",
             "itemtype": "method",
             "name": "_logic.datatype.text",
@@ -7980,7 +7987,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1235,
+            "line": 1245,
             "description": "检查文本的字节长度",
             "itemtype": "method",
             "name": "_logic.datatype.bytetext",
@@ -7996,7 +8003,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1244,
+            "line": 1254,
             "description": "检查富文本的字节",
             "itemtype": "method",
             "name": "_logic.datatype.richtext",
@@ -8012,7 +8019,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1253,
+            "line": 1263,
             "description": "检查URL",
             "itemtype": "method",
             "name": "_logic.datatype.url",
@@ -8034,7 +8041,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1270,
+            "line": 1280,
             "description": "检查域名",
             "itemtype": "method",
             "name": "_logic.datatype.domain",
@@ -8053,7 +8060,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1287,
+            "line": 1297,
             "description": "检查电子邮件",
             "itemtype": "method",
             "name": "_logic.datatype.email",
@@ -8075,7 +8082,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1304,
+            "line": 1314,
             "description": "检查邮政编码",
             "itemtype": "method",
             "name": "_logic.datatype.zipcode",
@@ -9907,106 +9914,6 @@
             "class": ".window"
         },
         {
-            "file": "../jquery.js",
-            "line": 3839,
-            "description": "For feature detection",
-            "params": [
-                {
-                    "name": "fn",
-                    "description": "The function to test for native support",
-                    "type": "Function"
-                }
-            ],
-            "class": "window.jQuery",
-            "namespace": "window"
-        },
-        {
-            "file": "../jquery.js",
-            "line": 3847,
-            "description": "Create key-value caches of limited size",
-            "return": {
-                "description": "Returns the Object data after storing it on itself with\n\tproperty name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)\n\tdeleting the oldest entry",
-                "type": "Function(string, Object)"
-            },
-            "class": "window.jQuery",
-            "namespace": "window"
-        },
-        {
-            "file": "../jquery.js",
-            "line": 3867,
-            "description": "Mark a function for special use by Sizzle",
-            "params": [
-                {
-                    "name": "fn",
-                    "description": "The function to mark",
-                    "type": "Function"
-                }
-            ],
-            "class": "window.jQuery",
-            "namespace": "window"
-        },
-        {
-            "file": "../jquery.js",
-            "line": 3876,
-            "description": "Support testing using an element",
-            "params": [
-                {
-                    "name": "fn",
-                    "description": "Passed the created div and expects a boolean result",
-                    "type": "Function"
-                }
-            ],
-            "class": "window.jQuery",
-            "namespace": "window"
-        },
-        {
-            "file": "../jquery.js",
-            "line": 4003,
-            "description": "Detect xml",
-            "params": [
-                {
-                    "name": "elem",
-                    "description": "An element or a document",
-                    "type": "Element|Object"
-                }
-            ],
-            "class": "window.jQuery",
-            "namespace": "window"
-        },
-        {
-            "file": "../jquery.js",
-            "line": 4014,
-            "description": "Sets document-related variables once based on the current document",
-            "params": [
-                {
-                    "name": "doc",
-                    "description": "An element or document object to use to set the document",
-                    "type": "Element|Object",
-                    "optional": true
-                }
-            ],
-            "return": {
-                "description": "Returns the current document",
-                "type": "Object"
-            },
-            "class": "window.jQuery",
-            "namespace": "window"
-        },
-        {
-            "file": "../jquery.js",
-            "line": 4507,
-            "description": "Utility function for retrieving the text value of an array of DOM nodes",
-            "params": [
-                {
-                    "name": "elem",
-                    "description": "",
-                    "type": "Array|Element"
-                }
-            ],
-            "class": "window.jQuery",
-            "namespace": "window"
-        },
-        {
             "file": "../lib.js",
             "line": 2,
             "description": "取当前脚本标签的 src路径",
@@ -10190,87 +10097,87 @@
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:597"
+            "line": " ../comps/Valid/Valid.js:607"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:597"
+            "line": " ../comps/Valid/Valid.js:607"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:597"
+            "line": " ../comps/Valid/Valid.js:607"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:597"
+            "line": " ../comps/Valid/Valid.js:607"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:597"
+            "line": " ../comps/Valid/Valid.js:607"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:678"
+            "line": " ../comps/Valid/Valid.js:688"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:678"
+            "line": " ../comps/Valid/Valid.js:688"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:678"
+            "line": " ../comps/Valid/Valid.js:688"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:716"
+            "line": " ../comps/Valid/Valid.js:726"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:716"
+            "line": " ../comps/Valid/Valid.js:726"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:716"
+            "line": " ../comps/Valid/Valid.js:726"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:716"
+            "line": " ../comps/Valid/Valid.js:726"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:716"
+            "line": " ../comps/Valid/Valid.js:726"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1093"
+            "line": " ../comps/Valid/Valid.js:1103"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1093"
+            "line": " ../comps/Valid/Valid.js:1103"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1093"
+            "line": " ../comps/Valid/Valid.js:1103"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1174"
+            "line": " ../comps/Valid/Valid.js:1184"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1200"
+            "line": " ../comps/Valid/Valid.js:1210"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1226"
+            "line": " ../comps/Valid/Valid.js:1236"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1235"
+            "line": " ../comps/Valid/Valid.js:1245"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1244"
+            "line": " ../comps/Valid/Valid.js:1254"
         },
         {
             "message": "unknown tag: ignore",
@@ -10361,14 +10268,6 @@
             "line": " ../UXC.js:3"
         },
         {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " ../jquery.js:3847"
-        },
-        {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " ../jquery.js:4014"
-        },
-        {
             "message": "Missing item type\n//TODO 添加事件响应机制",
             "line": " ../comps/Calendar/UXC.Calendar.js:29"
         },
@@ -10386,11 +10285,11 @@
         },
         {
             "message": "Missing item type\n判断下拉框的option里是否有给定的值",
-            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:581"
+            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:583"
         },
         {
             "message": "Missing item type\n页面加载完毕时, 延时进行自动化, 延时可以避免来自其他逻辑的干扰",
-            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:651"
+            "line": " ../comps/Form/UXC.Form.initAutoSelect.js:653"
         },
         {
             "message": "Missing item type\n监听 全选/反选 按钮的点击事件",
@@ -10497,8 +10396,12 @@
             "line": " ../comps/Tab/Tab.js:142"
         },
         {
+            "message": "Missing item type\n判断是否从 layout 下查找内容",
+            "line": " ../comps/Tab/Tab.js:364"
+        },
+        {
             "message": "Missing item type\n自动化初始 Tab 实例\n如果 Tab.autoInit = true, 鼠标移至 Tab 后会自动初始化 Tab",
-            "line": " ../comps/Tab/Tab.js:614"
+            "line": " ../comps/Tab/Tab.js:631"
         },
         {
             "message": "Missing item type\n页面加载完毕后, 是否自动初始化 Tips",
@@ -10526,7 +10429,7 @@
         },
         {
             "message": "Missing item type\n根据特殊的 datatype 实现不同的计算方法",
-            "line": " ../comps/Valid/Valid.js:1122"
+            "line": " ../comps/Valid/Valid.js:1132"
         },
         {
             "message": "Missing item type\nTop level namespace for Jasmine, a lightweight JavaScript BDD/spec/testing framework.",
@@ -10927,34 +10830,6 @@
         {
             "message": "Missing item type\n自动识别组件库所在路径",
             "line": " ../UXC.js:217"
-        },
-        {
-            "message": "Missing item type\nFor feature detection",
-            "line": " ../jquery.js:3839"
-        },
-        {
-            "message": "Missing item type\nCreate key-value caches of limited size",
-            "line": " ../jquery.js:3847"
-        },
-        {
-            "message": "Missing item type\nMark a function for special use by Sizzle",
-            "line": " ../jquery.js:3867"
-        },
-        {
-            "message": "Missing item type\nSupport testing using an element",
-            "line": " ../jquery.js:3876"
-        },
-        {
-            "message": "Missing item type\nDetect xml",
-            "line": " ../jquery.js:4003"
-        },
-        {
-            "message": "Missing item type\nSets document-related variables once based on the current document",
-            "line": " ../jquery.js:4014"
-        },
-        {
-            "message": "Missing item type\nUtility function for retrieving the text value of an array of DOM nodes",
-            "line": " ../jquery.js:4507"
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",

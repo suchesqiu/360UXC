@@ -533,10 +533,10 @@
                 }
                 var today = new Date();
 
-                var ipt = UXC.Calendar.lastIpt, currentcanselecte = true;
-                if( ipt.is(&#x27;[currentcanselecte]&#x27;) ) currentcanselecte = parseBool( ipt.attr(&#x27;currentcanselecte&#x27;) );
+                var ipt = UXC.Calendar.lastIpt, currentcanselect = true;
+                if( ipt.is(&#x27;[currentcanselect]&#x27;) ) currentcanselect = parseBool( ipt.attr(&#x27;currentcanselect&#x27;) );
 
-                if( _dateObj.maxvalue &amp;&amp; !currentcanselecte ){
+                if( _dateObj.maxvalue &amp;&amp; !currentcanselect ){
                     _dateObj.maxvalue.setDate( _dateObj.maxvalue.getDate() - 1 );
                 }
 

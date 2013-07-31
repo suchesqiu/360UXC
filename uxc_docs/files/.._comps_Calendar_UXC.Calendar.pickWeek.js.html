@@ -259,9 +259,9 @@
                 var _ls = [], _class, _data, _title, _sdate, _edate, _year = _date.getFullYear()
                     , _rows = Math.ceil( weeks.length / 8 );
 
-                var ipt = UXC.Calendar.lastIpt, currentcanselecte = parseBool( ipt.attr(&#x27;currentcanselecte&#x27;) );
+                var ipt = UXC.Calendar.lastIpt, currentcanselect = parseBool( ipt.attr(&#x27;currentcanselect&#x27;) );
 
-                if( _dateObj.maxvalue &amp;&amp; currentcanselecte ){
+                if( _dateObj.maxvalue &amp;&amp; currentcanselect ){
                     var _wd = _dateObj.maxvalue.getDay();
                     if( _wd &gt; 0 ) {
                         _dateObj.maxvalue.setDate( _dateObj.maxvalue.getDate() + ( 7 - _wd ) );

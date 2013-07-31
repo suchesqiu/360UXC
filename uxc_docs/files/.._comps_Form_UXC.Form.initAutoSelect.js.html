@@ -575,6 +575,8 @@
                         if( preItem ){
                             item.data(&#x27;PrevSelect&#x27;, preItem);
                             preItem.data(&#x27;NextSelect&#x27;, item );
+
+                            item.data(&#x27;parentSelect&#x27;, preItem); //向后兼容0.1
                         }
                     }
                 }
@@ -676,7 +678,7 @@
         , dataFilter:
             function( _selector, _data ){
                 var _cb = this._userdatafilter( _selector ) || AutoSelect.dataFilter;
-                _cb &amp;&amp; ( _data = _cb( _data ) );
+                _cb &amp;&amp; ( _data = _cb( _data, _selector ) );
                 return _data;
             }
 
