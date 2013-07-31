@@ -373,6 +373,7 @@
                 if( !_panel ){
                     _logic.hideMask();
                     $(&#x27;body &gt; div.UPanelDialog_identifer&#x27;).hide();
+                    $(&#x27;body &gt; div.UPanel_TMP&#x27;).remove();
                 }else{
                     _panel.selector().addClass(&#x27;UPanelDialog_identifer&#x27;);
                     _panel.selector().data(&#x27;DialogInstance&#x27;, _panel);
@@ -461,7 +462,7 @@
          */
         , fixWidth:
             function( _msg, _panel ){
-                var _tmp = $(&#x27;&lt;div style=&quot;position:absolute; left:-9999px;top:-9999px;&quot;&gt;&#x27; + _msg + &#x27;&lt;/div&gt;&#x27;).appendTo(&#x27;body&#x27;), _w = _tmp.width() + 80;
+                var _tmp = $(&#x27;&lt;div class=&quot;UPanel_TMP&quot; style=&quot;position:absolute; left:-9999px;top:-9999px;&quot;&gt;&#x27; + _msg + &#x27;&lt;/div&gt;&#x27;).appendTo(&#x27;body&#x27;), _w = _tmp.width() + 80;
                 _w &gt; _logic.maxWidth &amp;&amp; ( _w = _logic.maxWidth );
                 _w &lt; _logic.minWidth &amp;&amp; ( _w = _logic.minWidth );
 

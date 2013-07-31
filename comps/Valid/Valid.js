@@ -571,19 +571,29 @@
                     function( _item ){
                         var _r = true, _valStr = _item.val(), _val = +_valStr,_min = 0, _max = Math.pow( 10, 10 ), _n, _f, _tmp;
 
-                        if( !isNaN( _val ) && _val >= 0 ){
+                        if( _item.is('[minvalue]') ){
+                            if( /\./.test( _item.attr('minvalue') ) ){
+                                _tmp = parseFloat( _item.attr('minvalue') );
+                            }else{
+                                _tmp = parseInt( _item.attr('minvalue') );
+                            }
+                            if( !isNaN( _tmp ) ){
+                                _min += _tmp;
+                            }
+                        }
+
+                        if( !isNaN( _val ) && _val >= _min ){
                             _item.attr('datatype').replace( /^n[^\-]*\-(.*)$/, function( $0, $1 ){
                                 _tmp = $1.split('.');
                                 _n = _tmp[0];
                                 _f = _tmp[1];
                             });
-                            if( _item.is('[minvalue]') ) _min = +_item.attr('minvalue') || _min;
                             if( _item.is('[maxvalue]') ) _max = +_item.attr('maxvalue') || _max;
 
                             if( _val >= _min && _val <= _max ){
-                                typeof _n != 'undefined' && typeof _f != 'undefined' && ( _r = new RegExp( '^(?:[\\d]{0,'+_n+'}|)(?:\\.[\\d]{1,'+_f+'}|)$' ).test( _valStr ) );
-                                typeof _n != 'undefined' && typeof _f == 'undefined' && ( _r = new RegExp( '^[\\d]{1,'+_n+'}$' ).test( _valStr ) );
-                                typeof _n == 'undefined' && typeof _f != 'undefined' && ( _r = new RegExp( '^\\.[\\d]{1,'+_f+'}$' ).test( _valStr ) );
+                                typeof _n != 'undefined' && typeof _f != 'undefined' && ( _r = new RegExp( '^(?:\-|)(?:[\\d]{0,'+_n+'}|)(?:\\.[\\d]{1,'+_f+'}|)$' ).test( _valStr ) );
+                                typeof _n != 'undefined' && typeof _f == 'undefined' && ( _r = new RegExp( '^(?:\-|)[\\d]{1,'+_n+'}$' ).test( _valStr ) );
+                                typeof _n == 'undefined' && typeof _f != 'undefined' && ( _r = new RegExp( '^(?:\-|)\\.[\\d]{1,'+_f+'}$' ).test( _valStr ) );
                                 typeof _f == 'undefined' && /\./.test( _valStr ) && ( _r = false );
                             } else _r = false;
 
