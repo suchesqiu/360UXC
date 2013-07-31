@@ -1,1 +1,353 @@
-!String.prototype.trim&&(String.prototype.trim=function(){return $.trim(this)});function printf(f){for(var d=1,e=arguments.length;d<e;d++){f=f.replace(new RegExp("\\{"+(d-1)+"\\}","g"),arguments[d])}return f}function has_url_param(j,i){var h=false;if(!i){i=j;j=location.href}if(/\?/.test(j)){j=j.split("?");j=j[j.length-1];j=j.split("&");for(var f=0,g=j.length;f<g;f++){if(j[f].split("=")[0].toLowerCase()==i.toLowerCase()){h=true;break}}}return h}function add_url_params(h,f){var g="";!f&&(f=h,h=location.href);h.indexOf("#")>-1&&(g=h.split("#")[1],h=h.split("#")[0]);for(var e in f){h=del_url_param(h,e);h.indexOf("?")>-1?h+="&"+e+"="+f[e]:h+="?"+e+"="+f[e]}g&&(h+="#"+g);h=h.replace(/\?\&/g,"?");return h}function get_url_param(k,i){var h="",j,l,g;!i&&(i=k,k=location.href);k.indexOf("#")>-1&&(k=k.split("#")[0]);if(k.indexOf("?")>-1){j=k.split("?")[1].split("&");for(l=0;l<j.length;l++){g=j[l].split("=");g[0]=g[0].replace(/^\s+|\s+$/g,"");if(g[0].toLowerCase()==i.toLowerCase()){h=g[1];break}}}return h}function del_url_param(h,k){var l="",j,m=[],i,n;!k&&(k=h,h=location.href);h.indexOf("#")>-1&&(l=h.split("#")[1],h=h.split("#")[0]);if(h.indexOf("?")>-1){j=h.split("?")[1].split("&");h=h.split("?")[0];for(i=0;i<j.length;i++){items=j[i].split("=");items[0]=items[0].replace(/^\s+|\s+$/g,"");if(items[0].toLowerCase()==k.toLowerCase()){continue}m.push(items.join("="))}h+="?"+m.join("&")}l&&(h+="#"+l);return h}function httpRequire(b){b=b||"本示例需要HTTP环境";if(/file\:|\\/.test(location.href)){alert(b);return false}return true}function removeUrlSharp(d,f){var e=d.replace(/\#[\s\S]*/,"");!f&&(e=add_url_params(e,{rnd:new Date().getTime()}));return e}function reload_page(d,f,e){e=e||0;setTimeout(function(){d=removeUrlSharp(d||location.href,f);!f&&(d=add_url_params(d,{rnd:new Date().getTime()}));location.href=d},e)}function parse_finance_num(c,d){c=parseFloat(c)||0;if(c&&d){c=Math.floor(c*Math.pow(10,d))/Math.pow(10,d)}return c}function pad_char_f(f,e,d){e=e||2;d=d||"0";f+="";if(f.length>f){return f}f=new Array(e+1).join(d)+f;return f.slice(f.length-e)}function formatISODate(d,c){d=d||new Date();typeof c=="undefined"&&(c="-");return[d.getFullYear(),pad_char_f(d.getMonth()+1),pad_char_f(d.getDate())].join(c)}function parseISODate(d){if(!d){return}d=d.replace(/[^\d]+/g,"");var c;if(d.length===8){c=new Date(d.slice(0,4),parseInt(d.slice(4,6),10)-1,parseInt(d.slice(6),10))}return c}function cloneDate(d){var c=new Date();c.setTime(d.getTime());return c}function isSameDay(c,d){return[c.getFullYear(),c.getMonth(),c.getDate()].join()===[d.getFullYear(),d.getMonth(),d.getDate()].join()}function isSameMonth(c,d){return[c.getFullYear(),c.getMonth()].join()===[d.getFullYear(),d.getMonth()].join()}function maxDayOfMonth(d){var f,e=new Date(d.getFullYear(),d.getMonth()+1);e.setDate(e.getDate()-1);f=e.getDate();return f}function script_path_f(){var d=document.getElementsByTagName("script"),d=d[d.length-1],c=d.getAttribute("src");if(/\//.test(c)){c=c.split("/");c.pop();c=c.join("/")+"/"}else{if(/\\/.test(c)){c=c.split("\\");c.pop();c=c.join("\\")+"/"}}return c}function easyEffect(k,o,s,p,m){var q=new Date(),l,o=o||200,s=s||0,n=0,t,p=p||200,m=m||2;var r=setInterval(function(){l=new Date()-q;n=l/p*o;n+=s;if(n>o){n=o;t=true;clearInterval(r)}k&&k(n,t)},m);return r}function parseBool(b){if(typeof b=="string"){b=b.replace(/[\s]/g,"").toLowerCase();if(b&&(b=="false"||b=="0"||b=="null"||b=="undefined")){b=false}else{if(b){b=true}}}return !!b};
+!String.prototype.trim && ( String.prototype.trim = function(){ return $.trim( this ); } );
+/**
+ * @namespace 
+ * @class   window
+ * @static
+ */
+ /**
+ * 按格式输出字符串
+ * @method printf
+ * @static
+ * @param   {string}    _str
+ * @example
+ *      printf( 'asdfasdf{0}sdfasdf{1}', '000', 1111 );
+ *      //return asdfasdf000sdfasdf1111
+ */
+function printf( _str ){
+    for(var i = 1, _len = arguments.length; i < _len; i++){
+        _str = _str.replace( new RegExp('\\{'+( i - 1 )+'\\}', 'g'), arguments[i] );
+    }
+    return _str;
+}
+/**
+ * 判断URL中是否有某个get参数
+ * @method  has_url_param
+ * @static
+ * @param   {string}    _url
+ * @param   {string}    _key
+ * @example
+ *      var bool = has_url_param( 'getkey' );
+ */
+function has_url_param( _url, _key ){
+    var _r = false;
+    if( !_key ){ _key = _url; _url = location.href; }
+    if( /\?/.test( _url ) ){
+        _url = _url.split( '?' ); _url = _url[ _url.length - 1 ];
+        _url = _url.split('&');
+        for( var i = 0, j = _url.length; i < j; i++ ){
+            if( _url[i].split('=')[0].toLowerCase() == _key.toLowerCase() ){ _r = true; break; };
+        }
+    }
+    return _r;
+}
+/**
+ * 添加URL参数
+ * <br /><b>require:</b> del\_url\_param 
+ * @method  add_url_params
+ * @static
+ * @param   {string}    _url
+ * @param   {object}    $params
+ * @example
+        var url = add_url_params( location.href, {'key1': 'key1value', 'key2': 'key2value' } );
+ */ 
+function add_url_params( $url, $params ){
+    var sharp = '';
+    !$params && ( $params = $url, $url = location.href );
+    $url.indexOf('#') > -1 && ( sharp = $url.split('#')[1], $url = $url.split('#')[0] );
+    for( var k in $params ){
+        $url = del_url_param($url, k);
+        $url.indexOf('?') > -1 
+            ? $url += '&' + k +'=' + $params[k]
+            : $url += '?' + k +'=' + $params[k];
+    }
+    sharp && ( $url += '#' + sharp );
+    $url = $url.replace(/\?\&/g, '?' );
+    return $url;   
+}
+ 
+/**
+ * 取URL参数的值
+ * <br /><b>require:</b> del\_url\_param 
+ * @method  get_url_param
+ * @static
+ * @param   {string}    $url
+ * @param   {string}    $key
+ * @example
+        var defaultTag = get_url_param(location.href, 'tag');  
+ */ 
+function get_url_param( $url, $key ){
+    var result = '', paramAr, i, items;
+    !$key && ( $key = $url, $url = location.href );
+    $url.indexOf('#') > -1 && ( $url = $url.split('#')[0] );
+    if( $url.indexOf('?') > -1 ){
+        paramAr = $url.split('?')[1].split('&');
+        for( i = 0; i < paramAr.length; i++ ){
+            items = paramAr[i].split('=');
+            items[0] = items[0].replace(/^\s+|\s+$/g, '');
+            if( items[0].toLowerCase() == $key.toLowerCase() ){
+                result = items[1];
+                break;
+            } 
+        }
+    }
+    return result;
+}
+ 
+/**
+ * 删除URL参数
+ * @method  del_url_param
+ * @static
+ * @param  {string}    $url
+ * @param  {string}    $key
+ * @example
+        var url = del_url_param( location.href, 'tag' );
+ */ 
+function del_url_param( $url, $key ){
+    var sharp = '', params, tmpParams = [], i, item;
+    !$key && ( $key = $url, $url = location.href );
+    $url.indexOf('#') > -1 && ( sharp = $url.split('#')[1], $url = $url.split('#')[0] );
+    if( $url.indexOf('?') > -1 ){
+        params = $url.split('?')[1].split('&');
+        $url = $url.split('?')[0];
+        for( i = 0; i < params.length; i++ ){
+            items = params[i].split('=');
+            items[0] = items[0].replace(/^\s+|\s+$/g, '');
+            if( items[0].toLowerCase() == $key.toLowerCase() ) continue;
+            tmpParams.push( items.join('=') )
+        }
+        $url += '?' + tmpParams.join('&');
+    }
+    sharp && ( $url += '#' + sharp );
+    return $url;
+}
+/**
+ * 提示需要 HTTP 环境
+ * @method  httpRequire
+ * @static
+ * @param  {string}  _msg   要提示的文字, 默认 "本示例需要HTTP环境'
+ * @return  bool     如果是HTTP环境返回true, 否则返回false
+ */
+function httpRequire( _msg ){
+    _msg = _msg || '本示例需要HTTP环境';
+    if( /file\:|\\/.test( location.href ) ){
+        alert( _msg );
+        return false;
+    }
+    return true;
+}
+/**
+ * 删除 URL 的锚点
+ * <br /><b>require:</b> add\_url\_params
+ * @method removeUrlSharp
+ * @static
+ * @param   {string}    $url
+ * @param   {bool}      $nornd      是否不添加随机参数
+ * @return  string
+ */
+function removeUrlSharp($url, $nornd){   
+    var url = $url.replace(/\#[\s\S]*/, '');
+    !$nornd && (url = add_url_params( url, { "rnd": new Date().getTime() } ) );
+    return url;
+}
+/**
+ * 重载页面
+ * <br /><b>require:</b> removeUrlSharp
+ * <br /><b>require:</b> add\_url\_params
+ * @method reload_page
+ * @static
+ * @param   {string}    $url
+ * @param   {bool}      $nornd
+ * @param   {int}       $delayms
+ */ 
+function reload_page( $url, $nornd, $delayms ){
+    $delayms = $delayms || 0;
+    setTimeout( function(){
+        $url = removeUrlSharp( $url || location.href, $nornd );
+        !$nornd && ( $url = add_url_params( $url, { 'rnd': new Date().getTime() } ) );
+        location.href = $url;
+    }, $delayms);
+}
+/**
+ * 取小数点的N位，
+ * <br />JS 解析 浮点数的时候，经常出现各种不可预知情况，这个函数就是为了解决这个问题
+ * @method  parse_finance_num
+ * @static
+ * @param   {number}    $i
+ * @param   {int}       $dot
+ * @return  number
+ */
+function parse_finance_num( $i, $dot ){
+    $i = parseFloat( $i ) || 0;
+    if( $i && $dot ) {
+        $i = Math.floor( $i * Math.pow( 10, $dot ) ) / Math.pow( 10, $dot );
+    }
+    return $i;
+}
+/**
+ * js 附加字串函数 pad_char_f
+ * @method  pad_char_f
+ * @static
+ * @param   {string}    _str
+ * @param   {intl}      _len
+ * @param   {string}    _char
+ * @return  string
+ */
+function pad_char_f( _str, _len, _char ){
+	_len  = _len || 2; _char = _char || "0"; 
+	_str += '';
+	if( _str.length >_str ) return _str;
+	_str = new Array( _len + 1 ).join( _char ) + _str
+	return _str.slice( _str.length - _len );
+}
+/**
+ * 格式化日期为 YYYY-mm-dd 格式
+ * <br /><b>require</b>: pad\_char\_f
+ * @method  formatISODate
+ * @static
+ * @param   {date}                  _date       要格式化日期的日期对象
+ * @param   {string|undefined}      _split      定义年月日的分隔符, 默认为 '-'
+ * @return  string
+ *
+ */
+function formatISODate( _date, _split ){
+	_date = _date || new Date(); typeof _split == 'undefined' && ( _split = '-' );
+	return [ _date.getFullYear(), pad_char_f( _date.getMonth() + 1 ), pad_char_f( _date.getDate() ) ].join(_split);
+}
+/**
+ * 从 ISODate 字符串解析日期对象
+ * @method  parseISODate
+ * @static
+ * @param   {string}    _datestr
+ * @return  date
+ */
+function parseISODate( _datestr ){
+    if( !_datestr ) return;
+    _datestr = _datestr.replace( /[^\d]+/g, '');
+    var _r;
+    if( _datestr.length === 8 ){
+        _r = new Date( _datestr.slice( 0, 4 )
+                        , parseInt( _datestr.slice( 4, 6 ), 10 ) - 1
+                        , parseInt( _datestr.slice( 6 ), 10 ) );
+    }
+    return _r;
+}
+/**
+* 克隆日期对象
+* @method  cloneDate
+* @static
+* @param   {Date}  _date   需要克隆的日期
+* @return  {Date}  需要克隆的日期对象
+*/
+function cloneDate( _date ){ var d = new Date(); d.setTime( _date.getTime() ); return d; }
+/**
+ * 判断两个日期是否为同一天
+ * @method  isSameDay
+ * @static
+ * @param   {Date}  _d1     需要判断的日期1
+ * @param   {Date}  _d2     需要判断的日期2
+ * @return {bool}
+ */
+function isSameDay( _d1, _d2 ){
+    return [_d1.getFullYear(), _d1.getMonth(), _d1.getDate()].join() === [
+            _d2.getFullYear(), _d2.getMonth(), _d2.getDate()].join()
+}
+/**
+ * 判断两个日期是否为同一月份
+ * @method  isSameMonth
+ * @static
+ * @param   {Date}  _d1     需要判断的日期1
+ * @param   {Date}  _d2     需要判断的日期2
+ * @return {bool}
+ */
+function isSameMonth( _d1, _d2 ){
+    return [_d1.getFullYear(), _d1.getMonth()].join() === [
+            _d2.getFullYear(), _d2.getMonth()].join()
+}
+/**
+ * 取得一个月份中最大的一天
+ * @method  maxDayOfMonth
+ * @static
+ * @param   {Date}  _date
+ * @return {int} 月份中最大的一天
+ */
+function maxDayOfMonth( _date ){
+    var _r, _d = new Date( _date.getFullYear(), _date.getMonth() + 1 );
+        _d.setDate( _d.getDate() - 1 );
+        _r = _d.getDate();
+    return _r;
+}
+/**
+ * 取当前脚本标签的 src路径 
+ * @method  script_path_f
+ * @static
+ * @return  {string} 脚本所在目录的完整路径
+ */
+function script_path_f(){
+    var _sc = document.getElementsByTagName('script'), _sc = _sc[ _sc.length - 1 ], _path = _sc.getAttribute('src');
+    if( /\//.test( _path ) ){ _path = _path.split('/'); _path.pop(); _path = _path.join('/') + '/'; }
+    else if( /\\/.test( _path ) ){ _path = _path.split('\\'); _path.pop(); _path = _path.join('\\') + '/'; }
+    return _path;
+}
+/**
+ * 缓动函数, 动画效果为按时间缓动 
+ * <br />这个函数只考虑递增, 你如果需要递减的话, 在回调里用 _maxVal - _stepval 
+ * @method  easyEffect
+ * @static
+ * @param   {function}  _cb         缓动运动时的回调
+ * @param   {number}    _maxVal     缓动的最大值, default = 200
+ * @param   {number}    _startVal   缓动的起始值, default = 0
+ * @param   {number}    _duration   缓动的总时间, 单位毫秒, default = 200
+ * @param   {number}    _stepMs     缓动的间隔, 单位毫秒, default = 2
+ * @return  interval
+ * @example
+        $(document).ready(function(){
+            window.js_output = $('span.js_output');
+            window.ls = [];
+            window.EFF_INTERVAL = easyEffect( effectcallback, 100);
+        });
+
+        function effectcallback( _stepval, _done ){
+            js_output.html( _stepval );
+            ls.push( _stepval );
+
+            !_done && js_output.html( _stepval );
+            _done && js_output.html( _stepval + '<br />' + ls.join() );
+        }
+ */
+function easyEffect( _cb, _maxVal, _startVal, _duration, _stepMs ){
+    var _beginDate = new Date(), _timepass
+        , _maxVal = _maxVal || 200, _startVal = _startVal || 0, _tmp = 0, _done
+        , _duration = _duration || 200, _stepMs = _stepMs || 2;
+    var _interval = setInterval(
+        function(){
+            _timepass = new Date() - _beginDate;
+            _tmp = _timepass / _duration * _maxVal;
+            _tmp += _startVal;
+            if( _tmp > _maxVal ){
+                _tmp = _maxVal;
+                _done = true;
+                clearInterval( _interval );
+            }
+            _cb && _cb( _tmp, _done );
+        }, _stepMs );
+
+    return _interval;
+}
+/**
+ * 把输入值转换为布尔值
+ * @method parseBool
+ * @param   {*} _input
+ * @return bool
+ */
+function parseBool( _input ){
+    if( typeof _input == 'string' ){
+        _input = _input.replace( /[\s]/g, '' ).toLowerCase();
+        if( _input && ( _input == 'false' 
+                        || _input == '0' 
+                        || _input == 'null'
+                        || _input == 'undefined'
+       )) _input = false;
+       else if( _input ) _input = true;
+    }
+    return !!_input;
+}
