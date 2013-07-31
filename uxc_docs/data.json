@@ -893,7 +893,7 @@
             "extension_for": [],
             "namespace": "UXC.Tab",
             "file": "../comps/Tab/Tab.js",
-            "line": 522,
+            "line": 539,
             "description": "Tab 视图模型类",
             "is_constructor": 1,
             "params": [
@@ -5484,7 +5484,14 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 354,
+            "line": 364,
+            "description": "判断是否从 layout 下查找内容",
+            "class": "UXC.Tab.Model",
+            "namespace": "UXC.Tab"
+        },
+        {
+            "file": "../comps/Tab/Tab.js",
+            "line": 371,
             "description": "获取 Tab 的主容器",
             "itemtype": "method",
             "name": "layout",
@@ -5496,7 +5503,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 360,
+            "line": 377,
             "description": "获取 Tab 所有 label 或 特定索引的 label",
             "itemtype": "method",
             "name": "tablabels",
@@ -5515,7 +5522,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 370,
+            "line": 387,
             "description": "获取 Tab 所有内容container 或 特定索引的 container",
             "itemtype": "method",
             "name": "tabcontainers",
@@ -5534,7 +5541,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 380,
+            "line": 397,
             "description": "获取初始化要触发的 label",
             "itemtype": "method",
             "name": "triggerTarget",
@@ -5546,7 +5553,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 386,
+            "line": 403,
             "description": "判断一个容器是否 符合 Tab 数据要求",
             "itemtype": "method",
             "name": "layoutIsTab",
@@ -5558,7 +5565,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 392,
+            "line": 409,
             "description": "获取 Tab 活动状态的 class",
             "itemtype": "method",
             "name": "activeClass",
@@ -5570,7 +5577,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 398,
+            "line": 415,
             "description": "获取 Tab label 的触发事件名称",
             "itemtype": "method",
             "name": "activeEvent",
@@ -5582,7 +5589,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 404,
+            "line": 421,
             "description": "判断 label 是否符合要求, 或者设置一个 label为符合要求",
             "itemtype": "method",
             "name": "tablabel",
@@ -5601,7 +5608,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 417,
+            "line": 434,
             "description": "判断 container 是否符合要求, 或者设置一个 container为符合要求",
             "itemtype": "method",
             "name": "tabcontent",
@@ -5625,7 +5632,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 431,
+            "line": 448,
             "description": "获取或设置 label 的索引位置",
             "itemtype": "method",
             "name": "tabindex",
@@ -5649,7 +5656,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 445,
+            "line": 462,
             "description": "获取Tab label 触发事件后的回调",
             "itemtype": "method",
             "name": "tabactivecallback",
@@ -5661,7 +5668,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 456,
+            "line": 473,
             "description": "获取 Tab label 变更后的回调",
             "itemtype": "method",
             "name": "tabchangecallback",
@@ -5673,7 +5680,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 467,
+            "line": 484,
             "description": "获取 Tab label 活动状态显示样式的标签",
             "itemtype": "method",
             "name": "tablabelparent",
@@ -5692,7 +5699,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 481,
+            "line": 498,
             "description": "获取 ajax label 的 URL",
             "itemtype": "method",
             "name": "tabajaxurl",
@@ -5711,7 +5718,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 488,
+            "line": 505,
             "description": "获取 ajax label 的请求方法 get/post",
             "itemtype": "method",
             "name": "tabajaxmethod",
@@ -5730,7 +5737,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 495,
+            "line": 512,
             "description": "获取 ajax label 的请求数据",
             "itemtype": "method",
             "name": "tabajaxdata",
@@ -5749,7 +5756,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 509,
+            "line": 526,
             "description": "获取 ajax label 请求URL后的回调",
             "itemtype": "method",
             "name": "tabajaxcallback",
@@ -5768,7 +5775,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 530,
+            "line": 547,
             "description": "Tab 数据模型类实例引用",
             "itemtype": "property",
             "name": "_model",
@@ -5780,7 +5787,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 540,
+            "line": 557,
             "description": "Tab 视图类初始化方法",
             "itemtype": "method",
             "name": "init",
@@ -5789,7 +5796,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 562,
+            "line": 579,
             "description": "设置特定索引位置的 label 为活动状态",
             "itemtype": "method",
             "name": "active",
@@ -5805,7 +5812,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 586,
+            "line": 603,
             "description": "请求特定索引位置的 ajax tab 数据",
             "itemtype": "method",
             "name": "activeAjax",
@@ -5821,7 +5828,7 @@
         },
         {
             "file": "../comps/Tab/Tab.js",
-            "line": 614,
+            "line": 631,
             "description": "自动化初始 Tab 实例\n如果 Tab.autoInit = true, 鼠标移至 Tab 后会自动初始化 Tab",
             "class": "UXC.Tab.View",
             "namespace": "UXC.Tab"
@@ -9907,106 +9914,6 @@
             "class": ".window"
         },
         {
-            "file": "../jquery.js",
-            "line": 3839,
-            "description": "For feature detection",
-            "params": [
-                {
-                    "name": "fn",
-                    "description": "The function to test for native support",
-                    "type": "Function"
-                }
-            ],
-            "class": "window.jQuery",
-            "namespace": "window"
-        },
-        {
-            "file": "../jquery.js",
-            "line": 3847,
-            "description": "Create key-value caches of limited size",
-            "return": {
-                "description": "Returns the Object data after storing it on itself with\n\tproperty name the (space-suffixed) string and (if the cache is larger than Expr.cacheLength)\n\tdeleting the oldest entry",
-                "type": "Function(string, Object)"
-            },
-            "class": "window.jQuery",
-            "namespace": "window"
-        },
-        {
-            "file": "../jquery.js",
-            "line": 3867,
-            "description": "Mark a function for special use by Sizzle",
-            "params": [
-                {
-                    "name": "fn",
-                    "description": "The function to mark",
-                    "type": "Function"
-                }
-            ],
-            "class": "window.jQuery",
-            "namespace": "window"
-        },
-        {
-            "file": "../jquery.js",
-            "line": 3876,
-            "description": "Support testing using an element",
-            "params": [
-                {
-                    "name": "fn",
-                    "description": "Passed the created div and expects a boolean result",
-                    "type": "Function"
-                }
-            ],
-            "class": "window.jQuery",
-            "namespace": "window"
-        },
-        {
-            "file": "../jquery.js",
-            "line": 4003,
-            "description": "Detect xml",
-            "params": [
-                {
-                    "name": "elem",
-                    "description": "An element or a document",
-                    "type": "Element|Object"
-                }
-            ],
-            "class": "window.jQuery",
-            "namespace": "window"
-        },
-        {
-            "file": "../jquery.js",
-            "line": 4014,
-            "description": "Sets document-related variables once based on the current document",
-            "params": [
-                {
-                    "name": "doc",
-                    "description": "An element or document object to use to set the document",
-                    "type": "Element|Object",
-                    "optional": true
-                }
-            ],
-            "return": {
-                "description": "Returns the current document",
-                "type": "Object"
-            },
-            "class": "window.jQuery",
-            "namespace": "window"
-        },
-        {
-            "file": "../jquery.js",
-            "line": 4507,
-            "description": "Utility function for retrieving the text value of an array of DOM nodes",
-            "params": [
-                {
-                    "name": "elem",
-                    "description": "",
-                    "type": "Array|Element"
-                }
-            ],
-            "class": "window.jQuery",
-            "namespace": "window"
-        },
-        {
             "file": "../lib.js",
             "line": 2,
             "description": "取当前脚本标签的 src路径",
@@ -10361,14 +10268,6 @@
             "line": " ../UXC.js:3"
         },
         {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " ../jquery.js:3847"
-        },
-        {
-            "message": "replacing incorrect tag: returns with return",
-            "line": " ../jquery.js:4014"
-        },
-        {
             "message": "Missing item type\n//TODO 添加事件响应机制",
             "line": " ../comps/Calendar/UXC.Calendar.js:29"
         },
@@ -10497,8 +10396,12 @@
             "line": " ../comps/Tab/Tab.js:142"
         },
         {
+            "message": "Missing item type\n判断是否从 layout 下查找内容",
+            "line": " ../comps/Tab/Tab.js:364"
+        },
+        {
             "message": "Missing item type\n自动化初始 Tab 实例\n如果 Tab.autoInit = true, 鼠标移至 Tab 后会自动初始化 Tab",
-            "line": " ../comps/Tab/Tab.js:614"
+            "line": " ../comps/Tab/Tab.js:631"
         },
         {
             "message": "Missing item type\n页面加载完毕后, 是否自动初始化 Tips",
@@ -10927,34 +10830,6 @@
         {
             "message": "Missing item type\n自动识别组件库所在路径",
             "line": " ../UXC.js:217"
-        },
-        {
-            "message": "Missing item type\nFor feature detection",
-            "line": " ../jquery.js:3839"
-        },
-        {
-            "message": "Missing item type\nCreate key-value caches of limited size",
-            "line": " ../jquery.js:3847"
-        },
-        {
-            "message": "Missing item type\nMark a function for special use by Sizzle",
-            "line": " ../jquery.js:3867"
-        },
-        {
-            "message": "Missing item type\nSupport testing using an element",
-            "line": " ../jquery.js:3876"
-        },
-        {
-            "message": "Missing item type\nDetect xml",
-            "line": " ../jquery.js:4003"
-        },
-        {
-            "message": "Missing item type\nSets document-related variables once based on the current document",
-            "line": " ../jquery.js:4014"
-        },
-        {
-            "message": "Missing item type\nUtility function for retrieving the text value of an array of DOM nodes",
-            "line": " ../jquery.js:4507"
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",
