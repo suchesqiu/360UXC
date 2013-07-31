@@ -719,19 +719,29 @@
                     function( _item ){
                         var _r = true, _valStr = _item.val(), _val = +_valStr,_min = 0, _max = Math.pow( 10, 10 ), _n, _f, _tmp;
 
-                        if( !isNaN( _val ) &amp;&amp; _val &gt;= 0 ){
+                        if( _item.is(&#x27;[minvalue]&#x27;) ){
+                            if( /\./.test( _item.attr(&#x27;minvalue&#x27;) ) ){
+                                _tmp = parseFloat( _item.attr(&#x27;minvalue&#x27;) );
+                            }else{
+                                _tmp = parseInt( _item.attr(&#x27;minvalue&#x27;) );
+                            }
+                            if( !isNaN( _tmp ) ){
+                                _min += _tmp;
+                            }
+                        }
+
+                        if( !isNaN( _val ) &amp;&amp; _val &gt;= _min ){
                             _item.attr(&#x27;datatype&#x27;).replace( /^n[^\-]*\-(.*)$/, function( $0, $1 ){
                                 _tmp = $1.split(&#x27;.&#x27;);
                                 _n = _tmp[0];
                                 _f = _tmp[1];
                             });
-                            if( _item.is(&#x27;[minvalue]&#x27;) ) _min = +_item.attr(&#x27;minvalue&#x27;) || _min;
                             if( _item.is(&#x27;[maxvalue]&#x27;) ) _max = +_item.attr(&#x27;maxvalue&#x27;) || _max;
 
                             if( _val &gt;= _min &amp;&amp; _val &lt;= _max ){
-                                typeof _n != &#x27;undefined&#x27; &amp;&amp; typeof _f != &#x27;undefined&#x27; &amp;&amp; ( _r = new RegExp( &#x27;^(?:[\\d]{0,&#x27;+_n+&#x27;}|)(?:\\.[\\d]{1,&#x27;+_f+&#x27;}|)$&#x27; ).test( _valStr ) );
-                                typeof _n != &#x27;undefined&#x27; &amp;&amp; typeof _f == &#x27;undefined&#x27; &amp;&amp; ( _r = new RegExp( &#x27;^[\\d]{1,&#x27;+_n+&#x27;}$&#x27; ).test( _valStr ) );
-                                typeof _n == &#x27;undefined&#x27; &amp;&amp; typeof _f != &#x27;undefined&#x27; &amp;&amp; ( _r = new RegExp( &#x27;^\\.[\\d]{1,&#x27;+_f+&#x27;}$&#x27; ).test( _valStr ) );
+                                typeof _n != &#x27;undefined&#x27; &amp;&amp; typeof _f != &#x27;undefined&#x27; &amp;&amp; ( _r = new RegExp( &#x27;^(?:\-|)(?:[\\d]{0,&#x27;+_n+&#x27;}|)(?:\\.[\\d]{1,&#x27;+_f+&#x27;}|)$&#x27; ).test( _valStr ) );
+                                typeof _n != &#x27;undefined&#x27; &amp;&amp; typeof _f == &#x27;undefined&#x27; &amp;&amp; ( _r = new RegExp( &#x27;^(?:\-|)[\\d]{1,&#x27;+_n+&#x27;}$&#x27; ).test( _valStr ) );
+                                typeof _n == &#x27;undefined&#x27; &amp;&amp; typeof _f != &#x27;undefined&#x27; &amp;&amp; ( _r = new RegExp( &#x27;^(?:\-|)\\.[\\d]{1,&#x27;+_f+&#x27;}$&#x27; ).test( _valStr ) );
                                 typeof _f == &#x27;undefined&#x27; &amp;&amp; /\./.test( _valStr ) &amp;&amp; ( _r = false );
                             } else _r = false;
 

@@ -489,15 +489,32 @@
         _init:
             function(){
                 if( !this.layoutIsTab() ) return;
-                var _p = this;
-                this._tablabels = $( this.layout().attr(&#x27;tablabels&#x27;) );
-                this._tabcontainers = $( this.layout().attr(&#x27;tabcontainers&#x27;) );
+                var _p = this, _re = /^\~[\s]+/g;
+
+                if( _p.isFromChild( _p.layout().attr(&#x27;tablabels&#x27;) ) ){
+                    this._tablabels = _p.layout().find( _p.layout().attr(&#x27;tablabels&#x27;).replace( _re, &#x27;&#x27; ) );
+                }else{
+                    this._tablabels = $( _p.layout().attr(&#x27;tablabels&#x27;) );
+                }
+
+                if( _p.isFromChild( _p.layout().attr(&#x27;tabcontainers&#x27;) ) ){
+                    this._tabcontainers = _p.layout().find( _p.layout().attr(&#x27;tabcontainers&#x27;).replace( _re, &#x27;&#x27; ) );
+                }else{
+                    this._tabcontainers = $( _p.layout().attr(&#x27;tabcontainers&#x27;) );
+                }
 
                 this._tablabels.each( function(){ _p.tablabel( this, 1 ); } );
                 this._tabcontainers.each( function(){ _p.tabcontent( this, 1 ); } );
                 this._tablabels.each( function( _ix ){ _p.tabindex( this, _ix ); });
 
                 return this;
+            }
+        /**
+         * 判断是否从 layout 下查找内容
+         */
+        , isFromChild:
+            function( _selector ){
+                return /^\~/.test( $.trim( _selector ) );
             }
         /**
          * 获取 Tab 的主容器
