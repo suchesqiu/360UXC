@@ -39,6 +39,8 @@
         if( _selector.length > 1 ){
             return Tips.init( _selector );
         }
+        var _p = this;
+        Tips.getInstance( _selector, _p );
         /**
          * 数据模型类实例引用 
          * @property    _model
@@ -53,6 +55,14 @@
          * @private
          */
         this._view = new View( this._model );
+        $(this._view).on('BindEvent', function( _evt, _evtName, _cb ){
+            _p.on( _evtName, _cb );
+        });
+
+        $(this._view).on('TriggerEvent', function( _evt, _evtName, _data ){
+            _p.trigger( _evtName, _data );
+        });
+        this._view.init();
 
         this._init();
     }
@@ -163,7 +173,20 @@
                 });
             }
         };
-   
+    /**
+     * 从 selector 获得 或 设置 Tips 的实例
+     * @method getInstance
+     * @param   {selector}  _selector
+     * @param   {SliderInstance}   _ins
+     * @return SliderInstance
+     * @static
+     */
+    Tips.getInstance =
+        function( _selector, _ins ){
+            _ins && _selector && $(_selector).data( 'TipsIns', _ins );
+            return _selector ? $(_selector).data('TipsIns') : null;
+        };
+
     Tips.prototype = {
         /**
          * 初始化 Tips 内部属性
@@ -211,6 +234,9 @@
          * @return  string
          */
         , data: function(){ return this._model.data() }
+        
+        , on: function( _evtName, _cb ){ $(this).on(_evtName, _cb ); return this;}
+        , trigger: function( _evtName ){ $(this).trigger( _evtName ); return this;}
     }
     /**
      * Tips 数据模型类
@@ -288,6 +314,24 @@
          * @return  selector
          */
         , selector: function(){ return this._selector; }
+        , tipsshowcallback: 
+            function(){
+                var _r;
+                this._selector.attr('tipsshowcallback') && ( _r = window[ this._selector.attr('tipsshowcallback') ] );
+                return _r;
+            }
+        , layout:
+            function(){
+                if( !this._layout ){
+                    this._layout = $('#UXCTipsLayout');
+                    if( !(this._layout && this._layout.length) ){
+                        this._layout = $(UXC.Tips.tpl || this.tpl);
+                        this._layout.attr('id', 'UXCTipsLayout').css('position', 'absolute');
+                        this._layout.appendTo(document.body);
+                    }
+                }
+                return this._layout;
+           }
     };
     /**
      * Tips 视图类
@@ -311,8 +355,6 @@
          * @private
          */
         this._layout;
-
-        this._init();
     }
     
     View.prototype = {
@@ -321,8 +363,9 @@
          * @method  _init
          * @private
          */
-        _init:
+        init:
             function() {
+                $(this).trigger( 'BindEvent', [ 'TipsShow', this._model.tipsshowcallback() ] );
                 return this;
             }
         /**
@@ -359,12 +402,17 @@
 
                 this.layout().css( { 'left': _x + 'px', 'top': _y + 'px' } );
                 this.layout().show();
+
+                $(this).trigger( 'TriggerEvent', [ 'TipsShow', this._model.tipsshowcallback() ] );
             }
         /**
          * 隐藏 Tips
          * @method  hide
          */
-        , hide: function(){ this.layout().hide(); }
+        , hide: function(){ 
+            this.layout().hide(); 
+            $(this).trigger( 'TriggerEvent', 'TipsHide' );
+        }
         /**
          * 获取 Tips 外观的 选择器
          * @method  layout
@@ -373,14 +421,7 @@
          */
         , layout: 
             function( _update ){ 
-                if( !this._layout ){
-                    this._layout = $('#UXCTipsLayout');
-                    if( !(this._layout && this._layout.length) ){
-                        this._layout = $(UXC.Tips.tpl || this._model.tpl);
-                        this._layout.attr('id', 'UXCTipsLayout').css('position', 'absolute');
-                        this._layout.appendTo(document.body);
-                    }
-                }
+                this._layout = this._model.layout();
                 if( _update ){
                     var _data = this._model.data( _update );
                     this._layout.html( _data ).css( {'width': 'auto'
