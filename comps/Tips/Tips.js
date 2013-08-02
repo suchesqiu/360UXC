@@ -39,6 +39,8 @@
         if( _selector.length > 1 ){
             return Tips.init( _selector );
         }
+        if( Tips.getInstance( _selector ) ) return Tips.getInstance( _selector );
+        Tips.getInstance( _selector, this );
         /**
          * 数据模型类实例引用 
          * @property    _model
@@ -56,6 +58,98 @@
 
         this._init();
     }
+
+    Tips.prototype = {
+        /**
+         * 初始化 Tips 内部属性
+         * @method  _init
+         * @private
+         */
+        _init:
+            function(){
+                var _p = this;
+
+                $(this._view).on('BindEvent', function( _evt, _evtName, _cb ){
+                    _p.on( _evtName, _cb );
+                });
+
+                $(this._view).on('TriggerEvent', function( _evt, _evtName, _data ){
+                    _p.trigger( _evtName, _data );
+                });
+
+                this._view.init();
+
+                this._model.selector().on( 'mouseenter', tipMouseenter );
+                return this;
+            }    
+        /**
+         * 显示 Tips
+         * @method  show
+         * @param   {event|object}  _evt    _evt 可以是事件/或者带 pageX && pageY 属性的 Object
+         *                                  <br />pageX 和 pageY 是显示位于整个文档的绝对 x/y 轴位置
+         * @return  TipsInstance
+         */
+        , show:
+            function( _evt ){
+                this._view.show( _evt );
+                return this;
+            }
+        /**
+         * 隐藏 Tips
+         * @method  hide
+         * @return  TipsInstance
+         */
+        , hide: function(){ this._view.hide(); return this; }
+        /**
+         * 获取 显示 tips 的触发源选择器, 比如 a 标签
+         * @method  selector
+         * @return  selector
+         */ 
+        , selector: function(){ return this._model.selector(); }
+        /**
+         * 获取 tips 外观的 选择器
+         * @method  layout
+         * @param   {bool}  _update     是否更新 Tips 数据
+         * @return  selector
+         */
+        , layout: function( _update ){ return this._view.layout( _update ); }
+        /**
+         * 获取 tips 显示的内容
+         * @method  data
+         * @return  string
+         */
+        , data: function(){ return this._model.data() }
+        /**
+         * 使用 jquery on 绑定事件
+         * @method  {string}    on
+         * @param   {string}    _evtName
+         * @param   {function}  _cb
+         * @return  TipsInstance
+         */
+        , on: function( _evtName, _cb ){ $(this).on(_evtName, _cb ); return this;}
+        /**
+         * 使用 jquery trigger 绑定事件
+         * @method  {string}    trigger
+         * @param   {string}    _evtName
+         * @return  TipsInstance
+         */
+        , trigger: function( _evtName ){ $(this).trigger( _evtName ); return this;}
+    };
+    /**
+     * tips 初始化实例后的触发的事件
+     * <br />在HTML属性定义回调 tipsinitedcallback ="function name"
+     * @event   TipsInited
+     */
+    /**
+     * tips 显示后的回调
+     * <br />在HTML属性定义回调 tipsshowcallback="function name"
+     * @event   TipsShow
+     */
+    /**
+     * tips 隐藏后的回调
+     * <br />在HTML属性定义回调 tipshidecallback="function name"
+     * @event   TipsHide
+     */
     /**
      * 批量初始化 Tips 效果
      * @method  init
@@ -79,7 +173,7 @@
             var _r = [];
             _selector.each( function(){
                 var _p = $(this);
-                if( _p.data('initedTips') ) return;
+                if( Tips.getInstance( _p ) ) return;
                 _r.push( new Tips( _p ) );
             });
             return _r;
@@ -163,55 +257,20 @@
                 });
             }
         };
-   
-    Tips.prototype = {
-        /**
-         * 初始化 Tips 内部属性
-         * @method  _init
-         * @private
-         */
-        _init:
-            function(){
-                var _p = this;
-                this._model.selector().data('tipIns', _p);
-                this._model.selector().on( 'mouseenter', tipMouseenter );
-                return this;
-            }    
-        /**
-         * 显示 Tips
-         * @method  show
-         * @param   {event|object}  _evt    _evt 可以是事件/或者带 pageX && pageY 属性的 Object
-         *                                  <br />pageX 和 pageY 是显示位于整个文档的绝对 x/y 轴位置
-         */
-        , show:
-            function( _evt ){
-                this._view.show( _evt );
-            }
-        /**
-         * 隐藏 Tips
-         * @method  hide
-         */
-        , hide: function(){ this._view.hide(); }
-        /**
-         * 获取 显示 tips 的触发源选择器, 比如 a 标签
-         * @method  selector
-         * @return  selector
-         */ 
-        , selector: function(){ return this._model.selector(); }
-        /**
-         * 获取 tips 外观的 选择器
-         * @method  layout
-         * @param   {bool}  _update     是否更新 Tips 数据
-         * @return  selector
-         */
-        , layout: function( _update ){ return this._view.layout( _update ); }
-        /**
-         * 获取 tips 显示的内容
-         * @method  data
-         * @return  string
-         */
-        , data: function(){ return this._model.data() }
-    }
+    /**
+     * 从 selector 获得 或 设置 Tips 的实例
+     * @method getInstance
+     * @param   {selector}  _selector
+     * @param   {TipsInstance}   _ins
+     * @return TipsInstance
+     * @static
+     */
+    Tips.getInstance =
+        function( _selector, _ins ){
+            _ins && _selector && $(_selector).data( 'TipsIns', _ins );
+            return _selector ? $(_selector).data('TipsIns') : null;
+        };
+
     /**
      * Tips 数据模型类
      * @namespace UXC.Tips
@@ -279,8 +338,19 @@
                 this._data = $.trim( this._selector.attr('title') || this._selector.attr('tipsData') )
                              .replace( /(?:\r\n|\n\r|\r|\n)/g, '<br />');
                 this._selector.removeAttr('title').removeAttr( 'tipsData' );
-                if( this._selector.data('initedTips') ) return;
-                this._selector.data('initedTips', true);
+                if( this.isInited() ) return;
+                this.isInited(true);
+            }
+        /**
+         * 判断 selector 是否初始化过 Tips 功能
+         * @method  isInited
+         * @param   {bool}  _setter
+         * @return  bool
+         */
+        , isInited:
+            function( _setter ){
+                typeof _setter != 'undefined' && ( this._selector.data( 'initedTips', _setter ) );
+                return this._selector.data( 'initedTips' );
             }
         /**
          * 获取 tips 触发源选择器
@@ -288,6 +358,51 @@
          * @return  selector
          */
         , selector: function(){ return this._selector; }
+        , tipsshowcallback: 
+            function(){
+                var _r;
+                this._selector.attr('tipsshowcallback') && ( _r = window[ this._selector.attr('tipsshowcallback') ] );
+                return _r;
+            }
+        , tipshidecallback: 
+            function(){
+                var _r;
+                this._selector.attr('tipshidecallback') 
+                    && ( _r = window[ this._selector.attr('tipshidecallback') ] );
+                return _r;
+            }
+        , tipsinitedcallback:
+            function(){
+                var _r;
+                this._selector.attr('tipsinitedcallback') 
+                    && ( _r = window[ this._selector.attr('tipsinitedcallback') ] );
+                return _r;
+            }
+        , tipstemplatesbox:
+            function(){
+                var _r;
+                this._selector.is('[tipstemplatesbox]') 
+                    && ( _r = $(this._selector.attr('tipstemplatesbox')).html().trim().replace(/[\r\n]+/g, '') )
+                    ;
+                return _r;
+            }
+        , layout:
+            function(){
+                if( !this._layout ){
+                    if( this.tipstemplatesbox() ){
+                        this._layout = $( this.tipstemplatesbox() );
+                        this._layout.appendTo(document.body);
+                    }else{
+                        this._layout = $('#UXCTipsLayout');
+                        if( !(this._layout && this._layout.length) ){
+                            this._layout = $( this.tipstemplatesbox() || UXC.Tips.tpl || this.tpl);
+                            this._layout.attr('id', 'UXCTipsLayout').css('position', 'absolute');
+                            this._layout.appendTo(document.body);
+                        }
+                    }
+                }
+                return this._layout;
+           }
     };
     /**
      * Tips 视图类
@@ -311,8 +426,6 @@
          * @private
          */
         this._layout;
-
-        this._init();
     }
     
     View.prototype = {
@@ -321,8 +434,11 @@
          * @method  _init
          * @private
          */
-        _init:
+        init:
             function() {
+                $(this).trigger( 'BindEvent', [ 'TipsShow', this._model.tipsshowcallback() ] );
+                $(this).trigger( 'BindEvent', [ 'TipsHide', this._model.tipshidecallback() ] );
+                $(this).trigger( 'BindEvent', [ 'TipsInited', this._model.tipsinitedcallback() ] );
                 return this;
             }
         /**
@@ -359,12 +475,17 @@
 
                 this.layout().css( { 'left': _x + 'px', 'top': _y + 'px' } );
                 this.layout().show();
+
+                $(this).trigger( 'TriggerEvent', [ 'TipsShow', this._model.tipsshowcallback() ] );
             }
         /**
          * 隐藏 Tips
          * @method  hide
          */
-        , hide: function(){ this.layout().hide(); }
+        , hide: function(){ 
+            this.layout().hide(); 
+            $(this).trigger( 'TriggerEvent', 'TipsHide' );
+        }
         /**
          * 获取 Tips 外观的 选择器
          * @method  layout
@@ -373,14 +494,7 @@
          */
         , layout: 
             function( _update ){ 
-                if( !this._layout ){
-                    this._layout = $('#UXCTipsLayout');
-                    if( !(this._layout && this._layout.length) ){
-                        this._layout = $(UXC.Tips.tpl || this._model.tpl);
-                        this._layout.attr('id', 'UXCTipsLayout').css('position', 'absolute');
-                        this._layout.appendTo(document.body);
-                    }
-                }
+                this._layout = this._model.layout();
                 if( _update ){
                     var _data = this._model.data( _update );
                     this._layout.html( _data ).css( {'width': 'auto'
@@ -396,25 +510,6 @@
             }
     };
     /**
-     * 页面加载完毕后, 是否自动初始化 Tips
-     */
-    $(document).ready( function( _devt ){
-        setTimeout( function(){
-            if( !UXC.Tips.autoInit ) return;
-
-            Tips.titleToTipsdata( $('[title]') );
-
-            $(document).delegate('*', 'mouseover', function( _evt ){
-                var _p = $(this);
-                if( _p.data('initedTips') ) return;
-                if( !( _p.attr('title') || _p.attr('tipsData') ) ) return;
-                //UXC.log( _p.prop( 'nodeName' ) );
-                UXC.Tips.init( _p );
-                tipMouseenter.call( this, _evt );
-            });
-        }, 10);
-    });
-    /**
      * 鼠标移动到 Tips 触发源的触发事件
      * @namespace   UXC.Tips
      * @method  tipMouseenter
@@ -423,7 +518,7 @@
      * @static
      */
     function tipMouseenter( _evt ){
-        var _sp = $(this), _p = _sp.data('tipIns');
+        var _sp = $(this), _p = Tips.getInstance( _sp );
         _p.layout( 1 ).css( 'z-index', ZINDEX_COUNT++ );
         if( !_p.data() ) return;
         _p.show( _evt );
@@ -454,5 +549,23 @@
      * @private
      */
     var _defTpl = '<div class="UTips"></div>';
+    /**
+     * 页面加载完毕后, 是否自动初始化 Tips
+     */
+    $(document).ready( function( _devt ){
+        setTimeout( function(){
+            if( !UXC.Tips.autoInit ) return;
+
+            Tips.titleToTipsdata( $('[title]') );
+
+            $(document).delegate('*', 'mouseover', function( _evt ){
+                var _p = $(this);
+                if( Tips.getInstance( _p ) ) return;
+                if( !( _p.attr('title') || _p.attr('tipsData') ) ) return;
+                UXC.Tips.init( _p );
+                tipMouseenter.call( this, _evt );
+            });
+        }, 10);
+    });
 
 }(jQuery));

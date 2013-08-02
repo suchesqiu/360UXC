@@ -186,6 +186,10 @@
             &lt;/script&gt;
      */
     function Panel( _selector, _headers, _bodys, _footers ){
+        typeof _selector == &#x27;string&#x27; &amp;&amp; ( _selector = _selector.replace( /[\r\n]+/g, &#x27;&#x27;) ); 
+        typeof _headers == &#x27;string&#x27; &amp;&amp; ( _headers = _headers.replace( /[\r\n]+/g, &#x27;&#x27;) ); 
+        typeof _bodys == &#x27;string&#x27; &amp;&amp; ( _bodys = _bodys.replace( /[\r\n]+/g, &#x27;&#x27;) ); 
+
         if( Panel.getInstance( _selector ) ) return Panel.getInstance( _selector );
         /**
          * 存放数据的model层, see &lt;a href=&#x27;UXC.Panel.Model.html&#x27;&gt;Panel.Model&lt;/a&gt;

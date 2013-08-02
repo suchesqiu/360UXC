@@ -268,72 +268,6 @@
 
         this._init();
     }
-    /**
-     * 页面加载完毕后, 是否自动初始化 带有 class=js_autoSlider 的应用
-     * @property   autoInit
-     * @type    bool
-     * @default true
-     * @static
-     */
-    Slider.autoInit = true;
-    /**
-     * 批量初始化 Slider
-     * @method init
-     * @param   {selector}  _selector
-     * @return array
-     * @static
-     */
-    Slider.init =
-        function( _selector ){
-            var _insls = [];
-            _selector &amp;&amp; ( _selector = $(_selector) );
-
-            if( _selector &amp;&amp; _selector.length ){
-                if( Slider.isSlider( _selector ) ){
-                    if( Slider.getInstance( _selector ) ){
-                        return [ Slider.getInstance( _selector ) ];
-                    }
-                    _insls.push( new Slider( _selector ) );
-                }else{
-                    _selector.find( &#x27;div.js_autoSlider, dl.js_autoSlider&#x27;
-                                    +&#x27;, ul.js_autoSlider, ol.js_autoSlider&#x27; ).each(function(){
-                        if( Slider.isSlider( this ) ){
-                            if( Slider.getInstance( $(this) ) ){
-                                _insls.push( Slider.getInstance( $(this) ) );
-                                return;
-                            }
-                            _insls.push( new Slider( $(this) ) );
-                        }
-                    });
-                }
-            }
-            return _insls;
-        };
-    /**
-     * 从 selector 获得 或 设置 Slider 的实例
-     * @method getInstance
-     * @param   {selector}  _selector
-     * @param   {SliderInstance}   _ins
-     * @return SliderInstance
-     * @static
-     */
-    Slider.getInstance =
-        function( _selector, _ins ){
-            _ins &amp;&amp; _selector &amp;&amp; $(_selector).data( &#x27;SliderIns&#x27;, _ins );
-            return _selector ? $(_selector).data(&#x27;SliderIns&#x27;) : null;
-        };
-    /**
-     * 判断 selector 是否具备 实例化 Slider 的条件
-     * @method  isSlider
-     * @param   {selector}  _selector
-     * @return bool
-     * @static
-     */
-    Slider.isSlider =
-        function( _selector ){
-            _selector &amp;&amp; ( _selector = $(_selector) );
-            return _selector &amp;&amp; ( _selector.is( &#x27;[sliderwidth]&#x27; ) || _selector.is( &#x27;[sliderheight]&#x27; ) );
-        };
     
     Slider.prototype = {
         /**
@@ -530,6 +464,88 @@
                 return this;
             }
     }
+    /**
+     * @event inited
+     */
+    /**
+     * @event beforemove
+     */
+    /**
+     * @event movedone
+     */
+    /**
+     * @event outmin
+     */
+    /**
+     * @event outmax
+     */
+    /**
+     * 页面加载完毕后, 是否自动初始化 带有 class=js_autoSlider 的应用
+     * @property   autoInit
+     * @type    bool
+     * @default true
+     * @static
+     */
+    Slider.autoInit = true;
+    /**
+     * 批量初始化 Slider
+     * @method init
+     * @param   {selector}  _selector
+     * @return array
+     * @static
+     */
+    Slider.init =
+        function( _selector ){
+            var _insls = [];
+            _selector &amp;&amp; ( _selector = $(_selector) );
+
+            if( _selector &amp;&amp; _selector.length ){
+                if( Slider.isSlider( _selector ) ){
+                    if( Slider.getInstance( _selector ) ){
+                        return [ Slider.getInstance( _selector ) ];
+                    }
+                    _insls.push( new Slider( _selector ) );
+                }else{
+                    _selector.find( &#x27;div.js_autoSlider, dl.js_autoSlider&#x27;
+                                    +&#x27;, ul.js_autoSlider, ol.js_autoSlider&#x27; ).each(function(){
+                        if( Slider.isSlider( this ) ){
+                            if( Slider.getInstance( $(this) ) ){
+                                _insls.push( Slider.getInstance( $(this) ) );
+                                return;
+                            }
+                            _insls.push( new Slider( $(this) ) );
+                        }
+                    });
+                }
+            }
+            return _insls;
+        };
+    /**
+     * 从 selector 获得 或 设置 Slider 的实例
+     * @method getInstance
+     * @param   {selector}  _selector
+     * @param   {SliderInstance}   _ins
+     * @return SliderInstance
+     * @static
+     */
+    Slider.getInstance =
+        function( _selector, _ins ){
+            _ins &amp;&amp; _selector &amp;&amp; $(_selector).data( &#x27;SliderIns&#x27;, _ins );
+            return _selector ? $(_selector).data(&#x27;SliderIns&#x27;) : null;
+        };
+    /**
+     * 判断 selector 是否具备 实例化 Slider 的条件
+     * @method  isSlider
+     * @param   {selector}  _selector
+     * @return bool
+     * @static
+     */
+    Slider.isSlider =
+        function( _selector ){
+            _selector &amp;&amp; ( _selector = $(_selector) );
+            return _selector &amp;&amp; ( _selector.is( &#x27;[sliderwidth]&#x27; ) || _selector.is( &#x27;[sliderheight]&#x27; ) );
+        };
+
     /**
      * Slider 的通用模型类
      * @namespace UXC.Slider

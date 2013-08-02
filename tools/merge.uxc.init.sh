@@ -1,6 +1,10 @@
+cur_dir=$PWD;
+cd ..
 dir=$PWD; 
+cd $cur_dir;
 
-sh -c "cd $dir/tools && sh generate_yuidoc_for_uxc.sh";
+
+sh -c "sh generate_yuidoc_for_uxc.sh";
 
 sleep 3s
 

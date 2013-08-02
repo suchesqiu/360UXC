@@ -1,6 +1,11 @@
 var fs = require('fs');
 
-var dir = __dirname + '/';
+var dir = __dirname;
+dir = dir.split('/');
+dir.pop();
+
+dir = dir.join('/') + '/';
+
 
 if( !( fs.existsSync( dir + 'jquery.js' ) && fs.existsSync( dir + 'UXC.js' ) && fs.existsSync( dir + 'common.js' )  ) ) return;
 
@@ -16,3 +21,5 @@ fs.unlinkSync( dir + 'jquery.js' );
 fs.unlinkSync( dir + 'common.js' );
 fs.unlinkSync( dir + 'UXC.js' );
 */
+
+
