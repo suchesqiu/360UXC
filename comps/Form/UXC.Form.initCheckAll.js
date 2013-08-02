@@ -90,6 +90,7 @@
                     $(_for).each( function(){
                         var _sp = $(this);
                         if( isControler( _sp ) ) return;
+                        if( _sp.is( '[disabled]' ) ) return;
                         _p.prop('checked') && _sp.prop('checked', true);
                         !_p.prop('checked') && _sp.prop('checked', false);
                         
@@ -102,6 +103,7 @@
                     $(_for).each( function(){
                         var _sp = $(this);
                         if( isControler( _sp ) ) return;
+                        if( _sp.is( '[disabled]' ) ) return;
                         if( _sp.prop('checked') ) _sp.prop('checked', false);
                         else _sp.prop('checked', true);
                     });
