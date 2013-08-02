@@ -127,6 +127,7 @@
         var _isAll = true, _all = $(_all), _for = $(_for);
         _for.each( function(){
             var _sp = $(this);
+            if( isControler( _sp ) ) return;
             if( _sp.is( '[checktype]' ) || _sp.is( '[checkfor]') ) return;
             if( !_sp.prop('checked') ) return _isAll = false;
         });
