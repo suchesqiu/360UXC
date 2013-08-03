@@ -238,6 +238,7 @@
                     $(_for).each( function(){
                         var _sp = $(this);
                         if( isControler( _sp ) ) return;
+                        if( _sp.is( &#x27;[disabled]&#x27; ) ) return;
                         _p.prop(&#x27;checked&#x27;) &amp;&amp; _sp.prop(&#x27;checked&#x27;, true);
                         !_p.prop(&#x27;checked&#x27;) &amp;&amp; _sp.prop(&#x27;checked&#x27;, false);
                         
@@ -250,6 +251,7 @@
                     $(_for).each( function(){
                         var _sp = $(this);
                         if( isControler( _sp ) ) return;
+                        if( _sp.is( &#x27;[disabled]&#x27; ) ) return;
                         if( _sp.prop(&#x27;checked&#x27;) ) _sp.prop(&#x27;checked&#x27;, false);
                         else _sp.prop(&#x27;checked&#x27;, true);
                     });
@@ -273,6 +275,7 @@
         var _isAll = true, _all = $(_all), _for = $(_for);
         _for.each( function(){
             var _sp = $(this);
+            if( isControler( _sp ) ) return;
             if( _sp.is( &#x27;[checktype]&#x27; ) || _sp.is( &#x27;[checkfor]&#x27;) ) return;
             if( !_sp.prop(&#x27;checked&#x27;) ) return _isAll = false;
         });

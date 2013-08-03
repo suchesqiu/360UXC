@@ -38,9 +38,9 @@
             </script>
      */
     function Panel( _selector, _headers, _bodys, _footers ){
-        typeof _selector == 'string' && ( _selector = _selector.replace( /[\r\n]+/g, '') ); 
-        typeof _headers == 'string' && ( _headers = _headers.replace( /[\r\n]+/g, '') ); 
-        typeof _bodys == 'string' && ( _bodys = _bodys.replace( /[\r\n]+/g, '') ); 
+        typeof _selector == 'string' && ( _selector = _selector.trim().replace( /[\r\n]+/g, '') ); 
+        typeof _headers == 'string' && ( _headers = _headers.trim().replace( /[\r\n]+/g, '') ); 
+        typeof _bodys == 'string' && ( _bodys = _bodys.trim().replace( /[\r\n]+/g, '') ); 
 
         if( Panel.getInstance( _selector ) ) return Panel.getInstance( _selector );
         /**

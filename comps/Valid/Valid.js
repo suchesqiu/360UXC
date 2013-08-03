@@ -1,3 +1,4 @@
+//TODO: 错误提示 不占用页面宽高, 使用 position = absolute,  date = 2013-08-03
 ;(function($){
     !window.UXC && (window.UXC = { log:function(){} });
     /**
@@ -7,6 +8,40 @@
      * <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
      * | <a href='http://uxc.btbtd.org/uxc_docs/classes/UXC.Valid.html' target='_blank'>API docs</a>
      * | <a href='../../comps/Valid/_demo/' target='_blank'>demo link</a></p>
+     * <h2>针对 Form 的可用 html attribute</h2>
+     * <dl>
+     *  <dt>errorabort = bool</dt>
+     *  <dd>查检Form Control时, 如果发生错误是否继续检查下一个</dd>
+     *  <dd>default = true</dd>
+     * </dl>
+     * <h2>针对 Form Control的可用 html attribute</h2>
+     * <dl>
+     *      <dt>reqmsg = 错误提示</dt>
+     *      <dd>值不能为空</dd>
+     *
+     *      <dt>errmsg = 错误提示</dt>
+     *      <dd>格式错误, 但不验证为空的值</dd>
+     *
+     *      <dt>emel = selector</dt>
+     *      <dd>显示错误的selector</dd>
+     *
+     *      <dt>minlength = int(最小长度)</dt>
+     *      <dd>验证内容的最小长度, 但不验证为空的值</dd>
+     *
+     *      <dt>maxlength = int(最大长度)</dt>
+     *      <dd>验证内容的最大长度, 但不验证为空的值</dd>
+     *
+     *      <dt>minvalue = [number|ISO date](最小值)</dt>
+     *      <dd>验证内容的最小值, 但不验证为空的值</dd>
+     *
+     *      <dt>maxvalue = [number|ISO date](最大值)</dt>
+     *      <dd>验证内容的最大值, 但不验证为空的值</dd>
+     *
+     *      <dt>datatype</dt>
+     *      <dd><b>n:</b> 检查是否为正确的数字</dd>
+     *      <dd><b>n-i.f:</b> 检查数字格式是否附件要求, i[整数位数], f[浮点数位数], n-7.2 = 0.00 ~ 9999999.99</dd>
+     *      <dd><b>nrange:</b> 检查两个control的数值范围</dd>
+     * </dl>
      * @namespace UXC
      * @class Valid
      * @static
@@ -427,115 +462,6 @@
                     _date_str = _date_str.replace( /[^\d]/g, '' );
                     return new Date( _date_str.slice(0,4), parseInt( _date_str.slice( 4, 6 ), 10 ) - 1, _date_str.slice( 6, 8) ).getTime();
                 }
-            /**
-             * 此对象存储可供检查的子类型
-             * @property    _logic.subdatatype
-             * @type        Object
-             * @private
-             * @static
-             */
-            , subdatatype: {
-                /**
-                 * 此类型检查 2|N个对象必须至少有一个是有输入内容的, 
-                 * <br> 常用于 手机/电话 二填一
-                 * @method  _logic.subdatatype.alternative
-                 * @private
-                 * @static
-                 * @param   {selector}  _item
-                 * @example
-                        <dd>
-                        <div class="f-l label">
-                            <label>(datatype phonezone, phonecode, phoneext)电话号码:</label>
-                        </div>
-                        <div class="f-l">
-                            <input type='TEXT' name='company_phonezone' style="width:40px;" value='' size="4" 
-                                datatype="phonezone" emEl="#phone-err-em" errmsg="请填写正确的电话区号" />
-                            - <input type='TEXT' name='company_phonecode' style="width:80px;" value='' size="8" 
-                                datatype="phonecode" subdatatype="alternative" datatarget="input[name=company_mobile]" alternativemsg="电话号码和手机号码至少填写一个"
-                                errmsg="请检查电话号码格式" emEl="#phone-err-em" />
-                            - <input type='TEXT' name='company_phoneext' style="width:40px;" value='' size="4" 
-                                datatype="phoneext" emEl="#phone-err-em" errmsg="请填写正确的分机号" />
-                            <em id="phone-err-em"></em>
-                        </div>
-                        </dd>
-
-                        <dd>
-                        <div class="f-l label">
-                            <label>(datatype mobilecode)手机号码:</label>
-                        </div>
-                        <div class="f-l">
-                            <input type="TEXT" name="company_mobile" 
-                                datatype="mobilecode" subdatatype="alternative" datatarget="input[name=company_phonecode]" alternativemsg=" "
-                                errmsg="请填写正确的手机号码">
-                        </div>
-                        </dd>
-                 */
-                alternative:
-                    function( _item ){
-                        var _r = true, _target;
-
-                        UXC.log( 'alternative' );
-
-                        if( _item.is( '[datatarget]' ) && (_target = $(_item.attr('datatarget')) ).length && !_item.val() ){
-                            var _hasVal = false;
-                            _target.each( function(){ if( $(this).val() ){ _hasVal = true; return false; } } );
-                            _r = _hasVal;
-                        }
-
-                        !_r && _logic.error( _item, 'alternativemsg', true );
-                        !_r && _target && _target.length && _target.each( function(){ _logic.error( $(this), 'alternativemsg', true ); } );
-                        _r && _target && _target.length && _target.each( function(){ _logic.valid( $(this) ); } );
-
-                        return _r;
-                    }
-                /**
-                 * 此类型检查 2|N 个对象填写的值必须一致
-                 * 常用于注意时密码验证/重置密码
-                 * @method  _logic.subdatatype.reconfirm
-                 * @private
-                 * @static
-                 * @param   {selector}  _item
-                 * @example
-                        <dd>
-                        <div class="f-l label">
-                            <label>(datatype text, subdatatype reconfirm)用户密码:</label>
-                        </div>
-                        <div class="f-l">
-                            <input type="PASSWORD" name="company_pwd" 
-                            datatype="text" subdatatype="reconfirm" datatarget="input[name=company_repwd]" reconfirmmsg="用户密码和确认密码不一致"
-                            minlength="6" maxlength="15" reqmsg="用户密码" errmsg="请填写正确的用户密码">
-                        </div>
-                        </dd>
-
-                        <dd>
-                        <div class="f-l label">
-                            <label>(datatype text, subdatatype reconfirm)确认密码:</label>
-                        </div>
-                        <div class="f-l">
-                            <input type="PASSWORD" name="company_repwd" 
-                            datatype="text" subdatatype="reconfirm" datatarget="input[name=company_pwd]" reconfirmmsg="确认密码和用户密码不一致"
-                            minlength="6" maxlength="15" reqmsg="确认密码" errmsg="请填写正确的确认密码">
-                        </div>
-                        </dd>
-                 */
-                , reconfirm:
-                    function( _item ){
-                        var _r = true, _target;
-
-                        UXC.log( 'reconfirm' );
-
-                        if( _item.is( '[datatarget]' ) && (_target = $(_item.attr('datatarget')) ).length ){
-                            _target.each( function(){ if( _item.val() != $(this).val() ) return _r = false; } );
-                        }
-
-                        !_r && _logic.error( _item, 'reconfirmmsg', true );
-                        !_r && _target.length && _target.each( function(){ _logic.error( $(this), 'reconfirmmsg', true ); } );
-                        _r && _target.length && _target.each( function(){ _logic.valid( $(this) ); } );
-
-                        return _r;
-                    }
-
-            }//subdatatype
             /**
              * 此对象存储可供检查的类型
              * @property    _logic.datatype
@@ -1329,6 +1255,114 @@
                         return _r;
                     }
             }//datatype
+            /**
+             * 此对象存储可供检查的子类型
+             * @property    _logic.subdatatype
+             * @type        Object
+             * @private
+             * @static
+             */
+            , subdatatype: {
+                /**
+                 * 此类型检查 2|N个对象必须至少有一个是有输入内容的, 
+                 * <br> 常用于 手机/电话 二填一
+                 * @method  _logic.subdatatype.alternative
+                 * @private
+                 * @static
+                 * @param   {selector}  _item
+                 * @example
+                        <dd>
+                        <div class="f-l label">
+                            <label>(datatype phonezone, phonecode, phoneext)电话号码:</label>
+                        </div>
+                        <div class="f-l">
+                            <input type='TEXT' name='company_phonezone' style="width:40px;" value='' size="4" 
+                                datatype="phonezone" emEl="#phone-err-em" errmsg="请填写正确的电话区号" />
+                            - <input type='TEXT' name='company_phonecode' style="width:80px;" value='' size="8" 
+                                datatype="phonecode" subdatatype="alternative" datatarget="input[name=company_mobile]" alternativemsg="电话号码和手机号码至少填写一个"
+                                errmsg="请检查电话号码格式" emEl="#phone-err-em" />
+                            - <input type='TEXT' name='company_phoneext' style="width:40px;" value='' size="4" 
+                                datatype="phoneext" emEl="#phone-err-em" errmsg="请填写正确的分机号" />
+                            <em id="phone-err-em"></em>
+                        </div>
+                        </dd>
+
+                        <dd>
+                        <div class="f-l label">
+                            <label>(datatype mobilecode)手机号码:</label>
+                        </div>
+                        <div class="f-l">
+                            <input type="TEXT" name="company_mobile" 
+                                datatype="mobilecode" subdatatype="alternative" datatarget="input[name=company_phonecode]" alternativemsg=" "
+                                errmsg="请填写正确的手机号码">
+                        </div>
+                        </dd>
+                 */
+                alternative:
+                    function( _item ){
+                        var _r = true, _target;
+
+                        UXC.log( 'alternative' );
+
+                        if( _item.is( '[datatarget]' ) && (_target = $(_item.attr('datatarget')) ).length && !_item.val() ){
+                            var _hasVal = false;
+                            _target.each( function(){ if( $(this).val() ){ _hasVal = true; return false; } } );
+                            _r = _hasVal;
+                        }
+
+                        !_r && _logic.error( _item, 'alternativemsg', true );
+                        !_r && _target && _target.length && _target.each( function(){ _logic.error( $(this), 'alternativemsg', true ); } );
+                        _r && _target && _target.length && _target.each( function(){ _logic.valid( $(this) ); } );
+
+                        return _r;
+                    }
+                /**
+                 * 此类型检查 2|N 个对象填写的值必须一致
+                 * 常用于注意时密码验证/重置密码
+                 * @method  _logic.subdatatype.reconfirm
+                 * @private
+                 * @static
+                 * @param   {selector}  _item
+                 * @example
+                        <dd>
+                        <div class="f-l label">
+                            <label>(datatype text, subdatatype reconfirm)用户密码:</label>
+                        </div>
+                        <div class="f-l">
+                            <input type="PASSWORD" name="company_pwd" 
+                            datatype="text" subdatatype="reconfirm" datatarget="input[name=company_repwd]" reconfirmmsg="用户密码和确认密码不一致"
+                            minlength="6" maxlength="15" reqmsg="用户密码" errmsg="请填写正确的用户密码">
+                        </div>
+                        </dd>
+
+                        <dd>
+                        <div class="f-l label">
+                            <label>(datatype text, subdatatype reconfirm)确认密码:</label>
+                        </div>
+                        <div class="f-l">
+                            <input type="PASSWORD" name="company_repwd" 
+                            datatype="text" subdatatype="reconfirm" datatarget="input[name=company_pwd]" reconfirmmsg="确认密码和用户密码不一致"
+                            minlength="6" maxlength="15" reqmsg="确认密码" errmsg="请填写正确的确认密码">
+                        </div>
+                        </dd>
+                 */
+                , reconfirm:
+                    function( _item ){
+                        var _r = true, _target;
+
+                        UXC.log( 'reconfirm' );
+
+                        if( _item.is( '[datatarget]' ) && (_target = $(_item.attr('datatarget')) ).length ){
+                            _target.each( function(){ if( _item.val() != $(this).val() ) return _r = false; } );
+                        }
+
+                        !_r && _logic.error( _item, 'reconfirmmsg', true );
+                        !_r && _target.length && _target.each( function(){ _logic.error( $(this), 'reconfirmmsg', true ); } );
+                        _r && _target.length && _target.each( function(){ _logic.valid( $(this) ); } );
+
+                        return _r;
+                    }
+            }//subdatatype
         };//_logic
 
 }(jQuery));
