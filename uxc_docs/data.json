@@ -1056,8 +1056,8 @@
             "extension_for": [],
             "namespace": "UXC",
             "file": "../comps/Valid/Valid.js",
-            "line": 3,
-            "description": "表单验证\n<br />全局访问请使用 UXC.Valid 或 Valid\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/uxc_docs/classes/UXC.Valid.html' target='_blank'>API docs</a>\n| <a href='../../comps/Valid/_demo/' target='_blank'>demo link</a></p>",
+            "line": 4,
+            "description": "表单验证\n<br />全局访问请使用 UXC.Valid 或 Valid\n<p><b>requires</b>: <a href='window.jQuery.html'>jQuery</a></p>\n<p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>\n| <a href='http://uxc.btbtd.org/uxc_docs/classes/UXC.Valid.html' target='_blank'>API docs</a>\n| <a href='../../comps/Valid/_demo/' target='_blank'>demo link</a></p>\n<h2>Form 的可用 html attribute</h2>\n<dl>\n <dt>errorabort = bool</dt>\n <dd>查检Form Control时, 如果发生错误是否继续检查下一个</dd>\n <dd>default = true</dd>\n</dl>\n<h2>Form Control的可用 html attribute</h2>\n<dl>\n     <dt>reqmsg = 错误提示</dt>\n     <dd>值不能为空</dd>\n\n     <dt>errmsg = 错误提示</dt>\n     <dd>格式错误, 但不验证为空的值</dd>\n\n     <dt>emel = selector</dt>\n     <dd>显示错误的selector</dd>\n\n     <dt>minlength = int(最小长度)</dt>\n     <dd>验证内容的最小长度, 但不验证为空的值</dd>\n\n     <dt>maxlength = int(最大长度)</dt>\n     <dd>验证内容的最大长度, 但不验证为空的值</dd>\n\n     <dt>minvalue = [number|ISO date](最小值)</dt>\n     <dd>验证内容的最小值, 但不验证为空的值</dd>\n\n     <dt>maxvalue = [number|ISO date](最大值)</dt>\n     <dd>验证内容的最大值, 但不验证为空的值</dd>\n\n     <dt>ignoreprocess = bool</dt>\n     <dd>验证表单时, 是否忽略</dd>\n     <dd>default = false</dd>\n\n     <dt>datatype: 常用数据类型</dt>\n     <dd><b>n:</b> 检查是否为正确的数字</dd>\n     <dd><b>n-i.f:</b> 检查数字格式是否附件要求, i[整数位数], f[浮点数位数], n-7.2 = 0.00 ~ 9999999.99</dd>\n     <dd>\n         <b>nrange:</b> 检查两个control的数值范围\n         <dl>\n             <dd>html attr <b>fromNEl:</b> 指定开始的 control</dd>\n             <dd>html attr <b>toNEl:</b> 指定结束的 control</dd>\n             <dd>如果不指定 fromNEl, toNEl, 默认是从父节点下面找到 nrange, 按顺序定为 fromNEl, toNEl</dd>\n         </dl>\n     </dd>\n     <dd><b>d:</b> 检查是否为正确的日期, YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD</dd>\n     <dd>\n         <b>daterange:</b> 检查两个control的日期范围\n         <dl>\n             <dd>html attr <b>fromNEl:</b> 指定开始的 control</dd>\n             <dd>html attr <b>toNEl:</b> 指定结束的 control</dd>\n             <dd>如果不指定 fromNEl, toNEl, 默认是从父节点下面找到 nrange, 按顺序定为 fromNEl, toNEl</dd>\n         </dl>\n     </dd>\n     <dd><b>time:</b> 是否为正确的时间, hh:mm:ss</dd>\n     <dd><b>minute:</b> 是否为正确的时间, hh:mm</dd>\n     <dd>\n         <b>bankcard:</b> 是否为正确的银行卡\n         <br />  格式为 d{19} | d{16} | 1111 1111 1111 1111 111 | 1111 1111 1111 1111111\n     </dd>\n     <dd>\n         <b>cnname:</b> 中文姓名\n         <br>格式: 汉字和大小写字母\n         <br>规则: 长度 2-32个字节, 非 ASCII 算2个字节\n     </dd>\n     <dd>\n         <b>username:</b> 注册用户名\n         <br>格式: a-zA-Z0-9_-\n         <br>规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 30\n     </dd>\n     <dd><b>idnumber:</b> 身份证号码, 15~18 位</dd>\n     <dd><b>mobilecode:</b> 手机号码, 11位, (13|14|15|16|18|19)[\\d]{9}</dd>\n     <dd><b>mobile:</b> mobilecode 的别名</dd>\n     <dd><b>mobilezonecode:</b> 带 国家代码的手机号码, [+国家代码] [零]11位数字</dd>\n     <dd><b>phonecode:</b> 电话号码, 7~8 位数字, [1-9][0-9]{6,7}</dd>\n     <dd><b>phone:</b> 带区号的电话号码, [区号][空格|空白|-]7~8位电话号码</dd>\n     <dd><b>phoneall:</b> 带国家代码, 区号, 分机号的电话号码, [+国家代码][区号][空格|空白|-]7~8位电话号码#1~6位</dd>\n     <dd><b>phonezone:</b> 电话区号, 3~4位数字</dd>\n     <dd><b>phoneext:</b> 电话分机号, 1~6位数字</dd>\n     <dd><b>mobilephone:</b> mobilecode | phone</dd>\n     <dd><b>mobilephoneall:</b> mobilezonecode | phoneall</dd>\n     <dd><b>reg:</b> 自定义正则校验, /正则规则/[igm]</dd>\n     <dd>\n         <b>vcode:</b> 验证码, 0-9a-zA-Z, 长度 默认为4\n         <br />可通过 vcode-[\\d], 指定验证码长度\n     </dd>\n     <dd>\n         <b>text:</b> 显示声明检查的内容为文本类型\n         <br />默认就是 text, 没有特殊原因其实不用显示声明\n     </dd>\n     <dd>\n         <b>bytetext:</b> 声明按字节检查文本长度\n         <br /> ASCII 算一个字符, 非 ASCII 算两个字符\n     </dd>\n     <dd><b>url:</b> URL 格式, ftp, http, https</dd>\n     <dd><b>domain:</b> 匹配域名, 宽松模式, 允许匹配 http(s), 且结尾允许匹配反斜扛(/)</dd>\n     <dd><b>stricdomain:</b> 匹配域名, 严格模式, 不允许匹配 http(s), 且结尾不允许匹配反斜扛(/)</dd>\n     <dd><b>email:</b> 电子邮件</dd>\n     <dd><b>zipcode:</b> 邮政编码, 0~6位数字</dd>\n\n     <dt>subdatatype: 特殊数据类型</dt>\n     <dd>\n         <dl>\n             <dt>alternative: N 个 Control 必须至少有一个非空的值</dt>\n             <dd><b>datatarget:</b> 显式指定同一组 control, 默认在父级下查找[subdatatype=alternative]</dd>\n             <dd><b>alternativemsg:</b> N 选一的错误提示</dd>\n         </dl>\n     </dd>\n     <dd>\n         <dl>\n             <dt>reconfirm: N 个 Control 的值必须保持一致</dt>\n             <dd><b>datatarget:</b> 显式指定同一组 control, 默认在父级下查找[subdatatype=reconfirm]</dd>\n             <dd><b>reconfirmmsg:</b> 值不一致时的错误提示</dd>\n         </dl>\n     </dd>\n</dl>",
             "static": 1,
             "version": "dev 0.1",
             "author": "qiushaowei   <suches@btbtd.org> | 360 UXC-FE Team",
@@ -2244,14 +2244,14 @@
         },
         {
             "file": "../comps/Form/UXC.Form.initCheckAll.js",
-            "line": 114,
+            "line": 116,
             "description": "判断 input 是否为 全选反选 按钮",
             "class": "UXC.Form",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Form/UXC.Form.initCheckAll.js",
-            "line": 121,
+            "line": 123,
             "description": "input 改变状态时, 全选按钮也改为正确的状态",
             "class": "UXC.Form",
             "namespace": "UXC"
@@ -7146,7 +7146,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 18,
+            "line": 134,
             "description": "验证一个表单项, 如 文本框, 下拉框, 复选框, 单选框, 文本域, 隐藏域",
             "itemtype": "method",
             "name": "check",
@@ -7170,7 +7170,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 49,
+            "line": 166,
             "description": "清除Valid生成的错误样式",
             "itemtype": "method",
             "name": "clearError",
@@ -7190,7 +7190,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 77,
+            "line": 194,
             "description": "验证发生错误时, 是否终止继续验证\n<br /> 为真终止继续验证, 为假将验证表单的所有项, 默认为 false",
             "itemtype": "property",
             "name": "errorAbort",
@@ -7205,7 +7205,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 90,
+            "line": 207,
             "description": "是否自动清除两边的空格",
             "itemtype": "property",
             "name": "autoTrim",
@@ -7220,7 +7220,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 102,
+            "line": 219,
             "description": "检查一个表单是否有内容",
             "itemtype": "method",
             "name": "formHasValue",
@@ -7248,7 +7248,56 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 168,
+            "line": 283,
+            "description": "把一个表单项的状态设为正确状态",
+            "itemtype": "method",
+            "name": "setValid",
+            "params": [
+                {
+                    "name": "_item",
+                    "description": "",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_tm",
+                    "description": "延时 _tm 毫秒显示处理结果, 默认=150",
+                    "type": "Int"
+                }
+            ],
+            "static": 1,
+            "class": "UXC.Valid",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Valid/Valid.js",
+            "line": 291,
+            "description": "把一个表单项的状态设为错误状态",
+            "itemtype": "method",
+            "name": "setError",
+            "params": [
+                {
+                    "name": "_item",
+                    "description": "",
+                    "type": "Selector"
+                },
+                {
+                    "name": "_msgAttr",
+                    "description": "- 显示指定需要读取的错误信息属性名, 默认为 reqmsg, errmsg, 通过该属性可以指定别的属性名",
+                    "type": "String"
+                },
+                {
+                    "name": "_fullMsg",
+                    "description": "- 显示指定错误信息为属性的值, 而不是自动添加的 请上传/选择/填写",
+                    "type": "Bool"
+                }
+            ],
+            "static": 1,
+            "class": "UXC.Valid",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Valid/Valid.js",
+            "line": 301,
             "description": "这个方法是 <a href='UXC.Valid.html#method_check'>Valid.check</a> 的别名",
             "itemtype": "method",
             "name": "checkAll",
@@ -7268,7 +7317,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 177,
+            "line": 310,
             "description": "响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果",
             "access": "private",
             "tagname": "",
@@ -7277,7 +7326,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 184,
+            "line": 317,
             "description": "响应表单子对象的 change 事件, 触发事件时, 检查并显示错误或正确的视觉效果",
             "access": "private",
             "tagname": "",
@@ -7286,7 +7335,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 191,
+            "line": 324,
             "description": "私有逻辑处理对象, 验证所需的所有规则和方法都存放于此对象",
             "itemtype": "property",
             "name": "_logic",
@@ -7299,7 +7348,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 200,
+            "line": 333,
             "description": "分析_item是否附合规则要求",
             "itemtype": "method",
             "name": "_logic.parse",
@@ -7318,7 +7367,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 263,
+            "line": 397,
             "description": "检查 _item 是否为 Valid 的检查对象",
             "itemtype": "method",
             "name": "_logic.isValidItem",
@@ -7337,7 +7386,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 285,
+            "line": 419,
             "description": "显示正确的视觉效果",
             "itemtype": "method",
             "name": "_logic.valid",
@@ -7349,6 +7398,11 @@
                     "name": "_item",
                     "description": "",
                     "type": "Selector"
+                },
+                {
+                    "name": "_tm",
+                    "description": "",
+                    "type": "Int"
                 }
             ],
             "class": "UXC.Valid",
@@ -7356,7 +7410,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 302,
+            "line": 437,
             "description": "显示错误的视觉效果",
             "itemtype": "method",
             "name": "_logic.error",
@@ -7368,6 +7422,16 @@
                     "name": "_item",
                     "description": "",
                     "type": "Selector"
+                },
+                {
+                    "name": "_msgAttr",
+                    "description": "- 显示指定需要读取的错误信息属性名, 默认为 reqmsg, errmsg, 通过该属性可以指定别的属性名",
+                    "type": "String"
+                },
+                {
+                    "name": "_fullMsg",
+                    "description": "- 显示指定错误信息为属性的值, 而不是自动添加的 请上传/选择/填写",
+                    "type": "Bool"
                 }
             ],
             "class": "UXC.Valid",
@@ -7375,7 +7439,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 334,
+            "line": 471,
             "description": "获取 _selector 对象\n<br />这个方法的存在是为了向后兼容qwrap, qwrap DOM参数都为ID",
             "itemtype": "method",
             "name": "_logic.getElement",
@@ -7394,7 +7458,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 351,
+            "line": 488,
             "description": "获取 _item 的检查类型, 所有可用的检查类型位于 _logic.datatype 对象",
             "itemtype": "method",
             "name": "_logic.getDatatype",
@@ -7413,7 +7477,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 362,
+            "line": 499,
             "description": "获取 _item 的检查子类型, 所有可用的检查子类型位于 _logic.subdatatype 对象",
             "itemtype": "method",
             "name": "_logic.getSubdatatype",
@@ -7432,7 +7496,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 373,
+            "line": 510,
             "description": "获取对应的错误信息, 默认的错误信息有 reqmsg, errmsg, <br />\n注意: 错误信息第一个字符如果为空格的话, 将完全使用用户定义的错误信息, 将不会动态添加 请上传/选择/填写",
             "itemtype": "method",
             "name": "_logic.getMsg",
@@ -7461,7 +7525,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 407,
+            "line": 544,
             "description": "计算字符串的字节长度, 非 ASCII 0-255的字符视为两个字节",
             "itemtype": "method",
             "name": "_logic.bytelen",
@@ -7480,7 +7544,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 418,
+            "line": 555,
             "description": "获取日期字符串的 timestamp, 字符串格式为 YYYY[^\\d]*?MM[^\\d]*?DD",
             "itemtype": "method",
             "name": "_logic.getTimestamp",
@@ -7499,64 +7563,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 430,
-            "description": "此对象存储可供检查的子类型",
-            "itemtype": "property",
-            "name": "_logic.subdatatype",
-            "type": "Object",
-            "access": "private",
-            "tagname": "",
-            "static": 1,
-            "class": "UXC.Valid",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../comps/Valid/Valid.js",
-            "line": 438,
-            "description": "此类型检查 2|N个对象必须至少有一个是有输入内容的, \n<br> 常用于 手机/电话 二填一",
-            "itemtype": "method",
-            "name": "_logic.subdatatype.alternative",
-            "access": "private",
-            "tagname": "",
-            "static": 1,
-            "params": [
-                {
-                    "name": "_item",
-                    "description": "",
-                    "type": "Selector"
-                }
-            ],
-            "example": [
-                "\n                       <dd>\n                       <div class=\"f-l label\">\n                           <label>(datatype phonezone, phonecode, phoneext)电话号码:</label>\n                       </div>\n                       <div class=\"f-l\">\n                           <input type='TEXT' name='company_phonezone' style=\"width:40px;\" value='' size=\"4\" \n                               datatype=\"phonezone\" emEl=\"#phone-err-em\" errmsg=\"请填写正确的电话区号\" />\n                           - <input type='TEXT' name='company_phonecode' style=\"width:80px;\" value='' size=\"8\" \n                               datatype=\"phonecode\" subdatatype=\"alternative\" datatarget=\"input[name=company_mobile]\" alternativemsg=\"电话号码和手机号码至少填写一个\"\n                               errmsg=\"请检查电话号码格式\" emEl=\"#phone-err-em\" />\n                           - <input type='TEXT' name='company_phoneext' style=\"width:40px;\" value='' size=\"4\" \n                               datatype=\"phoneext\" emEl=\"#phone-err-em\" errmsg=\"请填写正确的分机号\" />\n                           <em id=\"phone-err-em\"></em>\n                       </div>\n                       </dd>\n\n                       <dd>\n                       <div class=\"f-l label\">\n                           <label>(datatype mobilecode)手机号码:</label>\n                       </div>\n                       <div class=\"f-l\">\n                           <input type=\"TEXT\" name=\"company_mobile\" \n                               datatype=\"mobilecode\" subdatatype=\"alternative\" datatarget=\"input[name=company_phonecode]\" alternativemsg=\" \"\n                               errmsg=\"请填写正确的手机号码\">\n                       </div>\n                       </dd>"
-            ],
-            "class": "UXC.Valid",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../comps/Valid/Valid.js",
-            "line": 491,
-            "description": "此类型检查 2|N 个对象填写的值必须一致\n常用于注意时密码验证/重置密码",
-            "itemtype": "method",
-            "name": "_logic.subdatatype.reconfirm",
-            "access": "private",
-            "tagname": "",
-            "static": 1,
-            "params": [
-                {
-                    "name": "_item",
-                    "description": "",
-                    "type": "Selector"
-                }
-            ],
-            "example": [
-                "\n                       <dd>\n                       <div class=\"f-l label\">\n                           <label>(datatype text, subdatatype reconfirm)用户密码:</label>\n                       </div>\n                       <div class=\"f-l\">\n                           <input type=\"PASSWORD\" name=\"company_pwd\" \n                           datatype=\"text\" subdatatype=\"reconfirm\" datatarget=\"input[name=company_repwd]\" reconfirmmsg=\"用户密码和确认密码不一致\"\n                           minlength=\"6\" maxlength=\"15\" reqmsg=\"用户密码\" errmsg=\"请填写正确的用户密码\">\n                       </div>\n                       </dd>\n\n                       <dd>\n                       <div class=\"f-l label\">\n                           <label>(datatype text, subdatatype reconfirm)确认密码:</label>\n                       </div>\n                       <div class=\"f-l\">\n                           <input type=\"PASSWORD\" name=\"company_repwd\" \n                           datatype=\"text\" subdatatype=\"reconfirm\" datatarget=\"input[name=company_pwd]\" reconfirmmsg=\"确认密码和用户密码不一致\"\n                           minlength=\"6\" maxlength=\"15\" reqmsg=\"确认密码\" errmsg=\"请填写正确的确认密码\">\n                       </div>\n                       </dd>"
-            ],
-            "class": "UXC.Valid",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../comps/Valid/Valid.js",
-            "line": 539,
+            "line": 567,
             "description": "此对象存储可供检查的类型",
             "itemtype": "property",
             "name": "_logic.datatype",
@@ -7569,7 +7576,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 547,
+            "line": 575,
             "description": "检查是否为正确的数字<br />\n<br>默认范围 0 - Math.pow(10, 10)",
             "itemtype": "method",
             "name": "_logic.datatype.n",
@@ -7592,7 +7599,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 607,
+            "line": 635,
             "description": "检查两个输入框的数值\n<br /> 数字格式为 0-pow(10,10)\n<br /> 带小数点使用 nrange-int.float, 例: nrange-1.2  nrange-2.2\n<br /> <b>注意:</b> 如果不显示指定 fromNEl, toNEl, \n             将会从父级查找 datatype=nrange属性的input, 如果数量等于2, 则会进行验证, 不等2将忽略",
             "itemtype": "method",
             "name": "_logic.datatype.nrange",
@@ -7615,7 +7622,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 688,
+            "line": 716,
             "description": "检查是否为合法的日期,\n<br />日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD",
             "itemtype": "method",
             "name": "_logic.datatype.d",
@@ -7638,7 +7645,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 726,
+            "line": 754,
             "description": "检查两个输入框的日期\n<br />日期格式为 YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD\n<br /> <b>注意:</b> 如果不显示指定 fromDateEl, toDateEl, \n             将会从父级查找 datatype=datarange属性的input, 如果数量等于2, 则会进行验证, 不等2将忽略",
             "itemtype": "method",
             "name": "_logic.datatype.daterange",
@@ -7661,8 +7668,8 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 794,
-            "description": "检查时间格式, 格式为 mm:dd:ss",
+            "line": 822,
+            "description": "检查时间格式, 格式为 hh:mm:ss",
             "itemtype": "method",
             "name": "_logic.datatype.time",
             "access": "private",
@@ -7676,15 +7683,15 @@
                 }
             ],
             "example": [
-                "\n                       <div class=\"f-l\">\n                           <input type=\"TEXT\" name=\"company_time\" errmsg=\"正确的时间, 格式为 hh:nn:ss\" datatype=\"time\" >\n                       </div>"
+                "\n                       <div class=\"f-l\">\n                           <input type=\"TEXT\" name=\"company_time\" errmsg=\"正确的时间, 格式为 hh:mm:ss\" datatype=\"time\" >\n                       </div>"
             ],
             "class": "UXC.Valid",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 811,
-            "description": "检查时间格式, 格式为 mm:dd:ss",
+            "line": 839,
+            "description": "检查时间格式, 格式为 hh:mm",
             "itemtype": "method",
             "name": "_logic.datatype.minute",
             "access": "private",
@@ -7698,14 +7705,14 @@
                 }
             ],
             "example": [
-                "\n                       <div class=\"f-l\">\n                           <input type=\"TEXT\" name=\"company_time\" errmsg=\"正确的时间, 格式为 hh:nn\" datatype=\"minute\" >\n                       </div>"
+                "\n                       <div class=\"f-l\">\n                           <input type=\"TEXT\" name=\"company_time\" errmsg=\"正确的时间, 格式为 hh:mm\" datatype=\"minute\" >\n                       </div>"
             ],
             "class": "UXC.Valid",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 828,
+            "line": 856,
             "description": "检查银行卡号码\n<br />格式为 d{19} | d{16} | 1111 1111 1111 1111 111 | 1111 1111 1111 1111111",
             "itemtype": "method",
             "name": "_logic.datatype.bankcard",
@@ -7727,7 +7734,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 847,
+            "line": 875,
             "description": "检查中文姓名\n<br>格式: 汉字和大小写字母\n<br>规则: 长度 2-32个字节, 非 ASCII 算2个字节",
             "itemtype": "method",
             "name": "_logic.datatype.cnname",
@@ -7749,8 +7756,8 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 867,
-            "description": "检查注册用户名\n<br>格式: a-zA-Z0-9_-\n<br>规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 29",
+            "line": 895,
+            "description": "检查注册用户名\n<br>格式: a-zA-Z0-9_-\n<br>规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 30",
             "itemtype": "method",
             "name": "_logic.datatype.username",
             "access": "private",
@@ -7771,7 +7778,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 887,
+            "line": 915,
             "description": "检查身份证号码<br />\n目前只使用最简单的位数判断~ 有待完善",
             "itemtype": "method",
             "name": "_logic.datatype.idnumber",
@@ -7793,7 +7800,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 906,
+            "line": 934,
             "description": "检查手机号码<br />",
             "itemtype": "method",
             "name": "_logic.datatype.mobilecode",
@@ -7820,7 +7827,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 926,
+            "line": 954,
             "description": "检查手机号码\n<br />这个方法是 _logic.datatype.mobilecode 的别名",
             "itemtype": "method",
             "name": "_logic.datatype.mobile",
@@ -7844,7 +7851,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 939,
+            "line": 967,
             "description": "检查手机号码加强方法\n<br>格式: [+国家代码] [零]11位数字",
             "itemtype": "method",
             "name": "_logic.datatype.mobilezonecode",
@@ -7871,10 +7878,10 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 960,
-            "description": "检查手机号码/电话号码\n<br />这个方法是原有方法的混合验证 _logic.datatype.mobilecode + _logic.datatype.phone",
+            "line": 988,
+            "description": "检查电话号码\n<br>格式: 7/8位数字",
             "itemtype": "method",
-            "name": "_logic.datatype.mobilephone",
+            "name": "_logic.datatype.phonecode",
             "access": "private",
             "tagname": "",
             "static": 1,
@@ -7886,36 +7893,14 @@
                 }
             ],
             "example": [
-                "\n                       <div class=\"f-l label\">\n                           <label>(datatype mobilephone, phone + mobilecode)手机号码或电话号码:</label>\n                       </div>\n                       <div class=\"f-l\">\n                           <input type=\"text\" name=\"company_mobilephone\" \n                               datatype=\"mobilephone\"\n                               errmsg=\"请填写正确的手机/电话号码\">\n                       </div>"
+                "\n                       <div>\n                           <input type='TEXT' name='company_phonecode' style=\"width:80px;\" value='' size=\"8\" \n                               datatype=\"phonecode\" errmsg=\"请检查电话号码格式\" emEl=\"#phone-err-em\" />\n                       </div>"
             ],
             "class": "UXC.Valid",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 983,
-            "description": "检查手机号码/电话号码, 泛匹配\n<br />这个方法是原有方法的混合验证 _logic.datatype.mobilezonecode + _logic.datatype.phoneall",
-            "itemtype": "method",
-            "name": "_logic.datatype.mobilephoneall",
-            "access": "private",
-            "tagname": "",
-            "static": 1,
-            "params": [
-                {
-                    "name": "_item",
-                    "description": "",
-                    "type": "Selector"
-                }
-            ],
-            "example": [
-                "\n                       <div class=\"f-l label\">\n                           <label>(datatype mobilephoneall, phoneall + mobilezonecode)手机号码或电话号码:</label>\n                       </div>\n                       <div class=\"f-l\">\n                           <input type=\"text\" name=\"company_mobilephoneall\" \n                               datatype=\"mobilephoneall\"\n                               errmsg=\"请填写正确的手机/电话号码\">\n                       </div>"
-            ],
-            "class": "UXC.Valid",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../comps/Valid/Valid.js",
-            "line": 1006,
+            "line": 1007,
             "description": "检查电话号码\n<br>格式: [区号]7/8位电话号码",
             "itemtype": "method",
             "name": "_logic.datatype.phone",
@@ -7942,7 +7927,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1027,
+            "line": 1028,
             "description": "检查电话号码\n<br>格式: [+国家代码][ ][电话区号][ ]7/8位电话号码[#分机号]",
             "itemtype": "method",
             "name": "_logic.datatype.phoneall",
@@ -7969,7 +7954,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1048,
+            "line": 1049,
             "description": "检查电话区号",
             "itemtype": "method",
             "name": "_logic.datatype.phonezone",
@@ -7991,29 +7976,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1066,
-            "description": "检查电话号码\n<br>格式: 7/8位数字",
-            "itemtype": "method",
-            "name": "_logic.datatype.phonecode",
-            "access": "private",
-            "tagname": "",
-            "static": 1,
-            "params": [
-                {
-                    "name": "_item",
-                    "description": "",
-                    "type": "Selector"
-                }
-            ],
-            "example": [
-                "\n                       <div>\n                           <input type='TEXT' name='company_phonecode' style=\"width:80px;\" value='' size=\"8\" \n                               datatype=\"phonecode\" errmsg=\"请检查电话号码格式\" emEl=\"#phone-err-em\" />\n                       </div>"
-            ],
-            "class": "UXC.Valid",
-            "namespace": "UXC"
-        },
-        {
-            "file": "../comps/Valid/Valid.js",
-            "line": 1085,
+            "line": 1067,
             "description": "检查电话分机号码",
             "itemtype": "method",
             "name": "_logic.datatype.phoneext",
@@ -8035,7 +7998,51 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1103,
+            "line": 1085,
+            "description": "检查手机号码/电话号码\n<br />这个方法是原有方法的混合验证 _logic.datatype.mobilecode + _logic.datatype.phone",
+            "itemtype": "method",
+            "name": "_logic.datatype.mobilephone",
+            "access": "private",
+            "tagname": "",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_item",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "example": [
+                "\n                       <div class=\"f-l label\">\n                           <label>(datatype mobilephone, phone + mobilecode)手机号码或电话号码:</label>\n                       </div>\n                       <div class=\"f-l\">\n                           <input type=\"text\" name=\"company_mobilephone\" \n                               datatype=\"mobilephone\"\n                               errmsg=\"请填写正确的手机/电话号码\">\n                       </div>"
+            ],
+            "class": "UXC.Valid",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Valid/Valid.js",
+            "line": 1109,
+            "description": "检查手机号码/电话号码, 泛匹配\n<br />这个方法是原有方法的混合验证 _logic.datatype.mobilezonecode + _logic.datatype.phoneall",
+            "itemtype": "method",
+            "name": "_logic.datatype.mobilephoneall",
+            "access": "private",
+            "tagname": "",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_item",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "example": [
+                "\n                       <div class=\"f-l label\">\n                           <label>(datatype mobilephoneall, phoneall + mobilezonecode)手机号码或电话号码:</label>\n                       </div>\n                       <div class=\"f-l\">\n                           <input type=\"text\" name=\"company_mobilephoneall\" \n                               datatype=\"mobilephoneall\"\n                               errmsg=\"请填写正确的手机/电话号码\">\n                       </div>"
+            ],
+            "class": "UXC.Valid",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Valid/Valid.js",
+            "line": 1133,
             "description": "检查内容的长度",
             "itemtype": "method",
             "name": "_logic.datatype.length",
@@ -8058,14 +8065,14 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1132,
+            "line": 1162,
             "description": "根据特殊的 datatype 实现不同的计算方法",
             "class": "UXC.Valid",
             "namespace": "UXC"
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1158,
+            "line": 1188,
             "description": "检查内容是否为空,\n<br>如果声明了该属性, 那么 value 须不为空",
             "itemtype": "method",
             "name": "_logic.datatype.reqmsg",
@@ -8087,7 +8094,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1184,
+            "line": 1214,
             "description": "自定义正则校验",
             "itemtype": "method",
             "name": "_logic.datatype.reg",
@@ -8110,7 +8117,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1210,
+            "line": 1240,
             "description": "检查验证码<br />\n格式: 为 0-9a-zA-Z, 长度 默认为4",
             "itemtype": "method",
             "name": "_logic.datatype.vcode",
@@ -8133,7 +8140,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1236,
+            "line": 1266,
             "description": "检查文本长度",
             "itemtype": "method",
             "name": "_logic.datatype.text",
@@ -8149,7 +8156,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1245,
+            "line": 1275,
             "description": "检查文本的字节长度",
             "itemtype": "method",
             "name": "_logic.datatype.bytetext",
@@ -8165,8 +8172,8 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1254,
-            "description": "检查富文本的字节",
+            "line": 1284,
+            "description": "检查富文本的字节\n<br />TODO: 完成富文本长度检查",
             "itemtype": "method",
             "name": "_logic.datatype.richtext",
             "access": "private",
@@ -8181,7 +8188,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1263,
+            "line": 1294,
             "description": "检查URL",
             "itemtype": "method",
             "name": "_logic.datatype.url",
@@ -8203,7 +8210,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1280,
+            "line": 1311,
             "description": "检查域名",
             "itemtype": "method",
             "name": "_logic.datatype.domain",
@@ -8222,7 +8229,26 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1297,
+            "line": 1328,
+            "description": "检查域名",
+            "itemtype": "method",
+            "name": "_logic.datatype.stricdomain",
+            "access": "private",
+            "tagname": "",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_item!~YUIDOC_LINE~!",
+                    "description": "<div class=\"f-l\">\n                           <input type=\"TEXT\" name=\"company_domain\" datatype=\"stricdomain\" reqmsg=\"域名\" errmsg=\"请填写正确的域名\">\n                       </div>",
+                    "type": "Selector"
+                }
+            ],
+            "class": "UXC.Valid",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Valid/Valid.js",
+            "line": 1344,
             "description": "检查电子邮件",
             "itemtype": "method",
             "name": "_logic.datatype.email",
@@ -8244,7 +8270,7 @@
         },
         {
             "file": "../comps/Valid/Valid.js",
-            "line": 1314,
+            "line": 1361,
             "description": "检查邮政编码",
             "itemtype": "method",
             "name": "_logic.datatype.zipcode",
@@ -8260,6 +8286,63 @@
             ],
             "example": [
                 "\n                       <div class=\"f-l\">\n                           <input type=\"TEXT\" name=\"company_zipcode\" datatype=\"zipcode\" errmsg=\"请填写正确的邮编\">\n                       </div>"
+            ],
+            "class": "UXC.Valid",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Valid/Valid.js",
+            "line": 1379,
+            "description": "此对象存储可供检查的子类型",
+            "itemtype": "property",
+            "name": "_logic.subdatatype",
+            "type": "Object",
+            "access": "private",
+            "tagname": "",
+            "static": 1,
+            "class": "UXC.Valid",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Valid/Valid.js",
+            "line": 1387,
+            "description": "此类型检查 2|N个对象必须至少有一个是有输入内容的, \n<br> 常用于 手机/电话 二填一",
+            "itemtype": "method",
+            "name": "_logic.subdatatype.alternative",
+            "access": "private",
+            "tagname": "",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_item",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "example": [
+                "\n                       <dd>\n                       <div class=\"f-l label\">\n                           <label>(datatype phonezone, phonecode, phoneext)电话号码:</label>\n                       </div>\n                       <div class=\"f-l\">\n                           <input type='TEXT' name='company_phonezone' style=\"width:40px;\" value='' size=\"4\" \n                               datatype=\"phonezone\" emEl=\"#phone-err-em\" errmsg=\"请填写正确的电话区号\" />\n                           - <input type='TEXT' name='company_phonecode' style=\"width:80px;\" value='' size=\"8\" \n                               datatype=\"phonecode\" subdatatype=\"alternative\" datatarget=\"input[name=company_mobile]\" alternativemsg=\"电话号码和手机号码至少填写一个\"\n                               errmsg=\"请检查电话号码格式\" emEl=\"#phone-err-em\" />\n                           - <input type='TEXT' name='company_phoneext' style=\"width:40px;\" value='' size=\"4\" \n                               datatype=\"phoneext\" emEl=\"#phone-err-em\" errmsg=\"请填写正确的分机号\" />\n                           <em id=\"phone-err-em\"></em>\n                       </div>\n                       </dd>\n\n                       <dd>\n                       <div class=\"f-l label\">\n                           <label>(datatype mobilecode)手机号码:</label>\n                       </div>\n                       <div class=\"f-l\">\n                           <input type=\"TEXT\" name=\"company_mobile\" \n                               datatype=\"mobilecode\" subdatatype=\"alternative\" datatarget=\"input[name=company_phonecode]\" alternativemsg=\" \"\n                               errmsg=\"请填写正确的手机号码\">\n                       </div>\n                       </dd>"
+            ],
+            "class": "UXC.Valid",
+            "namespace": "UXC"
+        },
+        {
+            "file": "../comps/Valid/Valid.js",
+            "line": 1444,
+            "description": "此类型检查 2|N 个对象填写的值必须一致\n常用于注意时密码验证/重置密码",
+            "itemtype": "method",
+            "name": "_logic.subdatatype.reconfirm",
+            "access": "private",
+            "tagname": "",
+            "static": 1,
+            "params": [
+                {
+                    "name": "_item",
+                    "description": "",
+                    "type": "Selector"
+                }
+            ],
+            "example": [
+                "\n                       <dd>\n                       <div class=\"f-l label\">\n                           <label>(datatype text, subdatatype reconfirm)用户密码:</label>\n                       </div>\n                       <div class=\"f-l\">\n                           <input type=\"PASSWORD\" name=\"company_pwd\" \n                           datatype=\"text\" subdatatype=\"reconfirm\" datatarget=\"input[name=company_repwd]\" reconfirmmsg=\"用户密码和确认密码不一致\"\n                           minlength=\"6\" maxlength=\"15\" reqmsg=\"用户密码\" errmsg=\"请填写正确的用户密码\">\n                       </div>\n                       </dd>\n\n                       <dd>\n                       <div class=\"f-l label\">\n                           <label>(datatype text, subdatatype reconfirm)确认密码:</label>\n                       </div>\n                       <div class=\"f-l\">\n                           <input type=\"PASSWORD\" name=\"company_repwd\" \n                           datatype=\"text\" subdatatype=\"reconfirm\" datatarget=\"input[name=company_pwd]\" reconfirmmsg=\"确认密码和用户密码不一致\"\n                           minlength=\"6\" maxlength=\"15\" reqmsg=\"确认密码\" errmsg=\"请填写正确的确认密码\">\n                       </div>\n                       </dd>"
             ],
             "class": "UXC.Valid",
             "namespace": "UXC"
@@ -10239,107 +10322,107 @@
         },
         {
             "message": "unknown tag: version",
-            "line": " ../comps/Valid/Valid.js:3"
+            "line": " ../comps/Valid/Valid.js:4"
         },
         {
             "message": "unknown tag: date",
-            "line": " ../comps/Valid/Valid.js:3"
+            "line": " ../comps/Valid/Valid.js:4"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:547"
+            "line": " ../comps/Valid/Valid.js:575"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:547"
+            "line": " ../comps/Valid/Valid.js:575"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:547"
+            "line": " ../comps/Valid/Valid.js:575"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:607"
+            "line": " ../comps/Valid/Valid.js:635"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:607"
+            "line": " ../comps/Valid/Valid.js:635"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:607"
+            "line": " ../comps/Valid/Valid.js:635"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:607"
+            "line": " ../comps/Valid/Valid.js:635"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:607"
+            "line": " ../comps/Valid/Valid.js:635"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:688"
+            "line": " ../comps/Valid/Valid.js:716"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:688"
+            "line": " ../comps/Valid/Valid.js:716"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:688"
+            "line": " ../comps/Valid/Valid.js:716"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:726"
+            "line": " ../comps/Valid/Valid.js:754"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:726"
+            "line": " ../comps/Valid/Valid.js:754"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:726"
+            "line": " ../comps/Valid/Valid.js:754"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:726"
+            "line": " ../comps/Valid/Valid.js:754"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:726"
+            "line": " ../comps/Valid/Valid.js:754"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1103"
+            "line": " ../comps/Valid/Valid.js:1133"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1103"
+            "line": " ../comps/Valid/Valid.js:1133"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1103"
+            "line": " ../comps/Valid/Valid.js:1133"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1184"
+            "line": " ../comps/Valid/Valid.js:1214"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1210"
+            "line": " ../comps/Valid/Valid.js:1240"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1236"
+            "line": " ../comps/Valid/Valid.js:1266"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1245"
+            "line": " ../comps/Valid/Valid.js:1275"
         },
         {
             "message": "unknown tag: attr",
-            "line": " ../comps/Valid/Valid.js:1254"
+            "line": " ../comps/Valid/Valid.js:1284"
         },
         {
             "message": "unknown tag: ignore",
@@ -10459,11 +10542,11 @@
         },
         {
             "message": "Missing item type\n判断 input 是否为 全选反选 按钮",
-            "line": " ../comps/Form/UXC.Form.initCheckAll.js:114"
+            "line": " ../comps/Form/UXC.Form.initCheckAll.js:116"
         },
         {
             "message": "Missing item type\ninput 改变状态时, 全选按钮也改为正确的状态",
-            "line": " ../comps/Form/UXC.Form.initCheckAll.js:121"
+            "line": " ../comps/Form/UXC.Form.initCheckAll.js:123"
         },
         {
             "message": "Missing item type\n取当前脚本标签的 src路径",
@@ -10583,15 +10666,15 @@
         },
         {
             "message": "Missing item type\n响应表单子对象的 blur事件, 触发事件时, 检查并显示错误或正确的视觉效果",
-            "line": " ../comps/Valid/Valid.js:177"
+            "line": " ../comps/Valid/Valid.js:310"
         },
         {
             "message": "Missing item type\n响应表单子对象的 change 事件, 触发事件时, 检查并显示错误或正确的视觉效果",
-            "line": " ../comps/Valid/Valid.js:184"
+            "line": " ../comps/Valid/Valid.js:317"
         },
         {
             "message": "Missing item type\n根据特殊的 datatype 实现不同的计算方法",
-            "line": " ../comps/Valid/Valid.js:1132"
+            "line": " ../comps/Valid/Valid.js:1162"
         },
         {
             "message": "Missing item type\nTop level namespace for Jasmine, a lightweight JavaScript BDD/spec/testing framework.",
