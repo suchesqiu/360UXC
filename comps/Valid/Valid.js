@@ -1,3 +1,4 @@
+//TODO: 错误提示 不占用页面宽高, 使用 position = absolute,  date = 2013-08-03
 ;(function($){
     !window.UXC && (window.UXC = { log:function(){} });
     /**
@@ -7,6 +8,121 @@
      * <p><a href='https://github.com/suchesqiu/360UXC.git' target='_blank'>UXC Project Site</a>
      * | <a href='http://uxc.btbtd.org/uxc_docs/classes/UXC.Valid.html' target='_blank'>API docs</a>
      * | <a href='../../comps/Valid/_demo/' target='_blank'>demo link</a></p>
+     * <h2>Form 的可用 html attribute</h2>
+     * <dl>
+     *  <dt>errorabort = bool</dt>
+     *  <dd>查检Form Control时, 如果发生错误是否继续检查下一个</dd>
+     *  <dd>default = true</dd>
+     * </dl>
+     * <h2>Form Control的可用 html attribute</h2>
+     * <dl>
+     *      <dt>reqmsg = 错误提示</dt>
+     *      <dd>值不能为空</dd>
+     *
+     *      <dt>errmsg = 错误提示</dt>
+     *      <dd>格式错误, 但不验证为空的值</dd>
+     *
+     *      <dt>emel = selector</dt>
+     *      <dd>显示错误的selector</dd>
+     *
+     *      <dt>minlength = int(最小长度)</dt>
+     *      <dd>验证内容的最小长度, 但不验证为空的值</dd>
+     *
+     *      <dt>maxlength = int(最大长度)</dt>
+     *      <dd>验证内容的最大长度, 但不验证为空的值</dd>
+     *
+     *      <dt>minvalue = [number|ISO date](最小值)</dt>
+     *      <dd>验证内容的最小值, 但不验证为空的值</dd>
+     *
+     *      <dt>maxvalue = [number|ISO date](最大值)</dt>
+     *      <dd>验证内容的最大值, 但不验证为空的值</dd>
+     *
+     *      <dt>ignoreprocess = bool</dt>
+     *      <dd>验证表单时, 是否忽略</dd>
+     *      <dd>default = false</dd>
+     *
+     *      <dt>datatype: 常用数据类型</dt>
+     *      <dd><b>n:</b> 检查是否为正确的数字</dd>
+     *      <dd><b>n-i.f:</b> 检查数字格式是否附件要求, i[整数位数], f[浮点数位数], n-7.2 = 0.00 ~ 9999999.99</dd>
+     *      <dd>
+     *          <b>nrange:</b> 检查两个control的数值范围
+     *          <dl>
+     *              <dd>html attr <b>fromNEl:</b> 指定开始的 control</dd>
+     *              <dd>html attr <b>toNEl:</b> 指定结束的 control</dd>
+     *              <dd>如果不指定 fromNEl, toNEl, 默认是从父节点下面找到 nrange, 按顺序定为 fromNEl, toNEl</dd>
+     *          </dl>
+     *      </dd>
+     *      <dd><b>d:</b> 检查是否为正确的日期, YYYYMMDD, YYYY/MM/DD, YYYY-MM-DD, YYYY.MM.DD</dd>
+     *      <dd>
+     *          <b>daterange:</b> 检查两个control的日期范围
+     *          <dl>
+     *              <dd>html attr <b>fromNEl:</b> 指定开始的 control</dd>
+     *              <dd>html attr <b>toNEl:</b> 指定结束的 control</dd>
+     *              <dd>如果不指定 fromNEl, toNEl, 默认是从父节点下面找到 nrange, 按顺序定为 fromNEl, toNEl</dd>
+     *          </dl>
+     *      </dd>
+     *      <dd><b>time:</b> 是否为正确的时间, hh:mm:ss</dd>
+     *      <dd><b>minute:</b> 是否为正确的时间, hh:mm</dd>
+     *      <dd>
+     *          <b>bankcard:</b> 是否为正确的银行卡
+     *          <br />  格式为 d{19} | d{16} | 1111 1111 1111 1111 111 | 1111 1111 1111 1111111
+     *      </dd>
+     *      <dd>
+     *          <b>cnname:</b> 中文姓名
+     *          <br>格式: 汉字和大小写字母
+     *          <br>规则: 长度 2-32个字节, 非 ASCII 算2个字节
+     *      </dd>
+     *      <dd>
+     *          <b>username:</b> 注册用户名
+     *          <br>格式: a-zA-Z0-9_-
+     *          <br>规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 30
+     *      </dd>
+     *      <dd><b>idnumber:</b> 身份证号码, 15~18 位</dd>
+     *      <dd><b>mobilecode:</b> 手机号码, 11位, (13|14|15|16|18|19)[\d]{9}</dd>
+     *      <dd><b>mobile:</b> mobilecode 的别名</dd>
+     *      <dd><b>mobilezonecode:</b> 带 国家代码的手机号码, [+国家代码] [零]11位数字</dd>
+     *      <dd><b>phonecode:</b> 电话号码, 7~8 位数字, [1-9][0-9]{6,7}</dd>
+     *      <dd><b>phone:</b> 带区号的电话号码, [区号][空格|空白|-]7~8位电话号码</dd>
+     *      <dd><b>phoneall:</b> 带国家代码, 区号, 分机号的电话号码, [+国家代码][区号][空格|空白|-]7~8位电话号码#1~6位</dd>
+     *      <dd><b>phonezone:</b> 电话区号, 3~4位数字</dd>
+     *      <dd><b>phoneext:</b> 电话分机号, 1~6位数字</dd>
+     *      <dd><b>mobilephone:</b> mobilecode | phone</dd>
+     *      <dd><b>mobilephoneall:</b> mobilezonecode | phoneall</dd>
+     *      <dd><b>reg:</b> 自定义正则校验, /正则规则/[igm]</dd>
+     *      <dd>
+     *          <b>vcode:</b> 验证码, 0-9a-zA-Z, 长度 默认为4
+     *          <br />可通过 vcode-[\d], 指定验证码长度
+     *      </dd>
+     *      <dd>
+     *          <b>text:</b> 显示声明检查的内容为文本类型
+     *          <br />默认就是 text, 没有特殊原因其实不用显示声明
+     *      </dd>
+     *      <dd>
+     *          <b>bytetext:</b> 声明按字节检查文本长度
+     *          <br /> ASCII 算一个字符, 非 ASCII 算两个字符
+     *      </dd>
+     *      <dd><b>url:</b> URL 格式, ftp, http, https</dd>
+     *      <dd><b>domain:</b> 匹配域名, 宽松模式, 允许匹配 http(s), 且结尾允许匹配反斜扛(/)</dd>
+     *      <dd><b>stricdomain:</b> 匹配域名, 严格模式, 不允许匹配 http(s), 且结尾不允许匹配反斜扛(/)</dd>
+     *      <dd><b>email:</b> 电子邮件</dd>
+     *      <dd><b>zipcode:</b> 邮政编码, 0~6位数字</dd>
+     *
+     *      <dt>subdatatype: 特殊数据类型</dt>
+     *      <dd>
+     *          <dl>
+     *              <dt>alternative: N 个 Control 必须至少有一个非空的值</dt>
+     *              <dd><b>datatarget:</b> 显式指定同一组 control, 默认在父级下查找[subdatatype=alternative]</dd>
+     *              <dd><b>alternativemsg:</b> N 选一的错误提示</dd>
+     *          </dl>
+     *      </dd>
+     *      <dd>
+     *          <dl>
+     *              <dt>reconfirm: N 个 Control 的值必须保持一致</dt>
+     *              <dd><b>datatarget:</b> 显式指定同一组 control, 默认在父级下查找[subdatatype=reconfirm]</dd>
+     *              <dd><b>reconfirmmsg:</b> 值不一致时的错误提示</dd>
+     *          </dl>
+     *      </dd>
+     * </dl>
      * @namespace UXC
      * @class Valid
      * @static
@@ -32,6 +148,7 @@
          */
         check:  
             function( _item ){ 
+                _item && ( _item = $( _item ) );
                 var _r = true, _item = $(_item), _type = _item.length ? _item.prop('nodeName').toLowerCase() : '';
                 if( _item.length ){
                     if( _type == 'form' ){
@@ -145,6 +262,7 @@
                             case 'file': 
                             case 'textarea':
                             case 'password':
+                            case 'hidden':
                             case 'text': 
                                 {
                                     if( $.trim( _item.val() ).length ) return true;
@@ -162,7 +280,22 @@
                 }
                 return _r;
             }
+        /**
+         * 把一个表单项的状态设为正确状态
+         * @method  setValid
+         * @param   {selector}  _item
+         * @param   {int}       _tm     延时 _tm 毫秒显示处理结果, 默认=150
+         * @static
+         */
         , setValid: function(_item, _tm){ _logic.valid.apply( this, [].slice.apply( arguments) ); }
+        /**
+         * 把一个表单项的状态设为错误状态
+         * @method  setError
+         * @param   {selector}  _item
+         * @param   {string}    _msgAttr    - 显示指定需要读取的错误信息属性名, 默认为 reqmsg, errmsg, 通过该属性可以指定别的属性名
+         * @param   {bool}      _fullMsg    - 显示指定错误信息为属性的值, 而不是自动添加的 请上传/选择/填写
+         * @static
+         */
         , setError: function(_item, _msgAttr, _fullMsg){ _logic.error.apply( this, [].slice.apply( arguments) );}
     };
     /**
@@ -224,6 +357,7 @@
                             case 'input':
                             case 'textarea':
                                 {
+                                    Valid.autoTrim && ( _sitem.val( $.trim( _sitem.val() ) ) );
                                     _sitem.val( $.trim( _sitem.val()||'' ) );
                                     break;
                                 }
@@ -288,6 +422,7 @@
              * @private
              * @static
              * @param   {selector}  _item
+             * @param   {int}       _tm
              */
             , valid:
                 function( _item, _tm ){
@@ -305,6 +440,8 @@
              * @private
              * @static
              * @param   {selector}  _item
+             * @param   {string}    _msgAttr    - 显示指定需要读取的错误信息属性名, 默认为 reqmsg, errmsg, 通过该属性可以指定别的属性名
+             * @param   {bool}      _fullMsg    - 显示指定错误信息为属性的值, 而不是自动添加的 请上传/选择/填写
              */
             , error: 
                 function( _item, _msgAttr, _fullMsg ){
@@ -427,115 +564,6 @@
                     _date_str = _date_str.replace( /[^\d]/g, '' );
                     return new Date( _date_str.slice(0,4), parseInt( _date_str.slice( 4, 6 ), 10 ) - 1, _date_str.slice( 6, 8) ).getTime();
                 }
-            /**
-             * 此对象存储可供检查的子类型
-             * @property    _logic.subdatatype
-             * @type        Object
-             * @private
-             * @static
-             */
-            , subdatatype: {
-                /**
-                 * 此类型检查 2|N个对象必须至少有一个是有输入内容的, 
-                 * <br> 常用于 手机/电话 二填一
-                 * @method  _logic.subdatatype.alternative
-                 * @private
-                 * @static
-                 * @param   {selector}  _item
-                 * @example
-                        <dd>
-                        <div class="f-l label">
-                            <label>(datatype phonezone, phonecode, phoneext)电话号码:</label>
-                        </div>
-                        <div class="f-l">
-                            <input type='TEXT' name='company_phonezone' style="width:40px;" value='' size="4" 
-                                datatype="phonezone" emEl="#phone-err-em" errmsg="请填写正确的电话区号" />
-                            - <input type='TEXT' name='company_phonecode' style="width:80px;" value='' size="8" 
-                                datatype="phonecode" subdatatype="alternative" datatarget="input[name=company_mobile]" alternativemsg="电话号码和手机号码至少填写一个"
-                                errmsg="请检查电话号码格式" emEl="#phone-err-em" />
-                            - <input type='TEXT' name='company_phoneext' style="width:40px;" value='' size="4" 
-                                datatype="phoneext" emEl="#phone-err-em" errmsg="请填写正确的分机号" />
-                            <em id="phone-err-em"></em>
-                        </div>
-                        </dd>
-
-                        <dd>
-                        <div class="f-l label">
-                            <label>(datatype mobilecode)手机号码:</label>
-                        </div>
-                        <div class="f-l">
-                            <input type="TEXT" name="company_mobile" 
-                                datatype="mobilecode" subdatatype="alternative" datatarget="input[name=company_phonecode]" alternativemsg=" "
-                                errmsg="请填写正确的手机号码">
-                        </div>
-                        </dd>
-                 */
-                alternative:
-                    function( _item ){
-                        var _r = true, _target;
-
-                        UXC.log( 'alternative' );
-
-                        if( _item.is( '[datatarget]' ) && (_target = $(_item.attr('datatarget')) ).length && !_item.val() ){
-                            var _hasVal = false;
-                            _target.each( function(){ if( $(this).val() ){ _hasVal = true; return false; } } );
-                            _r = _hasVal;
-                        }
-
-                        !_r && _logic.error( _item, 'alternativemsg', true );
-                        !_r && _target && _target.length && _target.each( function(){ _logic.error( $(this), 'alternativemsg', true ); } );
-                        _r && _target && _target.length && _target.each( function(){ _logic.valid( $(this) ); } );
-
-                        return _r;
-                    }
-                /**
-                 * 此类型检查 2|N 个对象填写的值必须一致
-                 * 常用于注意时密码验证/重置密码
-                 * @method  _logic.subdatatype.reconfirm
-                 * @private
-                 * @static
-                 * @param   {selector}  _item
-                 * @example
-                        <dd>
-                        <div class="f-l label">
-                            <label>(datatype text, subdatatype reconfirm)用户密码:</label>
-                        </div>
-                        <div class="f-l">
-                            <input type="PASSWORD" name="company_pwd" 
-                            datatype="text" subdatatype="reconfirm" datatarget="input[name=company_repwd]" reconfirmmsg="用户密码和确认密码不一致"
-                            minlength="6" maxlength="15" reqmsg="用户密码" errmsg="请填写正确的用户密码">
-                        </div>
-                        </dd>
-
-                        <dd>
-                        <div class="f-l label">
-                            <label>(datatype text, subdatatype reconfirm)确认密码:</label>
-                        </div>
-                        <div class="f-l">
-                            <input type="PASSWORD" name="company_repwd" 
-                            datatype="text" subdatatype="reconfirm" datatarget="input[name=company_pwd]" reconfirmmsg="确认密码和用户密码不一致"
-                            minlength="6" maxlength="15" reqmsg="确认密码" errmsg="请填写正确的确认密码">
-                        </div>
-                        </dd>
-                 */
-                , reconfirm:
-                    function( _item ){
-                        var _r = true, _target;
-
-                        UXC.log( 'reconfirm' );
-
-                        if( _item.is( '[datatarget]' ) && (_target = $(_item.attr('datatarget')) ).length ){
-                            _target.each( function(){ if( _item.val() != $(this).val() ) return _r = false; } );
-                        }
-
-                        !_r && _logic.error( _item, 'reconfirmmsg', true );
-                        !_r && _target.length && _target.each( function(){ _logic.error( $(this), 'reconfirmmsg', true ); } );
-                        _r && _target.length && _target.each( function(){ _logic.valid( $(this) ); } );
-
-                        return _r;
-                    }
-
-            }//subdatatype
             /**
              * 此对象存储可供检查的类型
              * @property    _logic.datatype
@@ -792,14 +820,14 @@
                         return _r;
                     }
                 /**
-                 * 检查时间格式, 格式为 mm:dd:ss
+                 * 检查时间格式, 格式为 hh:mm:ss
                  * @method  _logic.datatype.time
                  * @private
                  * @static
                  * @param   {selector}  _item
                  * @example
                         <div class="f-l">
-                            <input type="TEXT" name="company_time" errmsg="正确的时间, 格式为 hh:nn:ss" datatype="time" >
+                            <input type="TEXT" name="company_time" errmsg="正确的时间, 格式为 hh:mm:ss" datatype="time" >
                         </div>
                  */
                 , time: 
@@ -809,14 +837,14 @@
                         return _r;
                     }
                 /**
-                 * 检查时间格式, 格式为 mm:dd:ss
+                 * 检查时间格式, 格式为 hh:mm
                  * @method  _logic.datatype.minute
                  * @private
                  * @static
                  * @param   {selector}  _item
                  * @example
                         <div class="f-l">
-                            <input type="TEXT" name="company_time" errmsg="正确的时间, 格式为 hh:nn" datatype="minute" >
+                            <input type="TEXT" name="company_time" errmsg="正确的时间, 格式为 hh:mm" datatype="minute" >
                         </div>
                  */
                 , minute: 
@@ -867,7 +895,7 @@
                 /**
                  * 检查注册用户名
                  * <br>格式: a-zA-Z0-9_-
-                 * <br>规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 29
+                 * <br>规则: 首字母必须为 [a-zA-Z0-9], 长度 2 - 30
                  * @method  _logic.datatype.username
                  * @private
                  * @static
@@ -880,7 +908,7 @@
                  */
                 , username:
                     function( _item ){
-                        var _r = /^[a-zA-Z0-9][\w-]{2,29}$/.test( _item.val() );
+                        var _r = /^[a-zA-Z0-9][\w-]{2,30}$/.test( _item.val() );
                         !_r && _logic.error( _item );
                         return _r;
                     }
@@ -899,7 +927,7 @@
                  */
                 , idnumber:
                     function( _item ){
-                        var _r = /^[0-9]{15}(?:[0-9]{2}(?:[0-9xX]|)|)$/.test( _item.val() );
+                        var _r = /^[0-9]{15}(?:[0-9]{2}(?:[0-9xX])|)$/.test( _item.val() );
                         !_r && _logic.error( _item );
                         return _r;
                     }
@@ -919,7 +947,7 @@
                  */
                 , mobilecode: 
                     function( _item, _noError ){
-                        var _r =  /^(?:13|14|15|16|18|19)\d{9}$/.test( _item.val() );
+                        var _r =  /^(?:13|14|15|16|18|19)[\d]{9}$/.test( _item.val() );
                         !_noError && !_r && _logic.error( _item );
                         return _r;
                     }
@@ -958,48 +986,21 @@
                         return _r;
                     }
                 /**
-                 * 检查手机号码/电话号码
-                 * <br />这个方法是原有方法的混合验证 _logic.datatype.mobilecode + _logic.datatype.phone
-                 * @method  _logic.datatype.mobilephone
+                 * 检查电话号码
+                 * <br>格式: 7/8位数字
+                 * @method  _logic.datatype.phonecode
                  * @private
                  * @static
                  * @param   {selector}  _item
                  * @example
-                        <div class="f-l label">
-                            <label>(datatype mobilephone, phone + mobilecode)手机号码或电话号码:</label>
-                        </div>
-                        <div class="f-l">
-                            <input type="text" name="company_mobilephone" 
-                                datatype="mobilephone"
-                                errmsg="请填写正确的手机/电话号码">
+                        <div>
+                            <input type='TEXT' name='company_phonecode' style="width:80px;" value='' size="8" 
+                                datatype="phonecode" errmsg="请检查电话号码格式" emEl="#phone-err-em" />
                         </div>
                  */
-                , mobilephone:
+                , phonecode: 
                     function( _item ){
-                        var _r = _logic.datatype.mobilecode( _item, true ) || _logic.datatype.phone( _item, true );
-                        !_r && _logic.error( _item );
-                        return _r;
-                    }
-                /**
-                 * 检查手机号码/电话号码, 泛匹配
-                 * <br />这个方法是原有方法的混合验证 _logic.datatype.mobilezonecode + _logic.datatype.phoneall
-                 * @method  _logic.datatype.mobilephoneall
-                 * @private
-                 * @static
-                 * @param   {selector}  _item
-                 * @example
-                        <div class="f-l label">
-                            <label>(datatype mobilephoneall, phoneall + mobilezonecode)手机号码或电话号码:</label>
-                        </div>
-                        <div class="f-l">
-                            <input type="text" name="company_mobilephoneall" 
-                                datatype="mobilephoneall"
-                                errmsg="请填写正确的手机/电话号码">
-                        </div>
-                 */
-                , mobilephoneall:
-                    function( _item ){
-                        var _r = _logic.datatype.mobilezonecode( _item, true ) || _logic.datatype.phoneall( _item, true );
+                        var _r =  /^[1-9][0-9]{6,7}$/.test( _item.val() );
                         !_r && _logic.error( _item );
                         return _r;
                     }
@@ -1020,7 +1021,7 @@
                  */
                 , phone:
                     function( _item, _noError ){
-                        var _r = /^(?:0(?:10|2\d|[3-9]\d\d)(?: |\-|)|)[1-9]\d{6,7}$/.test( _item.val() );
+                        var _r = /^(?:0(?:10|2\d|[3-9]\d\d)(?: |\-|)|)[1-9][\d]{6,7}$/.test( _item.val() );
                         !_noError && !_r && _logic.error( _item );
                         return _r;
                     }
@@ -1064,25 +1065,6 @@
                         return _r;
                     }
                 /**
-                 * 检查电话号码
-                 * <br>格式: 7/8位数字
-                 * @method  _logic.datatype.phonecode
-                 * @private
-                 * @static
-                 * @param   {selector}  _item
-                 * @example
-                        <div>
-                            <input type='TEXT' name='company_phonecode' style="width:80px;" value='' size="8" 
-                                datatype="phonecode" errmsg="请检查电话号码格式" emEl="#phone-err-em" />
-                        </div>
-                 */
-                , phonecode: 
-                    function( _item ){
-                        var _r =  /^[0-9]{7,8}$/.test( _item.val() );
-                        !_r && _logic.error( _item );
-                        return _r;
-                    }
-                /**
                  * 检查电话分机号码
                  * @method  _logic.datatype.phoneext
                  * @private
@@ -1100,6 +1082,54 @@
                         !_r && _logic.error( _item );
                         return _r;
                     }
+                /**
+                 * 检查手机号码/电话号码
+                 * <br />这个方法是原有方法的混合验证 _logic.datatype.mobilecode + _logic.datatype.phone
+                 * @method  _logic.datatype.mobilephone
+                 * @private
+                 * @static
+                 * @param   {selector}  _item
+                 * @example
+                        <div class="f-l label">
+                            <label>(datatype mobilephone, phone + mobilecode)手机号码或电话号码:</label>
+                        </div>
+                        <div class="f-l">
+                            <input type="text" name="company_mobilephone" 
+                                datatype="mobilephone"
+                                errmsg="请填写正确的手机/电话号码">
+                        </div>
+                 */
+                , mobilephone:
+                    function( _item ){
+                        var _r = _logic.datatype.mobilecode( _item, true ) || _logic.datatype.phone( _item, true );
+                        !_r && _logic.error( _item );
+                        return _r;
+                    }
+
+                /**
+                 * 检查手机号码/电话号码, 泛匹配
+                 * <br />这个方法是原有方法的混合验证 _logic.datatype.mobilezonecode + _logic.datatype.phoneall
+                 * @method  _logic.datatype.mobilephoneall
+                 * @private
+                 * @static
+                 * @param   {selector}  _item
+                 * @example
+                        <div class="f-l label">
+                            <label>(datatype mobilephoneall, phoneall + mobilezonecode)手机号码或电话号码:</label>
+                        </div>
+                        <div class="f-l">
+                            <input type="text" name="company_mobilephoneall" 
+                                datatype="mobilephoneall"
+                                errmsg="请填写正确的手机/电话号码">
+                        </div>
+                 */
+                , mobilephoneall:
+                    function( _item ){
+                        var _r = _logic.datatype.mobilezonecode( _item, true ) || _logic.datatype.phoneall( _item, true );
+                        !_r && _logic.error( _item );
+                        return _r;
+                    }
+
                 /**
                  * 检查内容的长度
                  * @method  _logic.datatype.length
@@ -1133,12 +1163,12 @@
                          * 根据特殊的 datatype 实现不同的计算方法
                          */
                         switch( _dt ){
-                            case 'richtext':
                             case 'bytetext':
                                 {
                                     _len = _logic.bytelen( _val );
                                     break;
                                 }
+                            case 'richtext':
                             default:
                                 {
                                     _len = _val.length;
@@ -1253,6 +1283,7 @@
                 , bytetext: function(_item){ return true; }
                 /**
                  * 检查富文本的字节
+                 * <br />TODO: 完成富文本长度检查
                  * @method  _logic.datatype.richtext
                  * @private
                  * @static
@@ -1290,7 +1321,23 @@
                 , domain:
                     function( _item ){
                         //var _r = /^(?:(?:f|ht)tp\:\/\/|)((?:(?:(?:\w[\.\-\+]?)*)\w)*)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})(?:\/|)$/.test( _item.val() );
-                        var _r = /^(?:(?:f|ht)tp\:\/\/|)((?:(?:(?:\w[\.\-\+]*))\w)*)((?:(?:(?:\w[\.\-\+]*){0,62})\w)+)\.(\w{2,6})(?:\/|)$/.test( _item.val() );
+                        var _r = /^(?:htt(?:p|ps)\:\/\/|)((?:(?:(?:\w[\.\-\+]*))\w)*)((?:(?:(?:\w[\.\-\+]*){0,62})\w)+)\.(\w{2,6})(?:\/|)$/.test( _item.val() );
+                        !_r && _logic.error( _item );
+                        return _r;
+                    }
+                /**
+                 * 检查域名
+                 * @method  _logic.datatype.stricdomain
+                 * @private
+                 * @static
+                 * @param   {selector}  _item
+                        <div class="f-l">
+                            <input type="TEXT" name="company_domain" datatype="stricdomain" reqmsg="域名" errmsg="请填写正确的域名">
+                        </div>
+                 */
+                , stricdomain:
+                    function( _item ){
+                        var _r = /^((?:(?:(?:\w[\.\-\+]*))\w)*)((?:(?:(?:\w[\.\-\+]*){0,62})\w)+)\.(\w{2,6})$/.test( _item.val() );
                         !_r && _logic.error( _item );
                         return _r;
                     }
@@ -1329,6 +1376,121 @@
                         return _r;
                     }
             }//datatype
+            /**
+             * 此对象存储可供检查的子类型
+             * @property    _logic.subdatatype
+             * @type        Object
+             * @private
+             * @static
+             */
+            , subdatatype: {
+                /**
+                 * 此类型检查 2|N个对象必须至少有一个是有输入内容的, 
+                 * <br> 常用于 手机/电话 二填一
+                 * @method  _logic.subdatatype.alternative
+                 * @private
+                 * @static
+                 * @param   {selector}  _item
+                 * @example
+                        <dd>
+                        <div class="f-l label">
+                            <label>(datatype phonezone, phonecode, phoneext)电话号码:</label>
+                        </div>
+                        <div class="f-l">
+                            <input type='TEXT' name='company_phonezone' style="width:40px;" value='' size="4" 
+                                datatype="phonezone" emEl="#phone-err-em" errmsg="请填写正确的电话区号" />
+                            - <input type='TEXT' name='company_phonecode' style="width:80px;" value='' size="8" 
+                                datatype="phonecode" subdatatype="alternative" datatarget="input[name=company_mobile]" alternativemsg="电话号码和手机号码至少填写一个"
+                                errmsg="请检查电话号码格式" emEl="#phone-err-em" />
+                            - <input type='TEXT' name='company_phoneext' style="width:40px;" value='' size="4" 
+                                datatype="phoneext" emEl="#phone-err-em" errmsg="请填写正确的分机号" />
+                            <em id="phone-err-em"></em>
+                        </div>
+                        </dd>
+
+                        <dd>
+                        <div class="f-l label">
+                            <label>(datatype mobilecode)手机号码:</label>
+                        </div>
+                        <div class="f-l">
+                            <input type="TEXT" name="company_mobile" 
+                                datatype="mobilecode" subdatatype="alternative" datatarget="input[name=company_phonecode]" alternativemsg=" "
+                                errmsg="请填写正确的手机号码">
+                        </div>
+                        </dd>
+                 */
+                alternative:
+                    function( _item ){
+                        var _r = true, _target;
+                        UXC.log( 'alternative' );
+
+                        _item.is( '[datatarget]' ) && (_target = $(_item.attr('datatarget')) );
+                        !( _target && _target.length ) && ( _target = _item.parent().find('[subdatatype=alternative]') );
+
+                        if( _target.length && !$.trim( _item.val() ) ){
+                            var _hasVal = false;
+                            _target.each( function(){ if( $(this).val() ){ _hasVal = true; return false; } } );
+                            _r = _hasVal;
+                        }
+
+                        !_r && _logic.error( _item, 'alternativemsg', true );
+                        !_r && _target && _target.length 
+                            && _target.each( function(){ _logic.error( $(this), 'alternativemsg', true ); } );
+                        _r && _target && _target.length 
+                            && _target.each( function(){ _logic.valid( $(this) ); } );
+
+                        return _r;
+                    }
+                /**
+                 * 此类型检查 2|N 个对象填写的值必须一致
+                 * 常用于注意时密码验证/重置密码
+                 * @method  _logic.subdatatype.reconfirm
+                 * @private
+                 * @static
+                 * @param   {selector}  _item
+                 * @example
+                        <dd>
+                        <div class="f-l label">
+                            <label>(datatype text, subdatatype reconfirm)用户密码:</label>
+                        </div>
+                        <div class="f-l">
+                            <input type="PASSWORD" name="company_pwd" 
+                            datatype="text" subdatatype="reconfirm" datatarget="input[name=company_repwd]" reconfirmmsg="用户密码和确认密码不一致"
+                            minlength="6" maxlength="15" reqmsg="用户密码" errmsg="请填写正确的用户密码">
+                        </div>
+                        </dd>
+
+                        <dd>
+                        <div class="f-l label">
+                            <label>(datatype text, subdatatype reconfirm)确认密码:</label>
+                        </div>
+                        <div class="f-l">
+                            <input type="PASSWORD" name="company_repwd" 
+                            datatype="text" subdatatype="reconfirm" datatarget="input[name=company_pwd]" reconfirmmsg="确认密码和用户密码不一致"
+                            minlength="6" maxlength="15" reqmsg="确认密码" errmsg="请填写正确的确认密码">
+                        </div>
+                        </dd>
+                 */
+                , reconfirm:
+                    function( _item ){
+                        var _r = true, _target;
+
+                        UXC.log( 'reconfirm' );
+
+                        _item.is( '[datatarget]' ) && (_target = $(_item.attr('datatarget')) );
+                        !( _target && _target.length ) && ( _target = _item.parent().find('[subdatatype=reconfirm]') );
+
+                        if( _target && _target.length ){
+                            _target.each( function(){ if( _item.val() != $(this).val() ) return _r = false; } );
+                        }
+
+                        !_r && _logic.error( _item, 'reconfirmmsg', true );
+                        !_r && _target.length && _target.each( function(){ _logic.error( $(this), 'reconfirmmsg', true ); } );
+                        _r && _target.length && _target.each( function(){ _logic.valid( $(this) ); } );
+
+                        return _r;
+                    }
+            }//subdatatype
         };//_logic
 
 }(jQuery));
