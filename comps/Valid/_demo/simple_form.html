@@ -5,7 +5,7 @@
         <title>360 UXC-FE</title>
         <style type='text/css'>
             *{ margin: 0; padding: 0; }
-            body{ width: 980px; margin: 20px auto; }
+            body{ margin: 20px 20px; }
             .cclear{zoom:1;}
             .cclear:after{content:".";display:block;visibility:hidden;height:0;clear:both;}
 
@@ -24,6 +24,10 @@
 
             div.f-l{ float: left; }
             div.label{ width: 320px; text-align: right; padding-right: 20px }
+
+            dd.odd {
+                background: #ececec;
+            }
 
         </style>
         <link href='../../../comps/Calendar/res/default/style.css' rel='stylesheet' />
@@ -46,6 +50,8 @@
                         return false;
                     }
                 });
+
+                $( 'dl.fm-items > dd:odd').addClass( 'odd' );
             });
         </script>
     </head>    
@@ -79,11 +85,23 @@
                 <dd>
                 <div class="f-l label">
                     <label>(datatype domain)域名:</label>
+                    <br />允许带 http(s)
                 </div>
                 <div class="f-l">
                     <input type="text" name="company_domain" datatype="domain" reqmsg="域名" errmsg="请填写正确的域名">
                 </div>
                 </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <label>(datatype stricdomain)域名:</label>
+                    <br />不允许带 http(s), 且结束不能带反斜扛(/)
+                </div>
+                <div class="f-l">
+                    <input type="text" name="company_domain" datatype="stricdomain" reqmsg="域名" errmsg="请填写正确的域名">
+                </div>
+                </dd>
+
 
                 <dd>
                 <div class="f-l label">
@@ -288,7 +306,10 @@
 
                 <dd>
                 <div class="f-l label">
-                    <label>(datatype phonezone, phonecode, phoneext)电话号码:</label>
+                    <label>
+                        (datatype phonezone, phonecode, phoneext)电话号码:
+                        <br >subdatatype: alternative
+                    </label>
                 </div>
                 <div class="f-l">
                     <input type='text' name='company_phonezone' style="width:40px;" value='' size="4" 
@@ -304,7 +325,10 @@
 
                 <dd>
                 <div class="f-l label">
-                    <label>(datatype mobilecode)手机号码:</label>
+                    <label>
+                        (datatype mobilecode)手机号码:
+                        <br >subdatatype: alternative
+                    </label>
                 </div>
                 <div class="f-l">
                     <input type="text" name="company_mobile" 
@@ -468,7 +492,7 @@
                     <label>(datatype text)简介:</label>
                 </div>
                 <div class="f-l">
-                    <textarea name="company_desc" datatype="text" reqmsg="简介" errmsg="简介长度2-500" minlength="2" maxlength="500" ></textarea>
+                    <textarea name="company_desc" datatype="text" reqmsg="简介" errmsg="最大长度500" maxlength="500" ></textarea>
                 </div>
                 </dd>
 
@@ -477,7 +501,7 @@
                     <label>auto trim test:</label>
                 </div>
                 <div class="f-l">
-                    <input type="text" name="company_name" value=" d" minlength="2" maxlength="120" reqmsg="请输入内容" errmsg="请检查格式,长度2-120" /> <em>公司名称描述</em>
+                    <input type="text" name="company_name" value=" d" maxlength="120" reqmsg="请输入内容" errmsg="最大长度120" /> <em>公司名称描述</em>
                 </div>
                 </dd>
 
@@ -486,7 +510,7 @@
                     <label>auto trim test:</label>
                 </div>
                 <div class="f-l">
-                    <input type="text" name="company_name" value="d " minlength="2" maxlength="120" reqmsg="请输入内容" errmsg="请检查格式,长度2-120" /> <em>公司名称描述</em>
+                    <input type="text" name="company_name" value="d " maxlength="120" reqmsg="请输入内容" errmsg="最大长度120" /> <em>公司名称描述</em>
                 </div>
                 </dd>
 
@@ -499,7 +523,56 @@
                 </div>
                 </dd>
 
+                <dd>
+                <div class="f-l label">
+                    <div>N 个 control 至少有一个值是非空值 </div>
+                    <div>datatype: n</div>
+                    <label>subdatatype: alternative</label>
+                    <div>如果需要显式指定比较的control, 请用 datatarget=selector</div>
+                </div>
+                <div class="f-l">
+                    <input type="text" name="alternative_test[]" value="" 
+                        datatype="n" subdatatype="alternative" 
+                        errmsg="请填写正确的正整数"
+                        alternativemsg="数值1和数值2至少需要填写一个"
+                        /> <em>数值1</em>
+                    <input type="text" name="alternative_test[]" value="" 
+                        datatype="n" subdatatype="alternative" 
+                        errmsg="请填写正确的正整数"
+                        alternativemsg="数值1和数值2至少需要填写一个"
+                        /> <em>数值2</em>
+                    <em class="error"></em>
+                </div>
+                </dd>
+
+                <dd>
+                <div class="f-l label">
+                    <div>N 个 control 的值必须保持一致</div>
+                    <div>datatype: n</div>
+                    <label>subdatatype: reconfirm</label>
+                    <div>如果需要显式指定比较的control, 请用 datatarget=selector</div>
+                </div>
+                <div class="f-l">
+                    <input type="password" name="company_pwd_auto" 
+                        datatype="text" subdatatype="reconfirm" 
+                        reqmsg="用户密码" errmsg="长度6-15" reconfirmmsg="用户密码和确认密码不一致" 
+                        minlength="6" maxlength="15"
+                        />
+                    <input type="password" name="company_pwd_auto" 
+                        datatype="text" subdatatype="reconfirm" 
+                        reqmsg="用户密码" errmsg="长度6-15" reconfirmmsg="用户密码和确认密码不一致" 
+                        minlength="6" maxlength="15"
+                        />
+                    <em class="error"></em>
+                </div>
+                </dd>
+
             </dl>
+
+            <div>
+                <button type="submit">Save</button>
+                <button type="button" class="js-clear-error">清空错误信息</button>
+            </div>
         </form>
 
 
